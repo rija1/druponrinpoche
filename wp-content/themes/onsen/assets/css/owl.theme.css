@@ -1,0 +1,89 @@
+/*
+* 	Owl Carousel Owl Demo Theme 
+*	v1.3.3
+*/
+
+.owl-theme .owl-controls{}
+.owl-theme .owl-controls .owl-buttons div,
+.owl-theme .owl-controls .owl-pagination {
+z-index: 13;
+}
+
+/* Styling Next and Prev buttons */
+.owl-theme .owl-controls .owl-buttons div{
+font-size: 70px;
+line-height: 1;
+height: 70px;
+display: block;
+zoom: 1;
+position: absolute;
+top: 50%;
+margin-top: -35px;
+}
+.owl-theme .owl-controls .owl-buttons div.owl-prev {
+left: 25px;
+}
+.owl-theme .owl-controls .owl-buttons div.owl-next {
+right: 25px;
+}
+.owl-theme .owl-controls .owl-buttons div:before {
+font-family: 'FontAwesome';
+}
+.owl-theme .owl-controls .owl-buttons div.owl-prev:before {
+content: "\f104";
+}
+.owl-theme .owl-controls .owl-buttons div.owl-next:before {
+content: "\f105";
+}
+/* Clickable class fix problem with hover on touch devices */
+/* Use it for non-touch hover action */
+.owl-theme .owl-controls.clickable .owl-buttons div:hover{}
+
+/* Styling Pagination*/
+.owl-theme .owl-controls .owl-pagination {
+text-align: center;
+position: absolute;
+left: 0;
+right: 0;
+bottom: 40px;
+}
+.owl-theme .owl-controls .owl-page{
+display: inline-block;
+margin: 0 10px;
+zoom: 1;
+*display: inline;/*IE7 life-saver */
+}
+.owl-theme .owl-controls .owl-page span{
+display: block;
+width: 8px;
+height: 8px;
+padding: 0;
+border-width: 2px;
+border-style: solid;
+-moz-border-radius: 6px;							/* Mozila Firefox border radius */
+-webkit-border-radius: 6px;	   						/* Safari, Chrome border radius */
+-khtml-border-radius: 6px;	   						/* KHTML border radius */
+-icab-border-radius: 6px;	   						/* icab border radius */
+border-radius: 6px;		   							/* CSS3 Opera border radius */
+-opera-border-radius: 6px;
+-o-border-radius: 6px;
+-border-radius: 6px;
+}
+
+.owl-theme .owl-controls .owl-page.active span,
+.owl-theme .owl-controls.clickable .owl-page:hover span{
+}
+
+/* If PaginationNumbers is true */
+.owl-theme .owl-controls .owl-page span.owl-numbers{
+	height: auto;
+	width: auto;
+	padding: 0 5px;
+	font-size: 12px;
+}
+
+/* preloading images */
+.owl-item.loading{
+	min-height: 150px;
+	background: url('../images/AjaxLoader.gif') no-repeat center center
+}
