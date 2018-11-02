@@ -23,23 +23,23 @@ add_action( 'after_setup_theme', 'onsen_content_width', 0 );
 if( ! function_exists( 'onsen_theme_setup' ) ) {
 
 	function onsen_theme_setup() {
-	
+
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on BuildPress, use a find and replace
 		 */
-		 
+
 		load_theme_textdomain( 'onsen', get_template_directory() . '/lang' );
 
 		// Add default posts and comments RSS feed links to head.
 		add_theme_support( 'automatic-feed-links' );
-		
-		// Add default title support
-		add_theme_support( 'title-tag' ); 	
 
-		// Add default logo support		
-        add_theme_support( 'custom-logo' );				
+		// Add default title support
+		add_theme_support( 'title-tag' );
+
+		// Add default logo support
+        add_theme_support( 'custom-logo' );
 
 		// Custom Backgrounds
 		add_theme_support( 'custom-background', array(
@@ -51,14 +51,14 @@ if( ! function_exists( 'onsen_theme_setup' ) ) {
 		 *
 		 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 		 */
-		 
+
 		add_theme_support('post-thumbnails');
 		set_post_thumbnail_size( 150, 150, true);
-		
+
 		add_image_size('onsen-photo-800-500', 800, 500, true);
 
 		// Menus
-        register_nav_menu( 'onsen-menu', _x( 'Main Menu', 'backend', 'onsen' ) );				
+        register_nav_menu( 'onsen-menu', _x( 'Main Menu', 'backend', 'onsen' ) );
 
 		// Add theme support for Semantic Markup
 		add_theme_support( 'html5', array(

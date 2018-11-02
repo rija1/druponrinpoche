@@ -1,4 +1,4 @@
-.wrap p .view-demo, .wrap p .upgrade,.wrap p .ask-question, .wrap p .view-doc {
+.wrap p .view-demo, .wrap p .upgrade {
   float: right;
   display: block;
   text-decoration: none;
@@ -8,7 +8,7 @@
   border: 5px solid #e4e2e2;
   border-radius: 3px;
   font-weight: bold; }
-  .wrap p .view-demo i, .wrap p .upgrade i ,.wrap p .ask-question i, .wrap p .view-doc i {
+  .wrap p .view-demo i, .wrap p .upgrade i {
     padding: 10px 15px;
     font-size: 1.2em;
     display: inline-block;
@@ -29,22 +29,6 @@
     font-size: 1.2em; }
   .wrap p .upgrade:hover {
     background-color: #d53f3f; }
-    .wrap p .view-doc {
-  background-color: #1F94E7;
-  color: white; }
-  .wrap p .view-doc i {
-    background-color: #2186CD;
-    font-size: 1.2em; }
-  .wrap p .view-doc:hover {
-    background-color: #2186CD; }
-.wrap p .ask-question {
-  background-color: #56a600;
-  color: white; }
-  .wrap p .ask-question i {
-    background-color: #53881c;
-    font-size: 1.2em; }
-  .wrap p .ask-question:hover {
-    background-color: #53881c; }
 .wrap .one-third.column {
   border: 2px solid #d7d7d7;
   float: left;
