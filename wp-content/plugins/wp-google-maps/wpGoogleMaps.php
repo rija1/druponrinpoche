@@ -3,7 +3,7 @@
 Plugin Name: WP Google Maps
 Plugin URI: https://www.wpgmaps.com
 Description: The easiest to use Google Maps plugin! Create custom Google Maps with high quality markers containing locations, descriptions, images and links. Add your customized map to your WordPress posts and/or pages quickly and easily with the supplied shortcode. No fuss.
-Version: 7.10.34
+Version: 7.10.44
 Author: WP Google Maps
 Author URI: https://www.wpgmaps.com
 Text Domain: wp-google-maps
@@ -11,6 +11,55 @@ Domain Path: /languages
 */
 
 /*
+ * 7.10.44 :- 2018-11-05 :- Medium priority
+ * Fixed Modern Store Locator Circle not working when Google Maps geometry library not loaded
+ * Fixed legacy-map-edit-page.js not enqueued when Gold add-on activated (with Pro >= 7.10.30)
+ * Fixed store locator circle color settings not respected in OpenLayers
+ * Improved unresolved dependency report, now reports requirements
+ *
+ * 7.10.43 :- 2018-10-31 :- High priority
+ * Improved previous security fix
+ *
+ * 7.10.42 :- 2018-10-25 :- High priority
+ * Closed potential XSS vulnerability in PHP_SELF on map edit page
+ *
+ * 7.10.41 :- 2018-10-24 :- Medium priority
+ * Changed exception to notice when v8 dependencies are missing (fixes issue with Pro < 7.10.37 in developer mode)
+ *
+ * 7.10.40 :- 2018-10-17 :- Medium priority
+ * Added temporary fix for Gutenberg module dependencies preventing wpgmaps.js from loading when in Developer Mode
+ * Fixed Infowindow not opening on touch device when using "hover" action
+ *
+ * 7.10.39 :- 2018-10-15 :- High priority
+ * Fixed JS error when Gutenberg framework not loaded
+ *
+ * 7.10.38 :- 2018-10-15 :- Medium priority
+ * Added factory class
+ * Added DIVI compatibility fix
+ * Added new table name constants
+ * Modules added to pave the way for Gutenberg integration
+ * Adjusted script loader to support external dependencies
+ * Fixed trailing slash breaking rest API routes on some setups
+ * Fixed wpgmza_basic_get_admin_path causing URL wrapper not supported
+ *
+ * 7.10.37 :- 2018-09-27 :- Medium priority
+ * Fixed undefined variable on iOS breaking store locator
+ * Fixed edit marker using REST API not working when API route has two slashes
+ * Fixed map not appearing with particular versions of dataTables where the packaged version is not used
+ *
+ * 7.10.36 :- 2018-09-25 :- Medium Priority
+ * Fixed change in 7.10.35 causing problems with OLMarker click event, preventing infowindow opening
+ * Dropped .gitignore which was causing deployment issues, now using .gitattributes to ignore minified files
+ *
+ * 7.10.35 :- 2018-09-20 :- Medium priority
+ * Added links to new API troubleshooting documentation to Google Maps API Error dialog
+ * Fixed marker dispatching click event after drag when using OpenLayers
+ * Fixed map dispatching click event after drag when using OpenLayers
+ * Fixed map editor right click marker appearing multiple times
+ * Fixed map editor right click marker disappearing after map drag
+ * Fixed modern store locator circle crashing some iOS devices by disabling this feature on iOS devices
+ * Fixed gesture handling setting not respected when theme data is set in
+ *
  * 7.10.34 :- 2018-09-17 :- Low priority
  * Added descriptive error messages when Google API is required but not loaded
  * Added "I agree" translation to German files
@@ -586,13 +635,13 @@ $debug = false;
 $debug_step = 0;
 $wpgmza_p = false;
 $wpgmza_g = false;
-$wpgmza_tblname = $wpdb->prefix . "wpgmza";
-$wpgmza_tblname_maps = $wpdb->prefix . "wpgmza_maps";
-$wpgmza_tblname_poly = $wpdb->prefix . "wpgmza_polygon";
-$wpgmza_tblname_polylines = $wpdb->prefix . "wpgmza_polylines";
-$wpgmza_tblname_circles = $wpdb->prefix . "wpgmza_circles";
-$wpgmza_tblname_rectangles = $wpdb->prefix . "wpgmza_rectangles";
-$wpgmza_tblname_categories = $wpdb->prefix. "wpgmza_categories";
+$WPGMZA_TABLE_NAME_MARKERS = $wpgmza_tblname = $wpdb->prefix . "wpgmza";
+$WPGMZA_TABLE_NAME_MAPS = $wpgmza_tblname_maps = $wpdb->prefix . "wpgmza_maps";
+$WPGMZA_TABLE_NAME_POLYGONS = $wpgmza_tblname_poly = $wpdb->prefix . "wpgmza_polygon";
+$WPGMZA_TABLE_NAME_POLYLINES = $wpgmza_tblname_polylines = $wpdb->prefix . "wpgmza_polylines";
+$WPGMZA_TABLE_NAME_CIRCLES = $wpgmza_tblname_circles = $wpdb->prefix . "wpgmza_circles";
+$WPGMZA_TABLE_NAME_RECTANGLES = $wpgmza_tblname_rectangles = $wpdb->prefix . "wpgmza_rectangles";
+$WPGMZA_TABLE_NAME_CATEGORIES = $wpgmza_tblname_categories = $wpdb->prefix. "wpgmza_categories";
 $wpgmza_tblname_category_maps = $wpdb->prefix. "wpgmza_category_maps";
 
 $subject = file_get_contents(__FILE__);
@@ -2908,6 +2957,11 @@ function wpgmaps_tag_basic( $atts ) {
 	//$googleMapsAPILoader = new WPGMZA\GoogleMapsAPILoader();
 	//if(!$googleMapsAPILoader->isIncludeAllowed())
 		//wp_deregister_script('wpgmza_api_call');
+
+	// TODO: Come up with a proper solution. Gutenberg dependency breaks developer mode
+	$gutenbergIndex = array_search('wpgmza-gutenberg', $core_dependencies);
+	if($gutenbergIndex !== false)
+		array_splice($core_dependencies, $gutenbergIndex, 1);
 	
     wp_enqueue_script('wpgmaps_core', plugins_url('/js/wpgmaps.js',__FILE__), $core_dependencies, $wpgmza_version.'b' , false);
 	
@@ -4746,7 +4800,7 @@ function wpgmaps_settings_page_basic() {
             $ret .= "               <tr>";
             $ret .= "                        <td width='200' valign='top'>".__("Disable Two-Finger Pan","wp-google-maps").":</td>";
             $ret .= "                     <td>";
-            $ret .= "                           <div class='switch'><input name='wpgmza_force_greedy_gestures' type='checkbox' class='cmn-toggle cmn-toggle-yes-no' id='wpgmza_force_greedy_gestures' value='yes' $wpgmza_force_greedy_gestures_checked /> <label for='wpgmza_force_greedy_gestures' data-on='".__("Yes", "wp-google-maps")."' data-off='".__("No", "wp-google-maps")."'></label></div> " . __("Removes the need to use two fingers to move the map on mobile devices", "wp-google-maps");
+            $ret .= "                           <div class='switch wpgmza-open-layers-feature-unavailable'><input name='wpgmza_force_greedy_gestures' type='checkbox' class='cmn-toggle cmn-toggle-yes-no' id='wpgmza_force_greedy_gestures' value='yes' $wpgmza_force_greedy_gestures_checked /> <label for='wpgmza_force_greedy_gestures' data-on='".__("Yes", "wp-google-maps")."' data-off='".__("No", "wp-google-maps")."'></label></div> " . __("Removes the need to use two fingers to move the map on mobile devices", "wp-google-maps");
             $ret .= "                    </td>";
             $ret .= "                </tr>";
 			
@@ -5380,7 +5434,7 @@ function wpgmza_basic_menu() {
                         </ul>
                         <div id=\"tabs-1\">
                             <p></p>
-                            <input type='hidden' name='http_referer' value='".$_SERVER['PHP_SELF']."' />
+                            <input type='hidden' name='http_referer' value='" . htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8') . "' />
                             <input type='hidden' name='wpgmza_id' id='wpgmza_id' value='".$res->id."' />
                             <input id='wpgmza_start_location' name='wpgmza_start_location' type='hidden' size='40' maxlength='100' value='".$res->map_start_location."' />
                             <select id='wpgmza_start_zoom' name='wpgmza_start_zoom' style='display:none;' >
@@ -6783,11 +6837,12 @@ if (function_exists('wpgmza_register_pro_version')) {
     add_action('wp_ajax_delete_rectangle', 'wpgmaps_action_callback_pro');
     add_action('template_redirect','wpgmaps_check_shortcode');
 
-    if (function_exists('wpgmza_register_gold_version')) {
-        add_action('admin_head', 'wpgmaps_admin_javascript_gold');
-    } else {
-        add_action('admin_head', 'wpgmaps_admin_javascript_pro');
-    }
+    if (function_exists('wpgmza_register_gold_version') && version_compare($wpgmza_pro_version, '7.10.29', '<=')) {
+		// Deprecated with Pro >= 7.10.30, where legacy-map-edit-page.js is used instead
+		add_action('admin_head', 'wpgmaps_admin_javascript_gold');
+	}else{
+		add_action('admin_head', 'wpgmaps_admin_javascript_pro');
+	}
 
     global $wpgmza_pro_version;
     $wpgmza_float_version = floatval( $wpgmza_pro_version );
@@ -8667,6 +8722,11 @@ if(!function_exists('wpgmza_get_rectangle_data'))
 // Get admin path
 function wpgmza_basic_get_admin_path()
 {
+	$default = ABSPATH . 'wp-admin/';
+	
+	if(file_exists($default))
+		return $default;
+	
 	return $admin_path = str_replace( get_bloginfo( 'url' ) . '/', ABSPATH, get_admin_url() );
 }
 
@@ -8766,11 +8826,60 @@ if(!function_exists('wpgmza_enqueue_fontawesome'))
 	}
 }
 
-if(!empty($_GET['wpgmza-build']))
-{
-	$wpgmza = new WPGMZA\Plugin();
-	$scriptLoader = new WPGMZA\ScriptLoader($wpgmza->isProVersion());
-	$scriptLoader->build();
-	echo "Build successful";
-	exit;
-}
+add_action('plugins_loaded', function() {
+	
+	if(!empty($_GET['wpgmza-build']))
+	{
+		$scriptLoader = new WPGMZA\ScriptLoader(false);
+		$scriptLoader->build();
+	
+		if(class_exists('WPGMZA\\ProPlugin'))
+		{
+			$scriptLoader = new WPGMZA\ScriptLoader(true);
+			$scriptLoader->build();
+		}
+		
+		echo "Build successful";
+		
+		exit;
+	}
+	
+});
+
+/*add_filter('script_loader_tag', function($tag, $handle, $src) {
+	
+	global $debug_core_dependencies;
+	
+	if(!$debug_core_dependencies)
+	{
+		$debug_core_dependencies = array();
+		
+		$scriptLoader = new WPGMZA\ScriptLoader(false);
+		$v8Scripts = $scriptLoader->getPluginScripts();
+		
+		foreach($v8Scripts as $handle => $script)
+		{
+			$debug_core_dependencies[] = $handle;
+		}
+	}
+	
+	if(($index = array_search($handle, $debug_core_dependencies)) !== false)
+	{
+		var_dump("Unsetting $handle");
+		unset($debug_core_dependencies[$index]);
+	}
+	
+	return $tag;
+	
+}, 10, 3);
+
+add_action('wp_footer', function() {
+	
+	global $debug_core_dependencies;
+	
+	var_dump("Dumping dependencies");
+	echo "<pre>";
+	var_dump($debug_core_dependencies);
+	echo "</pre>";
+	
+});*/

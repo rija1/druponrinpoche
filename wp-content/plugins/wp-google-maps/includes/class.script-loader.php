@@ -7,6 +7,8 @@ require_once(plugin_dir_path(__FILE__) . 'open-layers/class.ol-loader.php');
 
 class ScriptLoader
 {
+	private static $dependencyErrorDisplayed = false;
+	
 	private $proMode = false;
 	private $logStarted = false;
 	
@@ -134,7 +136,7 @@ class ScriptLoader
 				
 				$contents = file_get_contents($file);
 				
-				if(!preg_match('/^\/\*\*.+?\*\//s', $contents, $m))
+				if(!preg_match('/\/\*\*.+?\*\//s', $contents, $m))
 					continue;
 				
 				$header = $m[0];
@@ -208,46 +210,83 @@ class ScriptLoader
 		$scripts = (array)(clone (object)$this->scripts);
 		$includedHandles = array();
 		$combineOrder = array();
+		
+		$ignoreDependencyHandles = array(
+			'wpgmza_api_call'
+		);
 		$unresolvedDependencyHandles = array();
 		
 		while(!empty($scripts))
 		{
 			if(++$iterations > 100000)
 			{
-				//echo "Dumping included handles\r\n";
-				//var_dump($includedHandles);
-				
-				//echo "Dumping remaining scripts\r\n\r\n";
-				//var_dump($scripts);
-				
-				echo "<pre>";
-				echo "Dumping unresolved dependencies\r\n\r\n";
-				//var_dump(array_keys($unresolvedDependencyHandles));
-				
-				foreach($unresolvedDependencyHandles as $handle => $unused)
+				if(!ScriptLoader::$dependencyErrorDisplayed)
 				{
-					echo "$handle (in " . implode(', ', $this->dependenciesByHandle[$handle]) . ")\r\n";
+					?>
+					<div class="notice notice-error">
+						<p>
+							WP Google Maps: Build failed. Dumping unresolved dependencies
+						</p>
+						
+						<?php
+							echo "<pre>";
+							foreach($unresolvedDependencyHandles as $handle => $reference)
+							{
+								echo "$handle (in " . implode(', ', $this->dependenciesByHandle[$handle]) . ")\r\n";
+								echo "Requires:\r\n" . implode("\r\n", $reference);
+								echo "\r\n";
+							}
+							echo "</pre>";
+						?>
+						
+						<p>
+							Are you debugging or developing WP Google Maps? If not, please disable developer mode in Maps &rarr; Settings &rarr; Advanced to remove this notice.
+						</p>
+					</div>
+					<?php
+					
+					ScriptLoader::$dependencyErrorDisplayed = true;
 				}
 				
-				echo "</pre>";
-				
-				throw new \Exception('Iteration limit hit possibly due to dependency recusion or unresolved dependencies');
+				return array();
 			}
 			
 			foreach($scripts as $handle => $script)
 			{
-				// echo "Looking at $handle\r\n";
+				 //echo "\r\nLooking at $handle\r\n";
 				
 				foreach($script->dependencies as $dependency)
-					if($dependency != 'wpgmza_api_call' && array_search($dependency, $includedHandles) === false)
+				{
+					// Ignored handles (eg API call)
+					if(array_search($dependency, $ignoreDependencyHandles) !== false)
 					{
-						// echo "Dependency $dependency not included yet\r\n";
-						$unresolvedDependencyHandles[$handle] = true;
-						continue 2;
+						//echo "Ignoring dependency $dependency\r\n";
+						continue;
 					}
 					
-				// echo "Adding $handle ({$script->src})\r\n";
+					// Already included handles
+					if(array_search($dependency, $includedHandles) !== false)
+					{
+						//echo "Already included $dependency\r\n";
+						continue;
+					}
+					
+					// External handles not handled by us. This module only handles internal dependencies
+					if(!preg_match('/^wpgmza-/i', $dependency) && $dependency != 'wpgmza')
+					{
+						//echo "Ignoring external handle $dependency\r\n";
+						continue;
+					}
+					
+					if(empty($unresolvedDependencyHandles[$handle]))
+						$unresolvedDependencyHandles[$handle] = array();
+					$unresolvedDependencyHandles[$handle][$dependency] = $dependency;
+					
+					//echo "$dependency not yet included, skipping\r\n";
+					continue 2;
+				}
 				
+				//echo "Adding $handle ({$script->src})\r\n";
 				
 				$combineOrder[] = $script->src;
 				$includedHandles[] = $handle;
@@ -267,6 +306,7 @@ class ScriptLoader
 		global $wpgmza;
 		
 		$order = $this->getCombineOrder();
+		
 		$combined = array();
 		$dest = plugin_dir_path(($this->proMode ? WPGMZA_PRO_FILE : __DIR__)) . 'js/v8/wp-google-maps' . ($this->proMode ? '-pro' : '') . '.combined.js';
 		
@@ -286,8 +326,9 @@ class ScriptLoader
 		
 		$combined = implode("\r\n", $combined);
 		
-		if(file_exists($dest) && md5(file_get_contents($dest)) == md5($combined))
-			return;	// No changes, no need to build
+		// TODO: Uncomment and test
+		//if(file_exists($dest) && md5(file_get_contents($dest)) == md5($combined))
+			//return;	// No changes, no need to build
 		
 		file_put_contents($dest, $combined);
 	}
@@ -333,6 +374,9 @@ class ScriptLoader
 			
 			if(!$minified_file_exists || $delta > 0)
 				$src = $combined;
+			
+			// TODO: Remove this, fix errors
+			// $src = $combined;
 			
 			$scripts = array('wpgmza' => 
 				(object)array(
@@ -388,6 +432,7 @@ class ScriptLoader
 			case '5.*':
 				wp_enqueue_style('fontawesome', 'https://use.fontawesome.com/releases/v5.0.9/css/all.css');
 				
+				// If we're not in admin, break. If we are, continue and enqueue FA 4 which is used by the map edit page
 				if(!is_admin())
 					break;
 				
@@ -417,6 +462,7 @@ class ScriptLoader
 		foreach($this->scripts as $handle => $script)
 		{
 			$fullpath = plugin_dir_url(($script->pro ? WPGMZA_PRO_FILE : __DIR__)) . $script->src;
+			
 			wp_enqueue_script($handle, $fullpath, $script->dependencies, $version_string);
 		}
 		

@@ -35,30 +35,23 @@
 
 <script type="text/javascript">
     jQuery( document ).ready(function() {
-        var expandOffHtml ='<div class="expandContainer"><div id="expand" class="expandOff"></div></div>';
-        var expandOnHtml ='<div class="expandContainer"><div id="expand" class="expandOn"></div></div>';
-        jQuery( '.sidebar-container li.page_item_has_children').not('.current_page_item').not('.current_page_parent').prepend(expandOffHtml);
-        jQuery( '.sidebar-container .current_page_parent').prepend(expandOnHtml);
+        var expandHtml =' <div class="circle-plus closed">
+            <div class="circle">
+            <div class="horizontal"></div>
+        <div class="vertical"></div>
+        </div>
+        </div>';
+
+
+        jQuery( '.sidebar-container li.page_item_has_children').not('.current_page_item').not('.current_page_parent').after(expandHtml);
+        jQuery( '.sidebar-container .current_page_parent').after(expandHtml);
 
         if (jQuery( '.sidebar-container .current_page_item').hasClass('page_item_has_children')) {
-            jQuery( '.sidebar-container .current_page_item').prepend(expandOnHtml);
         }
 
-        jQuery( ".expandContainer" ).click(function() {
-            var expand = jQuery(this).find('#expand');
-            if (expand.hasClass('expandOff')) {
-                expand.removeClass('expandOff');
-                expand.addClass('expandOn');
-                jQuery(this).parent().find('ul.children').show();
-            } else if (expand.hasClass('expandOn')) {
-                expand.removeClass('expandOn');
-                expand.addClass('expandOff');
-                jQuery(this).parent().find('ul.children').hide();
-            }
-
-
-
-        });
+        jQuery('.circle-plus').on('click', function(){
+            jQuery(this).toggleClass('opened');
+        })
 
     });
 </script>

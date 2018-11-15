@@ -61,6 +61,7 @@
 		</footer> <!--  END footer  -->
         </div> <!--  END container  -->
 	</div> <!--  END wrapper  -->
-<?php wp_footer(); ?>
+<?php
+wp_footer(); ?>
 </body>
 </html>

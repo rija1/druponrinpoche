@@ -52,6 +52,10 @@ class GoogleMapsLoader
 			'suffix'	=> $suffix
 		);
 		
+		// Libraries
+		$libraries = array('geometry', 'places', 'visualization');
+		$params['libraries'] = implode(',', $libraries);
+		
 		// API Version
 		/*if(!empty(Plugin::$settings->api_version))
 		{

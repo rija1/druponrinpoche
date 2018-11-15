@@ -52,6 +52,7 @@ if($_POST) {
       $_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
       $records['suggested_template'] = $_POST;
       $post_values = $uci_admin->GetPostValues(sanitize_key($_REQUEST['eventkey']));
+      
       $result = array_merge($post_values[$_REQUEST['eventkey']], $records);
       $uci_admin->SetPostValues(sanitize_key($_REQUEST['eventkey']), $result);
    }
@@ -59,6 +60,7 @@ if($_POST) {
 $eventKey = sanitize_key($_REQUEST['eventkey']);
 $get_records = $uci_admin->GetPostValues($eventKey);
 $import_type = $get_records[$eventKey]['import_file']['posttype'];
+
 if(!empty($get_records[$eventKey]['mapping_config']) && $get_records[$eventKey]['mapping_config']) {
    $mapping_screendata = $uci_admin->get_mapping_screendata( $import_type, $get_records[$eventKey]['mapping_config']);
 }
@@ -240,12 +242,12 @@ if(isset($_REQUEST['mapping_type']) && $_REQUEST['mapping_type'] == 'normal') {
                            </table>
                            <input type='hidden' id='<?php echo $widget_slug;?>_count' value= '<?php echo $CORE_count; ?>'>
                            <?php
-                           if($widget_slug=='wordpress_custom_fields'|| $widget_slug=='acf_pro_fields'|| $widget_slug=='acf_fields' || $widget_slug=='types_custom_fields' || $widget_slug=='pods_custom_fields') { ?>
+                           if($widget_slug=='wordpress_custom_fields'|| $widget_slug=='acf_pro_fields'|| $widget_slug=='acf_fields' || $widget_slug=='types_custom_fields' || $widget_slug=='pods_custom_fields') {
+                             
+       ?>
 
                               <div class="customfield_btndiv">
-                                 <div class="col-md-offset-9">
-                                    <input type="button" class="customfield_btn smack-btn smack-btn-primary btn-radius" value="Add Custom Field" onclick="addCustomfield('<?php echo $plugin_file;?>','<?php echo $widget_slug;?>','<?php echo sanitize_title($_REQUEST["eventkey"]);?>')" >
-                                 </div>
+                                 
                               </div>
                            <?php } ?>
                         </div>
@@ -262,6 +264,7 @@ if(isset($_REQUEST['mapping_type']) && $_REQUEST['mapping_type'] == 'normal') {
                </script>
                <?php
             }
+         
          endif;
          $save_templatename = '';
          if($save_templatename == '' && $templateName == '') {
@@ -271,6 +274,7 @@ if(isset($_REQUEST['mapping_type']) && $_REQUEST['mapping_type'] == 'normal') {
             $filename = explode($file_extn, $filename);
             $templateName = $filename[0];
          }
+      
          ?>
       </div>
       <div class="col-md-12 mt20">

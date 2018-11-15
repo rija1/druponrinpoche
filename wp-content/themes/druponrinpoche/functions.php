@@ -56,6 +56,7 @@ if( ! function_exists( 'dkr_theme_setup' ) ) {
         set_post_thumbnail_size( 150, 150, true);
 
         add_image_size('dkr-photo-800-500', 800, 500, true);
+        add_image_size('dkr-photo-300-200', 300, 200, true);
 
         // Menus
         register_nav_menu( 'dkr-menu', _x( 'Main Menu', 'backend', 'druponrinpoche' ) );
@@ -278,7 +279,7 @@ add_action( 'dkr_display_credits', 'dkr_credits' );
 
 //NEW FUNCTIONS.PHP
 
-show_admin_bar(true);
+//show_admin_bar(true);
 
 const PAGE_ID_ABOUT = 235;
 
@@ -998,6 +999,3 @@ function wp_list_categories_teachings( $args = '' ) {
         return $html;
     }
 }
-
-add_theme_support( 'post-thumbnails' );
-set_post_thumbnail_size( 300, 150 );

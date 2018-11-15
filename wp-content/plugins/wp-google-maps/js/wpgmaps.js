@@ -261,6 +261,10 @@ MYMAP.init = function(selector, latLng, zoom) {
 
 	var element = jQuery(selector)[0];
 	
+	// DIVI compatibility fix
+	if(!element)
+		return;
+	
 	element.setAttribute("data-map-id", 1);
 	element.setAttribute("data-maps-engine", WPGMZA.settings.engine);
 	this.map = WPGMZA.Map.createInstance(element, myOptions);
@@ -381,7 +385,13 @@ var wpgmza_last_default_circle = null;
 
 function wpgmza_show_store_locator_radius(map_id, center, radius, distance_type)
 {
-	switch(wpgmaps_localize[map_id].other_settings.wpgmza_store_locator_radius_style)
+	var style = wpgmaps_localize[map_id].other_settings.wpgmza_store_locator_radius_style;
+	
+	// Force legacy style on iOS, it appears CanvasLayer crashes some iOS devices
+	if(WPGMZA.isDeviceiOS())
+		style = "legacy";
+	
+	switch(style)
 	{
 		case "modern":
 			if(MYMAP.modernStoreLocatorCircle)
@@ -509,10 +519,15 @@ MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_ty
                             infoWindow.setContent(html);
                             infoWindow.open(MYMAP.map, marker);
                         }
+						
                         temp_actiontype = 'click';
+						
                         if (typeof wpgmaps_localize_global_settings.wpgmza_settings_map_open_marker_by !== "undefined" && wpgmaps_localize_global_settings.wpgmza_settings_map_open_marker_by == '2') {
                          	temp_actiontype = 'mouseover';
                         }
+						
+						if(WPGMZA.isTouchDevice())
+							temp_actiontype = "click";
 						
 						marker.on(temp_actiontype, function() {
 							if(window.infoWindow)
@@ -599,6 +614,10 @@ MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_ty
 							lat: parseFloat(lat),
 							lng: parseFloat(lng)
 						};
+
+						// Prevent JS error in Gutenberg editor (Temporary fix)
+						if(WPGMZA.is_admin == "1")
+							return;
 						
                         MYMAP.bounds.extend(point);
 						
@@ -633,6 +652,10 @@ MYMAP.placeMarkers = function(filename,map_id,radius,searched_center,distance_ty
 	                        if (typeof wpgmaps_localize_global_settings.wpgmza_settings_map_open_marker_by !== "undefined" && wpgmaps_localize_global_settings.wpgmza_settings_map_open_marker_by == '2') {
 	                         	temp_actiontype = 'mouseover';
 	                        }
+							
+							if(WPGMZA.isTouchDevice())
+								temp_actiontype = "click";
+							
 	                        //google.maps.event.addListener(marker, temp_actiontype, function() {
 							marker.on(temp_actiontype, function() {
 								if(window.infoWindow)

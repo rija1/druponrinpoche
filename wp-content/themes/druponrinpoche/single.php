@@ -12,12 +12,12 @@
             <div class="inner-page-container">
                     <article class="single-post">
                         <div class="article-text">
-                            <a href="<?php ?>">< Back</a>
+<!--                            <a href="--><?php //?><!--">< Back</a>-->
                             <h2><?php the_title(); ?></h2>
 <!--                            <p class="meta"><span class="meta-auth">--><?php //the_author(); ?><!--</span> <span class="meta-categ">--><?php //the_category(', '); ?><!--</span></p>-->
                                 <p class="post_date"><?php the_date(); ?></p>
                             <?php the_content(); ?>
-                            <p class="tags"><?php the_tags(); ?></p>
+<!--                            <p class="tags">--><?php //the_tags(); ?><!--</p>-->
                         </div>
                         <p><?php posts_nav_link(); ?></p>
                         <div class="padinate-page"><?php wp_link_pages(); ?></div>

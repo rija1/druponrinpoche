@@ -5,8 +5,8 @@ Tags: csv, csv import, csv importer, import, import csv, import seo, import wooc
 Requires at least: 4.5
 Tested up to: 4.9.8
 Requires PHP: 5.2.4 or above
-Stable tag: 5.3.6
-Version: 5.3.6
+Stable tag: 5.3.7
+Version: 5.3.7
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -25,7 +25,7 @@ Please show your support for CSV Importer by giving it a [rating](https://wordpr
 * Core Modules - Post, Page, Custom Post, Comments.
 * Users - [Import Users](https://wordpress.org/plugins/import-users/) add-on to import your WordPress Users
 * Custom Post - CPT UI, CustomPress and default WordPress Custom Post.
-* Custom Field - CustomPress, WordPress default fields
+* Custom Field - WordPress default Text and Text area fields.
 * SEO field - Free version of All in One SEO.
 * Reviews - WP Customer Reviews
 
@@ -68,6 +68,7 @@ Import of CSV involves few simple steps. Choose your CSV file to import. Map you
 * Import image - Use the images from external URL in your CSV file and import all images inside WordPress along with the advanced SEO option to add alt text with WP Ultimate CSV Importer. You can also rename the featured image loaded from external URL.
 * More optimized import process - Advanced duplicate handling in WP Ultimate CSV Importer lets you to handle duplicates with any WP fields as primary field, and eliminate duplicate entries in WordPress.
 * Scheduled / Recurring Import - WP Ultimate CSV Importer can check for updates and run import periodically without any manual interaction.
+* Toolset Types Import - Import of any Toolset Types information in CSV into your WordPress with WP Ultimate CSV Importer. Lets you to import Toolset Types Custom fields, [Post Relation](https://youtu.be/jkkSG0DUnug), Intermediate post, Repeatable Field & [Repeater Field Group](https://youtu.be/qKPwv3Pc7tw).
 * Multilingual import - Easy to run multilingual website with WP Ultimate CSV Importer with the support for the import of WPML & qTranslate X add-on.
 * WP Ultimate CSV Importer supports WooCommerce product import along with 6 WooCommerce add-on.
 * Import products of MarketPress Lite & PRO version add-on.
@@ -80,10 +81,9 @@ Import of CSV involves few simple steps. Choose your CSV file to import. Map you
 = Helpful Links =
 [Documentation](https://www.smackcoders.com/documentation/ultimate-csv-importer-pro/how-to-import-csv?utm_source=web&utm_campaign=readme&utm_medium=wp_org).
 
-Watch our [product video](https://youtu.be/Uho22R0BCHQ)
 You can try the [live demo](https://demo.smackcoders.com/wordpress/wp-admin/admin.php?page=sm-uci-dashboard) or request for free trial by clicking Try Now in [WordPress Ultimate CSV Importer](https://www.smackcoders.com/wp-ultimate-csv-importer-pro.html?utm_source=web&utm_campaign=readme&utm_medium=wp_org) page to generate your own WordPress test environment.
 
-Read our [blog](https://www.smackcoders.com/blog/category/wordpress-products?utm_source=web&utm_campaign=readme&utm_medium=wp_org) to know more about the new [features](https://www.smackcoders.com/wp-ultimate-csv-importer-pro.html?utm_source=web&utm_campaign=readme&utm_medium=wp_org) of our WordPress plugins.
+Read our [blog](https://www.smackcoders.com/blog/category/wordpress?utm_source=web&utm_medium=wp_org&utm_campaign=readme) to know more about the new [features](https://www.smackcoders.com/wp-ultimate-csv-importer-pro.html?utm_source=web&utm_campaign=readme&utm_medium=wp_org) of our WordPress plugins.
 
 [FAQ](https://www.smackcoders.com/wordpress-products-faq.html?utm_source=web&utm_campaign=readme&utm_medium=wp_org) and [Troubleshooting tips](https://wordpress.org/support/topic/tips-to-trouble-shoot-wp-ultimate-csv-importer-issues-1)
 
@@ -109,7 +109,7 @@ Import may hang due to the following reasons<br />
 	* System Requirements are not matched the required values.<br />
 
 2. How to validate a CSV? <br />
-CSV Importer plugin allows you to import CSVs that are validated. So kindly validate your CSV using CSV Lint. Your CSV may have any escape characters and misplaced skip characters which may cause the import to cease.<br />
+CSV Importer plugin allows you to import CSVs that are validated. So kindly validate your CSV using [CSV Lint](https://csvlint.io/). Your CSV may have any escape characters and misplaced skip characters which may cause the import to cease.<br />
 
 3. What are the supported CSV Formats? <br />
 Wordpress CSV Importer plugin recognizes only the UTF-8 encoded characters. You can check on the UTF-8 encode with CSV Lint. Any chance if you are using Excel, we recommend you to use Google Sheets. Excel will miss some characters to be encoded to proper UTF-8.<br />
@@ -121,11 +121,13 @@ Basic System Requirements need to be met to upload a CSV with bulk of records. K
 The importer uploads images in the background for faster performance and it requires WP-Cron to be enabled. You can [easily configure WP-Cron](https://www.smackcoders.com/blog/enable-configure-wp-cron.html?utm_source=wp_org&utm_campaign=readme&utm_medium=faq) for smooth and speedy import. <br />
 
 6. What are the supported custom fields in FREE version? <br />
-The importer supports [default WordPress Text and Text area fields](https://www.smackcoders.com/blog/adding-custom-fields-data-wordpress-free-wp-ultimate-csv-importer.html?utm_source=wordpress_org&utm_campaign=readme&utm_medium=faq) of Types, Pods, etc,.. You can also import the Text & Text area fields created with custom codes in WordPress standards.
+The importer supports [default WordPress Text and Text area fields](https://www.smackcoders.com/blog/adding-custom-fields-data-wordpress-free-wp-ultimate-csv-importer.html?utm_source=wordpress_org&utm_campaign=readme&utm_medium=faq). You can also import the Text & Text area fields created with custom codes in WordPress standards.
 
 For more FAQ, you can refer [here](https://www.smackcoders.com/wordpress-products-faq.html?utm_source=wp_org&utm_campaign=readme&utm_medium=faq).
 
 == Changelog ==
+= 5.3.7 =
+* Removed: Registering custom field in Mapping section.
 = 5.3.6 =
 * Added: Compatibility for WordPress 4.9.8
 * Added: Import Post parent import with Post Title
@@ -496,6 +498,8 @@ For more FAQ, you can refer [here](https://www.smackcoders.com/wordpress-product
 * Initial release version. Tested and found works well without any issues.
 
 == Upgrade Notice ==
+= 5.3.7 =
+* Upgrade now to get latest version of Ultimate CSV Importer
 = 5.3.6 =
 * Upgrade now to get Post parent import with Post title and compatibility for WordPress 4.9.8
 = 5.3.5 =

@@ -96,40 +96,53 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 //        echo do_shortcode('[table id=2 /]');
 //        ?>
 <!--        <a class="full_schedule_lnk" href="--><?php //echo get_page_link($schedulePage)?><!--">View Full Schedule</a>-->
-        <!--Here's our main wrapper.
-Since our carousel items get their size from their parent,
-we have to specify its height.-->
-        <div class="carousel-wrapper" style="height: 400px;">
-
-            <span id="target-item-1"></span>
-            <span id="target-item-2"></span>
-            <span id="target-item-3"></span>
-
-            <div class="carousel-item item-1" style="background-color: khaki;">
-                <h2>Item 1</h2>
-                <p>Content goes here.</p>
-                <a class="arrow arrow-prev" href="#target-item-3"></a>
-                <a class="arrow arrow-next" href="#target-item-2"></a>
+        <div class="carousel">
+            <input type="radio" id="carousel-1" name="carousel[]" checked>
+            <input type="radio" id="carousel-2" name="carousel[]">
+            <input type="radio" id="carousel-3" name="carousel[]">
+            <input type="radio" id="carousel-4" name="carousel[]">
+            <input type="radio" id="carousel-5" name="carousel[]">
+            <ul class="carousel__items">
+                <li class="carousel__item">
+                    AHAHAHAH
+                </li>
+                <li class="carousel__item">
+                    OHOHOHO
+                </li>
+                <li class="carousel__item">
+                    AHAHAHAHAUUHUHUH
+                </li>
+                <li class="carousel__item">
+                    OKOKOKOK
+                </li>
+                <li class="carousel__item">
+                    MOMOMO
+                </li>
+            </ul>
+            <div class="carousel__prev">
+                <label for="carousel-1"></label>
+                <label for="carousel-2"></label>
+                <label for="carousel-3"></label>
+                <label for="carousel-4"></label>
+                <label for="carousel-5"></label>
             </div>
-            <div class="carousel-item item-2" style="background-color: royalblue;">
-                <h2>Item 2</h2>
-                <p>Content goes here.</p>
-                <a class="arrow arrow-prev" href="#target-item-1"></a>
-                <a class="arrow arrow-next" href="#target-item-3"></a>
+            <div class="carousel__next">
+                <label for="carousel-1"></label>
+                <label for="carousel-2"></label>
+                <label for="carousel-3"></label>
+                <label for="carousel-4"></label>
+                <label for="carousel-5"></label>
             </div>
-            <div class="carousel-item item-3" style="background-color: aliceblue;">
-                <h2>Item 3</h2>
-                <p>Content goes here.</p>
-                <a class="arrow arrow-prev" href="#target-item-2"></a>
-                <a class="arrow arrow-next" href="#target-item-1"></a>
+            <div class="carousel__nav">
+                <label for="carousel-1"></label>
+                <label for="carousel-2"></label>
+                <label for="carousel-3"></label>
+                <label for="carousel-4"></label>
+                <label for="carousel-5"></label>
             </div>
         </div>
     </li>
 </ul>
-
-
-<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("Homepage Content") ) : ?>
-<?php endif;?>
 
 <?php get_footer(); ?>
 

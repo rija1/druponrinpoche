@@ -216,6 +216,55 @@ Please upgrade your version of WP Google Maps to version 6.0.27 as it includes m
 
 == Changelog ==
 
+= 7.10.44 :- 2018-11-05 :- Medium priority =
+* Fixed Modern Store Locator Circle not working when Google Maps geometry library not loaded
+* Fixed legacy-map-edit-page.js not enqueued when Gold add-on activated (with Pro >= 7.10.30)
+* Fixed store locator circle color settings not respected in OpenLayers
+* Improved unresolved dependency report, now reports requirements
+
+= 7.10.43 :- 2018-10-31 :- High priority =
+* Improved previous security fix
+
+= 7.10.42 :- 2018-10-25 :- High priority =
+* Closed potential XSS vulnerability in PHP_SELF on map edit page
+
+= 7.10.41 :- 2018-10-24 :- Medium priority =
+* Changed exception to notice when v8 dependencies are missing (fixes issue with Pro < 7.10.37 in developer mode)
+
+= 7.10.40 :- 2018-10-17 :- Medium priority =
+* Added temporary fix for Gutenberg module dependencies preventing wpgmaps.js from loading when in Developer Mode
+* Fixed Infowindow not opening on touch device when using "hover" action
+
+= 7.10.39 :- 2018-10-15 :- High priority =
+* Fixed JS error when Gutenberg framework not loaded
+
+= 7.10.38 :- 2018-10-15 :- Medium priority =
+* Added factory class
+* Added DIVI compatibility fix
+* Added new table name constants
+* Modules added to pave the way for Gutenberg integration
+* Adjusted script loader to support external dependencies
+* Fixed trailing slash breaking rest API routes on some setups
+* Fixed wpgmza_basic_get_admin_path causing URL wrapper not supported
+*
+= 7.10.37 :- 2018-09-27 :- Medium priority =
+* Fixed undefined variable on iOS breaking store locator
+* Fixed edit marker using REST API not working when API route has two slashes
+* Fixed map not appearing with particular versions of dataTables where the packaged version is not used
+
+= 7.10.36 :- 2018-09-25 :- Medium Priority =
+* Fixed change in 7.10.35 causing problems with OLMarker click event, preventing infowindow opening
+* Dropped .gitignore which was causing deployment issues, now using .gitattributes to ignore minified files
+
+= 7.10.35 :- 2018-09-20 :- Medium priority =
+* Added links to new API troubleshooting documentation to Google Maps API Error dialog
+* Fixed marker dispatching click event after drag when using OpenLayers
+* Fixed map dispatching click event after drag when using OpenLayers
+* Fixed map editor right click marker appearing multiple times
+* Fixed map editor right click marker disappearing after map drag
+* Fixed modern store locator circle crashing some iOS devices by disabling this feature on iOS devices
+* Fixed gesture handling setting not respected when theme data is set in
+
 = 7.10.34 :- 2018-09-17 :- Low priority =
 * Added descriptive error messages when Google API is required but not loaded
 * Added "I agree" translation to German files

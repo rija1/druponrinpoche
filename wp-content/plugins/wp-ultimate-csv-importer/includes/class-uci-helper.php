@@ -727,6 +727,15 @@ class SmackUCIHelper {
 			$commonMetaFields['CORECUSTFIELDS'][$val]['label'] = $val;
 			$commonMetaFields['CORECUSTFIELDS'][$val]['name'] = $val;
 		}
+		
+		if(in_array('advanced-custom-fields-pro/acf.php',$this->get_active_plugins())){
+         $commonMetaFields = array();
+         return $commonMetaFields;
+        }
+        if(in_array('advanced-custom-fields/acf.php',$this->get_active_plugins())){
+         $commonMetaFields = array();
+         return $commonMetaFields;
+        }
 		return $commonMetaFields;
 	}
 
@@ -1573,7 +1582,7 @@ class SmackUCIHelper {
 		//$myfile = fopen($filename, "w") or die("Unable to open file!");
 		//$post_values[$eventkey] = $values;
 		//$post_values = serialize($post_values);
-
+        chmod($uploadPath,0700);
 		$myfile = fopen($filename, "w") or die("Unable to open file!");
 		$post_values[$eventKey] = $values;
 		$post_values = serialize($post_values);

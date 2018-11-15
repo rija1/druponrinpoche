@@ -77,6 +77,32 @@ jQuery(function($) {
 			];
 		},
 		
+		hexToRgba: function(hex) {
+			var c;
+			if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+				c= hex.substring(1).split('');
+				if(c.length== 3){
+					c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+				}
+				c= '0x'+c.join('');
+				
+				return {
+					r: (c>>16)&255,
+					g: (c>>8)&255,
+					b: c&255,
+					a: 1
+				};
+			}
+			
+			return 0;
+			
+			//throw new Error('Bad Hex');
+		},
+		
+		rgbaToString: function(rgba) {
+			return "rgba(" + rgba.r + ", " + rgba.g + ", " + rgba.b + ", " + rgba.a + ")";
+		},
+		
 		latLngRegexp: /^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/,
 		
 		/**
@@ -100,10 +126,10 @@ jQuery(function($) {
 			if(!m)
 				return null;
 			
-			return {
+			return new WPGMZA.LatLng({
 				lat: parseFloat(m[1]),
 				lng: parseFloat(m[3])
-			};
+			});
 		},
 		
 		/**
@@ -371,7 +397,34 @@ jQuery(function($) {
 			return typeof google === 'object' && typeof google.maps === 'object' && typeof google.maps.places === 'object' && typeof google.maps.places.Autocomplete === 'function';
 		},
 		
-		googleAPIStatus: window.wpgmza_google_api_status
+		googleAPIStatus: window.wpgmza_google_api_status,
+		
+		isSafari: function() {
+			
+			var ua = navigator.userAgent.toLowerCase();
+			return (ua.indexOf("safari") != -1 && ua.indexOf("chrome") == -1);
+			
+		},
+		
+		isTouchDevice: function() {
+			
+			return ("ontouchstart" in window);
+			
+		},
+		
+		isDeviceiOS: function() {
+			
+			return (
+			
+				(/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream)
+				
+				||
+				
+				(!!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform))
+			
+			);
+			
+		}
 	};
 	
 	if(window.WPGMZA)

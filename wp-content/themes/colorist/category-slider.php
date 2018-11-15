@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying category-slider 
+ * The template for displaying category-slider
  *
  * display slider
  *
@@ -39,15 +39,15 @@ $colorist_slider_posts = array(
 					</ul>
 				</div>
 			<?php endif; ?>
-			<?php  
+			<?php
 				$colorist_query = null;
-				wp_reset_postdata();	
-	}elseif( current_user_can('manage_options') ) {	?>	
-		 <div class="flexslider">  
-				<ul class="slides">	          
-					<li>   	
+				wp_reset_postdata();
+	}elseif( current_user_can('manage_options') ) {	?>
+		 <div class="flexslider">
+				<ul class="slides">
+					<li>
 						<div class="flex-image">
-							<?php echo '<img src="' . get_template_directory_uri() . '/images/slider.jpg" alt="" >';?>	
+							<?php echo '<img src="' . get_template_directory_uri() . '/images/slider.jpg" alt="" >';?>
 						</div>
 						<?php	$slide_description = sprintf( __('<h1> Slider Setting </h1><p>You haven\'t created any slider yet. Create a post, set your slider image as Post\'s featured image ( Recommended image size 1280*450 ) ). Go to Customizer and click colorist Options => Home and select Slider Post Category and No.of Sliders.<p><a href="%1$s"target="_blank"> Customizer </a></p>', 'colorist'),  admin_url('customize.php') );?>
 						<div class="flex-caption"> <?php echo $slide_description;?></div>

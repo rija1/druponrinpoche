@@ -62,7 +62,7 @@ q {
 }
 
 blockquote {
-    background: none repeat scroll 0 0 #EEEEEE;
+    background: none repeat scroll 0 0 #f9f9f9;
     border-left: 5px solid #859f1a;
     font-style: italic;
     margin: 10px 0;
@@ -2979,6 +2979,20 @@ img.alignleft {
     margin: 5px 10px 5px 0;
 }
 
+figure.alignleft {
+    float: left;
+}
+
+figure.wp-caption.alignleft {
+    width: auto !important;
+    margin: 5px 40px 5px 0;
+    padding:0;
+}
+
+figure.alignleft figcaption {
+    text-align: center;
+}
+
 img.alignright {
     margin: 5px 0 5px 20px;
 }
@@ -3641,24 +3655,18 @@ body {
 }
 
 .widget-tags a {
-    /*background-color: #982c0c;*/
     background-color: #bb9b25;
-    /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
     color: #ffffff;
 }
 
 .menu-top-container .menu-top {
     .children {
-        /*background-color: #982c0c;*/
         background-color: #bb9b25;
-        /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
         color: #ffffff;
     }
     a {
         &:hover, &.hover {
-            /*background-color: #982c0c;*/
             background-color: #bb9b25;
-            /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
             color: #ffffff;
         }
     }
@@ -3815,7 +3823,6 @@ abbr, acronym, dfn {
     .menu-bar {
         background: #f2efdf;
         position: relative;
-        /*padding-bottom: 3px;*/
     }
 }
 
@@ -4023,12 +4030,8 @@ img.alignleft {
 
 .home_pages_grid {
     list-style: none;
-    /*margin: 0 auto 0 auto;*/
-    padding: 30px 30px 15px 30px;
+    padding: 30px 30px 5px 30px;
     display: grid;
-    /*max-width: 1100px;*/
-    /*grid-template-rows: auto;*/
-    /*grid-auto-flow: dense;*/
     grid-template-columns: 1fr 1fr 1fr;
     grid-row-gap: 20px;
     grid-column-gap: 30px;
@@ -4052,7 +4055,6 @@ img.alignleft {
     }
     p {
         text-align: justify;
-        /*color:#80784c;*/
         color: #404040;
     }
 }
@@ -4387,8 +4389,23 @@ body.home .breadcrumbs {
     h5 {
         margin-bottom: 15px;
     }
+    li.page_item ul.children {
+//        display: block;
+        overflow: hidden;
+        transition: height 200ms;
+    }
     li.page_item ul.children li a {
         color: #80784c;
+    }
+    li.page_item ul.children li a:hover {
+        text-decoration: underline;
+    }
+    li.current_page_ancestor {
+        background: #eee;
+    }
+    li.current_page_ancestor > a {
+        font-weight: bold;
+        color: #bb9b25;
     }
 }
 
@@ -4401,6 +4418,8 @@ li.page_item_has_children > a {
     ul {
         &.children {
             font-size: 13px;
+            background: #f9f9f9;
+            padding-top: 12px;
         }
         ul {
             padding: 0px 0px 15px 40px;
@@ -4431,9 +4450,13 @@ li.page_item_has_children > a {
     }
     > {
         ul > li.page_item > a {
-            display: block;
-            width: 100%;
+            display: inline-block;
             padding: 11px 10px 10px 15px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            position: relative;
+            width:90%;
         }
         div > ul > li.current_menu_item > a {
             font-weight: bold;
@@ -4568,7 +4591,7 @@ li.page_item_has_children a {
     color: #fff;
 }
 
-.category-news .posts-grid {
+.category-news .featured-grid {
     padding: 30px;
     display: grid;
     grid-row-gap: 20px;
@@ -4580,6 +4603,16 @@ li.page_item_has_children a {
         grid-column: 1 / 3;
         grid-row: 1 / 3;
     }
+}
+
+.category-news .posts-grid {
+    padding: 30px;
+    display: grid;
+    grid-row-gap: 20px;
+    grid-column-gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-flow: dense;
 }
 
 .news_right_block {
@@ -4720,59 +4753,12 @@ h4 {
 
 .menu-top-container {
     width: 60%;
-    /*background: #ded7b8;*/
 }
-
-/*.menu-bar .gutter {*/
-/*margin:0;*/
-/*}*/
-/*.header_top_block {*/
-/*height: 60px;*/
-/*}*/
-/*.menu-bar-logo-block {*/
-/*width: 34%;*/
-/*padding-top: 15px;*/
-/*padding-left: 2%;*/
-/*}*/
 
 .menu-bar-logo-block .logo_name {
     padding-top: 8px;
     padding-left: 10px;
 }
-
-.menu-top-right {}
-
-/*.menu-bar-logo-block img {*/
-/*width: 70px;*/
-/*}*/
-/*.menu-bar-logo-block span  {*/
-/*font-size: 22px;*/
-/*padding-top: 2px;*/
-/*padding-left: 18px;*/
-/*}*/
-/*.menu-top-container .menu-top li {*/
-/*line-height: 17px;*/
-/*}*/
-/*.menu-top-container .menu-top > li > a {*/
-/*padding: 14px;*/
-/*width: 112px;*/
-/*font-family: 'ralewaybold';*/
-/*}*/
-/*.menu-top-container .menu-top .current-menu-item a {*/
-/*background: #bb9b25;*/
-/*color:#fff;*/
-/*}*/
-/*.menu-top-container .menu-top {*/
-/*line-height: 11px;*/
-/*}*/
-/* HEADER NEW STYLE 1 - END */
-
-/*
-.menu-top-container .menu-top a {
-    text-align: center;
-    padding: 9px;
-}
-*/
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto';
@@ -4940,3 +4926,274 @@ p.teaching_info {
 .page-template article.single-post {
     padding-top: 5px;
 }
+
+
+/* Home Carousel - START */
+
+/**
+ * Carousel.sass
+ * @author: Dang Van Thanh
+ * @github: https://github.com/dangvanthanh/carousel.sass
+ * @description: A Simple Carousel Pure CSS Using Sass
+ * @version: 1.0.0
+ */
+%animation-default {
+    opacity: 1 !important;
+    z-index: 3;
+}
+
+@mixin carousel($items, $animation: 'default') {
+    .carousel {
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+
+        > input[type="radio"] {
+            position: absolute;
+            left: 0;
+            opacity: 0;
+            top: 0;
+
+            &:checked {
+                ~ .carousel__items .carousel__item,
+                ~ .carousel__prev > label,
+                ~ .carousel__next > label {
+                    opacity: 0;
+                }
+            }
+
+            @for $i from 1 through $items {
+                &:nth-child(#{$i}) {
+                    &:checked {
+                        ~ .carousel__items .carousel__item {
+                            @if $animation == 'default' {
+                                &:nth-child(#{$i}) {
+                                    opacity: 1;
+                                }
+                            }
+                        }
+
+                        ~ .carousel__prev {
+                            > label {
+                                @if $i == 1 {
+                                    &:nth-child(#{$items}) {
+                                        @extend %animation-default;
+                                    }
+                                } @else if $i == $items {
+                                    &:nth-child(#{$items - 1}) {
+                                        @extend %animation-default;
+                                    }
+                                } @else {
+                                    &:nth-child(#{$i - 1}) {
+                                        @extend %animation-default;
+                                    }
+                                }
+                            }
+                        }
+
+                        ~ .carousel__next {
+                            > label {
+                                @if $i == $items {
+                                    &:nth-child(1) {
+                                        @extend %animation-default;
+                                    }
+                                } @else {
+                                    &:nth-child(#{$i + 1}) {
+                                        @extend %animation-default;
+                                    }
+                                }
+                            }
+                        }
+
+                        ~ .carousel__nav {
+                            > label {
+                                &:nth-child(#{$i}) {
+                                    background: #ccc;
+                                    cursor: default;
+                                    pointer-events: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        &__items {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            width: 100%;
+            height: 600px;
+            position: relative;
+        }
+
+        &__item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transition: opacity 2s;
+            -webkit-transition: opacity 2s;
+
+            img {
+                width: 100%;
+                vertical-align: middle;
+            }
+        }
+
+        &__prev,
+        &__next {
+            > label {
+                border: 1px solid #fff;
+                border-radius: 50%;
+                cursor: pointer;
+                display: block;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+                transition: all .3s ease;
+                -webkit-transition: all .3s ease;
+                opacity: 0;
+                z-index: 2;
+
+                &:hover,
+                &:focus {
+                    opacity: .5 !important;
+                }
+
+                &:before,
+                &:after {
+                    content: "";
+                    position: absolute;
+                    width: inherit;
+                    height: inherit;
+                }
+
+                &:before {
+                    background: linear-gradient(to top, #fff 0%, #fff 10%, rgba(51, 51, 51, 0) 10%),
+                    linear-gradient(to left, #fff 0%, #fff 10%, rgba(51, 51, 51, 0) 10%);
+                    width: 60%;
+                    height: 60%;
+                    top: 20%;
+                }
+            }
+        }
+
+        &__prev {
+            > label {
+                left: 2%;
+
+                &:before {
+                    left: 35%;
+                    top: 20%;
+                    transform: rotate(135deg);
+                    -webkit-transform: rotate(135deg);
+                }
+            }
+        }
+
+        &__next {
+            > label {
+                right: 2%;
+
+                &:before {
+                    left: 10%;
+                    transform: rotate(315deg);
+                    -webkit-transform: rotate(315deg);
+                }
+            }
+        }
+
+        &__nav {
+            position: absolute;
+            bottom: 3%;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            z-index: 3;
+
+            > label {
+                border: 1px solid #fff;
+                display: inline-block;
+                border-radius: 50%;
+                cursor: pointer;
+                margin: 0 .125%;
+                width: 20px;
+                height: 20px;
+            }
+        }
+    }
+}
+
+@include carousel(5);
+
+/* Home Carousel - END */
+
+//Expander
+
+.closed {
+    .vertical {
+        transition: all 0.5s ease-in-out;
+        transform: rotate(-90deg);
+    }
+    .horizontal {
+        transition: all 0.5s ease-in-out;
+        transform: rotate(-90deg);
+        opacity: 1;
+    }
+}
+
+.opened {
+    opacity: 1;
+    .vertical {
+        transition: all 0.3s ease-in-out;
+        transform: rotate(90deg);
+    }
+    .horizontal {
+        transition: all 0.3s ease-in-out;
+        transform: rotate(90deg);
+        opacity: 0;
+    }
+}
+
+.circle-plus {
+    float: right;
+    font-size: 1em;
+    opacity: .7;
+    padding-top: 11px;
+    width:10%;
+    display: inline-block;
+    right: 0;
+    top: 0;
+}
+
+.circle-plus .circle {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+    border: solid 2px #b7b7b7;
+}
+.circle-plus .circle .horizontal {
+    position: absolute;
+    background-color: #b7b7b7;
+    width: 10px;
+    height: 2px;
+    margin-left: 2px;
+    margin-top: 6px;
+}
+.circle-plus .circle .vertical {
+    position: absolute;
+    background-color: #b7b7b7;
+    width: 2px;
+    height: 10px;
+    margin-left: 6px;
+    margin-top: 2px;
+}
+
