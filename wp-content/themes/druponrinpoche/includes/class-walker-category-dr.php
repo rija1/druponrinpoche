@@ -14,7 +14,7 @@
  *
  * @see Walker
  */
-class Walker_Category extends Walker {
+class Walker_Category_Dr extends Walker_Category {
 
 	/**
 	 * What the class handles.
@@ -91,6 +91,7 @@ class Walker_Category extends Walker {
 	 * @param int    $id       Optional. ID of the current category. Default 0.
 	 */
 	public function start_el( &$output, $category, $depth = 0, $args = array(), $id = 0 ) {
+
 		/** This filter is documented in wp-includes/category-template.php */
 		$cat_name = apply_filters(
 			'list_cats',
@@ -103,8 +104,10 @@ class Walker_Category extends Walker {
 			return;
 		}
 
-        $link = '<div>';
-		$link .= '<a href="' . esc_url( get_term_link( $category ) ) . '" ';
+        $link = '<div class="teachings-cat">';
+
+
+		$link .= '<a class="catlink" href="' . esc_url( get_term_link( $category ) ) . '" ';
 		if ( $args['use_desc_for_title'] && ! empty( $category->description ) ) {
 			/**
 			 * Filters the category description for display.
@@ -118,7 +121,14 @@ class Walker_Category extends Walker {
 		}
 
 		$link .= '>';
-		$link .= $cat_name . '</a>';
+		$link .= $cat_name ;
+
+        if ( ! empty( $args['show_count'] ) ) {
+            $link .= ' (' . number_format_i18n( $category->count ) . ')';
+        }
+
+        $link .= '</a>';
+        $link .= '</div>';
 
 		if ( ! empty( $args['feed_image'] ) || ! empty( $args['feed'] ) ) {
 			$link .= ' ';
@@ -144,16 +154,14 @@ class Walker_Category extends Walker {
 			} else {
 				$link .= "<img src='" . $args['feed_image'] . "'$alt" . ' />';
 			}
-			$link .= '</a>';
+
+			$link .= 'la</a>';
 
 			if ( empty( $args['feed_image'] ) ) {
 				$link .= ')';
 			}
 		}
 
-		if ( ! empty( $args['show_count'] ) ) {
-			$link .= ' (' . number_format_i18n( $category->count ) . ')';
-		}
 		if ( 'list' == $args['style'] ) {
 			$output .= "\t<li";
 			$css_classes = array(
@@ -199,12 +207,17 @@ class Walker_Category extends Walker {
 			$css_classes = implode( ' ', apply_filters( 'category_css_class', $css_classes, $category, $depth, $args ) );
 
 			$output .=  ' class="' . $css_classes . '"';
+			$output .=  ' class="' . $css_classes . '"';
+
 			$output .= ">$link\n";
+
+
 		} elseif ( isset( $args['separator'] ) ) {
 			$output .= "\t$link" . $args['separator'] . "\n";
 		} else {
 			$output .= "\t$link<br />\n";
 		}
+
 	}
 
 	/**

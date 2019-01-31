@@ -11,6 +11,8 @@
  * @see http://developer.wordpress.com/themes/content-width/Enqueue
  */
 
+require_once('includes/class-walker-category-dr.php');
+
 function dkr_content_width() {
     $GLOBALS['content_width'] = apply_filters( 'dkr_content_width', 980 );
 }
@@ -173,6 +175,8 @@ if( ! function_exists( 'dkr_enqueue_scripts' ) ) {
         if ( is_singular() && comments_open() ) {
             wp_enqueue_script( 'comment-reply' );
         }
+
+        wp_enqueue_script( 'jqueryCycle', get_template_directory_uri() . '/assets/js/jquery.cycle.all.js', array('jquery'), null );
     }
     add_action( 'wp_enqueue_scripts', 'dkr_enqueue_scripts' );
 }
@@ -853,6 +857,7 @@ add_filter( 'category_template', 'new_subcategory_hierarchy' );
 
 
 function wp_list_categories_teachings( $args = '' ) {
+
     $defaults = array(
         'child_of'            => 0,
         'current_category'    => 0,
@@ -974,7 +979,7 @@ function wp_list_categories_teachings( $args = '' ) {
             $depth = -1; // Flat.
         }
 
-        $output .= walk_category_tree( $categories, $depth, $r );
+        $output .= walk_category_tree_teachings( $categories, $depth, $r );
 
     }
 
@@ -999,3 +1004,16 @@ function wp_list_categories_teachings( $args = '' ) {
         return $html;
     }
 }
+
+function walk_category_tree_teachings() {
+    $args = func_get_args();
+    // the user's options are the third parameter
+    if ( empty( $args[2]['walker'] ) || ! ( $args[2]['walker'] instanceof Walker ) ) {
+        $walker = new Walker_Category_Dr();
+    } else {
+        $walker = $args[2]['walker'];
+    }
+
+    return call_user_func_array( array( $walker, 'walk' ), $args );
+}
+

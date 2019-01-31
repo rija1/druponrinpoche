@@ -105,6 +105,7 @@ function wpb_list_child_pages() {
 }
 
 function wp_list_pages_dkr( $args = '' ) {
+
     $defaults = array(
         'depth'        => 0,
         'show_date'    => '',

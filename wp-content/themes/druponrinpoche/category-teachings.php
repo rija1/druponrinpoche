@@ -9,13 +9,17 @@ $childOfCat = get_queried_object();
 while ($childOfCat->category_parent != 0) {
     $childOfCat = get_category( $childOfCat->category_parent );
 }
+
+$parentCat = get_category( get_queried_object()->category_parent );
+$grandparentCatId = $parentCat->category_parent;
+$parentCatName = $parentCat->name;
 ?>
 <?php get_header(); ?>
 <div class="section section-blog teachings_category">
     <div class="blog-columns clearfix">
         <div class="inner-page-container right">
             <div class="gutter">
-                <h1><?php echo the_category(' - ');?></h1>
+                <h1><?php echo ($grandparentCatId!=0) ? $parentCat->name.' > ' : '' ;?><?php echo get_queried_object()->name;?></h1>
                 <?php get_template_part( 'content', 'teachings-posts' ); ?>
             </div>
         </div>
