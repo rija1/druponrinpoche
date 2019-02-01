@@ -11,6 +11,7 @@ Text Domain:  druponrinpoche
 
 $dkr-brown: #80784c;
 $dkr-gold: #bb9b25;
+$dkr-lightgrey: #f6f6f6;
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
     margin: 0;
@@ -569,6 +570,7 @@ h4, .wpcf7-text, .wpcf7-textarea, .ui-selectmenu-button, .ui-menu, .searchform #
 
 .menu-top-mob {
     border-color: #f6f6e9;
+    width:100%;
 }
 
 .bg-gray {
@@ -3356,7 +3358,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 blockquote {
-    background: none repeat scroll 0 0 #eee;
+    background: none repeat scroll 0 0 $dkr-lightgrey;
     border-left: 5px solid $dkr-gold;
     font-style: italic;
     margin: 10px 0px 30px;
@@ -3404,7 +3406,7 @@ abbr, acronym, dfn {
         bottom: 0;
     }
     position: relative;
-    max-width: 1100px;
+//    max-width: 1100px;
     margin: 0 auto;
     z-index: 999;
     padding-bottom: 0px;
@@ -3420,7 +3422,7 @@ abbr, acronym, dfn {
 #content {
     > .container {
         box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.3);
-        max-width: 1100px;
+        max-width: 980px;
         background: #ffffff;
     }
     .section-blog {
@@ -3485,7 +3487,7 @@ img.alignleft {
 }
 
 .inner-page-container {
-    padding: 20px 40px 40px 40px;
+    padding: 5px 40px 40px 40px;
 }
 
 .blog-columns {
@@ -3920,7 +3922,7 @@ ul.poly_switcher li {
 
 .breadcrumbs {
     border-top: 1px solid #d6d6d6;
-    background: #eee;
+    background: $dkr-lightgrey;
     padding: 10px;
 }
 
@@ -3952,7 +3954,7 @@ body.home .breadcrumbs {
         margin-bottom: 15px;
     }
     li.page_item ul.children {
-//        display: block;
+        border-top:solid 1px #eee;
         overflow: hidden;
         transition: height 200ms;
     }
@@ -3966,9 +3968,9 @@ body.home .breadcrumbs {
 //        color:#eee;
     }
     li.current_page_ancestor {
-        background: #eee;
+        background: $dkr-lightgrey;
     }
-    li.current_page_ancestor > a {
+    li.current_page_ancestor > a, li.current_page_item > a {
         font-weight: 300;
         color: $dkr-gold;
     }
@@ -4006,7 +4008,7 @@ li.page_item_has_children > a {
                 border-bottom: solid 1px #eee;
             }
             &.current_page_item {
-                background: #eee;
+                background: $dkr-lightgrey;
             }
         }
     }
@@ -4255,7 +4257,7 @@ li.page_item_has_children a {
 }
 
 .section-page-title {
-    padding: 20px 20px 0px 20px;
+    padding: 30px 20px 0px 20px;
 }
 
 .frosty {}
@@ -4413,10 +4415,14 @@ sup {
     bottom: 7px;
 }
 
+.bio_footnotes {
+    font-weight:500;
+}
+
 .namthar_note {
     padding-bottom: 10px;
     a {
-        font-weight: bold;
+        font-weight: 500;
     }
 }
 
@@ -4645,8 +4651,16 @@ p.teaching_info {
 /**  tablet  **/
 @media only screen and (min-width: 481px) and (max-width: 768px) {
 
+    li.home_post {
+        grid-template-columns: 120px auto;
+    }
+
+    .home_news_carousel .latestnews li.home_post .home_post_txt p {
+        display: none;
+    }
+
     .menu-bar-logo-block {
-        width: 50%;
+        width: 260px;
         padding-top: 10px;
         padding-bottom: 10px;
     }
@@ -4656,6 +4670,7 @@ p.teaching_info {
     .menu-bar-logo-block {
         img {
             width: 45px;
+            margin-top: 8px;
         }
         .logo_name span {
             font-size: 17px;
