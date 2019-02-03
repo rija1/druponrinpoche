@@ -9,6 +9,7 @@ wp-content/plugins/hello.php
 wp-content/upgrade/
 wp-content/uploads/
 dumps/
+.idea/
 
 /.htaccess
 /license.txt
