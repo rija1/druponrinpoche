@@ -1635,7 +1635,7 @@ class Responsive_Lightbox_Frontend {
 				object-fit: cover;
 				max-width: 100%;
 				min-width: 100%;
-			';
+			}';
 		}
 		
         wp_add_inline_style( 'responsive-lightbox-basicgrid-gallery', $inline_css );

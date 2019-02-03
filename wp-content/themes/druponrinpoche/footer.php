@@ -51,7 +51,7 @@
 						</div>
 						<div class="column-6-12 right">
 							<div class="gutter">
-                                </p>© 2018 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.</p>
+                                </p>© 2019 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.</p>
 <!--								<p>--><?php //do_action( 'dkr_display_credits' ); ?><!--</p>-->
 							</div>
 						</div>
