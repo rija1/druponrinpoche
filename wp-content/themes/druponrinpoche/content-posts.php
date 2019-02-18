@@ -34,7 +34,7 @@ $categoryId = get_queried_object_id();
         <?php endwhile; ?> <?php wp_reset_query(); /*4*/ ?>
 
         <div class="news_right_block">
-            <h5>Latest Pictures</h5>
+            <h5>Selected Pictures</h5>
             <?php
             if ( function_exists( 'rl_gallery' ) ) { rl_gallery( '1293' ); }
             ?>

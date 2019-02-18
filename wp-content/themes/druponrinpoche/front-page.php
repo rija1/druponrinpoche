@@ -172,7 +172,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                 autoplay:true,
 //                swipeToSlide: true,
                 infinite: true,
-                autoplaySpeed:"12000"
+                autoplaySpeed:"10000"
             });
 
             var expandHtml = '<div class="circle-plus closed"><div class="circle"><div class="horizontal"></div><div class="vertical"></div></div></div>';

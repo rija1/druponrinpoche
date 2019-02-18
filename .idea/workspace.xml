@@ -26,7 +26,7 @@
       <file leaf-file-name="content-posts.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="43" selection-start="283" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1600">
+            <state line="36" column="24" selection-start="1301" selection-end="1301" vertical-scroll-proportion="-6.1538463" vertical-offset="500" max-vertical-offset="1540">
               <folding />
             </state>
           </provider>
@@ -41,19 +41,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.scss" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="style.scss" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4310" column="21" selection-start="84877" selection-end="84877" vertical-scroll-proportion="-2.7692308" vertical-offset="86128" max-vertical-offset="107060">
+            <state line="4553" column="25" selection-start="88857" selection-end="88857" vertical-scroll-proportion="0.36419752" vertical-offset="90824" max-vertical-offset="107240">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="10" selection-start="53" selection-end="53" vertical-scroll-proportion="0.10869565" vertical-offset="0" max-vertical-offset="736">
+            <state line="4" column="10" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="80" max-vertical-offset="480">
               <folding />
             </state>
           </provider>
@@ -62,7 +62,38 @@
       <file leaf-file-name="front-page.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/front-page.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="173" column="31" selection-start="6611" selection-end="6611" vertical-scroll-proportion="0.0" vertical-offset="3460" max-vertical-offset="4040">
+            <state line="174" column="33" selection-start="6645" selection-end="6645" vertical-scroll-proportion="-6.076923" vertical-offset="3262" max-vertical-offset="3980">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="general-template.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="209" column="98" selection-start="5906" selection-end="5906" vertical-scroll-proportion="0.0" vertical-offset="4180" max-vertical-offset="86240">
+              <folding>
+                <marker date="1549727606013" expanded="false" signature="28709:28722" placeholder="..." />
+                <marker date="1549727606013" expanded="true" signature="56323:56511" placeholder="SELECT YEAR(..." />
+                <marker date="1549727606013" expanded="true" signature="57397:57538" placeholder="SELECT YEAR(..." />
+                <marker date="1549727606013" expanded="true" signature="58297:58547" placeholder="SELECT YEAR(..." />
+                <marker date="1549727606013" expanded="true" signature="59512:59756" placeholder="SELECT DISTI..." />
+                <marker date="1549727606013" expanded="true" signature="61154:61218" placeholder="SELECT * FRO..." />
+                <marker date="1549727606013" expanded="true" signature="63517:63612" placeholder="SELECT 1 as ..$wpdb-&gt;posts WHERE..." />
+                <marker date="1549727606013" expanded="true" signature="64850:65064" placeholder="SELECT MONTH..." />
+                <marker date="1549727606013" expanded="true" signature="65093:65324" placeholder="SELECT MONTH..." />
+                <marker date="1549727606013" expanded="true" signature="66086:66092" placeholder="..." />
+                <marker date="1549727606013" expanded="true" signature="66895:66901" placeholder="..." />
+                <marker date="1549727606013" expanded="true" signature="66994:67229" placeholder="SELECT DISTI..$wpdb-&gt;posts WHERE..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="link-template.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-includes/link-template.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="2921" column="2" selection-start="92944" selection-end="92945" vertical-scroll-proportion="0.0" vertical-offset="58420" max-vertical-offset="83900">
               <folding />
             </state>
           </provider>
@@ -150,13 +181,13 @@
         <option value="$PROJECT_DIR$/wp-content/themes/onsen/assets/js/main.js" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/js/main.js" />
         <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/front-page.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/category.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/index.php" />
         <option value="$PROJECT_DIR$/wp-admin/index.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/front-page.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss" />
       </list>
     </option>
@@ -171,7 +202,6 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
     <option name="y" value="23" />
     <option name="width" value="1383" />
     <option name="height" value="877" />
@@ -253,6 +283,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="druponrinpoche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="druponrinpoche" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wp-content" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -303,10 +351,10 @@
     <configuration default="true" type="PhpWebAppRunConfigurationType" factoryName="PHP Web Application">
       <method />
     </configuration>
-    <configuration default="true" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request">
+    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" server_name="MAMP">
       <method />
     </configuration>
-    <configuration default="true" type="PhpRemoteDebugRunConfigurationType" factoryName="PHP Remote Debug" server_name="MAMP">
+    <configuration default="true" type="PhpHttpRequestRunConfigurationType" factoryName="PHP HTTP Request">
       <method />
     </configuration>
     <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
@@ -383,15 +431,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="23" width="1383" height="877" extended-state="0" />
-    <editor active="false" />
+    <frame x="0" y="23" width="1383" height="877" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32909784" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="21" y="332" width="1398" height="259" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909784" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25503355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37061894" sideWeight="0.6618962" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37583894" sideWeight="0.6618962" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29479036" sideWeight="0.6909871" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="MagicentoScripts" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28970775" sideWeight="0.75107294" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4356223" sideWeight="0.33810377" order="2" side_tool="true" content_ui="tabs" />
@@ -400,11 +448,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28970775" sideWeight="0.3319027" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -423,9 +471,9 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25250357" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26251787" sideWeight="0.6618962" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -482,11 +530,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/404.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="508" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/class-wp-walker.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="193" column="25" selection-start="6024" selection-end="6025" vertical-scroll-proportion="0.33147633" vertical-offset="3741" max-vertical-offset="8620">
@@ -722,18 +765,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/link-template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="313" column="9" selection-start="9964" selection-end="9964" vertical-scroll-proportion="0.3457676" vertical-offset="5919" max-vertical-offset="83800" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="43" selection-start="283" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1600">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/category-teachings.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="28" column="35" selection-start="935" selection-end="935" vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="1400">
@@ -741,23 +772,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="10" selection-start="53" selection-end="53" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="209" column="98" selection-start="5906" selection-end="5906" vertical-scroll-proportion="0.0" vertical-offset="4180" max-vertical-offset="86240">
+          <folding>
+            <marker date="1549727606013" expanded="false" signature="28709:28722" placeholder="..." />
+            <marker date="1549727606013" expanded="true" signature="56323:56511" placeholder="SELECT YEAR(..." />
+            <marker date="1549727606013" expanded="true" signature="57397:57538" placeholder="SELECT YEAR(..." />
+            <marker date="1549727606013" expanded="true" signature="58297:58547" placeholder="SELECT YEAR(..." />
+            <marker date="1549727606013" expanded="true" signature="59512:59756" placeholder="SELECT DISTI..." />
+            <marker date="1549727606013" expanded="true" signature="61154:61218" placeholder="SELECT * FRO..." />
+            <marker date="1549727606013" expanded="true" signature="63517:63612" placeholder="SELECT 1 as ..$wpdb-&gt;posts WHERE..." />
+            <marker date="1549727606013" expanded="true" signature="64850:65064" placeholder="SELECT MONTH..." />
+            <marker date="1549727606013" expanded="true" signature="65093:65324" placeholder="SELECT MONTH..." />
+            <marker date="1549727606013" expanded="true" signature="66086:66092" placeholder="..." />
+            <marker date="1549727606013" expanded="true" signature="66895:66901" placeholder="..." />
+            <marker date="1549727606013" expanded="true" signature="66994:67229" placeholder="SELECT DISTI..$wpdb-&gt;posts WHERE..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/link-template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2921" column="2" selection-start="92944" selection-end="92945" vertical-scroll-proportion="0.0" vertical-offset="58420" max-vertical-offset="83900">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/front-page.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="173" column="31" selection-start="6611" selection-end="6611" vertical-scroll-proportion="0.0" vertical-offset="3460" max-vertical-offset="4040">
+        <state line="174" column="33" selection-start="6645" selection-end="6645" vertical-scroll-proportion="-6.076923" vertical-offset="3262" max-vertical-offset="3980">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="24" selection-start="1301" selection-end="1301" vertical-scroll-proportion="-6.1538463" vertical-offset="500" max-vertical-offset="1540">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="4310" column="21" selection-start="84877" selection-end="84877" vertical-scroll-proportion="-2.7692308" vertical-offset="86128" max-vertical-offset="107060">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="10" selection-start="53" selection-end="53" vertical-scroll-proportion="0.10869565" vertical-offset="0" max-vertical-offset="736">
+        <state line="4553" column="25" selection-start="88857" selection-end="88857" vertical-scroll-proportion="0.36419752" vertical-offset="90824" max-vertical-offset="107240">
           <folding />
         </state>
       </provider>

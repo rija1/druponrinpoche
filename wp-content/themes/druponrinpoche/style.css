@@ -3417,6 +3417,9 @@ p.teaching_info {
   padding-top: 7px;
   margin-bottom: 5px; }
 
+.single-post .rl-gallery-container {
+  padding: 20px 0 20px 0; }
+
 .news_right_block #rl-gallery-container-1 .rl-basicgrid-gallery .rl-gallery-item {
   width: 46%;
   margin: 0px 7px 13px 5px; }
@@ -4007,5 +4010,8 @@ a.view_full_schedule {
     margin-right: 10px;
     font-size: 16px;
     color: #666; }
+
+.page-template-about-pages .page-item-1053 {
+  display: none; }
 
 /*# sourceMappingURL=style.css.map */

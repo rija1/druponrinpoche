@@ -4549,6 +4549,12 @@ p.teaching_info {
     margin-bottom: 5px;
 }
 
+.single-post {
+    .rl-gallery-container {
+        padding: 20px 0 20px 0;
+    }
+}
+
 .news_right_block {
     #rl-gallery-container-1 .rl-basicgrid-gallery .rl-gallery-item {
         width: 46%;
@@ -5345,3 +5351,6 @@ a.view_full_schedule {
     }
 }
 
+.page-template-about-pages .page-item-1053 {
+    display:none;
+}
