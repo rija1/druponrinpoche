@@ -6,6 +6,7 @@
 
 $newsCategoryId = 2;
 $homeMetaSliderId = 132;
+$schedulePageId=1581;
 
 get_header();
 if ( 'posts' == get_option( 'show_on_front')) {
@@ -17,7 +18,7 @@ if ( 'posts' == get_option( 'show_on_front')) {
 
 
 $r = new WP_Query( apply_filters( 'widget_posts_args', array(
-    'posts_per_page'      => 3,
+    'posts_per_page'      => 4,
     'no_found_rows'       => true,
     'post_status'         => 'publish',
     'ignore_sticky_posts' => true,
@@ -73,52 +74,62 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     <div class="home_mini_carousel">
         <div class="schedule_title"><h5>Upcoming Schedule</h5></div>
         <?php
-        $table = TablePress::$model_table->load( 1, true, true );
+        $table = TablePress::$model_table->load( 5, true, true );
         $scheduleData = $table['data'];
-        $schCnt = count($scheduleData)-1;
-        $schCntBatch1 = round($schCnt/2,0,PHP_ROUND_HALF_UP);
-        $schCntBatch2 = $schCnt - $schCntBatch1;
+        unset($scheduleData[0]);
+//        $schCntBatch1 = array();
+//        $schCntBatch2 = array();
+        list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
         ?>
         <!--        <a class="full_schedule_lnk" href="--><?php //echo get_page_link($schedulePage)?><!--">View Full Schedule</a>-->
-        <div class="carousel" id="homeCarousel">
-            <div class="carousel_item" style="width:386px; height:621px;">
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Details</th>
-                    </tr>
-                    <?php for($i=1; $i<=$schCntBatch1; $i++) :?>
-                    <tr>
-                        <td><?php echo $scheduleData[$i][0]; ?></td>
-                        <td><?php echo $scheduleData[$i][1]; ?></td>
-                        <td><?php echo $scheduleData[$i][3]; ?></td>
-                    </tr>
-                    <?php endfor; ?>
-                </table>
-            </div>
-            <div class="carousel_item" style="width:386px; height:557px;">
-                <table>
-                    <tr>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Details</th>
-                    </tr>
-                    <?php for($j=$schCntBatch1+1; $j<=$schCnt; $j++) :?>
+        <div class="schedule_carousel_wrap">
+            <div class="schedule_carousel" id="homeCarousel">
+                <div>
+                    <table>
                         <tr>
-                            <td><?php echo $scheduleData[$j][0]; ?></td>
-                            <td><?php echo $scheduleData[$j][1]; ?></td>
-                            <td><?php echo $scheduleData[$j][3]; ?></td>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Details</th>
                         </tr>
-                    <?php endfor; ?>
-                </table>
+                        <?php foreach($schBatch1 as $schBatch1Line) :?>
+                        <tr>
+                            <td><?php echo $schBatch1Line[0]; ?></td>
+                            <td><?php echo $schBatch1Line[1]; ?></td>
+                            <td><?php echo $schBatch1Line[3]; ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <th>Date</th>
+                            <th>Location</th>
+                            <th>Details</th>
+                        </tr>
+                        <?php foreach($schBatch2 as $schBatch2Line) :?>
+                            <tr>
+                                <td><?php echo $schBatch2Line[0]; ?></td>
+                                <td><?php echo $schBatch2Line[1]; ?></td>
+                                <td><?php echo $schBatch2Line[3]; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+
+
+
+    <!--            <div class="carousel_item">-->
+    <!--                <h5>Super Important Information</h5>-->
+    <!--                <b>Bla bla bla bla bla bla</b>-->
+    <!--                <p>Lorem ipsum lattu gulib opilo ravlam maluchalu ipsum lattu gulib opilo ravlam maluchalu ipsum lattu gulib opilo ravlam maluchalu</p>-->
+    <!--            </div>-->
             </div>
-<!--            <div class="carousel_item">-->
-<!--                <h5>Super Important Information</h5>-->
-<!--                <b>Bla bla bla bla bla bla</b>-->
-<!--                <p>Lorem ipsum lattu gulib opilo ravlam maluchalu ipsum lattu gulib opilo ravlam maluchalu ipsum lattu gulib opilo ravlam maluchalu</p>-->
-<!--            </div>-->
+            <a class="view_full_schedule" href="<?php echo get_page_link($schedulePageId)?>"><span>View Full Schedule</span></a>
         </div>
+
+
+
     </div>
 
     <div class="latestnews">
@@ -130,14 +141,17 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                 $title      = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)' );
                 $image = wp_get_attachment_image_src( get_post_thumbnail_id($recent_post->ID) , 'medium');
                 ?>
-                <li class="home_post">
-                    <div class="home_post_img"><img src="<?php echo $image[0];?>" /></div>
-                    <div class="home_post_txt">
-                    <span style="width:100%;"><a class="recent_post_link" href="<?php the_permalink( $recent_post->ID ); ?>"><?php echo $title ; ?></a></span>
+                <a class="recent_post_link" href="<?php the_permalink( $recent_post->ID ); ?>">
                     <span class="post-date"><?php echo get_the_date( '', $recent_post->ID ); ?></span>
-                    <p><?php echo substr(get_the_excerpt($recent_post),0,220).' [...]'; ?></p>
-                    </div>
-                </li>
+                    <li class="home_post">
+                        <div class="home_post_img"><img src="<?php echo $image[0];?>" /></div>
+                        <div class="home_post_txt">
+                        <span class="recent_post_title"><?php echo $title ; ?></span>
+                        <p><?php echo get_post_meta($recent_post->ID, 'short_excerpt', true);?></p>
+                        <span class="read_more">Read More</span>
+                        </div>
+                    </li>
+                </a>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -148,10 +162,17 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     <script type="text/javascript">
         jQuery( document ).ready(function() {
 
-            jQuery('#homeCarousel').cycle({
-                fx:    'scrollRight',
-                speed:  2000,
-                timeout:  5000
+
+            jQuery('.schedule_carousel').slick({
+                draggable: true,
+                accessibility: false,
+//                variableWidth: true,
+                slidesToShow: 1,
+                arrows: false,
+                autoplay:true,
+//                swipeToSlide: true,
+                infinite: true,
+                autoplaySpeed:"12000"
             });
 
             var expandHtml = '<div class="circle-plus closed"><div class="circle"><div class="horizontal"></div><div class="vertical"></div></div></div>';
@@ -171,3 +192,5 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     </script>
 
 <?php get_footer(); ?>
+
+

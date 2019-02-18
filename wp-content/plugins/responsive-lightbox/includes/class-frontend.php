@@ -865,17 +865,17 @@ class Responsive_Lightbox_Frontend {
 		$title = ! empty( $args['show_title'] ) ? trim( $this->get_attachment_title( $attachment_id, $args['show_title'] ) ) : '';
 		$caption = ! empty( $args['show_caption'] ) ? trim( $this->get_attachment_title( $attachment_id, $args['show_caption'] ) ) : '';
 
-		if ( $title || $caption ) {
-			$link .= '<span class="rl-gallery-caption">';
-
-			if ( $title )
-				$link .= '<span class="rl-gallery-item-title">' . esc_html( $title ) . '</span>';
-
-			if ( $caption )
-				$link .= '<span class="rl-gallery-item-caption">' . esc_html( $caption ) . '</span>';
-
-			$link .= '</span>';
-		}
+//		if ( $title || $caption ) {
+//			$link .= '<span class="rl-gallery-caption">';
+//
+//			if ( $title )
+//				$link .= '<span class="rl-gallery-item-title">' . esc_html( $title ) . '</span>';
+//
+//			if ( $caption )
+//				$link .= '<span class="rl-gallery-item-caption">' . esc_html( $caption ) . '</span>';
+//
+//			$link .= '</span>';
+//		}
 
 		$link .= '</a>';
 

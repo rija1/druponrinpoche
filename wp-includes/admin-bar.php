@@ -980,12 +980,17 @@ function _admin_bar_bump_cb() { ?>
  * @param bool $show Whether to allow the admin bar to show.
  */
 function show_admin_bar( $show ) {
+	global $show_admin_bar;
 	$show_admin_bar = (bool) $show;
 }
 
 /**
- * Determine whether the admin bar should be showing.
- *
+ * Determines whether the admin bar should be showing.
+ * 
+ * For more information on this and similar theme functions, check out
+ * the {@link https://developer.wordpress.org/themes/basics/conditional-tags/ 
+ * Conditional Tags} article in the Theme Developer Handbook.
+ * 
  * @since 3.1.0
  *
  * @global bool   $show_admin_bar

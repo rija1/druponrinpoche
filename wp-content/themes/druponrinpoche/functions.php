@@ -131,17 +131,12 @@ include_once( trailingslashit(get_template_directory()) . '/about.php' );
 if( ! function_exists( 'dkr_enqueue_styles' ) ) {
     function dkr_enqueue_styles() {
 
-        // OWL Carousel
-        wp_enqueue_style( 'owl-carousel', get_template_directory_uri() . '/assets/css/owl.carousel.css', array());
-
-        // OWL Theme
-        wp_enqueue_style( 'owl-theme', get_template_directory_uri() . '/assets/css/owl.theme.css', array());
-
-        // OWL Transitions
-        wp_enqueue_style( 'owl-transitions', get_template_directory_uri() . '/assets/css/owl.transitions.css', array());
 
         // Font Awesome
         wp_enqueue_style( 'font-awesome', get_template_directory_uri() . '/assets/css/font-awesome.css', array());
+
+        // Slick Slider
+        wp_enqueue_style( 'slick', get_template_directory_uri() . '/assets/css/slick.css', array());
 
         // main style
         wp_enqueue_style( 'dkr-style', get_stylesheet_uri() );
@@ -157,8 +152,8 @@ if( ! function_exists( 'dkr_enqueue_styles' ) ) {
 if( ! function_exists( 'dkr_enqueue_scripts' ) ) {
     function dkr_enqueue_scripts() {
 
-        // owl carousel for sliders
-        wp_enqueue_script( 'carousel-js', get_template_directory_uri() . '/assets/js/owl.carousel.js', array('jquery'), null );
+        // Slick Slider
+        wp_enqueue_script( 'slick-js', get_template_directory_uri() . '/assets/js/slick.min.js', array('jquery'), null );
 
         // html5
         wp_enqueue_script( 'html5', get_template_directory_uri() . '/assets/js/html5.js' );
@@ -176,7 +171,6 @@ if( ! function_exists( 'dkr_enqueue_scripts' ) ) {
             wp_enqueue_script( 'comment-reply' );
         }
 
-        wp_enqueue_script( 'jqueryCycle', get_template_directory_uri() . '/assets/js/jquery.cycle.all.js', array('jquery'), null );
     }
     add_action( 'wp_enqueue_scripts', 'dkr_enqueue_scripts' );
 }
@@ -298,13 +292,13 @@ function get_text_excerpt($text,$length) {
         $length = strlen($text) - 10;
     }
 
-
+return $text;
     return substr($text, 0, strpos($text, ' ', $length)).' [...]';
 }
 
 function my_theme_enqueue_styles() {
 
-    $parent_style = 'dkr-style'; // This is 'twentyfifteen-style' for the Twenty Fifteen theme.
+    $parent_style = 'dkr-style';
 
     wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
 }
@@ -916,7 +910,6 @@ function wp_list_categories_teachings( $args = '' ) {
 
 
     $categories = get_categories( $r );
-
 
     $output = '';
     if ( $r['title_li'] && 'list' == $r['style'] && ( ! empty( $categories ) || ! $r['hide_title_if_empty'] ) ) {

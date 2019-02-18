@@ -69,4 +69,4 @@ a{box-shadow:none !important}.metaslider
 .metaslider .slider-wrapper
 img{border:0;box-shadow:none;list-style-type:none;list-style:none;padding:0;line-height:normal;max-width:none;max-height:none}div.metaslider .slider-wrapper .nivo-controlNav
 a{transition:none}.metaslider .coin-slider{max-width:100%;overflow:hidden}.metaslider .coin-slider .cs-buttons a,
-.metaslider .coin-slider>a{box-shadow:none !important}
+.metaslider .coin-slider>a{box-shadow:none !important}.metaslider .coin-slider a[href="javascript:void(0)"]{cursor:default !important}

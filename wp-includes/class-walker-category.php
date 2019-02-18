@@ -99,12 +99,11 @@ class Walker_Category extends Walker {
 		);
 
 		// Don't generate an element if the category name is empty.
-		if ( ! $cat_name ) {
+		if ( '' === $cat_name ) {
 			return;
 		}
 
-        $link = '<div>';
-		$link .= '<a href="' . esc_url( get_term_link( $category ) ) . '" ';
+		$link = '<a href="' . esc_url( get_term_link( $category ) ) . '" ';
 		if ( $args['use_desc_for_title'] && ! empty( $category->description ) ) {
 			/**
 			 * Filters the category description for display.

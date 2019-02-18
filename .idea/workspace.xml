@@ -23,130 +23,75 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
+      <file leaf-file-name="content-posts.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="14" column="43" selection-start="283" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1600">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="category-teachings.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/category-teachings.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="35" selection-start="935" selection-end="935" vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="1400">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.scss" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4310" column="21" selection-start="84877" selection-end="84877" vertical-scroll-proportion="-2.7692308" vertical-offset="86128" max-vertical-offset="107060">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="10" selection-start="53" selection-end="53" vertical-scroll-proportion="0.10869565" vertical-offset="0" max-vertical-offset="736">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="front-page.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/front-page.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="4" selection-start="16" selection-end="17" vertical-scroll-proportion="-0.0" vertical-offset="60" max-vertical-offset="3560">
+            <state line="173" column="31" selection-start="6611" selection-end="6611" vertical-scroll-proportion="0.0" vertical-offset="3460" max-vertical-offset="4040">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="913" column="0" selection-start="26989" selection-end="26989" vertical-scroll-proportion="0.0" vertical-offset="18260" max-vertical-offset="20360">
               <folding>
-                <marker date="1548658197554" expanded="true" signature="608:2255" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="630:1133" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="867:963" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="1155:1696" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="1390:1506" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="1718:2249" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="1932:2050" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="2289:5762" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="2327:4612" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="2862:4601" placeholder="..." />
-                <marker date="1548658197554" expanded="false" signature="2910:2936" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="2937:3537" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="2961:3518" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="2986:3133" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="3223:3456" placeholder="..." />
-                <marker date="1548658197554" expanded="false" signature="3585:3611" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="3612:4240" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="3636:4221" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="3661:3808" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="3910:4159" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="4642:5753" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="4744:5742" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="5150:5695" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="5289:5673" placeholder="..." />
-                <marker date="1548658197554" expanded="false" signature="5324:5335" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="5799:6658" placeholder="..." />
-                <marker date="1548658197554" expanded="true" signature="5845:6643" placeholder="{...}" />
-                <marker date="1548658197554" expanded="true" signature="5890:6004" placeholder="{&quot;fx&quot;: 'scrollRight'...}" />
-                <marker date="1548658197554" expanded="true" signature="6490:6505" placeholder="{...}" />
-                <marker date="1548658197554" expanded="true" signature="6564:6631" placeholder="{...}" />
+                <marker date="1549783556275" expanded="true" signature="20323:20387" placeholder="SELECT * FRO..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="footer.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/footer.php">
+      <file leaf-file-name="standard_8.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_8.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="42" selection-start="1658" selection-end="1658" vertical-scroll-proportion="-12.692307" vertical-offset="630" max-vertical-offset="1340">
+            <state line="962" column="9" selection-start="30821" selection-end="30821" vertical-scroll-proportion="0.0" vertical-offset="17515" max-vertical-offset="22040">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="model.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/model.php">
+      <file leaf-file-name="class-walker-category-dr.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/includes/class-walker-category-dr.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="548" column="0" selection-start="19529" selection-end="19529" vertical-scroll-proportion="-12.307693" vertical-offset="10640" max-vertical-offset="12620">
-              <folding>
-                <marker date="1549108923635" expanded="true" signature="15337:15376" placeholder="SELECT t.ter..$wpdb-&gt;terms AS..." />
-                <marker date="1549108923635" expanded="true" signature="16699:16774" placeholder="SELECT pll_t..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class-frontend.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/includes/class-frontend.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1637" column="13" selection-start="63336" selection-end="63336" vertical-scroll-proportion="0.018018018" vertical-offset="32732" max-vertical-offset="41180">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="class-galleries.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/includes/class-galleries.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="76" column="16" selection-start="3286" selection-end="3286" vertical-scroll-proportion="-6.3461537" vertical-offset="1355" max-vertical-offset="62660">
-              <folding>
-                <marker date="1534245484952" expanded="true" signature="26072:26088" placeholder="Insert into ..." />
-                <marker date="1534245484952" expanded="false" signature="49512:49526" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".htaccess" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.htaccess">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="11" selection-start="0" selection-end="235" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/admin/admin.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="47" selection-start="276" selection-end="276" vertical-scroll-proportion="-6.0" vertical-offset="24" max-vertical-offset="2440">
-              <folding>
-                <marker date="1536495469772" expanded="false" signature="3063:3126" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="links-default.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-default.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="32" selection-start="197" selection-end="197" vertical-scroll-proportion="-6.3461537" vertical-offset="15" max-vertical-offset="2120">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="links-model.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-model.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="133" column="0" selection-start="3381" selection-end="3381" vertical-scroll-proportion="-40.346153" vertical-offset="1611" max-vertical-offset="2780">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="option.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/wp-includes/option.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="27" column="42" selection-start="958" selection-end="958" vertical-scroll-proportion="-7.730769" vertical-offset="239" max-vertical-offset="42740">
+            <state line="56" column="0" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0" vertical-offset="958" max-vertical-offset="4980">
               <folding />
             </state>
           </provider>
@@ -162,15 +107,9 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/left-page-menu-no-arrow.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/left-page-menu-no-expand.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/home-posts.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/about-pages.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/header.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/footer.php" />
         <option value="$PROJECT_DIR$/wp-includes/admin-bar.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/lineage-pages.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/front-page.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/style.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.css" />
         <option value="$PROJECT_DIR$/wp-content/themes/onsen-child-backup/header.php" />
@@ -189,8 +128,6 @@
         <option value="$PROJECT_DIR$/wp-includes/general-template.php" />
         <option value="$PROJECT_DIR$/wp-config.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/colorist/category-slider.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/category.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/header.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/single.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/left-page-menu.php" />
@@ -202,17 +139,25 @@
         <option value="$PROJECT_DIR$/wp-includes/class-walker-category.php" />
         <option value="$PROJECT_DIR$/wp-includes/class-walker-category-druponrinpoche.php" />
         <option value="$PROJECT_DIR$/wp-includes/class-walker-category-dr.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/includes/class-walker-category-dr.php" />
-        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/front-page.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/category-teachings.php" />
         <option value="$PROJECT_DIR$/robots.txt" />
-        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/lineage-pages.php" />
         <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/footer.php" />
         <option value="$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/model.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/includes/class-frontend.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/onsen/assets/js/main.js" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/js/main.js" />
+        <option value="$PROJECT_DIR$/wp-content/themes/onsen-child/front-page.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/category.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/index.php" />
+        <option value="$PROJECT_DIR$/wp-admin/index.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/front-page.php" />
+        <option value="$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss" />
       </list>
     </option>
   </component>
@@ -226,8 +171,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
+    <option name="x" value="19" />
     <option name="y" value="23" />
-    <option name="width" value="1440" />
+    <option name="width" value="1383" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -275,7 +221,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -308,26 +253,9 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="druponrinpoche" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="druponrinpoche" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="wp-content" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="plugins" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -352,11 +280,11 @@
       <recent name="$PROJECT_DIR$/wp-content/themes/onsen-child" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/images" />
+      <recent name="$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/css" />
+      <recent name="$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/js" />
       <recent name="$PROJECT_DIR$/wp-content/themes/druponrinpoche/includes" />
       <recent name="$PROJECT_DIR$/wp-content/themes/druponrinpoche" />
-      <recent name="$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/css" />
-      <recent name="$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets" />
-      <recent name="$PROJECT_DIR$/wp-content/themes" />
     </key>
   </component>
   <component name="RunManager" selected="JavaScript Debug.index.php">
@@ -455,25 +383,25 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="6" />
-    <editor active="true" />
+    <frame x="19" y="23" width="1383" height="877" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32909784" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" x="21" y="332" width="1398" height="259" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28970775" sideWeight="0.3319027" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.41296062" sideWeight="0.6909871" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42185515" sideWeight="0.66809726" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4356223" sideWeight="0.33810377" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="MagicentoScripts" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28970775" sideWeight="0.75107294" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909784" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2553648" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2832618" sideWeight="0.6618962" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32909784" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25503355" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37061894" sideWeight="0.6618962" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29479036" sideWeight="0.6909871" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="MagicentoScripts" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28970775" sideWeight="0.75107294" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4356223" sideWeight="0.33810377" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42185515" sideWeight="0.66809726" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24523507" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28970775" sideWeight="0.3319027" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -533,114 +461,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php</url>
-          <line>981</line>
+          <line>975</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/includes/class-walker-category-dr.php</url>
-          <line>56</line>
-          <option name="timeStamp" value="46" />
+          <url>file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php</url>
+          <line>911</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/wp-includes/taxonomy.php</url>
+          <line>1106</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="48" />
+      <option name="time" value="54" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/ml-slider/inc/slider/metaslider.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="13" selection-start="3092" selection-end="3092" vertical-scroll-proportion="0.0" vertical-offset="2024" max-vertical-offset="9900" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/ml-slider/inc/slider/metaslider.coin.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="42" selection-start="1051" selection-end="1051" vertical-scroll-proportion="0.0" vertical-offset="504" max-vertical-offset="1360" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/ml-slider/ml-slider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1758" column="76" selection-start="86603" selection-end="86603" vertical-scroll-proportion="0.0" vertical-offset="35004" max-vertical-offset="44440" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/ml-slider/themes/precognition/v1.0.0/theme.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="9" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0" vertical-offset="295" max-vertical-offset="1520" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/ml-slider/inc/slider/metaslider.responsive.class.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="6" selection-start="141" selection-end="141" vertical-scroll-proportion="-0.0" vertical-offset="140" max-vertical-offset="1360" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="358" selection-end="358" vertical-scroll-proportion="0.0" vertical-offset="240" max-vertical-offset="460" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/renden/lib/extentions/bootstrap/js/bootstrap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1793" column="39" selection-start="49132" selection-end="49143" vertical-scroll-proportion="0.0" vertical-offset="35343" max-vertical-offset="45600" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/general-template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2613" column="23" selection-start="84477" selection-end="84484" vertical-scroll-proportion="0.0" vertical-offset="52260" max-vertical-offset="85340" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/onsen-child/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="39" selection-start="3063" selection-end="3063" vertical-scroll-proportion="0.0" vertical-offset="1400" max-vertical-offset="2160" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3638" column="0" selection-start="109666" selection-end="109666" vertical-scroll-proportion="-4.730769" vertical-offset="72557" max-vertical-offset="121580" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/class-wp-list-util.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="105" column="0" selection-start="2049" selection-end="2049" vertical-scroll-proportion="-4.923077" vertical-offset="1872" max-vertical-offset="5240" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/admin/admin-filters-post.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="226" column="21" selection-start="8060" selection-end="8060" vertical-scroll-proportion="-6.0" vertical-offset="4364" max-vertical-offset="12220" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/admin/admin-filters-term.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="534" column="41" selection-start="17888" selection-end="17888" vertical-scroll-proportion="-6.3461537" vertical-offset="10515" max-vertical-offset="15300" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-admin/includes/ajax-actions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="86" selection-start="3645" selection-end="3645" vertical-scroll-proportion="-6.0" vertical-offset="2724" max-vertical-offset="88620" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/frontend/choose-lang.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="154" column="63" selection-start="4624" selection-end="4624" vertical-scroll-proportion="-6.3461537" vertical-offset="2915" max-vertical-offset="6720" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/class-walker-category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="153" column="39" selection-start="4226" selection-end="4231" vertical-scroll-proportion="0.0" vertical-offset="3060" max-vertical-offset="4720" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/onsen-child/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="649" column="39" selection-start="19826" selection-end="19826" vertical-scroll-proportion="-2.1130064" vertical-offset="13971" max-vertical-offset="14720">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/admin/admin-model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="383" column="47" selection-start="13768" selection-end="13768" vertical-scroll-proportion="0.0" vertical-offset="10931" max-vertical-offset="11400" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/404.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="508" />
@@ -663,20 +504,6 @@
         <state line="45" column="0" selection-start="1674" selection-end="1674" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="4420" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/includes/class-walker-category-dr.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="35" selection-start="2922" selection-end="2922" vertical-scroll-proportion="0.0" vertical-offset="2180" max-vertical-offset="4980">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1000" column="0" selection-start="30510" selection-end="30510" vertical-scroll-proportion="0.0" vertical-offset="20000" max-vertical-offset="20500">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/wp-includes/category-template.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="248" column="9" selection-start="8312" selection-end="8312" vertical-scroll-proportion="0.0" vertical-offset="4960" max-vertical-offset="28440" />
@@ -685,11 +512,6 @@
     <entry file="file://$PROJECT_DIR$/wp-includes/class-walker-category-dropdown.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1660" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/js/jquery.cycle.all.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="65" selection-start="22865" selection-end="22896" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/home-posts.php.rm">
@@ -705,196 +527,237 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="760" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/category-teachings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="0" selection-start="2384" selection-end="2384" vertical-scroll-proportion="0.0" vertical-offset="1280" max-vertical-offset="1400" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="0" selection-start="604" selection-end="604" vertical-scroll-proportion="0.0" vertical-offset="640" max-vertical-offset="780">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/robots.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="23" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="736">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="23" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="736" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="0" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.0" vertical-offset="1740" max-vertical-offset="76820">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1560">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4418" column="20" selection-start="86268" selection-end="86268" vertical-scroll-proportion="0.0" vertical-offset="88360" max-vertical-offset="101680">
-          <folding />
-        </state>
+        <state line="23" column="0" selection-start="1085" selection-end="1085" vertical-scroll-proportion="0.0" vertical-offset="1740" max-vertical-offset="76820" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/widget-languages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="3300">
-          <folding />
-        </state>
+        <state line="14" column="13" selection-start="167" selection-end="167" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="3300" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="38" selection-start="3871" selection-end="3871" vertical-scroll-proportion="0.0" vertical-offset="1640" max-vertical-offset="2160">
-          <folding />
-        </state>
+        <state line="82" column="38" selection-start="3871" selection-end="3871" vertical-scroll-proportion="0.0" vertical-offset="1640" max-vertical-offset="2160" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/plugins/hello.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1760">
-          <folding>
-            <marker date="1369236220000" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1369236220000" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="28" selection-start="131" selection-end="131" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="460">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1760" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/lineage-pages.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="25" selection-start="511" selection-end="511" vertical-scroll-proportion="-9.230769" vertical-offset="0" max-vertical-offset="1600">
+        <state line="12" column="25" selection-start="511" selection-end="511" vertical-scroll-proportion="-9.230769" vertical-offset="0" max-vertical-offset="1600" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/footer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="42" selection-start="1658" selection-end="1658" vertical-scroll-proportion="-12.692307" vertical-offset="630" max-vertical-offset="1340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-permalinks.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="64" selection-start="760" selection-end="760" vertical-scroll-proportion="-3.3070362" vertical-offset="2051" max-vertical-offset="2520" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/option.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="42" selection-start="958" selection-end="958" vertical-scroll-proportion="-7.730769" vertical-offset="239" max-vertical-offset="42740" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/admin/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="47" selection-start="276" selection-end="276" vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2440" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="32" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="2120" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="133" column="0" selection-start="3381" selection-end="3381" vertical-scroll-proportion="0.0" vertical-offset="1611" max-vertical-offset="2780" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="11" selection-start="0" selection-end="235" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="548" column="0" selection-start="19529" selection-end="19529" vertical-scroll-proportion="0.0" vertical-offset="10640" max-vertical-offset="12620" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/includes/class-galleries.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="76" column="16" selection-start="3286" selection-end="3286" vertical-scroll-proportion="0.0" vertical-offset="1355" max-vertical-offset="62660" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/assets/swipebox/js/jquery.swipebox.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="37" selection-start="1636" selection-end="1636" vertical-scroll-proportion="0.0" vertical-offset="715" max-vertical-offset="19260" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/assets/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="0" selection-start="1004" selection-end="1004" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="700" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-blog-header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="736" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/includes/class-frontend.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="867" column="0" selection-start="36351" selection-end="36691" vertical-scroll-proportion="-6.4615383" vertical-offset="17172" max-vertical-offset="41180" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/colormag/page-templates/page-builder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="27" selection-start="498" selection-end="498" vertical-scroll-proportion="0.7053942" vertical-offset="0" max-vertical-offset="580" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="13" selection-start="22" selection-end="23" vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="1900" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/renden/admin/main/options/05.blog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="321" column="35" selection-start="10202" selection-end="10204" vertical-scroll-proportion="-3.5961537" vertical-offset="6153" max-vertical-offset="10280" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/post-template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="420" column="9" selection-start="11604" selection-end="11604" vertical-scroll-proportion="0.3462783" vertical-offset="8046" max-vertical-offset="36500" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/unicon-lite/archive.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="32" selection-start="463" selection-end="463" vertical-scroll-proportion="0.43041608" vertical-offset="0" max-vertical-offset="1120" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/class-wp-query.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3113" column="0" selection-start="99868" selection-end="99868" vertical-scroll-proportion="0.0" vertical-offset="62260" max-vertical-offset="82000" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="7" selection-start="370" selection-end="370" vertical-scroll-proportion="0.3264095" vertical-offset="0" max-vertical-offset="674" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/renden/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="50" selection-start="694" selection-end="694" vertical-scroll-proportion="0.22525108" vertical-offset="403" max-vertical-offset="1100" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/query.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="766" column="0" selection-start="19541" selection-end="19541" vertical-scroll-proportion="0.0" vertical-offset="15320" max-vertical-offset="20340" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-teachings-posts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="49" selection-start="798" selection-end="862" vertical-scroll-proportion="0.34433284" vertical-offset="0" max-vertical-offset="697" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-admin/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="0" selection-start="63" selection-end="63" vertical-scroll-proportion="0.12295082" vertical-offset="0" max-vertical-offset="2920" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="0" selection-start="119" selection-end="119" vertical-scroll-proportion="0.32786885" vertical-offset="0" max-vertical-offset="800" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="1" selection-start="593" selection-end="593" vertical-scroll-proportion="0.9580838" vertical-offset="0" max-vertical-offset="600" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/includes/class-walker-category-dr.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="0" selection-start="1254" selection-end="1254" vertical-scroll-proportion="0.0" vertical-offset="958" max-vertical-offset="4980">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/taxonomy.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1106" column="0" selection-start="43410" selection-end="43410" vertical-scroll-proportion="0.33333334" vertical-offset="21865" max-vertical-offset="86700">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="48" selection-start="1642" selection-end="1642" vertical-scroll-proportion="0.37634408" vertical-offset="785" max-vertical-offset="7220" />
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_8.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="962" column="9" selection-start="30821" selection-end="30821" vertical-scroll-proportion="0.0" vertical-offset="17515" max-vertical-offset="22040">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="913" column="0" selection-start="26989" selection-end="26989" vertical-scroll-proportion="0.0" vertical-offset="18260" max-vertical-offset="20360">
+          <folding>
+            <marker date="1549783556275" expanded="true" signature="20323:20387" placeholder="SELECT * FRO..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-includes/link-template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="313" column="9" selection-start="9964" selection-end="9964" vertical-scroll-proportion="0.3457676" vertical-offset="5919" max-vertical-offset="83800" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/content-posts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="43" selection-start="283" selection-end="284" vertical-scroll-proportion="0.0" vertical-offset="280" max-vertical-offset="1600">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/category-teachings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="35" selection-start="935" selection-end="935" vertical-scroll-proportion="0.0" vertical-offset="560" max-vertical-offset="1400">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/front-page.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="4" selection-start="16" selection-end="17" vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="3560">
-          <folding>
-            <marker date="1548658197554" expanded="true" signature="608:2255" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="630:1133" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="867:963" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="1155:1696" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="1390:1506" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="1718:2249" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="1932:2050" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="2289:5762" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="2327:4612" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="2862:4601" placeholder="..." />
-            <marker date="1548658197554" expanded="false" signature="2910:2936" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="2937:3537" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="2961:3518" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="2986:3133" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="3223:3456" placeholder="..." />
-            <marker date="1548658197554" expanded="false" signature="3585:3611" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="3612:4240" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="3636:4221" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="3661:3808" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="3910:4159" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="4642:5753" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="4744:5742" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="5150:5695" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="5289:5673" placeholder="..." />
-            <marker date="1548658197554" expanded="false" signature="5324:5335" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="5799:6658" placeholder="..." />
-            <marker date="1548658197554" expanded="true" signature="5845:6643" placeholder="{...}" />
-            <marker date="1548658197554" expanded="true" signature="5890:6004" placeholder="{&quot;fx&quot;: 'scrollRight'...}" />
-            <marker date="1548658197554" expanded="true" signature="6490:6505" placeholder="{...}" />
-            <marker date="1548658197554" expanded="true" signature="6564:6631" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="42" selection-start="1658" selection-end="1658" vertical-scroll-proportion="-12.692307" vertical-offset="630" max-vertical-offset="1340">
+        <state line="173" column="31" selection-start="6611" selection-end="6611" vertical-scroll-proportion="0.0" vertical-offset="3460" max-vertical-offset="4040">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-permalinks.php">
+    <entry file="file://$PROJECT_DIR$/wp-content/themes/druponrinpoche/style.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="64" selection-start="760" selection-end="760" vertical-scroll-proportion="-3.3070362" vertical-offset="2051" max-vertical-offset="2520">
+        <state line="4310" column="21" selection-start="84877" selection-end="84877" vertical-scroll-proportion="-2.7692308" vertical-offset="86128" max-vertical-offset="107060">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/wp-includes/option.php">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="27" column="42" selection-start="958" selection-end="958" vertical-scroll-proportion="-7.730769" vertical-offset="239" max-vertical-offset="42740">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/admin/admin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="47" selection-start="276" selection-end="276" vertical-scroll-proportion="-6.0" vertical-offset="24" max-vertical-offset="2440">
-          <folding>
-            <marker date="1536495469772" expanded="false" signature="3063:3126" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-default.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="32" selection-start="197" selection-end="197" vertical-scroll-proportion="-6.3461537" vertical-offset="15" max-vertical-offset="2120">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/links-model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="133" column="0" selection-start="3381" selection-end="3381" vertical-scroll-proportion="-40.346153" vertical-offset="1611" max-vertical-offset="2780">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="11" selection-start="0" selection-end="235" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="340">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/polylang-pro/include/model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="548" column="0" selection-start="19529" selection-end="19529" vertical-scroll-proportion="-12.307693" vertical-offset="10640" max-vertical-offset="12620">
-          <folding>
-            <marker date="1549108923635" expanded="true" signature="15337:15376" placeholder="SELECT t.ter..$wpdb-&gt;terms AS..." />
-            <marker date="1549108923635" expanded="true" signature="16699:16774" placeholder="SELECT pll_t..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/includes/class-galleries.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="16" selection-start="3286" selection-end="3286" vertical-scroll-proportion="-6.3461537" vertical-offset="1355" max-vertical-offset="62660">
-          <folding>
-            <marker date="1534245484952" expanded="true" signature="26072:26088" placeholder="Insert into ..." />
-            <marker date="1534245484952" expanded="false" signature="49512:49526" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/wp-content/plugins/responsive-lightbox/includes/class-frontend.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1637" column="13" selection-start="63336" selection-end="63336" vertical-scroll-proportion="0.018018018" vertical-offset="32732" max-vertical-offset="41180">
+        <state line="4" column="10" selection-start="53" selection-end="53" vertical-scroll-proportion="0.10869565" vertical-offset="0" max-vertical-offset="736">
           <folding />
         </state>
       </provider>

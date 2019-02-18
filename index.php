@@ -13,9 +13,9 @@
  */
 define('WP_USE_THEMES', true);
 
-ini_set('display_errors', 1);
+/** Loads the WordPress Environment and Template */
+require( dirname( __FILE__ ) . '/wp-blog-header.php' );
 
-error_reporting(E_ALL | E_STRICT);
 
 function pa($a,$stop=0,$exp=0){
     echo '<pre>';
@@ -28,6 +28,3 @@ function pa($a,$stop=0,$exp=0){
         die();
     }
 }
-
-/** Loads the WordPress Environment and Template */
-require( dirname( __FILE__ ) . '/wp-blog-header.php' );
