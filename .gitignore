@@ -5,11 +5,13 @@ wp-content/backup-db/
 wp-content/backups/
 wp-content/blogs.dir/
 wp-content/cache/
+wp-content/aw1m-backups/
 wp-content/plugins/hello.php
 wp-content/upgrade/
 wp-content/uploads/
 dumps/
 .idea/
+.idea/workspace.xml
 
 /.htaccess
 /license.txt
