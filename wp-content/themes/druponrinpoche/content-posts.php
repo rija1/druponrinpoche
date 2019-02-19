@@ -57,6 +57,7 @@ $categoryId = get_queried_object_id();
                 <?php endif; ?>
                 <div class="article-text">
                     <span class="category-post-title" href="<?php the_permalink() ?>"><?php if(get_the_title()) { echo get_the_title(); } else { echo get_the_time(); } ?></span>
+                    <span class="category-post-date"><?php echo get_the_date(); ?></span>
                     <p><?php echo get_text_excerpt(get_the_excerpt($post),140);?></p>
                     <span class="read_more">Read more</span>
                 </div>

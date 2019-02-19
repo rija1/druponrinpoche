@@ -3237,7 +3237,7 @@ li.page_item_has_children a {
     font-style: normal; }
 
 .category-post-title {
-  font-size: 16px;
+  font-size: 15px;
   color: #6b685b;
   font-weight: 300; }
 
@@ -3251,7 +3251,7 @@ li.page_item_has_children a {
     text-align: center; }
     .article-blog .article-text p {
       text-align: left;
-      font-size: 14px;
+      font-size: 13px;
       padding-top: 15px;
       padding-bottom: 7px; }
   .article-blog:before, .article-blog:after {
@@ -3951,8 +3951,6 @@ p.teaching_info {
     color: #ffffff; }
   .category-news a.article-link span.read_more {
     padding: 8px;
-    top: 165px;
-    left: 102px;
     z-index: 9999;
     text-align: center;
     text-transform: uppercase;
@@ -4013,5 +4011,15 @@ a.view_full_schedule {
 
 .page-template-about-pages .page-item-1053 {
   display: none; }
+
+li.lang-item-bo {
+  display: none; }
+
+.category-post-date {
+  width: 100%;
+  float: left;
+  text-align: left;
+  font-size: 12px;
+  padding: 16px 0 10px 0; }
 
 /*# sourceMappingURL=style.css.map */

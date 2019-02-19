@@ -4302,7 +4302,7 @@ li.page_item_has_children a {
 }
 
 .category-post-title {
-    font-size: 16px;
+    font-size: 15px;
     color: #6b685b;
     font-weight: 300;
 }
@@ -4318,7 +4318,7 @@ li.page_item_has_children a {
         text-align: center;
         p {
             text-align: left;
-            font-size: 14px;
+            font-size: 13px;
             padding-top: 15px;
             padding-bottom: 7px;
         }
@@ -5266,8 +5266,8 @@ p.teaching_info {
         }
         span.read_more {
             padding: 8px;
-            top: 165px;
-            left: 102px;
+//            top: 165px;
+//            left: 102px;
             z-index: 9999;
             text-align: center;
             text-transform: uppercase;
@@ -5353,4 +5353,17 @@ a.view_full_schedule {
 
 .page-template-about-pages .page-item-1053 {
     display:none;
+}
+
+// hide tibetan language option
+li.lang-item-bo {
+    display: none;
+}
+
+.category-post-date {
+    width: 100%;
+    float: left;
+    text-align: left;
+    font-size: 12px;
+    padding: 16px 0 10px 0
 }
