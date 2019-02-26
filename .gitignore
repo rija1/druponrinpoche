@@ -10,6 +10,7 @@ wp-content/plugins/hello.php
 wp-content/plugins/bwp-minify/cache/*
 wp-content/upgrade/
 wp-content/uploads/
+wp-content/ai1wm-backups/*
 
 dumps/
 .idea/
