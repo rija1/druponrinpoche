@@ -25,6 +25,7 @@ $categoryId = get_queried_object_id();
                 <?php endif; ?>
                 <div class="article-text">
                     <span class="category-post-title"><?php echo the_title();  ?></span>
+                    <span class="category-post-date"><?php echo get_the_date(); ?></span>
                     <p><?php echo get_text_excerpt(get_the_excerpt(),240);?></p>
                     <span class="read_more">Read more</span>
                 </div>
@@ -52,7 +53,7 @@ $categoryId = get_queried_object_id();
             <div id="post-<?php echo $post->ID; ?>" <?php post_class('',$post->ID); ?>>
                 <?php if ( has_post_thumbnail($post) && ! post_password_required($post) ) : ?>
                     <div class="article-image">
-                        <?php echo get_the_post_thumbnail($post,'dkr-photo-300-200'); ?>
+                        <?php echo get_the_post_thumbnail($post,'dkr-photo-310-207'); ?>
                     </div>
                 <?php endif; ?>
                 <div class="article-text">

@@ -28,3 +28,21 @@ jQuery(document).ready(function(){
 	}); // Final load
 	
 }); // Final ready
+
+jQuery(document).ready(function(){
+
+    // menu drop-down
+    jQuery('a.expand_link').each(function(){
+        jQuery(this).click(function(e) {
+            var contentEl = jQuery(this).parent().find('p.expand_content');
+            if(contentEl.css('display') == 'none') {
+                contentEl.css('display','block');
+                jQuery(this).html('Less');
+            } else {
+                contentEl.css('display','none');
+                jQuery(this).html('More');
+            }
+        })
+    });
+
+    }); // Final ready

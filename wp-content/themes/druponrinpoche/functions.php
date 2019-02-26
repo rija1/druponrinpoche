@@ -59,6 +59,7 @@ if( ! function_exists( 'dkr_theme_setup' ) ) {
 
         add_image_size('dkr-photo-800-500', 800, 500, true);
         add_image_size('dkr-photo-300-200', 300, 200, true);
+        add_image_size('dkr-photo-310-207', 310, 207, true);
 
         // Menus
         register_nav_menu( 'dkr-menu', _x( 'Main Menu', 'backend', 'druponrinpoche' ) );

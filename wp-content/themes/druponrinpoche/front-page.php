@@ -37,10 +37,13 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         $url = $src[0];
         ?>
         <a href="<?php echo get_page_link($post)?>">
-             <img  src="<?php echo $url;?>" />
-            <h5>About Rinpoche</h5>
+            <img  src="<?php echo $url;?>" />
+            <div class="inner">
+                <h5>About Rinpoche</h5>
+                <p>From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.</p>
+            </div>
         </a>
-        <p>From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.</p>
+
     </li>
     <li class="box2">
         <?php
@@ -52,6 +55,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $url;?>" />
             <h5><?php echo get_the_title($post); ?></h5>
+<!--            <h5>THRANGU SEKHAR<br/>RETREAT CENTRE</h5>-->
         </a>
         <p>Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa</p>
     </li>
@@ -82,6 +86,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
         ?>
         <!--        <a class="full_schedule_lnk" href="--><?php //echo get_page_link($schedulePage)?><!--">View Full Schedule</a>-->
+
         <div class="schedule_carousel_wrap">
             <div class="schedule_carousel" id="homeCarousel">
                 <div>
@@ -125,6 +130,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     <!--                <p>Lorem ipsum lattu gulib opilo ravlam maluchalu ipsum lattu gulib opilo ravlam maluchalu ipsum lattu gulib opilo ravlam maluchalu</p>-->
     <!--            </div>-->
             </div>
+            <div class="sched_carousel_arrows"></div>
             <a class="view_full_schedule" href="<?php echo get_page_link($schedulePageId)?>"><span>View Full Schedule</span></a>
         </div>
 
@@ -164,12 +170,25 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 
 
             jQuery('.schedule_carousel').slick({
-                draggable: true,
+                draggable: false,
                 accessibility: false,
 //                variableWidth: true,
                 slidesToShow: 1,
+//                slidesT
                 arrows: false,
+                dots:true,
+//                customPaging:function(e,t){
+//                    return '<button type="button" />;
+//                },
+                customPaging : function(slider, i) {
+                    return '<div class="slickdot"></div>';
+                },
+                appendDots:jQuery('.sched_carousel_arrows'),
                 autoplay:true,
+                prevArrow:'<span class="arrowLeft"></span>',
+                nextArrow:'<span class="arrowRight"></span>',
+                arrows:true,
+                appendArrows:jQuery('.sched_carousel_arrows'),
 //                swipeToSlide: true,
                 infinite: true,
                 autoplaySpeed:"10000"
