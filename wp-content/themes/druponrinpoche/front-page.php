@@ -33,7 +33,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <?php
         $id=1403;
         $post = get_post( $id );
-        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium' );
+        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium_large' );
         $url = $src[0];
         ?>
         <a href="<?php echo get_page_link($post)?>">
@@ -49,27 +49,32 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <?php
         $id=54;
         $post = get_post( $id );
-        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium' );
+        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium_large' );
         $url = $src[0];
         ?>
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $url;?>" />
-            <h5><?php echo get_the_title($post); ?></h5>
-<!--            <h5>THRANGU SEKHAR<br/>RETREAT CENTRE</h5>-->
+            <div class="inner">
+                <h5><?php echo get_the_title($post); ?></h5>
+                <p>Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa</p>
+            </div>
         </a>
-        <p>Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa</p>
+
     </li>
     <li class="box3">
         <?php
         $id=693;
         $post = get_post( $id );
-        $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , 'medium');
+        $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , 'medium_large');
         ?>
         <a href="<?php echo get_page_link($post)?>">
          <img  src="<?php echo $image[0];?>" />
-            <h5><?php echo get_the_title($post); ?></h5>
+            <div class="inner">
+                <h5><?php echo get_the_title($post); ?></h5>
+                <p>The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.</p>
+            </div>
         </a>
-        <p>The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.</p>
+
     </li>
 </ul>
 
