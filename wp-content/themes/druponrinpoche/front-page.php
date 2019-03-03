@@ -33,7 +33,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <?php
         $id=1403;
         $post = get_post( $id );
-        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium_large' );
+        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), array(600,400));
         $url = $src[0];
         ?>
         <a href="<?php echo get_page_link($post)?>">
@@ -49,7 +49,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <?php
         $id=54;
         $post = get_post( $id );
-        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium_large' );
+        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), array(600,400));
         $url = $src[0];
         ?>
         <a href="<?php echo get_page_link($post)?>">
@@ -65,7 +65,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <?php
         $id=693;
         $post = get_post( $id );
-        $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , 'medium_large');
+        $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
         ?>
         <a href="<?php echo get_page_link($post)?>">
          <img  src="<?php echo $image[0];?>" />

@@ -6,15 +6,18 @@
 ?>
 <?php
 $categoryId = get_queried_object_id();
+$featuredCatId = 93;
+$featuredPostIds = array();
 //$posts = get_posts(array('category'=>$categoryId,'numberposts' => 7));
 
 ?>
 <div class="section section-blog">
     <div class="featured-grid">
         <?php
-        query_posts('posts_per_page=1&cat=93'); /*1, 2*/
+        query_posts('posts_per_page=1&cat='.$featuredCatId); /*1, 2*/
+//        pa($ok,1);
         if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-
+            <?php $featuredPostIds[] = get_the_ID(); ?>
             <article class="article-blog">
             <a class="article-link"  href="<?php the_permalink() ?>">
             <div id="post-<?php echo the_ID(); ?>" <?php post_class(); ?>>
@@ -44,10 +47,8 @@ $categoryId = get_queried_object_id();
 
 
     <div class="posts-grid">
-<?php
-
-?>
-        <?php while ( have_posts() ) : the_post();  ?>
+<?php while ( have_posts() ) : the_post();  ?>
+    <?php if (!in_array($post->ID,$featuredPostIds)) : ?>
         <a class="article-link" href="<?php the_permalink() ?>">
         <article class="article-blog">
             <div id="post-<?php echo $post->ID; ?>" <?php post_class('',$post->ID); ?>>
@@ -65,7 +66,8 @@ $categoryId = get_queried_object_id();
             </div>
         </article>
         </a>
-        <?php endwhile; ?>
+    <?php endif; ?>
+<?php endwhile; ?>
 
     </div>
     <p class="pagination">

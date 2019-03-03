@@ -1583,7 +1583,7 @@ function img_caption_shortcode( $attr, $content = null ) {
 
 	if ( $html5 ) {
 		$html = '<figure ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
-		. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
+		. do_shortcode( $content ) . '<figcaption style="width:'.$width.'px;" class="wp-caption-text">' . $atts['caption'] . '</figcaption></figure>';
 	} else {
 		$html = '<div ' . $atts['id'] . $style . 'class="' . esc_attr( $class ) . '">'
 		. do_shortcode( $content ) . '<p class="wp-caption-text">' . $atts['caption'] . '</p></div>';

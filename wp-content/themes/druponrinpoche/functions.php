@@ -1010,4 +1010,3 @@ function walk_category_tree_teachings() {
 
     return call_user_func_array( array( $walker, 'walk' ), $args );
 }
-

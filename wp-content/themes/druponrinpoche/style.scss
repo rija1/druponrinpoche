@@ -4250,6 +4250,14 @@ li.page_item_has_children a {
         .category-post-title {
             font-size:22px;
         }
+        .category-post-date {
+            font-size: 13px;
+        }
+        .article-text {
+            p {
+                font-size:14px;
+            }
+        }
     }
 }
 
@@ -5290,11 +5298,12 @@ p.teaching_info {
             font-family: 'ralewayregular';
             font-size: 11px;
             width: 82px;
+            margin:0 auto 0 auto;
         }
     }
     .featured-grid {
         .article-blog {
-            height: 563px;
+            height: 607px;
             .article-text:after {
                 top: 43px;
                 background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white 50%);
@@ -5305,9 +5314,13 @@ p.teaching_info {
         }
         a.article-link {
             span.read_more {
-                position: absolute;
-                top: 118px;
-                left: 246px;
+                display: block;
+//                float: left;
+//                position: absolute;
+//                top: 118px;
+//                left: 246px;
+                width: 82px;
+                margin:0 auto 0 auto;
                 padding: 5px;
                 font-family: 'ralewayregular';
                 font-size: 12px;
