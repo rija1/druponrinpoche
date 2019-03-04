@@ -4,7 +4,7 @@
  * @package Onsen
  */
 
-$newsCategoryId = 2;
+$categoriesToFetch = array(2,93); // News and Featured cat Ids
 $homeMetaSliderId = 132;
 $schedulePageId=1581;
 
@@ -22,7 +22,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     'no_found_rows'       => true,
     'post_status'         => 'publish',
     'ignore_sticky_posts' => true,
-    'category__in' => array($newsCategoryId),
+    'category__in' => $categoriesToFetch,
 ), 'wpa' ) );
 ?>
 

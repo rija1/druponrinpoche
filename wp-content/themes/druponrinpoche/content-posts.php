@@ -5,7 +5,7 @@
  */
 ?>
 <?php
-$categoryId = get_queried_object_id();
+//$categoryId = get_queried_object_id();
 $featuredCatId = 93;
 $featuredPostIds = array();
 //$posts = get_posts(array('category'=>$categoryId,'numberposts' => 7));
@@ -48,25 +48,23 @@ $featuredPostIds = array();
 
     <div class="posts-grid">
 <?php while ( have_posts() ) : the_post();  ?>
-    <?php if (!in_array($post->ID,$featuredPostIds)) : ?>
-        <a class="article-link" href="<?php the_permalink() ?>">
-        <article class="article-blog">
-            <div id="post-<?php echo $post->ID; ?>" <?php post_class('',$post->ID); ?>>
-                <?php if ( has_post_thumbnail($post) && ! post_password_required($post) ) : ?>
-                    <div class="article-image">
-                        <?php echo get_the_post_thumbnail($post,'dkr-photo-310-207'); ?>
-                    </div>
-                <?php endif; ?>
-                <div class="article-text">
-                    <span class="category-post-title" href="<?php the_permalink() ?>"><?php if(get_the_title()) { echo get_the_title(); } else { echo get_the_time(); } ?></span>
-                    <span class="category-post-date"><?php echo get_the_date(); ?></span>
-                    <p><?php echo get_text_excerpt(get_the_excerpt($post),140);?></p>
-                    <span class="read_more">Read more</span>
+    <a class="article-link" href="<?php the_permalink() ?>">
+    <article class="article-blog">
+        <div id="post-<?php echo $post->ID; ?>" <?php post_class('',$post->ID); ?>>
+            <?php if ( has_post_thumbnail($post) && ! post_password_required($post) ) : ?>
+                <div class="article-image">
+                    <?php echo get_the_post_thumbnail($post,'dkr-photo-310-207'); ?>
                 </div>
+            <?php endif; ?>
+            <div class="article-text">
+                <span class="category-post-title" href="<?php the_permalink() ?>"><?php if(get_the_title()) { echo get_the_title(); } else { echo get_the_time(); } ?></span>
+                <span class="category-post-date"><?php echo get_the_date(); ?></span>
+                <p><?php echo get_text_excerpt(get_the_excerpt($post),140);?></p>
+                <span class="read_more">Read more</span>
             </div>
-        </article>
-        </a>
-    <?php endif; ?>
+        </div>
+    </article>
+    </a>
 <?php endwhile; ?>
 
     </div>
