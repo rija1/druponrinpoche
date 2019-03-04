@@ -8,6 +8,12 @@ License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain:  druponrinpoche
 */
+/**  fonts  **/
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("assets/fonts/fontawesome-webfont.ttf");
+  font-weight: normal;
+  font-style: normal; }
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -24,7 +30,7 @@ html {
   -ms-text-size-adjust: 100%; }
 
 body {
-  font: normal 400 14px/1 'ralewayregular', Arial, sans-serif;
+  font: normal 400 14px/1 'Raleway', Arial, sans-serif;
   word-wrap: break-word;
   background: #fdfdfd; }
 
@@ -542,25 +548,6 @@ h4:before, h4:after {
   .price a {
     color: #ec7c23; }
 
-/**  fonts  **/
-@font-face {
-  font-family: 'ralewaylight';
-  src: url("assets/fonts/raleway-light-webfont.eot");
-  src: url("assets/fonts/raleway-light-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/raleway-light-webfont.woff2") format("woff2"), url("assets/fonts/raleway-light-webfont.woff") format("woff"), url("assets/fonts/raleway-light-webfont.ttf") format("truetype"), url("assets/fonts/raleway-light-webfont.svg#ralewaylight") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-@font-face {
-  font-family: 'ralewayregular';
-  src: url("assets/fonts/raleway-regular-webfont.eot");
-  src: url("assets/fonts/raleway-regular-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/raleway-regular-webfont.woff2") format("woff2"), url("assets/fonts/raleway-regular-webfont.woff") format("woff"), url("assets/fonts/raleway-regular-webfont.ttf") format("truetype"), url("assets/fonts/raleway-regular-webfont.svg#ralewayregular") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-@font-face {
-  font-family: 'montserratbold';
-  src: url("assets/fonts/montserrat-bold-webfont.eot");
-  src: url("assets/fonts/montserrat-bold-webfont.eot?#iefix") format("embedded-opentype"), url("assets/fonts/montserrat-bold-webfont.woff2") format("woff2"), url("assets/fonts/montserrat-bold-webfont.woff") format("woff"), url("assets/fonts/montserrat-bold-webfont.ttf") format("truetype"), url("assets/fonts/montserrat-bold-webfont.svg#montserratbold") format("svg");
-  font-weight: normal;
-  font-style: normal; }
 /**  typography  **/
 p {
   line-height: 1.4; }
@@ -575,10 +562,6 @@ p {
   line-height: 1.4; }
   .widget-contact .fa {
     line-height: 1.4; }
-
-.bold, b {
-  font-family: 'montserratbold';
-  font-weight: normal; }
 
 .italic, i {
   font-style: italic; }
@@ -596,21 +579,8 @@ p {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 100; }
 
-h1, .logo {
-  font-family: 'montserratbold';
-  font-size: 30px;
-  line-height: 30px;
-  text-transform: uppercase; }
-
-h2 {
-  font-family: 'montserratbold';
-  font-size: 25px;
-  line-height: 1;
-  text-transform: uppercase;
-  margin-bottom: 20px; }
-
 .article-service h2 {
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 20px;
   text-transform: none;
   margin-bottom: 0; }
@@ -619,51 +589,15 @@ h2 {
   font-size: 20px;
   margin-bottom: 13px; }
 
-.article-welcome h2, .article-procedure h2 {
-  font-family: 'ralewaylight';
-  font-size: 30px;
-  text-transform: none; }
-
-h3 {
-  font-family: 'montserratbold';
-  font-size: 20px;
-  margin-bottom: 20px; }
-
 .footer h3 {
   font-size: 15px;
   text-transform: uppercase; }
-
-h4 {
-  font-family: 'montserratbold';
-  font-size: 30px;
-  line-height: 1;
-  text-align: center;
-  position: relative;
-  padding-bottom: 35px;
-  margin-bottom: 15px;
-  background: url("assets/images/tracery.png") no-repeat 50% 100% transparent; }
-  h4:before, h4:after {
-    content: '';
-    display: block;
-    height: 0px;
-    width: 150px;
-    position: absolute;
-    bottom: 7px;
-    border-top-width: 1px;
-    border-top-style: solid; }
-  h4:before {
-    right: 50%;
-    margin-right: 55px; }
-  h4:after {
-    left: 50%;
-    margin-left: 55px; }
 
 .section-page-title h4 {
   text-transform: uppercase;
   font-style: normal; }
 
 h5 {
-  font-family: 'montserratbold';
   font-size: 20px;
   line-height: 1.1;
   text-transform: uppercase;
@@ -1025,17 +959,11 @@ nav ol, nav ul {
       -o-border-radius: 74px;
       -border-radius: 74px; }
 
-/**  price  **/
-.price {
-  font-family: 'montserratbold';
-  font-size: 24px;
-  line-height: 1; }
-
 /**  comments  **/
 /**  forms  **/
 .wpcf7-form {
   line-height: 1.1;
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 14px; }
   .wpcf7-form .outerwrapp {
     padding: 0 11px;
@@ -1050,7 +978,7 @@ nav ol, nav ul {
     margin-bottom: 13px; }
 
 .wpcf7-text, .wpcf7-textarea, .ui-selectmenu-button, .ui-menu {
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 14px; }
 
 .wpcf7-text, .wpcf7-textarea {
@@ -1143,7 +1071,7 @@ nav ol, nav ul {
   -opera-border-radius: 15px;
   -o-border-radius: 15px;
   -border-radius: 15px;
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 14px;
   line-height: 17px;
   text-align: left;
@@ -1153,7 +1081,7 @@ nav ol, nav ul {
   .searchform div {
     position: relative; }
   .searchform label, .searchform .screen-reader-text, .searchform #s {
-    font-family: 'ralewayregular';
+    font-family: 'Raleway';
     font-size: 14px;
     line-height: 17px;
     text-align: left;
@@ -1193,7 +1121,7 @@ nav ol, nav ul {
 
 /**  buttons  **/
 .button, .wpcf7-submit {
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 14px;
   text-align: center;
   white-space: nowrap;
@@ -1276,33 +1204,6 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
 
 .widget-text p {
   margin-bottom: 5px; }
-
-/**  widget-programs  **/
-.widget-programs .article-prog {
-  margin-bottom: 15px; }
-  .widget-programs .article-prog:last-child, .widget-programs .article-prog.last-child {
-    margin-bottom: 0px; }
-
-.article-prog {
-  font-family: 'montserratbold';
-  font-size: 14px; }
-  .article-prog .prog-meta {
-    font-family: 'ralewayregular';
-    font-size: 12px; }
-
-.prog-meta {
-  font-family: 'ralewayregular';
-  font-size: 12px; }
-  .prog-meta:before {
-    font-family: 'FontAwesome';
-    content: "\f017";
-    margin-right: 5px; }
-
-.article-prog .article-image {
-  width: 46px;
-  float: left; }
-.article-prog .article-text {
-  padding-left: 55px; }
 
 .sidebar-container ul ul {
   padding-left: 15px; }
@@ -1396,13 +1297,13 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
 .welcome-overlay {
   padding-top: 25px;
   padding-bottom: 25px;
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 40px;
   line-height: 55px;
   text-align: center;
   font-style: italic; }
   .welcome-overlay p {
-    font-family: 'ralewayregular';
+    font-family: 'Raleway';
     font-size: 40px;
     line-height: 55px;
     text-align: center;
@@ -1445,7 +1346,7 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
 
 /**  testimonials-carousel  **/
 .testimonial, .quotes, .author-name {
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 14px;
   font-style: italic;
   text-align: center; }
@@ -1586,7 +1487,7 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
     border-collapse: collapse;
     border-spacing: 0;
     display: table-row;
-    font-family: 'ralewayregular';
+    font-family: 'Raleway';
     font-size: 14px;
     line-height: 17px;
     text-transform: uppercase;
@@ -1634,7 +1535,7 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
 
 .menu-top-mob-container {
   display: none;
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 14px;
   line-height: 17px;
   margin-top: 36px;
@@ -1643,7 +1544,7 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
     display: none; }
 
 .menu-top-mob {
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 14px;
   line-height: 17px;
   text-transform: uppercase; }
@@ -1668,26 +1569,6 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
     padding-left: 40px; }
   .menu-top-mob .sub-menu .sub-menu .sub-menu a, .menu-top-mob .children .children .children a {
     padding-left: 60px; }
-
-.icon-menu {
-  width: 80px;
-  float: right;
-  font-family: 'montserratbold';
-  font-size: 14px;
-  line-height: 20px;
-  text-transform: uppercase;
-  display: block;
-  padding: 15px 0;
-  position: relative;
-  right: 10px; }
-  .icon-menu:after {
-    font-size: 18px;
-    font-family: 'FontAwesome';
-    content: "\f0c9";
-    position: absolute;
-    right: 0;
-    top: 50%;
-    margin-top: -10px; }
 
 /**  content  **/
 /**  sections  **/
@@ -2054,7 +1935,7 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
 
 /**  footer  **/
 .footer {
-  font-family: 'ralewaylight';
+  font-family: 'Raleway';
   clear: both;
   padding-top: 28px;
   *padding-top: 0px;
@@ -2107,67 +1988,6 @@ input.button, button.button, input.wpcf7-submit, button.wpcf7-submit {
 
 .contact-widget-block .social li a {
   margin: 5px 7px; }
-
-/**  comments  **/
-.comment-form-container {
-  margin-top: 40px; }
-
-.comment-respond {
-  margin: 30px 0; }
-  .comment-respond input, .comment-respond textarea {
-    border: 1px solid #ddd;
-    border-radius: 0;
-    display: block;
-    margin: 5px 0 20px;
-    padding: 11px; }
-  .comment-respond .submit {
-    background: #859f1a none repeat scroll 0 0;
-    border: medium none;
-    border-radius: 40px;
-    color: #ffffff;
-    font-size: 15px; }
-
-.commentlist {
-  margin-bottom: 40px; }
-  .commentlist .comment {
-    list-style: none; }
-    .commentlist .comment article {
-      margin-bottom: 40px; }
-
-.comment-body {
-  position: relative; }
-  .comment-body .comment-author img {
-    border-radius: 20px;
-    float: left;
-    margin: 0 25px 25px 0; }
-
-.comment-respond {
-  margin-top: 40px; }
-
-.comment-body .says {
-  display: none; }
-.comment-body .fn, .comment-body .comment-meta, .comment-body p, .comment-body .reply {
-  display: block;
-  padding-left: 0px; }
-.comment-body .fn, .comment-body .comment-meta {
-  padding-right: 75px; }
-.comment-body .reply {
-  font-family: 'ralewaybold';
-  text-align: right;
-  line-height: 1.6;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0; }
-.comment-body .fn {
-  font-family: 'ralewaybold';
-  font-size: 14px;
-  font-weight: normal;
-  font-style: normal; }
-.comment-body .comment-meta {
-  font-family: 'bitteritalic';
-  font-size: 14px;
-  margin-bottom: 10px; }
 
 /**  Formatig CSS  **/
 .wpcf7-form-control-wrap {
@@ -2376,37 +2196,6 @@ img.alignnone {
   height: auto;
   margin: 10px 0; }
 
-/* THEME STYLE */
-@font-face {
-  font-family: 'RobotoSlab';
-  src: url("assets/fonts/RobotoSlab-Regular.ttf");
-  font-weight: normal;
-  font-style: normal; }
-@font-face {
-  font-family: 'Roboto';
-  src: url("assets/fonts/Roboto-Light.ttf");
-  font-weight: 100;
-  font-style: normal; }
-@font-face {
-  font-family: 'Roboto';
-  src: url("assets/fonts/Roboto-Regular.ttf");
-  font-weight: 300;
-  font-style: normal; }
-@font-face {
-  font-family: 'Roboto';
-  src: url("assets/fonts/Roboto-Medium.ttf");
-  font-weight: 500;
-  font-style: normal; }
-@font-face {
-  font-family: 'ralewaybold';
-  src: url("assets/fonts/Raleway-Medium.ttf");
-  font-weight: normal;
-  font-style: normal; }
-@font-face {
-  font-family: 'FontAwesome';
-  src: url("assets/fonts/fontawesome-webfont.ttf");
-  font-weight: normal;
-  font-style: normal; }
 .contentsup {
   top: -8px;
   left: 1px; }
@@ -2545,7 +2334,7 @@ h5 {
   font-size: 18px; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'ralewayregular'; }
+  font-family: 'Raleway'; }
 
 blockquote {
   background: none repeat scroll 0 0 #f6f6f6;
@@ -2798,7 +2587,7 @@ img.alignleft {
     color: #444;
     line-height: 22px;
     font-size: 21px;
-    font-family: 'RobotoSlab', serif; }
+    font-family: 'Roboto Slab', serif; }
 
 /*SCHEDULE START*/
 .tablepress .row-1 {
@@ -2948,7 +2737,7 @@ span.logo_kl {
   .copyright-block .container {
     background: #f2efdf;
     padding: 20px 0 10px 0;
-    /*font-family: 'RobotoSlab', serif;*/
+    /*font-family: 'Roboto Slab', serif;*/
     color: #444; }
 
 /*li.lang-item-en a {*/
@@ -2983,7 +2772,7 @@ ul.poly_switcher {
   grid-template-columns: 1fr 1fr;
   margin-right: 10px; }
   ul.poly_switcher a {
-    font-family: ralewayregular;
+    font-family: Raleway;
     color: #80784c;
     font-size: 11px;
     font-weight: 300; }
@@ -3049,7 +2838,7 @@ body.home .breadcrumbs {
   color: #bb9b25; }
 
 li.page_item_has_children > a {
-  /*font-family: 'RobotoSlab', serif;*/
+  /*font-family: 'Roboto Slab', serif;*/
   color: #80784c; }
 
 .sidebar-container ul.children {
@@ -3276,7 +3065,7 @@ li.page_item_has_children a {
   margin: 15px 0 20px 0 !important; }
 
 h1 {
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 28px;
   line-height: 1;
   text-align: left;
@@ -3287,7 +3076,7 @@ h1 {
   background: none;
   text-transform: none;
   border-bottom: solid 1px #bb9b25;
-  /*font-family: 'RobotoSlab', serif;*/
+  /*font-family: 'Roboto Slab', serif;*/
   color: #bb9b25; }
   h1:before, h1:after {
     content: '';
@@ -3968,7 +3757,7 @@ p.teaching_info {
     text-align: center;
     text-transform: uppercase;
     color: #80784c;
-    font-family: 'ralewayregular';
+    font-family: 'Raleway';
     font-size: 11px;
     width: 82px;
     margin: 0 auto 0 auto; }
@@ -3984,7 +3773,7 @@ p.teaching_info {
   width: 82px;
   margin: 0 auto 0 auto;
   padding: 5px;
-  font-family: 'ralewayregular';
+  font-family: 'Raleway';
   font-size: 12px;
   text-transform: uppercase; }
 

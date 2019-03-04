@@ -1010,3 +1010,10 @@ function walk_category_tree_teachings() {
 
     return call_user_func_array( array( $walker, 'walk' ), $args );
 }
+
+function add_google_fonts() {
+    wp_enqueue_style( 'font1', 'https://fonts.googleapis.com/css?family=Roboto+Slab', false );
+    wp_enqueue_style( 'font2', 'https://fonts.googleapis.com/css?family=Raleway', false );
+    wp_enqueue_style( 'font3', 'https://fonts.googleapis.com/css?family=Roboto:300,400,500', false );
+}
+add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
