@@ -1019,9 +1019,10 @@ function add_google_fonts() {
 add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
 
 
-add_action( 'wp_print_styles',     'my_deregister_styles', 100 );
-
-function my_deregister_styles()    {
-    //wp_deregister_style( 'amethyst-dashicons-style' );
-    wp_deregister_style( 'dashicons' );
+// Remove dashicons in frontend for unauthenticated users
+add_action( 'wp_enqueue_scripts', 'bs_dequeue_dashicons' );
+function bs_dequeue_dashicons() {
+    if ( ! is_user_logged_in() ) {
+        wp_deregister_style( 'dashicons' );
+    }
 }
