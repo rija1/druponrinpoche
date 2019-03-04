@@ -23,7 +23,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     'post_status'         => 'publish',
     'ignore_sticky_posts' => true,
     'category__in' => array($newsCategoryId),
-), $instance ) );
+), 'wpa' ) );
 ?>
 
 <?php echo do_shortcode('[metaslider id="'.$homeMetaSliderId.'"]'); ?>
