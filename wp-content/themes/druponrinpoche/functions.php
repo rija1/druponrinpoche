@@ -1017,3 +1017,11 @@ function add_google_fonts() {
     wp_enqueue_style( 'font3', 'https://fonts.googleapis.com/css?family=Roboto:300,400,500', false );
 }
 add_action( 'wp_enqueue_scripts', 'add_google_fonts' );
+
+
+add_action( 'wp_print_styles',     'my_deregister_styles', 100 );
+
+function my_deregister_styles()    {
+    //wp_deregister_style( 'amethyst-dashicons-style' );
+    wp_deregister_style( 'dashicons' );
+}
