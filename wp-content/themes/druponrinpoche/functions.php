@@ -1055,3 +1055,14 @@ function insert_fb_in_head() {
 ";
 }
 add_action( 'wp_head', 'insert_fb_in_head', 5 );
+
+
+function order_posts_by_date_asc( $query ) {
+    // Category to reverse order
+    $cats = array('transcripts','samye-ling-2016-meditation-retreat');
+        if ($query->is_main_query() && in_array($query->query_vars['category_name'],$cats) ) {
+            $query->set( 'orderby', 'date' );
+            $query->set( 'order', 'ASC' );
+        }
+}
+add_action( 'pre_get_posts', 'order_posts_by_date_asc' );
