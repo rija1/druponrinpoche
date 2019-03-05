@@ -8,9 +8,10 @@
     <div class="posts-grid">
         <!--				<div class="gutter">-->
         <?php while (have_posts()) : the_post(); ?>
+        <a class="category-post-title" href="<?php the_permalink() ?>">
             <article class="article-blog">
                 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-                    <a class="category-post-title" href="<?php the_permalink() ?>">
+
                     <div class="article-text">
                         <?php if(get_the_title(get_the_id())) { the_title(); } else { the_time( get_option( 'date_format' ) ); } ?>
                         <!--								<p class="meta"><span class="meta-auth">--><?php //the_author(); ?><!--</span> <span class="meta-categ">--><?php //the_category(', '); ?><!--</span></p>-->
@@ -18,9 +19,10 @@
                         <p><?php echo get_the_excerpt($recent_post);?></p>
                         <!--								<a class="button" href="--><?php //the_permalink() ?><!--">--><?php //_e( 'Learn More', 'dkr' ); ?><!--</a>-->
                     </div>
-                    </a>
+
                 </div>
             </article>
+        </a>
         <?php endwhile; ?>
         <p class="pagination">
             <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>

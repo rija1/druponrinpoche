@@ -4278,28 +4278,42 @@ sup {
     }
 }
 
-.teachings_category .article-blog {
-//    border-bottom: 1px solid #d8d8d8;
-//    padding-bottom: 20px;
-//    padding-top: 27px;
-    padding:20px;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid #eaeaea;
-    background: #fff;
-    margin-top: 25px;
-    &:hover {
-//        background: $dkr-lightgrey;
-    }
-    a:hover {
-        text-decoration: none;
-    }
-    p {
-        padding-top: 10px;
-        font-weight: 100;
-    }
-    p.teaching_info {
-        padding-top: 20px;
-        padding-bottom:0px;
+.teachings_category {
+        a.category-post-title {
+            display:block;
+            &:hover .article-blog {
+                -webkit-transition: all .4s ease;
+                -moz-transition: all .4s ease;
+                -ms-transition: all .4s ease;
+                -o-transition: all .4s ease;
+                transition: all .4s ease;
+                box-shadow: -1px 2px 14px 3px rgba(0, 0, 0, 0.1);
+            }
+        }
+        .article-blog {
+    //    border-bottom: 1px solid #d8d8d8;
+    //    padding-bottom: 20px;
+    //    padding-top: 27px;
+                        padding:20px;
+                        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+                        border: 1px solid #eaeaea;
+                        background: #fff;
+                        margin-top: 25px;
+        &:hover {
+    //        background: $dkr-lightgrey;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+        p {
+            padding-top: 10px;
+            font-weight: 100;
+        }
+        p.teaching_info {
+            padding-top: 20px;
+            padding-bottom:0px;
+        }
     }
 }
 
