@@ -3946,4 +3946,19 @@ a.expand_link {
 .single-post .addtoany_content {
   margin: 30px 0 0 0; }
 
+.imagecaption {
+  padding: 3px;
+  margin: 10px;
+  float: left;
+  border: 1px solid black; }
+
+figure {
+  display: table;
+  margin: 0px; }
+
+figcaption {
+  display: table-caption;
+  caption-side: bottom;
+  text-align: center; }
+
 /*# sourceMappingURL=style.css.map */
