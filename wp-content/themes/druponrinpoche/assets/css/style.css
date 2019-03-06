@@ -1441,7 +1441,8 @@ li.home_post {
     position: relative;
     text-align: left;
     margin-left: 180px;
-    padding: 10px 18px 10px 18px; }
+    padding: 10px 14px 10px 14px;
+    text-align: left; }
     .home_news_carousel .latestnews li.home_post .home_post_txt .read_more {
       position: absolute;
       top: 85px;
@@ -1452,7 +1453,7 @@ li.home_post {
     .home_news_carousel .latestnews li.home_post .home_post_txt p {
       padding-top: 10px;
       font-size: 12px;
-      height: 32px;
+      height: 40px;
       overflow: hidden; }
 .home_news_carousel li {
   text-align: center; }
@@ -1950,6 +1951,8 @@ sup {
   .teachings_category .article-blog p.teaching_info {
     padding-top: 20px;
     padding-bottom: 0px; }
+  .teachings_category .article-blog .teaching_title {
+    text-transform: uppercase; }
 
 .category-quotes .article-blog:last-of-type {
   border-bottom: none; }
@@ -2118,7 +2121,7 @@ p.teaching_info {
     top: 43px;
     background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white 50%); }
   .category-news .featured-grid .article-blog .article-text p {
-    padding-bottom: 10px; }
+    padding-bottom: 15px; }
 .category-news .featured-grid a.article-link span.read_more {
   display: block;
   width: 82px;
