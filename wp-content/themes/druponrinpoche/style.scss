@@ -55,7 +55,7 @@ $dkr-lightgrey: #f6f6f6;
 
 @font-face {
     font-family: 'FontAwesome';
-    src: url('../fonts/fontawesome-webfont.ttf');
+    src: url('assets/fonts/fontawesome-webfont.ttf');
     font-weight: normal;
     font-style: normal;
 }
@@ -741,7 +741,7 @@ nav {
         .sub-menu li, .children li {
             display: block;
             padding-bottom: 1px;
-            background: url('../images/menu-separe.png') no-repeat 50% 100%;
+            background: url('assets/images/menu-separe.png') no-repeat 50% 100%;
         }
         .sub-menu li:last-child, .children li:last-child, .sub-menu li.last-child, .children li.last-child {
             padding-bottom: 0;
@@ -1583,7 +1583,7 @@ abbr, acronym, dfn {
     position: absolute;
     left: 0;
     right: 0;
-    background-image: url('../images/separe.png');
+    background-image: url('assets/images/separe.png');
     background-repeat: repeat-x;
     background-position: 50% 0;
     *display: none;
@@ -1692,7 +1692,7 @@ img.alignleft {
 }
 
 .header-block {
-    background: url('../images/dkr1.jpg');
+    background: url('assets/images/dkr1.jpg');
     height: 264px;
     padding: 0px;
 }
@@ -1775,7 +1775,7 @@ img.alignleft {
 /*SCHEDULE PAGE*/
 
 .page-id-43 .overlay {
-    background: url(../images/Sky.jpg);
+    background: url(assets/images/Sky.jpg);
     padding-top: 60px;
     padding-bottom: 15px;
 }
