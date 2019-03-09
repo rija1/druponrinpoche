@@ -11,7 +11,7 @@ Text Domain:  druponrinpoche
 /**  fonts  **/
 @font-face {
   font-family: 'FontAwesome';
-  src: url("../fonts/fontawesome-webfont.ttf");
+  src: url("assets/fonts/fontawesome-webfont.ttf");
   font-weight: normal;
   font-style: normal; }
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
@@ -475,12 +475,12 @@ nav ol, nav ul {
 
 /**  menu-bar  **/
 .header .menu-bar {
-  position: absolute;
   top: 100%;
   left: 0;
   right: 0;
   width: 100%;
-  z-index: 999; }
+  z-index: 999;
+  height: 100px; }
 
 .menu-top-container {
   border: 0 none;
@@ -528,7 +528,7 @@ nav ol, nav ul {
     .menu-top-container .menu-top .sub-menu li, .menu-top-container .menu-top .children li {
       display: block;
       padding-bottom: 1px;
-      background: url("../images/menu-separe.png") no-repeat 50% 100%; }
+      background: url("assets/images/menu-separe.png") no-repeat 50% 100%; }
     .menu-top-container .menu-top .sub-menu li:last-child, .menu-top-container .menu-top .children li:last-child, .menu-top-container .menu-top .sub-menu li.last-child, .menu-top-container .menu-top .children li.last-child {
       padding-bottom: 0;
       background-image: none; }
@@ -960,18 +960,10 @@ body {
   font-family: 'Roboto';
   font-weight: 100;
   line-height: 150%;
-  /* Generated with http://gradient.quasi.ink */ }
+  /* Cover BG by http://gradient.quasi.ink */ }
 
 /**  green  **/
 .color-green, a, h1, .logo, h1 a, .article-welcome h2 a:hover, .article-procedure h2 a:hover {
-  color: #656250; }
-
-.logo a {
-  color: #656250; }
-  .logo a:hover {
-    color: #656250; }
-
-.footer h3, .social a, .footer .social a {
   color: #656250; }
 
 .pagination {
@@ -984,61 +976,13 @@ body {
   .pagination a, .pagination span {
     color: #656250; }
 
-.quotes:before, .quotes:after {
-  color: #656250; }
-
-.footer a:hover {
-  color: #656250; }
-
-.border-green, .social a {
-  border-color: #982c0c; }
-
-.pagination a, .pagination span {
-  border-color: #982c0c; }
-
-.owl-theme .owl-controls .owl-page span, .owl-theme .owl-controls .owl-page.active span {
-  border-color: #982c0c; }
-
-.article-icon .fa {
-  border-color: #982c0c; }
-
-.bg-green, .top-bar, .copyright-block, .social a:hover {
-  /*background-color: #982c0c;*/
-  background-color: #bb9b25;
-  /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
-  color: #ffffff; }
-
 .pagination a:hover, .pagination .current {
-  /*background-color: #982c0c;*/
   background-color: #bb9b25;
-  /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
   color: #ffffff; }
 
-.menu-top-container .menu-top .children {
-  background-color: #bb9b25;
-  color: #ffffff; }
 .menu-top-container .menu-top a:hover, .menu-top-container .menu-top a.hover {
   background-color: #bb9b25;
   color: #ffffff; }
-
-.menu-filter a:hover {
-  /*background-color: #982c0c;*/
-  background-color: #bb9b25;
-  /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
-  color: #ffffff; }
-
-.owl-theme .owl-controls .owl-page span, .owl-theme .owl-controls.clickable .owl-page.active:hover span {
-  /*background-color: #982c0c;*/
-  background-color: #bb9b25;
-  /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
-  color: #ffffff; }
-
-.button, .wpcf7-submit, .article-icon .fa, .article-welcome .article-icon .fa:hover {
-  /*background-color: #982c0c;*/
-  background-color: #bb9b25;
-  /*box-shadow: 0px -1px 6px 1px rgba(152, 140, 140, 0.8);*/
-  color: #ffffff; }
-
 .menu-top-container .menu-top .sub-menu {
   box-shadow: 0px 3px 20px 2px rgba(191, 191, 191, 0.8);
   background-color: #f2efdf; }
@@ -1048,28 +992,12 @@ body {
     .menu-top-container .menu-top .sub-menu a:hover, .menu-top-container .menu-top .sub-menu a.hover {
       background-color: #bb9b25;
       color: #ffffff; }
-.menu-top-container .menu-top .children a:hover, .menu-top-container .menu-top .children a.hover {
+.menu-top-container .menu-top .children {
   background-color: #bb9b25;
   color: #ffffff; }
-
-.search-form .search-submit {
-  background: #982c0c none repeat scroll 0 0;
-  background-color: #bb9b25;
-  border: 1px solid #982c0c;
-  color: #ffffff;
-  padding: 4px 10px;
-  width: 30%; }
-
-.comment-respond .submit {
-  background: #982c0c none repeat scroll 0 0;
-  border: medium none;
-  border-radius: 40px;
-  color: #ffffff;
-  font-size: 15px; }
-
-.wp-pagenavi a:hover, .wp-pagenavi span.current {
-  background: #982c0c none repeat scroll 0 0;
-  border-color: #982c0c; }
+  .menu-top-container .menu-top .children a:hover, .menu-top-container .menu-top .children a.hover {
+    background-color: #bb9b25;
+    color: #ffffff; }
 
 h5 {
   font-size: 18px; }
@@ -1084,37 +1012,6 @@ blockquote {
   margin: 10px 0px 30px;
   padding: 20px 20px 5px;
   quotes: none; }
-
-td {
-  border: 1px solid #982c0c;
-  padding: 10px; }
-
-th {
-  background: none repeat scroll 0 0 #982c0c;
-  border: 1px solid #982c0c;
-  color: #FFFFFF;
-  font-weight: bold;
-  padding: 10px;
-  text-transform: uppercase; }
-
-abbr, acronym, dfn {
-  border-bottom: 1px dotted #982c0c;
-  cursor: help; }
-
-.header:after, .section:before, .footer:before {
-  content: '';
-  display: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  height: 0px;
-  position: absolute;
-  left: 0;
-  right: 0;
-  background-image: url("../images/separe.png");
-  background-repeat: repeat-x;
-  background-position: 50% 0;
-  *display: none; }
 
 .header {
   position: relative;
@@ -1144,8 +1041,9 @@ img.alignleft {
 
 .menu-top-container {
   width: 67%;
-  margin-right: 0;
-  margin-top: 62px; }
+  bottom: 0;
+  right: 0;
+  position: absolute; }
   .menu-top-container .menu-top a {
     text-align: center;
     padding: 10px; }
@@ -1168,12 +1066,8 @@ img.alignleft {
 
 .header_title {
   padding-top: 4px;
-  /*padding-left: 20px;*/
   float: left;
   width: 88%; }
-
-.header .menu-bar {
-  /*background: #333;*/ }
 
 .menu-bar .container {
   width: auto; }
@@ -1190,7 +1084,7 @@ img.alignleft {
   margin-left: 30px; }
 
 .header-block {
-  background: url("../images/dkr1.jpg");
+  background: url("assets/images/dkr1.jpg");
   height: 264px;
   padding: 0px; }
 
@@ -1259,7 +1153,7 @@ img.alignleft {
 /* END HEADER BG 1 */
 /*SCHEDULE PAGE*/
 .page-id-43 .overlay {
-  background: url(../images/Sky.jpg);
+  background: url(assets/images/Sky.jpg);
   padding-top: 60px;
   padding-bottom: 15px; }
 
@@ -1317,7 +1211,7 @@ img.alignleft {
   float: left;
   width: 330px;
   padding-top: 14px;
-  padding-left: 1%; }
+  padding-left: 20px; }
   .menu-bar-logo-block img {
     float: left;
     width: 70px; }
@@ -1576,7 +1470,7 @@ body.home .breadcrumbs {
 .sidebar-container li.current_page_ancestor {
   background: #f6f6f6; }
 .sidebar-container li.current_page_ancestor > a, .sidebar-container li.current_page_item > a {
-  font-weight: 300;
+  font-weight: 500;
   color: #bb9b25; }
 
 li.page_item_has_children > a {
@@ -1591,7 +1485,7 @@ li.page_item_has_children > a {
   padding: 0px 0px 15px 40px; }
 .sidebar-container ul.children li {
   list-style-type: decimal;
-  padding-top: 5px; }
+  padding: 3px 0 3px 0; }
 .sidebar-container > div > ul > li, .sidebar-container > ul > li {
   border-top: solid 1px #eee; }
 .sidebar-container > div > ul > li {
@@ -1614,7 +1508,7 @@ li.page_item_has_children > a {
   font-weight: 300;
   color: #bb9b25; }
 .sidebar-container li.page_item ul.children li.current_page_item > a {
-  font-weight: 300;
+  font-weight: 500;
   color: #bb9b25; }
 .sidebar-container li.page_item ul {
   display: none; }
@@ -1960,6 +1854,8 @@ sup {
 /*Teachings category left menu*/
 .teachings_cat_list ul.children li {
   list-style: none; }
+.teachings_cat_list li.current-cat {
+  background: #f6f6f6; }
 .teachings_cat_list li.current-cat > a {
   font-weight: bold;
   color: #bb9b25; }
@@ -2076,6 +1972,7 @@ p.teaching_info {
   .sidebar-container .teachings_cat_list ul.children li:last-of-type {
     border-bottom: solid 1px #eee; }
 .sidebar-container .teachings_cat_list li.current-cat > .teachings-cat > a {
+  font-weight: 500;
   color: #bb9b25; }
 
 .teachings_category h1 {
@@ -2103,6 +2000,11 @@ p.teaching_info {
 .category-news a.article-link {
   display: block; }
   .category-news a.article-link:hover span.read_more {
+    -webkit-transition: all .4s ease;
+    -moz-transition: all .4s ease;
+    -ms-transition: all .4s ease;
+    -o-transition: all .4s ease;
+    transition: all .4s ease;
     background-color: #bb9b25;
     color: #ffffff; }
   .category-news a.article-link span.read_more {
@@ -2272,7 +2174,7 @@ a.expand_link {
   width: 1050px; }
 
 .menu-bar-logo-block {
-  width: 335px; }
+  width: 345px; }
 
 .schedule_carousel_wrap {
   width: 415px; }

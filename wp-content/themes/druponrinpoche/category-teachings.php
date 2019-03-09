@@ -20,6 +20,7 @@ $parentCatName = $parentCat->name;
         <div class="inner-page-container right">
             <div class="gutter">
                 <h1><?php echo ($grandparentCatId!=0) ? $parentCat->name.' > ' : '' ;?><?php echo get_queried_object()->name;?></h1>
+                <?php echo get_queried_object()->description;?>
                 <?php get_template_part( 'content', 'teachings-posts' ); ?>
             </div>
         </div>

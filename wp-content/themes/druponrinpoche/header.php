@@ -57,7 +57,7 @@ $pllArgs = array(
         <div class="container">
             <header id="header" class="header">
                 <div class="menu-bar">
-                    <div class="gutter clearfix">
+<!--                    <div class="gutter clearfix">-->
 
                         <div class="header_top_block">
                             <div class="menu-bar-logo-block">
@@ -91,7 +91,7 @@ $pllArgs = array(
                                 <?php wp_nav_menu(  array('container'=> '', 'menu_class'  => 'menu-top-mob', 'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>','depth' => 2 ) ); ?>
                             <?php } ?>
                         </nav>
-                    </div>
+<!--                    </div>-->
 
                 </div>
             </header>
