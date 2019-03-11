@@ -1069,3 +1069,11 @@ function order_posts_by_date_asc( $query ) {
         }
 }
 add_action( 'pre_get_posts', 'order_posts_by_date_asc' );
+
+
+// Fix gallery bug not always loading when gallery is present, so we load by default...
+function rlLightboxConditionaLoading($addScripts ) {
+    $addScripts = true;
+    return $addScripts;
+}
+add_filter( 'rl_lightbox_conditional_loading', 'rlLightboxConditionaLoading');
