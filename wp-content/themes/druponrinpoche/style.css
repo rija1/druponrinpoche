@@ -1329,6 +1329,11 @@ li.home_post {
     color: #404040;
     padding-right: 10px; }
     .home_news_carousel .latestnews .recent_post_link:hover .read_more {
+      -webkit-transition: all .4s ease;
+      -moz-transition: all .4s ease;
+      -ms-transition: all .4s ease;
+      -o-transition: all .4s ease;
+      transition: all .4s ease;
       background: #bb9b25;
       color: #ffffff; }
   .home_news_carousel .latestnews li.home_post .home_post_txt {
@@ -1347,7 +1352,7 @@ li.home_post {
     .home_news_carousel .latestnews li.home_post .home_post_txt p {
       padding-top: 10px;
       font-size: 12px;
-      height: 40px;
+      height: 70px;
       overflow: hidden; }
 .home_news_carousel li {
   text-align: center; }
@@ -1355,6 +1360,31 @@ li.home_post {
     padding: 10px 0;
     margin: 0;
     color: #bb9b25; }
+
+li.home_post {
+  height: 130px; }
+
+.home_post_img img {
+  width: 195px; }
+
+.home_news_carousel .latestnews li.home_post .home_post_txt {
+  margin-left: 200px;
+  padding: 13 16px; }
+
+.recent_post_title {
+  font-size: 17px;
+  color: #555555; }
+
+.home_news_carousel .latestnews li.home_post .home_post_txt .read_more {
+  top: 93px;
+  right: 16px; }
+
+.menu-top-container .menu-top a {
+  font-weight: bold; }
+
+.posts-grid .article-text, .featured-grid .article-text {
+  font-weight: bold;
+  font-family: 'Raleway'; }
 
 .wide {
   grid-column: auto / span 2; }
@@ -1851,15 +1881,6 @@ sup {
 .category-quotes .article-blog:last-of-type {
   border-bottom: none; }
 
-/*Teachings category left menu*/
-.teachings_cat_list ul.children li {
-  list-style: none; }
-.teachings_cat_list li.current-cat {
-  background: #f6f6f6; }
-.teachings_cat_list li.current-cat > a {
-  font-weight: bold;
-  color: #bb9b25; }
-
 /*Teachings catgory posts*/
 p.teaching_info {
   text-align: center;
@@ -1949,9 +1970,12 @@ p.teaching_info {
   .home_mini_carousel table td {
     border: none; }
 
+/*Teachings category left menu*/
 .sidebar-container .teachings_cat_list > ul > li {
   margin-bottom: 35px;
   border: none; }
+.sidebar-container .teachings_cat_list > ul > li.current-cat > .teachings-cat > a {
+  font-weight: 400; }
 .sidebar-container .teachings_cat_list ul > li.cat-item > a {
   display: none; }
 .sidebar-container .teachings_cat_list > ul > li > .teachings-cat > a {
@@ -1966,14 +1990,17 @@ p.teaching_info {
 .sidebar-container .teachings_cat_list ul.children {
   background: none;
   padding: 0; }
+  .sidebar-container .teachings_cat_list ul.children li.current-cat {
+    background: #f6f6f6; }
   .sidebar-container .teachings_cat_list ul.children li {
+    list-style: none;
     border-top: solid 1px #eee;
     padding-left: 10px; }
   .sidebar-container .teachings_cat_list ul.children li:last-of-type {
     border-bottom: solid 1px #eee; }
-.sidebar-container .teachings_cat_list li.current-cat > .teachings-cat > a {
-  font-weight: 500;
-  color: #bb9b25; }
+  .sidebar-container .teachings_cat_list ul.children li.current-cat > .teachings-cat > a {
+    color: #bb9b25;
+    font-weight: 400; }
 
 .teachings_category h1 {
   font-size: 22px; }

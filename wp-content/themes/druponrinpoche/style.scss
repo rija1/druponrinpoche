@@ -1873,6 +1873,11 @@ li.home_post {
             color: #404040;
             padding-right: 10px;
             &:hover .read_more {
+                -webkit-transition: all .4s ease;
+                -moz-transition: all .4s ease;
+                -ms-transition: all .4s ease;
+                -o-transition: all .4s ease;
+                transition: all .4s ease;
                 background: $dkr-gold;
                 color:#ffffff;
             }
@@ -1894,7 +1899,7 @@ li.home_post {
                 p {
                     padding-top: 10px;
                     font-size: 12px;
-                    height: 40px;
+                    height: 70px;
                     overflow: hidden;
                 }
                 text-align: left;
@@ -1913,6 +1918,35 @@ li.home_post {
         }
     }
 }
+
+// Home post new style
+li.home_post {
+    height: 130px;
+}
+.home_post_img img {
+    width: 195px;
+}
+.home_news_carousel .latestnews li.home_post .home_post_txt {
+    margin-left: 200px;
+    padding: 13 16px;
+}
+.recent_post_title {
+    font-size: 17px;
+//    font-weight: 400;
+    color: #555555;
+}
+.home_news_carousel .latestnews li.home_post .home_post_txt .read_more {
+    top: 93px;
+    right: 16px;
+}
+.menu-top-container .menu-top a {
+    font-weight:bold;
+}
+.posts-grid .article-text, .featured-grid .article-text {
+    font-weight: bold;
+    font-family: 'Raleway';
+}
+// Home post new style - END
 
 .wide {
     grid-column: auto / span 2;
@@ -2603,24 +2637,8 @@ sup {
     border-bottom: none;
 }
 
-/*Teachings category left menu*/
-
-.teachings_cat_list {
-    ul.children li {
-        list-style: none;
-    }
-    li.current-cat {
-        background: #f6f6f6;
-    }
-    li.current-cat > a {
-        font-weight: bold;
-        color: $dkr-gold;
-    }
-}
-
 /*Teachings catgory posts*/
 
-.category-quotes {}
 
 p.teaching_info {
     text-align: center;
@@ -2743,11 +2761,15 @@ p.teaching_info {
     }
 }
 
+/*Teachings category left menu*/
 
 .sidebar-container .teachings_cat_list {
     > ul > li {
         margin-bottom: 35px;
         border: none;
+    }
+    > ul > li.current-cat > .teachings-cat > a {
+        font-weight:400;
     }
     ul > li.cat-item > a {
         display: none;
@@ -2767,18 +2789,23 @@ p.teaching_info {
     ul.children {
         background: none;
         padding:0;
+        li.current-cat {
+            background: #f6f6f6;
+        }
         li {
+            list-style: none;
             border-top: solid 1px #eee;
             padding-left: 10px;
         }
         li:last-of-type {
             border-bottom: solid 1px #eee;
         }
+        li.current-cat > .teachings-cat > a {
+            color: $dkr-gold;
+            font-weight: 400;
+        }
     }
-    li.current-cat > .teachings-cat > a {
-        font-weight: 500;
-        color:#bb9b25;
-    }
+
 
 }
 
