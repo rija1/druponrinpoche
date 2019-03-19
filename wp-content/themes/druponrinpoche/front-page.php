@@ -102,11 +102,13 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                             <th>Details</th>
                         </tr>
                         <?php foreach($schBatch1 as $schBatch1Line) :?>
+                            <?php if(!empty($schBatch1Line[3])): ?>
                         <tr>
                             <td><?php echo $schBatch1Line[0]; ?></td>
                             <td><?php echo $schBatch1Line[1]; ?></td>
                             <td><?php echo $schBatch1Line[3]; ?></td>
                         </tr>
+                        <?php endif; ?>
                         <?php endforeach; ?>
                     </table>
                 </div>
