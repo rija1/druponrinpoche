@@ -1399,7 +1399,8 @@ span.logo_kl {
 
 .copyright-block {
   background: none;
-  padding: 0; }
+  padding: 0;
+  font-weight: 400; }
   .copyright-block .container {
     background: #f2efdf;
     padding: 20px 0 10px 0;
