@@ -1795,15 +1795,15 @@ a.full_schedule_lnk {
 
 .home_pages_grid {
     .box2 {
-        grid-column: 1;
-        grid-row: 1;
-    }
-    .box1 {
         grid-column: 2;
         grid-row: 1;
     }
-    .box3 {
+    .box1 {
         grid-column: 3;
+        grid-row: 1;
+    }
+    .box3 {
+        grid-column: 1;
         grid-row: 1;
     }
 }
@@ -3141,3 +3141,50 @@ figcaption {
     caption-side: bottom;
     text-align: center;
 }
+
+/**  mobile  **/
+//@media only screen and (max-width: 480px) {
+//
+//    #content > .container {
+//        width:auto;
+//    }
+//
+//    // Header
+//
+//    .menu-bar-logo-block img {
+//        float: left;
+//        width: 41px;
+//        margin-top: 3px;
+//    }
+//
+//    .menu-bar-logo-block {
+//        padding-top: 13px;
+//        padding-left: 13px;
+//    }
+//
+//    .menu-bar-logo-block span {
+//        padding-top: 3px;
+//        padding-left: 14px;
+//        line-height: 17px;
+//        font-size: 17px;
+//    }
+//
+//    span.logo_kl {
+//        font-size: 17px;
+//    }
+//
+//    .menu-bar-logo-block .logo_name {
+//        padding-top: 0px;
+//    }
+//
+//    // Top Menu
+//
+//    .menu-top-container {
+//        display: none;
+//    }
+//
+//    .menu-top-mob-container {
+//        display:block;
+//    }
+//
+//}
