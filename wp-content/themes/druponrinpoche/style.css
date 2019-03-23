@@ -1715,7 +1715,7 @@ li.page_item_has_children a {
       text-align: left;
       font-size: 13px;
       padding-top: 15px;
-      padding-bottom: 19px; }
+      padding-bottom: 16px; }
   .article-blog:before, .article-blog:after {
     content: '';
     display: block;
