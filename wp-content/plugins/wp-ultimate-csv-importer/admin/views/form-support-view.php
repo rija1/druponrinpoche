@@ -48,6 +48,7 @@ if ( ! defined( 'ABSPATH' ) )
         <div class="col-md-6 col-sm-6 mt40 mb40" style="">
             <fieldset class="scheduler-border"> <legend class="scheduler-border" style="margin-top:15px;"><?php echo esc_html__('Contact Support','wp-ultimate-csv-importer');?></legend>
                 <form class="support-form" type="post" style="margin-top:10px;" action="">
+                    <?php wp_nonce_field('sm-uci-import'); ?>
                     <div class="form-group">
                         <label><?php echo esc_html__('Email','wp-ultimate-csv-importer');?></label>
                         <input name="email" id="email" class="form-control" value="" type="text">

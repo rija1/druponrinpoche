@@ -155,7 +155,7 @@ class Walker_Category_Dr extends Walker_Category {
 				$link .= "<img src='" . $args['feed_image'] . "'$alt" . ' />';
 			}
 
-			$link .= 'la</a>';
+			$link .= '</a>';
 
 			if ( empty( $args['feed_image'] ) ) {
 				$link .= ')';

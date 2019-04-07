@@ -40,7 +40,7 @@ $featuredPostIds = array();
         <div class="news_right_block">
             <h5>Selected Pictures</h5>
             <?php
-            if ( function_exists( 'rl_gallery' ) ) { rl_gallery( '1293' ); }
+            if ( function_exists( 'rl_gallery' ) ) { rl_gallery(array('id'=> '1293')); }
             ?>
         </div>
     </div>

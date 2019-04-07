@@ -16,7 +16,8 @@ jQuery(document).ready(function(){
 		}, function(){
 			jQuery(this).children('a').removeClass('hover');
 			jQuery(this).children('.children').stop().slideUp(200);
-		});		
+		});
+
 		jQuery('.menu-top-mob-container .icon-menu').click(function(e) {
 			e.preventDefault();
 		}).toggle(function(){
@@ -24,6 +25,18 @@ jQuery(document).ready(function(){
 		}, function(){
 			jQuery(this).parent('.menu-top-mob-container').children('.menu-top-mob').stop().slideUp(200);
 		});
+
+
+        jQuery('.menu-top-mob-container .menu-arrow').click(function(e) {
+            e.preventDefault();
+        }).toggle(function(){
+            jQuery(this).parent().parent().children('.sub-menu').stop().slideDown(200);
+        }, function(){
+            jQuery(this).parent().parent().children('.sub-menu').stop().slideUp(200);
+        });
+
+
+
 
 	}); // Final load
 	

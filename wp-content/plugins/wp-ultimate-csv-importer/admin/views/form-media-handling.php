@@ -67,6 +67,8 @@ $records =  $uci_admin->GetPostValues(sanitize_key($_REQUEST['eventkey']));
 
 <div class="template_body whole_body wp_ultimate_csv_importer_pro" style="margin-top: 40px;">
 	<form class="form-inline" method="post" action="<?php echo $actionURL;?>">
+		   <?php wp_nonce_field('sm-uci-import'); ?>
+
 		<div id='wp_warning' style = 'display:none;' class = 'error'></div>
 		<h3 class="media_head csv-importer-heading"><?php echo esc_html__('Media Handling','wp-ultimate-csv-importer');?></h3>
 		<input type="hidden" id="eventkey" name="eventkey" value="<?php echo sanitize_text_field($_REQUEST['eventkey']); ?>" />

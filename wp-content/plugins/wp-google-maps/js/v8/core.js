@@ -3,16 +3,50 @@
  * @summary This is the core Javascript module. Some code exists in ../core.js, the functionality there will slowly be handed over to this module.
  */
 jQuery(function($) {
+	
 	var core = {
+		/**
+		 * Indexed array of map instances
+		 * @constant {array} maps
+		 * @static
+		 */
 		maps: [],
+		
+		/**
+		 * Global EventDispatcher used to listen for global plugin events
+		 * @constant {EventDispatcher} events
+		 * @static
+		 */
 		events: null,
+		
+		/**
+		 * Settings, passed from the server
+		 * @constant {object} settings
+		 * @static
+		 */
 		settings: null,
+		
+		/**
+		 * Instance of the restAPI. Not to be confused with WPGMZA.RestAPI, which is the instances constructor
+		 * @constant {RestAPI} restAPI
+		 * @static
+		 */
+		restAPI: null,
+		
+		/**
+		 * Key and value pairs of localized strings passed from the server
+		 * @constant {object} localized_strings
+		 * @static
+		 */
+		localized_strings: null,
 		
 		loadingHTML: '<div class="wpgmza-preloader"><div class="wpgmza-loader">...</div></div>',
 		
 		/**
-		 * Override this method to add a scroll offset when using animated scroll
-		 * @return number
+		 * Override this method to add a scroll offset when using animated scroll, useful for sites with fixed headers.
+		 * @method getScrollAnimationOffset
+		 * @static
+		 * @return {number} The scroll offset
 		 */
 		getScrollAnimationOffset: function() {
 			return (WPGMZA.settings.scroll_animation_offset || 0);
@@ -20,6 +54,10 @@ jQuery(function($) {
 		
 		/**
 		 * Animated scroll, accounts for animation settings and fixed header height
+		 * @method animateScroll
+		 * @static
+		 * @param {HTMLElement} element The element to scroll to
+		 * @param {number} [milliseconds] The time in milliseconds to scroll over. Defaults to 500 if no value is specified.
 		 * @return void
 		 */
 		animateScroll: function(element, milliseconds) {
@@ -41,8 +79,8 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function guid
-		 * @summary Utility function returns a GUID
+		 * Generates and returns a GUID
+		 * @method guid
 		 * @static
 		 * @return {string} The GUID
 		 */
@@ -59,12 +97,12 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function hexOpacityToRGBA
-		 * @summary Takes a hex string and opacity value and converts it to Openlayers RGBA format
+		 * Takes a hex string and opacity value and converts it to Openlayers RGBA format
+		 * @method hexOpacityToRGBA
+		 * @static
 		 * @param {string} colour The hex color string
 		 * @param {number} opacity The opacity from 0.0 - 1.0
-		 * @static
-		 * @return {array} RGBA where color components are 0 - 255 and opacity is 0.0 - 1.0
+		 * @return {array} RGBA array where color components are 0 - 255 and opacity is 0.0 - 1.0
 		 */
 		hexOpacityToRGBA: function(colour, opacity)
 		{
@@ -77,6 +115,13 @@ jQuery(function($) {
 			];
 		},
 		
+		/**
+		 * Takes a hex color string and converts it to an RGBA object.
+		 * @method hexToRgba
+		 * @static
+		 * @param {string} hex The hex color string
+		 * @return {object} Object with r, g, b and a properties, or 0 if the input is invalid.
+		 */
 		hexToRgba: function(hex) {
 			var c;
 			if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
@@ -99,17 +144,29 @@ jQuery(function($) {
 			//throw new Error('Bad Hex');
 		},
 		
+		/**
+		 * Takes an object with r, g, b and a properties and returns a CSS rgba color string
+		 * @method rgbaToString
+		 * @static
+		 * @param {string} rgba The input object
+		 * @return {string} The CSS rgba color string
+		 */
 		rgbaToString: function(rgba) {
 			return "rgba(" + rgba.r + ", " + rgba.g + ", " + rgba.b + ", " + rgba.a + ")";
 		},
 		
+		/**
+		 * A regular expression that matches a latitude / longitude coordinate pair
+		 * @constant {RegExp} latLngRegexp
+		 * @static
+		 */
 		latLngRegexp: /^(\-?\d+(\.\d+)?),\s*(\-?\d+(\.\d+)?)$/,
 		
 		/**
-		 * @function isLatLngString
-		 * @summary Utility function returns true is string is a latitude and longitude
-		 * @param str {string} The string to attempt to parse as coordinates
+		 * Utility function returns true is string is a latitude and longitude
+		 * @method isLatLngString
 		 * @static
+		 * @param str {string} The string to attempt to parse as coordinates
 		 * @return {array} the matched latitude and longitude or null if no match
 		 */
 		isLatLngString: function(str)
@@ -133,10 +190,10 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function stringToLatLng
-		 * @summary Utility function returns a latLng literal given a valid latLng string
-		 * @param str {string} The string to attempt to parse as coordinates
+		 * Utility function returns a latLng literal given a valid latLng string
+		 * @method stringToLatLng
 		 * @static
+		 * @param str {string} The string to attempt to parse as coordinates
 		 * @return {object} LatLng literal
 		 */
 		stringToLatLng: function(str)
@@ -150,10 +207,10 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function stringToLatLng
-		 * @summary Utility function returns a latLng literal given a valid latLng string
-		 * @param str {string} The string to attempt to parse as coordinates
+		 * Utility function returns a latLng literal given a valid latLng string
+		 * @method stringToLatLng
 		 * @static
+		 * @param str {string} The string to attempt to parse as coordinates
 		 * @return {object} LatLng literal
 		 */
 		isHexColorString: function(str)
@@ -165,14 +222,21 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function getImageDimensions
-		 * @summary Utility function to get the dimensions of an image, caches results for best performance
-		 * @param src {string} Image source URL
-		 * @param callback {function} Callback to recieve image dimensions
-		 * @static
-		 * @return {void}
+		 * Cache of image dimensions by URL, for internal use only
+		 * @var imageDimensionsCache
+		 * @inner
+		 * @see WPGMZA.getImageDimensions
 		 */
 		imageDimensionsCache: {},
+		
+		/**
+		 * Utility function to get the dimensions of an image, caches results for best performance
+		 * @method getImageDimensions
+		 * @static
+		 * @param src {string} Image source URL
+		 * @param callback {function} Callback to recieve image dimensions
+		 * @return {void}
+		 */
 		getImageDimensions: function(src, callback)
 		{
 			if(WPGMZA.imageDimensionsCache[src])
@@ -184,8 +248,8 @@ jQuery(function($) {
 			var img = document.createElement("img");
 			img.onload = function(event) {
 				var result = {
-					width: image.width,
-					height: image.height
+					width: img.width,
+					height: img.height
 				};
 				WPGMZA.imageDimensionsCache[src] = result;
 				callback(result);
@@ -193,20 +257,29 @@ jQuery(function($) {
 			img.src = src;
 		},
 		
+		decodeEntities: function(input)
+		{
+			return input.replace(/&(nbsp|amp|quot|lt|gt);/g, function(m, e) {
+				return m[e];
+			}).replace(/&#(\d+);/gi, function(m, e) {
+				return String.fromCharCode(parseInt(e, 10));
+			});
+		},
+		
 		/**
-		 * @function isDeveloperMode
-		 * @summary Returns true if developer mode is set
-		 * @static 
+		 * Returns true if developer mode is set or if developer mode cookie is set
+		 * @method isDeveloperMode
+		 * @static
 		 * @return {boolean} True if developer mode is on
 		 */
 		isDeveloperMode: function()
 		{
-			return this.developer_mode || (window.Cookies && window.Cookies.get("wpgmza-developer-mode"));
+			return this.settings.developer_mode || (window.Cookies && window.Cookies.get("wpgmza-developer-mode"));
 		},
 		
 		/**
-		 * @function isProVersion
-		 * @summary Returns true if the Pro add-on is active
+		 * Returns true if the Pro add-on is active
+		 * @method isProVersion
 		 * @static
 		 * @return {boolean} True if the Pro add-on is active
 		 */
@@ -216,8 +289,8 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function openMediaDialog
-		 * @summary Opens the WP media dialog and returns the result to a callback
+		 * Opens the WP media dialog and returns the result to a callback
+		 * @method openMediaDialog
 		 * @param {function} callback Callback to recieve the attachment ID as the first parameter and URL as the second
 		 * @static
 		 * @return {void}
@@ -265,8 +338,20 @@ jQuery(function($) {
 		 * @static
 		 * @return {object} The users position as a LatLng literal
 		 */
-		getCurrentPosition: function(callback)
+		getCurrentPosition: function(callback, watch)
 		{
+			var trigger = "userlocationfound";
+			var nativeFunction = "getCurrentPosition";
+			
+			if(watch)
+			{
+				trigger = "userlocationupdated";
+				nativeFunction = "watchPosition";
+				
+				// Call again immediatly to get current position, watchPosition won't fire until the user moves
+				WPGMZA.getCurrentPosition(callback, false);
+			}
+			
 			if(!navigator.geolocation)
 			{
 				console.warn("No geolocation available on this device");
@@ -277,7 +362,7 @@ jQuery(function($) {
 				enableHighAccuracy: true
 			};
 			
-			navigator.geolocation.getCurrentPosition(function(position) {
+			navigator.geolocation[nativeFunction](function(position) {
 				if(callback)
 					callback(position);
 				
@@ -287,7 +372,7 @@ jQuery(function($) {
 				
 				options.enableHighAccuracy = false;
 				
-				navigator.geolocation.getCurrentPosition(function(position) {
+				navigator.geolocation[nativeFunction](function(position) {
 					if(callback)
 						callback(position);
 					
@@ -302,13 +387,19 @@ jQuery(function($) {
 			options);
 		},
 		
+		watchPosition: function(callback)
+		{
+			return WPGMZA.getCurrentPosition(callback, true);
+		},
+		
 		/**
-		 * @function runCatchableTask
-		 * @summary Runs a catchable task and displays a friendly error if the function throws an error
+		 * Runs a catchable task and displays a friendly error if the function throws an error
+		 * @method runCatchableTask
+		 * @static
 		 * @param {function} callback The function to run
 		 * @param {HTMLElement} friendlyErrorContainer The container element to hold the error
-		 * @static
 		 * @return {void}
+		 * @see WPGMZA.FriendlyError
 		 */
 		runCatchableTask: function(callback, friendlyErrorContainer) {
 			
@@ -326,20 +417,13 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function assertInstanceOf
-		 * @summary
-		 * This function is for checking inheritence has been setup correctly.
-		 * For objects that have engine and Pro specific classes, it will automatically
-		 * add the engine and pro prefix to the supplied string and if such an object
-		 * exists it will test against that name rather than the un-prefix argument
-		 * supplied.
+		 * This function is for checking inheritence has been setup correctly. For objects that have engine and Pro specific classes, it will automatically add the engine and pro prefix to the supplied string and if such an object exists it will test against that name rather than the un-prefix argument supplied.
 		 *
-		 * For example, if we are running the Pro addon with Google maps as the engine,
-		 * if you supply Marker as the instance name the function will check to see
-		 * if instance is an instance of GoogleProMarker
+		 * For example, if we are running the Pro addon with Google maps as the engine, if you supply Marker as the instance name the function will check to see if instance is an instance of GoogleProMarker
+		 * @method assertInstanceOf
+		 * @static
 		 * @param {object} instance The object to check
 		 * @param {string} instanceName The class name as a string which this object should be an instance of
-		 * @static
 		 * @return {void}
 		 */
 		assertInstanceOf: function(instance, instanceName) {
@@ -373,12 +457,19 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function getMapByID
-		 * @param {mixed} id The ID of the map to retrieve
+		 * @method getMapByID
 		 * @static
+		 * @param {mixed} id The ID of the map to retrieve
 		 * @return {object} The map object, or null if no such map exists
 		 */
 		getMapByID: function(id) {
+			
+			// Workaround for map ID member not set correctly
+			
+			if(WPGMZA.isProVersion())
+				return MYMAP[id].map;
+			return MYMAP.map;
+			
 			for(var i = 0; i < WPGMZA.maps.length; i++) {
 				if(WPGMZA.maps[i].id == id)
 					return WPGMZA.maps[i];
@@ -388,17 +479,28 @@ jQuery(function($) {
 		},
 		
 		/**
-		 * @function isGoogleAutocompleteSupported
-		 * @summary Shorthand function to determine if the Places Autocomplete is available
+		 * Shorthand function to determine if the Places Autocomplete is available
+		 * @method isGoogleAutocompleteSupported
 		 * @static
-		 * @return {boolean}
+		 * @return {boolean} True if the places autocomplete is available
 		 */
 		isGoogleAutocompleteSupported: function() {
 			return typeof google === 'object' && typeof google.maps === 'object' && typeof google.maps.places === 'object' && typeof google.maps.places.Autocomplete === 'function';
 		},
 		
+		/**
+		 * The Google API status script enqueue, as reported by the server
+		 * @constant
+		 * @static
+		 */
 		googleAPIStatus: window.wpgmza_google_api_status,
 		
+		/**
+		 * Makes an educated guess as to whether the browser is Safari
+		 * @method isSafari
+		 * @static
+		 * @return {boolean} True if it's likely the browser is Safari
+		 */
 		isSafari: function() {
 			
 			var ua = navigator.userAgent.toLowerCase();
@@ -406,12 +508,24 @@ jQuery(function($) {
 			
 		},
 		
+		/**
+		 * Makes an educated guess as to whether the browser is running on a touch device
+		 * @method isTouchDevice
+		 * @static
+		 * @return {boolean} True if it's likely the browser is running on a touch device
+		 */
 		isTouchDevice: function() {
 			
 			return ("ontouchstart" in window);
 			
 		},
 		
+		/**
+		 * Makes an educated guess whether the browser is running on an iOS device
+		 * @method isDeviceiOS
+		 * @static
+		 * @return {boolean} True if it's likely the browser is running on an iOS device
+		 */
 		isDeviceiOS: function() {
 			
 			return (
@@ -424,7 +538,20 @@ jQuery(function($) {
 			
 			);
 			
+		},
+		
+		getQueryParamValue: function(name) {
+			
+			var regex = new RegExp(name + "=([^&]*)");
+			var m;
+			
+			if(!(m = window.location.href.match(regex)))
+				return null;
+			
+			return m[1];
+			
 		}
+		
 	};
 	
 	if(window.WPGMZA)

@@ -12,6 +12,7 @@
  */
 
 require_once('includes/class-walker-category-dr.php');
+require_once('includes/class-walker-nav-menu-dr.php');
 
 function dkr_content_width() {
     $GLOBALS['content_width'] = apply_filters( 'dkr_content_width', 980 );

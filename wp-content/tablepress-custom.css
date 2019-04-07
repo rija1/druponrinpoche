@@ -1,4 +1,35 @@
-.tablepress td {
-	padding: 15px;
-	border-bottom: solid 1px #f1eded;
+@media only screen and (max-width: 480px) {
+
+	.page-id-1581 .tablepress td,
+	.page-id-1581 .tablepress th {
+		display: block;
+	}
+
+	.page-id-1581 .tablepress {
+		border: none;
+	}
+
+	.page-id-1581 .tablepress tr.row-1 {
+		display: none;
+	}
+
+	.page-id-1581 .tablepress .column-1 {
+		font-weight: bold;
+	}
+
+	.page-id-1581 .tablepress td {
+		border: none;
+	}
+
+	.page-id-1581 .tablepress .odd td {
+		background: none;
+	}
+
+	.page-id-1581 .tablepress tr {
+		float: left;
+		margin-bottom: 15px;
+		border: solid 1px #ddd;
+		width: 100%;
+	}
+
 }

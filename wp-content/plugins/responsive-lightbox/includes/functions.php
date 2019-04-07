@@ -21,11 +21,6 @@ function rl_gallery( $args = array() ) {
 	);
 
 	// merge defaults with arguments
-    if(!is_array($args) && !empty($args))
-    {
-        $args = array('id' => $args);
-    }
-
 	$args = array_merge( $defaults, $args );
 
 	// parse ID

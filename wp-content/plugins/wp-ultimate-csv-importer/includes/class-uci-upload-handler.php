@@ -194,6 +194,7 @@ if(!class_exists('SmackUCIUploadHandler')) {
 					wp_mkdir_p($eventDir);
 				}
 			}
+
 			return $eventDir . '/' . $this->get_user_path() . $version_path . $eventkey;
 		}
 
@@ -1181,6 +1182,11 @@ if(!class_exists('SmackUCIUploadHandler')) {
 			}
 			# code added by goku to get the uploaded filename
 			$files[0]->uploadedname = $upload['name'];
+
+			// Mari added this line 
+			// Use this event key as CSRF token
+			add_option($files[0]->eventkey, true);
+
 			return $this->generate_response(array($this->options['param_name'] => $files), $print_response);
 		}
 

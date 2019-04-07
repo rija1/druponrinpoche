@@ -119,6 +119,8 @@ if(isset($_REQUEST['mapping_type']) && $_REQUEST['mapping_type'] == 'normal') {
       <h3 style="margin-left:2%;" class="csv-importer-heading"><?php echo esc_html__('Mapping Section','wp-ultimate-csv-importer');?></h3>
    </div>
    <form id = "mapping_section" method="post" action="<?php echo $actionURL;?>">
+         <?php wp_nonce_field('sm-uci-import'); ?>
+
       <div id='wp_warning' style = 'display:none;' class = 'error'></div>
       <?php $import_mode = $get_records[sanitize_key($_REQUEST['eventkey'])]['import_file']['import_mode']; ?>
       <div class="mapping_table">

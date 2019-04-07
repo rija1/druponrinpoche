@@ -6,19 +6,20 @@
 jQuery(function($) {
 	
 	/**
-	 * Common functionality for popout panels, which is the
-	 * directions box, directions result box, and the modern
-	 * style marker listing
-	 * @return Object
+	 * Common functionality for popout panels, which is the directions box, directions result box, and the modern style marker listing
+	 * @class WPGMZA.PopoutPanel
+	 * @constructor WPGMZA.PopoutPanel
+	 * @memberof WPGMZA
 	 */
 	WPGMZA.PopoutPanel = function()
 	{
 		
-	};
+	}
 	
 	/**
 	 * Opens the direction box
-	 * @return void
+	 * @method
+	 * @memberof WPGMZA.PopoutPanel
 	 */
 	WPGMZA.PopoutPanel.prototype.open = function() {
 		$(this.element).addClass("wpgmza-open");
@@ -26,7 +27,8 @@ jQuery(function($) {
 	
 	/**
 	 * Closes the direction box
-	 * @return void
+	 * @method
+	 * @memberof WPGMZA.PopoutPanel
 	 */
 	WPGMZA.PopoutPanel.prototype.close = function() {
 		$(this.element).removeClass("wpgmza-open");

@@ -3,10 +3,10 @@ Contributors: smackcoders, smacksupport
 Donate link: https://www.paypal.me/smackcoders
 Tags: csv, csv import, csv importer, import, import csv, import seo, import woocommerce, acf, excel, spreadsheet
 Requires at least: 4.5
-Tested up to: 4.9.8
+Tested up to: 5.0.1
 Requires PHP: 5.2.4 or above
-Stable tag: 5.3.7
-Version: 5.3.7
+Stable tag: 5.6.1
+Version: 5.6.1
 Author: smackcoders
 Author URI: http://profiles.wordpress.org/smackcoders/
 License: GPLv2 or later
@@ -56,10 +56,10 @@ Import of CSV involves few simple steps. Choose your CSV file to import. Map you
 * Core Module - Post, Page, Custom Post, Comments, Category, Tags, Users, Customer Reviews.
 * eCommerce Products - WooCommerce, MarketPress, WP e-Commerce & eShop.
 * SEO field - Free & Pro version of All in One SEO and Yoast SEO.
-* Multilingual - WPML & [qTranslate X](https://www.smackcoders.com/blog/import-marketpress-pro-event-manager-and-more.html?utm_source=web&utm_campaign=readme&utm_medium=wp_org)
+* Multilingual - [WPML](https://www.youtube.com/watch?v=yvSPfvPp5s0&t=8s) & [qTranslate X](https://www.smackcoders.com/blog/import-marketpress-pro-event-manager-and-more.html?utm_source=web&utm_campaign=readme&utm_medium=wp_org)
 * Image - NextGEN Gallery
 * Events Management - Events Manager FREE & Pro
-* Custom fields - CustomPress, ACF, Types, Pods, CCTM & WordPress default Text & Textarea fields.
+* Custom fields - CustomPress, [ACF](https://youtu.be/RVoqPX3Ib94), [Toolset Types](https://www.smackcoders.com/documentation/ultimate-csv-importer-pro/toolset-types-import?utm_source=readme&utm_medium=wp_org), Pods, CCTM & WordPress default Text & Textarea fields.
 * Custom Post - CustomPress, Types, Pods, CPT UI, CCTM & default WordPress Custom Post.
 
 = Highlighted Feature of PRO =
@@ -126,6 +126,10 @@ The importer supports [default WordPress Text and Text area fields](https://www.
 For more FAQ, you can refer [here](https://www.smackcoders.com/wordpress-products-faq.html?utm_source=wp_org&utm_campaign=readme&utm_medium=faq).
 
 == Changelog ==
+=5.6.1=
+* Added: WP CSRF Protection
+=5.6=
+* Added: Compatibility for WordPress 5.0
 = 5.3.7 =
 * Removed: Registering custom field in Mapping section.
 = 5.3.6 =
@@ -498,6 +502,10 @@ For more FAQ, you can refer [here](https://www.smackcoders.com/wordpress-product
 * Initial release version. Tested and found works well without any issues.
 
 == Upgrade Notice ==
+= 5.6.1 =
+* Important update for security fixes.
+= 5.6 =
+* Upgrade now for WordPress 5.0 compatibility
 = 5.3.7 =
 * Upgrade now to get latest version of Ultimate CSV Importer
 = 5.3.6 =

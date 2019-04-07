@@ -76,6 +76,21 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         </a>
 
     </li>
+
+    <li class="box4-mobile">
+        <?php
+        $id=1063;
+        $post = get_post( $id );
+        $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
+        ?>
+        <a href="<?php echo get_page_link($post)?>">
+            <img  src="<?php echo $image[0];?>" />
+            <div class="inner">
+                <h5>Lineage</h5>
+            </div>
+        </a>
+
+    </li>
 </ul>
 
 <div class="home_news_carousel">

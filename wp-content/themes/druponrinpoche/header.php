@@ -97,9 +97,15 @@ $pllArgs = array(
                         <nav class="menu-top-mob-container">
                             <a class="icon-menu" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
                             <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
-                                <?php wp_nav_menu( array('container'=> '', 'theme_location' => 'dkr-menu', 'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>','depth' => 2  ) ); ?>
+                                <?php wp_nav_menu(
+                                    array('container'=> '',
+                                          'theme_location' => 'dkr-menu',
+                                          'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>',
+                                          'walker' => new Walker_Nav_Menu_Dr(),
+                                          'depth' => 3  ) );
+                                ?>
                             <?php } else { ?>
-                                <?php wp_nav_menu(  array('container'=> '', 'menu_class'  => 'menu-top-mob', 'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>','depth' => 2 ) ); ?>
+                                <?php wp_nav_menu(  array('container'=> '', 'menu_class'  => 'menu-top-mob', 'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>','depth' => 3 ) ); ?>
                             <?php } ?>
                         </nav>
 <!--                    </div>-->

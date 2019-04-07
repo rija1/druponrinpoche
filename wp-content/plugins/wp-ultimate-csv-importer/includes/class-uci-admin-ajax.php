@@ -806,27 +806,32 @@ class SmackUCIAdminAjax {
 		
 	public static function sendmail(){
 		if($_POST){
+                        add_filter( 'wp_mail_content_type','SmackUCIAdminAjax::set_content_type' );
 			$email = $_POST['email'];
 			$url = get_option('siteurl');
 			$site_name = get_option('blogname');
 			$headers = "From: " . $site_name . "<$email>" . "\r\n";
 			$headers.= 'MIME-Version: 1.0' . "\r\n";
-			$headers.= "Content-type: text/html; charset=iso-8859-1 \r\n";
+			$headers= array( "Content-type: text/html; charset=UTF-8");
 			$to = 'support@smackcoders.com';
 			$subject = $_POST['query'];
 			$message = "Site URL: " . $url . "\r\n";
 			$message .= "Plugin Name: " . SM_UCI_SETTINGS . "\r\n";
-			$message .= "Message: " . $_POST['message'] . "\r\n";
+			$message .= "Message: " ."\r\n" . $_POST['message'] . "\r\n";
 			//send email
 			if(wp_mail($to, $subject, $message, $headers)) {
 				echo 'Mail Sent!';
 			} else {
 				echo "Please draft a mail to support@smackcoders.com. If you doesn't get any acknowledgement within an hour!";
 			} //This method sends the mail.
+                        remove_filter( 'wp_mail_content_type', 'SmackUCIAdminAjax::set_content_type' );
 			die;
 		}
 	}
-
+          function set_content_type( $message ) {
+                 
+                return 'text/plain';
+        }
 	public static function send_subscribe_email(){
 		if($_POST){
 			$email = $_POST['subscribe_email'];

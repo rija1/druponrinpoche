@@ -72,6 +72,8 @@ if($main_mode == 'on'){
 
 <div class="template_body whole_body wp_ultimate_csv_importer_pro" style="font-size: 15px; margin-top: 40px;">
 <form class="form-inline" method="post">
+<?php wp_nonce_field('sm-uci-import'); ?>
+
 <div class="col-md-12">
 <div class="col-md-12 mt40" style="text-align: center;">
 	<input type="button" class="smack-btn smack-btn-primary btn-radius" value="<?php echo esc_attr('Resume','wp-ultimate-csv-importer');?>" style="display:none;" id="continue_import" onclick="continueImport();" >

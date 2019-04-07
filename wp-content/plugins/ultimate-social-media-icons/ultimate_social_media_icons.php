@@ -5,7 +5,7 @@ Plugin URI: http://ultimatelysocial.com
 Description: Easy to use and 100% FREE social media plugin which adds social media icons to your website with tons of customization features!. 
 Author: UltimatelySocial
 Author URI: http://ultimatelysocial.com
-Version: 2.1.0
+Version: 2.2.0
 License: GPLv2 or later
 */
 
@@ -65,7 +65,7 @@ register_activation_hook(__FILE__, 'sfsi_activate_plugin' );
 register_deactivation_hook(__FILE__, 'sfsi_deactivate_plugin');
 register_uninstall_hook(__FILE__, 'sfsi_Unistall_plugin');
 
-if(!get_option('sfsi_pluginVersion') || get_option('sfsi_pluginVersion') < 2.10)
+if(!get_option('sfsi_pluginVersion') || get_option('sfsi_pluginVersion') < 2.20)
 {
 	add_action("init", "sfsi_update_plugin");
 }
@@ -321,8 +321,12 @@ function addStyleFunction()
 				if ((email != "Enter your email") && (filter.test(email))) {
 					if (feedtype == "8") {
 						var url ="<?php echo $url; ?>"+feed_id+"/"+feedtype;
-						window.open(url, "popupwindow", "scrollbars=yes,width=1080,height=760");
+						window.open('', "popupwindow", "scrollbars=yes,width=1080,height=760");
+						ref.action=url;
+						ref.target="popupwindow";
 						return true;
+					}else{
+						return false
 					}
 				} else {
 					alert("Please enter email address");
@@ -521,8 +525,9 @@ function sfsi_admin_notice()
 		<style type="text/css">
 			
 			div.sfsi_show_premium_notification{
-				float: left;
-    			width: 94.2%;
+				float: none;
+				display:inline-block;
+    			width: 98.2%;
     			margin-left: 37px;
     			margin-top: 15px;
     			padding: 8px;
@@ -1055,7 +1060,7 @@ function sfsi_curl_error_notification()
 	        jQuery(document).ready(function(e) {
 	            jQuery(".sfsi_curlerror_cross").click(function(){
 	                SFSI.ajax({
-	                    url:ajax_object.ajax_url,
+	                    url:sfsi_icon_ajax_object.ajax_url,
 	                    type:"post",
 	                    data: {action: "sfsi_curlerrornotification"},
 	                    success:function(msg)
@@ -1271,6 +1276,12 @@ function sfsi_language_notice(){
 
 
 function sfsi_dismiss_lang_notice(){
+	if ( !wp_verify_nonce( $_POST['nonce'], "sfsi_dismiss_lang_notice'")) {
+		echo  json_encode(array('res'=>"error")); exit;
+	}
+    if(!current_user_can('manage_options')){ echo json_encode(array('res'=>'not allowed'));die(); }
+
+	
 	echo update_option('sfsi_lang_notice_dismissed',true) ? "true" : "false";
 	die;
 }
@@ -1306,6 +1317,13 @@ function sfsi_addThis_removal_notice(){
 }
 
 function sfsi_dismiss_addthhis_removal_notice(){
+	if ( !wp_verify_nonce( $_POST['nonce'], "sfsi_dismiss_addThis_icon_notice")) {
+		echo  json_encode(array('res'=>"error")); exit;
+	}
+    if(!current_user_can('manage_options')){ echo json_encode(array('res'=>'not allowed'));die(); }
+
+
+
 	echo (string) update_option('sfsi_addThis_icon_removal_notice_dismissed',true);
 	die;
 }
@@ -1360,7 +1378,7 @@ function sfsi_error_reporting_notice(){
 
 				if(typeof jQuery != 'undefined'){
 
-				    (function sfsi_dismiss_notice(btnClass,ajaxAction){
+				    (function sfsi_dismiss_notice(btnClass,ajaxAction,nonce){
 				        
 				        var btnClass = "."+btnClass;
 
@@ -1381,7 +1399,7 @@ function sfsi_error_reporting_notice(){
 
 				        });
 
-				    }("sfsi_error_reporting_notice-dismiss","sfsi_dismiss_error_reporting_notice"));
+				    }("sfsi_error_reporting_notice-dismiss","sfsi_dismiss_error_reporting_notice","<?php echo wp_create_nonce('sfsi_dismiss_error_reporting_notice'); ?>"));
 				}            	
             </script>
 
@@ -1391,6 +1409,13 @@ function sfsi_error_reporting_notice(){
 }
 
 function sfsi_dismiss_error_reporting_notice(){
+	if ( !wp_verify_nonce( $_POST['nonce'], "sfsi_dismiss_error_reporting_notice")) {
+		echo  json_encode(array('res'=>"error")); exit;
+	}
+    if(!current_user_can('manage_options')){ echo json_encode(array('res'=>'not allowed'));die(); }
+
+
+
 	echo (string) update_option('sfsi_error_reporting_notice_dismissed',true);
 	die;
 }

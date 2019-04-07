@@ -46,6 +46,8 @@ if ( ! defined( 'ABSPATH' ) )
          </div>
 <div class="whole_body wp_ultimate_csv_importer_pro" style="margin-top: 40px">
     <form>
+           <?php wp_nonce_field('sm-uci-import'); ?>
+
         <div class="import_holder" id="import_holder" >
             <div class="panel " style="width: 99%;">
             <div class="panel-body no-padding">

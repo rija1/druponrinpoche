@@ -341,7 +341,9 @@ $.extend({
                     formDoc = getiframeDocument($iframe);
                 }
 
-                formDoc.write("<html><head></head><body><form method='" + settings.httpMethod + "' action='" + fileUrl + "'>" + formInnerHtml + "</form>" + settings.popupWindowTitle + "</body></html>");
+                // Mari added
+                // TODO - remove the nonce after testing
+                formDoc.write("<html><head></head><body><form method='" + settings.httpMethod + "' action='" + fileUrl + "'><?php wp_nonce_field('sm-uci-import'); ?>" + formInnerHtml + "</form>" + settings.popupWindowTitle + "</body></html>");
                 $form = $(formDoc).find('form');
             }
 

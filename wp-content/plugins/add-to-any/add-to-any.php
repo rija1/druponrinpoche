@@ -3,7 +3,7 @@
 Plugin Name: AddToAny Share Buttons
 Plugin URI: https://www.addtoany.com/
 Description: Share buttons for your pages including AddToAny's universal sharing button, Facebook, Twitter, Google+, Pinterest, WhatsApp and many more.
-Version: 1.7.34
+Version: 1.7.35
 Author: AddToAny
 Author URI: https://www.addtoany.com/
 Text Domain: add-to-any
@@ -248,7 +248,7 @@ function ADDTOANY_SHARE_SAVE_ICONS( $args = array() ) {
 		
 		// Include Facebook Like and Twitter Tweet etc. unless no_special_services arg is true
 		if ( ! isset( $args['no_special_services'] ) || false == $args['no_special_services'] ) {
-			array_unshift( $service_codes, 'facebook_like', 'twitter_tweet', 'google_plusone', 'google_plus_share', 'pinterest_pin' );
+			array_unshift( $service_codes, 'facebook_like', 'twitter_tweet', 'pinterest_pin' );
 		}
 	
 		// Use default services if services have not been selected yet
@@ -266,7 +266,7 @@ function ADDTOANY_SHARE_SAVE_ICONS( $args = array() ) {
 		if ( ! in_array( $active_service, $service_codes ) )
 			continue;
 
-		if ( $active_service == 'facebook_like' || $active_service == 'twitter_tweet' || $active_service == 'google_plusone' || $active_service == 'google_plus_share' || $active_service == 'pinterest_pin' ) {
+		if ( $active_service == 'facebook_like' || $active_service == 'twitter_tweet' || $active_service == 'pinterest_pin' ) {
 			$special_args = $args;
 			$special_args['output_later'] = true;
 			$link = ADDTOANY_SHARE_SAVE_SPECIAL( $active_service, $special_args );
@@ -500,16 +500,6 @@ function ADDTOANY_SHARE_SAVE_SPECIAL( $special_service_code, $args = array() ) {
 	elseif ( $special_service_code == 'twitter_tweet' ) {
 		$custom_attributes .= ' data-url="' . esc_attr( $args['linkurl'] ) . '"';
 		$custom_attributes .= ' data-text="' . esc_attr( $args['linkname'] ) . '"';
-		$special_html = sprintf( $special_anchor_template, $special_service_code, $custom_attributes );
-	}
-	
-	elseif ( $special_service_code == 'google_plusone' ) {
-		$custom_attributes .= ' data-href="' . esc_attr( $args['linkurl'] ) . '"';
-		$special_html = sprintf( $special_anchor_template, $special_service_code, $custom_attributes );
-	}
-	
-	elseif ( $special_service_code == 'google_plus_share' ) {
-		$custom_attributes .= ' data-href="' . esc_attr( $args['linkurl'] ) . '"';
 		$special_html = sprintf( $special_anchor_template, $special_service_code, $custom_attributes );
 	}
 	

@@ -81,6 +81,8 @@ else{
 	<div class="template_body whole_body wp_ultimate_csv_importer_pro" style="font-size: 14px; margin-top: 40px;">
 		<h3 style="margin-left:2%;" class="csv-importer-heading"><?php echo esc_html__('Import configuration Section','wp-ultimate-csv-importer');?></h3>
 		<form class="form-inline" method="post" action="<?php echo $actionURL;?>">
+			   <?php wp_nonce_field('sm-uci-import'); ?>
+
 			<div id='wp_warning' style = 'display:none;' class = 'error'></div>
 			<div class="config_table">
 			<div class="col-md-12 mt20" id="main_ch">

@@ -49,6 +49,7 @@ class SmackUCIAdmin extends SmackUCIHelper {
 	public static function show_admin_menus() {
 		$is_author_can_import = get_option('sm_uci_pro_settings', null);
 		$is_author_can_import = isset($is_author_can_import['author_editor_access']) ? $is_author_can_import['author_editor_access'] : '';
+
 		if ( apply_filters( 'sm_uci_enable_setup_wizard', true ) && is_user_logged_in() &&  current_user_can( 'administrator' ) ) {
 			add_action( 'admin_menu', array( __CLASS__, 'admin_menus' ) );
 		}
@@ -92,6 +93,18 @@ class SmackUCIAdmin extends SmackUCIHelper {
 	}
 
 	public static function sm_uci_screens() {
+
+		// Mari added
+		// Verify the WP NONCE if the request is POST
+		// nonce name - sm-uci-import
+		if($_POST){
+
+			if ( !isset($_POST['_wpnonce']) ||  ! wp_verify_nonce( $_POST['_wpnonce'], 'sm-uci-import' ) ) {
+
+			     die( 'You are restricted from accessing this page.' ); 
+			}
+		}
+
 		global $uci_admin;
 		$uci_admin->show_top_navigation_menus();
 		switch (sanitize_title($_REQUEST['page'])) {
@@ -119,6 +132,7 @@ class SmackUCIAdmin extends SmackUCIHelper {
 			default:
 				break;
 		}
+
 		return false;
 	}
 
@@ -157,6 +171,7 @@ class SmackUCIAdmin extends SmackUCIHelper {
 		$parserObj = new SmackCSVParser();
 		$uci_admin->show_notices($parserObj);
 		$step = isset($_REQUEST['step']) ? sanitize_title($_REQUEST['step']) : '';
+
 		switch ($step) {
 			case 'import_file':     // Step one
 				include ( 'views/form-file-import-method.php' );
@@ -165,11 +180,27 @@ class SmackUCIAdmin extends SmackUCIHelper {
 				# NOTE: Removed the suggested template view
 				break;
 			case 'mapping_config':  // Step two
+
 				if(isset($_REQUEST['eventKey']) ? sanitize_key($_REQUEST['eventKey']):'' ) :
 					if(isset($_POST) && !empty($_POST)) :
+
 						$_POST  = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
-						$parserObj->screenData = array('import_file' => $_POST);
-						update_option($_REQUEST['eventKey'], $parserObj->screenData);
+
+						if(empty($_REQUEST['eventKey'])){
+							// Mari added - to prevent from invalid form action
+							$parserObj->wp_session = "Invaid Event Key";
+							echo "Invaid Event Key";
+							exit();
+						}else if(get_option($_REQUEST['eventKey'])){
+							// Mari added - to prevent from invalid form action
+							$parserObj->wp_session = "Invaid Event Key";
+							echo "Invaid Event Key";
+							exit();
+						}else{
+							$parserObj->screenData = array('import_file' => $_POST);
+							update_option($_REQUEST['eventKey'], $parserObj->screenData);
+						}
+
 					else:
 						$parserObj->screenData = get_option($_REQUEST['eventKey']);
 					endif;

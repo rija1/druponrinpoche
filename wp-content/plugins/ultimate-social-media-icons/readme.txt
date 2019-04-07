@@ -1,9 +1,9 @@
 === Social Media Share Buttons & Social Sharing Icons ===
 Contributors: socialdude
 Tags: social media, share, buttons, social widget, icons, share icons, share buttons, sharing icons, sharing buttons, social share, sharing, social sharing
-Requires at least: 3.0
-Tested up to: 5.0
-Stable tag: 2.1.0
+Requires at least: 3.5
+Tested up to: 5.1
+Stable tag: 2.2.0
 License: GPLv2 
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,7 @@ We released a Premium Plugin with many more exciting features:
 
 Have a look at the [Premium Plugin features](https://www.ultimatelysocial.com/usm-premium/)
 
+Note: this plugin uses the third party provider SpecificFeeds.com for the subscription feature, enabling you to allow your visitors to subscribe to your site and get new posts automatically by email. Upon installation of the plugin a feed will be set up on SpecificFeeds, transmitting your IP address. This is required for this feature to work.
 
 == Installation ==
 Extract the zip file and drop the contents into the wp-content/plugins/ directory of your WordPress installation. Then activate the plugin from the plugins page.
@@ -274,10 +275,48 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 
 == Changelog ==
+= 2.2.0 =
+* Solved: Critical security patch.
+
+= 2.1.9 =
+* Solved: Security patch.
+
+= 2.1.8 =
+* Solved: Security update.
+
+= 2.1.7 =
+* Solved: Save button not working.
+
+= 2.1.6 =
+* Solved: Compatablity issue with older versions.
+
+= 2.1.5 =
+* Solved: google plus is deprecated
+* Solved: Sf count not shown
+* Solved: Sf subscribe form opens blank page.
+* solved: decreased the manual intervestions of upgradation to premium.
+
+= 2.1.4 =
+* Solved: Changed theme check url to match bloginfo url.
+
+= 2.1.3 =
+* Solved: Email validation for Offline chat.
+* Solved: Premium notification breaking the dashboard structure.
+* Solved: changed option for linkedin count
+* Solved: ajax_object conflict with themes.
+* Solved: new keyword check from page title, page keywords and page description.
+
+= 2.1.2 =
+* Solved: Text optimized
+
+= 2.1.1 =
+* Solved: design changes for chat.
+* Solved: unexpected charactor  "[" error for php version 5.3. 
 
 = 2.1.0 =
-* Solved: removed deprecated jQuery functions
-* Solved: Rectangle icon alignemnt problem on some themes
+* New Feature: Chat for site admin on our settings page.
+* Solved: removed deprecated jQuery functions.
+* Solved: Rectangle icon alignemnt problem on some themes solved.
 
 = 2.0.9 =
 * Banner for animation section in Question 4 added
@@ -286,7 +325,7 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 = 2.0.8 =
 * Solved: Notification bar cannot be seen anymore
-* Solved: cleared the float elements after notice
+* Solved: cleared the float elements after notice.
 
 = 2.0.7 =
 * Round green follow button doesn't show - fixed
@@ -736,5 +775,5 @@ You cannot use the same plugin twice, however you can install both the USM as we
 
 == Upgrade Notice ==
 
-= 2.1.0 =
+= 2.2.0 =
 Please upgrade

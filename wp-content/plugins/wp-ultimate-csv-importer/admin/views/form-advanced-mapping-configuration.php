@@ -111,6 +111,9 @@ $ecommerce_module = array('WooCommerce', 'MarketPress', 'WPeCommerce', 'eShop');
    <link rel="stylesheet" type="text/css" href="style.css">
    </head> -->
 <form id ="mapping_section" autocomplete="off" method="post" action="<?php echo $actionURL;?>">
+
+      <?php wp_nonce_field('sm-uci-import'); ?>
+
    <main id="main ">
       <div id="mapping-container">
          <div id="header1"></div>

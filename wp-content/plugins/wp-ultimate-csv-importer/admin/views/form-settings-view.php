@@ -199,6 +199,7 @@ if(isset($ucioptimize['delete_all_trackback_comments'])) {
          </div>
 <div class="whole_body wp_ultimate_csv_importer_pro" style="margin-top: 40px;">
     <form id="form_import_file">
+        <?php wp_nonce_field('sm-uci-import'); ?>
         <div class="import_holder" id="import_holder" >
             <div class="panel " style="width: 99%;">
                 <div id="warningsec" style="color:red;width:100%; min-height: 110px;border: 1px solid #d1d1d1;background-color:#fff;display:none;">

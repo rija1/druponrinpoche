@@ -49,6 +49,8 @@ else{
 ?>
 <div class="whole_body wp_ultimate_csv_importer_pro">
    <form class="form-horizontal" id="form_import_file" method="post" action= "<?php echo esc_url(admin_url() . 'admin.php?page=sm-uci-import&step=suggested_template');?>" enctype="multipart/form-data">
+         <?php wp_nonce_field('sm-uci-import'); ?>
+
    <div id='wp_warning_main' class = 'updated notice'>
    <p>Supported file types .csv .zip .txt 
    </p></div>
