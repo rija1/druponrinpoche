@@ -290,6 +290,18 @@ html.swipebox-html.swipebox-touch {
 #swipebox-top-bar {
   color: white !important;
   font-size: 15px;
-  line-height: 43px;
+  line-height: 26px;
   font-family: Helvetica, Arial, sans-serif;
+}
+
+/* REEDZ HACK */
+/**  mobile  **/
+@media only screen and (max-width: 480px) {
+    #swipebox-top-bar {
+        line-height: 26px;
+    }
+    #swipebox-title {
+        padding: 6px 9px 6px 9px;
+        padding-top: 5px;
+}
 }
