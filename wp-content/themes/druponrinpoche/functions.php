@@ -1078,3 +1078,33 @@ function rlLightboxConditionaLoading($addScripts ) {
     return $addScripts;
 }
 add_filter( 'rl_lightbox_conditional_loading', 'rlLightboxConditionaLoading');
+
+
+function getDrCustomIds()
+{
+    $locale = get_locale();
+    $customIds = array();
+
+    if($locale == 'en_US') {
+        $customIds['home_metaslider_id'] = 132;
+        $customIds['home_schedule_id'] = 5;
+        $customIds['news_feat_cat_ids'] = array(2,93);
+        $customIds['schedule_page_id'] = 1581;
+        $customIds['aboutrinpoche_page_id'] = 1403;
+        $customIds['sekhar_page_id'] = 54;
+        $customIds['mts_page_id'] = 693;
+        $customIds['lineage_page_id'] = 1063;
+    } elseif($locale == 'zh_CN') {
+        $customIds['home_metaslider_id'] = 132;
+        $customIds['home_schedule_id'] = 5;
+        $customIds['news_feat_cat_ids'] = array(2,93);
+        $customIds['schedule_page_id'] = 1581;
+        $customIds['aboutrinpoche_page_id'] = 1403;
+        $customIds['sekhar_page_id'] = 54;
+        $customIds['mts_page_id'] = 693;
+        $customIds['lineage_page_id'] = 1063;
+    }
+
+    return $customIds;
+
+}

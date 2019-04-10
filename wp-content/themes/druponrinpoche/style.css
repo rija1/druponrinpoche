@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*
 Theme Name: Drupon Rinpoche
 Author: Reedz
@@ -30,9 +31,12 @@ html {
   -ms-text-size-adjust: 100%; }
 
 body {
-  font: normal 400 14px/1 'Raleway', Arial, sans-serif;
   word-wrap: break-word;
-  background: #fdfdfd; }
+  background: #fdfdfd;
+  font-family: 'Roboto','华文细黑','STHeiti Light','宋体',  'Songti TC';
+  line-height: 150%;
+  /* Cover BG by http://gradient.quasi.ink */
+  }
 
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block; }
@@ -497,7 +501,7 @@ nav ol, nav ul {
     border-collapse: collapse;
     border-spacing: 0;
     display: table-row;
-    font-family: 'Raleway';
+    font-family: 'Raleway','宋体', 'SimSun';
     font-size: 14px;
     line-height: 17px;
     text-transform: uppercase;
@@ -550,7 +554,7 @@ nav ol, nav ul {
   margin-top: 22px;
   padding-left: 15px;
   width: 100%;
-  font-family: 'Raleway';
+  font-family: 'Raleway','宋体', 'SimSun';
   font-size: 14px;
   line-height: 17px;
   text-transform: uppercase; }
@@ -730,7 +734,7 @@ nav ol, nav ul {
   margin-left: 25px; }
 
 .footer {
-  font-family: 'Raleway';
+  font-family: 'Raleway','宋体', 'SimSun';
   clear: both;
   padding-top: 28px;
   *padding-top: 0px;
@@ -952,12 +956,6 @@ img.alignnone {
   top: -8px;
   left: 1px; }
 
-body {
-  font-family: 'Roboto';
-  font-weight: 100;
-  line-height: 150%;
-  /* Cover BG by http://gradient.quasi.ink */ }
-
 /**  green  **/
 .color-green, a, h1, .logo, h1 a, .article-welcome h2 a:hover, .article-procedure h2 a:hover {
   color: #656250; }
@@ -999,7 +997,7 @@ h5 {
   font-size: 18px; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Raleway'; }
+  font-family: 'Raleway','宋体', 'SimSun'; }
 
 blockquote {
   background: none repeat scroll 0 0 #f6f6f6;
@@ -1380,7 +1378,7 @@ li.home_post {
 
 .posts-grid .article-text, .featured-grid .article-text {
   font-weight: 400;
-  font-family: 'Raleway'; }
+  font-family: 'Raleway','宋体', 'SimSun'; }
 
 .wide {
   grid-column: auto / span 2; }
@@ -1435,7 +1433,7 @@ ul.poly_switcher {
   grid-template-columns: 1fr 1fr;
   margin-right: 10px; }
   ul.poly_switcher a {
-    font-family: Raleway;
+    font-family: 'Raleway','宋体', 'SimSun';
     color: #80784c;
     font-size: 11px;
     font-weight: 300; }
@@ -1731,7 +1729,7 @@ li.page_item_has_children a {
   margin: 15px 0 20px 0 !important; }
 
 h1 {
-  font-family: 'Raleway';
+  font-family: 'Raleway','宋体', 'SimSun';
   font-size: 28px;
   line-height: 1;
   text-align: left;
@@ -1790,7 +1788,7 @@ h4 {
   padding-left: 10px; }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto'; }
+  font-family: 'Roboto','华文细黑','STHeiti Light'; }
 
 /*LINEAGE*/
 .lineages {
@@ -1983,7 +1981,7 @@ p.teaching_info {
   display: none; }
 .sidebar-container .teachings_cat_list > ul > li > .teachings-cat > a {
   color: #80784c;
-  font-family: 'Roboto';
+  font-family: 'Roboto','华文细黑','STHeiti Light';
   font-weight: 100;
   text-transform: uppercase;
   font-size: 18px; }
@@ -2010,7 +2008,7 @@ p.teaching_info {
 
 .teachings_cat_list > ul > li.current-cat > .teachings-cat > a {
   color: #80784c;
-  font-family: 'Roboto';
+  font-family: 'Roboto','华文细黑','STHeiti Light';
   font-weight: 100; }
 
 .category-news .article-blog {
@@ -2043,7 +2041,7 @@ p.teaching_info {
     text-align: center;
     text-transform: uppercase;
     color: #80784c;
-    font-family: 'Raleway';
+    font-family: 'Raleway','宋体', 'SimSun';
     font-size: 11px;
     width: 82px;
     margin: 0 auto 0 auto; }
@@ -2059,7 +2057,7 @@ p.teaching_info {
   width: 82px;
   margin: 0 auto 0 auto;
   padding: 5px;
-  font-family: 'Raleway';
+  font-family: 'Raleway','宋体', 'SimSun';
   font-size: 12px;
   text-transform: uppercase; }
 

@@ -4,34 +4,25 @@
  * @package Onsen
  */
 
-$categoriesToFetch = array(2,93); // News and Featured cat Ids
-$homeMetaSliderId = 132;
-$schedulePageId=1581;
+$customIds = getDrCustomIds();
 
 get_header();
-if ( 'posts' == get_option( 'show_on_front')) {
-//	include( get_home_template() );
-} else {
-
-//	get_template_part( 'content', 'home' );
-}
-
 
 $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     'posts_per_page'      => 4,
     'no_found_rows'       => true,
     'post_status'         => 'publish',
     'ignore_sticky_posts' => true,
-    'category__in' => $categoriesToFetch,
+    'category__in' => $customIds['news_feat_cat_ids'],
 ), 'wpa' ) );
 ?>
 
-<?php echo do_shortcode('[metaslider id="'.$homeMetaSliderId.'"]'); ?>
+<?php echo do_shortcode('[metaslider id="'.$customIds['home_metaslider_id'].'"]'); ?>
 
 <ul class="home_pages_grid">
     <li class="box1">
         <?php
-        $id=1403;
+        $id=$customIds['aboutrinpoche_page_id'];
         $post = get_post( $id );
         $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), array(600,400));
         $url = $src[0];
@@ -47,7 +38,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     </li>
     <li class="box2">
         <?php
-        $id=54;
+        $id=$customIds['sekhar_page_id'];
         $post = get_post( $id );
         $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), array(600,400));
         $url = $src[0];
@@ -63,7 +54,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     </li>
     <li class="box3">
         <?php
-        $id=693;
+        $id=$customIds['mts_page_id'];
         $post = get_post( $id );
         $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
         ?>
@@ -79,7 +70,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 
     <li class="box4-mobile">
         <?php
-        $id=1063;
+        $id=$customIds['lineage_page_id'];
         $post = get_post( $id );
         $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
         ?>
@@ -98,15 +89,13 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     <div class="home_mini_carousel">
         <div class="schedule_title"><h5>Upcoming Schedule</h5></div>
         <?php
-        $table = TablePress::$model_table->load( 5, true, true );
+        $table = TablePress::$model_table->load( $customIds['home_schedule_id'], true, true );
         $scheduleData = $table['data'];
         unset($scheduleData[0]);
 //        $schCntBatch1 = array();
 //        $schCntBatch2 = array();
         list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
         ?>
-        <!--        <a class="full_schedule_lnk" href="--><?php //echo get_page_link($schedulePage)?><!--">View Full Schedule</a>-->
-
         <div class="schedule_carousel_wrap">
             <div class="schedule_carousel" id="homeCarousel">
                 <div>
@@ -153,7 +142,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     <!--            </div>-->
             </div>
             <div class="sched_carousel_arrows"></div>
-            <a class="view_full_schedule" href="<?php echo get_page_link($schedulePageId)?>"><span>View Full Schedule</span></a>
+            <a class="view_full_schedule" href="<?php echo get_page_link($customIds['schedule_page_id'])?>"><span>View Full Schedule</span></a>
         </div>
 
 
