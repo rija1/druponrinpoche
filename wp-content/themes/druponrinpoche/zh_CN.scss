@@ -1,42 +1,60 @@
+@font-face {
+    font-family: 'SimSunDR';
+    src: local('宋体'),
+         local('SimSun');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'STHeitiLightDR';
+    src: local('华文细黑'),
+         local('STHeiti Light');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
 body {
-    font-family: 'Roboto','华文细黑','STHeiti Light','宋体', 'SimSun';
+    font-family: 'Roboto','STHeitiLightDR';
+    font-weight: normal;
 }
 
 .menu-top-container {
     .menu-top {
-        font-family: 'Raleway','宋体', 'SimSun';
+        font-family: 'Raleway','SimSunDR';
     }
 }
 
 .menu-top-mob-container {
-    font-family: 'Raleway','宋体', 'SimSun';
+    font-family: 'Raleway','SimSunDR';
 }
 
 .footer {
-    font-family: 'Raleway','宋体', 'SimSun';
+    font-family: 'Raleway','SimSunDR';
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Raleway','华文细黑','STHeiti Light','宋体', 'SimSun';
+    font-family: 'Raleway','STHeitiLightDR','SimSunDR';
 }
 
 
 
 .posts-grid .article-text, .featured-grid .article-text {
     font-weight: 400;
-    font-family: 'Raleway','宋体', 'SimSun';
+    font-family: 'Raleway','SimSunDR';
 }
 
 ul.poly_switcher {
     a {
-        font-family: 'Raleway','宋体', 'SimSun';
+        font-family: 'Raleway','SimSunDR';
     }
 }
 
 .category-news {
     a.article-link {
         span.read_more {
-            font-family: 'Raleway','宋体', 'SimSun';
+            font-family: 'Raleway','SimSunDR';
         }
     }
 }
@@ -45,7 +63,7 @@ ul.poly_switcher {
     .featured-grid {
         a.article-link {
             span.read_more {
-                font-family: 'Raleway','宋体', 'SimSun';
+                font-family: 'Raleway','SimSunDR';
             }
         }
     }
@@ -53,10 +71,10 @@ ul.poly_switcher {
 
 .sidebar-container .teachings_cat_list {
     > ul > li > .teachings-cat > a {
-        font-family: 'Roboto','华文细黑','STHeiti Light','宋体', 'SimSun';
+        font-family: 'Roboto','STHeitiLightDR','SimSunDR';
     }
 }
 
 .teachings_cat_list > ul > li.current-cat > .teachings-cat > a {
-    font-family: 'Roboto','华文细黑','STHeiti Light','宋体', 'SimSun';
+    font-family: 'Roboto','STHeitiLightDR','SimSunDR';
 }
