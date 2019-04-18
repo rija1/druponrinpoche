@@ -2188,10 +2188,7 @@ a.expand_link {
 .footer a.fb {
   font-family: 'FontAwesome';
   font-size: 28px;
-  color: #c5c5c5; }
-  .footer a.fb:hover {
-    text-decoration: none;
-    color: #bb9b25; }
+  color: #3a5a98; }
 
 .menu-bar-logo-block {
   width: 345px; }
