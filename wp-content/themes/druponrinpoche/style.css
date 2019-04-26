@@ -2465,7 +2465,8 @@ figcaption {
     font-size: 15px; }
     .article-text figure.wp-caption .wp-caption-text {
       padding-bottom: 15px;
-      font-size: 14px; }
+      font-size: 14px;
+      padding-top: 9px; }
 
   .container .single-post img {
     display: block;
