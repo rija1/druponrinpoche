@@ -2221,7 +2221,6 @@ figure {
   margin: 0px; }
 
 figcaption {
-  display: table-caption;
   caption-side: bottom;
   text-align: center; }
 
