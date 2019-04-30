@@ -1110,16 +1110,16 @@ function getDrCustomIds()
 }
 
 add_action('init', function() {
-    pll_register_string('read-more', 'Read More');
-    pll_register_string('home-about-rinpoche', 'About Rinpoche');
-    pll_register_string('home-about-rinpoche-intro', 'From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.');
-    pll_register_string('home-sekhar-intro', 'Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa');
-    pll_register_string('home-mts-intro', 'The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.');
-    pll_register_string('upcoming-schedule', 'Upcoming Schedule');
-    pll_register_string('schedule-date', 'Date');
-    pll_register_string('schedule-location', 'Location');
-    pll_register_string('schedule-details', 'Details');
-    pll_register_string('view-full-schedule', 'View Full Schedule');
-    pll_register_string('latest-news', 'Latest News');
+    pll_register_string('read-more', 'Read More','drupon-rinpoche');
+    pll_register_string('home-about-rinpoche', 'About Rinpoche','drupon-rinpoche');
+    pll_register_string('home-about-rinpoche-intro', 'From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.','drupon-rinpoche');
+    pll_register_string('home-sekhar-intro', 'Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa','drupon-rinpoche');
+    pll_register_string('home-mts-intro', 'The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.','drupon-rinpoche');
+    pll_register_string('upcoming-schedule', 'Upcoming Schedule','drupon-rinpoche');
+    pll_register_string('schedule-date', 'Date','drupon-rinpoche');
+    pll_register_string('schedule-location', 'Location','drupon-rinpoche');
+    pll_register_string('schedule-details', 'Details','drupon-rinpoche');
+    pll_register_string('view-full-schedule', 'View Full Schedule','drupon-rinpoche');
+    pll_register_string('latest-news', 'Latest News','drupon-rinpoche');
 
 });
