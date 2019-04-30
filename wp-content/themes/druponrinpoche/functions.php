@@ -1095,16 +1095,31 @@ function getDrCustomIds()
         $customIds['mts_page_id'] = 693;
         $customIds['lineage_page_id'] = 1063;
     } elseif($locale == 'zh_CN') {
-        $customIds['home_metaslider_id'] = 132;
-        $customIds['home_schedule_id'] = 5;
+        $customIds['home_metaslider_id'] = 1516;
+        $customIds['home_schedule_id'] = 14;
         $customIds['news_feat_cat_ids'] = array(2,93);
         $customIds['schedule_page_id'] = 1581;
-        $customIds['aboutrinpoche_page_id'] = 1403;
+        $customIds['aboutrinpoche_page_id'] = 1269;
         $customIds['sekhar_page_id'] = 54;
-        $customIds['mts_page_id'] = 693;
+        $customIds['mts_page_id'] = 12938;
         $customIds['lineage_page_id'] = 1063;
     }
 
     return $customIds;
 
 }
+
+add_action('init', function() {
+    pll_register_string('read-more', 'Read More');
+    pll_register_string('home-about-rinpoche', 'About Rinpoche');
+    pll_register_string('home-about-rinpoche-intro', 'From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.');
+    pll_register_string('home-sekhar-intro', 'Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa');
+    pll_register_string('home-mts-intro', 'The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.');
+    pll_register_string('upcoming-schedule', 'Upcoming Schedule');
+    pll_register_string('schedule-date', 'Date');
+    pll_register_string('schedule-location', 'Location');
+    pll_register_string('schedule-details', 'Details');
+    pll_register_string('view-full-schedule', 'View Full Schedule');
+    pll_register_string('latest-news', 'Latest News');
+
+});

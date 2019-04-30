@@ -30,7 +30,7 @@ $featuredPostIds = array();
                     <span class="category-post-title"><?php echo the_title();  ?></span>
                     <span class="category-post-date"><?php echo get_the_date(); ?></span>
                     <p><?php echo get_text_excerpt(get_the_excerpt(),240);?></p>
-                    <span class="read_more">Read more</span>
+                    <span class="read_more"><?php pll_e('Read More'); ?></span>
                 </div>
             </div>
             </a>
@@ -60,7 +60,7 @@ $featuredPostIds = array();
                 <span class="category-post-title" href="<?php the_permalink() ?>"><?php if(get_the_title()) { echo get_the_title(); } else { echo get_the_time(); } ?></span>
                 <span class="category-post-date"><?php echo get_the_date(); ?></span>
                 <p><?php echo get_text_excerpt(get_the_excerpt($post),140);?></p>
-                <span class="read_more">Read more</span>
+                <span class="read_more"><?php pll_e('Read More'); ?></span>
             </div>
         </div>
     </article>
