@@ -70,8 +70,8 @@ $featuredPostIds = array();
     </div>
     <p class="pagination">
         <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>
-            <span class="left button-gray"><?php next_posts_link(__('Previous Posts', 'dkr')) ?></span>
-            <span class="right button-gray"><?php previous_posts_link(__('Next posts', 'dkr')) ?></span>
+            <span class="left button-gray"><?php next_posts_link(pll_e('Previous Posts')) ?></span>
+            <span class="right button-gray"><?php previous_posts_link(pll_e('Next posts')) ?></span>
         <?php } ?>
     </p>
 </div> <!--  END section-blog  -->

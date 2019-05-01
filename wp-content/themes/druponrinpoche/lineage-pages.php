@@ -38,10 +38,6 @@
 <script type="text/javascript">
     jQuery( document ).ready(function() {
         var expandHtml ='<div class="circle-plus closed"><div class="circle"><div class="horizontal"></div><div class="vertical"></div></div></div>';
-
-
-        //jQuery( '.sidebar-container li.page_item_has_children > a').not('.current_page_item').not('.current_page_parent').after(expandHtml);
-//        jQuery( '.sidebar-container .current_page_parent > a').after(expandHtml);
         jQuery( '.sidebar-container li.page_item_has_children > a').after(expandHtml);
 
         if (jQuery( '.sidebar-container .current_page_item').hasClass('page_item_has_children')) {
@@ -57,16 +53,9 @@
 
             if(jQuery(this).hasClass('opened')) {
                 jQuery(this).parent().find('ul.children').css('display','block');
-//              alert(jQuery(this).parent().find('ul.children').outerHeight(true));
-//              jQuery(this).parent().find('ul.children').height(jQuery(this).parent().find('ul.children').outerHeight(true));
-//              jQuery(this).parent().find('ul.children').height('100%');
-//              jQuery(this).parent().find('ul.children').css('padding','12px 0px 15px 40px');
 
             } else {
                 jQuery(this).parent().find('ul.children').css('display','none');
-//              alert(jQuery(this).parent().find('ul.children').outerHeight(true));
-//              jQuery(this).parent().find('ul.children').height(0);
-//              jQuery(this).parent().find('ul.children').css('padding','0');
 
             }
         })

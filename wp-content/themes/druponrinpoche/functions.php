@@ -1121,5 +1121,11 @@ add_action('init', function() {
     pll_register_string('schedule-details', 'Details','drupon-rinpoche');
     pll_register_string('view-full-schedule', 'View Full Schedule','drupon-rinpoche');
     pll_register_string('latest-news', 'Latest News','drupon-rinpoche');
+    pll_register_string('header-title-line1','Drupon Khen Rinpoche','drupon-rinpoche');
+    pll_register_string('header-title-line2','Karma Lhabu','drupon-rinpoche');
+    pll_register_string('footer-copyright', '© 2019 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.','drupon-rinpoche');
+    pll_register_string('previous-posts','Previous Posts','drupon-rinpoche');
+    pll_register_string('next-posts','Next posts','drupon-rinpoche');
+
 
 });

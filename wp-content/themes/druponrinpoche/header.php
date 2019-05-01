@@ -68,48 +68,43 @@ $pllArgs = array(
         <div class="container">
             <header id="header" class="header">
                 <div class="menu-bar">
-<!--                    <div class="gutter clearfix">-->
-
-                        <div class="header_top_block">
-                            <div class="menu-bar-logo-block">
-                                <a href="<?php echo esc_url(home_url('/')); ?>">
-                                    <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.png" />
-                                    <div class="logo_name">
-                                        <span class="logo_dkr">Drupon Khen Rinpoche</span>
-                                        <span class="logo_kl">Karma Lhabu <!--&nbsp;&nbsp;&nbsp;ཀརྨ་ལྷ་བུ།--></span>
-                                    </div>
-                                </a>
-                            </div>
-                            <ul class="poly_switcher">
-                                <?php
-                                $pllSwitcher->the_languages(PLL()->links,$pllArgs);
-                                ?>
-                            </ul>
+                    <div class="header_top_block">
+                        <div class="menu-bar-logo-block">
+                            <a href="<?php echo esc_url(home_url('/')); ?>">
+                                <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.png" />
+                                <div class="logo_name">
+                                    <span class="logo_dkr"><?php pll_e('Drupon Khen Rinpoche'); ?></span>
+                                    <span class="logo_kl"><?php pll_e('Karma Lhabu'); ?></span>
+                                </div>
+                            </a>
                         </div>
-
-                        <nav class="menu-top-container">
-                            <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
-                                <?php wp_nav_menu( array('container'=> '', 'theme_location' => 'dkr-menu', 'items_wrap'  => '<ul class="menu-top">%3$s</ul>','depth' => 2  ) ); ?>
-                            <?php } else { ?>
-                                <?php wp_nav_menu(  array('container'=> '', 'menu_class'  => 'menu-top', 'items_wrap'  => '<ul class="menu-top">%3$s</ul>','depth' => 2 ) ); ?>
-                            <?php } ?>
-                        </nav>
-                        <nav class="menu-top-mob-container">
-                            <a class="icon-menu" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
-                            <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
-                                <?php wp_nav_menu(
-                                    array('container'=> '',
-                                          'theme_location' => 'dkr-menu',
-                                          'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>',
-                                          'walker' => new Walker_Nav_Menu_Dr(),
-                                          'depth' => 3  ) );
-                                ?>
-                            <?php } else { ?>
-                                <?php wp_nav_menu(  array('container'=> '', 'menu_class'  => 'menu-top-mob', 'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>','depth' => 3 ) ); ?>
-                            <?php } ?>
-                        </nav>
-<!--                    </div>-->
-
+                        <ul class="poly_switcher">
+                            <?php
+                            $pllSwitcher->the_languages(PLL()->links,$pllArgs);
+                            ?>
+                        </ul>
+                    </div>
+                    <nav class="menu-top-container">
+                        <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
+                            <?php wp_nav_menu( array('container'=> '', 'theme_location' => 'dkr-menu', 'items_wrap'  => '<ul class="menu-top">%3$s</ul>','depth' => 2  ) ); ?>
+                        <?php } else { ?>
+                            <?php wp_nav_menu(  array('container'=> '', 'menu_class'  => 'menu-top', 'items_wrap'  => '<ul class="menu-top">%3$s</ul>','depth' => 2 ) ); ?>
+                        <?php } ?>
+                    </nav>
+                    <nav class="menu-top-mob-container">
+                        <a class="icon-menu" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
+                        <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
+                            <?php wp_nav_menu(
+                                array('container'=> '',
+                                      'theme_location' => 'dkr-menu',
+                                      'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>',
+                                      'walker' => new Walker_Nav_Menu_Dr(),
+                                      'depth' => 3  ) );
+                            ?>
+                        <?php } else { ?>
+                            <?php wp_nav_menu(  array('container'=> '', 'menu_class'  => 'menu-top-mob', 'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>','depth' => 3 ) ); ?>
+                        <?php } ?>
+                    </nav>
                 </div>
             </header>
             <div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
