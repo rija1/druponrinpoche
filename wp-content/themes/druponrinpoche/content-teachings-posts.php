@@ -16,7 +16,7 @@
                         <span class="teaching_title"><?php if(get_the_title(get_the_id())) { the_title(); } else { the_time( get_option( 'date_format' ) ); } ?></span>
                         <!--								<p class="meta"><span class="meta-auth">--><?php //the_author(); ?><!--</span> <span class="meta-categ">--><?php //the_category(', '); ?><!--</span></p>-->
                         <p class="teaching_info"><?php echo get_post_meta(get_the_ID(), 'teaching_info', true);?></p>
-                        <p><?php echo get_the_excerpt($recent_post);?></p>
+                        <p><?php echo get_the_excerpt();?></p>
                         <!--								<a class="button" href="--><?php //the_permalink() ?><!--">--><?php //_e( 'Learn More', 'dkr' ); ?><!--</a>-->
                     </div>
 
