@@ -3093,6 +3093,7 @@ figcaption {
 @media only screen and (max-width: 480px) {
 
     #content > .container {
+        box-shadow:none;
         width:auto;
     }
 
@@ -3599,6 +3600,7 @@ figcaption {
         width: auto;
     }
     #content > .container {
+        box-shadow: none;
         width: auto;
     }
     .home_pages_grid li p {

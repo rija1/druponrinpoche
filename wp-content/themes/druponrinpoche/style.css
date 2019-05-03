@@ -2227,6 +2227,7 @@ figcaption {
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
   #content > .container {
+    box-shadow: none;
     width: auto; }
 
   ul.poly_switcher {
@@ -2528,6 +2529,7 @@ figcaption {
     width: auto; }
 
   #content > .container {
+    box-shadow: none;
     width: auto; }
 
   .home_pages_grid li p {
