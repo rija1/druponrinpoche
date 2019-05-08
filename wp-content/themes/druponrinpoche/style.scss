@@ -600,11 +600,14 @@ nav {
         height: 26px;
         display: inline-block;
         text-align: center;
+        background-color: $dkr-gold;
+        color:#ffffff;
     }
     span {
         height: 26px;
         display: inline-block;
         text-align: center;
+
     }
     .current {
         cursor: default;
@@ -1336,25 +1339,26 @@ img {
     color: #656250;
 }
 
+.teachings_category {
+    .pagination {
+        span.left , span.right{
+            margin: 25px 0 0 0 ;
+        }
+    }
+}
+
 .pagination {
-    color: #656250;
+    color: #ffffff;
     float: left;
     width: 930px;
     height: 55px;
     padding-left: 25px;
     text-align: center;
     a, span {
-        color: #656250;
-    }
-}
-
-
-.pagination {
-    a:hover, .current {
-        background-color: $dkr-gold;
         color: #ffffff;
     }
 }
+
 .menu-top-container .menu-top {
     a {
         &:hover, &.hover {
@@ -3539,7 +3543,7 @@ figcaption {
         a {
             padding: 2px 12px;
             font-size: 12px;
-            background-color: #bb9b25;
+            background-color: $dkr-gold;
             color:#ffffff;
         }
     }

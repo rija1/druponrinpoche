@@ -437,7 +437,9 @@ nav ol, nav ul {
     line-height: 26px;
     height: 26px;
     display: inline-block;
-    text-align: center; }
+    text-align: center;
+    background-color: #bb9b25;
+    color: #ffffff; }
   .pagination span {
     height: 26px;
     display: inline-block;
@@ -958,19 +960,18 @@ img.alignnone {
 .color-green, a, h1, .logo, h1 a, .article-welcome h2 a:hover, .article-procedure h2 a:hover {
   color: #656250; }
 
+.teachings_category .pagination span.left, .teachings_category .pagination span.right {
+  margin: 25px 0 0 0; }
+
 .pagination {
-  color: #656250;
+  color: #ffffff;
   float: left;
   width: 930px;
   height: 55px;
   padding-left: 25px;
   text-align: center; }
   .pagination a, .pagination span {
-    color: #656250; }
-
-.pagination a:hover, .pagination .current {
-  background-color: #bb9b25;
-  color: #ffffff; }
+    color: #ffffff; }
 
 .menu-top-container .menu-top a:hover, .menu-top-container .menu-top a.hover {
   background-color: #bb9b25;
