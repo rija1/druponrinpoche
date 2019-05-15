@@ -3065,6 +3065,12 @@ width: 345px;
     padding:0;
     height:65px;
     .nav-links {
+        span.dots {
+            color: #444;
+            padding: 0px 6px;
+            font-weight: 400;
+            font-size: 14px;
+        }
         padding-top: 25px;
         span.current, a.page-numbers {
             text-transform: uppercase;

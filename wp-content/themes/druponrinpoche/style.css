@@ -2208,6 +2208,11 @@ a.expand_link {
   height: 65px; }
   .pagination .nav-links {
     padding-top: 25px; }
+    .pagination .nav-links span.dots {
+      color: #444;
+      padding: 0px 6px;
+      font-weight: 400;
+      font-size: 14px; }
     .pagination .nav-links span.current, .pagination .nav-links a.page-numbers {
       text-transform: uppercase;
       padding: 5px 15px;
