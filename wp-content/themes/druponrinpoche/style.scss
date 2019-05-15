@@ -2529,8 +2529,13 @@ h1, h2, h3, h4, h5, h6 {
 .contact_wch {
 }
 
-.contact_social img.alignleft {
+.contact_social  {
+    img.alignleft {
     margin: 2px 10px 5px 0;
+    }
+    .container .single-post p {
+        text-align: left;
+    }
 }
 
 /*Quotes category page*/
@@ -3057,12 +3062,19 @@ width: 345px;
 
 .pagination {
     width: 100%;
-    padding:0 0 10px 0;
-    span.left {
-        margin-left: 30px;
-    }
-    span.right {
-        margin-right: 30px;
+    padding:0;
+    height:65px;
+    .nav-links {
+        padding-top: 25px;
+        span.current, a.page-numbers {
+            text-transform: uppercase;
+            padding:5px 15px;
+            color: #fff;
+        }
+        span.current {
+            background: $dkr-brown;
+            font-weight:400;
+        }
     }
 }
 

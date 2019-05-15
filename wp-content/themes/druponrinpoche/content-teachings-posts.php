@@ -24,12 +24,17 @@
             </article>
         </a>
         <?php endwhile; ?>
-        <p class="pagination">
-            <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>
-                <span class="left button-gray"><?php next_posts_link(__('Previous Posts', 'dkr')) ?></span>
-                <span class="right button-gray"><?php previous_posts_link(__('Next posts', 'dkr')) ?></span>
-            <?php } ?>
-        </p>
+            <?php
+            the_posts_pagination( array(
+                'mid_size'  => 2,
+                'prev_text' => pll__('Previous Posts'),
+                'next_text' => pll__('Next posts'),
+            ) );
+            ?>
+<!--            --><?php //if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>
+<!--                <span class="left button-gray">--><?php //next_posts_link(__('Previous Posts', 'dkr')) ?><!--</span>-->
+<!--                <span class="right button-gray">--><?php //previous_posts_link(__('Next posts', 'dkr')) ?><!--</span>-->
+<!--            --><?php //} ?>
         <!--				</div>-->
     </div>
 </div> <!--  END section-blog  -->

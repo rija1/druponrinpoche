@@ -1836,6 +1836,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact_social img.alignleft {
   margin: 2px 10px 5px 0; }
+.contact_social .container .single-post p {
+  text-align: left; }
 
 /*Quotes category page*/
 sup {
@@ -2202,11 +2204,17 @@ a.expand_link {
 
 .pagination {
   width: 100%;
-  padding: 0 0 10px 0; }
-  .pagination span.left {
-    margin-left: 30px; }
-  .pagination span.right {
-    margin-right: 30px; }
+  padding: 0;
+  height: 65px; }
+  .pagination .nav-links {
+    padding-top: 25px; }
+    .pagination .nav-links span.current, .pagination .nav-links a.page-numbers {
+      text-transform: uppercase;
+      padding: 5px 15px;
+      color: #fff; }
+    .pagination .nav-links span.current {
+      background: #80784c;
+      font-weight: 400; }
 
 .single-post .addtoany_content {
   margin: 30px 0 0 0; }

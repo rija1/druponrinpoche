@@ -34,33 +34,3 @@ $parentCatName = $parentCat->name;
     </div>
 </div> <!--  END section-blog  -->
 <?php get_footer(); ?>
-
-<script type="text/javascript">
-    jQuery( document ).ready(function() {
-        var expandOffHtml ='<div class="expandContainer"><div id="expand" class="expandOff"></div></div>';
-        var expandOnHtml ='<div class="expandContainer"><div id="expand" class="expandOn"></div></div>';
-       // jQuery( '.sidebar-container li').not('.current_page_item').not('.current-cat-parent').prepend(expandOffHtml);
-       // jQuery( '.sidebar-container .current-cat-parent').prepend(expandOnHtml);
-
-        if (jQuery( '.sidebar-container .current-cat').find('ul.children')) {
-         //   jQuery( '.sidebar-container .current-cat').prepend(expandOnHtml);
-        }
-
-        jQuery( ".expandContainer" ).click(function() {
-            var expand = jQuery(this).find('#expand');
-            if (expand.hasClass('expandOff')) {
-                expand.removeClass('expandOff');
-                expand.addClass('expandOn');
-                jQuery(this).parent().find('ul.children').show();
-            } else if (expand.hasClass('expandOn')) {
-                expand.removeClass('expandOn');
-                expand.addClass('expandOff');
-                jQuery(this).parent().find('ul.children').hide();
-            }
-
-
-
-        });
-
-    });
-</script>
