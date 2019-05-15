@@ -1854,12 +1854,9 @@ sup {
 .teachings_category a.category-post-title {
   display: block; }
   .teachings_category a.category-post-title:hover .article-blog {
-    -webkit-transition: all .4s ease;
-    -moz-transition: all .4s ease;
-    -ms-transition: all .4s ease;
-    -o-transition: all .4s ease;
-    transition: all .4s ease;
     box-shadow: -1px 2px 14px 3px rgba(0, 0, 0, 0.1); }
+    .teachings_category a.category-post-title:hover .article-blog .teaching_title {
+      color: #bb9b25; }
 .teachings_category .article-blog {
   padding: 20px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -1875,6 +1872,7 @@ sup {
     padding-top: 20px;
     padding-bottom: 0px; }
   .teachings_category .article-blog .teaching_title {
+    font-weight: 900;
     text-transform: uppercase; }
 
 .category-quotes .article-blog:last-of-type {
