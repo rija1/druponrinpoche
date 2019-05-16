@@ -1097,7 +1097,7 @@ function getDrCustomIds()
     } elseif($locale == 'zh_CN') {
         $customIds['home_metaslider_id'] = 1516;
         $customIds['home_schedule_id'] = 14;
-        $customIds['news_feat_cat_ids'] = array(2,93);
+        $customIds['news_feat_cat_ids'] = array(20,263);
         $customIds['schedule_page_id'] = 1581;
         $customIds['aboutrinpoche_page_id'] = 1269;
         $customIds['sekhar_page_id'] = 54;

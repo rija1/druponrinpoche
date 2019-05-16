@@ -7,7 +7,6 @@
 $customIds = getDrCustomIds();
 
 get_header();
-
 $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     'posts_per_page'      => 4,
     'no_found_rows'       => true,

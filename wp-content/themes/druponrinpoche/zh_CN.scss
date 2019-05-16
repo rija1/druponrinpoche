@@ -17,7 +17,8 @@
 
 body {
     font-family: 'Roboto','STHeitiLightDR';
-    font-weight: normal;
+    font-weight: 300;
+    font-size: 14px;
 }
 
 .menu-top-container {
@@ -77,4 +78,18 @@ ul.poly_switcher {
 
 .teachings_cat_list > ul > li.current-cat > .teachings-cat > a {
     font-family: 'Roboto','STHeitiLightDR','SimSunDR';
+}
+
+.menu-bar-logo-block {
+    width: 320px;
+    .logo_name {
+        padding-top: 4px;
+        span.logo_kl {
+            padding-top: 11px;
+        }
+    }
+}
+
+a.view_full_schedule {
+    text-align: center;
 }
