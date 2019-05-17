@@ -3,6 +3,7 @@
 wp-config.php
 wp-content/backup-db/
 wp-content/backups/
+wp-content/languages/
 wp-content/blogs.dir/
 wp-content/cache/
 wp-content/aw1m-backups/
