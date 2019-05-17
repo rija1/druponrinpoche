@@ -7,7 +7,7 @@
 <?php
 //$categoryId = get_queried_object_id();
 $customIds = getDrCustomIds();
-$featuredCatId = $customIds['news_feat_cat_ids'];
+$featuredCatId = $customIds['featured_cat_id'];
 $featuredPostIds = array();
 //$posts = get_posts(array('category'=>$categoryId,'numberposts' => 7));
 

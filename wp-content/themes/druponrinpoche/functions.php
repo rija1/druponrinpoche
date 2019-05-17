@@ -1089,6 +1089,7 @@ function getDrCustomIds()
         $customIds['home_metaslider_id'] = 132;
         $customIds['home_schedule_id'] = 5;
         $customIds['news_feat_cat_ids'] = array(2,93);
+        $customIds['featured_cat_id'] = 93;
         $customIds['schedule_page_id'] = 1581;
         $customIds['aboutrinpoche_page_id'] = 1403;
         $customIds['sekhar_page_id'] = 54;
@@ -1098,6 +1099,7 @@ function getDrCustomIds()
         $customIds['home_metaslider_id'] = 1516;
         $customIds['home_schedule_id'] = 14;
         $customIds['news_feat_cat_ids'] = array(20,263);
+        $customIds['featured_cat_id'] = 263;
         $customIds['schedule_page_id'] = 12987;
         $customIds['aboutrinpoche_page_id'] = 1269;
         $customIds['sekhar_page_id'] = 12938;
