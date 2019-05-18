@@ -1340,7 +1340,7 @@ li.home_post {
       top: 85px;
       right: 9px;
       font-size: 11px;
-      padding: 2px 7px 2px 7px;
+      padding: 5px 7px;
       text-transform: uppercase; }
     .home_news_carousel .latestnews li.home_post .home_post_txt p {
       padding-top: 7px;
