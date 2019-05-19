@@ -1130,6 +1130,6 @@ add_action('init', function() {
     pll_register_string('footer-copyright', '© 2019 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.','drupon-rinpoche');
     pll_register_string('previous-posts','Previous Posts','drupon-rinpoche');
     pll_register_string('next-posts','Next posts','drupon-rinpoche');
-
+    pll_register_string('selected-pictures','Selected Pictures','drupon-rinpoche');
 
 });

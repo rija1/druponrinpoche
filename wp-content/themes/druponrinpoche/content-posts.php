@@ -39,7 +39,7 @@ $featuredPostIds = array();
         <?php endwhile; ?> <?php wp_reset_query(); /*4*/ ?>
 
         <div class="news_right_block">
-            <h5>Selected Pictures</h5>
+            <h5><?php pll_e('Selected Pictures'); ?></h5>
             <?php
             if ( function_exists( 'rl_gallery' ) ) { rl_gallery(array('id'=> '1293')); }
             ?>
