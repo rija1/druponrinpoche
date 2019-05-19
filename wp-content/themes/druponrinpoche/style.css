@@ -1602,7 +1602,7 @@ li.page_item_has_children a {
 .rinpoches_lamas img {
   margin-bottom: 0px; }
 
-.metaslider #metaslider_132 .caption-wrap {
+.home .metaslider .caption-wrap {
   left: auto;
   right: 0;
   background: none;
@@ -1614,7 +1614,7 @@ li.page_item_has_children a {
   line-height: 2.1em;
   /*padding: 22px;*/ }
 
-#metaslider_132 .caption {
+.home .metaslider .caption {
   float: left;
   width: 100%;
   color: #fff;
@@ -2305,9 +2305,9 @@ figcaption {
   .metaslider .slide_link {
     display: none; }
 
-  #metaslider_132 .caption {
+  .home .flexslider .caption {
     padding: 6px 5px 3px 11px; }
-  #metaslider_132 li a img {
+  .home .flexslider li a img {
     width: 130% !important; }
 
   .breadcrumbs {

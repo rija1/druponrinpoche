@@ -2226,7 +2226,7 @@ li.page_item_has_children a {
     margin-bottom:0px;
 }
 
-.metaslider #metaslider_132 .caption-wrap {
+.home .metaslider .caption-wrap {
     left: auto;
     right: 0;
     background: none;
@@ -2239,7 +2239,7 @@ li.page_item_has_children a {
     /*padding: 22px;*/
 }
 
-#metaslider_132 .caption {
+ .home .metaslider .caption {
     float: left;
     width: 100%;
     color: #fff;
@@ -3220,7 +3220,7 @@ figcaption {
         display: none;
     }
 
-    #metaslider_132 {
+    .home .flexslider {
         .caption {
             padding: 6px 5px 3px 11px;
         }
