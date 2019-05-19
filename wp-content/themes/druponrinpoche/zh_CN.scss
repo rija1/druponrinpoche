@@ -90,6 +90,20 @@ ul.poly_switcher {
     }
 }
 
+
 a.view_full_schedule {
     text-align: center;
+}
+
+
+.schedule_carousel {
+    table td:nth-child(1) {
+        width: 25%;
+    }
+    table td:nth-child(2) {
+        width: 50%;
+    }
+    table td:nth-child(3) {
+        width: 25%;
+    }
 }

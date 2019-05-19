@@ -158,7 +158,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                         <div class="home_post_txt">
                         <span class="recent_post_title"><?php echo $title ; ?></span>
                         <p><?php echo get_post_meta($recent_post->ID, 'short_excerpt', true);?></p>
-                        <span class="read_more"><?php pll_e('Read More'); ?></span>
+<!--                        <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
                         </div>
                     </li>
                 </a>
