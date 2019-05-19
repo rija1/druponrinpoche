@@ -1095,6 +1095,7 @@ function getDrCustomIds()
         $customIds['sekhar_page_id'] = 54;
         $customIds['mts_page_id'] = 693;
         $customIds['lineage_page_id'] = 1063;
+        $customIds['selected_pics_gallery_id'] = 1293;
     } elseif($locale == 'zh_CN') {
         $customIds['home_metaslider_id'] = 1516;
         $customIds['home_schedule_id'] = 14;
@@ -1105,6 +1106,7 @@ function getDrCustomIds()
         $customIds['sekhar_page_id'] = 12938;
         $customIds['mts_page_id'] = 12521;
         $customIds['lineage_page_id'] = 1063;
+        $customIds['selected_pics_gallery_id'] = 13617;
     }
 
     return $customIds;
