@@ -69,10 +69,20 @@ $featuredPostIds = array();
 <?php endwhile; ?>
 
     </div>
-    <p class="pagination">
-        <?php if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>
-            <span class="left button-gray"><?php next_posts_link(pll__('Previous Posts')) ?></span>
-            <span class="right button-gray"><?php previous_posts_link(pll__('Next posts')) ?></span>
-        <?php } ?>
-    </p>
+
+    <?php
+    the_posts_pagination( array(
+        'mid_size'  => 2,
+        'show_all' => true,
+        'prev_text' => pll__('Previous Posts'),
+        'next_text' => pll__('Next posts'),
+    ) );
+    ?>
+
+<!--    <p class="pagination">-->
+<!--        --><?php //if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>
+<!--            <span class="left button-gray">--><?php //next_posts_link(pll__('Previous Posts')) ?><!--</span>-->
+<!--            <span class="right button-gray">--><?php //previous_posts_link(pll__('Next posts')) ?><!--</span>-->
+<!--        --><?php //} ?>
+<!--    </p>-->
 </div> <!--  END section-blog  -->

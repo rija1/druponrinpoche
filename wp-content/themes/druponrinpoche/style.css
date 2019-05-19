@@ -2219,6 +2219,9 @@ a.expand_link {
       background: #80784c;
       font-weight: 400; }
 
+.category-news .pagination .nav-links {
+  padding-top: 0; }
+
 .single-post .addtoany_content {
   margin: 30px 0 0 0; }
 
