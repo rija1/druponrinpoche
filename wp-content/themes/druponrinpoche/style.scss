@@ -2320,7 +2320,7 @@ li.page_item_has_children a {
 }
 
 .article-blog .article-image {
-    margin-bottom: 10px;
+    margin-bottom: 13px;
 }
 
 .footer {
@@ -2339,7 +2339,7 @@ li.page_item_has_children a {
 }
 
 .category-post-title {
-    font-size: 15px;
+    font-size: 16px;
     color: #6b685b;
     font-weight: 300;
 }
@@ -2822,14 +2822,22 @@ p.teaching_info {
     }
     a.article-link {
         display:block;
-        &:hover span.read_more {
-            -webkit-transition: all .4s ease;
-            -moz-transition: all .4s ease;
-            -ms-transition: all .4s ease;
-            -o-transition: all .4s ease;
-            transition: all .4s ease;
-            background-color: $dkr-gold;
-            color: #ffffff;
+//        &:hover span.read_more {
+//            -webkit-transition: all .4s ease;
+//            -moz-transition: all .4s ease;
+//            -ms-transition: all .4s ease;
+//            -o-transition: all .4s ease;
+//            transition: all .4s ease;
+//            background-color: $dkr-gold;
+//            color: #ffffff;
+//        }
+        &:hover .category-post-title {
+            -webkit-transition: all .1s ease;
+            -moz-transition: all .1s ease;
+            -ms-transition: all .1s ease;
+            -o-transition: all .1s ease;
+            transition: all .1s ease;
+            color: $dkr-gold;
         }
         span.read_more {
             padding: 8px;
@@ -2845,7 +2853,7 @@ p.teaching_info {
     }
     .featured-grid {
         .article-blog {
-            height: 607px;
+            height: 590px;
             .article-text:after {
                 top: 43px;
                 background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white 50%);
@@ -2945,7 +2953,7 @@ li.lang-item-bo {
     float: left;
     text-align: left;
     font-size: 12px;
-    padding: 15px 0 10px 0
+    padding: 17px 0 13px 0
 }
 
 .more {
@@ -3060,7 +3068,7 @@ width: 345px;
     width: 100%;
 }
 .category-news .article-blog {
-    height: 440px;
+    height: 400px;
 }
 
 .pagination {

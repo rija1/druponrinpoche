@@ -62,4 +62,7 @@ a.view_full_schedule {
 .schedule_carousel table td:nth-child(3) {
   width: 25%; }
 
+.breadcrumbs {
+  display: none; }
+
 /*# sourceMappingURL=zh_CN.css.map */
