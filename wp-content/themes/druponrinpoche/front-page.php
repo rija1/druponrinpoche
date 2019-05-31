@@ -76,7 +76,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $image[0];?>" />
             <div class="inner">
-                <h5>Lineage</h5>
+                <h5><?php pll_e('Lineage')?></h5>
             </div>
         </a>
 

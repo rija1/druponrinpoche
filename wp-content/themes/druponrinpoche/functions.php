@@ -1134,5 +1134,6 @@ add_action('init', function() {
     pll_register_string('next-posts','Next posts','drupon-rinpoche');
     pll_register_string('by','By','drupon-rinpoche');
     pll_register_string('selected-pictures','Selected Pictures','drupon-rinpoche');
+    pll_register_string('lineage','Lineage','drupon-rinpoche');
 
 });
