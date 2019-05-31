@@ -7,6 +7,22 @@
 
 require( ABSPATH . WPINC . '/option.php' );
 
+
+function pa($v,$stop,$vd) {
+
+    if($vd) {
+        echo '<pre>';
+        var_dump($v);
+        echo '</pre>';
+    } else {
+        print_r($v);
+    }
+
+    if($stop) {
+        die();
+    }
+}
+
 /**
  * Convert given date string into a different format.
  *
@@ -6887,3 +6903,6 @@ function wp_direct_php_update_button() {
 	);
 	echo '</p>';
 }
+
+
+

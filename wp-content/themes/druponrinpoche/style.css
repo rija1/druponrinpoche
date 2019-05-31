@@ -1853,10 +1853,8 @@ sup {
 
 .teachings_category a.category-post-title {
   display: block; }
-  .teachings_category a.category-post-title:hover .article-blog {
-    box-shadow: -1px 2px 14px 3px rgba(0, 0, 0, 0.1); }
-    .teachings_category a.category-post-title:hover .article-blog .teaching_title {
-      color: #bb9b25; }
+  .teachings_category a.category-post-title:hover .article-blog .teaching_title {
+    color: #bb9b25; }
 .teachings_category .article-blog {
   padding: 20px;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -1888,6 +1886,19 @@ p.teaching_info {
 
 .single-post .rl-gallery-container {
   padding: 20px 0 20px 0; }
+.single-post .post-info {
+  width: 100%;
+  float: left;
+  padding-bottom: 30px; }
+.single-post .post-author {
+  float: left;
+  color: #80784c;
+  padding-right: 10px;
+  border-right: solid 1px #d6d6d6;
+  margin-right: 10px; }
+.single-post .post_date {
+  float: left;
+  color: #80784c; }
 
 .news_right_block #rl-gallery-container-1 .rl-basicgrid-gallery .rl-gallery-item {
   width: 46%;
@@ -1895,10 +1906,6 @@ p.teaching_info {
 
 .rl-gallery .rl-gallery-link .rl-gallery-caption {
   display: none; }
-
-.post_date {
-  padding-bottom: 24px;
-  color: #b5b5b5; }
 
 /*Picture Gallery*/
 .picture-gallery .sidebar-container ul.children li {

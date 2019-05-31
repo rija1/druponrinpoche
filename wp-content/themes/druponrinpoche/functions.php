@@ -1080,36 +1080,38 @@ function rlLightboxConditionaLoading($addScripts ) {
 add_filter( 'rl_lightbox_conditional_loading', 'rlLightboxConditionaLoading');
 
 
-function getDrCustomIds()
+function getDrWebsiteConfig()
 {
     $locale = get_locale();
-    $customIds = array();
+    $drWebsiteConfig = array();
 
     if($locale == 'en_US') {
-        $customIds['home_metaslider_id'] = 132;
-        $customIds['home_schedule_id'] = 5;
-        $customIds['news_feat_cat_ids'] = array(2,93);
-        $customIds['featured_cat_id'] = 93;
-        $customIds['schedule_page_id'] = 1581;
-        $customIds['aboutrinpoche_page_id'] = 1403;
-        $customIds['sekhar_page_id'] = 54;
-        $customIds['mts_page_id'] = 693;
-        $customIds['lineage_page_id'] = 1063;
-        $customIds['selected_pics_gallery_id'] = 1293;
+        $drWebsiteConfig['home_metaslider_id'] = 132;
+        $drWebsiteConfig['home_schedule_id'] = 5;
+        $drWebsiteConfig['news_feat_cat_ids'] = array(2,93);
+        $drWebsiteConfig['featured_cat_id'] = 93;
+        $drWebsiteConfig['schedule_page_id'] = 1581;
+        $drWebsiteConfig['aboutrinpoche_page_id'] = 1403;
+        $drWebsiteConfig['sekhar_page_id'] = 54;
+        $drWebsiteConfig['mts_page_id'] = 693;
+        $drWebsiteConfig['lineage_page_id'] = 1063;
+        $drWebsiteConfig['selected_pics_gallery_id'] = 1293;
+        $drWebsiteConfig['nb_latest_news_posts'] = 4;
     } elseif($locale == 'zh_CN') {
-        $customIds['home_metaslider_id'] = 1516;
-        $customIds['home_schedule_id'] = 14;
-        $customIds['news_feat_cat_ids'] = array(20,263);
-        $customIds['featured_cat_id'] = 263;
-        $customIds['schedule_page_id'] = 12987;
-        $customIds['aboutrinpoche_page_id'] = 1269;
-        $customIds['sekhar_page_id'] = 12938;
-        $customIds['mts_page_id'] = 12521;
-        $customIds['lineage_page_id'] = 1063;
-        $customIds['selected_pics_gallery_id'] = 13617;
+        $drWebsiteConfig['home_metaslider_id'] = 1516;
+        $drWebsiteConfig['home_schedule_id'] = 14;
+        $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
+        $drWebsiteConfig['featured_cat_id'] = 263;
+        $drWebsiteConfig['schedule_page_id'] = 12987;
+        $drWebsiteConfig['aboutrinpoche_page_id'] = 1269;
+        $drWebsiteConfig['sekhar_page_id'] = 12938;
+        $drWebsiteConfig['mts_page_id'] = 12521;
+        $drWebsiteConfig['lineage_page_id'] = 1063;
+        $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
+        $drWebsiteConfig['nb_latest_news_posts'] = 3;
     }
 
-    return $customIds;
+    return $drWebsiteConfig;
 
 }
 
@@ -1130,6 +1132,7 @@ add_action('init', function() {
     pll_register_string('footer-copyright', '© 2019 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.','drupon-rinpoche');
     pll_register_string('previous-posts','Previous Posts','drupon-rinpoche');
     pll_register_string('next-posts','Next posts','drupon-rinpoche');
+    pll_register_string('by','By','drupon-rinpoche');
     pll_register_string('selected-pictures','Selected Pictures','drupon-rinpoche');
 
 });

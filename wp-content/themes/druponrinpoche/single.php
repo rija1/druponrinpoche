@@ -3,7 +3,9 @@
  *
  * @package Onsen
  */
- get_header(); ?>
+ get_header();
+$author = get_post_meta(get_the_ID(), 'Post Author', true);
+?>
  <?php while (have_posts()) : the_post(); ?>
     <section class="section section-page-title">
 	</section> <!--  END section-page-title  -->
@@ -14,8 +16,13 @@
                         <div class="article-text">
 <!--                            <a href="--><?php //?><!--">< Back</a>-->
                             <h2><?php the_title(); ?></h2>
+                            <div class="post-info">
+                                <?php if (!empty($author)): ?>
+                                    <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
+                                <?php endif; ?>
 <!--                            <p class="meta"><span class="meta-auth">--><?php //the_author(); ?><!--</span> <span class="meta-categ">--><?php //the_category(', '); ?><!--</span></p>-->
-                                <p class="post_date"><?php the_date(); ?></p>
+                                <div class="post_date"><?php the_date(); ?></div>
+                            </div>
                             <?php the_content(); ?>
 <!--                            <p class="tags">--><?php //the_tags(); ?><!--</p>-->
                         </div>

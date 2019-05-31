@@ -4,24 +4,24 @@
  * @package Onsen
  */
 
-$customIds = getDrCustomIds();
+$drWebsiteConfig = getDrWebsiteConfig();
 
 get_header();
 $r = new WP_Query( apply_filters( 'widget_posts_args', array(
-    'posts_per_page'      => 4,
+    'posts_per_page'      => $drWebsiteConfig['nb_latest_news_posts'],
     'no_found_rows'       => true,
     'post_status'         => 'publish',
     'ignore_sticky_posts' => true,
-    'category__in' => $customIds['news_feat_cat_ids'],
+    'category__in' => $drWebsiteConfig['news_feat_cat_ids'],
 ), 'wpa' ) );
 ?>
 
-<?php echo do_shortcode('[metaslider id="'.$customIds['home_metaslider_id'].'"]'); ?>
+<?php echo do_shortcode('[metaslider id="'.$drWebsiteConfig['home_metaslider_id'].'"]'); ?>
 
 <ul class="home_pages_grid">
     <li class="box1">
         <?php
-        $id=$customIds['aboutrinpoche_page_id'];
+        $id=$drWebsiteConfig['aboutrinpoche_page_id'];
         $post = get_post( $id );
         $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), array(600,400));
         $url = $src[0];
@@ -37,7 +37,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     </li>
     <li class="box2">
         <?php
-        $id=$customIds['sekhar_page_id'];
+        $id=$drWebsiteConfig['sekhar_page_id'];
         $post = get_post( $id );
         $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), array(600,400));
         $url = $src[0];
@@ -53,7 +53,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     </li>
     <li class="box3">
         <?php
-        $id=$customIds['mts_page_id'];
+        $id=$drWebsiteConfig['mts_page_id'];
         $post = get_post( $id );
         $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
         ?>
@@ -69,7 +69,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 
     <li class="box4-mobile">
         <?php
-        $id=$customIds['lineage_page_id'];
+        $id=$drWebsiteConfig['lineage_page_id'];
         $post = get_post( $id );
         $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
         ?>
@@ -88,11 +88,16 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     <div class="home_mini_carousel">
         <div class="schedule_title"><h5><?php pll_e('Upcoming Schedule'); ?></h5></div>
         <?php
-        $table = TablePress::$model_table->load( $customIds['home_schedule_id'], true, true );
+        $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
         $scheduleData = $table['data'];
         unset($scheduleData[0]);
-//        $schCntBatch1 = array();
-//        $schCntBatch2 = array();
+
+        foreach ($scheduleData as $k =>$scheduleDataLine) {
+            if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
+                unset($scheduleData[$k]);
+            }
+        }
+
         list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
         ?>
         <div class="schedule_carousel_wrap">
@@ -105,13 +110,11 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                             <th><?php pll_e('Details'); ?></th>
                         </tr>
                         <?php foreach($schBatch1 as $schBatch1Line) :?>
-<!--                            --><?php //if(!empty($schBatch1Line[3])): ?>
-                                <tr>
-                                    <td><?php echo $schBatch1Line[0]; ?></td>
-                                    <td><?php echo $schBatch1Line[1]; ?></td>
-                                    <td><?php echo $schBatch1Line[3]; ?></td>
-                                </tr>
-<!--                            --><?php //endif; ?>
+                            <tr>
+                                <td><?php echo $schBatch1Line[0]; ?></td>
+                                <td><?php echo $schBatch1Line[1]; ?></td>
+                                <td><?php echo $schBatch1Line[3]; ?></td>
+                            </tr>
                         <?php endforeach; ?>
                     </table>
                 </div>
@@ -135,7 +138,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 
             </div>
             <div class="sched_carousel_arrows"></div>
-            <a class="view_full_schedule" href="<?php echo get_page_link($customIds['schedule_page_id'])?>"><span><?php pll_e('View Full Schedule');?></span></a>
+            <a class="view_full_schedule" href="<?php echo get_page_link($drWebsiteConfig['schedule_page_id'])?>"><span><?php pll_e('View Full Schedule');?></span></a>
         </div>
 
 
