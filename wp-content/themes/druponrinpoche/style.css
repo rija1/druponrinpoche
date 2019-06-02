@@ -2353,6 +2353,10 @@ figcaption {
   .page-id-1581 .container .single-post h2 {
     margin: 0px 0 25px 0 !important; }
 
+  a.course_link {
+    text-decoration: underline;
+    font-size: 14px; }
+
   .home_news_carousel {
     list-style: none;
     display: grid;

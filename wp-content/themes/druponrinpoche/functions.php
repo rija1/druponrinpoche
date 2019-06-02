@@ -1115,6 +1115,8 @@ function getDrWebsiteConfig()
 
 }
 
+
+
 add_action('init', function() {
     pll_register_string('read-more', 'Read More','drupon-rinpoche');
     pll_register_string('home-about-rinpoche', 'About Rinpoche','drupon-rinpoche');
@@ -1137,3 +1139,4 @@ add_action('init', function() {
     pll_register_string('lineage','Lineage','drupon-rinpoche');
 
 });
+
