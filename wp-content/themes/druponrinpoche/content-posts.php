@@ -18,7 +18,10 @@ $featuredPostIds = array();
         query_posts('posts_per_page=1&cat='.$featuredCatId); /*1, 2*/
 //        pa($ok,1);
         if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-            <?php $featuredPostIds[] = get_the_ID(); ?>
+            <?php
+            $featuredPostIds[] = get_the_ID();
+            $author = get_post_meta(get_the_ID(), 'Post Author', true);
+            ?>
             <article class="article-blog">
             <a class="article-link"  href="<?php the_permalink() ?>">
             <div id="post-<?php echo the_ID(); ?>" <?php post_class(); ?>>
@@ -29,7 +32,12 @@ $featuredPostIds = array();
                 <?php endif; ?>
                 <div class="article-text">
                     <span class="category-post-title"><?php echo the_title();  ?></span>
-                    <span class="category-post-date"><?php echo get_the_date(); ?></span>
+                    <div class="post-info">
+                        <?php if (!empty($author)): ?>
+                            <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
+                        <?php endif; ?>
+                        <div class="post_date"><?php echo get_the_date(); ?></div>
+                    </div>
                     <p><?php echo get_text_excerpt(get_the_excerpt(),240);?></p>
 <!--                    <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
                 </div>
@@ -49,6 +57,9 @@ $featuredPostIds = array();
 
     <div class="posts-grid">
 <?php while ( have_posts() ) : the_post();  ?>
+    <?php
+    $author = get_post_meta(get_the_ID(), 'Post Author', true);
+    ?>
     <a class="article-link" href="<?php the_permalink() ?>">
     <article class="article-blog">
         <div id="post-<?php echo $post->ID; ?>" <?php post_class('',$post->ID); ?>>
@@ -59,7 +70,12 @@ $featuredPostIds = array();
             <?php endif; ?>
             <div class="article-text">
                 <span class="category-post-title" href="<?php the_permalink() ?>"><?php if(get_the_title()) { echo get_the_title(); } else { echo get_the_time(); } ?></span>
-                <span class="category-post-date"><?php echo get_the_date(); ?></span>
+                <div class="post-info">
+                    <?php if (!empty($author)): ?>
+                        <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
+                    <?php endif; ?>
+                    <div class="post_date"><?php echo get_the_date(); ?></div>
+                </div>
                 <p><?php echo get_text_excerpt(get_the_excerpt($post),140);?></p>
 <!--                <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
             </div>

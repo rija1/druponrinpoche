@@ -1640,6 +1640,10 @@ img.alignleft {
         p {
             padding: 15px 20px 20px 20px;
         }
+        a {
+            display: block;
+            height: 100%;
+        }
     }
 }
 
@@ -1663,9 +1667,9 @@ img.alignleft {
 
 .menu-bar-logo-block {
     float: left;
-    width: 330px;
-    padding-top: 14px;
-    padding-left: 20px;
+    width: 355px;
+    padding-top: 16px;
+    padding-left: 22px;
     img {
         float: left;
         width: 70px;
@@ -1843,7 +1847,7 @@ li.home_post {
 //                font-weight: 400;
             }
             &:hover li.home_post {
-                box-shadow: 0 1px 5px 2px rgba(0,0,0,.1)
+//                box-shadow: 0 1px 5px 2px rgba(0,0,0,.1)
             }
         }
         li.home_post {
@@ -2197,8 +2201,9 @@ li.page_item_has_children a {
 
 .home_pages_grid a:hover h5 {
     /*color: $dkr-brown;*/
-    /*color: $dkr-gold;*/
-    text-decoration: underline;
+    color: $dkr-gold;
+//    font-weight: 400;
+//    text-decoration: underline;
 }
 
 .wp-caption {
@@ -2613,6 +2618,26 @@ p.teaching_info {
     font-size: 13px;
     padding-top: 7px;
     margin-bottom: 5px;
+}
+
+.category {
+    .post-info {
+        width:100%;
+        padding-bottom: 13px;
+        font-size:14px;
+    }
+
+    .post-author {
+        width: 100%;
+        color: $dkr-brown;
+        padding-top: 4px;
+    }
+    .post_date {
+        color:$dkr-brown;
+        width: 100%;
+        text-align: left;
+        padding-top: 10px;
+    }
 }
 
 .single-post {
@@ -3157,6 +3182,20 @@ figcaption {
         }
     }
 
+    .category {
+        .post-info {
+            padding-bottom: 6px;
+            font-size:13px;
+        }
+
+        .post-author {
+            padding-top: 4px;
+        }
+        .post_date {
+            padding-top: 8px;
+        }
+    }
+
     // Header
 
     .menu-bar-logo-block img {
@@ -3220,7 +3259,7 @@ figcaption {
     }
 
     .header .menu-bar {
-        height: 110px;
+        height: 115px;
     }
 
 

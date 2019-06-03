@@ -1186,6 +1186,9 @@ img.alignleft {
     border: solid 1px #eaeaea; }
     .home_pages_grid li p {
       padding: 15px 20px 20px 20px; }
+    .home_pages_grid li a {
+      display: block;
+      height: 100%; }
 
 .latestnews_list {
   list-style: none;
@@ -1201,9 +1204,9 @@ img.alignleft {
 
 .menu-bar-logo-block {
   float: left;
-  width: 330px;
-  padding-top: 14px;
-  padding-left: 20px; }
+  width: 355px;
+  padding-top: 16px;
+  padding-left: 22px; }
   .menu-bar-logo-block img {
     float: left;
     width: 70px; }
@@ -1329,8 +1332,6 @@ li.home_post {
       -o-transition: all .1s ease;
       transition: all .1s ease;
       color: #bb9b25; }
-    .home_news_carousel .latestnews .recent_post_link:hover li.home_post {
-      box-shadow: 0 1px 5px 2px rgba(0, 0, 0, 0.1); }
   .home_news_carousel .latestnews li.home_post .home_post_txt {
     position: relative;
     text-align: left;
@@ -1579,8 +1580,7 @@ li.page_item_has_children a {
 
 .home_pages_grid a:hover h5 {
   /*color: $dkr-brown;*/
-  /*color: $dkr-gold;*/
-  text-decoration: underline; }
+  color: #bb9b25; }
 
 .wp-caption {
   /* Force the box to be 100% */
@@ -1883,6 +1883,20 @@ p.teaching_info {
   font-size: 13px;
   padding-top: 7px;
   margin-bottom: 5px; }
+
+.category .post-info {
+  width: 100%;
+  padding-bottom: 13px;
+  font-size: 14px; }
+.category .post-author {
+  width: 100%;
+  color: #80784c;
+  padding-top: 4px; }
+.category .post_date {
+  color: #80784c;
+  width: 100%;
+  text-align: left;
+  padding-top: 10px; }
 
 .single-post .rl-gallery-container {
   padding: 20px 0 20px 0; }
@@ -2258,6 +2272,14 @@ figcaption {
       height: 20px;
       overflow: hidden; }
 
+  .category .post-info {
+    padding-bottom: 6px;
+    font-size: 13px; }
+  .category .post-author {
+    padding-top: 4px; }
+  .category .post_date {
+    padding-top: 8px; }
+
   .menu-bar-logo-block img {
     float: left;
     width: 41px;
@@ -2299,7 +2321,7 @@ figcaption {
       display: none; }
 
   .header .menu-bar {
-    height: 110px; }
+    height: 115px; }
 
   .metaslider {
     overflow: hidden;
