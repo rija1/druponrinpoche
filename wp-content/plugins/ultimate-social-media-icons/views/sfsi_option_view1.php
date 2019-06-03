@@ -23,6 +23,21 @@
 												: 'no';
 	$option1['sfsi_pinterest_display'] 	= 	(isset($option1['sfsi_pinterest_display']))
 												? sanitize_text_field($option1['sfsi_pinterest_display'])
+                                                : 'no';
+    $option1['sfsi_telegram_display'] 	= 	(isset($option1['sfsi_telegram_display']))
+												? sanitize_text_field($option1['sfsi_telegram_display'])
+                                                : 'no';
+    $option1['sfsi_vk_display'] 	    = 	(isset($option1['sfsi_vk_display']))
+												? sanitize_text_field($option1['sfsi_vk_display'])
+                                                : 'no';
+    $option1['sfsi_ok_display'] 	    = 	(isset($option1['sfsi_ok_display']))
+												? sanitize_text_field($option1['sfsi_ok_display'])
+                                                : 'no';
+    $option1['sfsi_wechat_display'] 	= 	(isset($option1['sfsi_wechat_display']))
+												? sanitize_text_field($option1['sfsi_wechat_display'])
+                                                : 'no';
+    $option1['sfsi_weibo_display']  	= 	(isset($option1['sfsi_weibo_display']))
+												? sanitize_text_field($option1['sfsi_weibo_display'])
 												: 'no';
 	$option1['sfsi_linkedin_display'] 	= 	(isset($option1['sfsi_linkedin_display']))
 												? sanitize_text_field($option1['sfsi_linkedin_display'])
@@ -143,6 +158,56 @@
             </div>
         </li>
         <!-- END INSTAGRAM ICON -->
+
+          <!-- TELEGRAM ICON -->
+          <li>
+            <div class="radio_section tb_4_ck"><input name="sfsi_telegram_display" <?php echo ($option1['sfsi_telegram_display']=='yes') ?  'checked="true"' : '' ;?> id="sfsi_telegram_display"  type="checkbox" value="yes" class="styled"  /></div>
+            <span class="sfsicls_telegram">Telegram</span> 
+            <div class="right_info">
+            <p><span>It depends:</span> Show this icon if you have a Telegram account.</p>
+            </div>
+        </li>
+        <!-- END TELEGRAM ICON -->
+
+          <!-- VK ICON -->
+          <li>
+            <div class="radio_section tb_4_ck"><input name="sfsi_vk_display" <?php echo ($option1['sfsi_vk_display']=='yes') ?  'checked="true"' : '' ;?> id="sfsi_vk_display"  type="checkbox" value="yes" class="styled"  /></div>
+            <span class="sfsicls_vk">VK</span> 
+            <div class="right_info">
+            <p><span>It depends:</span> Show this icon if you have a vk account.</p>
+            </div>
+        </li>
+        <!-- END VK ICON -->
+
+          <!-- OK ICON -->
+          <li>
+            <div class="radio_section tb_4_ck"><input name="sfsi_ok_display" <?php echo ($option1['sfsi_ok_display']=='yes') ?  'checked="true"' : '' ;?> id="sfsi_ok_display"  type="checkbox" value="yes" class="styled"  /></div>
+            <span class="sfsicls_ok">Ok</span> 
+            <div class="right_info">
+            <p><span>It depends:</span> Show this icon if you have a Ok account.</p>
+            </div>
+        </li>
+        <!-- END OK ICON -->
+
+          <!-- WECHAT ICON -->
+          <li>
+            <div class="radio_section tb_4_ck"><input name="sfsi_wechat_display" <?php echo ($option1['sfsi_wechat_display']=='yes') ?  'checked="true"' : '' ;?> id="sfsi_wechat_display"  type="checkbox" value="yes" class="styled"  /></div>
+            <span class="sfsicls_wechat">WeChat</span> 
+            <div class="right_info">
+            <p><span>It depends:</span> Show this icon if you have a WeChat account.</p>
+            </div>
+        </li>
+        <!-- END WECHAT ICON -->
+
+          <!-- WEIBO ICON -->
+          <li>
+            <div class="radio_section tb_4_ck"><input name="sfsi_weibo_display" <?php echo ($option1['sfsi_weibo_display']=='yes') ?  'checked="true"' : '' ;?> id="sfsi_weibo_display"  type="checkbox" value="yes" class="styled"  /></div>
+            <span class="sfsicls_weibo">Weibo</span> 
+            <div class="right_info">
+            <p><span>It depends:</span> Show this icon if you have a Weibo account.</p>
+            </div>
+        </li>
+        <!-- END INSTAGRAM ICON -->
          
              
         <!-- GOOGLE ICON -->
@@ -247,6 +312,13 @@
                         </span>
                         <span class="sfsicls_prem_text">Print</span>
                     </div>
+
+                    <div class = "sfsi_prem_cmn_rowlisting" >   
+                        <span>
+                            <img src="<?php  echo SFSI_PLUGURL.'images/messenger.png';?>" id="CImg" />
+                        </span>
+                        <span class="sfsicls_prem_text">Messenger</span>
+                    </div>
                 </div>
                 <div class="sfsi_premium_row">
                     <div class = "sfsi_prem_cmn_rowlisting" >   
@@ -283,16 +355,16 @@
                         </span>
                         <span class="sfsicls_prem_text">Blogger</span>
                     </div>
-                    
-                    
-                </div>
-                <div class="sfsi_premium_row">
                     <div class = "sfsi_prem_cmn_rowlisting" >   
                         <span>
                             <img src="<?php  echo SFSI_PLUGURL.'images/reddit.png';?>" id="CImg" />
                         </span>
                         <span class="sfsicls_prem_text">Reddit</span>
                     </div>
+                    
+                </div>
+                <div class="sfsi_premium_row">
+                    
                     
                     <div class = "sfsi_prem_cmn_rowlisting" >   
                         <span>
@@ -321,21 +393,15 @@
                         </span>
                         <span class="sfsicls_prem_text">Xing</span>
                     </div>
+                    <div class = "sfsi_prem_cmn_rowlisting" >   
+                        <span>
+                            <img src="<?php  echo SFSI_PLUGURL.'images/twitch.png';?>" id="CImg" />
+                        </span>
+                        <span class="sfsicls_prem_text">Twitch</span>
+                    </div>
                 </div>
-                <div class="sfsi_premium_row">
-                    <div class = "sfsi_prem_cmn_rowlisting" >   
-                        <span>
-                            <img src="<?php  echo SFSI_PLUGURL.'images/vk.png';?>" id="CImg" />
-                        </span>
-                        <span class="sfsicls_prem_text">VK</span>
-                    </div>
-                    
-                    <div class = "sfsi_prem_cmn_rowlisting" >   
-                        <span>
-                            <img src="<?php  echo SFSI_PLUGURL.'images/telegram.png';?>" id="CImg" />
-                        </span>
-                        <span class="sfsicls_prem_text">Telegram</span>
-                    </div>
+
+                <div class="sfsi_premium_row" style="clear:none"> 
                     
                     <div class = "sfsi_prem_cmn_rowlisting" >   
                         <span>
@@ -358,19 +424,11 @@
                         <span class="sfsicls_prem_text">Steam</span>
                     </div>
                 </div>
-                <div class="sfsi_premium_row">
-                    <div class = "sfsi_prem_cmn_rowlisting" >   
-                        <span>
-                            <img src="<?php  echo SFSI_PLUGURL.'images/twitch.png';?>" id="CImg" />
-                        </span>
-                        <span class="sfsicls_prem_text">Twitch</span>
-                    </div>
-                </div>
 
                 <!--<div class="sfsi_need_another_one_link">
                     <p>Need another one?<a href="mailto:biz@ultimatelysocial.com"> Tell us</a></p>
                 </div>-->
-                <div class="sfsi_need_another_tell_us">
+                <div class="sfsi_need_another_tell_us" style="padding-top:20px">
                     <a href="https://www.ultimatelysocial.com/all-platforms/" target="_blank">...and many more! See them here</a>                                  
                     <!--<a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=more_platforms&utm_medium=banner" target="_blank">See all features Premium Plugin</a>-->
                 </div>

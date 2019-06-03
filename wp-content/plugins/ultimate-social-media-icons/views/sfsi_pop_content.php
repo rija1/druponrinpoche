@@ -501,7 +501,108 @@ I want to see how it works</a></div>
 							}
 						?>
                     </div>
-                </li>
+				</li>
+				<li>
+                	<div class="cstm_icnname">Telegram</div>
+                    <div class="cstmskins_btn">
+                    	<?php 
+							if(get_option("telegram_skin"))
+							{
+								$telegram_skin = get_option("telegram_skin");
+								echo "<img src='".$telegram_skin."' width='30px' height='30px' class='imgskin'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="telegram_skin" class="cstmskin_btn">Update</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="telegram_skin" data-nonce="'.$nonce.'" class="cstmskin_btn">Delete</a>';
+							}
+							else
+							{
+								echo "<img src='' width='30px' height='30px' class='imgskin skswrpr'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="telegram_skin" class="cstmskin_btn">Upload</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="telegram_skin" data-nonce="'.$nonce.'" class="cstmskin_btn dlt_btn">Delete</a>';		
+							}
+						?>
+                    </div>
+				</li>
+				<li>
+                	<div class="cstm_icnname">VK</div>
+                    <div class="cstmskins_btn">
+                    	<?php 
+							if(get_option("vk_skin"))
+							{
+								$vk_skin = get_option("vk_skin");
+								echo "<img src='".$vk_skin."' width='30px' height='30px' class='imgskin'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="vk_skin" class="cstmskin_btn">Update</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="vk_skin" data-nonce="'.$nonce.'" class="cstmskin_btn">Delete</a>';
+							}
+							else
+							{
+								echo "<img src='' width='30px' height='30px' class='imgskin skswrpr'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="vk_skin" class="cstmskin_btn">Upload</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="vk_skin" data-nonce="'.$nonce.'" class="cstmskin_btn dlt_btn">Delete</a>';		
+							}
+						?>
+                    </div>
+				</li>
+				<li>
+                	<div class="cstm_icnname">Ok</div>
+                    <div class="cstmskins_btn">
+                    	<?php 
+							if(get_option("ok_skin"))
+							{
+								$ok_skin = get_option("ok_skin");
+								echo "<img src='".$ok_skin."' width='30px' height='30px' class='imgskin'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="ok_skin" class="cstmskin_btn">Update</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="ok_skin" data-nonce="'.$nonce.'" class="cstmskin_btn">Delete</a>';
+							}
+							else
+							{
+								echo "<img src='' width='30px' height='30px' class='imgskin skswrpr'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="ok_skin" class="cstmskin_btn">Upload</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="ok_skin" data-nonce="'.$nonce.'" class="cstmskin_btn dlt_btn">Delete</a>';		
+							}
+						?>
+                    </div>
+				</li>
+				<li>
+                	<div class="cstm_icnname">Weibo</div>
+                    <div class="cstmskins_btn">
+                    	<?php 
+							if(get_option("weibo_skin"))
+							{
+								$weibo_skin = get_option("weibo_skin");
+								echo "<img src='".$weibo_skin."' width='30px' height='30px' class='imgskin'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="weibo_skin" class="cstmskin_btn">Update</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="weibo_skin" data-nonce="'.$nonce.'" class="cstmskin_btn">Delete</a>';
+							}
+							else
+							{
+								echo "<img src='' width='30px' height='30px' class='imgskin skswrpr'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="weibo_skin" class="cstmskin_btn">Upload</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="weibo_skin" data-nonce="'.$nonce.'" class="cstmskin_btn dlt_btn">Delete</a>';		
+							}
+						?>
+                    </div>
+				</li>
+				<li>
+                	<div class="cstm_icnname">WeChat</div>
+                    <div class="cstmskins_btn">
+                    	<?php 
+							if(get_option("wechat_skin"))
+							{
+								$wechat_skin = get_option("wechat_skin");
+								echo "<img src='".$wechat_skin."' width='30px' height='30px' class='imgskin'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="wechat_skin" class="cstmskin_btn">Update</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="wechat_skin" data-nonce="'.$nonce.'" class="cstmskin_btn">Delete</a>';
+							}
+							else
+							{
+								echo "<img src='' width='30px' height='30px' class='imgskin skswrpr'>";
+								echo '<a href="javascript:" onclick="upload_image(this);" title="wechat_skin" class="cstmskin_btn">Upload</a>';
+								echo '<a href="javascript:" onclick="deleteskin_icon(this);" title="wechat_skin" data-nonce="'.$nonce.'" class="cstmskin_btn dlt_btn">Delete</a>';		
+							}
+						?>
+                    </div>
+				</li>
+				
                 
             </ul>
             <div class="cstmskins_sbmt">

@@ -37,7 +37,7 @@
         margin-bottom: 45px;
         padding: 12px 13px;
         width: 98%;
-        background-image: url(<?php echo SFSI_PLUGURL ?>images/notification-close.png);
+        background-image: url(<?php echo SFSI_PLUGURL; ?>images/notification-close.png);
         background-position: right 20px center;
         background-repeat: no-repeat;
         cursor: pointer;
@@ -252,5 +252,4 @@
     });
 
 </script>
-?>
 <?php include(SFSI_DOCROOT.'/views/sfsi_chat_on_admin_pannel.php'); ?>

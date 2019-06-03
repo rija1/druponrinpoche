@@ -5,7 +5,7 @@ Plugin URI: http://ultimatelysocial.com
 Description: Easy to use and 100% FREE social media plugin which adds social media icons to your website with tons of customization features!. 
 Author: UltimatelySocial
 Author URI: http://ultimatelysocial.com
-Version: 2.2.0
+Version: 2.2.2
 License: GPLv2 or later
 */
 
@@ -65,7 +65,7 @@ register_activation_hook(__FILE__, 'sfsi_activate_plugin' );
 register_deactivation_hook(__FILE__, 'sfsi_deactivate_plugin');
 register_uninstall_hook(__FILE__, 'sfsi_Unistall_plugin');
 
-if(!get_option('sfsi_pluginVersion') || get_option('sfsi_pluginVersion') < 2.20)
+if(!get_option('sfsi_pluginVersion') || get_option('sfsi_pluginVersion') < 2.22)
 {
 	add_action("init", "sfsi_update_plugin");
 }
@@ -159,7 +159,7 @@ function sfsi_checkmetas()
 }
 if ( is_admin() )
 {
-	sfsi_checkmetas();
+add_action('after_setup_theme', 'sfsi_checkmetas');
 }
 
 add_action('wp_head', 'ultimatefbmetatags');
@@ -526,9 +526,8 @@ function sfsi_admin_notice()
 			
 			div.sfsi_show_premium_notification{
 				float: none;
-				display:inline-block;
-    			width: 98.2%;
-    			margin-left: 37px;
+				display:block;
+    			margin-left: 15px;
     			margin-top: 15px;
     			padding: 8px;
 				background-color: #38B54A;
@@ -552,12 +551,12 @@ function sfsi_admin_notice()
 			    cursor: pointer;
 			}
 		</style>
-	    <div class="updated sfsi_show_premium_notification" style="<?php //echo $style; ?>">
-			<div class="alignleft" style="margin: 9px 0;">
+	    <div class="updated sfsi_show_premium_notification" style="<?php echo isset($style)?$style:''; ?>">
+			<div style="margin: 9px 0; ">
 				BIG NEWS : There is now a <b><a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=notification_banner&utm_medium=banner" target="_blank">Premium Ultimate Social Media Plugin</a></b> available with many more cool features : <a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=notification_banner&utm_medium=banner" target="_blank">Check it out</a>
 			</div>
-			<div class="alignright">
-				<form method="post" class="sfsi_premiumNoticeDismiss">
+			<div style="text-align:right;margin-top:-40px;">
+				<form method="post" class="sfsi_premiumNoticeDismiss" style="padding-bottom:8px;">
 					<input type="hidden" name="sfsi-dismiss-premiumNotice" value="true">
 					<input type="submit" name="dismiss" value="Dismiss" />
 				</form>
@@ -603,11 +602,11 @@ function sfsi_admin_notice()
 				}
 			</style>
 		    <div class="updated sfsi_show_premium_cumulative_count_notification">
-				<div class="alignleft" style="margin: 9px 0;">
+				<div style="margin: 9px 0;">
 					<b>Recently switched to https?</b> If you don’t want to lose the Facebook share & like counts <a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=https_share_counts&utm_medium=banner" target="_blank">have a look at our Premium Plugin</a>, we found a fix for that: <a href="https://www.ultimatelysocial.com/usm-premium/?utm_source=usmi_settings_page&utm_campaign=https_share_counts&utm_medium=banner" target="_blank">Check it out</a>
 				</div>
-				<div class="alignright">
-					<form method="post" class="sfsi_premiumCumulativeCountNoticeDismiss">
+				<div style="text-align: right;margin-top:-30px" >
+					<form method="post" class="sfsi_premiumCumulativeCountNoticeDismiss" style="padding:10px">
 						<input type="hidden" name="sfsi-dismiss-premiumCumulativeCountNoticeDismiss" value="true">
 						<input type="submit" name="dismiss" value="Dismiss" />
 					</form>
@@ -692,8 +691,8 @@ function sfsi_admin_notice()
 			
 		</style>
 
-	     <div class="updated sfsi_show_phperror_notification" style="<?php echo $style; ?>background-color: #D22B2F; color: #fff; font-size: 18px; border-left-color: #D22B2F;">
-			<div class="alignleft" style="margin: 9px 0;">
+	     <div class="updated sfsi_show_phperror_notification" style="<?php echo (isset($style)?$style:''); ?>background-color: #D22B2F; color: #fff; font-size: 18px; border-left-color: #D22B2F;">
+			<div style="margin: 9px 0;">
 
 				<p class="sfsi_show_notifictaionpragraph">
 					We noticed you are running your site on a PHP version older than 5.4. Please upgrade to a more recent version. This is not only important for running the Ultimate Social Media Plugin, but also for security reasons in general.
@@ -702,8 +701,8 @@ function sfsi_admin_notice()
                 </p>
 		
 			</div>
-			<div class="alignright">
-				<form method="post" class="sfsi_phperrorNoticeDismiss">
+			<div style="text-align:right;margin-top:-30px" >
+				<form method="post" class="sfsi_phperrorNoticeDismiss" style="padding-bottom:10px">
 					<input type="hidden" name="sfsi-dismiss-phperrorNotice" value="true">
 					<input type="submit" name="dismiss" value="Dismiss" />
 				</form>
@@ -884,12 +883,12 @@ function sfsi_get_language_detection_notice(){
 			form.sfsi_languageNoticeDismiss{display: inline-block;margin: 5px 0 0;vertical-align: middle;}
 			.sfsi_languageNoticeDismiss input[type='submit']{background-color: transparent;border: medium none;margin: 0 5px 0 0px;padding: 0;cursor: pointer;font-size: 22px;}
 		</style>
-		<div class="notice notice-info" style="<?php echo $style; ?>">
-			<div class="alignleft" style="margin: 9px 0;">
+		<div class="notice notice-info" style="<?php echo isset($style)?$style:''; ?>">
+			<div  style="margin: 9px 0;">
 				<?php echo $text; ?>
 			</div>
-			<div class="alignright">
-				<form method="post" class="sfsi_languageNoticeDismiss">
+			<div style="text-align: right;margin-top:-30px">
+				<form method="post" class="sfsi_languageNoticeDismiss" style="padding-bottom:10px">
 					<input type="hidden" name="sfsi-dismiss-languageNotice" value="true">
 					<input type="submit" name="dismiss" value="&times;" />
 				</form>
@@ -1422,3 +1421,4 @@ function sfsi_dismiss_error_reporting_notice(){
 add_action( 'wp_ajax_sfsi_dismiss_error_reporting_notice', 'sfsi_dismiss_error_reporting_notice' );
 
 // ********************************* Notice for error reporting CLOSE *******************************//
+

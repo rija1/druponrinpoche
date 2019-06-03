@@ -73,7 +73,12 @@ function theme_front_enqueue_script()
 		
 		wp_register_script('SFSIjqueryrandom-shuffle', SFSI_PLUGURL . 'js/shuffle/random-shuffle-min.js', array('jquery'),'',true);
 		wp_enqueue_script("SFSIjqueryrandom-shuffle");
+		$option1=  unserialize(get_option('sfsi_section1_options',false));
 		
+		if(isset($option1["sfsi_wechat_display"]) && $option1["sfsi_wechat_display"]=="yes" ){
+			wp_register_script('SFSIPLUSqrcode.js', SFSI_PLUGURL . 'js/qrcode.min.js', '', '', true);
+			wp_enqueue_script("SFSIPLUSqrcode.js");
+		}
 		wp_register_script('SFSICustomJs', SFSI_PLUGURL . 'js/custom.js', array('jquery'),'',true);
 		wp_enqueue_script("SFSICustomJs");
 		/* end cusotm js */

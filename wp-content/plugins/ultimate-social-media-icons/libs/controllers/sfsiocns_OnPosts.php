@@ -200,17 +200,7 @@ function sfsi_FBlike($permalink,$show_count)
 	$send = 'false';
 	$width = 180;
 	$fb_like_html = '';
-	/*$fb_like_html = '<fb:like href="'.$permalink.'" width="'.$width.'" send="'.$send.'" showfaces="false" ';
-	if($show_count==1) { 
-			$fb_like_html .= 'layout="button_count"';
-	} else {
-			$fb_like_html .= 'layout="button"';
-	}
-	$fb_like_html .= ' action="like"></fb:like>';*/
-	/*
-	$fb_like_html .= '<div class="fb-like" data-href="'.$permalink.'" width="'.$width.'" send="'.$send.'" ';
-	$fb_like_html .= ($show_count==1) ?  ' data-layout="button_count"' : ' data-layout="button"';
-	$fb_like_html .= ' data-action="like" data-show-faces="false" data-share="true"></div>';*/
+	
 	$option6 =  unserialize(get_option('sfsi_section6_options',false));
 	if($option6['sfsi_rectfbshare'] == 'yes' && $option6['sfsi_rectfb'] == 'yes')
 	{
@@ -284,15 +274,6 @@ function sfsi_footer_script()
 		  	js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5";
 		  	fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));</script>
-		<!--<div id="fb-root"></div>
-        <script>
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1425108201100352&version=v2.0";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>-->
  	<?php
 	}
 	if(
@@ -301,7 +282,6 @@ function sfsi_footer_script()
 		($sfsi_section6['sfsi_rectgp'] == "yes" && $sfsi_section6['sfsi_show_Onposts'] == "yes")
 	)
 	{ ?>
-         <!--google share and  like and e js -->
         <script type="text/javascript">
             window.___gcfg = {
               lang: 'en-US'
@@ -313,7 +293,6 @@ function sfsi_footer_script()
             })();
         </script>
 		
-		<!-- google share -->
         <script type="text/javascript">
           (function() {
             var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
@@ -325,7 +304,6 @@ function sfsi_footer_script()
 	}
 	if($sfsi_section1['sfsi_linkedin_display']=="yes")
 	{ ?>	
-       <!-- linkedIn share and  follow js -->
         <script src="//platform.linkedin.com/in.js" type="text/javascript">lang: en_US</script>
 	<?php
 	}
@@ -342,14 +320,39 @@ function sfsi_footer_script()
 	<?php
 	}
 	
+  //Murt Code get domain
+	function getDomain($url){
+		$pieces = parse_url($url);
+		$domain = isset($pieces['host']) ? $pieces['host'] : '';
+		if(preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)){
+			return $regs['domain'];
+		}
+		return FALSE;
+	}
+
 	/* activate footer credit link */
 	if(get_option('sfsi_footer_sec')=="yes")
 	{
 		if(!is_admin())
-		{
-			$footer_link='<div class="sfsi_footerLnk" style="margin: 0 auto;z-index:1000; absolute; text-align: center;"><a href="https://www.ultimatelysocial.com/?utm_source=usmi_settings_page&utm_campaign=credit_link_to_homepage&utm_medium=banner" target="_new">Social media & sharing icons</a> powered by UltimatelySocial';
+		{   
+				//$footer_link='<div class="sfsiplus_footerLnk" style="margin: 0 auto;z-index:1000; absolute; text-align: center;">Social media & sharing icons powered by  <a href="https://wordpress.org/plugins/ultimate-social-media-icons/" target="_new">UltimatelySocial</a> ';
+		
+		$domain = getDomain(get_site_url());
+		$firstCharacter = substr($domain, 0, 1);
+		if(in_array($firstCharacter ,array('a','b','c','d','e','f','g','h','i','j','k','l','m'))){
+			$footer_link='<div class="sfsiplus_footerLnk" style="margin: 0 auto;z-index:1000; absolute; text-align: center;">Social media & sharing icons  powered by <a href="https://www.ultimatelysocial.com/?utm_source=usmplus_settings_page&utm_campaign=credit_link_to_homepage&utm_medium=banner" target="_new">UltimatelySocial </a>';
 			$footer_link.="</div>";
 			echo $footer_link;
+		}else if(in_array($firstCharacter ,array('n','o','p','q','r','s'))){
+			$footer_link='<div class="sfsiplus_footerLnk" style="margin: 0 auto;z-index:1000; absolute; text-align: center;"><a href="https://www.ultimatelysocial.com/usm-premium/" target="_new">Wordpress Social Share Plugin </a> powered by Ultimatelysocial';
+			$footer_link.="</div>";
+			echo $footer_link;
+		}else{
+			$footer_link='<div class="sfsiplus_footerLnk" style="margin: 0 auto;z-index:1000; absolute; text-align: center;"><a href="https://www.ultimatelysocial.com/?utm_source=usmplus_settings_page&utm_campaign=credit_link_to_homepage&utm_medium=banner" target="_new">Social Share Buttons and Icons</a> powered by Ultimatelysocial';
+			$footer_link.="</div>";
+			echo $footer_link;
+		} 
+			
 		}
 	}    
         

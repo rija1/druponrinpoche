@@ -80,6 +80,15 @@ jQuery(function($) {
 			
 		},
 		
+		extend: function(child, parent) {
+			
+			var constructor = child;
+			
+			child.prototype = Object.create(parent.prototype);
+			child.prototype.constructor = constructor;
+			
+		},
+		
 		/**
 		 * Generates and returns a GUID
 		 * @method guid
@@ -2003,14 +2012,39 @@ jQuery(function($) {
 	{
 		//console.log("Created bounds", southWest, northEast);
 		
-		if(southWest && northEast)
+		if(southWest instanceof WPGMZA.LatLngBounds)
+		{
+			var other = southWest;
+			this.south = other.south;
+			this.north = other.north;
+			this.west = other.west;
+			this.east = other.east;
+		}
+		else if(southWest && northEast)
 		{
 			// TODO: Add checks and errors
 			this.south = southWest.lat;
 			this.north = northEast.lat;
 			this.west = southWest.lng;
-			this.east = southWest.lng;
+			this.east = northEast.lng;
 		}
+	}
+	
+	WPGMZA.LatLngBounds.fromGoogleLatLngBounds = function(googleLatLngBounds)
+	{
+		if(!(googleLatLngBounds instanceof google.maps.LatLngBounds))
+			throw new Error("Argument must be an instance of google.maps.LatLngBounds");
+		
+		var result = new WPGMZA.LatLngBounds();
+		var southWest = googleLatLngBounds.getSouthWest();
+		var northEast = googleLatLngBounds.getNorthEast();
+		
+		result.north = northEast.lat();
+		result.south = southWest.lat();
+		result.west = southWest.lng();
+		result.east = northEast.lng();
+		
+		return result;
 	}
 	
 	/**
@@ -2092,7 +2126,7 @@ jQuery(function($) {
 		this.west = southWest.lng;
 		this.east = northEast.lng;
 		
-		//console.log("Extended", temp, "to", this.toString());
+		// console.log("Extended", temp, "to", this.toString());
 	}
 	
 	WPGMZA.LatLngBounds.prototype.contains = function(latLng)
@@ -2111,10 +2145,7 @@ jQuery(function($) {
 		if(this.west < this.east)
 			return (latLng.lng >= this.west && latLng.lng <= this.east);
 		
-		if(this.west < this.east)
-			return (latLng.lng >= this.west || this.lng <= this.east);
-		
-		return (latLng.lng <= this.west || this.lng >= this.east);
+		return (latLng.lng <= this.west || latLng.lng >= this.east);
 	}
 	
 	WPGMZA.LatLngBounds.prototype.toString = function()
@@ -2400,6 +2431,11 @@ jQuery(function($) {
 		});
 	}
 	
+	WPGMZA.MapSettingsPage.createInstance = function()
+	{
+		return new WPGMZA.MapSettingsPage();
+	}
+	
 	/**
 	 * Updates engine specific controls, hiding irrelevant controls (eg Google controls when OpenLayers is the selected engine) and showing relevant controls.
 	 * @method
@@ -2447,13 +2483,31 @@ jQuery(function($) {
 			$("#wpgmza_gdpr_override_notice_text").hide("slow");
 		}
 	}
+
+	/**
+	 * Flushes the geocode cache
+	 */
+	WPGMZA.MapSettingsPage.prototype.flushGeocodeCache = function()
+	{
+		var OLGeocoder = new WPGMZA.OLGeocoder();
+		OLGeocoder.clearCache(function(response){
+			jQuery('#wpgmza_flush_cache_btn').removeAttr('disabled');
+		});
+	}
 	
 	jQuery(function($) {
 		
 		if(!window.location.href.match(/wp-google-maps-menu-settings/))
 			return;
 		
-		WPGMZA.mapSettingsPage = new WPGMZA.MapSettingsPage();
+		WPGMZA.mapSettingsPage = WPGMZA.MapSettingsPage.createInstance();
+
+		jQuery(document).ready(function(){
+			jQuery('#wpgmza_flush_cache_btn').on('click', function(){
+				jQuery(this).attr('disabled', 'disabled');
+				WPGMZA.mapSettingsPage.flushGeocodeCache();
+			});
+		});
 		
 	});
 	
@@ -2745,6 +2799,7 @@ jQuery(function($) {
 	
 	WPGMZA.Map.prototype = Object.create(WPGMZA.EventDispatcher.prototype);
 	WPGMZA.Map.prototype.constructor = WPGMZA.Map;
+	WPGMZA.Map.nightTimeThemeData = [{"elementType":"geometry","stylers":[{"color":"#242f3e"}]},{"elementType":"labels.text.fill","stylers":[{"color":"#746855"}]},{"elementType":"labels.text.stroke","stylers":[{"color":"#242f3e"}]},{"featureType":"administrative.locality","elementType":"labels.text.fill","stylers":[{"color":"#d59563"}]},{"featureType":"landscape","elementType":"geometry.fill","stylers":[{"color":"#575663"}]},{"featureType":"poi","elementType":"labels.text.fill","stylers":[{"color":"#d59563"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#263c3f"}]},{"featureType":"poi.park","elementType":"labels.text.fill","stylers":[{"color":"#6b9a76"}]},{"featureType":"road","elementType":"geometry","stylers":[{"color":"#38414e"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"color":"#212a37"}]},{"featureType":"road","elementType":"labels.text.fill","stylers":[{"color":"#9ca5b3"}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#746855"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#80823e"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#1f2835"}]},{"featureType":"road.highway","elementType":"labels.text.fill","stylers":[{"color":"#f3d19c"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#2f3948"}]},{"featureType":"transit.station","elementType":"labels.text.fill","stylers":[{"color":"#d59563"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#17263c"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#1b737a"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"color":"#515c6d"}]},{"featureType":"water","elementType":"labels.text.stroke","stylers":[{"color":"#17263c"}]}];
 	
 	/**
 	 * Returns the contructor to be used by createInstance, depending on the selected maps engine.
@@ -3018,7 +3073,7 @@ jQuery(function($) {
 	 * @throws Argument must be an instance of WPGMZA.Polygon
 	 * @throws Wrong map error
 	 */
-	WPGMZA.Map.prototype.deletePolygon = function(polygon)
+	WPGMZA.Map.prototype.removePolygon = function(polygon)
 	{
 		if(!(polygon instanceof WPGMZA.Polygon))
 			throw new Error("Argument must be an instance of WPGMZA.Polygon");
@@ -3056,14 +3111,14 @@ jQuery(function($) {
 	 * @memberof WPGMZA.Map
 	 * @param {int} id The ID of the polygon to remove
 	 */
-	WPGMZA.Map.prototype.deletePolygonByID = function(id)
+	WPGMZA.Map.prototype.removePolygonByID = function(id)
 	{
 		var polygon = this.getPolygonByID(id);
 		
 		if(!polygon)
 			return;
 		
-		this.deletePolygon(polygon);
+		this.removePolygon(polygon);
 	}
 	
 	/**
@@ -3109,7 +3164,7 @@ jQuery(function($) {
 	 * @throws Argument must be an instance of WPGMZA.Polyline
 	 * @throws Wrong map error
 	 */
-	WPGMZA.Map.prototype.deletePolyline = function(polyline)
+	WPGMZA.Map.prototype.removePolyline = function(polyline)
 	{
 		if(!(polyline instanceof WPGMZA.Polyline))
 			throw new Error("Argument must be an instance of WPGMZA.Polyline");
@@ -3147,14 +3202,14 @@ jQuery(function($) {
 	 * @memberof WPGMZA.Map
 	 * @param {int} id The ID of the polyline to remove
 	 */
-	WPGMZA.Map.prototype.deletePolylineByID = function(id)
+	WPGMZA.Map.prototype.removePolylineByID = function(id)
 	{
 		var polyline = this.getPolylineByID(id);
 		
 		if(!polyline)
 			return;
 		
-		this.deletePolyline(polyline);
+		this.removePolyline(polyline);
 	}
 	
 	/**
@@ -3223,14 +3278,14 @@ jQuery(function($) {
 	 * @memberof WPGMZA.Map
 	 * @param {int} id The ID of the circle to remove
 	 */
-	WPGMZA.Map.prototype.deleteCircleByID = function(id)
+	WPGMZA.Map.prototype.removeCircleByID = function(id)
 	{
 		var circle = this.getCircleByID(id);
 		
 		if(!circle)
 			return;
 		
-		this.deleteCircle(circle);
+		this.removeCircle(circle);
 	}
 	
 	/**
@@ -3610,6 +3665,10 @@ jQuery(function($) {
 			console.warn("Cannot open infowindow for marker with no map");
 			return;
 		}
+		
+		// NB: This is a workaround for "undefined" in InfoWindows (basic only) on map edit page
+		if(WPGMZA.currentPage == "map-edit" && !WPGMZA.pro_version)
+			return;
 		
 		if(this.map.lastInteractedMarker)
 			this.map.lastInteractedMarker.infoWindow.close();
@@ -4408,7 +4467,7 @@ jQuery(function($) {
 		if(button = $(original).find("button.wpgmza-use-my-location"))
 			inner.append(button);
 		
-		$(addressInput).on("keydown", function(event) {
+		$(addressInput).on("keydown keypress", function(event) {
 			
 			if(event.keyCode == 13 && self.searchButton.is(":visible"))
 				self.searchButton.trigger("click");
@@ -4550,10 +4609,16 @@ jQuery(function($) {
 	 */
 	WPGMZA.ModernStoreLocator.createInstance = function(map_id)
 	{
-		if(WPGMZA.settings.engine == "google-maps")
-			return new WPGMZA.GoogleModernStoreLocator(map_id);
-		else
-			return new WPGMZA.OLModernStoreLocator(map_id);
+		switch(WPGMZA.settings.engine)
+		{
+			case "open-layers":
+				return new WPGMZA.OLModernStoreLocator(map_id);
+				break;
+			
+			default:
+				return new WPGMZA.GoogleModernStoreLocator(map_id);
+				break;
+		}
 	}
 	
 });
@@ -4864,10 +4929,21 @@ jQuery(function($) {
 		
 		if(!params.error)
 			params.error = function(xhr, status, message) {
+				if(status == "abort")
+					return;	// Don't report abort, let it happen silently
+				
 				throw new Error(message);
 			}
 		
 		return $.ajax(WPGMZA.RestAPI.URL + route, params);
+	}
+	
+	var nativeCallFunction = WPGMZA.RestAPI.call;
+	WPGMZA.RestAPI.call = function()
+	{
+		console.warn("WPGMZA.RestAPI.call was called statically, did you mean to call the function on WPGMZA.restAPI?");
+		
+		nativeCallFunction.apply(this, arguments);
 	}
 	
 });
@@ -4895,6 +4971,14 @@ jQuery(function($) {
 		// TODO: This will be moved into this module instead of listening to the map event
 		this.map.on("storelocatorgeocodecomplete", function(event) {
 			self.onGeocodeComplete(event);
+		});
+		
+		this.map.on("init", function(event) {
+			
+			self.map.markerFilter.on("filteringcomplete", function(event) {
+				self.onFilteringComplete(event);
+			});
+			
 		});
 		
 		// Legacy store locator buttons
@@ -4933,7 +5017,10 @@ jQuery(function($) {
 	WPGMZA.StoreLocator.prototype.onGeocodeComplete = function(event)
 	{
 		if(!event.results || !event.results.length)
+		{
 			this._center = null;
+			return;
+		}
 		else
 			this._center = new WPGMZA.LatLng( event.results[0].latLng );
 		
@@ -4965,6 +5052,14 @@ jQuery(function($) {
 		};
 	}
 	
+	WPGMZA.StoreLocator.prototype.onFilteringComplete = function(event)
+	{
+		if(event.filteredMarkers.length == 0)
+			$(this.element).find(".wpgmza-not-found-msg").show();
+		else
+			$(this.element).find(".wpgmza-not-found-msg").hide();
+	}
+	
 });
 
 // js/v8/text.js
@@ -4987,13 +5082,13 @@ jQuery(function($) {
 		switch(WPGMZA.settings.engine)
 		{
 			case "open-layers":
+				return new WPGMZA.OLText(options);
 				break;
 				
 			default:
+				return new WPGMZA.GoogleText(options);
 				break;
 		}
-		
-		return new WPGMZA.Text(options);
 	}
 	
 });
@@ -5632,6 +5727,11 @@ jQuery(function($) {
 			return;
 		
 		this.googleInfoWindow = new google.maps.InfoWindow();
+		
+		google.maps.event.addListener(this.googleInfoWindow, "domready", function(event) {
+			self.trigger("domready");
+		});
+		
 		google.maps.event.addListener(this.googleInfoWindow, "closeclick", function(event) {
 			self.mapObject.map.trigger("infowindowclose");
 		});
@@ -6831,30 +6931,6 @@ jQuery(function($) {
 	
 });
 
-// js/v8/google-maps/google-text-overlay.js
-/**
- * @namespace WPGMZA
- * @module GoogleTextOverlay
- * @requires WPGMZA.Text
- */
-jQuery(function($) {
-	
-	WPGMZA.GoogleTextOverlay = function()
-	{
-		this.element = $("<div></div>");
-		
-	}
-	
-	if(window.google && google.maps && google.maps.OverlayView)
-		WPGMZA.GoogleTextOverlay.prototype = new google.maps.OverlayView();
-	
-	WPGMZA.GoogleTextOverlay.prototype.onAdd = function()
-	{
-		
-	}
-	
-});
-
 // js/v8/google-maps/google-text.js
 /**
  * @namespace WPGMZA
@@ -6863,12 +6939,93 @@ jQuery(function($) {
  */
 jQuery(function($) {
 	
-	WPGMZA.GoogleText = function()
+	WPGMZA.GoogleText = function(options)
 	{
+		WPGMZA.Text.apply(this, arguments);
 		
+		this.overlay = new WPGMZA.GoogleTextOverlay(options);
 	}
 	
+	WPGMZA.extend(WPGMZA.GoogleText, WPGMZA.Text);
 	
+});
+
+// js/v8/google-maps/google-text-overlay.js
+/**
+ * @namespace WPGMZA
+ * @module GoogleTextOverlay
+ * @requires WPGMZA.GoogleText
+ */
+jQuery(function($) {
+	
+	WPGMZA.GoogleTextOverlay = function(options)
+	{
+		this.element = $("<div></div>");
+		
+		console.log(options);
+		
+		if(!options)
+			options = {};
+		
+		if(options.text)
+			this.element.text(options.text);
+		
+		if(options.map)
+			this.setMap(map.googleMap);
+	}
+	
+	if(window.google && google.maps && google.maps.OverlayView)
+		WPGMZA.GoogleTextOverlay.prototype = new google.maps.OverlayView();
+	
+	WPGMZA.GoogleTextOverlay.prototype.onAdd = function()
+	{
+		var overlayProjection = this.getProjection();
+		var position = overlayProjection.fromLatLngToDivPixel(this.position.toGoogleLatLng());
+		
+		this.element.css({
+			position: "absolute",
+			left: position.x + "px",
+			top: position.y + "px"
+		});
+		
+		var panes = this.getPanes();
+		panes.floatPane.appendChild(this.element[0]);
+	}
+	
+	WPGMZA.GoogleTextOverlay.prototype.draw = function()
+	{
+		var overlayProjection = this.getProjection();
+		var position = overlayProjection.fromLatLngToDivPixel(this.position.toGoogleLatLng());
+		
+		this.element.css({
+			position: "absolute",
+			left: position.x + "px",
+			top: position.y + "px"
+		});
+	}
+	
+	WPGMZA.GoogleTextOverlay.prototype.onRemove = function()
+	{
+		this.element.remove();
+	}
+	
+	WPGMZA.GoogleTextOverlay.prototype.hide = function()
+	{
+		this.element.hide();
+	}
+	
+	WPGMZA.GoogleTextOverlay.prototype.show = function()
+	{
+		this.element.show();
+	}
+	
+	WPGMZA.GoogleTextOverlay.prototype.toggle = function()
+	{
+		if(this.element.is(":visible"))
+			this.element.hide();
+		else
+			this.element.show();
+	}
 	
 });
 
@@ -7150,7 +7307,7 @@ jQuery(function($) {
 		};
 		
 		if(options.componentRestrictions && options.componentRestrictions.country)
-			data.countryCodes = options.componentRestrictions.country;
+			data.countrycodes = options.componentRestrictions.country;
 		
 		$.ajax("https://nominatim.openstreetmap.org/search/", {
 			data: data,
@@ -7180,6 +7337,25 @@ jQuery(function($) {
 				response: JSON.stringify(response)
 			},
 			method: "POST"
+		});
+	}
+
+	/**
+	 * @function clearCache
+	 * @access protected
+	 * @summary Clears the Nomanatim geocode cache
+	 * @returns {void}
+	 */
+	WPGMZA.OLGeocoder.prototype.clearCache = function(callback)
+	{
+		$.ajax(WPGMZA.ajaxurl, {
+			data: {
+				action: "wpgmza_clear_nominatim_cache"
+			},
+			method: "POST",
+			success: function(response){
+				callback(response);
+			}
 		});
 	}
 	
@@ -7327,7 +7503,8 @@ jQuery(function($) {
 			this.mapObject.map.olMap.removeOverlay(this.overlay);
 			
 		this.overlay = new ol.Overlay({
-			element: this.element
+			element: this.element,
+			stopEvent: false
 		});
 		
 		this.overlay.setPosition(ol.proj.fromLonLat([
@@ -7339,6 +7516,7 @@ jQuery(function($) {
 		$(this.element).show();
 		
 		this.trigger("infowindowopen");
+		this.trigger("domready");
 	}
 	
 	WPGMZA.OLInfoWindow.prototype.close = function(event)
@@ -7892,7 +8070,8 @@ jQuery(function($) {
 		this.overlay = new ol.Overlay({
 			element: this.element,
 			position: origin,
-			positioning: "bottom-center"
+			positioning: "bottom-center",
+			stopEvent: false
 		});
 		this.overlay.setPosition(origin);
 		
@@ -8394,7 +8573,7 @@ jQuery(function($) {
 		});
 		
 		this.layer.getSource().getFeatures()[0].setProperties({
-			wpgmzaPolyling: this
+			wpgmzaPolyline: this
 		});
 	}
 	
@@ -8507,11 +8686,54 @@ jQuery(function($) {
 		this.phpClass			= $(element).attr("data-wpgmza-php-class");
 		this.dataTable			= $(this.dataTableElement).DataTable(settings);
 		this.wpgmzaDataTable	= this;
+		
+		this.dataTable.ajax.reload();
 	}
+	
+	Object.defineProperty(WPGMZA.DataTable.prototype, "canSendCompressedRequests", {
+		
+		"get": function() {
+			
+			return (
+				WPGMZA.serverCanInflate == 1 && 
+				"Uint8Array" in window && 
+				"TextEncoder" in window && 
+				!WPGMZA.settings.forceDatatablesPOST && 
+				WPGMZA.settings.useCompressedDataTablesRequests
+			);
+			
+		}
+		
+	});
 	
 	WPGMZA.DataTable.prototype.getDataTableElement = function()
 	{
 		return $(this.element).find("table");
+	}
+	
+	/*WPGMZA.DataTable.AjaxURL = function(dataTable)
+	{
+		this.dataTable = dataTable;
+	}
+	
+	WPGMZA.DataTable.AjaxURL.prototype.toString = function()
+	{
+		var data 		= this.dataTable.onAJAXRequest(data, settings);
+		var element 	= this.dataTable.element;
+		var route 		= $(element).attr("data-wpgmza-rest-api-route");
+		
+		console.log(data);
+		
+		return "placeholder";
+	}*/
+	
+	var blank = function() {
+		
+	};
+	
+	blank.prototype.toString = function()
+	{
+		return "";
 	}
 	
 	WPGMZA.DataTable.prototype.getDataTableSettings = function()
@@ -8519,18 +8741,38 @@ jQuery(function($) {
 		var self = this;
 		var element = this.element;
 		var options = {};
-		var ajax;
+		var route;
+		var method = this.canSendCompressedRequests ? "GET" : "POST";
+		var url;
 		
 		if($(element).attr("data-wpgmza-datatable-options"))
 			options = JSON.parse($(element).attr("data-wpgmza-datatable-options"));
 		
-		if(ajax = $(element).attr("data-wpgmza-rest-api-route"))
+		if(route = $(element).attr("data-wpgmza-rest-api-route"))
 		{
+			url = WPGMZA.resturl + route;
+			
+			options.deferLoading = true;
+			
 			options.ajax = {
-				url: WPGMZA.resturl + ajax,
-				method: "POST",	// We don't use GET because the request can get bigger than some browsers maximum URL lengths
+				cache: true,
+				url: url,
+				method: method,	// We don't use GET because the request can get bigger than some browsers maximum URL lengths
 				data: function(data, settings) {
-					return self.onAJAXRequest(data, settings);
+					
+					var request = self.onAJAXRequest(data, settings);
+					
+					if(self.canSendCompressedRequests)
+					{
+						// NB: We use a custom base64 encoding because percent signs are not permitted in the REST URL, and slashes would indicate a path. This is a resource, and not a path
+						var customBase64Encoded = request.wpgmzaDataTableRequestData.replace(/\//g, "-");
+						
+						self.dataTable.ajax.url(url + customBase64Encoded);
+						return {};
+					}
+					
+					return request;
+					
 				},
 				beforeSend: function(xhr) {
 					xhr.setRequestHeader('X-WP-Nonce', WPGMZA.restnonce);
@@ -8541,11 +8783,10 @@ jQuery(function($) {
 			options.serverSide = true;
 		}
 		
-		if($(this.element).attr("data-wpgmza-php-class") == "WPGMZA\\MarkerListing\\AdvancedTable" && WPGMZA.settings.wpgmza_default_items)
-		{
+		if(WPGMZA.AdvancedTableDataTable && this instanceof WPGMZA.AdvancedTableDataTable && WPGMZA.settings.wpgmza_default_items)
 			options.iDisplayLength = parseInt(WPGMZA.settings.wpgmza_default_items);
-			options.aLengthMenu = [5, 10, 25, 50, 100];
-		}
+		
+		options.aLengthMenu = [5, 10, 25, 50, 100];
 		
 		var languageURL;
 
@@ -8847,6 +9088,7 @@ jQuery(function($) {
 	 */
 	WPGMZA.DataTable.prototype.onAJAXRequest = function(data, settings)
 	{
+		// TODO: Move this to the REST API module and add useCompressedPathVariable
 		var params = {
 			"phpClass":	this.phpClass
 		};
@@ -8857,8 +9099,26 @@ jQuery(function($) {
 		
 		$.extend(data, params);
 		
-		return {
+		var uncompressed = {
 			wpgmzaDataTableRequestData: data
+		};
+		
+		if(!this.canSendCompressedRequests)
+			return uncompressed;
+		
+		var string		= JSON.stringify(data);
+		var encoder		= new TextEncoder();
+		var input		= encoder.encode(string);
+		var compressed	= pako.deflate(input);
+		
+		var raw			= Array.prototype.map.call(compressed, function(ch) {
+			return String.fromCharCode(ch);
+		}).join("");
+		
+		var base64		= btoa(raw);
+		
+		return {
+			wpgmzaDataTableRequestData: base64
 		};
 	}
 	

@@ -388,10 +388,12 @@ $option8['sfsi_form_button_background'] = (isset($option8['sfsi_form_button_back
                 <!--Row Section-->
                 <div class="row_tab">
                 	<div class="sfsi_field">
-                    	<label class="sfsi_same_width"><b>Button color:</b></label>
-                        <input type="text" name="sfsi_form_button_background" data-default-color="#b5b5b5" id="sfsi_form_button_background" value="<?php echo ($option8['sfsi_form_button_background']!='')
+                        <label class="sfsi_same_width">Button color:</label>
+                        <div class="sfsi_field">
+                            <input type="text" name="sfsi_form_button_background" data-default-color="#b5b5b5" id="sfsi_form_button_background" value="<?php echo ($option8['sfsi_form_button_background']!='')
 										? $option8['sfsi_form_button_background'] : '' ;
 									?>">
+                        </div>
                         <!--div class="color_box">
                             <div class="corner"></div>
                             <div class="color_box1" id="sfsiFormButtonBackground" style="background: <?php //echo ($option8['sfsi_form_button_background']!='') ? $option8['sfsi_form_button_background'] : '' ;

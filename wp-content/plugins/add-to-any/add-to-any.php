@@ -3,7 +3,7 @@
 Plugin Name: AddToAny Share Buttons
 Plugin URI: https://www.addtoany.com/
 Description: Share buttons for your pages including AddToAny's universal sharing button, Facebook, Twitter, Google+, Pinterest, WhatsApp and many more.
-Version: 1.7.35
+Version: 1.7.36
 Author: AddToAny
 Author URI: https://www.addtoany.com/
 Text Domain: add-to-any
@@ -605,7 +605,7 @@ function ADDTOANY_SHARE_SAVE_FLOATING( $args = array() ) {
 	$horizontal_type = ( isset( $options['floating_horizontal'] ) && 'none' != $options['floating_horizontal'] ) ? $options['floating_horizontal'] : false;
 
 	if ( is_singular() ) {
-		// Disabled for this singular post?
+		// Sharing disabled for this singular post?
 		$sharing_disabled = get_post_meta( get_the_ID(), 'sharing_disabled', true );
 		$sharing_disabled = apply_filters( 'addtoany_sharing_disabled', $sharing_disabled );
 		
@@ -753,6 +753,12 @@ function A2A_SHARE_SAVE_head_script() {
 	
 	if ( is_admin() || is_feed() || $script_disabled )
 		return;
+
+	if ( is_singular() ) {
+		// Sharing disabled for this singular post?
+		$sharing_disabled = get_post_meta( get_the_ID(), 'sharing_disabled', true );
+		$sharing_disabled = apply_filters( 'addtoany_sharing_disabled', $sharing_disabled );
+	}
 		
 	$options = get_option( 'addtoany_options', array() );
 
@@ -791,10 +797,11 @@ function A2A_SHARE_SAVE_head_script() {
 
 	// Floating vertical relative to content
 	$floating_js = '';
-	if ( 
-		isset( $options['floating_vertical'] ) && 
-		in_array( $options['floating_vertical'], array( 'left_attached', 'right_attached' ) ) &&
-		! empty( $options['floating_vertical_attached_to'] )
+	if (
+		isset( $options['floating_vertical'] )
+		&& in_array( $options['floating_vertical'], array( 'left_attached', 'right_attached' ) )
+		&& ! empty( $options['floating_vertical_attached_to'] )
+		&& empty( $sharing_disabled )
 	) {
 		// Top position
 		$floating_js_position = ( isset( $options['floating_vertical_position'] ) ) ? $options['floating_vertical_position'] . 'px' : '100px';
