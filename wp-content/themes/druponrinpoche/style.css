@@ -1886,7 +1886,6 @@ p.teaching_info {
 
 .category .post-info {
   width: 100%;
-  padding-bottom: 13px;
   font-size: 14px; }
 .category .post-author {
   width: 100%;
@@ -1896,7 +1895,7 @@ p.teaching_info {
   color: #80784c;
   width: 100%;
   text-align: left;
-  padding-top: 10px; }
+  padding-top: 16px; }
 
 .single-post .rl-gallery-container {
   padding: 20px 0 20px 0; }
