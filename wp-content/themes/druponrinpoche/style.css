@@ -437,7 +437,7 @@ nav ol, nav ul {
     height: 26px;
     display: inline-block;
     text-align: center;
-    background-color: #bb9b25;
+    background-color: #b9b596;
     color: #ffffff; }
   .pagination span {
     height: 26px;
@@ -2232,11 +2232,11 @@ a.expand_link {
       font-size: 14px; }
     .pagination .nav-links span.current, .pagination .nav-links a.page-numbers {
       text-transform: uppercase;
-      padding: 5px 15px;
+      padding: 4px 14px;
       color: #fff; }
     .pagination .nav-links span.current {
       background: #80784c;
-      font-weight: 400; }
+      font-weight: 500; }
 
 .category-news .pagination .nav-links {
   padding-top: 0; }

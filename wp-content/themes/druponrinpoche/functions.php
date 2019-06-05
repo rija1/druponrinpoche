@@ -297,7 +297,7 @@ function get_text_excerpt($text,$length) {
         $length = strlen($text) - 10;
     }
 
-return $text;
+    return $text;
     return substr($text, 0, strpos($text, ' ', $length)).' [...]';
 }
 
@@ -1064,10 +1064,10 @@ add_action( 'wp_head', 'insert_fb_in_head', 5 );
 function order_posts_by_date_asc( $query ) {
     // Category to reverse order
     $cats = array('transcripts','samye-ling-2016-meditation-retreat');
-        if ($query->is_main_query() && in_array($query->query_vars['category_name'],$cats) ) {
-            $query->set( 'orderby', 'date' );
-            $query->set( 'order', 'ASC' );
-        }
+    if ($query->is_main_query() && in_array($query->query_vars['category_name'],$cats) ) {
+        $query->set( 'orderby', 'date' );
+        $query->set( 'order', 'ASC' );
+    }
 }
 add_action( 'pre_get_posts', 'order_posts_by_date_asc' );
 
@@ -1097,6 +1097,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['lineage_page_id'] = 1063;
         $drWebsiteConfig['selected_pics_gallery_id'] = 1293;
         $drWebsiteConfig['nb_latest_news_posts'] = 4;
+        $drWebsiteConfig['teaching_cat_ids'] = array(28,30);
     } elseif($locale == 'zh_CN') {
         $drWebsiteConfig['home_metaslider_id'] = 1516;
         $drWebsiteConfig['home_schedule_id'] = 14;
@@ -1109,6 +1110,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['lineage_page_id'] = 1063;
         $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
         $drWebsiteConfig['nb_latest_news_posts'] = 3;
+        $drWebsiteConfig['teaching_cat_ids'] = array();
     }
 
     return $drWebsiteConfig;
@@ -1139,4 +1141,38 @@ add_action('init', function() {
     pll_register_string('lineage','Lineage','drupon-rinpoche');
 
 });
+
+
+/**
+ * Filter the single_template with our custom function
+ */
+add_filter('single_template', 'teaching_single_template');
+
+/**
+ * Single template function which will choose our template
+ */
+function teaching_single_template($single) {
+    global $wp_query, $post;
+//pa(333,1);
+    /**
+     * Checks for single template by category
+     * Check by category slug and ID
+     */
+
+    $drConfig = getDrWebsiteConfig();
+    $teachingCatIds = $drConfig['teaching_cat_ids'];
+    $teachingTemplatePath = TEMPLATEPATH.'/single-teachings.php';
+
+    foreach((array)get_the_category() as $cat) {
+        if(in_array($cat->term_id,$teachingCatIds)) {
+            if(file_exists($teachingTemplatePath)) {
+                return $teachingTemplatePath;
+            }
+        }
+    }
+
+    return TEMPLATEPATH . '/single.php';
+
+}
+
 

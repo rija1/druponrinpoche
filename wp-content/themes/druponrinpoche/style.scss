@@ -599,7 +599,7 @@ nav {
         height: 26px;
         display: inline-block;
         text-align: center;
-        background-color: $dkr-gold;
+        background-color: #b9b596;
         color:#ffffff;
     }
     span {
@@ -3121,12 +3121,12 @@ width: 345px;
         padding-top: 25px;
         span.current, a.page-numbers {
             text-transform: uppercase;
-            padding:5px 15px;
+            padding: 4px 14px;
             color: #fff;
         }
         span.current {
             background: $dkr-brown;
-            font-weight:400;
+            font-weight:500;
         }
     }
 }

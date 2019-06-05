@@ -6,6 +6,7 @@
  get_header();
 $author = get_post_meta(get_the_ID(), 'Post Author', true);
 ?>
+
  <?php while (have_posts()) : the_post(); ?>
     <section class="section section-page-title">
 	</section> <!--  END section-page-title  -->
