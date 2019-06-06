@@ -26,9 +26,12 @@ while ($parentId != 0) {
                                     <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
                                 <?php endif; ?>
                                 <!--                            <p class="meta"><span class="meta-auth">--><?php //the_author(); ?><!--</span> <span class="meta-categ">--><?php //the_category(', '); ?><!--</span></p>-->
-                                <div class="post_date"><?php the_date(); ?></div>
+<!--                                <div class="post_date">--><?php //the_date(); ?><!--</div>-->
+                                <div class="teaching_info"><?php echo get_post_meta(get_the_ID(), 'teaching_info', true); ?></div>
                             </div>
+
                             <?php the_content(); ?>
+
                             <!--                            <p class="tags">--><?php //the_tags(); ?><!--</p>-->
                         </div>
                         <p><?php posts_nav_link(); ?></p>

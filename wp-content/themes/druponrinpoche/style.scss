@@ -2562,6 +2562,8 @@ sup {
     }
 }
 
+
+
 .teachings_category {
         a.category-post-title {
             display:block;
@@ -2603,6 +2605,16 @@ sup {
             text-transform: uppercase;
         }
     }
+
+
+ .single-post {
+     .post-info {
+         .teaching_info {
+             font-style:italic;
+             font-size: 14px;
+         }
+     }
+ }
 }
 
 .category-quotes .article-blog:last-of-type {

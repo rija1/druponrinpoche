@@ -1872,6 +1872,9 @@ sup {
   .teachings_category .article-blog .teaching_title {
     font-weight: 900;
     text-transform: uppercase; }
+.teachings_category .single-post .post-info .teaching_info {
+  font-style: italic;
+  font-size: 14px; }
 
 .category-quotes .article-blog:last-of-type {
   border-bottom: none; }
