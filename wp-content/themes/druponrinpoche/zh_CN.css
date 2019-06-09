@@ -88,7 +88,7 @@ a.view_full_schedule {
   margin-bottom: 3px; }
 
 /**  mobile  **/
-@media only screen and (max-width: 680px) {
+@media only screen and (max-width: 780px) {
   .menu-bar-logo-block {
     padding-top: 5px; }
 
