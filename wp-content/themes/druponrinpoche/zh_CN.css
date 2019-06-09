@@ -27,7 +27,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Raleway','STHeitiLightDR','SimSunDR'; }
 
 h1 {
-  font-size: 26px; }
+  font-size: 22px;
+  padding-top: 10px; }
 
 .posts-grid .article-text, .featured-grid .article-text {
   font-weight: 400;
@@ -79,8 +80,5 @@ a.view_full_schedule {
 
 .breadcrumbs {
   display: none; }
-
-.section-title {
-  padding-top: 10px; }
 
 /*# sourceMappingURL=zh_CN.css.map */
