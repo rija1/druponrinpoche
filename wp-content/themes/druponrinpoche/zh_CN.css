@@ -82,12 +82,13 @@ a.view_full_schedule {
   display: none; }
 
 /**  mobile  **/
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 680px) {
   .menu-bar-logo-block {
     padding-top: 5px; }
 
-  .menu-bar-logo-block img img {
-    width: 59px; }
+  .menu-bar-logo-block img {
+    width: 59px;
+    margin-top: 7px; }
 
   .menu-bar-logo-block .logo_name span.logo_dkr {
     font-size: 21px; }
