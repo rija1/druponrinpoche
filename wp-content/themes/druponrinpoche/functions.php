@@ -1107,7 +1107,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['aboutrinpoche_page_id'] = 13699;
         $drWebsiteConfig['sekhar_page_id'] = 12938;
         $drWebsiteConfig['mts_page_id'] = 12521;
-        $drWebsiteConfig['lineage_page_id'] = 1063;
+        $drWebsiteConfig['lineage_page_id'] = 12910;
         $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
         $drWebsiteConfig['nb_latest_news_posts'] = 4;
         $drWebsiteConfig['teaching_cat_ids'] = array();
