@@ -2314,7 +2314,8 @@ figcaption {
     display: none; }
 
   .menu-top-mob-container {
-    display: block; }
+    display: block;
+    box-sizing: border-box; }
     .menu-top-mob-container .menu-top-mob .menu-arrow {
       display: none; }
     .menu-top-mob-container .menu-top-mob .sub-menu li.menu-item-has-children .menu-arrow {

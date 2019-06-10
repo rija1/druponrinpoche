@@ -753,6 +753,7 @@ nav {
     float: left;
     margin-top: 22px;
     padding-left: 15px;
+
     width: 100%;
 
 
@@ -3256,6 +3257,7 @@ figcaption {
 
     .menu-top-mob-container {
         display:block;
+        box-sizing: border-box;
         .menu-top-mob {
             .menu-arrow {
                 display: none;
