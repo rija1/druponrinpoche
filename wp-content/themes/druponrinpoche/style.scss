@@ -13,6 +13,7 @@ $dkr-brown: #80784c;
 $dkr-gold: #bb9b25;
 $dkr-lightgrey: #f6f6f6;
 
+
 /**  fonts  **/
 
 @font-face {
@@ -3179,6 +3180,18 @@ figcaption {
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
 
+    .copyright-block {
+        .container {
+            padding:15px 10px 10px 10px;
+        }
+        .left {
+            width: 23%;
+        }
+        .right {
+            width: 77%;
+        }
+    }
+
     #content > .container {
         box-shadow:none;
         width:auto;
@@ -3188,7 +3201,7 @@ figcaption {
         grid-gap: 2px;
         li.lang-item-en {
             width: 20px;
-            height: 20px;
+            height: 19px;
             overflow: hidden;
         }
     }
@@ -3377,7 +3390,7 @@ figcaption {
             float: none;
             .schedule_carousel_wrap {
                 margin-bottom: 0;
-                width: 345px;
+                width: 92.5vw;
             }
         }
 
@@ -3686,6 +3699,8 @@ figcaption {
     }
 
 }
+
+
 
 
 

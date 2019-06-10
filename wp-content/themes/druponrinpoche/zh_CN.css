@@ -87,6 +87,9 @@ a.view_full_schedule {
 .sidebar-container .teachings_cat_list > ul > li {
   margin-bottom: 3px; }
 
+.latestnews_list .recent_post_link:nth-child(4) {
+  display: none; }
+
 /**  mobile  **/
 @media only screen and (max-width: 780px) {
   .menu-bar-logo-block {

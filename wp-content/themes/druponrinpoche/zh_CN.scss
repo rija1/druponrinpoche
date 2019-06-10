@@ -138,6 +138,10 @@ a.view_full_schedule {
     margin-bottom: 3px;
 }
 
+.latestnews_list .recent_post_link:nth-child(4) {
+    display: none;
+}
+
 
 /**  mobile  **/
 @media only screen and (max-width: 780px) {
