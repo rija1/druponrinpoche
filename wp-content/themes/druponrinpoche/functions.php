@@ -1098,6 +1098,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['selected_pics_gallery_id'] = 1293;
         $drWebsiteConfig['nb_latest_news_posts'] = 4;
         $drWebsiteConfig['teaching_cat_ids'] = array(28,30);
+        $drWebsiteConfig['analytics_ua'] = 'UA-136620900-1';
     } elseif($locale == 'zh_CN') {
         $drWebsiteConfig['home_metaslider_id'] = 1516;
         $drWebsiteConfig['home_schedule_id'] = 14;
@@ -1111,6 +1112,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
         $drWebsiteConfig['nb_latest_news_posts'] = 4;
         $drWebsiteConfig['teaching_cat_ids'] = array();
+        $drWebsiteConfig['analytics_ua'] = 'UA-141700678-1';
     }
 
     return $drWebsiteConfig;

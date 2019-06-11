@@ -8,6 +8,7 @@
  */
 
 $polylang = new PLL_Widget_Languages();
+$drConfig = getDrWebsiteConfig();
 $pllSwitcher = new PLL_Switcher();
 $pllArgs = array(
     'dropdown'               => 0, // display as list and not as dropdown
@@ -33,13 +34,13 @@ $pllArgs = array(
 <head>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136620900-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $drConfig['analytics_ua'] ?>"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'UA-136620900-1');
+    gtag('config', '<?php echo $drConfig['analytics_ua'] ?>');
 </script>
 
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
