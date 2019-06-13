@@ -1111,7 +1111,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['lineage_page_id'] = 12910;
         $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
         $drWebsiteConfig['nb_latest_news_posts'] = 4;
-        $drWebsiteConfig['teaching_cat_ids'] = array();
+        $drWebsiteConfig['teaching_cat_ids'] = array(267,271,77,76);
         $drWebsiteConfig['analytics_ua'] = 'UA-141700678-1';
     }
 
