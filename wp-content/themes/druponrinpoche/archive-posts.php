@@ -15,40 +15,7 @@ $featuredPostIds = array();
 <div class="section section-blog">
     <div class="news_left_right">
         <div class="news_left_block">
-            <div class="featured-grid">
-                <?php
-                query_posts('posts_per_page=1&cat='.$featuredCatId); /*1, 2*/
-                if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-                    <?php
-                    $featuredPostIds[] = get_the_ID();
-                    $author = get_post_meta(get_the_ID(), 'Post Author', true);
-                    ?>
-                    <article class="article-blog">
-                    <a class="article-link"  href="<?php the_permalink() ?>">
-                    <div id="post-<?php echo the_ID(); ?>" <?php post_class(); ?>>
-                        <?php if ( has_post_thumbnail() && !post_password_required() ) : ?>
-                            <div class="article-image">
-                                <?php echo the_post_thumbnail('dkr-photo-800-500'); ?>
-                            </div>
-                        <?php endif; ?>
-                        <div class="article-text">
-                            <span class="category-post-title"><?php echo the_title();  ?></span>
-                            <div class="post-info">
-                                <?php if (!empty($author)): ?>
-                                    <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
-                                <?php endif; ?>
-                                <div class="post_date"><?php echo get_the_date(); ?></div>
-                            </div>
-                            <p><?php echo get_text_excerpt(get_the_excerpt(),240);?></p>
-        <!--                    <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
-                        </div>
-                    </div>
-                    </a>
-                </article>
-                <?php endwhile; ?> <?php wp_reset_query(); /*4*/ ?>
 
-
-            </div>
 
 
             <div class="posts-grid">

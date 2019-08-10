@@ -12,6 +12,7 @@ Text Domain:  druponrinpoche
 $dkr-brown: #80784c;
 $dkr-gold: #bb9b25;
 $dkr-lightgrey: #f6f6f6;
+$dkr-darkgrey: #656250;
 
 
 /**  fonts  **/
@@ -212,9 +213,9 @@ abbr[title], dfn[title] {
 }
 
 table {
-//    border-collapse: collapse;
-//    border-spacing: 0;
-//    width: 100%;
+    //    border-collapse: collapse;
+    //    border-spacing: 0;
+    //    width: 100%;
 }
 
 /* change border colour to suit your needs */
@@ -742,7 +743,7 @@ nav {
 
 .menu-top-mob-container {
 
-   .icon-menu:before {
+    .icon-menu:before {
         font-family: 'FontAwesome';
         margin-right: 7px;
         content: "\f039";
@@ -1262,7 +1263,7 @@ img.alignright {
 }
 
 .wp-caption.alignright {
-//    margin: 5px 0 5px 10px;
+    //    margin: 5px 0 5px 10px;
     width: auto !important;
 }
 
@@ -1337,7 +1338,7 @@ img {
 /**  green  **/
 
 .color-green, a, h1, .logo, h1 a, .article-welcome h2 a:hover, .article-procedure h2 a:hover {
-    color: #656250;
+    color: $dkr-darkgrey;
 }
 
 .teachings_category {
@@ -1785,7 +1786,7 @@ div{
     display:block;
     padding: 20px 30px 30px 30px;
     .schedule_title {
-//        background: #f5f5f5;
+        //        background: #f5f5f5;
     }
     .latestnews_title, .schedule_title {
         h5 {
@@ -1846,10 +1847,10 @@ li.home_post {
                 -o-transition: all .1s ease;
                 transition: all .1s ease;
                 color:$dkr-gold;
-//                font-weight: 400;
+                //                font-weight: 400;
             }
             &:hover li.home_post {
-//                box-shadow: 0 1px 5px 2px rgba(0,0,0,.1)
+                //                box-shadow: 0 1px 5px 2px rgba(0,0,0,.1)
             }
         }
         li.home_post {
@@ -1976,7 +1977,7 @@ ul.poly_switcher {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
-//    grid-template-columns: 1fr 1fr 1fr; // when 3 languages
+    //    grid-template-columns: 1fr 1fr 1fr; // when 3 languages
     margin-right: 10px;
     a {
         font-family: 'Raleway';
@@ -2009,13 +2010,13 @@ ul.poly_switcher li {
 /**  gray  **/
 
 .color-gray, html, body, .footer a, .testimonials-carousel .owl-controls .owl-buttons div {
-    color: #656250;
+    color: $dkr-darkgrey;
 }
 
 .table-support {
-    color: #656250;
+    color: $dkr-darkgrey;
     a {
-        color: #656250;
+        color: $dkr-darkgrey;
     }
 }
 
@@ -2065,8 +2066,8 @@ body.home .breadcrumbs {
 
     li.page_item ul.children li a:hover {
         text-decoration: underline;
-//        font-weight:300;
-//        color:#eee;
+        //        font-weight:300;
+        //        color:#eee;
     }
     li.current_page_ancestor {
         background: $dkr-lightgrey;
@@ -2204,8 +2205,8 @@ li.page_item_has_children a {
 .home_pages_grid a:hover h5 {
     /*color: $dkr-brown;*/
     color: $dkr-gold;
-//    font-weight: 400;
-//    text-decoration: underline;
+    //    font-weight: 400;
+    //    text-decoration: underline;
 }
 
 .wp-caption {
@@ -2246,7 +2247,7 @@ li.page_item_has_children a {
     /*padding: 22px;*/
 }
 
- .home .metaslider .caption {
+.home .metaslider .caption {
     float: left;
     width: 100%;
     color: #fff;
@@ -2281,7 +2282,7 @@ li.page_item_has_children a {
     display: grid;
     grid-row-gap: 20px;
     grid-column-gap: 30px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-auto-flow: dense;
     .article-blog:first-child {
@@ -2311,14 +2312,14 @@ li.page_item_has_children a {
     display: grid;
     grid-row-gap: 28px;
     grid-column-gap: 28px;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
     grid-auto-flow: dense;
 }
 
 .news_right_block {
-    grid-column: 3 / 4;
-    grid-row: 1 / 3;
+    //    grid-column: 3 / 4;
+    //    grid-row: 1 / 3;
 }
 
 .article-image img {
@@ -2368,7 +2369,7 @@ li.page_item_has_children a {
         }
     }
     &:hover {
-//        background: #eeeeee;
+        //        background: #eeeeee;
     }
     &:before, &:after {
         content: '';
@@ -2498,10 +2499,10 @@ h1, h2, h3, h4, h5, h6 {
 
 .lineage a {
     font-size: 21px;
-    color: #656250;
+    color: $dkr-darkgrey;
     &:hover {
         text-decoration: underline;
-        color: #656250;
+        color: $dkr-darkgrey;
         img {
             border-color: $dkr-gold;
             border-color: #e7e7e7;
@@ -2540,7 +2541,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .contact_social  {
     img.alignleft {
-    margin: 2px 10px 5px 0;
+        margin: 2px 10px 5px 0;
     }
     .container .single-post p {
         text-align: left;
@@ -2567,28 +2568,28 @@ sup {
 
 
 .teachings_category {
-        a.category-post-title {
-            display:block;
-            &:hover .article-blog {
-//                -webkit-transition: all .1s ease;
-//                -moz-transition: all .1s ease;
-//                -ms-transition: all .1s ease;
-//                -o-transition: all .1s ease;
-//                transition: all .1s ease;
-//                box-shadow: -1px 2px 14px 3px rgba(0, 0, 0, 0.1);
-                .teaching_title {
-                    color :$dkr-gold;
-                }
+    a.category-post-title {
+        display:block;
+        &:hover .article-blog {
+            //                -webkit-transition: all .1s ease;
+            //                -moz-transition: all .1s ease;
+            //                -ms-transition: all .1s ease;
+            //                -o-transition: all .1s ease;
+            //                transition: all .1s ease;
+            //                box-shadow: -1px 2px 14px 3px rgba(0, 0, 0, 0.1);
+            .teaching_title {
+                color :$dkr-gold;
             }
         }
-        .article-blog {
-            padding:20px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #eaeaea;
-            background: #fff;
-            margin-top: 25px;
+    }
+    .article-blog {
+        padding:20px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #eaeaea;
+        background: #fff;
+        margin-top: 25px;
         &:hover {
-    //        background: $dkr-lightgrey;
+            //        background: $dkr-lightgrey;
         }
 
         a:hover {
@@ -2609,14 +2610,14 @@ sup {
     }
 
 
- .single-post {
-     .post-info {
-         .teaching_info {
-             font-style:italic;
-             font-size: 14px;
-         }
-     }
- }
+    .single-post {
+        .post-info {
+            .teaching_info {
+                font-style:italic;
+                font-size: 14px;
+            }
+        }
+    }
 }
 
 .category-quotes .article-blog:last-of-type {
@@ -2682,7 +2683,7 @@ p.teaching_info {
         margin: 0px 7px 13px 5px;
     }
     .rl-gallery-container {
-//        margin-top: 5px;
+        //        margin-top: 5px;
     }
 }
 
@@ -2854,7 +2855,7 @@ p.teaching_info {
     margin-bottom: 0px;
     background: #ffffff;
     &:hover {
-//        box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.3);
+        //        box-shadow: 0px 2px 17px 0px rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -2872,15 +2873,15 @@ p.teaching_info {
     }
     a.article-link {
         display:block;
-//        &:hover span.read_more {
-//            -webkit-transition: all .4s ease;
-//            -moz-transition: all .4s ease;
-//            -ms-transition: all .4s ease;
-//            -o-transition: all .4s ease;
-//            transition: all .4s ease;
-//            background-color: $dkr-gold;
-//            color: #ffffff;
-//        }
+        //        &:hover span.read_more {
+        //            -webkit-transition: all .4s ease;
+        //            -moz-transition: all .4s ease;
+        //            -ms-transition: all .4s ease;
+        //            -o-transition: all .4s ease;
+        //            transition: all .4s ease;
+        //            background-color: $dkr-gold;
+        //            color: #ffffff;
+        //        }
         &:hover .category-post-title {
             -webkit-transition: all .1s ease;
             -moz-transition: all .1s ease;
@@ -2915,10 +2916,10 @@ p.teaching_info {
         a.article-link {
             span.read_more {
                 display: block;
-//                float: left;
-//                position: absolute;
-//                top: 118px;
-//                left: 246px;
+                //                float: left;
+                //                position: absolute;
+                //                top: 118px;
+                //                left: 246px;
                 width: 82px;
                 margin:0 auto 0 auto;
                 padding: 5px;
@@ -2931,7 +2932,7 @@ p.teaching_info {
 }
 
 .schedule_carousel {
-//    border: solid 1px #eeeeee;
+    //    border: solid 1px #eeeeee;
 }
 
 .teachings-category .article-blog:hover {
@@ -3024,9 +3025,9 @@ li.lang-item-bo {
         position: absolute;
         z-index: 9999;
         cursor: pointer;
-//        &:hover {
-//            border: solid 1px $dkr-gold;
-//        }
+        //        &:hover {
+        //            border: solid 1px $dkr-gold;
+        //        }
     }
 
     span.arrowLeft {
@@ -3053,7 +3054,7 @@ li.lang-item-bo {
         width: 100%;
         padding: 0;
         margin: 0;
-//        /* list-style: none; */
+        //        /* list-style: none; */
         text-align: center;
         li {
             display: inline-block;
@@ -3109,10 +3110,10 @@ a.expand_link {
 
 //WIDER
 #content > .container {
-//    width: 1050px;
+    //    width: 1050px;
 }
 .menu-bar-logo-block {
-width: 345px;
+    width: 345px;
 }
 .schedule_carousel_wrap {
     width: 100%;
@@ -3154,7 +3155,7 @@ width: 345px;
 
 // home - 3 blocks change
 .home_pages_grid {
-//    grid-template-columns: 1fr 340px 1fr;
+    //    grid-template-columns: 1fr 340px 1fr;
 }
 
 .single-post .addtoany_content {
@@ -3173,10 +3174,33 @@ figure {
 }
 
 figcaption {
-//    display: table-caption;
+    //    display: table-caption;
     caption-side: bottom;
     text-align: center;
 }
+
+
+
+
+
+.news_right_block .widget_archive {
+    h2.widgettitle {
+        padding-bottom: 15px;
+    }
+    ul {
+        list-style-type: none;
+
+        li {
+            padding:4px 0 4px 0;
+        }
+    }
+}
+
+.category-news .news_left_right {
+    display:grid;
+    grid-template-columns:  3fr 1fr;
+}
+
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
@@ -3277,9 +3301,9 @@ figcaption {
             ul.sub-menu ul.sub-menu {
                 display:none;
             }
-//            ul.sub-menu ul.sub-menu. {
-//                display:none;
-//            }
+            //            ul.sub-menu ul.sub-menu. {
+            //                display:none;
+            //            }
 
         }
     }
@@ -3316,8 +3340,8 @@ figcaption {
     }
 
     .breadcrumbs {
-//            float: left;
-            width: 100%;
+        //            float: left;
+        width: 100%;
     }
 
     /* HOME - PAGES GRID */
@@ -3458,28 +3482,28 @@ figcaption {
 
     .page-template-about-pages {
         .blog-columns {
-//            list-style: none;
-//            display: grid;
-//            grid-template-columns: 1fr;
+            //            list-style: none;
+            //            display: grid;
+            //            grid-template-columns: 1fr;
             .right .gutter {
                 margin:0;
             }
             .sidebar-container {
                 display: none;
-//            width: 100%;
-//            grid-column: 1;
-//            grid-row: 2;
+                //            width: 100%;
+                //            grid-column: 1;
+                //            grid-row: 2;
             }
             .inner-page-container {
                 width: 100%;
                 //                grid-column: 1;
-//                grid-row: 1;
+                //                grid-row: 1;
             }
         }
     }
 
     .section {
-//        float: left;
+        //        float: left;
     }
 
     // About
@@ -3500,31 +3524,31 @@ figcaption {
 
     // Full Biography
     .page-id-230 {
-    .single-post {
-        h3 {
-            font-size:19px;
-            color:$dkr-brown;
+        .single-post {
+            h3 {
+                font-size:19px;
+                color:$dkr-brown;
+            }
         }
-    }
     }
 
     // Lineage
     .page-template-lineage-pages {
         .blog-columns {
-//            display: grid;
-//            grid-template-columns: 1fr;
+            //            display: grid;
+            //            grid-template-columns: 1fr;
             .sidebar-container {
                 display:none;
-//                width: 100%;
-//                grid-column: 1;
-//                grid-row: 2;
+                //                width: 100%;
+                //                grid-column: 1;
+                //                grid-row: 2;
             }
             .inner-page-container {
                 width: 100%;
                 padding-top:15px;
-//                grid-column: 1;
-//                grid-row: 1;
-//                margin-bottom: 20px;
+                //                grid-column: 1;
+                //                grid-row: 1;
+                //                margin-bottom: 20px;
             }
             .right {
                 .gutter {
@@ -3607,9 +3631,9 @@ figcaption {
         padding:18px;
     }
     figure.wp-caption.alignleft, figure.wp-caption.alignright {
-            width: 100% !important;
+        width: 100% !important;
         padding-bottom: 10px;
-        }
+    }
     .article-text {
         font-size:15px;
         figure.wp-caption {
@@ -3622,7 +3646,7 @@ figcaption {
     }
 
     .container .single-post img {
-//        width: 100%;
+        //        width: 100%;
         display: block;
         margin-left:auto;
         margin-bottom: 0;
@@ -3668,8 +3692,8 @@ figcaption {
                 }
                 height:auto;
                 .article-text {
-                padding: 8px 8px 10px 8px;
-                .category-post-date {
+                    padding: 8px 8px 10px 8px;
+                    .category-post-date {
                         display: none;
                     }
                     p {
