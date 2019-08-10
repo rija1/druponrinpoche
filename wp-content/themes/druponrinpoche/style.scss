@@ -12,6 +12,7 @@ Text Domain:  druponrinpoche
 $dkr-brown: #80784c;
 $dkr-gold: #bb9b25;
 $dkr-lightgrey: #f6f6f6;
+$dkr-darkgrey: #656250;
 
 
 /**  fonts  **/
@@ -3176,6 +3177,59 @@ figcaption {
 //    display: table-caption;
     caption-side: bottom;
     text-align: center;
+}
+
+.post-navigation .nav-links {
+
+    div.post-arrow {
+        font-family: "FontAwesome";
+    }
+
+    a {
+        //        background: #f2efdf;
+        padding: 6px;
+        display: block;
+        margin-top: 10px;
+    }
+    //    a:hover {
+    //        color:#fff;
+    //        background: $dkr-gold;
+    //
+    //    }
+
+    .nav-previous {
+        float: left;
+    }
+    .nav-next {
+        float: left;
+    }
+    .nav-previous a {
+        margin-right:15px;
+        text-align:center;
+        &:before {
+            float: left;
+            margin: -2px 7px 0 0 ;
+            font-size: 18px;
+            color:$dkr-darkgrey;
+            font-family:"FontAwesome";
+            content: '\f104';
+        }
+
+    }
+    .nav-next a {
+        text-align:center;
+        &:after {
+            float: right;
+            margin: -2px 0 0 7px;
+            font-size: 18px;
+            color:$dkr-darkgrey;
+            font-family:"FontAwesome";
+            content: '\f105';
+        }
+    }
+
+
+
 }
 
 /**  mobile  **/

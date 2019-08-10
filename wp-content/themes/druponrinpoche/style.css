@@ -2261,6 +2261,36 @@ figcaption {
   caption-side: bottom;
   text-align: center; }
 
+.post-navigation .nav-links div.post-arrow {
+  font-family: "FontAwesome"; }
+.post-navigation .nav-links a {
+  padding: 6px;
+  display: block;
+  margin-top: 10px; }
+.post-navigation .nav-links .nav-previous {
+  float: left; }
+.post-navigation .nav-links .nav-next {
+  float: left; }
+.post-navigation .nav-links .nav-previous a {
+  margin-right: 15px;
+  text-align: center; }
+  .post-navigation .nav-links .nav-previous a:before {
+    float: left;
+    margin: -2px 7px 0 0;
+    font-size: 18px;
+    color: #656250;
+    font-family: "FontAwesome";
+    content: '\f104'; }
+.post-navigation .nav-links .nav-next a {
+  text-align: center; }
+  .post-navigation .nav-links .nav-next a:after {
+    float: right;
+    margin: -2px 0 0 7px;
+    font-size: 18px;
+    color: #656250;
+    font-family: "FontAwesome";
+    content: '\f105'; }
+
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
   .copyright-block .container {

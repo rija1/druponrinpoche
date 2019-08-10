@@ -34,7 +34,19 @@ while ($parentId != 0) {
 
                             <!--                            <p class="tags">--><?php //the_tags(); ?><!--</p>-->
                         </div>
-                        <p><?php posts_nav_link(); ?></p>
+
+                        <?php
+
+                        the_post_navigation( array(
+                            'in_same_term'       => true,
+//                            'next_text' =>  'Next Excerpt (%title)',
+                            'next_text' =>  'Next',
+//                            'prev_text' =>  'Previous Excerpt (%title)',
+                            'prev_text' =>  'Previous',
+                        ) );
+
+                        ?>
+
                         <div class="padinate-page"><?php wp_link_pages(); ?></div>
                         <div class="comments">
                             <?php comments_template(); ?>
