@@ -1155,7 +1155,6 @@ add_filter('single_template', 'teaching_single_template');
  */
 function teaching_single_template($single) {
     global $wp_query, $post;
-//pa(333,1);
     /**
      * Checks for single template by category
      * Check by category slug and ID
@@ -1177,4 +1176,15 @@ function teaching_single_template($single) {
 
 }
 
+add_filter( 'getarchives_join' , 'getarchives_join_filter');
+function getarchives_join_filter( $join ) {
+    global $wpdb;
+    return $join . " INNER JOIN {$wpdb->term_relationships} tr ON ($wpdb->posts.ID = tr.object_id) INNER JOIN {$wpdb->term_taxonomy} tt ON (tr.term_taxonomy_id = tt.term_taxonomy_id)";
+}
+
+add_filter( 'getarchives_where' , 'getarchives_where_filter');
+function getarchives_where_filter( $where ) {
+    global $wpdb;
+    return $where . " AND tt.taxonomy = 'category' AND tt.term_id='2' ";
+}
 
