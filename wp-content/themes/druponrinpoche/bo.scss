@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'SambhotaDegeWeb';
+    src: url('assets/fonts/SambhotaDege.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'SambhotaDegeWeb','Roboto','Verdana';
+}
+
+.menu-bar-logo-block .logo_name {
+    padding-top: 4px;
+}
+
+span.logo_kl {
+    font-size: 28px;
+    padding-top: 12px;
+}
+
+span.logo_dkr {
+    font-size: 28px;
+}
+
+.menu-bar-logo-block span {
+    font-family: 'SambhotaDegeWeb';
+}

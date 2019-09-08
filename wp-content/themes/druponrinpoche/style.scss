@@ -1976,8 +1976,8 @@ ul.poly_switcher {
     margin-right: 0;
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 1fr 1fr;
-//    grid-template-columns: 1fr 1fr 1fr; // when 3 languages
+//    grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr; // when 3 languages
     margin-right: 10px;
     a {
         font-family: 'Raleway';
@@ -2995,9 +2995,9 @@ a.view_full_schedule {
 }
 
 // hide tibetan language option
-li.lang-item-bo {
-    display: none;
-}
+//li.lang-item-bo {
+//    display: none;
+//}
 
 .category-post-date {
     width: 100%;

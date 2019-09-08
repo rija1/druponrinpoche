@@ -1430,7 +1430,7 @@ ul.poly_switcher {
   margin-right: 0;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-right: 10px; }
   ul.poly_switcher a {
     font-family: 'Raleway';
@@ -2127,9 +2127,6 @@ a.view_full_schedule {
     left: 29px; }
 
 .page-template-about-pages .page-item-1053 {
-  display: none; }
-
-li.lang-item-bo {
   display: none; }
 
 .category-post-date {
