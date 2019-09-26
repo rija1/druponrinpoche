@@ -1113,6 +1113,21 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['nb_latest_news_posts'] = 4;
         $drWebsiteConfig['teaching_cat_ids'] = array(267,271,77,76);
         $drWebsiteConfig['analytics_ua'] = 'UA-141700678-1';
+    } elseif($locale == 'bo') {
+
+        $drWebsiteConfig['home_metaslider_id'] = 14188;
+        $drWebsiteConfig['home_schedule_id'] = 14;
+        $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
+        $drWebsiteConfig['featured_cat_id'] = 263;
+        $drWebsiteConfig['schedule_page_id'] = 12987;
+        $drWebsiteConfig['aboutrinpoche_page_id'] = 13699;
+        $drWebsiteConfig['sekhar_page_id'] = 12938;
+        $drWebsiteConfig['mts_page_id'] = 12521;
+        $drWebsiteConfig['lineage_page_id'] = 12910;
+        $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
+        $drWebsiteConfig['nb_latest_news_posts'] = 4;
+        $drWebsiteConfig['teaching_cat_ids'] = array(267,271,77,76);
+        $drWebsiteConfig['analytics_ua'] = 'UA-141700678-1';
     }
 
     return $drWebsiteConfig;
@@ -1177,4 +1192,25 @@ function teaching_single_template($single) {
 
 }
 
+
+add_filter('pre_get_posts','filter_archive_dkr');
+
+function filter_archive_dkr( $query ) {
+
+    if ( $query->is_archive() && $query->is_main_query() ) {
+
+//        $query->set( 'post_type', array( 'post' ) );
+        $query->set( 'tax_query', array(
+//            'relation' => 'OR',
+            array(
+                'taxonomy' => 'category',
+                'field' => 'id',
+                'terms' => 2,
+                'operator' => 'IN'
+            )
+        ) );
+    }
+
+    return $query;
+}
 
