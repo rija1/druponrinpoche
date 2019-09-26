@@ -2998,6 +2998,9 @@ a.view_full_schedule {
 li.lang-item-bo {
     display: none;
 }
+ul.poly_switcher {
+    grid-template-columns: 1fr 1fr;
+}
 
 .category-post-date {
     width: 100%;
