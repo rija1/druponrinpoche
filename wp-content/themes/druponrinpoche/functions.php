@@ -1115,7 +1115,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['analytics_ua'] = 'UA-141700678-1';
     } elseif($locale == 'bo') {
 
-        $drWebsiteConfig['home_metaslider_id'] = 14188;
+        $drWebsiteConfig['home_metaslider_id'] = 14254;
         $drWebsiteConfig['home_schedule_id'] = 14;
         $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
         $drWebsiteConfig['featured_cat_id'] = 263;
