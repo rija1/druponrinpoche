@@ -311,6 +311,9 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 	public function check_canonical_url( $requested_url = '', $do_redirect = true ) {
 		global $wp_query, $post, $is_IIS;
 
+        //Hack reedz
+        return;
+
 		// Don't redirect in same cases as WP
 		if ( is_trackback() || is_search() || is_admin() || is_preview() || is_robots() || ( $is_IIS && ! iis7_supports_permalinks() ) ) {
 			return;

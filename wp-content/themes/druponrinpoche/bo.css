@@ -23,4 +23,10 @@ span.logo_dkr {
   font-size: 21px;
   padding: 10px 10px 15px 10px; }
 
+.home_mini_carousel {
+  display: none; }
+
+.home_news_carousel .latestnews {
+  width: auto; }
+
 /*# sourceMappingURL=bo.css.map */
