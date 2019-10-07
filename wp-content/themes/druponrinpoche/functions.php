@@ -1192,25 +1192,25 @@ function teaching_single_template($single) {
 
 }
 
-
-add_filter('pre_get_posts','filter_archive_dkr');
-
-function filter_archive_dkr( $query ) {
-
-    if ( $query->is_archive() && $query->is_main_query() ) {
-
-//        $query->set( 'post_type', array( 'post' ) );
-        $query->set( 'tax_query', array(
-//            'relation' => 'OR',
-            array(
-                'taxonomy' => 'category',
-                'field' => 'id',
-                'terms' => 2,
-                'operator' => 'IN'
-            )
-        ) );
-    }
-
-    return $query;
-}
-
+//
+//add_filter('pre_get_posts','filter_archive_dkr');
+//
+//function filter_archive_dkr( $query ) {
+//
+//    if ( $query->is_archive() && $query->is_main_query() ) {
+//
+////        $query->set( 'post_type', array( 'post' ) );
+//        $query->set( 'tax_query', array(
+////            'relation' => 'OR',
+//            array(
+//                'taxonomy' => 'category',
+//                'field' => 'id',
+//                'terms' => 2,
+//                'operator' => 'IN'
+//            )
+//        ) );
+//    }
+//
+//    return $query;
+//}
+//
