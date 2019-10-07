@@ -10,7 +10,9 @@ $drWebsiteConfig = getDrWebsiteConfig();
 $featuredCatId = $drWebsiteConfig['featured_cat_id'];
 $featuredPostIds = array();
 //$posts = get_posts(array('category'=>$categoryId,'numberposts' => 7));
-
+//$term = get_queried_object();
+//
+//var_dump($term);
 ?>
 <div class="section section-blog">
     <div class="featured-grid">
