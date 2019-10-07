@@ -392,9 +392,8 @@ class PLL_Frontend_Filters_Links extends PLL_Filters_Links {
 
 		// The language is not correctly set so let's redirect to the correct url for this object
 		if ( $do_redirect && $redirect_url && $requested_url != $redirect_url ) {
-// REEDZ HACK
-//			wp_redirect( $redirect_url, 301 );
-//			exit;
+			wp_redirect( $redirect_url, 301 );
+			exit;
 		}
 
 		return $redirect_url;
