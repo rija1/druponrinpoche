@@ -98,7 +98,15 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
             }
         }
 
-        list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
+        $schBatch2 = false;
+
+        if(count($scheduleData) > 10) {
+            list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
+        } else {
+            $schBatch1 = $scheduleData;
+        }
+
+
         ?>
         <div class="schedule_carousel_wrap">
             <div class="schedule_carousel" id="homeCarousel">
@@ -118,6 +126,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                         <?php endforeach; ?>
                     </table>
                 </div>
+                <?php if(is_array($schBatch2)) : ?>
                 <div>
                     <table>
                         <tr>
@@ -133,6 +142,13 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                             </tr>
                         <?php endforeach; ?>
                     </table>
+                </div>
+                <?php endif; ?>
+                <div>
+                    <img src="<?php echo home_url(); ?>/wp-content/uploads/2019/10/poster_sa_2019.jpg">
+                </div>
+                <div>
+                    <img src="<?php echo home_url(); ?>/wp-content/uploads/2019/10/poster_congo_2019.jpg">
                 </div>
 
 
