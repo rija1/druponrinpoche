@@ -145,10 +145,14 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                 </div>
                 <?php endif; ?>
                 <div>
-                    <img src="<?php echo home_url(); ?>/wp-content/uploads/2019/10/poster_sa_2019.jpg">
+                    <a href="<?php echo site_url(); ?>/wp-content/uploads/2019/10/poster_sa_2019.jpg" title="" data-rl_title="" class="rl-gallery-link" data-rl_caption="" data-rel="lightbox-gallery-0">
+                        <img src="<?php echo site_url(); ?>/wp-content/uploads/2019/10/poster_sa_2019.jpg" alt="" >
+                    </a>
                 </div>
                 <div>
-                    <img src="<?php echo home_url(); ?>/wp-content/uploads/2019/10/poster_congo_2019.jpg">
+                    <a href="<?php echo site_url(); ?>/wp-content/uploads/2019/10/poster_congo_2019.jpg" title="" data-rl_title="" class="rl-gallery-link" data-rl_caption="" data-rel="lightbox-gallery-0">
+                        <img src="<?php echo site_url(); ?>/wp-content/uploads/2019/10/poster_congo_2019.jpg" alt="" >
+                    </a>
                 </div>
 
 
