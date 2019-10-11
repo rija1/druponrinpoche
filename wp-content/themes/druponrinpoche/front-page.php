@@ -100,7 +100,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 
         $schBatch2 = false;
 
-        if(count($scheduleData) > 10) {
+        if(count($scheduleData) >= 11) {
             list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
         } else {
             $schBatch1 = $scheduleData;
