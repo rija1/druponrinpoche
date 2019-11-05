@@ -87,7 +87,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 <div class="home_news_carousel">
 
     <div class="home_mini_carousel">
-        <div class="schedule_title"><h5><?php pll_e('Upcoming Schedule'); ?></h5></div>
+        <div class="schedule_title"><h5><?php pll_e('Schedule'); ?></h5></div>
         <?php
         $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
         $scheduleData = $table['data'];
