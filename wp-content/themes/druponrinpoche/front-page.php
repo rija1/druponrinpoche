@@ -47,7 +47,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
             <img  src="<?php echo $url;?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php pll_e('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
+                <p><?php pll_e('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa.'); ?></p>
             </div>
         </a>
 
@@ -87,7 +87,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 <div class="home_news_carousel">
 
     <div class="home_mini_carousel">
-        <div class="schedule_title"><h5><?php pll_e('Schedule'); ?></h5></div>
+        <div class="schedule_title"><h5><?php pll_e('Schedule'); ?> 2019</h5></div>
         <?php
         $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
         $scheduleData = $table['data'];
