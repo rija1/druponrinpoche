@@ -2297,6 +2297,11 @@ a.course_link {
     font-family: "FontAwesome";
     content: '\f105'; }
 
+.post-fb-video {
+  text-align: center; }
+  .post-fb-video p {
+    text-align: center; }
+
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
   .copyright-block .container {
