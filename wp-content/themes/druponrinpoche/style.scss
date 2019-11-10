@@ -3238,14 +3238,14 @@ a.course_link {
 
 
 }
-.container .single-post {
-.post-fb-video {
-    text-align:center;
-    p {
+
+    .container .single-post .post-fb-video {
         text-align:center;
+        p {
+            text-align:center;
+        }
     }
-}
-}
+
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
