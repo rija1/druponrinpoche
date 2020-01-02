@@ -1087,7 +1087,7 @@ function getDrWebsiteConfig()
 
     if($locale == 'en_US') {
         $drWebsiteConfig['home_metaslider_id'] = 132;
-        $drWebsiteConfig['home_schedule_id'] = 6;
+        $drWebsiteConfig['home_schedule_id'] = 8;
         $drWebsiteConfig['news_feat_cat_ids'] = array(2,93);
         $drWebsiteConfig['featured_cat_id'] = 93;
         $drWebsiteConfig['schedule_page_id'] = 1581;
