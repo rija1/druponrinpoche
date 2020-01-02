@@ -1699,6 +1699,8 @@ table.tablepress {
 }
 
 .article-text .prev_schedules a {
+    float:left;
+    margin: 0 15px 15px 0;
     background: #bc9c09;
     padding: 10px;
     color: #fff;
