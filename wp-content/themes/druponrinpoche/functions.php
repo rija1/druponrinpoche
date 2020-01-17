@@ -1101,7 +1101,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['analytics_ua'] = 'UA-136620900-1';
     } elseif($locale == 'zh_CN') {
         $drWebsiteConfig['home_metaslider_id'] = 1516;
-        $drWebsiteConfig['home_schedule_id'] = 14;
+        $drWebsiteConfig['home_schedule_id'] = 9;
         $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
         $drWebsiteConfig['featured_cat_id'] = 263;
         $drWebsiteConfig['schedule_page_id'] = 12987;
