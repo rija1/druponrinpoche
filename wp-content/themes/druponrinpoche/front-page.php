@@ -97,6 +97,9 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
             if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
                 unset($scheduleData[$k]);
             }
+            if($scheduleDataLine[5]==1) {
+                unset($scheduleData[$k]);
+            }
         }
 
         $schBatch2 = false;
