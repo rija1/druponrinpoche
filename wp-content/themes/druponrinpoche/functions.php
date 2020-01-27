@@ -1104,7 +1104,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['home_schedule_id'] = 11;
         $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
         $drWebsiteConfig['featured_cat_id'] = 263;
-        $drWebsiteConfig['schedule_page_id'] = 12987;
+        $drWebsiteConfig['schedule_page_id'] = 14614;
         $drWebsiteConfig['aboutrinpoche_page_id'] = 13699;
         $drWebsiteConfig['sekhar_page_id'] = 12938;
         $drWebsiteConfig['mts_page_id'] = 12521;
