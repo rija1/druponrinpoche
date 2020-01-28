@@ -2218,6 +2218,11 @@ a.expand_link {
   font-size: 28px;
   color: #3a5a98; }
 
+.footer a.weibo {
+  margin-left: 5px; }
+  .footer a.weibo img {
+    width: 28px; }
+
 .menu-bar-logo-block {
   width: 345px; }
 

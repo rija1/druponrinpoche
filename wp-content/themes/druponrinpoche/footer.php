@@ -5,6 +5,7 @@
  *
  * @package Onsen
  */
+$locale = get_locale();
 ?>
 		<footer id="footer" class="footer">
 			<div class="footer-block">
@@ -49,6 +50,10 @@
 							<div class="gutter">
 
                                 <a class="fb" href="http://www.facebook.com/drupon.rinpoche.7" target="_blank" rel="noopener">&#xf082;</a>
+
+                                <?php if($locale == 'zh_CN') : ?>
+                                <a class="weibo" href="https://www.weibo.com/u/3165475344 " target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/weibo_logo.png" /></a>
+                                <?php endif; ?>
 								<p><?php echo  esc_html(get_theme_mod('dkr_copyrights')); ?></p>
 							</div>
 						</div>
