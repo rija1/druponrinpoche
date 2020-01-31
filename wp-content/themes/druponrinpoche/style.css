@@ -1399,7 +1399,7 @@ span.logo_kl {
   font-weight: 400; }
   .copyright-block .container {
     background: #f2efdf;
-    padding: 20px 0 10px 0;
+    padding: 15px 0 10px 0;
     /*font-family: 'Roboto Slab', serif;*/
     color: #80784c; }
 
@@ -2307,7 +2307,7 @@ a.course_link {
   float: left;
   margin-right: 7px; }
   .footer .footer_social a img {
-    width: 28px; }
+    width: 32px; }
   .footer .footer_social a.weibo {
     margin-top: 2px; }
 
