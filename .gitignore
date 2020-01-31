@@ -22,3 +22,6 @@ dumps/
 /readme.html
 /sitemap.xml
 /sitemap.xml.gz
+wp-content/ewww/gifsicle
+wp-content/ewww/jpegtran
+wp-content/ewww/optipng

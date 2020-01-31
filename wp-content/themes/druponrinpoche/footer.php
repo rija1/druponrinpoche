@@ -7,6 +7,16 @@
  */
 $locale = get_locale();
 ?>
+<script type="text/javascript">
+    jQuery( document ).ready(function() {
+        jQuery('a[href="#wechat_qrcode"]').click(function(event) {
+        event.preventDefault();
+            jQuery(this).modal({
+        fadeDuration: 300
+        });
+        });
+    });
+</script>
 		<footer id="footer" class="footer">
 			<div class="footer-block">
 				<div class="container">
@@ -48,12 +58,21 @@ $locale = get_locale();
 						<div class="column-6-12 left">
 
 							<div class="gutter">
+                                <div class="footer_social">
+                                    <a class="fb" href="http://www.facebook.com/drupon.rinpoche.7" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/fb_icon.png" /></a>
 
-                                <a class="fb" href="http://www.facebook.com/drupon.rinpoche.7" target="_blank" rel="noopener">&#xf082;</a>
+                                    <?php if($locale == 'zh_CN') : ?>
+                                    <a class="weibo" href="https://www.weibo.com/u/3165475344" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/weibo_logo.png" /></a>
 
-                                <?php if($locale == 'zh_CN') : ?>
-                                <a class="weibo" href="https://www.weibo.com/u/3165475344 " target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/weibo_logo.png" /></a>
-                                <?php endif; ?>
+                                    <!-- Modal HTML embedded directly into document -->
+                                    <div id="wechat_qrcode" class="modal">
+                                        <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/wechat_qrcode.jpg" />
+                                    </div>
+
+                                    <a class="wechat" href="#wechat_qrcode"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/wechat_icon.png" /></a>
+
+                                    <?php endif; ?>
+                                </div>
 								<p><?php echo  esc_html(get_theme_mod('dkr_copyrights')); ?></p>
 							</div>
 						</div>

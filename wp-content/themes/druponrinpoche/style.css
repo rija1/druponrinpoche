@@ -2213,16 +2213,6 @@ a.expand_link {
   padding: 10px 0 10px 0;
   height: 40px; }
 
-.footer a.fb {
-  font-family: 'FontAwesome';
-  font-size: 28px;
-  color: #3a5a98; }
-
-.footer a.weibo {
-  margin-left: 5px; }
-  .footer a.weibo img {
-    width: 28px; }
-
 .menu-bar-logo-block {
   width: 345px; }
 
@@ -2308,6 +2298,18 @@ a.course_link {
   text-align: center; }
   .container .single-post .post-fb-video p {
     text-align: center; }
+
+#wechat_qrcode {
+  width: auto; }
+
+.footer .footer_social a {
+  display: block;
+  float: left;
+  margin-right: 7px; }
+  .footer .footer_social a img {
+    width: 28px; }
+  .footer .footer_social a.weibo {
+    margin-top: 2px; }
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {

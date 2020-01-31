@@ -3105,20 +3105,6 @@ a.expand_link {
     height: 40px;
 }
 
-.footer a.fb {
-    font-family: 'FontAwesome';
-    font-size: 28px;
-    color:#3a5a98;
-}
-
-.footer a.weibo {
-    margin-left: 5px;
-    img {
-        width: 28px;
-    }
-}
-
-
 
 //WIDER
 #content > .container {
@@ -3248,12 +3234,31 @@ a.course_link {
 
 }
 
-    .container .single-post .post-fb-video {
+.container .single-post .post-fb-video {
+    text-align:center;
+    p {
         text-align:center;
-        p {
-            text-align:center;
-        }
     }
+}
+
+#wechat_qrcode {
+    width: auto;
+}
+
+.footer .footer_social {
+    a {
+        display: block;
+        float: left;
+        margin-right:7px;
+        img {
+            width: 28px;
+        }
+        &.weibo {
+            margin-top: 2px;
+        }
+
+    }
+}
 
 
 /**  mobile  **/
@@ -3845,9 +3850,5 @@ a.course_link {
         }
 
     }
-
-
-
-
 
 }
