@@ -64,7 +64,6 @@ $locale = get_locale();
                                     <?php if($locale == 'zh_CN') : ?>
                                     <a class="weibo" href="https://www.weibo.com/u/3165475344" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/weibo_logo.png" /></a>
 
-                                    <!-- Modal HTML embedded directly into document -->
                                     <div id="wechat_qrcode" class="modal">
                                         <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/wechat_qrcode.jpg" />
                                     </div>
