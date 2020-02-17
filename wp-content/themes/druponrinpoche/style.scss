@@ -1403,8 +1403,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 blockquote {
-    background: none repeat scroll 0 0 $dkr-lightgrey;
-    border-left: 5px solid $dkr-gold;
+    background: none;
+    border:none;
     font-style: italic;
     margin: 10px 0px 30px;
     padding: 20px 20px 5px;
