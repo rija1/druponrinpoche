@@ -1672,6 +1672,9 @@ li.page_item_has_children a {
 .archive .posts-grid {
   grid-template-columns: 1fr 1fr 1fr; }
 
+.date .posts-grid {
+  grid-template-columns: 1fr 1fr; }
+
 .article-image img {
   margin-left: auto;
   margin-right: auto; }
@@ -2267,7 +2270,7 @@ figcaption {
   .news_right_block .widget_archive ul li {
     padding: 4px 0 4px 0; }
 
-.category-news .news_left_right {
+.category-news .news_left_right, .archive .news_left_right {
   display: grid;
   grid-template-columns: 3fr 1fr; }
 
