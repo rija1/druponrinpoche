@@ -61,7 +61,7 @@ $featuredPostIds = array();
                 <div id="post-<?php echo $post->ID; ?>" <?php post_class('',$post->ID); ?>>
                     <?php if ( has_post_thumbnail($post) && ! post_password_required($post) ) : ?>
                         <div class="article-image">
-                            <?php echo get_the_post_thumbnail($post,'dkr-photo-310-207'); ?>
+                            <?php echo get_the_post_thumbnail($post,'dkr-photo-322-215'); ?>
                         </div>
                     <?php endif; ?>
                     <div class="article-text">

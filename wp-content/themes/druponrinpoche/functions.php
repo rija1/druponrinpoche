@@ -61,6 +61,7 @@ if( ! function_exists( 'dkr_theme_setup' ) ) {
         add_image_size('dkr-photo-800-500', 800, 500, true);
         add_image_size('dkr-photo-300-200', 300, 200, true);
         add_image_size('dkr-photo-310-207', 310, 207, true);
+        add_image_size('dkr-photo-322-215', 322, 215, true);
 
         // Menus
         register_nav_menu( 'dkr-menu', _x( 'Main Menu', 'backend', 'druponrinpoche' ) );
@@ -1187,4 +1188,13 @@ function getarchives_where_filter( $where ) {
     global $wpdb;
     return $where . " AND tt.taxonomy = 'category' AND tt.term_id='2' ";
 }
+
+function filter_date_posts_news_cat( $query ) {
+    if ( $query->is_main_query() && ! is_admin() ) {
+        if ( is_date() ) {
+            $query->set( 'cat', '2' );
+        }
+    }
+}
+add_action( 'pre_get_posts', 'filter_date_posts_news_cat' );
 
