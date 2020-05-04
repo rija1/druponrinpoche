@@ -1,0 +1,4 @@
+AuthUserFile /Users/Reedz/Websites/autoscolder/htpasswd
+AuthName "Requires authentication."
+AuthType Basic
+Require valid-user
