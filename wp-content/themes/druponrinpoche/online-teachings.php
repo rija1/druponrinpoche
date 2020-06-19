@@ -27,14 +27,14 @@
                                     <div class="teaching_left">
                                         <div class="teachingDates"><?php echo $dates;  ?></div>
                                         <div class="teachingTitle"><a href="<?php echo the_permalink(); ?>"><?php echo the_title(); ?></a></div>
-                                        <a class="current_teaching" href="<?php echo the_permalink(); ?>">
-                                            <span><?php echo pll__('Join Current Teaching'); ?></span>
-                                        </a>
+<!--                                        <a class="current_teaching" href="--><?php //echo the_permalink(); ?><!--">-->
+<!--                                            <span>--><?php //echo pll__('Join Current Teaching'); ?><!--</span>-->
+<!--                                        </a>-->
                                     </div>
                                     <div class="teaching_right">
-<!--                                        <a class="teaching_details" href="--><?php //echo the_permalink(); ?><!--">-->
-<!--                                            <span>--><?php //echo pll__('Details'); ?><!--</span>-->
-<!--                                        </a>-->
+                                        <a class="teaching_details" href="<?php echo the_permalink(); ?>">
+                                            <span><?php echo pll__('Details'); ?></span>
+                                        </a>
                                     </div>
                                 </div>
                             <?php endwhile; ?>
