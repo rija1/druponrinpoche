@@ -5,6 +5,7 @@
         <div class="container">
             <div class="blog-columns clearfix">
                 <div class="sidebar-container left">
+
                     <?php echo wpb_list_child_pages(); ?>
                 </div>
                 <div class="inner-page-container right">

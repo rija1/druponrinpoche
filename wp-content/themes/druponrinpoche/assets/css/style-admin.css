@@ -36,3 +36,7 @@ font-size: 21px;
 font-weight: bold; 
 padding: 40px 0 20px;
 }
+
+#menu-posts-online-teaching .wp-menu-image img {
+    padding: 5px 0 0 0;
+}

@@ -2324,6 +2324,50 @@ a.course_link {
 .full-bio-tibetan {
   font-size: 24px; }
 
+.online-teachings .sidebar-container {
+  width: 23%; }
+.online-teachings .inner-page-container {
+  width: 77%; }
+.online-teachings .teaching {
+  padding: 12px;
+  background: #f6f6f6;
+  margin-bottom: 15px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 180px; }
+  .online-teachings .teaching .teaching_left .teachingDates {
+    font-weight: 500; }
+  .online-teachings .teaching .teaching_left .teachingTitle {
+    font-size: 18px;
+    padding-top: 8px; }
+  .online-teachings .teaching a.current_teaching, .online-teachings .teaching a.teaching_details {
+    display: block;
+    color: #fff;
+    text-align: center;
+    margin-top: 20px;
+    padding: 5px 0px 5px 0px; }
+  .online-teachings .teaching a.current_teaching {
+    width: 240px;
+    background: #c10a0a;
+    margin-top: 13px; }
+  .online-teachings .teaching a.teaching_details {
+    width: 100px;
+    background: #bb9b25; }
+
+.single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
+  display: block;
+  width: 180px;
+  color: #fff;
+  background: #bb9b25;
+  text-align: center;
+  margin: 20px auto;
+  font-weight: 500;
+  padding: 9px 0px 9px 0px; }
+.single-online-teaching a.teaching_unregister {
+  background: #eee;
+  color: #80784c;
+  width: 230px; }
+
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
   .copyright-block .container {

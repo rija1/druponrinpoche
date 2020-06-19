@@ -14,7 +14,6 @@ $dkr-gold: #bb9b25;
 $dkr-lightgrey: #f6f6f6;
 $dkr-darkgrey: #656250;
 
-
 /**  fonts  **/
 
 @font-face {
@@ -3276,6 +3275,67 @@ a.course_link {
         font-size:24px;
 }
 
+.online-teachings {
+    .sidebar-container {
+        width: 23%;
+    }
+    .inner-page-container {
+        width: 77%;
+    }
+    .teaching {
+        padding:12px;
+        background: $dkr-lightgrey;
+        margin-bottom: 15px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 180px;
+        .teaching_left {
+            .teachingDates {
+                font-weight:500;
+            }
+            .teachingTitle {
+                font-size: 18px;
+                padding-top: 8px;
+            }
+        }
+        a.current_teaching, a.teaching_details {
+          display: block;
+          color: #fff;
+          text-align: center;
+          margin-top: 20px;
+          padding: 5px 0px 5px 0px;
+        }
+        a.current_teaching {
+          width: 240px;
+          background: #c10a0a;
+          margin-top: 13px;
+        }
+        a.teaching_details {
+            width: 100px;
+            background: #bb9b25;
+        }
+    }
+}
+
+.single-online-teaching {
+    a.teaching_register, a.teaching_unregister {
+      display: block;
+      width: 180px;
+      color: #fff;
+      background: #bb9b25;
+      text-align: center;
+      margin: 20px auto ;
+      font-weight:500;
+      padding: 9px 0px 9px 0px;
+    }
+    a.teaching_unregister {
+      background: #eee;
+      color: $dkr-brown;
+      width: 230px;
+    }
+}
+
+
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
@@ -3868,3 +3928,4 @@ a.course_link {
     }
 
 }
+

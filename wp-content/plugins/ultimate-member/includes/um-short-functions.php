@@ -2057,6 +2057,8 @@ function um_get_avatar_url( $get_avatar ) {
 }
 
 
+
+
 /**
  * get avatar uri
  *
@@ -2065,94 +2067,127 @@ function um_get_avatar_url( $get_avatar ) {
  *
  * @return bool|string
  */
-function um_get_avatar_uri( $image, $attrs ) {
-	$uri = false;
-	$uri_common = false;
-	$find = false;
-	$ext = '.' . pathinfo( $image, PATHINFO_EXTENSION );
+//function um_get_avatar_uri( $image, $attrs ) {
+//	$uri = false;
+//	$uri_common = false;
+//	$find = false;
+//	$ext = '.' . pathinfo( $image, PATHINFO_EXTENSION );
+//
+//	if ( is_multisite() ) {
+//		//multisite fix for old customers
+//		$multisite_fix_dir = UM()->uploader()->get_upload_base_dir();
+//		$multisite_fix_url = UM()->uploader()->get_upload_base_url();
+//		$multisite_fix_dir = str_replace( DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . get_current_blog_id() . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $multisite_fix_dir );
+//		$multisite_fix_url = str_replace( '/sites/' . get_current_blog_id() . '/', '/', $multisite_fix_url );
+//
+//		if ( $attrs == 'original' && file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
+//			$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo{$ext}";
+//		} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}x{$attrs}{$ext}" ) ) {
+//			$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$attrs}x{$attrs}{$ext}";
+//		} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}{$ext}" ) ) {
+//			$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$attrs}{$ext}";
+//		} else {
+//			$sizes = UM()->options()->get( 'photo_thumb_sizes' );
+//			if ( is_array( $sizes ) ) {
+//				$find = um_closest_num( $sizes, $attrs );
+//			}
+//
+//			if ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}x{$find}{$ext}" ) ) {
+//				$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$find}x{$find}{$ext}";
+//			} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}{$ext}" ) ) {
+//				$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$find}{$ext}";
+//			} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
+//				$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo{$ext}";
+//			}
+//		}
+//	}
+//
+//	if ( $attrs == 'original' && file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
+//		$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo{$ext}";
+//	} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}x{$attrs}{$ext}" ) ) {
+//		$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$attrs}x{$attrs}{$ext}";
+//	} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}{$ext}" ) ) {
+//		$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$attrs}{$ext}";
+//	} else {
+//		$sizes = UM()->options()->get( 'photo_thumb_sizes' );
+//		if ( is_array( $sizes ) ) {
+//			$find = um_closest_num( $sizes, $attrs );
+//		}
+//
+//		if ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}x{$find}{$ext}" ) ) {
+//			$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$find}x{$find}{$ext}";
+//		} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}{$ext}" ) ) {
+//			$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$find}{$ext}";
+//		} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
+//			$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo{$ext}";
+//		}
+//	}
+//
+//	if ( ! empty( $uri_common ) && empty( $uri ) ) {
+//		$uri = $uri_common;
+//	}
+//
+//	/**
+//	 * UM hook
+//	 *
+//	 * @type filter
+//	 * @title um_filter_avatar_cache_time
+//	 * @description Change Profile field value if it's empty
+//	 * @input_vars
+//	 * [{"var":"$timestamp","type":"timestamp","desc":"Avatar cache time"},
+//	 * {"var":"$user_id","type":"int","desc":"User ID"}]
+//	 * @change_log
+//	 * ["Since: 2.0"]
+//	 * @usage add_filter( 'um_filter_avatar_cache_time', 'function_name', 10, 2 );
+//	 * @example
+//	 * <?php
+//	 * add_filter( 'um_filter_avatar_cache_time', 'my_avatar_cache_time', 10, 2 );
+//	 * function my_avatar_cache_time( $timestamp, $user_id ) {
+//	 *     // your code here
+//	 *     return $timestamp;
+//	 * }
+//	 *
+//	 */
+//	$cache_time = apply_filters( 'um_filter_avatar_cache_time', current_time( 'timestamp' ), um_user( 'ID' ) );
+//	if ( ! empty( $cache_time ) ) {
+//		$uri .= "?{$cache_time}";
+//	}
+//
+//	return $uri;
+//}
 
-	if ( is_multisite() ) {
-		//multisite fix for old customers
-		$multisite_fix_dir = UM()->uploader()->get_upload_base_dir();
-		$multisite_fix_url = UM()->uploader()->get_upload_base_url();
-		$multisite_fix_dir = str_replace( DIRECTORY_SEPARATOR . 'sites' . DIRECTORY_SEPARATOR . get_current_blog_id() . DIRECTORY_SEPARATOR, DIRECTORY_SEPARATOR, $multisite_fix_dir );
-		$multisite_fix_url = str_replace( '/sites/' . get_current_blog_id() . '/', '/', $multisite_fix_url );
+    // HACK
+    function um_get_avatar_uri( $image, $attrs ) {
+    $uri = false;
+    $find = false;
+    $ext = '.' . pathinfo( $image, PATHINFO_EXTENSION );
 
-		if ( $attrs == 'original' && file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
-			$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo{$ext}";
-		} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}x{$attrs}{$ext}" ) ) {
-			$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$attrs}x{$attrs}{$ext}";
-		} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}{$ext}" ) ) {
-			$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$attrs}{$ext}";
-		} else {
-			$sizes = UM()->options()->get( 'photo_thumb_sizes' );
-			if ( is_array( $sizes ) ) {
-				$find = um_closest_num( $sizes, $attrs );
-			}
-
-			if ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}x{$find}{$ext}" ) ) {
-				$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$find}x{$find}{$ext}";
-			} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}{$ext}" ) ) {
-				$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo-{$find}{$ext}";
-			} elseif ( file_exists( $multisite_fix_dir . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
-				$uri_common = $multisite_fix_url . um_user( 'ID' ) . "/profile_photo{$ext}";
-			}
-		}
-	}
-
-	if ( $attrs == 'original' && file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
-		$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo{$ext}";
-	} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}x{$attrs}{$ext}" ) ) {
-		$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$attrs}x{$attrs}{$ext}";
-	} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$attrs}{$ext}" ) ) {
-		$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$attrs}{$ext}";
-	} else {
-		$sizes = UM()->options()->get( 'photo_thumb_sizes' );
-		if ( is_array( $sizes ) ) {
-			$find = um_closest_num( $sizes, $attrs );
-		}
-
-		if ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}x{$find}{$ext}" ) ) {
-			$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$find}x{$find}{$ext}";
-		} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo-{$find}{$ext}" ) ) {
-			$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo-{$find}{$ext}";
-		} elseif ( file_exists( UM()->uploader()->get_upload_base_dir() . um_user( 'ID' ) . DIRECTORY_SEPARATOR . "profile_photo{$ext}" ) ) {
-			$uri = UM()->uploader()->get_upload_base_url() . um_user( 'ID' ) . "/profile_photo{$ext}";
-		}
-	}
-
-	if ( ! empty( $uri_common ) && empty( $uri ) ) {
-		$uri = $uri_common;
-	}
-
-	/**
-	 * UM hook
-	 *
-	 * @type filter
-	 * @title um_filter_avatar_cache_time
-	 * @description Change Profile field value if it's empty
-	 * @input_vars
-	 * [{"var":"$timestamp","type":"timestamp","desc":"Avatar cache time"},
-	 * {"var":"$user_id","type":"int","desc":"User ID"}]
-	 * @change_log
-	 * ["Since: 2.0"]
-	 * @usage add_filter( 'um_filter_avatar_cache_time', 'function_name', 10, 2 );
-	 * @example
-	 * <?php
-	 * add_filter( 'um_filter_avatar_cache_time', 'my_avatar_cache_time', 10, 2 );
-	 * function my_avatar_cache_time( $timestamp, $user_id ) {
-	 *     // your code here
-	 *     return $timestamp;
-	 * }
-	 * ?>
-	 */
-	$cache_time = apply_filters( 'um_filter_avatar_cache_time', current_time( 'timestamp' ), um_user( 'ID' ) );
-	if ( ! empty( $cache_time ) ) {
-		$uri .= "?{$cache_time}";
-	}
-
-	return $uri;
-}
+    $custom_profile_photo = get_user_meta(um_user( 'ID' ), 'profile_photo', 'true');
+    $cache_time = apply_filters( 'um_filter_avatar_cache_time', current_time( 'timestamp' ), um_user( 'ID' ) );
+    if( $attrs == 'original' && file_exists( um_user_uploads_dir() . "profile_photo{$ext}" ) ) {
+    $uri = um_user_uploads_uri() . "profile_photo{$ext}";
+    } else if ( file_exists( um_user_uploads_dir() . $custom_profile_photo ) ) {
+    $uri = um_user_uploads_uri() . $custom_profile_photo;
+    } else if ( file_exists( um_user_uploads_dir() . "profile_photo-{$attrs}x{$attrs}{$ext}" ) ) {
+    $uri = um_user_uploads_uri() . "profile_photo-{$attrs}x{$attrs}{$ext}";
+    } else if ( file_exists( um_user_uploads_dir() . "profile_photo-{$attrs}{$ext}" ) ) {
+    $uri = um_user_uploads_uri() . "profile_photo-{$attrs}{$ext}";
+    } else {
+    $sizes = UM()->options()->get( 'photo_thumb_sizes' );
+    if ( is_array( $sizes ) ) $find = um_closest_num( $sizes, $attrs );
+    if ( file_exists( um_user_uploads_dir() . "profile_photo-{$find}x{$find}{$ext}" ) ) {
+    $uri = um_user_uploads_uri() . "profile_photo-{$find}x{$find}{$ext}";
+    }else if ( file_exists( um_user_uploads_dir() . "profile_photo-{$find}{$ext}" ) ) {
+    $uri = um_user_uploads_uri() . "profile_photo-{$find}{$ext}";
+    } else if ( file_exists( um_user_uploads_dir() . "profile_photo{$ext}" ) ) {
+    $uri = um_user_uploads_uri() . "profile_photo{$ext}";
+    }
+    }
+    if ( !empty( $cache_time ) ) {
+    $uri .= "?{$cache_time}";
+    }
+    return $uri;
+    }
 
 
 /**
