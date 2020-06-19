@@ -748,7 +748,7 @@ if ( ! class_exists( 'um\core\Uploader' ) ) {
 			 * ?>
 			 */
 			$data = apply_filters( "um_image_handle_{$field_key}__option", $data );
-
+/// HACK REEDZ - remove annoying error message below
 			if ( isset( $image_info['invalid_image'] ) && $image_info['invalid_image'] == true ) {
 				$error = sprintf(__('Your image is invalid or too large!','ultimate-member') );
 			} elseif ( isset($data['min_size']) && ( $image_info['size'] < $data['min_size'] ) ) {
