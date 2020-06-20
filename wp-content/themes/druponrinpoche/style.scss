@@ -3275,6 +3275,12 @@ a.course_link {
         font-size:24px;
 }
 
+
+.um-page-login .um input[type=submit].um-button,.um-page-login .um input[type=submit].um-button:hover {
+    background:#f2efdf;
+    color: $dkr-darkgrey;
+}
+
 .online-teachings {
     .sidebar-container {
         width: 23%;
