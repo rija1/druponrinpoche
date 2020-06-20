@@ -2324,7 +2324,9 @@ a.course_link {
 .full-bio-tibetan {
   font-size: 24px; }
 
-.um-page-login .um input[type=submit].um-button, .um-page-login .um input[type=submit].um-button:hover {
+.um-page-login .um input[type=submit].um-button, .um-page-login .um input[type=submit].um-button:hover,
+.um-page-register .um input[type=submit].um-button, .um-page-login .um input[type=submit].um-button:hover,
+.um-page-register.um a.um-button, .um-page-register.um a.um-button:hover {
   background: #f2efdf;
   color: #656250; }
 
