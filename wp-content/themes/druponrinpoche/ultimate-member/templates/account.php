@@ -1,5 +1,3 @@
-<?php /* Template: Account DKR */ ?>
-
 <?php if ( ! defined( 'ABSPATH' ) ) exit; ?>
 
 <div class="um <?php echo esc_attr( $this->get_class( $mode ) ); ?> um-<?php echo esc_attr( $form_id ); ?>">
@@ -33,7 +31,7 @@
 			<div class="um-account-meta radius-<?php echo esc_attr( UM()->options()->get( 'profile_photocorner' ) ); ?> uimob340-show uimob500-show">
 
 				<div class="um-account-meta-img">
-					<?php echo get_avatar( um_user( 'ID' ), 120 ); ?>
+					<a href="<?php echo esc_url( um_user_profile_url() ); ?>"><?php echo get_avatar( um_user( 'ID' ), 120 ); ?></a>
 				</div>
 
 				<div class="um-account-name">
@@ -54,25 +52,25 @@
 				<div class="um-account-meta radius-<?php echo esc_attr( UM()->options()->get( 'profile_photocorner' ) ); ?>">
 
 					<div class="um-account-meta-img uimob800-hide">
-						<a href="<?php echo esc_url( um_user_profile_url() ); ?>">
+<!--						<a href="--><?php //echo esc_url( um_user_profile_url() ); ?><!--">-->
 							<?php echo get_avatar( um_user( 'ID' ), 120 ); ?>
-						</a>
+<!--						</a>-->
 					</div>
 
 					<?php if ( UM()->mobile()->isMobile() ) { ?>
 
 						<div class="um-account-meta-img-b uimob800-show" title="<?php echo esc_attr( um_user( 'display_name' ) ); ?>">
-							<a href="<?php echo esc_url( um_user_profile_url() ); ?>">
+<!--							<a href="--><?php //echo esc_url( um_user_profile_url() ); ?><!--">-->
 								<?php echo get_avatar( um_user( 'ID' ), 120 ); ?>
-							</a>
+<!--							</a>-->
 						</div>
 
 					<?php } else { ?>
 
 						<div class="um-account-meta-img-b uimob800-show um-tip-<?php echo is_rtl() ? 'e' : 'w'; ?>" title="<?php echo esc_attr( um_user( 'display_name' ) ); ?>">
-							<a href="<?php echo esc_url( um_user_profile_url() ); ?>">
+<!--							<a href="--><?php //echo esc_url( um_user_profile_url() ); ?><!--">-->
 								<?php echo get_avatar( um_user( 'ID' ), 120 ); ?>
-							</a>
+<!--							</a>-->
 						</div>
 
 					<?php } ?>

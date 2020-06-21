@@ -172,19 +172,35 @@ function online_teaching_register() {
 
     $userId = get_current_user_id();
     $postId = $_REQUEST["post_id"];
+    $registerAction = $_REQUEST["register"];
 
     $already_registered = MB_Relationships_API::has( $userId, $postId, 'users_to_online_teachings' );
 
-    if ( $already_registered ) {
-        MB_Relationships_API::delete( $userId, $postId, 'users_to_online_teachings' );
-        $result['type'] = "success";
-    } else {
-        MB_Relationships_API::add( $userId, $postId, 'users_to_online_teachings' );
-        $result['type'] = "success";
+    if($registerAction == 1) { // REGISTER ACTION
+        if ( $already_registered ) {
+            $result['type'] = "error";
+            $result['registered'] = "1";
+            $result['message'] = "You are already registered to this course.";
+        } else {
+            MB_Relationships_API::add( $userId, $postId, 'users_to_online_teachings' );
+            $result['type'] = "success";
+            $result['message'] = "You have been succesfully registered to this course.";
+            $result['registered'] = "1";
+        }
+    } elseif($registerAction == 2) { // UNREGISTER ACTION
+        if ( $already_registered ) {
+            MB_Relationships_API::delete( $userId, $postId, 'users_to_online_teachings' );
+            $result['type'] = "success";
+            $result['message'] = "You have been unregistered from this course.";
+            $result['registered'] = "0";
+        } else {
+            $result['type'] = "error";
+            $result['message'] = "You are already unregistered from this course.";
+            $result['registered'] = "0";
+        }
     }
 
-   // Update the value of 'likes' meta key for the specified post, creates new meta data for the post if none exists
-   $like = update_post_meta($_REQUEST["post_id"], "likes", $new_like_count);
+
 
    // Check if action was fired via Ajax call. If yes, JS code will be triggered, else the user is redirected to the post page
    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {

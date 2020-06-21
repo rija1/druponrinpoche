@@ -2348,11 +2348,40 @@ div.uimob800 .um-account-side li a.current:hover,
 .um input[type=submit].um-button,
 .um input[type=submit].um-button:focus,
 .um input[type=submit]:disabled:hover {
-  background: #f2efdf !important;
-  color: #80784c !important; }
+  background: #495a6f !important;
+  color: #fff !important; }
 
 div.um-modal .upload, .um-modal-header, a.um-modal-btn, a.um-modal-btn:visited {
-  color: #80784c !important; }
+  color: #495a6f !important; }
+
+.um-page-account .sidebar-container > ul > li.current_page_item,
+.online-teachings .sidebar-container > ul > li.current_page_item {
+  background: #495a6f; }
+  .um-page-account .sidebar-container > ul > li.current_page_item a,
+  .online-teachings .sidebar-container > ul > li.current_page_item a {
+    color: #fff; }
+
+.um-page-account h1, .online-teachings h1, .um-page-password-reset h1 {
+  color: #495a6f;
+  border-color: #495a6f; }
+
+.modal_confirm {
+  display: grid;
+  grid-row-gap: 15px; }
+  .modal_confirm .modal_content {
+    display: grid;
+    grid-row-gap: 15px; }
+  .modal_confirm .modal_buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px; }
+    .modal_confirm .modal_buttons .um-button {
+      padding: 14px !important; }
+  .modal_confirm .modal_loading {
+    display: none;
+    text-align: center; }
+  .modal_confirm .modal_text {
+    font-size: 16px; }
 
 .online-teachings .sidebar-container {
   width: 23%; }
@@ -2381,8 +2410,11 @@ div.um-modal .upload, .um-modal-header, a.um-modal-btn, a.um-modal-btn:visited {
     background: #c10a0a;
     margin-top: 13px; }
   .online-teachings .teaching a.teaching_details {
+    float: right;
+    margin-right: 15px;
+    margin-top: 11px;
     width: 100px;
-    background: #bb9b25; }
+    background: #495a6f; }
 
 .single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
   display: block;
