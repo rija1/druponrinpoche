@@ -27,10 +27,10 @@
                                 $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
                                 ?>
 
-                                <a style="display:<?php echo ($already_registered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" data-nonce="<?php echo $nonce; ?>" data-register="2" data-post_id="<?php echo $post->ID; ?>" href="<?php echo $unregLink; ?>">
+                                <a style="display:<?php echo ($already_registered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
                                     <span><?php echo pll__('Unregister from this course'); ?></span>
                                 </a>
-                                <a style="display:<?php echo ($already_registered) ? 'none' : 'block' ; ?>;" class="teaching_register teaching_reg_action" data-nonce="<?php echo $nonce; ?>" data-register="1" data-post_id="<?php echo $post->ID; ?>" href="<?php echo $regLink; ?>">
+                                <a style="display:<?php echo ($already_registered) ? 'none' : 'block' ; ?>;" class="teaching_register teaching_reg_action" href="<?php echo $regLink; ?>">
                                     <span><?php echo pll__('Register to this course'); ?></span>
                                 </a>
 
@@ -63,70 +63,73 @@
 <?php get_footer(); ?>
 
 <script type="text/javascript">
-<!---->
-<!--    function teachingRegUnregAction(action) {-->
-<!--        if(action == 'register') {-->
-<!--            var modalText = '--><?php //echo pll__('Do you confirm you want to register to this course ?'); ?><!--';-->
-<!---->
-<!--        } else if (action == 'unregister') {-->
-<!--            var modalText = '--><?php //echo pll__('Do you confirm you want to unregister from this course ?'); ?><!--';-->
-<!--        }-->
-<!--        jQuery(".modal_text").html(modalText);-->
-<!--        jQuery("#modal_register").modal();-->
-<!--    }-->
-<!---->
-<!--    function confirmRegUnregAction() {-->
-<!---->
-<!--        jQuery("#modal_content").hide();-->
-<!--        jQuery("#modal_loading").show();-->
-<!---->
-<!--        var regaction = jQuery("#modal_confirm").attr('regaction');-->
-<!---->
-<!--        post_id = jQuery(this).attr("data-post_id");-->
-<!--        nonce = jQuery(this).attr("data-nonce");-->
-<!--        jQuery.ajax({-->
-<!--            type : "post",-->
-<!--            dataType : "json",-->
-<!--            url : myAjax.ajaxurl,-->
-<!--            data : {action: "online_teaching_register", post_id : post_id, register : regaction, nonce: nonce},-->
-<!--            success: function(response) {-->
-<!--//                    if(response.type == "success") {-->
-<!--                jQuery("#modal_text").html(response.message);-->
-<!--                jQuery("#modal_loading").hide();-->
-<!--                jQuery("#modal_content").show();-->
-<!--                jQuery("#modal_buttons").hide();-->
-<!--                jQuery("#modal_register").modal();-->
-<!---->
-<!--                if(response.type == "1") {-->
-<!--                    jQuery('.teaching_unregister').show();-->
-<!--                    jQuery('.teaching_register').hide();-->
-<!--                } else if(response.type == "0") {-->
-<!--                    jQuery('.teaching_unregister').hide();-->
-<!--                    jQuery('.teaching_register').show();-->
-<!--                }-->
-<!--            }-->
-<!--        });-->
-<!---->
-<!---->
-<!--    }-->
-<!---->
-<!--    jQuery( document ).ready(function() {-->
-<!---->
-<!--        jQuery(".teaching_register").click( function(e) {-->
-<!--            e.preventDefault();-->
-<!--            teachingRegUnregAction('register');-->
-<!--            jQuery("#modal_confirm").attr('regaction','1');-->
-<!--        });-->
-<!---->
-<!--        jQuery(".teaching_unregister").click( function(e) {-->
-<!--            e.preventDefault();-->
-<!--            teachingRegUnregAction('unregister');-->
-<!--            jQuery("#modal_confirm").attr('regaction','2');-->
-<!--        });-->
-<!---->
-<!--        jQuery("#modal_cancel").click( function(e) {-->
-<!--            jQuery("#modal_register").modal().close();-->
-<!--        });-->
-<!---->
-<!--    });-->
+
+    function teachingRegUnregAction(action) {
+
+        jQuery(".modal_buttons").show();
+
+        if(action == 'register') {
+            var modalText = '<?php echo pll__('Do you confirm you want to register to this course ?'); ?>';
+
+        } else if (action == 'unregister') {
+            var modalText = '<?php echo pll__('Do you confirm you want to unregister from this course ?'); ?>';
+        }
+        jQuery(".modal_text").html(modalText);
+        jQuery("#modal_register").modal();
+    }
+
+    function confirmRegUnregAction() {
+
+        jQuery(".modal_content").hide();
+        jQuery(".modal_loading").show();
+
+        var regaction = jQuery("#modal_confirm").attr('regaction');
+
+        post_id = "<?php echo $post->ID; ?>";
+        nonce = "<?php echo $nonce; ?>";
+        jQuery.ajax({
+            type : "post",
+            dataType : "json",
+            url : myAjax.ajaxurl,
+            data : {action: "online_teaching_register", post_id : post_id, register : regaction, nonce: nonce},
+            success: function(response) {
+//                    if(response.type == "success") {
+                jQuery(".modal_text").html(response.message);
+                jQuery(".modal_loading").hide();
+                jQuery(".modal_content").show();
+                jQuery(".modal_buttons").hide();
+                jQuery(".modal_register").modal();
+
+                if(response.registered == "1") {
+                    jQuery('.teaching_unregister').show();
+                    jQuery('.teaching_register').hide();
+                } else if(response.registered == "0") {
+                    jQuery('.teaching_unregister').hide();
+                    jQuery('.teaching_register').show();
+                }
+            }
+        });
+
+
+    }
+
+    jQuery( document ).ready(function() {
+
+        jQuery(".teaching_register").click( function(e) {
+            e.preventDefault();
+            teachingRegUnregAction('register');
+            jQuery("#modal_confirm").attr('regaction','1');
+        });
+
+        jQuery(".teaching_unregister").click( function(e) {
+            e.preventDefault();
+            teachingRegUnregAction('unregister');
+            jQuery("#modal_confirm").attr('regaction','2');
+        });
+
+        jQuery("#modal_cancel").click( function(e) {
+            jQuery("#modal_register").modal().close();
+        });
+
+    });
 </script>

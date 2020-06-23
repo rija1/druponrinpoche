@@ -11,9 +11,7 @@ if ( !is_user_logged_in() ) {
     <div class="section section-blog online-teachings">
         <div class="container">
             <div class="blog-columns clearfix">
-                <div class="sidebar-container left">
-                    <?php get_template_part( 'online-teaching-left-menu'); ?>
-                </div>
+                <?php get_template_part( 'online-teaching-left-menu'); ?>
                 <div class="inner-page-container right">
                     <div class="gutter">
                         <h1><?php echo pll__('Online Teachings'); ?></h1>

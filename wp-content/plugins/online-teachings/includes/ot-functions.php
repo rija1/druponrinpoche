@@ -180,22 +180,22 @@ function online_teaching_register() {
         if ( $already_registered ) {
             $result['type'] = "error";
             $result['registered'] = "1";
-            $result['message'] = "You are already registered to this course.";
+            $result['message'] = '<span class="modal_msg_hey">You are already registered to this course.</span>';
         } else {
             MB_Relationships_API::add( $userId, $postId, 'users_to_online_teachings' );
             $result['type'] = "success";
-            $result['message'] = "You have been succesfully registered to this course.";
+            $result['message'] = '<span class="modal_msg_alright">You have been succesfully registered to this course.</span>';
             $result['registered'] = "1";
         }
     } elseif($registerAction == 2) { // UNREGISTER ACTION
         if ( $already_registered ) {
             MB_Relationships_API::delete( $userId, $postId, 'users_to_online_teachings' );
             $result['type'] = "success";
-            $result['message'] = "You have been unregistered from this course.";
+            $result['message'] = '<span class="modal_msg_alright">You have been unregistered from this course.</span>';
             $result['registered'] = "0";
         } else {
             $result['type'] = "error";
-            $result['message'] = "You are already unregistered from this course.";
+            $result['message'] = '<span class="modal_msg_hey">You are already unregistered from this course.</span>';
             $result['registered'] = "0";
         }
     }

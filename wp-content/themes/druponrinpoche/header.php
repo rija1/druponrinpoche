@@ -79,6 +79,7 @@ $pllArgs = array(
                                 </div>
                             </a>
                         </div>
+<!--                        <span class="dc_header">Marpa Online</span>-->
                         <ul class="poly_switcher">
                             <?php
                             $pllSwitcher->the_languages(PLL()->links,$pllArgs);

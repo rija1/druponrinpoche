@@ -4,9 +4,7 @@
     <div class="section section-blog online-teachings">
         <div class="container">
             <div class="blog-columns clearfix">
-                <div class="sidebar-container left">
-                    <?php get_template_part( 'online-teaching-left-menu'); ?>
-                </div>
+                <?php get_template_part( 'online-teaching-left-menu'); ?>
                 <div class="inner-page-container right">
                     <div class="section-title">
                         <div class="gutter">
