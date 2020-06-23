@@ -2356,7 +2356,7 @@ div.uimob800 .um-account-side li a.current:hover,
   background: #495a6f !important;
   color: #fff !important; }
 
-.um-page-register um-field-half {
+.um-page-register .um-field-half {
   width: auto; }
 
 .um-page-account .sidebar-container > ul > li.current_page_item,
