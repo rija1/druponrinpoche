@@ -2417,14 +2417,31 @@ div.uimob800 .um-account-side li a.current:hover,
 
 .dc_logged {
   padding-bottom: 20px;
-  font-size: 12px; }
+  font-size: 12px;
+  display: grid;
+  grid-template-columns: 1fr 46px; }
   .dc_logged .logout_link {
     text-align: right; }
     .dc_logged .logout_link a:hover {
       text-decoration: underline; }
 
-.dc_left {
-  display: grid; }
+.online-teachings .dc_left {
+  display: grid;
+  width: 23%; }
+
+.single-online-teaching .registrationStatus {
+  padding: 10px 0 21px 0; }
+.single-online-teaching h1 {
+  margin: 0; }
+
+.registrationStatus {
+  padding-top: 6px;
+  font-size: 14px;
+  font-style: italic; }
+
+.registYes {
+  color: #50c7c3;
+  font-style: normal; }
 
 .dc_logreg_welcome {
   padding-top: 25px;
@@ -2437,8 +2454,6 @@ div.uimob800 .um-account-side li a.current:hover,
 .dc_logreg_txt {
   padding: 15px 0 20px 0; }
 
-.online-teachings .sidebar-container {
-  width: 23%; }
 .online-teachings .inner-page-container {
   width: 77%; }
 .online-teachings .teaching {
@@ -2447,8 +2462,7 @@ div.uimob800 .um-account-side li a.current:hover,
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 180px;
-  border: solid 1px #999;
-  background: #F5F5f5;
+  border-radius: 4px;
   background: #f6f6f6; }
   .online-teachings .teaching .teaching_left .teachingDates {
     font-weight: 500;
@@ -2478,11 +2492,12 @@ div.uimob800 .um-account-side li a.current:hover,
   display: block;
   width: 180px;
   color: #fff;
-  background: #bb9b25;
+  background: #495a6f;
   text-align: center;
   margin: 20px auto;
   font-weight: 500;
-  padding: 9px 0px 9px 0px; }
+  padding: 9px 0px 9px 0px;
+  border-radius: 4px; }
 .single-online-teaching a.teaching_unregister {
   background: #eee;
   color: #80784c;

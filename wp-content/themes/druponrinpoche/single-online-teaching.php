@@ -1,31 +1,29 @@
 <?php get_header(); ?>
+<?php
+$nonce = wp_create_nonce("online_teaching_register_nonce");
+$userId = get_current_user_id();
+$already_registered = MB_Relationships_API::has( $userId, get_the_ID(), 'users_to_online_teachings' );
+$unregLink = admin_url('admin-ajax.php?action=online_teaching_register&register=2&post_id='.$post->ID.'&nonce='.$nonce);
+$regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
+?>
 <?php while (have_posts()) : the_post(); ?>
-    <div class="section section-blog">
+    <div class="section section-blog online-teachings single-online-teaching">
         <div class="container">
             <div class="blog-columns clearfix">
-                <div class="sidebar-container left">
-                    <?php get_template_part( 'online-teaching-left-menu'); ?>
-                </div>
+                <?php get_template_part( 'online-teaching-left-menu'); ?>
                 <div class="inner-page-container right">
                     <div class="section-title">
                         <div class="gutter">
                             <h1><?php the_title(); ?></h1>
                             <?php //the_excerpt(); ?>
+                            <div class="registrationStatus registYes" style="<?php echo ($already_registered) ? 'display:block;' : 'display:none;' ; ?>"><?php echo pll__('You are registered to this course.'); ?></div>
+                            <div class="registrationStatus registNo" style="<?php echo ($already_registered) ? 'display:none;' : 'display:block;' ; ?>"><?php echo pll__('You are not registered to this course.'); ?></div>
                         </div>
                     </div>
                     <div class="gutter">
                         <article class="single-post">
                             <div class="article-text">
                                 <?php the_content(); ?>
-
-
-                                <?php
-                                $nonce = wp_create_nonce("online_teaching_register_nonce");
-                                $userId = get_current_user_id();
-                                $already_registered = MB_Relationships_API::has( $userId, $post->ID, 'users_to_online_teachings' );
-                                $unregLink = admin_url('admin-ajax.php?action=online_teaching_register&register=2&post_id='.$post->ID.'&nonce='.$nonce);
-                                $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
-                                ?>
 
                                 <a style="display:<?php echo ($already_registered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
                                     <span><?php echo pll__('Unregister from this course'); ?></span>
@@ -103,9 +101,13 @@
                 if(response.registered == "1") {
                     jQuery('.teaching_unregister').show();
                     jQuery('.teaching_register').hide();
+                    jQuery('.registYes').show();
+                    jQuery('.registNo').hide();
                 } else if(response.registered == "0") {
                     jQuery('.teaching_unregister').hide();
                     jQuery('.teaching_register').show();
+                    jQuery('.registYes').hide();
+                    jQuery('.registNo').show();
                 }
             }
         });

@@ -3408,6 +3408,8 @@ div.uimob800 .um-account-side li a.current:hover,
 .dc_logged {
     padding-bottom: 20px;
     font-size:12px;
+    display: grid;
+    grid-template-columns: 1fr 46px;
     .logged_name {
 
     }
@@ -3419,8 +3421,28 @@ div.uimob800 .um-account-side li a.current:hover,
     }
 }
 
-.dc_left {
+.online-teachings .dc_left {
     display:grid;
+    width: 23%;
+}
+
+.single-online-teaching {
+    .registrationStatus {
+        padding: 10px 0 21px 0;
+    }
+    h1 {
+        margin:0;
+    }
+}
+
+.registrationStatus {
+    padding-top: 6px;
+    font-size: 14px;
+    font-style: italic;
+}
+.registYes {
+    color : #50c7c3;
+    font-style: normal;
 }
 
 .dc_logreg_welcome {
@@ -3438,9 +3460,6 @@ div.uimob800 .um-account-side li a.current:hover,
 }
 
 .online-teachings {
-    .sidebar-container {
-        width: 23%;
-    }
     .inner-page-container {
         width: 77%;
     }
@@ -3450,9 +3469,8 @@ div.uimob800 .um-account-side li a.current:hover,
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 180px;
-        border: solid 1px #999;
-        background: #F5F5f5;
-      background: $dkr-lightgrey;
+        border-radius: 4px;
+        background: $dkr-lightgrey;
 
         .teaching_left {
             .teachingDates {
@@ -3492,11 +3510,12 @@ div.uimob800 .um-account-side li a.current:hover,
       display: block;
       width: 180px;
       color: #fff;
-      background: #bb9b25;
+      background: $dkr-ot-blue;
       text-align: center;
       margin: 20px auto ;
       font-weight:500;
       padding: 9px 0px 9px 0px;
+      border-radius: 4px;
     }
     a.teaching_unregister {
       background: #eee;
