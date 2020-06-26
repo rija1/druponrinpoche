@@ -2516,6 +2516,8 @@ table.postTable {
   table.postTable th {
     background: #bb9b25;
     border: none; }
+  table.postTable td {
+    border: none; }
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
