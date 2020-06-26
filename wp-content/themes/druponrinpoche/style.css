@@ -2368,7 +2368,7 @@ div.uimob800 .um-account-side li a.current:hover,
 
 .um-page-account h1, .online-teachings h1, .um-page-password-reset h1 {
   color: #495a6f;
-  padding: 12px;
+  padding: 12px 0 12px 18px;
   color: #ffffff;
   border-color: #495a6f;
   background: #495a6f;
@@ -2502,6 +2502,17 @@ div.uimob800 .um-account-side li a.current:hover,
   background: #eee;
   color: #80784c;
   width: 230px; }
+
+a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[type=submit].um-button:hover {
+  background: #647cab;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease; }
+
+table.postTable {
+  width: 100%; }
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {

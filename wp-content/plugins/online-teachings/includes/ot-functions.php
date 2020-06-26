@@ -151,9 +151,9 @@ add_action( 'save_post', 'save_online_teachings_meta', 1, 2 );
 function getDatesFromSessions($sessionsRaw) {
 
     $sessions = explode(',',$sessionsRaw[0]);
-    $date = explode(' ',$sessions[0]);
-    $startDate = strftime('%d %B %Y ', strtotime($date[0]));
-    $endDate = strftime('%d %B %Y ', strtotime($date[count($date)-1 ]));
+
+    $startDate = strftime('%d %B %Y ', strtotime($sessions[0]));
+    $endDate = strftime('%d %B %Y ', strtotime($sessions[count($sessions)-1]));
 
     return $startDate . ' - ' .$endDate;
 }

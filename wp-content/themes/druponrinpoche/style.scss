@@ -16,6 +16,7 @@ $dkr-darkgrey: #656250;
 $dkr-ot-blue: #35405a;
 $dkr-ot-blue: #3e608c;
 $dkr-ot-blue: #495a6f;
+$dkr-ot-blue-hover:#647cab;
 
 
 /**  fonts  **/
@@ -3337,7 +3338,7 @@ div.uimob800 .um-account-side li a.current:hover,
 
 .um-page-account h1, .online-teachings h1, .um-page-password-reset h1  {
     color: $dkr-ot-blue;
-    padding: 12px;
+    padding: 12px 0 12px 18px;
     color: #ffffff;
     border-color: $dkr-ot-blue;
     background: $dkr-ot-blue;
@@ -3524,6 +3525,18 @@ div.uimob800 .um-account-side li a.current:hover,
     }
 }
 
+a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[type=submit].um-button:hover {
+  background:$dkr-ot-blue-hover;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+table.postTable {
+  width:100%;
+}
 
 
 /**  mobile  **/
