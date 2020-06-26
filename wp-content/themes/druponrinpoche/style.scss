@@ -3536,6 +3536,10 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 
 table.postTable {
   width:100%;
+  th {
+    background: $dkr-gold;
+    border: none;
+  }
 }
 
 

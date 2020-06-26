@@ -2513,6 +2513,9 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 
 table.postTable {
   width: 100%; }
+  table.postTable th {
+    background: #bb9b25;
+    border: none; }
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
