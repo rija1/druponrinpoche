@@ -15,8 +15,8 @@ Text Domain:  druponrinpoche
   font-weight: normal;
   font-style: normal; }
 @font-face {
-  font-family: 'Vampiro One';
-  src: url("assets/fonts/VampiroOne-Regular.ttf");
+  font-family: 'TSFont';
+  src: url("assets/fonts/BerkshireSwash-Regular.ttf");
   font-weight: normal;
   font-style: normal; }
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
@@ -2410,7 +2410,7 @@ div.uimob800 .um-account-side li a.current:hover,
     content: '\f078'; }
 
 .dc_left_title {
-  font-family: 'Vampiro One', cursive;
+  font-family: 'TSFont', cursive;
   font-size: 28px;
   color: #495a6f;
   padding-bottom: 20px; }
@@ -2448,10 +2448,11 @@ div.uimob800 .um-account-side li a.current:hover,
   font-size: 21px;
   color: #495a6f; }
   .dc_logreg_welcome span {
-    font-family: "Vampiro One";
+    font-family: "TSFont";
     font-size: 28px; }
 
 .dc_logreg_txt {
+  text-align: justify;
   padding: 15px 0 20px 0; }
 
 .online-teachings .inner-page-container {
@@ -2510,14 +2511,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
   -ms-transition: all .3s ease;
   -o-transition: all .3s ease;
   transition: all .3s ease; }
-
-table.postTable {
-  width: 100%; }
-  table.postTable th {
-    background: #bb9b25;
-    border: none; }
-  table.postTable td {
-    border: none; }
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {

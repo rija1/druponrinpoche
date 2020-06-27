@@ -29,9 +29,8 @@ $dkr-ot-blue-hover:#647cab;
 }
 
 @font-face {
-  font-family: 'Vampiro One';
-//  src: url('assets/fonts/PermanentMarker-Regular.ttf');
-  src: url('assets/fonts/VampiroOne-Regular.ttf');
+  font-family: 'TSFont';
+  src: url('assets/fonts/BerkshireSwash-Regular.ttf');
   font-weight: normal;
   font-style: normal;
 }
@@ -3396,9 +3395,7 @@ div.uimob800 .um-account-side li a.current:hover,
 }
 
 .dc_left_title {
-//    font-family:"Marker";
-//  font-family: 'Paytone One', sans-serif;
-  font-family: 'Vampiro One', cursive;
+  font-family: 'TSFont', cursive;
     font-size:28px;
     color:$dkr-ot-blue;
     padding-bottom: 20px;
@@ -3451,14 +3448,19 @@ div.uimob800 .um-account-side li a.current:hover,
         font-size:21px;
     color:$dkr-ot-blue;
         span {
-            font-family:"Vampiro One";
+            font-family:"TSFont";
             font-size:28px;
 
         }
 }
 .dc_logreg_txt {
+    text-align: justify;
     padding:15px 0 20px 0;
-}
+
+
+  .ts_font {
+
+  }
 
 .online-teachings {
     .inner-page-container {
@@ -3533,18 +3535,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
   -o-transition: all .3s ease;
   transition: all .3s ease;
 }
-
-table.postTable {
-  width:100%;
-  th {
-    background: $dkr-gold;
-    border: none;
-  }
-  td {
-    border: none;
-  }
-}
-
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {

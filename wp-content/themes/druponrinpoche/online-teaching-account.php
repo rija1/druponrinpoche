@@ -1,4 +1,4 @@
-<?php /* Template Name: Online Teaching Account */ ?>
+<?php /* Template Name: Online Course Account */ ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
     <div class="section section-blog online-teachings">

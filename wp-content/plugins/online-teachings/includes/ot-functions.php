@@ -6,19 +6,19 @@ function create_ot_teaching() {
     register_post_type( 'online-teaching',
         array(
             'labels' => array(
-                'name' => 'Online Teachings',
-                'singular_name' => 'Online Teaching',
+                'name' => 'Online Courses',
+                'singular_name' => 'Online Course',
                 'add_new' => 'Add New',
-                'add_new_item' => 'Add New Online Teaching',
+                'add_new_item' => 'Add New Online Course',
                 'edit' => 'Edit',
-                'edit_item' => 'Edit Online Teaching',
-                'new_item' => 'New Online Teaching',
+                'edit_item' => 'Edit Online Course',
+                'new_item' => 'New Online Course',
                 'view' => 'View',
-                'view_item' => 'View Online Teaching',
-                'search_items' => 'Search Online Teachings',
-                'not_found' => 'No Online Teachings found',
-                'not_found_in_trash' => 'No Online Teachings found in Trash',
-                'parent' => 'Parent Online Teaching'
+                'view_item' => 'View Online Course',
+                'search_items' => 'Search Online Courses',
+                'not_found' => 'No Online Courses found',
+                'not_found_in_trash' => 'No Online Courses found in Trash',
+                'parent' => 'Parent Online Course'
             ),
 
             'public' => true,

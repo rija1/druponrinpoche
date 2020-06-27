@@ -1,4 +1,4 @@
-<?php /* Template Name: Online Teachings */ ?>
+<?php /* Template Name: Online Courses */ ?>
 <?php
 if ( !is_user_logged_in() ) {
     $curr = UM()->permalinks()->get_current_url();
@@ -15,7 +15,7 @@ $userId = get_current_user_id();
                 <?php get_template_part( 'online-teaching-left-menu'); ?>
                 <div class="inner-page-container right">
                     <div class="gutter">
-                        <h1><?php echo pll__('Online Teachings'); ?></h1>
+                        <h1><?php echo pll__('Online Courses'); ?></h1>
                         <?php
                         $args = array(
                             'post_type'=> 'online-teaching',

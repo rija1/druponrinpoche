@@ -2,7 +2,7 @@
 
 <div class="um <?php echo esc_attr( $this->get_class( $mode ) ); ?> um-<?php echo esc_attr( $form_id ); ?>">
 
-    <div class="dc_logreg_welcome">Registration on&nbsp;&nbsp;&nbsp;<span>Marpa Online</span></div>
+    <div class="dc_logreg_welcome">Registration on&nbsp;&nbsp;&nbsp;<span>Tirthika Square</span></div>
     <div class="dc_logreg_txt">Please fill in the fields below. The information collected is only for ??? reasons and will not be shared with any third parties nor visible by other users.</div>
 
     <div class="um-form" data-mode="<?php echo esc_attr( $mode ) ?>">
