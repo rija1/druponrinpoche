@@ -2455,6 +2455,13 @@ div.uimob800 .um-account-side li a.current:hover,
   text-align: justify;
   padding: 15px 0 20px 0; }
 
+.ts_font {
+  font-family: "TSFont"; }
+
+.ts_font_big {
+  font-family: "TSFont";
+  font-size: 24px; }
+
 .online-teachings .inner-page-container {
   width: 77%; }
 .online-teachings .teaching {
