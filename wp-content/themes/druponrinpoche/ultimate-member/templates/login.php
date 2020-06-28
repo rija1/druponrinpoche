@@ -3,7 +3,7 @@
 <div class="um <?php echo esc_attr( $this->get_class( $mode ) ); ?> um-<?php echo esc_attr( $form_id ); ?>">
 
     <div class="dc_logreg_welcome">Welcome to&nbsp;&nbsp;&nbsp;<span>Tirthika Square</span></div>
-    <div class="dc_logreg_txt">Tirthika Square is the place where you can access Drupon Khen Rinpoche’s online teachings. Once you have made an account, you can register for any scheduled course you would like to join when logged in.</div>
+    <div class="dc_logreg_txt"><p>Tirthika Square is the place where you can access Drupon Khen Rinpoche’s online teachings. Once you have made an account, you can register for any scheduled course you would like to join when logged in.</p></div>
 
 	<div class="um-form">
 

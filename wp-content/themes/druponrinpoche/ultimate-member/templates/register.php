@@ -3,7 +3,11 @@
 <div class="um <?php echo esc_attr( $this->get_class( $mode ) ); ?> um-<?php echo esc_attr( $form_id ); ?>">
 
     <div class="dc_logreg_welcome">Create an account on&nbsp;&nbsp;&nbsp;<span class="ts_font_big">Tirthika Square</span></div>
-    <div class="dc_logreg_txt">Please fill in the fields below. Any information you provide will not be visible to other users nor be shared with any third parties.</div>
+    <div class="dc_logreg_txt">
+<!--        <p>Please fill in the fields below. </p>-->
+        <p>Any information you provide will not be visible to other users nor be shared with any third parties. </p>
+        <p>Please make sure your name and photo are clearly visible in the ID card or passport photo. If you are concerned about privacy you can black out the other information so that it is not visible in the copy.</p>
+    </div>
 
     <div class="um-form" data-mode="<?php echo esc_attr( $mode ) ?>">
 
