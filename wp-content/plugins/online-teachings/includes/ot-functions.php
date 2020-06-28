@@ -237,6 +237,19 @@ function script_enqueuer() {
     wp_enqueue_script( 'online_teaching_script' );
 }
 
+
+// The filter callback function.
+function umShortcode( $args ) {
+    if (in_array($args['mode'],array('login','register'))) {
+        if (is_user_logged_in() ) {
+            exit( wp_redirect( 'tirthika-square' ) );
+        }
+    }
+    return $args;
+
+}
+add_filter( 'um_shortcode_args_filter', 'umShortcode', 10, 3 );
+
 function pa($a,$b=0,$c=0) {
     echo '<pre>';
     if(!$c) {
