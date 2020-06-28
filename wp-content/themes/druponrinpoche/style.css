@@ -2456,11 +2456,13 @@ div.uimob800 .um-account-side li a.current:hover,
   padding: 15px 0 20px 0; }
 
 .ts_font {
-  font-family: "TSFont"; }
+  font-family: "TSFont";
+  color: #495a6f; }
 
 .ts_font_big {
   font-family: "TSFont";
-  font-size: 24px; }
+  font-size: 24px;
+  color: #495a6f; }
 
 .online-teachings .inner-page-container {
   width: 77%; }
