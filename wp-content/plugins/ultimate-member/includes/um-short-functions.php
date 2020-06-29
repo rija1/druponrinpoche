@@ -858,7 +858,17 @@ function um_user_submitted_registration_formatted( $style = false ){
 								$col1_fields = UM()->fields()->get_fields_in_column( $subrow_fields, 1 );
 								if ( $col1_fields ) {
 									foreach ( $col1_fields as $key => $data ) {
-										$output .= um_user_submited_display( $key, $data['title'] );
+
+                                        // HACK REEDZ START
+                                        if($key=='passport_img') {
+                                            $output .= um_user_submited_display( $key, $data['title'] );
+                                        } else {
+                                            $output .= um_user_submited_display( $key, $data['title'] );
+                                        }
+                                        // HACK REEDZ END
+                                        //ORIGINAL START
+//                                        $output .= um_user_submited_display( $key, $data['title'] );
+                                        //ORIGINAL END
 									}
 								}
 

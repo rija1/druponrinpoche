@@ -1020,6 +1020,7 @@ blockquote {
     bottom: 0; }
   .header .menu-bar {
     background: #f2efdf;
+    background: linear-gradient(0deg, #e4dfc4 0%, #f2efdf 100%);
     position: relative; }
 
 /**  header  **/
@@ -2462,7 +2463,10 @@ div.uimob800 .um-account-side li a.current:hover,
 .ts_font_big {
   font-family: "TSFont";
   font-size: 24px;
-  color: #495a6f; }
+  color: #495a6f;
+  background: -webkit-linear-gradient(#495a6f, #647cab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; }
 
 .online-teachings .inner-page-container {
   width: 77%; }
