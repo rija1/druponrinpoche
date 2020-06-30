@@ -243,8 +243,8 @@ function pa($a,$b=0,$c=0) {
 
 }
 
-add_filter('manage_users_columns','manage_users_columns');
-add_filter('manage_users_custom_column','manage_users_custom_column');
+//add_filter('manage_users_columns','manage_users_columns');
+//add_filter('manage_users_custom_column','manage_users_custom_column');
 
 function manage_users_columns( $columns ) {
     $columns['account_passport'] = __( 'Passport', 'ultimate-member' );
