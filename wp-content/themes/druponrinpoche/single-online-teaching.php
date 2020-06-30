@@ -67,10 +67,10 @@ $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&
         jQuery(".modal_buttons").show();
 
         if(action == 'register') {
-            var modalText = '<?php echo pll__('Do you confirm you want to register to this course ?'); ?>';
+            var modalText = '<?php echo pll__('I confirm I can attend all the sessions for this course ?'); ?>';
 
         } else if (action == 'unregister') {
-            var modalText = '<?php echo pll__('Do you confirm you want to unregister from this course ?'); ?>';
+            var modalText = '<?php echo pll__('Do you confirm you want to unregister from this course ? You cannot register again once the registration date limit has passed.'); ?>';
         }
         jQuery(".modal_text").html(modalText);
         jQuery("#modal_register").modal();

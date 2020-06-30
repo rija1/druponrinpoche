@@ -184,7 +184,7 @@ function online_teaching_register() {
         } else {
             MB_Relationships_API::add( $userId, $postId, 'users_to_online_teachings' );
             $result['type'] = "success";
-            $result['message'] = '<span class="modal_msg_alright">You have been succesfully registered to this course.</span>';
+            $result['message'] = '<span class="modal_msg_alright">You have been succesfully registered to this course. The link to join the teaching sessions will appear on this page about 15 minutes before every session.</span>';
             $result['registered'] = "1";
         }
     } elseif($registerAction == 2) { // UNREGISTER ACTION
@@ -246,7 +246,6 @@ function umShortcode( $args ) {
         }
     }
     return $args;
-
 }
 add_filter( 'um_shortcode_args_filter', 'umShortcode', 10, 3 );
 
@@ -261,4 +260,25 @@ function pa($a,$b=0,$c=0) {
     if($b) { die(); }
 
 }
+
+add_filter('manage_users_columns','manage_users_columns');
+add_filter('manage_users_custom_column','manage_users_custom_column');
+
+function manage_users_columns( $columns ) {
+    $columns['account_passport'] = __( 'Passport', 'ultimate-member' );
+    return $columns;
+}
+
+function manage_users_custom_column( $val, $column_name, $user_id ) {
+    return 'ok';
+    if ( $column_name == 'account_passport' ) {
+        return 'ok';
+        um_fetch_user( $user_id );
+        $value = um_user( 'passport_img' );
+        um_reset_user();
+        return $value;
+    }
+    return $val;
+}
+
 

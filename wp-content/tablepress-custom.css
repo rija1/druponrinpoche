@@ -1,16 +1,45 @@
+#tablepress-8 .column-1 {
+	width: 22%;
+}
+
+#tablepress-8 .column-2 {
+	width: 20%;
+}
+
+#tablepress-6 .column-1 {
+	width: 18%;
+}
+
+a.course_link {
+	text-decoration: underline;
+	font-size: 13px;
+}
+
 .tablepress td {
 	padding: 15px;
 	border-bottom: solid 1px #f1eded;
 }
 
-#tablepress-5 .column-1, #tablepress-3 .column-1 {
+#tablepress-5 .column-1 {
 	width: 20%;
 }
 
-#tablepress-5 .column-2,  #tablepress-3 .column-2 {
+#tablepress-5 .column-2 {
 	width: 24%;
 }
 
+#tablepress-3 .column-2 {
+	width: 24%;
+}
+
+#tablepress-3 .column-1 {
+	width: 20%;
+}
+
+/* 
+#tablepress-3 td.column-3 {
+	width: 50%;
+} */
 @media only screen and (max-width: 480px) {
 
 	#tablepress-5 .column-1 {
