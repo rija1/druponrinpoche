@@ -166,7 +166,7 @@ function online_teaching_register() {
         } else {
             MB_Relationships_API::add( $userId, $postId, 'users_to_online_teachings' );
             $result['type'] = "success";
-            $result['message'] = '<span class="modal_msg_alright">You have been succesfully registered to this course. The link to join the teaching sessions will appear on this page about 15 minutes before every session.</span>';
+            $result['message'] = '<span class="modal_msg_alright">You have been succesfully registered to this course. <br/>The link to join the teaching sessions will appear on this page about 15 minutes before every session.</span>';
             $result['registered'] = "1";
         }
     } elseif($registerAction == 2) { // UNREGISTER ACTION
