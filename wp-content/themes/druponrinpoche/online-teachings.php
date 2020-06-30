@@ -18,7 +18,7 @@ $userId = get_current_user_id();
                         <h1><?php echo pll__('Online Courses'); ?></h1>
                         <?php
                         $args = array(
-                            'post_type'=> 'online-teaching',
+                            'post_type'=> 'online-course',
                             'order'    => 'ASC'
                         );
                         $the_query = new WP_Query( $args );

@@ -3,7 +3,7 @@
 add_action( 'init', 'create_ot_teaching' );
 
 function create_ot_teaching() {
-    register_post_type( 'online-teaching',
+    register_post_type( 'online-course',
         array(
             'labels' => array(
                 'name' => 'Online Courses',
@@ -49,7 +49,7 @@ add_action( 'mb_relationships_init', function () {
         ],
         'to'   => [
             'object_type' => 'post',
-            'post_type'   => 'online-teaching',
+            'post_type'   => 'online-course',
             'meta_box'    => [
                 'title' => 'Attended By',
                 'context' => 'normal',
@@ -61,24 +61,16 @@ add_action( 'mb_relationships_init', function () {
 
 function add_online_teachings_metaboxes() {
     add_meta_box(
-        'ot_from_date',
-        'From Date',
-        'ot_from_date',
-        'online-teaching',
-        'normal',
-        'default'
-    );
-    add_meta_box(
-        'ot_to_date',
-        'To Date',
-        'ot_to_date',
-        'online-teaching',
+        'ot_registration_stop_date',
+        'Registration Stop Date',
+        'ot_regis_stop_date',
+        'online-course',
         'normal',
         'default'
     );
 }
 
-function ot_from_date() {
+function ot_registration_stop_date() {
     global $post;
     // Nonce field to validate form request came from current site
     wp_nonce_field( basename( __FILE__ ), 'online_teaching_fields' );
@@ -86,16 +78,6 @@ function ot_from_date() {
     $ot_from_date = get_post_meta( $post->ID, 'from_date', true );
     // Output the field
     echo '<input type="text" name="from_date" value="' . esc_textarea( $ot_from_date )  . '" class="widefat">';
-}
-
-function ot_to_date() {
-    global $post;
-    // Nonce field to validate form request came from current site
-    wp_nonce_field( basename( __FILE__ ), 'online_teaching_fields' );
-    // Get the location data if it's already been entered
-    $ot_to_date = get_post_meta( $post->ID, 'to_date', true );
-    // Output the field
-    echo '<input type="text" name="to_date" value="' . esc_textarea( $ot_to_date )  . '" class="widefat">';
 }
 
 /**
