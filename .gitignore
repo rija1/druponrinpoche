@@ -28,3 +28,4 @@ dumps/
 /sitemap.xml
 /sitemap.xml.gz
 
+*.scssc

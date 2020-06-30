@@ -1433,12 +1433,9 @@ span.logo_kl {
   padding-top: 10px; }
 
 ul.poly_switcher {
-  position: absolute;
-  right: 0;
-  margin-right: 0;
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   margin-right: 10px; }
   ul.poly_switcher a {
     font-family: 'Raleway';
@@ -2360,6 +2357,11 @@ div.uimob800 .um-account-side li a.current:hover,
 .um-page-register .um-field-half {
   width: auto; }
 
+.um-postmessage {
+  padding-top: 46px;
+  font-size: 18px;
+  text-align: justify; }
+
 .um-page-account .sidebar-container > ul > li.current_page_item,
 .online-teachings .sidebar-container > ul > li.current_page_item {
   background: #495a6f; }
@@ -2455,6 +2457,21 @@ div.uimob800 .um-account-side li a.current:hover,
 .dc_logreg_txt {
   text-align: justify;
   padding: 15px 0 0 0; }
+
+.header_top_right {
+  position: absolute;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 240px; }
+
+.top_ts_link {
+  padding-top: 13px; }
+  .top_ts_link a {
+    display: none;
+    font-family: "TSFont"; }
+    .top_ts_link a:hover {
+      color: #495a6f; }
 
 .ts_font {
   font-family: "TSFont";

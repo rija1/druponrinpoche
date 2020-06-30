@@ -80,11 +80,14 @@ $pllArgs = array(
                             </a>
                         </div>
 <!--                        <span class="dc_header">Tirthika Square</span>-->
-                        <ul class="poly_switcher">
-                            <?php
-                            $pllSwitcher->the_languages(PLL()->links,$pllArgs);
-                            ?>
-                        </ul>
+                        <div class="header_top_right">
+                            <div class="top_ts_link"><a href="">Tirthika Square</a></div>
+                            <ul class="poly_switcher">
+                                <?php
+                                $pllSwitcher->the_languages(PLL()->links,$pllArgs);
+                                ?>
+                            </ul>
+                        </div>
                     </div>
                     <nav class="menu-top-container">
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>

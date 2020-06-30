@@ -263,4 +263,28 @@ function manage_users_custom_column( $val, $column_name, $user_id ) {
     return $val;
 }
 
+add_filter( 'manage_users_columns', 'new_modify_user_table' );
+add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
+
+function new_modify_user_table( $column ) {
+    $column['passport'] = 'Passport';
+    return $column;
+}
+
+function new_modify_user_table_row( $val, $column_name, $user_id ) {
+    switch ($column_name) {
+        case 'passport' :
+            um_fetch_user( $user_id );
+            if(empty(um_user( 'passport_photo' ))) {
+                return '';
+            }
+            $photoPath = um_user_uploads_uri() . um_user( 'passport_photo' );
+            $value = '<a href="'.$photoPath.'">Passport Photo</a>';
+            um_reset_user();
+        default:
+    }
+    return $value;
+}
+
+
 
