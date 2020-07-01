@@ -2481,10 +2481,7 @@ div.uimob800 .um-account-side li a.current:hover,
 .ts_font_big {
   font-family: "TSFont";
   font-size: 24px;
-  color: #495a6f;
-  background: -webkit-linear-gradient(#495a6f, #647cab);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; }
+  color: #495a6f; }
 
 .online-teachings .inner-page-container {
   width: 77%; }

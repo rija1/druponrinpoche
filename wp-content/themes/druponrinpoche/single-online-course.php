@@ -18,7 +18,7 @@ $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&
                             <?php //the_excerpt(); ?>
                             <div class="registrationStatus registYes" style="<?php echo ($already_registered) ? 'display:block;' : 'display:none;' ; ?>">
                                 <p><?php echo pll__('You are registered to this course.'); ?></p>
-                                <p><?php echo pll__('A link to the Youtube teaching video will appear on this page about 15 minutes before each session.'); ?></p>
+                                <p><?php echo pll__('A link to the Youtube live teaching video will appear on this page about 15 minutes before each session.'); ?></p>
                             </div>
                         </div>
                     </div>
