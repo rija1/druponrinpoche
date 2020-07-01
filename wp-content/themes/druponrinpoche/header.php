@@ -81,7 +81,7 @@ $pllArgs = array(
                         </div>
 <!--                        <span class="dc_header">Tirthika Square</span>-->
                         <div class="header_top_right">
-                            <div class="top_ts_link"><a href="">Tirthika Square</a></div>
+                            <div class="top_ts_link"><a href="<?php echo get_permalink( get_page_by_path( 'tirthika-square' ) ); ?>">Tirthika Square</a></div>
                             <ul class="poly_switcher">
                                 <?php
                                 $pllSwitcher->the_languages(PLL()->links,$pllArgs);
