@@ -243,26 +243,6 @@ function pa($a,$b=0,$c=0) {
 
 }
 
-//add_filter('manage_users_columns','manage_users_columns');
-//add_filter('manage_users_custom_column','manage_users_custom_column');
-
-function manage_users_columns( $columns ) {
-    $columns['account_passport'] = __( 'Passport', 'ultimate-member' );
-    return $columns;
-}
-
-function manage_users_custom_column( $val, $column_name, $user_id ) {
-    return 'ok';
-    if ( $column_name == 'account_passport' ) {
-        return 'ok';
-        um_fetch_user( $user_id );
-        $value = um_user( 'passport_img' );
-        um_reset_user();
-        return $value;
-    }
-    return $val;
-}
-
 add_filter( 'manage_users_columns', 'new_modify_user_table' );
 add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
 
@@ -279,7 +259,7 @@ function new_modify_user_table_row( $val, $column_name, $user_id ) {
                 return '';
             }
             $photoPath = um_user_uploads_uri() . um_user( 'passport_photo' );
-            $value = '<a href="'.$photoPath.'">Passport Photo</a>';
+            $value = '<a target="_blank" href="'.$photoPath.'">Passport Photo</a>';
             um_reset_user();
         default:
     }
