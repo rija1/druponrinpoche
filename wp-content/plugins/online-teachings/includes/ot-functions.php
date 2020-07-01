@@ -248,6 +248,7 @@ add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
 
 function new_modify_user_table( $column ) {
     $column['passport'] = 'Passport';
+    $column['registration_date'] = 'Registration Date';
     return $column;
 }
 
@@ -261,6 +262,12 @@ function new_modify_user_table_row( $val, $column_name, $user_id ) {
             $photoPath = um_user_uploads_uri() . um_user( 'passport_photo' );
             $value = '<a target="_blank" href="'.$photoPath.'">Passport Photo</a>';
             um_reset_user();
+            break;
+        case 'registration_date' :
+            $udata = get_userdata($user_id);
+            $registered = $udata->user_registered;
+            return date(" d M Y H:i:s", strtotime($registered)) ;
+            break;
         default:
     }
     return $value;
