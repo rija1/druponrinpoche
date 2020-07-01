@@ -2443,7 +2443,8 @@ div.uimob800 .um-account-side li a.current:hover,
   font-style: italic; }
 
 .registYes {
-  color: #50c7c3;
+  color: #647cab;
+  font-weight: 400;
   font-style: normal; }
 
 .dc_logreg_welcome {
