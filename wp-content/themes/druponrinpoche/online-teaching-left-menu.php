@@ -17,7 +17,7 @@ if(strpos($current_url, 'online-course') !== false) {
     </div>
     <ul>
         <li class="page_item <?php echo ($onlineTeaching) ? 'current_page_item' : '' ;?>">
-            <a href="<?php echo get_permalink( get_page_by_path( 'online-courses' ) ); ?>"><?php pll_e('Online Courses'); ?></a>
+            <a href="<?php echo get_permalink( get_page_by_path( 'tirthika-square/online-courses' ) ); ?>"><?php pll_e('Online Courses'); ?></a>
         </li>
         <li class="page_item <?php echo ($post_slug=='account') ? 'current_page_item' : '' ;?>">
             <a href="<?php echo get_permalink( get_page_by_path( 'account' ) ); ?>"><?php pll_e('My Account'); ?></a>

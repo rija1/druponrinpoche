@@ -1,8 +1,9 @@
 <?php
 
-add_action( 'init', 'create_ot_teaching' );
+add_action( 'init', 'create_ot_course' );
+add_action( 'init', 'create_ot_teaching_session' );
 
-function create_ot_teaching() {
+function create_ot_course() {
     register_post_type( 'online-course',
         array(
             'labels' => array(
@@ -32,6 +33,36 @@ function create_ot_teaching() {
         )
     );
 //    flush_rewrite_rules();
+}function create_ot_teaching_session() {
+    register_post_type( 'online-teaching-session',
+        array(
+            'labels' => array(
+                'name' => 'Teaching Sessions',
+                'singular_name' => 'Teaching Session',
+                'add_new' => 'Add New',
+                'add_new_item' => 'Add New Teaching Session',
+                'edit' => 'Edit',
+                'edit_item' => 'Edit Teaching Session',
+                'new_item' => 'New Teaching Session',
+                'view' => 'View',
+                'view_item' => 'View Teaching Session',
+                'search_items' => 'Search Teaching Sessions',
+                'not_found' => 'No Teaching Sessions found',
+                'not_found_in_trash' => 'No Teaching Sessions found in Trash',
+                'parent' => 'Parent Teaching Session'
+            ),
+
+            'public' => true,
+            'publicly_queryable' => true,
+            'menu_position' => 15,
+            'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
+            'taxonomies' => array( '' ),
+            'menu_icon' => plugins_url( 'images/teaching.png', __FILE__ ),
+            'has_archive' => true,
+//            'register_meta_box_cb' => 'add_online_teachings_metaboxes',
+        )
+    );
+//    flush_rewrite_rules();
 }
 
 
@@ -58,29 +89,57 @@ add_action( 'mb_relationships_init', function () {
         ],
     ] );
 } );
+//
+//add_filter( 'rwmb_meta_boxes', 'ot_register_meta_boxes' );
+//function ot_register_meta_boxes( $meta_boxes )
+//{
+//    $meta_boxes[] = array(
+//        'title' => 'Registration End Date',
+//        'post_types' => 'online-course',
+//
+//        'fields' => array(
+//            array(
+//                'name' => 'Registration End Date',
+//                'id' => 'regis_end_date',
+//                'type' => 'text',
+//            ),
+//        )
+//    );
+//
+//    // Add more meta boxes if you want
+//    // $meta_boxes[] = ...
+//
+//    return $meta_boxes;
+//}
 
+function ot_get_meta_box( $meta_boxes ) {
+    $prefix = 'ot_';
 
-add_filter( 'rwmb_meta_boxes', 'ot_register_meta_boxes' );
-function ot_register_meta_boxes( $meta_boxes )
-{
     $meta_boxes[] = array(
-        'title' => 'Registration End Date',
-        'post_types' => 'online-course',
-
+        'id' => 'online_course_info',
+        'title' => esc_html__( 'Online Teaching Info' ),
+        'post_types' => array('online-course'),
+        'context' => 'normal',
+        'priority' => 'default',
+        'autosave' => 'false',
         'fields' => array(
             array(
-                'name' => 'Registration End Date',
-                'id' => 'regis_end_date',
-                'type' => 'text',
+                'id' => $prefix . 'registration_close_date',
+                'type' => 'datetime',
+                'name' => esc_html__( 'Registration Close Date/Time', 'ot_txtd' ),
             ),
-        )
+            array(
+                'id' => $prefix . 'teaching_sessions',
+                'type' => 'datetime',
+                'clone' => 'true',
+                'name' => esc_html__( 'Sessions Date/Time', 'ot_txtd' ),
+            ),
+        ),
     );
-
-    // Add more meta boxes if you want
-    // $meta_boxes[] = ...
 
     return $meta_boxes;
 }
+add_filter( 'rwmb_meta_boxes', 'ot_get_meta_box' );
 
 function getDatesFromSessions($sessionsRaw) {
 
@@ -201,6 +260,7 @@ add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
 function new_modify_user_table( $column ) {
     $column['passport'] = 'Passport';
     $column['registration_date'] = 'Registration Date';
+    $column['group_host'] = 'Group Host';
     return $column;
 }
 
@@ -220,10 +280,33 @@ function new_modify_user_table_row( $val, $column_name, $user_id ) {
             $registered = $udata->user_registered;
             return date(" d M Y H:i:s", strtotime($registered)) ;
             break;
+        case 'group_host' :
+            um_fetch_user( $user_id );
+            $grpViewing = um_user( 'group_viewing_name' );
+            return $grpViewing[0];
+            break;
         default:
     }
     return $value;
 }
 
+function isRegistrationOpen($postId=null) {
+
+    $tmz = 'Europe/London';
+    $tmzObj = new DateTimeZone($tmz);
+
+    if(!empty($postId)) {
+        $registrationCloseDate = rwmb_meta( 'ot_registration_close_date', null, 14930 );
+    } else {
+        $registrationCloseDate = rwmb_meta('ot_registration_close_date');
+    }
+
+    // If registration date has passed
+    if (new DateTime('now',$tmzObj) > new DateTime($registrationCloseDate,$tmzObj)) {
+        return false;
+    }
+
+    return true;
+}
 
 
