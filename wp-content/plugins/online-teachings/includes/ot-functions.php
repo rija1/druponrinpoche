@@ -282,8 +282,11 @@ function new_modify_user_table_row( $val, $column_name, $user_id ) {
             break;
         case 'group_host' :
             um_fetch_user( $user_id );
-            $grpViewing = um_user( 'group_viewing_name' );
-            return $grpViewing[0];
+            $grpViewing = um_user( 'group_host' );
+            if(!empty($grpViewing)) {
+                return 'Yes';
+            }
+            return '';
             break;
         default:
     }
