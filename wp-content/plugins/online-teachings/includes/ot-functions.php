@@ -59,76 +59,28 @@ add_action( 'mb_relationships_init', function () {
     ] );
 } );
 
-function add_online_teachings_metaboxes() {
-    add_meta_box(
-        'ot_registration_stop_date',
-        'Registration Stop Date',
-        'ot_regis_stop_date',
-        'online-course',
-        'normal',
-        'default'
+
+add_filter( 'rwmb_meta_boxes', 'ot_register_meta_boxes' );
+function ot_register_meta_boxes( $meta_boxes )
+{
+    $meta_boxes[] = array(
+        'title' => 'Registration End Date',
+        'post_types' => 'online-course',
+
+        'fields' => array(
+            array(
+                'name' => 'Registration End Date',
+                'id' => 'regis_end_date',
+                'type' => 'text',
+            ),
+        )
     );
+
+    // Add more meta boxes if you want
+    // $meta_boxes[] = ...
+
+    return $meta_boxes;
 }
-
-function ot_registration_stop_date() {
-    global $post;
-    // Nonce field to validate form request came from current site
-    wp_nonce_field( basename( __FILE__ ), 'online_teaching_fields' );
-    // Get the location data if it's already been entered
-    $ot_from_date = get_post_meta( $post->ID, 'from_date', true );
-    // Output the field
-    echo '<input type="text" name="from_date" value="' . esc_textarea( $ot_from_date )  . '" class="widefat">';
-}
-
-/**
- * Save the metabox data
- */
-function save_online_teachings_meta( $post_id, $post ) {
-
-    // Return if the user doesn't have edit permissions.
-    if ( ! current_user_can( 'edit_post', $post_id ) ) {
-        return $post_id;
-    }
-
-    // Verify this came from the our screen and with proper authorization,
-    // because save_post can be triggered at other times.
-    if ( ! isset( $_POST['from_date'] ) || ! isset( $_POST['to_date'] ) || ! wp_verify_nonce( $_POST['online_teaching_fields'], basename(__FILE__) ) ) {
-        return $post_id;
-    }
-
-
-    // Now that we're authenticated, time to save the data.
-    // This sanitizes the data from the field and saves it into an array $events_meta.
-    $events_meta['from_date'] = esc_textarea( $_POST['from_date'] );
-    $events_meta['to_date'] = esc_textarea( $_POST['to_date'] );
-
-    // Cycle through the $events_meta array.
-    // Note, in this example we just have one item, but this is helpful if you have multiple.
-    foreach ( $events_meta as $key => $value ) :
-
-        // Don't store custom data twice
-        if ( 'revision' === $post->post_type ) {
-            return;
-        }
-
-        if ( get_post_meta( $post_id, $key, false ) ) {
-            // If the custom field already has a value, update it.
-            update_post_meta( $post_id, $key, $value );
-        } else {
-            // If the custom field doesn't have a value, add it.
-            add_post_meta( $post_id, $key, $value);
-        }
-
-        if ( ! $value ) {
-            // Delete the meta key if there's no value
-            delete_post_meta( $post_id, $key );
-        }
-
-    endforeach;
-
-}
-add_action( 'save_post', 'save_online_teachings_meta', 1, 2 );
-
 
 function getDatesFromSessions($sessionsRaw) {
 

@@ -1,11 +1,17 @@
 <?php get_header(); ?>
 <?php
+if ( !is_user_logged_in() ) {
+    $curr = UM()->permalinks()->get_current_url();
+    $redirect = esc_url( add_query_arg( 'redirect_to', urlencode_deep( $curr ), um_get_core_page( 'login' ) ) );
+    exit( wp_redirect( $redirect ) );
+}
 $nonce = wp_create_nonce("online_teaching_register_nonce");
 $userId = get_current_user_id();
 $already_registered = MB_Relationships_API::has( $userId, get_the_ID(), 'users_to_online_teachings' );
 $unregLink = admin_url('admin-ajax.php?action=online_teaching_register&register=2&post_id='.$post->ID.'&nonce='.$nonce);
 $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
 ?>
+
 <?php while (have_posts()) : the_post(); ?>
     <div class="section section-blog online-teachings single-online-teaching">
         <div class="container">
