@@ -476,7 +476,7 @@ class WP_Tax_Query {
 			);
 
 		}
-
+//FOUTAGE DE MERDE
 		$sql['join'][]  = $join;
 		$sql['where'][] = $where;
 		return $sql;

@@ -480,7 +480,60 @@ function check_webp_feature(feature, callback) {
 function ewwwLoadImages(ewww_webp_supported) {
 		var attr_prefix = 'data-';
 		function ewwwCopyAttrs(ewww_nscript, ewww_img) {
-			var attrs = ['align','alt','border','crossorigin','height','hspace','ismap','longdesc','usemap','vspace','width','accesskey','class','contenteditable','contextmenu','dir','draggable','dropzone','hidden','id','lang','spellcheck','style','tabindex','title','translate','sizes','data-caption','data-attachment-id','data-permalink','data-orig-size','data-comments-opened','data-image-meta','data-image-title','data-image-description','data-event-trigger','data-highlight-color','data-highlight-opacity','data-highlight-border-color','data-highlight-border-width','data-highlight-border-opacity','data-no-lazy','data-lazy','data-large_image_width','data-large_image_height'];
+			var attrs = [
+				'accesskey',
+				'align',
+				'alt',
+				'border',
+				'class',
+				'contenteditable',
+				'contextmenu',
+				'crossorigin',
+				'dir',
+				'draggable',
+				'dropzone',
+				'height',
+				'hidden',
+				'hspace',
+				'id',
+				'ismap',
+				'lang',
+				'longdesc',
+				'sizes',
+				'spellcheck',
+				'style',
+				'tabindex',
+				'title',
+				'translate',
+				'usemap',
+				'vspace',
+				'width',
+				'data-attachment-id',
+				'data-caption',
+				'data-comments-opened',
+				'data-event-trigger',
+				'data-height',
+				'data-highlight-color',
+				'data-highlight-border-color',
+				'data-highlight-border-opacity',
+				'data-highlight-border-width',
+				'data-highlight-opacity',
+				'data-image-meta',
+				'data-image-title',
+				'data-image-description',
+				'data-large_image_width',
+				'data-large_image_height',
+				'data-lazy',
+				'data-lazy-type',
+				'data-no-lazy',
+				'data-orig-size',
+				'data-permalink',
+				'data-pin-description',
+				'data-pin-id',
+				'data-pin-media',
+				'data-pin-url',
+				'data-width',
+			];
 			for (var i = 0, len = attrs.length; i < len; i++) {
                                 ewwwAttr(ewww_img, attrs[i], ewww_nscript.getAttribute(attr_prefix + attrs[i]));
 			}
@@ -490,15 +543,8 @@ function ewwwLoadImages(ewww_webp_supported) {
 			var nggImages = document.querySelectorAll('.batch-image img, .image-wrapper a, .ngg-pro-masonry-item a, .ngg-galleria-offscreen-seo-wrapper a');
 			for (var i = 0, len = nggImages.length; i < len; i++){
                                 ewwwAttr(nggImages[i], 'data-src', nggImages[i].getAttribute('data-webp'));
-				//$(this).ewwwattr('data-src', $(this).attr('data-webp'));
                                 ewwwAttr(nggImages[i], 'data-thumbnail', nggImages[i].getAttribute('data-webp-thumbnail'));
-				//$(this).ewwwattr('data-thumbnail', $(this).attr('data-webp-thumbnail'));
 			}
-                        // TODO: not sure we want to muck with the links, but maybe we have to.
-			/*var nggImages = document.querySelectorAll('.image-wrapper a, .ngg-pro-masonry-item a');
-			for (var i = 0, len = nggImages.length; i < len; i++){
-				ewwwAttr(nggImages[i], 'href', nggImages[i].getAttribute('data-webp'));
-			}*/
 			var revImages = document.querySelectorAll('.rev_slider ul li');
 			for (var i = 0, len = revImages.length; i < len; i++){
 				ewwwAttr(revImages[i], 'data-thumb', revImages[i].getAttribute('data-webp-thumb'));
@@ -517,7 +563,7 @@ function ewwwLoadImages(ewww_webp_supported) {
 				ewwwAttr(wooImages[i], 'data-thumb', wooImages[i].getAttribute('data-webp-thumb'));
 			}
 		}
-                var videos = document.querySelectorAll('videos');
+                var videos = document.querySelectorAll('video');
 		for (var i = 0, len = videos.length; i < len; i++){
 			if (ewww_webp_supported) {
 				ewwwAttr(videos[i], 'poster', videos[i].getAttribute('data-poster-webp'));
@@ -527,7 +573,9 @@ function ewwwLoadImages(ewww_webp_supported) {
 		}
                 var lazies = document.querySelectorAll('img.ewww_webp_lazy_load');
 		for (var i = 0, len = lazies.length; i < len; i++){
+			console.log('parsing an image: ' + lazies[i].getAttribute('src'));
 			if (ewww_webp_supported) {
+				console.log('webp good');
 				ewwwAttr(lazies[i], 'data-lazy-srcset', lazies[i].getAttribute('data-lazy-srcset-webp'));
 				ewwwAttr(lazies[i], 'data-srcset', lazies[i].getAttribute('data-srcset-webp'));
 				ewwwAttr(lazies[i], 'data-lazy-src', lazies[i].getAttribute('data-lazy-src-webp'));
@@ -587,6 +635,9 @@ function ewwwWebPInit(ewww_webp_supported) {
                 ewwwLoadImages(ewww_webp_supported);
                 ewwwNggLoadGalleries(ewww_webp_supported);
                 document.arrive('.ewww_webp', function() {
+                        ewwwLoadImages(ewww_webp_supported);
+                });
+                document.arrive('.ewww_webp_lazy_load', function() {
                         ewwwLoadImages(ewww_webp_supported);
                 });
                 var ewww_ngg_galleries_timer = 0;

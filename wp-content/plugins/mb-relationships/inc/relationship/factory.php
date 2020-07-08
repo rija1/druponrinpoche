@@ -104,8 +104,10 @@ class MBR_Relationship_Factory {
 			'label_to'   => __( 'Connected From', 'mb-relationships' ),
 			'reciprocal' => false,
 		] );
-		$settings['from'] = $this->normalize_side( $settings['from'], 'from', $settings['label_from'] );
-		$settings['to']   = $this->normalize_side( $settings['to'], 'to', $settings['label_to'] );
+		$settings['from'] = $this->normalize_side( $settings['from'], $settings['label_from'] );
+		$settings['to']   = $this->normalize_side( $settings['to'], $settings['label_to'] );
+
+		$settings = apply_filters( 'mb_relationships_settings', $settings );
 
 		return $settings;
 	}
@@ -114,13 +116,10 @@ class MBR_Relationship_Factory {
 	 * Normalize settings for a "from" or "to" side.
 	 *
 	 * @param array|string $settings  Array of settings or post type (string) for short.
-	 * @param string       $source    Relationship direction source.
 	 *
 	 * @return array
 	 */
-	protected function normalize_side( $settings, $source, $label ) {
-		$target = 'from' === $source ? 'to' : 'from';
-
+	protected function normalize_side( $settings, $label ) {
 		$default = array(
 			'object_type'   => 'post',
 			'empty_message' => __( 'No connections', 'mb-relationships' ),

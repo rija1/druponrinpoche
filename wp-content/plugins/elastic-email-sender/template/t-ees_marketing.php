@@ -18,7 +18,7 @@ wp_enqueue_style('eesender-css');
         <p class="ee_p"><?php _e('If you would like to boost your email marketing campaigns or improve your email delivery, check out our helpful guides to get you started!', 'elastic-email-sender') ?></p>
         <ul style="padding-left: 40px;">
             <li type="circle"><a
-                        href="https://elasticemail.com/blog/how-to-use-elastic-email's-wordpress-plugins"><?php _e('How to use Elastic Email Subscribe Form', 'elastic-email-sender') ?></a>
+                        href="https://elasticemail.com/blog/marketing_tips/how-to-use-elastic-emails-wordpress-plugins"><?php _e('How to use Elastic Email Subscribe Form', 'elastic-email-sender') ?></a>
             </li>
             <li type="circle"><a
                         href="https://help.elasticemail.com/en/"><?php _e('Guides and resources', 'elastic-email-sender') ?></a>

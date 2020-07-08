@@ -43,10 +43,26 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 	 * Downloads test images.
 	 */
 	public static function setUpBeforeClass() {
-		self::$test_jpg = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/20170314_174658.jpg' );
-		self::$test_png = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/books.png' );
-		self::$test_gif = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/gifsiclelogo.gif' );
-		self::$test_pdf = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/tomtempleartist-bio-2008.pdf' );
+		$wp_upload_dir   = wp_upload_dir();
+		$temp_upload_dir = trailingslashit( $wp_upload_dir['basedir'] ) . 'testing/';
+		wp_mkdir_p( $temp_upload_dir );
+
+		$test_jpg  = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/20170314_174658.jpg' );
+		rename( $test_jpg, $temp_upload_dir . basename( $test_jpg ) );
+		self::$test_jpg = $temp_upload_dir . basename( $test_jpg );
+
+		$test_png  = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/books.png' );
+		rename( $test_png, $temp_upload_dir . basename( $test_png ) );
+		self::$test_png = $temp_upload_dir . basename( $test_png );
+
+		$test_gif  = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/gifsiclelogo.gif' );
+		rename( $test_gif, $temp_upload_dir . basename( $test_gif ) );
+		self::$test_gif = $temp_upload_dir . basename( $test_gif );
+
+		$test_pdf  = download_url( 'https://s3-us-west-2.amazonaws.com/exactlywww/tomtempleartist-bio-2008.pdf' );
+		rename( $test_pdf, $temp_upload_dir . basename( $test_pdf ) );
+		self::$test_pdf = $temp_upload_dir . basename( $test_pdf );
+
 		ewww_image_optimizer_set_defaults();
 		update_option( 'ewww_image_optimizer_jpg_level', 10 );
 		update_option( 'ewww_image_optimizer_gif_level', 10 );
@@ -78,7 +94,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 	 * @return array The results of the ewww_image_optimizer() function.
 	 */
 	protected function optimize_jpg() {
-		$_REQUEST['ewww_force'] = 1;
+		global $ewww_force;
+		$ewww_force = 1;
 		$filename = self::$test_jpg . ".jpg";
 		copy( self::$test_jpg, $filename );
 		$results = ewww_image_optimizer( $filename );
@@ -91,7 +108,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 	 * @return array The results of the ewww_image_optimizer() function.
 	 */
 	protected function optimize_png() {
-		$_REQUEST['ewww_force'] = 1;
+		global $ewww_force;
+		$ewww_force = 1;
 		$filename = self::$test_png . ".png";
 		copy( self::$test_png, $filename );
 		$results = ewww_image_optimizer( $filename );
@@ -104,7 +122,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 	 * @return array The results of the ewww_image_optimizer() function.
 	 */
 	protected function optimize_gif() {
-		$_REQUEST['ewww_force'] = 1;
+		global $ewww_force;
+		$ewww_force = 1;
 		$filename = self::$test_gif . ".gif";
 		copy( self::$test_gif, $filename );
 		$results = ewww_image_optimizer( $filename );
@@ -117,7 +136,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 	 * @return array The results of the ewww_image_optimizer() function.
 	 */
 	protected function optimize_pdf() {
-		$_REQUEST['ewww_force'] = 1;
+		global $ewww_force;
+		$ewww_force = 1;
 		$filename = self::$test_pdf . ".pdf";
 		copy( self::$test_pdf, $filename );
 		$results = ewww_image_optimizer( $filename );
@@ -139,8 +159,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 		update_site_option( 'ewww_image_optimizer_webp', '' );
 		$this->assertEquals( 1348837, filesize( $results[0] ) );
 		unlink( $results[0] );
-		$this->assertEquals( 319938, filesize( $results[0] . '.webp' ) );
-		if ( is_file( $results[0] . '.webp' ) ) {
+		$this->assertEquals( 327964, filesize( $results[0] . '.webp' ) );
+		if ( ewwwio_is_file( $results[0] . '.webp' ) ) {
 			unlink( $results[0] . '.webp' );
 		}
 	}
@@ -166,8 +186,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 		$this->assertEquals( ewww_image_optimizer_get_orientation( $results[0], 'image/jpeg' ), 1 );
 		unlink( $results[0] );
 		// size of webp with meta.
-		$this->assertEquals( 339520, filesize( $results[0] . '.webp' ) );
-		if ( is_file( $results[0] . '.webp' ) ) {
+		$this->assertEquals( 347546, filesize( $results[0] . '.webp' ) );
+		if ( ewwwio_is_file( $results[0] . '.webp' ) ) {
 			unlink( $results[0] . '.webp' );
 		}
 	}
@@ -191,8 +211,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 		update_site_option( 'ewww_image_optimizer_cloud_key', '' );
 		$this->assertEquals( 1335586, filesize( $results[0] ) );
 		unlink( $results[0] );
-		$this->assertEquals( 284142, filesize( $results[0] . '.webp' ) );
-		if ( is_file( $results[0] . '.webp' ) ) {
+		$this->assertEquals( 284196, filesize( $results[0] . '.webp' ) );
+		if ( ewwwio_is_file( $results[0] . '.webp' ) ) {
 			unlink( $results[0] . '.webp' );
 		}
 	}
@@ -220,8 +240,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 		$this->assertEquals( ewww_image_optimizer_get_orientation( $results[0], 'image/jpeg' ), 1 );
 		unlink( $results[0] );
 		// size of webp with meta.
-		$this->assertEquals( 303728, filesize( $results[0] . '.webp' ) );
-		if ( is_file( $results[0] . '.webp' ) ) {
+		$this->assertEquals( 303782, filesize( $results[0] . '.webp' ) );
+		if ( ewwwio_is_file( $results[0] . '.webp' ) ) {
 			unlink( $results[0] . '.webp' );
 		}
 	}
@@ -279,8 +299,8 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 		update_site_option( 'ewww_image_optimizer_webp', '' );
 		$this->assertEquals( 188043, filesize( $results[0] ) );
 		unlink( $results[0] );
-		$this->assertEquals( 137366, filesize( $results[0] . '.webp' ) );
-		if ( is_file( $results[0] . '.webp' ) ) {
+		$this->assertEquals( 137108, filesize( $results[0] . '.webp' ) );
+		if ( ewwwio_is_file( $results[0] . '.webp' ) ) {
 			unlink( $results[0] . '.webp' );
 		}
 	}
@@ -334,7 +354,7 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 		update_site_option( 'ewww_image_optimizer_optipng_level', 2 );
 		update_site_option( 'ewww_image_optimizer_metadata_remove', true );
 		$results = $this->optimize_png();
-		$this->assertEquals( 37428, filesize( $results[0] ) );
+		$this->assertEquals( 38639, filesize( $results[0] ) );
 		unlink( $results[0] );
 	}
 
@@ -406,13 +426,21 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 	function test_optimize_gif_10_api() {
 		update_option( 'ewww_image_optimizer_gif_level', 10 );
 		update_option( 'ewww_image_optimizer_cloud_key', 'abc123' );
+		update_option( 'ewww_image_optimizer_webp', true );
 		update_site_option( 'ewww_image_optimizer_gif_level', 10 );
 		update_site_option( 'ewww_image_optimizer_cloud_key', 'abc123' );
+		update_site_option( 'ewww_image_optimizer_webp', true );
 		$results = $this->optimize_gif();
+		update_option( 'ewww_image_optimizer_webp', '' );
+		update_site_option( 'ewww_image_optimizer_webp', '' );
 		update_option( 'ewww_image_optimizer_cloud_key', '' );
 		update_site_option( 'ewww_image_optimizer_cloud_key', '' );
 		$this->assertEquals( 8900, filesize( $results[0] ) );
 		unlink( $results[0] );
+		$this->assertEquals( 8014, filesize( $results[0] . '.webp' ) );
+		if ( ewwwio_is_file( $results[0] . '.webp' ) ) {
+			unlink( $results[0] . '.webp' );
+		}
 	}
 
 	/**
@@ -464,16 +492,16 @@ class EWWWIO_Optimize_Tests extends WP_UnitTestCase {
 	 * Cleans up the temp images.
 	 */
 	public static function tearDownAfterClass() {
-		if ( is_file( self::$test_jpg ) ) {
+		if ( ewwwio_is_file( self::$test_jpg ) ) {
 			unlink( self::$test_jpg );
 		}
-		if ( is_file( self::$test_png ) ) {
+		if ( ewwwio_is_file( self::$test_png ) ) {
 			unlink( self::$test_png );
 		}
-		if ( is_file( self::$test_gif ) ) {
+		if ( ewwwio_is_file( self::$test_gif ) ) {
 			unlink( self::$test_gif );
 		}
-		if ( is_file( self::$test_pdf ) ) {
+		if ( ewwwio_is_file( self::$test_pdf ) ) {
 			unlink( self::$test_pdf );
 		}
 		ewww_image_optimizer_remove_binaries();

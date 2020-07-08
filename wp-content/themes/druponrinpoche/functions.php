@@ -327,6 +327,7 @@ add_action( 'init', 'register_teachings_tags_menu' );
 if ( function_exists('register_sidebar') )
     register_sidebar(array(
             'name' => 'Homepage Content',
+            'id'            => "sidebar-hp",
             'before_widget' => '<div class = "widgetizedArea">',
             'after_widget' => '</div>',
             'before_title' => '<h3>',

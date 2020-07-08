@@ -2436,6 +2436,7 @@ div.uimob800 .um-account-side li a.current:hover,
   width: 23%; }
 
 .single-online-teaching .registrationStatus {
+  text-align: center;
   padding: 10px 0 21px 0; }
 .single-online-teaching h1 {
   margin: 0; }

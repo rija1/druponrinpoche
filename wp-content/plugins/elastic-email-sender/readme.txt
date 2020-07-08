@@ -99,6 +99,9 @@ You can translate Elastic Email Sender on [__translate.wordpress.org__](https://
 
 == Changelog ==
 
+= 1.1.29 =
+* Fix: Invalid address for help articles
+
 = 1.1.28 =
 * Fix: Test url
 

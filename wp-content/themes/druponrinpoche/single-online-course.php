@@ -11,6 +11,7 @@ $already_registered = MB_Relationships_API::has( $userId, get_the_ID(), 'users_t
 $unregLink = admin_url('admin-ajax.php?action=online_teaching_register&register=2&post_id='.$post->ID.'&nonce='.$nonce);
 $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
 $registrationOpen = isRegistrationOpen();
+$waitingForSessionLInk = waitingForSessionLink(get_the_ID());
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
@@ -23,20 +24,25 @@ $registrationOpen = isRegistrationOpen();
                         <div class="gutter">
                             <h1><?php the_title(); ?></h1>
                             <?php //the_excerpt(); ?>
-                            <div class="registrationStatus registYes" style="<?php echo ($already_registered) ? 'display:block;' : 'display:none;' ; ?>">
-                                <p><?php echo pll__('You are registered to this course.'); ?></p>
-                                <p><?php echo pll__('A link to the Youtube live teaching video will appear on this page about 15 minutes before each session.'); ?></p>
-                            </div>
-                            <div class="registrationStatus registNo" style="<?php echo ($already_registered) ? 'display:none;' : 'display:block;' ; ?>">
-                                <?php if($registrationOpen): ?>
-                                    <p><?php echo pll__('You are not registered to this course.'); ?></p>
-                                <?php else: ?>
-                                    <p class="redText"><?php echo pll__('Registration for this course is closed.'); ?></p>
-                                <?php endif; ?>
-                            </div>
+
                         </div>
                     </div>
                     <div class="gutter">
+                        <div class="registrationStatus registYes" style="<?php echo ($already_registered) ? 'display:block;' : 'display:none;' ; ?>">
+                            <p><?php echo pll__('You are registered to this course.'); ?></p>
+                            <p><?php echo pll__('A link to the Youtube live teaching video will appear on this page about 15 minutes before each session.'); ?></p>
+                        </div>
+                        <div class="registrationStatus registNo" style="<?php echo ($already_registered) ? 'display:none;' : 'display:block;' ; ?>">
+                            <?php if($registrationOpen): ?>
+                                <p><?php echo pll__('You are not registered to this course.'); ?></p>
+                            <?php else: ?>
+                                <p class="redText"><?php echo pll__('Registration for this course is closed.'); ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="currentSession">
+                            <?php if(waitingForSessionLink()) : ?>
+                            <?php endif; ?>
+                        </div>
                         <article class="single-post">
                             <div class="article-text">
                                 <?php the_content(); ?>
