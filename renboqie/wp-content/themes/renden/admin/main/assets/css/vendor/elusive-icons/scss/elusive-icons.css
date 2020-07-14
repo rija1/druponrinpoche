@@ -22,7 +22,7 @@
 
 /* makes the font 33% larger relative to the icon container */
 .el-lg {
-  font-size: 1.3333333333em;
+  font-size: 1.33333em;
   line-height: 0.75em;
   vertical-align: -15%; }
 
@@ -39,24 +39,24 @@
   font-size: 5em; }
 
 .el-fw {
-  width: 1.2857142857em;
+  width: 1.28571em;
   text-align: center; }
 
 .el-ul {
   padding-left: 0;
-  margin-left: 2.1428571429em;
+  margin-left: 2.14286em;
   list-style-type: none; }
   .el-ul > li {
     position: relative; }
 
 .el-li {
   position: absolute;
-  left: -2.1428571429em;
-  width: 2.1428571429em;
-  top: 0.1428571429em;
+  left: -2.14286em;
+  width: 2.14286em;
+  top: 0.14286em;
   text-align: center; }
   .el-li.el-lg {
-    left: -1.8571428571em; }
+    left: -1.85714em; }
 
 .el-border {
   padding: .2em .25em .15em;

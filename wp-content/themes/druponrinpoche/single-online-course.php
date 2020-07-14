@@ -5,13 +5,16 @@ if ( !is_user_logged_in() ) {
     $redirect = esc_url( add_query_arg( 'redirect_to', urlencode_deep( $curr ), um_get_core_page( 'login' ) ) );
     exit( wp_redirect( $redirect ) );
 }
+
 $nonce = wp_create_nonce("online_teaching_register_nonce");
 $userId = get_current_user_id();
-$already_registered = MB_Relationships_API::has( $userId, get_the_ID(), 'users_to_online_teachings' );
+$alreadyRegistered = isUserRegisteredToCourse($userId, get_the_ID());
 $unregLink = admin_url('admin-ajax.php?action=online_teaching_register&register=2&post_id='.$post->ID.'&nonce='.$nonce);
 $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
 $registrationOpen = isRegistrationOpen();
-$waitingForSessionLInk = waitingForSessionLink(get_the_ID());
+$currentSession = getCurrentSession(get_the_ID());
+$allowedSessionStatuses = array(SESS_STATUS_OPEN,SESS_STATUS_WAITING,SESS_STATUS_TOO_LATE,SESS_STATUS_FINISHED);
+$showSessionInfo = (in_array($currentSession->session_final_status,$allowedSessionStatuses)) ? true : false;
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
@@ -28,29 +31,40 @@ $waitingForSessionLInk = waitingForSessionLink(get_the_ID());
                         </div>
                     </div>
                     <div class="gutter">
-                        <div class="registrationStatus registYes" style="<?php echo ($already_registered) ? 'display:block;' : 'display:none;' ; ?>">
+                        <div class="registrationStatus registYes" style="<?php echo ($alreadyRegistered && !$showSessionInfo) ? 'display:block;' : 'display:none;' ; ?>">
                             <p><?php echo pll__('You are registered to this course.'); ?></p>
                             <p><?php echo pll__('A link to the Youtube live teaching video will appear on this page about 15 minutes before each session.'); ?></p>
                         </div>
-                        <div class="registrationStatus registNo" style="<?php echo ($already_registered) ? 'display:none;' : 'display:block;' ; ?>">
+                        <div class="registrationStatus registNo" style="<?php echo ($alreadyRegistered) ? 'display:none;' : 'display:block;' ; ?>">
                             <?php if($registrationOpen): ?>
                                 <p><?php echo pll__('You are not registered to this course.'); ?></p>
                             <?php else: ?>
                                 <p class="redText"><?php echo pll__('Registration for this course is closed.'); ?></p>
                             <?php endif; ?>
                         </div>
-                        <div class="currentSession">
-                            <?php if(waitingForSessionLink()) : ?>
+
+                        <?php if($alreadyRegistered && $showSessionInfo) : ?>
+
+                            <div class="currentSession">
+                            <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
+                                <a class="joinSession" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Join Live Teaching'); ?></a>
+                            <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
+
+                            
+                            <?php elseif($currentSession->session_final_status == SESS_STATUS_FINISHED) : ?>
+                            <?php elseif($currentSession->session_final_status == SESS_STATUS_TOO_LATE) : ?>
+
                             <?php endif; ?>
-                        </div>
+                            </div>
+                        <?php endif; ?>
                         <article class="single-post">
                             <div class="article-text">
                                 <?php the_content(); ?>
 
-                                <a style="display:<?php echo ($already_registered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
+                                <a style="display:<?php echo ($alreadyRegistered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
                                     <span><?php echo pll__('Unregister from this course'); ?></span>
                                 </a>
-                                <a style="display:<?php echo ($already_registered) ? 'none' : 'block' ; ?>;" class="teaching_register teaching_reg_action" href="<?php echo $regLink; ?>">
+                                <a style="display:<?php echo ($alreadyRegistered) ? 'none' : 'block' ; ?>;" class="teaching_register teaching_reg_action" href="<?php echo $regLink; ?>">
                                     <span><?php echo pll__('Register to this course'); ?></span>
                                 </a>
 

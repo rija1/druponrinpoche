@@ -2,6 +2,7 @@
 add_action( 'init', 'script_enqueuer' );
 add_action( 'init', 'create_ot_course' );
 add_action( 'init', 'create_ot_session' );
+add_action( 'init', 'create_ot_attendance' );
 add_filter( 'rwmb_meta_boxes', 'ot_get_meta_box' );
 add_action("wp_ajax_online_teaching_register", "online_teaching_register");
 add_action("wp_ajax_nopriv_online_teaching_register", "please_login");
@@ -12,6 +13,12 @@ add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
 add_action('save_post','createOnlineCourseSessions');
 
 const TS_TMZ = 'Europe/London';
+
+const SESS_STATUS_NOT_STARTED = 0;
+const SESS_STATUS_OPEN = 1;
+const SESS_STATUS_FINISHED = 2;
+const SESS_STATUS_WAITING = 3;
+const SESS_STATUS_TOO_LATE = 4;
 
 function script_enqueuer() {
 
@@ -92,58 +99,151 @@ function create_ot_session() {
             'has_archive' => true,
         )
     );
+
+}/**
+ * Create Course Teaching Session Custom Post Type
+ */
+function create_ot_attendance() {
+    register_post_type( 'ot-attendance',
+        array(
+            'labels' => array(
+                'name' => 'Attendance',
+                'singular_name' => 'Attendance',
+                'add_new' => 'Add New',
+                'add_new_item' => 'Add New Attendance',
+                'edit' => 'Edit',
+                'edit_item' => 'Edit Attendance',
+                'new_item' => 'New Attendance',
+                'view' => 'View',
+                'view_item' => 'View Attendance',
+                'search_items' => 'Search Attendance',
+                'not_found' => 'No Attendance found',
+                'not_found_in_trash' => 'No Attendance found in Trash',
+                'parent' => 'Parent Attendance'
+            ),
+            'show_in_menu' => 'edit.php?post_type=online-course',
+            'public' => true,
+            'publicly_queryable' => true,
+            'menu_position' => 35,
+            'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
+            'taxonomies' => array( '' ),
+//            'menu_icon' => plugins_url( 'images/teaching.png', __FILE__ ),
+            'has_archive' => true,
+        )
+    );
 }
 
 /**
  * Add relationships between different custom post types
  */
-function mbRelationships() {
+function mbRelationships()
+{
     // Add Teaching / User Relationship (for user registrations to teachings)
-    MB_Relationships_API::register( [
-        'id'   => 'users_to_online_teachings',
+    MB_Relationships_API::register([
+        'id' => 'users_to_course',
         'from' => [
             'object_type' => 'user',
             'admin_column' => true,  // THIS!
-            'meta_box'    => [
+            'meta_box' => [
                 'title' => 'Teachings Attended',
                 'context' => 'normal',
             ],
         ],
-        'to'   => [
+        'to' => [
             'object_type' => 'post',
-            'post_type'   => 'online-course',
-            'meta_box'    => [
+            'post_type' => 'online-course',
+            'meta_box' => [
                 'title' => 'Attended By',
                 'context' => 'normal',
 
             ],
         ],
-    ] );
+    ]);
     // Add Teaching / Session Relationship
-    MB_Relationships_API::register( [
-        'id'   => 'course_to_sessions',
+    MB_Relationships_API::register([
+        'id' => 'course_to_sessions',
         'from' => [
             'object_type' => 'post',
-            'post_type'   => 'online-course',
+            'post_type' => 'online-course',
 //            'admin_column' => true,  // THIS!
-            'meta_box'    => [
+            'meta_box' => [
                 'title' => 'Session Posts',
                 'context' => 'normal',
             ],
         ],
-        'to'   => [
+        'to' => [
             'object_type' => 'post',
-            'post_type'   => 'ot-session',
+            'post_type' => 'ot-session',
             'admin_column' => true,
-            'meta_box'    => [
+            'meta_box' => [
                 'title' => 'Belonging to Teaching',
                 'context' => 'normal',
 
             ],
         ],
-    ] );
-}
+    ]);
+// Add Session / Attendance Relationship
+    MB_Relationships_API::register([
+        'id' => 'session_to_attendance',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-session',
+            'admin_column' => true,  // THIS!
+            'meta_box' => [
+                'title' => 'Session A',
+                'context' => 'normal',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-attendance',
+            'admin_column' => true,
+            'meta_box' => [
+                'title' => 'Belonging to Session',
+                'context' => 'normal',
+            ],
+        ],
+    ]);
+// Add Teaching / Attendance Relationship
+    MB_Relationships_API::register([
+        'id' => 'course_to_attendance',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'online-course',
+//            'admin_column' => true,  // THIS!
+            'meta_box' => [
+                'title' => 'Session Attendance',
+                'context' => 'normal',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-attendance',
+            'admin_column' => true,
+            'meta_box' => [
+                'title' => 'Belonging to Teaching',
+                'context' => 'normal',
 
+            ],
+        ],
+    ]);
+// Add Attendance / User Relationship
+    MB_Relationships_API::register([
+        'id' => 'user_to_attendance',
+        'from' => [
+            'object_type' => 'user',
+        ],
+        'to' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-attendance',
+            'meta_box' => [
+                'title' => 'User',
+                'context' => 'normal',
+
+            ],
+        ],
+    ]);
+}
 /**
  * Add Meta Boxes
  */
@@ -192,13 +292,14 @@ function ot_get_meta_box( $meta_boxes ) {
                 'name' => esc_html__( 'Session Time (UK Time)', 'ot_txtd' ),
             ),
             array(
-                'name'            => 'Show Teaching Session Link',
-                'id'              => $prefix . 'show_link',
+                'name'            => 'Session Status',
+                'id'              => $prefix . 'status',
                 'type'            => 'select',
                 // Array of 'value' => 'Label' pairs
                 'options'         => array(
-                    array( 'value' => 1, 'label' => 'Yes' ),
-                    array( 'value' => 0, 'label' => 'No' ),
+                    array( 'value' => SESS_STATUS_NOT_STARTED, 'label' => 'Not Started' ),
+                    array( 'value' => SESS_STATUS_OPEN, 'label' => 'Open' ),
+                    array( 'value' => SESS_STATUS_FINISHED, 'label' => 'Finished' ),
                 ),
                 // Placeholder text
                 'placeholder'     => 'Select an Item',
@@ -241,7 +342,7 @@ function online_teaching_register() {
     $postId = $_REQUEST["post_id"];
     $registerAction = $_REQUEST["register"];
 
-    $already_registered = MB_Relationships_API::has( $userId, $postId, 'users_to_online_teachings' );
+    $already_registered = MB_Relationships_API::has( $userId, $postId, 'users_to_course' );
 
     if($registerAction == 1) { // REGISTER ACTION
         if ( $already_registered ) {
@@ -249,14 +350,14 @@ function online_teaching_register() {
             $result['registered'] = "1";
             $result['message'] = '<span class="modal_msg_hey">You are already registered to this course.</span>';
         } else {
-            MB_Relationships_API::add( $userId, $postId, 'users_to_online_teachings' );
+            MB_Relationships_API::add( $userId, $postId, 'users_to_course' );
             $result['type'] = "success";
             $result['message'] = '<span class="modal_msg_alright">You have been successfully registered to this course. <br/>A link to the Youtube teaching video will appear on this page about 15 minutes before each session.</span>';
             $result['registered'] = "1";
         }
     } elseif($registerAction == 2) { // UNREGISTER ACTION
         if ( $already_registered ) {
-            MB_Relationships_API::delete( $userId, $postId, 'users_to_online_teachings' );
+            MB_Relationships_API::delete( $userId, $postId, 'users_to_course' );
             $result['type'] = "success";
             $result['message'] = '<span class="modal_msg_alright">You have been unregistered from this course.</span>';
             $result['registered'] = "0";
@@ -414,9 +515,6 @@ function createOnlineCourseSessions($courseId)
     }
 }
 
-/**
- * @param $courseId
- */
 function getCourseSessions($courseId) {
     return MB_Relationships_API::get_connected( [
         'id'   => 'course_to_sessions',
@@ -424,22 +522,154 @@ function getCourseSessions($courseId) {
     ] );
 }
 
+function getSessionCourse($sessionId) {
+    $courses = MB_Relationships_API::get_connected( [
+        'id'   => 'course_to_sessions',
+        'to' => $sessionId,
+    ] );
+    if(is_array($courses) && !empty($courses)) {
+        return $courses[0];
+    }
+    return false;
+}
+
+function getCourseAttendance($courseId) {
+    return MB_Relationships_API::get_connected( [
+        'id'   => 'course_to_attendance',
+        'from' => $courseId,
+    ] );
+}
+
+function getSessionAttendance($sessionId) {
+    return MB_Relationships_API::get_connected( [
+        'id'   => 'session_to_attendance',
+        'from' => $sessionId,
+    ] );
+}
+
+function isUserRegisteredToCourse($userId, $courseId) {
+    return MB_Relationships_API::has( $userId, $courseId, 'users_to_course' );
+}
+
 /**
  * @param $courseId
  */
-function waitingForSessionLink($courseId) {
+function getCurrentSession($courseId) {
     $sessions = getCourseSessions($courseId);
     $tmzObj = new DateTimeZone(TS_TMZ);
 
     foreach($sessions as $session) {
 
-        $sessionTime = rwmb_meta( '_session_time', null, $courseId );
-        pa($sessionTime,1);
-        if (new DateTime('now',$tmzObj) > new DateTime($registrationCloseDate,$tmzObj)) {
-            return false;
+        ///
+        $session->session_final_status = SESS_STATUS_OPEN;
+        return $session;
+        ///
+
+        $session->session_final_status = SESS_STATUS_OPEN;
+
+        $sessionTime = rwmb_meta( '_session_time', null, $session->ID );
+        $sessionStatus = rwmb_meta( '_status', null, $session->ID );
+
+        // Session has not started
+        if ($sessionStatus == SESS_STATUS_NOT_STARTED) {
+            // If we are later than one hour before the session and earlier than 3 hours after the session.
+            if (new DateTime('now',$tmzObj) > new DateTime($sessionTime.' - 1 hour',$tmzObj) &&
+                new DateTime('now',$tmzObj) < new DateTime($sessionTime.' + 3 hour',$tmzObj)) {
+                $session->session_final_status = SESS_STATUS_WAITING;
+                return $session;
+            } else {
+                // Session will happen in more than an hour, skip to check next one
+                continue;
+            }
+        // Session has started
+        } elseif($sessionStatus == SESS_STATUS_OPEN) {
+            // TODO : User has already visited the session page
+            if(true) {
+                $session->session_final_status = SESS_STATUS_OPEN;
+                return $session;
+            // TODO : User has already visited the session page
+            } else {
+                // Session has started more than 10 minutes ago
+                if (new DateTime('now',$tmzObj) > new DateTime($sessionTime.' + 10 minute',$tmzObj)) {
+                    $session->session_final_status = SESS_STATUS_TOO_LATE;
+                    return $session;
+                } else {
+                    $session->session_final_status = SESS_STATUS_OPEN;
+                    return $session;
+                }
+            }
         }
+
     }
-    $course = get_post($courseId);
+
+    return false;
+}
+
+function saveAttendance($userId,$sessionId, $courseId = null) {
+    $attendance = getCourseUserAttendance($userId,$sessionId);
+   // if(!MB_Relationships_API::has( $userId, $courseId, 'users_to_course' ));
+
+
+}
+
+function getCourseUserAttendance($userId,$sessionId) {
+
+//    $att = get_post(15058);
+//    pa($sessionTime = rwmb_meta( 'user_to_attendance_from', null, $att->ID ),1,1);
+
+    $wpQuery = new WP_Query(
+        array(
+//            'object_type' => 'post',
+            'post_type' => 'ot-attendance',
+            'meta_query' => array(
+//                'relation' => 'AND',
+//                array(
+//                    'key' => 'user_to_attendance_from',
+////                    'value' => $userId,
+//
+//                    'value' => 15,
+//                ),
+//                array(
+//                    'key' => 'session_to_attendance_from',
+////                    'value' => $sessionId,
+//                    'compare'			=> 'LIKE',
+//                    'value' => serialize(strval(15050)),
+//                ),
+            ),
+        )
+    );
+
+//    $wpQuery = new WP_Query(
+//        array(
+//            'relationship' => array(
+//                'id' => 'user_to_attendance',
+//                'to' => 15,
+//            ),
+//            'nopaging' => true,
+//        )
+//    );
+//
+//    $truc = MB_Relationships_API::get_connected(
+//        array(
+//            'id' => 'course_to_attendance',
+//            'to' => '15063',
+//        )
+//    );
+//pa($truc,1);
+//    pa($GLOBALS['wp_query']->request,1,1);
+
+//    if(!$wpQuery->have_posts()) {
+//        return false;
+//    }
+
+    while ($wpQuery->have_posts()) {
+        $attendance = $wpQuery->next_post();
+        pa($attendance,1);
+        $sessionStatus = rwmb_meta( 'session_to_attendance_from', null, $attendance->ID );
+        pa($sessionStatus,1,1);
+        pa($sessionStatus->post->ID,1,1);
+    }
+
 }
 
 

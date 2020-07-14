@@ -26,7 +26,6 @@ while ($parentId != 0) {
                 <div class="gutter">
                     <article class="single-post">
                         <div class="article-text">
-                            <!--                            <a href="--><?php //?><!--">< Back</a>-->
                             <h2><?php the_title(); ?></h2>
                             <div class="post-info">
                                 <?php if (!empty($author)): ?>

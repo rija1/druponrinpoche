@@ -1365,7 +1365,7 @@ li.default-menu {
 .tg-footer-main-widget {
   width: 39.473684%;
   float: left;
-  margin-right: 2.631579%; }
+  margin-right: 2.63158%; }
 
 .tg-footer-other-widgets {
   float: right;
@@ -1375,7 +1375,7 @@ li.default-menu {
 .tg-third-footer-widget {
   width: 30.303030%;
   float: left;
-  margin-right: 4.545454%; }
+  margin-right: 4.54545%; }
 
 .tg-fourth-footer-widget {
   width: 30.303030%;
@@ -1887,10 +1887,10 @@ a#scroll-up:hover {
 .widget_featured_slider .slide-content {
   position: absolute;
   bottom: 0;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
-  background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
-  background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.3));
+  background: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.3));
+  background: -o-linear-gradient(bottom, transparent, rgba(0, 0, 0, 0.3));
+  background: -moz-linear-gradient(bottom, transparent, rgba(0, 0, 0, 0.3));
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
   padding-bottom: 20px;
   padding-left: 5%;
   position: absolute;
@@ -1958,10 +1958,10 @@ a#scroll-up:hover {
 .widget_highlighted_posts .article-content {
   position: absolute;
   bottom: 0;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
-  background: -o-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
-  background: -moz-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
+  background: -webkit-linear-gradient(top, transparent, rgba(0, 0, 0, 0.8));
+  background: -o-linear-gradient(bottom, transparent, rgba(0, 0, 0, 0.8));
+  background: -moz-linear-gradient(bottom, transparent, rgba(0, 0, 0, 0.8));
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
   padding-bottom: 10px;
   padding-left: 5%;
   position: absolute;
@@ -2664,7 +2664,7 @@ div#wp-custom-header:hover .wp-custom-header-video-button {
   #masthead.colormag-header-clean .home-icon {
     display: none; }
   #masthead.colormag-header-clean #site-navigation {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0) inset;
+    box-shadow: 0 0 0 transparent inset;
     position: relative;
     background-color: transparent;
     border-top: 0 solid transparent;
@@ -2750,7 +2750,7 @@ div#wp-custom-header:hover .wp-custom-header-video-button {
   #masthead.colormag-header-classic .home-icon {
     display: none; }
   #masthead.colormag-header-classic #site-navigation {
-    box-shadow: 0 0 0 rgba(0, 0, 0, 0) inset;
+    box-shadow: 0 0 0 transparent inset;
     position: relative;
     background-color: transparent;
     border-top: 0 solid transparent;

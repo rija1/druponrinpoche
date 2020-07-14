@@ -2441,6 +2441,18 @@ div.uimob800 .um-account-side li a.current:hover,
 .single-online-teaching h1 {
   margin: 0; }
 
+.joinSession {
+  font-family: Raleway;
+  display: block;
+  background: #a95d63;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px;
+  width: 190px;
+  text-align: center;
+  margin: 30px auto; }
+
 .registrationStatus {
   padding-top: 6px;
   font-size: 14px;
