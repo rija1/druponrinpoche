@@ -2928,10 +2928,12 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     .category-news .featured-grid .news_right_block {
       display: none; }
 
-  .online-teachings .teaching .teaching_right a.joinSession {
-    width: auto; }
-  .online-teachings .teaching .teaching_right a.teaching_details {
-    width: auto; }
+  .online-teachings .teaching {
+    grid-template-columns: 1fr 180px; }
+    .online-teachings .teaching .teaching_right a.joinSession {
+      width: auto; }
+    .online-teachings .teaching .teaching_right a.teaching_details {
+      width: auto; }
   .online-teachings .ts_menu {
     grid-row: 3; } }
 
