@@ -2929,7 +2929,7 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
       display: none; }
 
   .online-teachings .teaching {
-    grid-template-columns: 1fr 180px; }
+    grid-template-columns: 1fr 114px; }
     .online-teachings .teaching .teaching_right a.joinSession {
       width: auto; }
     .online-teachings .teaching .teaching_right a.teaching_details {
