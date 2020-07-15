@@ -684,10 +684,10 @@ nav ol, nav ul {
 /**  section-services  **/
 /**  section-products  **/
 /**  section-blog  **/
-.blog-columns .inner-page-container {
-  width: 66%; }
-.blog-columns .sidebar-container {
-  width: 32%; }
+.blog-columns {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  grid-column-gap: 20px; }
 
 /**  articles  **/
 .article-text .button, .article-service .article-icon .fa {
@@ -1077,10 +1077,7 @@ img.alignleft {
   padding: 5px 40px 40px 40px; }
 
 .blog-columns .inner-page-container {
-  width: 70%;
   padding: 0; }
-.blog-columns .sidebar-container {
-  width: 30%; }
 .blog-columns .right .gutter {
   margin-left: 30px; }
 
@@ -1487,9 +1484,6 @@ body.home .breadcrumbs {
 .page-template-left-page-menu article.single-post {
   padding: 20px; }
 
-.category .sidebar-container, .page-template .sidebar-container {
-  /*border-radius: 5px;*/ }
-
 .sidebar-container h5 {
   margin-bottom: 15px; }
 .sidebar-container li.page_item ul.children {
@@ -1535,8 +1529,7 @@ li.page_item_has_children > a {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  position: relative;
-  width: 90%; }
+  position: relative; }
 .sidebar-container > div > ul > li.current_menu_item > a {
   font-weight: 300;
   color: #bb9b25; }
@@ -1574,18 +1567,8 @@ li.page_item_has_children a {
 /*About Pages*/
 .page-template-about-pages li.page_item_has_children a {
   margin-left: 0px; }
-.page-template-about-pages .blog-columns .sidebar-container {
-  width: 31%;
-  padding-top: 10px; }
-.page-template-about-pages .blog-columns .inner-page-container {
-  width: 69%; }
 
 /*Lineage Pages*/
-.page-template-lineage-pages .blog-columns .sidebar-container {
-  width: 30%; }
-.page-template-lineage-pages .blog-columns .inner-page-container {
-  width: 70%; }
-
 .home_pages_grid a:hover h5 {
   /*color: $dkr-brown;*/
   color: #bb9b25; }
@@ -2134,7 +2117,7 @@ a.view_full_schedule {
     top: 10px;
     left: 29px; }
 
-.page-template-about-pages .page-item-1053 {
+.page-template-about-pages .page-item-1053, .page-template-full-bio .page-item-1053 {
   display: none; }
 
 li.lang-item-tib {
@@ -2415,43 +2398,41 @@ div.uimob800 .um-account-side li a.current:hover,
     font-family: "FontAwesome";
     content: '\f078'; }
 
-.dc_left_title {
+.online-teachings .blog-columns {
+  grid-template-columns: 250px 1fr; }
+.online-teachings .ts_top {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative; }
+.online-teachings .ts_menu {
+  grid-row: 2;
+  grid-column: 1;
+  position: absolute;
+  top: 110px;
+  width: 250px; }
+.online-teachings .inner-page-container {
+  grid-row: 1/2;
+  grid-column: 2; }
+.online-teachings .dc_left_title {
   font-family: 'TSFont', cursive;
   font-size: 28px;
   color: #495a6f;
   padding-bottom: 20px; }
-
-.dc_logged {
+.online-teachings .dc_logged {
   padding-bottom: 20px;
   font-size: 12px;
   display: grid;
   grid-template-columns: 1fr 46px; }
-  .dc_logged .logout_link {
+  .online-teachings .dc_logged .logout_link {
     text-align: right; }
-    .dc_logged .logout_link a:hover {
+    .online-teachings .dc_logged .logout_link a:hover {
       text-decoration: underline; }
-
-.online-teachings .dc_left {
-  display: grid;
-  width: 23%; }
 
 .single-online-teaching .registrationStatus {
   text-align: center;
   padding: 10px 0 21px 0; }
 .single-online-teaching h1 {
   margin: 0; }
-
-.joinSession {
-  font-family: Raleway;
-  display: block;
-  background: #a95d63;
-  color: #fff;
-  font-size: 18px;
-  font-weight: 600;
-  padding: 12px;
-  width: 190px;
-  text-align: center;
-  margin: 30px auto; }
 
 .registrationStatus {
   padding-top: 6px;
@@ -2498,14 +2479,25 @@ div.uimob800 .um-account-side li a.current:hover,
   font-size: 24px;
   color: #495a6f; }
 
-.online-teachings .inner-page-container {
-  width: 77%; }
+.joinSession {
+  font-family: Raleway;
+  display: block;
+  background: #bb9b25;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px;
+  width: 190px;
+  border-radius: 3px;
+  text-align: center;
+  margin: 30px auto; }
+
 .online-teachings .teaching {
   padding: 12px;
   margin-bottom: 15px;
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 180px;
+  grid-template-columns: 1fr 250px;
   border-radius: 4px;
   background: #f6f6f6; }
   .online-teachings .teaching .teaching_left .teachingDates {
@@ -2514,23 +2506,24 @@ div.uimob800 .um-account-side li a.current:hover,
   .online-teachings .teaching .teaching_left .teachingTitle {
     font-size: 18px;
     padding-top: 8px; }
-  .online-teachings .teaching a.current_teaching, .online-teachings .teaching a.teaching_details {
-    display: block;
-    color: #fff;
-    text-align: center;
-    margin-top: 20px;
-    padding: 5px 0px 5px 0px; }
-  .online-teachings .teaching a.current_teaching {
-    width: 240px;
-    background: #c10a0a;
-    margin-top: 13px; }
-  .online-teachings .teaching a.teaching_details {
-    border-radius: 3px;
-    float: right;
-    margin-right: 15px;
-    margin-top: 11px;
-    width: 100px;
-    background: #495a6f; }
+  .online-teachings .teaching .teaching_right {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 15px; }
+    .online-teachings .teaching .teaching_right a.join_session_main, .online-teachings .teaching .teaching_right a.teaching_details {
+      display: block;
+      border-radius: 3px;
+      color: #ffffff;
+      text-align: center;
+      padding-top: 17px; }
+    .online-teachings .teaching .teaching_right a.join_session_main {
+      background: #a95d63;
+      background: #80784c;
+      background: #bb9b25;
+      font-weight: 400;
+      animation: joinSessionBlinker 2s linear infinite; }
+    .online-teachings .teaching .teaching_right a.teaching_details {
+      background: #495a6f; }
 
 .single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
   display: block;
@@ -2555,7 +2548,74 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
   -o-transition: all .3s ease;
   transition: all .3s ease; }
 
-/**  mobile  **/
+@media only screen and (max-width: 810px) {
+  .blog-columns {
+    grid-template-columns: 1fr; }
+    .blog-columns .sidebar-container {
+      grid-row: 2; }
+
+  .header .menu-bar {
+    height: 120px; }
+
+  .menu-top-container {
+    width: auto; }
+
+  #content > .container {
+    box-shadow: none;
+    width: auto; }
+
+  .home_pages_grid li p {
+    display: none; }
+
+  .home_post_txt p {
+    display: none; }
+
+  .home_mini_carousel {
+    width: 66%; }
+
+  .home_news_carousel .latestnews {
+    width: 34%; }
+
+  .latestnews .latestnews_list {
+    grid-template-columns: 1fr; }
+    .latestnews .latestnews_list a.recent_post_link {
+      padding: 0px; }
+      .latestnews .latestnews_list a.recent_post_link li.home_post {
+        height: auto;
+        width: auto; }
+        .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img {
+          height: auto;
+          padding-bottom: 4px; }
+          .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img img {
+            width: auto; }
+        .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt {
+          padding: 10px 8px 10px 8px;
+          text-align: center;
+          margin: 0; }
+          .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt p {
+            display: none; }
+          .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .recent_post_title {
+            padding-top: 10px;
+            font-size: 15px; }
+
+  .online-teachings .blog-columns {
+    grid-template-columns: 1fr;
+    grid-row-gap: 20px; }
+  .online-teachings .ts_top {
+    grid-row: 1;
+    grid-column: 1 / 1;
+    position: initial; }
+  .online-teachings .ts_menu {
+    grid-row: 3;
+    grid-column: 1 / 2;
+    position: initial;
+    width: auto; }
+  .online-teachings .inner-page-container {
+    grid-row: 2;
+    grid-column: 1 / 2; }
+  .online-teachings .dc_logged {
+    padding-bottom: 0; } }
+/**  MOBILE  **/
 @media only screen and (max-width: 480px) {
   .copyright-block .container {
     padding: 15px 10px 10px 10px; }
@@ -2568,12 +2628,18 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     box-shadow: none;
     width: auto; }
 
-  ul.poly_switcher {
-    grid-gap: 2px; }
-    ul.poly_switcher li.lang-item-en {
-      width: 20px;
-      height: 19px;
-      overflow: hidden; }
+  .header_top_right {
+    grid-template-columns: 1fr; }
+    .header_top_right .top_ts_link {
+      text-align: right;
+      padding-right: 10px; }
+    .header_top_right ul.poly_switcher {
+      grid-gap: 2px;
+      grid-template-columns: 52px 37px;
+      margin-left: auto; }
+      .header_top_right ul.poly_switcher li {
+        border-radius: 3px;
+        border: solid 1px #aaa382; }
 
   .category .post-info {
     padding-bottom: 6px;
@@ -2737,12 +2803,11 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     border: none;
     line-height: 1.3; }
 
-  .page-template-about-pages .blog-columns .right .gutter {
-    margin: 0; }
-  .page-template-about-pages .blog-columns .sidebar-container {
-    display: none; }
-  .page-template-about-pages .blog-columns .inner-page-container {
-    width: 100%; }
+  .blog-columns {
+    grid-template-columns: 1fr;
+    grid-row-gap: 15px; }
+    .blog-columns .sidebar-container {
+      grid-row: 2; }
 
   .wp-image-1187 {
     padding-bottom: 20px; }
@@ -2757,21 +2822,8 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     font-size: 19px;
     color: #80784c; }
 
-  .page-template-lineage-pages .blog-columns .sidebar-container {
-    display: none; }
-  .page-template-lineage-pages .blog-columns .inner-page-container {
-    width: 100%;
-    padding-top: 15px; }
-  .page-template-lineage-pages .blog-columns .right .gutter {
-    margin: 0; }
-
-  .blog-columns .inner-page-container {
-    width: 100%; }
-
   .teachings_category .article-blog {
     margin-top: 0; }
-  .teachings_category .blog-columns .sidebar-container {
-    display: none; }
   .teachings_category .blog-columns .inner-page-container .posts-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -2871,50 +2923,13 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
       grid-column: 1 / 1;
       grid-row: 1 / 1; }
     .category-news .featured-grid .news_right_block {
-      display: none; } }
-@media only screen and (min-width: 481px) and (max-width: 810px) {
-  .header .menu-bar {
-    height: 120px; }
+      display: none; }
 
-  .menu-top-container {
+  .online-teachings .teaching .teaching_right a.joinSession {
     width: auto; }
-
-  #content > .container {
-    box-shadow: none;
+  .online-teachings .teaching .teaching_right a.teaching_details {
     width: auto; }
-
-  .home_pages_grid li p {
-    display: none; }
-
-  .home_post_txt p {
-    display: none; }
-
-  .home_mini_carousel {
-    width: 66%; }
-
-  .home_news_carousel .latestnews {
-    width: 34%; }
-
-  .latestnews .latestnews_list {
-    grid-template-columns: 1fr; }
-    .latestnews .latestnews_list a.recent_post_link {
-      padding: 0px; }
-      .latestnews .latestnews_list a.recent_post_link li.home_post {
-        height: auto;
-        width: auto; }
-        .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img {
-          height: auto;
-          padding-bottom: 4px; }
-          .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img img {
-            width: auto; }
-        .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt {
-          padding: 10px 8px 10px 8px;
-          text-align: center;
-          margin: 0; }
-          .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt p {
-            display: none; }
-          .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .recent_post_title {
-            padding-top: 10px;
-            font-size: 15px; } }
+  .online-teachings .ts_menu {
+    grid-row: 3; } }
 
 /*# sourceMappingURL=style.css.map */

@@ -3,12 +3,11 @@
 <?php while (have_posts()) : the_post(); ?>
     <div class="section section-blog">
         <div class="container">
-            <div class="blog-columns clearfix">
-                <div class="sidebar-container left">
-
+            <div class="blog-columns">
+                <div class="sidebar-container">
                     <?php echo wpb_list_child_pages(); ?>
                 </div>
-                <div class="inner-page-container right">
+                <div class="inner-page-container">
                     <div class="section-title">
                         <div class="gutter">
                             <h1><?php the_title(); ?></h1>

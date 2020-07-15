@@ -20,6 +20,11 @@ const SESS_STATUS_FINISHED = 2;
 const SESS_STATUS_WAITING = 3;
 const SESS_STATUS_TOO_LATE = 4;
 
+const ATT_STATUS_NOT_JOINED = 0;
+const ATT_STATUS_JOINED_ONTIME = 1;
+const ATT_STATUS_JOINED_LATE = 2;
+const ATT_STATUS_JOINED_VERYLATE = 3;
+
 function script_enqueuer() {
 
     // Register the JS file with a unique handle, file location, and an array of dependencies
@@ -243,6 +248,21 @@ function mbRelationships()
             ],
         ],
     ]);
+    // Add User / Session Relationship
+    MB_Relationships_API::register([
+        'id' => 'user_to_session',
+        'from' => [
+            'object_type' => 'user',
+        ],
+        'to' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-session',
+            'meta_box' => [
+                'title' => 'User',
+                'context' => 'normal',
+            ],
+        ],
+    ]);
 }
 /**
  * Add Meta Boxes
@@ -303,6 +323,34 @@ function ot_get_meta_box( $meta_boxes ) {
                 ),
                 // Placeholder text
                 'placeholder'     => 'Select an Item',
+            ),
+        ),
+    );
+
+    $meta_boxes[] = array(
+        'id' => 'ot_attendance_info',
+        'title' => esc_html__( 'Online Attendance Info' ),
+        'post_types' => array('ot-attendance'),
+        'context' => 'after_editor',
+        'priority' => 'default',
+        'autosave' => 'false',
+        'fields' => array(
+            array(
+                'id' => $prefix . 'joined_time',
+                'type' => 'datetime',
+                'name' => esc_html__( 'Joined Time', 'ot_txtd' ),
+            ),
+            array(
+                'name'            => 'Status',
+                'id'              => $prefix . 'attendance_status',
+                'type'            => 'select',
+                // Array of 'value' => 'Label' pairs
+                'options'         => array(
+                    array( 'value' => ATT_STATUS_NOT_JOINED, 'label' => 'Not Joined' ),
+                    array( 'value' => ATT_STATUS_JOINED_ONTIME, 'label' => 'Joined On Time' ),
+                    array( 'value' => ATT_STATUS_JOINED_LATE, 'label' => 'Joined Late' ),
+                    array( 'value' => ATT_STATUS_JOINED_VERYLATE, 'label' => 'Joined Very Late' ),
+                ),
             ),
         ),
     );
@@ -500,7 +548,7 @@ function createOnlineCourseSessions($courseId)
                     $newOtSessionId = wp_insert_post( $newOtSessionData, true);
                     // ... and set the session time.
                     rwmb_set_meta( $newOtSessionId, '_session_time', $sessionTime);
-                    // TODO : associate Session to Course
+                    // We associate the Session to the Course
                     MB_Relationships_API::add( $courseId, $newOtSessionId, 'course_to_sessions' );
                 }
             }
@@ -606,69 +654,50 @@ function getCurrentSession($courseId) {
 }
 
 function saveAttendance($userId,$sessionId, $courseId = null) {
-    $attendance = getCourseUserAttendance($userId,$sessionId);
-   // if(!MB_Relationships_API::has( $userId, $courseId, 'users_to_course' ));
 
+    $tmzObj = new DateTimeZone(TS_TMZ);
+    $joinedTime = new DateTime('now',$tmzObj);
 
-}
+    // If no user/session relationships = user has not joined the session before
+    if(!MB_Relationships_API::has($userId,$sessionId,'user_to_session')) {
+        // We create the user/session relationship
+        MB_Relationships_API::add($userId,$sessionId,'user_to_session');
 
-function getCourseUserAttendance($userId,$sessionId) {
+        // Load the session
+        $session = get_post($sessionId);
+        $user = get_user_by('ID',$userId);
 
-//    $att = get_post(15058);
-//    pa($sessionTime = rwmb_meta( 'user_to_attendance_from', null, $att->ID ),1,1);
+        $title = $session->post_title.' - '.$user->data->display_name;
 
-    $wpQuery = new WP_Query(
-        array(
-//            'object_type' => 'post',
-            'post_type' => 'ot-attendance',
-            'meta_query' => array(
-//                'relation' => 'AND',
-//                array(
-//                    'key' => 'user_to_attendance_from',
-////                    'value' => $userId,
-//
-//                    'value' => 15,
-//                ),
-//                array(
-//                    'key' => 'session_to_attendance_from',
-////                    'value' => $sessionId,
-//                    'compare'			=> 'LIKE',
-//                    'value' => serialize(strval(15050)),
-//                ),
-            ),
-        )
-    );
+        // ...then we create that Attendance...
+        $newOtAttendanceData = array(
+            'post_title'    => $title,
+            'post_content'  => '',
+            'post_status'   => 'publish',
+            'post_type'     => 'ot-attendance'
+        );
+        $newOtAttendanceId = wp_insert_post( $newOtAttendanceData, true);
 
-//    $wpQuery = new WP_Query(
-//        array(
-//            'relationship' => array(
-//                'id' => 'user_to_attendance',
-//                'to' => 15,
-//            ),
-//            'nopaging' => true,
-//        )
-//    );
-//
-//    $truc = MB_Relationships_API::get_connected(
-//        array(
-//            'id' => 'course_to_attendance',
-//            'to' => '15063',
-//        )
-//    );
-//pa($truc,1);
-//    pa($GLOBALS['wp_query']->request,1,1);
+        // ... and set the joined time.
+        rwmb_set_meta( $newOtAttendanceId, '_joined_time', $joinedTime->format('Y-m-d H:i'));
 
-//    if(!$wpQuery->have_posts()) {
-//        return false;
-//    }
+        $sessionTime = rwmb_meta('_session_time',array(),$sessionId);
+        // Depending on the joined time we put the status to on time, late or verylate
+        if ($joinedTime > new DateTime($sessionTime.' + 20 minute',$tmzObj)) {
+            rwmb_set_meta( $newOtAttendanceId, '_attendance_status', ATT_STATUS_JOINED_VERYLATE);
+        } elseif($joinedTime > new DateTime($sessionTime.' + 0 minute',$tmzObj)) {
+            rwmb_set_meta( $newOtAttendanceId, '_attendance_status', ATT_STATUS_JOINED_LATE);
+        } else {
+            rwmb_set_meta( $newOtAttendanceId, '_attendance_status', ATT_STATUS_JOINED_ONTIME);
+        }
 
-    while ($wpQuery->have_posts()) {
-        $attendance = $wpQuery->next_post();
-        pa($attendance,1);
-        $sessionStatus = rwmb_meta( 'session_to_attendance_from', null, $attendance->ID );
-        pa($sessionStatus,1,1);
-        pa($sessionStatus->post->ID,1,1);
+        // We associate the Attendance to the Session, Course and User
+        MB_Relationships_API::add( $sessionId, $newOtAttendanceId, 'session_to_attendance' );
+        MB_Relationships_API::add( $courseId, $newOtAttendanceId, 'course_to_attendance' );
+        MB_Relationships_API::add( $userId, $newOtAttendanceId, 'user_to_attendance' );
+
     }
+
 
 }
 

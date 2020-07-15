@@ -14,13 +14,14 @@ saveAttendance($userId,get_the_ID(),$course->ID);
 
 ?>
     <div class="section section-blog teachings_category">
-        <div class="blog-columns clearfix">
+        <div class="blog-columns">
             <?php get_template_part( 'online-teaching-left-menu'); ?>
-            <div class="inner-page-container right">
+            <div class="inner-page-container">
                 <div class="gutter">
                     <article class="single-post">
                         <div class="article-text">
                             <h2><?php the_title(); ?></h2>
+                            <
                             <?php the_content(); ?>
                         </div>
                     </article>

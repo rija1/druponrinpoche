@@ -21,8 +21,15 @@ while ($parentId != 0) {
 
 <?php get_header(); ?>
     <div class="section section-blog teachings_category">
-        <div class="blog-columns clearfix">
-            <div class="inner-page-container right">
+        <div class="blog-columns">
+            <div class="sidebar-container">
+                <div class="teachings_cat_list">
+                    <ul>
+                        <?php echo wp_list_categories_teachings(array('title_li'=>'','child_of'=>$parentCat->term_id,'show_count'=>1)); ?>
+                    </ul>
+                </div>
+            </div>
+            <div class="inner-page-container">
                 <div class="gutter">
                     <article class="single-post">
                         <div class="article-text">
@@ -58,13 +65,6 @@ while ($parentId != 0) {
                             <?php comments_template(); ?>
                         </div>
                     </article>
-                </div>
-            </div>
-            <div class="sidebar-container left">
-                <div class="teachings_cat_list">
-                    <ul>
-                        <?php echo wp_list_categories_teachings(array('title_li'=>'','child_of'=>$parentCat->term_id,'show_count'=>1)); ?>
-                    </ul>
                 </div>
             </div>
         </div>

@@ -20,9 +20,9 @@ $showSessionInfo = (in_array($currentSession->session_final_status,$allowedSessi
 <?php while (have_posts()) : the_post(); ?>
     <div class="section section-blog online-teachings single-online-teaching">
         <div class="container">
-            <div class="blog-columns clearfix">
+            <div class="blog-columns">
                 <?php get_template_part( 'online-teaching-left-menu'); ?>
-                <div class="inner-page-container right">
+                <div class="inner-page-container">
                     <div class="section-title">
                         <div class="gutter">
                             <h1><?php the_title(); ?></h1>
