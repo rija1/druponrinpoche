@@ -3549,6 +3549,9 @@ div.uimob800 .um-account-side li a.current:hover,
             }
             a.teaching_details {
                 background: $dkr-ot-blue;
+                padding: 24px 10px 0 11px;
+                font-size: 14px;
+                grid-column: 3;
             }
         }
 

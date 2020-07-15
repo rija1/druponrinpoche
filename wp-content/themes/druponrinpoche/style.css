@@ -2523,7 +2523,10 @@ div.uimob800 .um-account-side li a.current:hover,
       font-weight: 400;
       animation: joinSessionBlinker 2s linear infinite; }
     .online-teachings .teaching .teaching_right a.teaching_details {
-      background: #495a6f; }
+      background: #495a6f;
+      padding: 24px 10px 0 11px;
+      font-size: 14px;
+      grid-column: 3; }
 
 .single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
   display: block;
