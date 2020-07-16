@@ -24,71 +24,65 @@ $showSessionInfo = (in_array($currentSession->session_final_status,$allowedSessi
                 <?php get_template_part( 'online-teaching-left-menu'); ?>
                 <div class="inner-page-container">
                     <div class="section-title">
-                        <div class="gutter">
-                            <h1><?php the_title(); ?></h1>
-                            <?php //the_excerpt(); ?>
-
-                        </div>
+                        <h1><?php the_title(); ?></h1>
                     </div>
-                    <div class="gutter">
-                        <div class="registrationStatus registYes" style="<?php echo ($alreadyRegistered && !$showSessionInfo) ? 'display:block;' : 'display:none;' ; ?>">
-                            <p><?php echo pll__('You are registered to this course.'); ?></p>
-                            <p><?php echo pll__('A link to the Youtube live teaching video will appear on this page about 15 minutes before each session.'); ?></p>
-                        </div>
-                        <div class="registrationStatus registNo" style="<?php echo ($alreadyRegistered) ? 'display:none;' : 'display:block;' ; ?>">
-                            <?php if($registrationOpen): ?>
-                                <p><?php echo pll__('You are not registered to this course.'); ?></p>
-                            <?php else: ?>
-                                <p class="redText"><?php echo pll__('Registration for this course is closed.'); ?></p>
-                            <?php endif; ?>
-                        </div>
-
-                        <?php if($alreadyRegistered && $showSessionInfo) : ?>
-
-                            <div class="currentSession">
-                            <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
-                                <a class="joinSession" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Join Live Teaching'); ?></a>
-                            <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
-
-                            
-                            <?php elseif($currentSession->session_final_status == SESS_STATUS_FINISHED) : ?>
-                            <?php elseif($currentSession->session_final_status == SESS_STATUS_TOO_LATE) : ?>
-
-                            <?php endif; ?>
-                            </div>
+                    <div class="registrationStatus registYes" style="<?php echo ($alreadyRegistered && !$showSessionInfo) ? 'display:block;' : 'display:none;' ; ?>">
+                        <p><?php echo pll__('You are registered to this course.'); ?></p>
+                        <p><?php echo pll__('A link to the Youtube live teaching video will appear on this page about 15 minutes before each session.'); ?></p>
+                    </div>
+                    <div class="registrationStatus registNo" style="<?php echo ($alreadyRegistered) ? 'display:none;' : 'display:block;' ; ?>">
+                        <?php if($registrationOpen): ?>
+                            <p><?php echo pll__('You are not registered to this course.'); ?></p>
+                        <?php else: ?>
+                            <p class="redText"><?php echo pll__('Registration for this course is closed.'); ?></p>
                         <?php endif; ?>
-                        <article class="single-post">
-                            <div class="article-text">
-                                <?php the_content(); ?>
+                    </div>
 
-                                <a style="display:<?php echo ($alreadyRegistered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
-                                    <span><?php echo pll__('Unregister from this course'); ?></span>
-                                </a>
-                                <a style="display:<?php echo ($alreadyRegistered) ? 'none' : 'block' ; ?>;" class="teaching_register teaching_reg_action" href="<?php echo $regLink; ?>">
-                                    <span><?php echo pll__('Register to this course'); ?></span>
-                                </a>
+                    <?php if($alreadyRegistered && $showSessionInfo) : ?>
 
-                                <div id="modal_register" class="modal">
-                                    <div class="modal_confirm">
-                                        <div class="modal_loading">
-                                            <img src="<?php echo plugins_url( 'online-teachings/includes/images/spinner.gif'); ?>" />
+                        <div class="currentSession">
+                        <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
+                            <a class="joinSession" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Join Live Teaching'); ?></a>
+                        <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
+
+
+                        <?php elseif($currentSession->session_final_status == SESS_STATUS_FINISHED) : ?>
+                        <?php elseif($currentSession->session_final_status == SESS_STATUS_TOO_LATE) : ?>
+
+                        <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    <article class="single-post">
+                        <div class="article-text">
+                            <?php the_content(); ?>
+
+                            <a style="display:<?php echo ($alreadyRegistered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
+                                <span><?php echo pll__('Unregister from this course'); ?></span>
+                            </a>
+                            <a style="display:<?php echo ($alreadyRegistered) ? 'none' : 'block' ; ?>;" class="teaching_register teaching_reg_action" href="<?php echo $regLink; ?>">
+                                <span><?php echo pll__('Register to this course'); ?></span>
+                            </a>
+
+                            <div id="modal_register" class="modal">
+                                <div class="modal_confirm">
+                                    <div class="modal_loading">
+                                        <img src="<?php echo plugins_url( 'online-teachings/includes/images/spinner.gif'); ?>" />
+                                    </div>
+                                    <div class="modal_content">
+                                        <div class="modal_text">
+
                                         </div>
-                                        <div class="modal_content">
-                                            <div class="modal_text">
-
-                                            </div>
-                                            <div class="modal_buttons">
-                                                <a id="modal_cancel" class="um-button" href="#" rel="modal:close"><?php echo pll__('Cancel'); ?></a>
-                                                <a id="modal_confirm" regaction="1" class="um-button" href="javascript:confirmRegUnregAction();"><?php echo pll__('OK'); ?></a>
-                                            </div>
+                                        <div class="modal_buttons">
+                                            <a id="modal_cancel" class="um-button" href="#" rel="modal:close"><?php echo pll__('Cancel'); ?></a>
+                                            <a id="modal_confirm" regaction="1" class="um-button" href="javascript:confirmRegUnregAction();"><?php echo pll__('OK'); ?></a>
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
-                        </article>
-                    </div>
+
+
+                        </div>
+                    </article>
                 </div>
             </div>
         </div> <!--  END container  -->

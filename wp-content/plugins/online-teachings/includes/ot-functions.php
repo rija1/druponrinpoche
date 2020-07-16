@@ -324,6 +324,19 @@ function ot_get_meta_box( $meta_boxes ) {
                 // Placeholder text
                 'placeholder'     => 'Select an Item',
             ),
+            array(
+                'id'              => $prefix . 'youtube_lang_url',
+                'name'    => 'Youtube Videos Language / URLs',
+                'type'    => 'text_list',
+                'clone' => true,
+
+                // Options: array of Placeholder => Label for text boxes
+                // Number of options are not limited
+                'options' => array(
+                    'English'      => 'Language',
+                    'https://www.youtube.com/watch?v=abcd' => 'Video URL',
+                ),
+            ),
         ),
     );
 

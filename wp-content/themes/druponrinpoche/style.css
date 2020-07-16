@@ -965,7 +965,8 @@ img.alignnone {
 
 /**  green  **/
 .color-green, a, h1, .logo, h1 a, .article-welcome h2 a:hover, .article-procedure h2 a:hover {
-  color: #656250; }
+  color: #ffffff;
+  }
 
 .teachings_category .pagination span.left, .teachings_category .pagination span.right {
   margin: 25px 0 0 0; }
@@ -2416,8 +2417,9 @@ div.uimob800 .um-account-side li a.current:hover,
 .online-teachings .dc_left_title {
   font-family: 'TSFont', cursive;
   font-size: 28px;
-  color: #495a6f;
-  padding-bottom: 20px; }
+  color: #ffffff;
+  padding-bottom: 20px;
+  }
 .online-teachings .dc_logged {
   padding-bottom: 20px;
   font-size: 12px;
@@ -2498,8 +2500,10 @@ div.uimob800 .um-account-side li a.current:hover,
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 250px;
+  grid-column-gap: 10px;
   border-radius: 4px;
-  background: #f6f6f6; }
+  background: #ffffff;
+  }
   .online-teachings .teaching .teaching_left .teachingDates {
     font-weight: 500;
     color: #495a6e; }
@@ -2508,26 +2512,33 @@ div.uimob800 .um-account-side li a.current:hover,
     padding-top: 8px; }
   .online-teachings .teaching .teaching_right {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 15px; }
+    grid-template-columns: 1fr;
+    grid-row-gap: 10px; }
     .online-teachings .teaching .teaching_right a.join_session_main, .online-teachings .teaching .teaching_right a.teaching_details {
       display: block;
       border-radius: 3px;
       color: #ffffff;
       text-align: center;
-      padding-top: 17px; }
+      height: 30px;
+      padding-top: 11px; }
     .online-teachings .teaching .teaching_right a.join_session_main {
+      grid-row: 1;
       background: #a95d63;
       background: #80784c;
       background: #bb9b25;
       font-weight: 400;
       animation: joinSessionBlinker 2s linear infinite; }
     .online-teachings .teaching .teaching_right a.teaching_details {
+      grid-row: 2;
       background: #495a6f;
-      padding: 24px 10px 0 11px;
-      font-size: 14px;
-      grid-column: 3; }
-
+      font-size: 14px; }
+      .online-teachings .teaching .teaching_right a.teaching_details:hover {
+        background: #647cab; }
+@keyframes joinSessionBlinker {
+  50% {
+    background: #cb6a3c;
+    background: #bb9b25;
+    box-shadow: #0a6ebd; } }
 .single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
   display: block;
   width: 180px;
@@ -2928,8 +2939,11 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     .category-news .featured-grid .news_right_block {
       display: none; }
 
+  .online-teachings h1 {
+    margin-bottom: 20px; }
   .online-teachings .teaching {
-    grid-template-columns: 1fr 114px; }
+    grid-template-columns: 1fr;
+    grid-row-gap: 15px; }
     .online-teachings .teaching .teaching_right a.joinSession {
       width: auto; }
     .online-teachings .teaching .teaching_right a.teaching_details {

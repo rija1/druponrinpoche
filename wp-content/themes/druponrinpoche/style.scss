@@ -3513,6 +3513,7 @@ div.uimob800 .um-account-side li a.current:hover,
         width: 100%;
         display: grid;
         grid-template-columns: 1fr 250px;
+        grid-column-gap: 10px;
         border-radius: 4px;
         background: $dkr-lightgrey;
 
@@ -3528,18 +3529,24 @@ div.uimob800 .um-account-side li a.current:hover,
         }
         .teaching_right {
             display:grid;
-            grid-template-columns:1fr 1fr;
-            grid-column-gap: 15px;
+            grid-template-columns:1fr;
+            grid-row-gap: 10px;
 
             a.join_session_main, a.teaching_details {
                 display: block;
                 border-radius: 3px;
                 color: #ffffff;
                 text-align: center;
-                padding-top: 17px;
+                height: 30px;
+                padding-top: 11px;
             }
 
             a.join_session_main {
+                &:hover {
+                    //background: $dkr-gold;
+                }
+                grid-row:1;
+                //grid-column:1/2;
                 background: #a95d63;
                 background: $dkr-brown;
                 background: $dkr-gold;
@@ -3548,19 +3555,23 @@ div.uimob800 .um-account-side li a.current:hover,
 
             }
             a.teaching_details {
+                &:hover {
+                    background: $dkr-ot-blue-hover;
+                }
+                grid-row:2;
+                //grid-column:1/2;
                 background: $dkr-ot-blue;
-                padding: 24px 10px 0 11px;
                 font-size: 14px;
-                grid-column: 3;
             }
         }
 
         @keyframes joinSessionBlinker {
             50% {
-                //font-size:18px;
-                //background: #cb6a3c;
-                //background: $dkr-gold;
-                //color: #ada79d;
+                //font-size:16px;
+                background: #cb6a3c;
+                background: $dkr-gold;
+                box-shadow: #0a6ebd;
+                //color: #e7e2b0;
                 //border:solid 3px red;
             }
         }
@@ -4179,10 +4190,15 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
         }
     }
 
-    .online-teachings {
+    // Tirthika Square
 
+    .online-teachings {
+        h1 {
+            margin-bottom: 20px;
+        }
         .teaching {
-            grid-template-columns: 1fr 114px;
+            grid-template-columns: 1fr;
+            grid-row-gap: 15px;
             .teaching_right {
                 a.joinSession {
                     width: auto;
