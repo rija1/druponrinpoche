@@ -3308,10 +3308,11 @@ div.uimob800 .um-account-side li a.current:hover,
 
 .um-page-account .sidebar-container>ul>li.current_page_item,
 .online-teachings .sidebar-container>ul>li.current_page_item {
-  background: $dkr-ot-blue;
-  a {
+    background: $dkr-ot-blue;
+    background: linear-gradient(0deg, #7b8a9c 0%, #495a6f 100%);
+    a {
     color:#fff;
-  }
+    }
 }
 
 .um-page-account h1, .online-teachings h1, .um-page-password-reset h1  {
@@ -3319,8 +3320,10 @@ div.uimob800 .um-account-side li a.current:hover,
     padding: 12px 0 12px 18px;
     color: #ffffff;
     border-color: $dkr-ot-blue;
-    background: $dkr-ot-blue;
+    background: linear-gradient(0deg, #7b8a9c 0%, #495a6f 100%);
+    font-family: 'Raleway';
     border-radius: 5px;
+    border:none;
     font-size:24px;
 }
 
@@ -3376,6 +3379,7 @@ div.uimob800 .um-account-side li a.current:hover,
 // Tirthika Square
 
 .online-teachings {
+    font-family: 'Raleway';
     .blog-columns {
         grid-template-columns: 250px 1fr;
     }
@@ -3403,7 +3407,7 @@ div.uimob800 .um-account-side li a.current:hover,
 
     .dc_left_title {
         font-family: 'TSFont', cursive;
-        font-size:28px;
+        font-size:32px;
         color:$dkr-ot-blue;
         padding-bottom: 20px;
     }
@@ -3433,7 +3437,10 @@ div.uimob800 .um-account-side li a.current:hover,
         padding: 10px 0 21px 0;
     }
     h1 {
-        margin:0;
+        margin-bottom:30px;
+    }
+    .join_session_main {
+        margin-bottom: 30px;
     }
 }
 
@@ -3492,21 +3499,50 @@ div.uimob800 .um-account-side li a.current:hover,
   color: $dkr-ot-blue;
 }
 
-.joinSession {
-    font-family: Raleway;
-    display: block;
-    background: $dkr-gold;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 600;
-    padding: 12px;
-    width: 190px;
-    border-radius:3px;
-    text-align: center;
-    margin: 30px auto;
-}
-
 .online-teachings {
+    a.join_session_main, a.teaching_details {
+        display: block;
+        border-radius: 3px;
+        color: #ffffff;
+        text-align: center;
+        height: 30px;
+        padding-top: 11px;
+    }
+
+    a.join_session_main {
+        &:hover {
+            //background: $dkr-gold;
+        }
+        grid-row:1;
+        //grid-column:1/2;
+        background: #a95d63;
+        background: $dkr-brown;
+        background: $dkr-gold;
+        font-weight: 400;
+        animation: joinSessionBlinker 1s linear infinite;
+
+    }
+
+    @keyframes joinSessionBlinker {
+        50% {
+            //font-size:16px;
+            background: #cb6a3c;
+            background: $dkr-gold;
+            box-shadow: inset 0 0 18px 4px rgba(0, 0, 0, 0.3);
+            //color: #e7e2b0;
+            //border:solid 3px red;
+        }
+    }
+
+    a.teaching_details {
+        &:hover {
+            background: $dkr-ot-blue-hover;
+        }
+        grid-row:2;
+        //grid-column:1/2;
+        background: $dkr-ot-blue;
+        font-size: 14px;
+    }
     .teaching {
         padding:12px;
         margin-bottom: 15px;
@@ -3519,64 +3555,23 @@ div.uimob800 .um-account-side li a.current:hover,
 
         .teaching_left {
             .teachingDates {
-              font-weight: 500;
+              font-weight: 600;
               color: #495a6e;
             }
             .teachingTitle {
                 font-size: 18px;
                 padding-top: 8px;
+                font-weight: 600;
             }
         }
         .teaching_right {
             display:grid;
             grid-template-columns:1fr;
             grid-row-gap: 10px;
-
-            a.join_session_main, a.teaching_details {
-                display: block;
-                border-radius: 3px;
-                color: #ffffff;
-                text-align: center;
-                height: 30px;
-                padding-top: 11px;
-            }
-
-            a.join_session_main {
-                &:hover {
-                    //background: $dkr-gold;
-                }
-                grid-row:1;
-                //grid-column:1/2;
-                background: #a95d63;
-                background: $dkr-brown;
-                background: $dkr-gold;
-                font-weight: 400;
-                animation: joinSessionBlinker 2s linear infinite;
-
-            }
-            a.teaching_details {
-                &:hover {
-                    background: $dkr-ot-blue-hover;
-                }
-                grid-row:2;
-                //grid-column:1/2;
-                background: $dkr-ot-blue;
-                font-size: 14px;
-            }
-        }
-
-        @keyframes joinSessionBlinker {
-            50% {
-                //font-size:16px;
-                background: #cb6a3c;
-                background: $dkr-gold;
-                box-shadow: #0a6ebd;
-                //color: #e7e2b0;
-                //border:solid 3px red;
-            }
         }
 
     }
+
 }
 
 .single-online-teaching {
@@ -4199,14 +4194,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
         .teaching {
             grid-template-columns: 1fr;
             grid-row-gap: 15px;
-            .teaching_right {
-                a.joinSession {
-                    width: auto;
-                }
-                a.teaching_details {
-                    width: auto;
-                }
-            }
         }
 
         .ts_menu {

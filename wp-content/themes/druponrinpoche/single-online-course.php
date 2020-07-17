@@ -13,8 +13,7 @@ $unregLink = admin_url('admin-ajax.php?action=online_teaching_register&register=
 $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
 $registrationOpen = isRegistrationOpen();
 $currentSession = getCurrentSession(get_the_ID());
-$allowedSessionStatuses = array(SESS_STATUS_OPEN,SESS_STATUS_WAITING,SESS_STATUS_TOO_LATE,SESS_STATUS_FINISHED);
-$showSessionInfo = (in_array($currentSession->session_final_status,$allowedSessionStatuses)) ? true : false;
+$showSessionInfo = showSessionInfo($currentSession);
 ?>
 
 <?php while (have_posts()) : the_post(); ?>
@@ -42,13 +41,10 @@ $showSessionInfo = (in_array($currentSession->session_final_status,$allowedSessi
 
                         <div class="currentSession">
                         <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
-                            <a class="joinSession" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Join Live Teaching'); ?></a>
+                            <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Attend '.getSessionTime($currentSession->ID).' Teaching Now'); ?></a>
                         <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
-
-
-                        <?php elseif($currentSession->session_final_status == SESS_STATUS_FINISHED) : ?>
-                        <?php elseif($currentSession->session_final_status == SESS_STATUS_TOO_LATE) : ?>
-
+<!--                        TODO : Handle Waiting / Refresh Button -->
+                            Please wait.... or Refresh
                         <?php endif; ?>
                         </div>
                     <?php endif; ?>

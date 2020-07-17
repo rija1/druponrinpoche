@@ -626,9 +626,9 @@ function getCurrentSession($courseId) {
 
     foreach($sessions as $session) {
 
-        /// TEST
-        $session->session_final_status = SESS_STATUS_OPEN;
-        return $session;
+        /// ENABLE FOR TEST
+//        $session->session_final_status = SESS_STATUS_OPEN;
+//        return $session;
         ///
 
         $session->session_final_status = SESS_STATUS_OPEN;
@@ -649,21 +649,25 @@ function getCurrentSession($courseId) {
             }
         // Session has started
         } elseif($sessionStatus == SESS_STATUS_OPEN) {
-            // TODO : User has already visited the session page
-            if(!MB_Relationships_API::has($userId,$session->ID,'user_to_session')) {
-                $session->session_final_status = SESS_STATUS_OPEN;
-                return $session;
-            // TODO : User has not already visited the session page
-            } else {
-                // Session has started more than 10 minutes ago
-                if (new DateTime('now',$tmzObj) > new DateTime($sessionTime.' + 10 minute',$tmzObj)) {
-                    $session->session_final_status = SESS_STATUS_TOO_LATE;
-                    return $session;
-                } else {
-                    $session->session_final_status = SESS_STATUS_OPEN;
-                    return $session;
-                }
-            }
+            $session->session_final_status = SESS_STATUS_OPEN;
+            return $session;
+
+//            Handle Too Late status
+//            // User has already visited the session page
+//            if(!MB_Relationships_API::has($userId,$session->ID,'user_to_session')) {
+//                $session->session_final_status = SESS_STATUS_OPEN;
+//                return $session;
+//            // User has not already visited the session page
+//            } else {
+//                // Session has started more than 10 minutes ago
+//                if (new DateTime('now',$tmzObj) > new DateTime($sessionTime.' + 10 minute',$tmzObj)) {
+//                    $session->session_final_status = SESS_STATUS_TOO_LATE;
+//                    return $session;
+//                } else {
+//                    $session->session_final_status = SESS_STATUS_OPEN;
+//                    return $session;
+//                }
+//            }
         }
 
     }
@@ -717,6 +721,16 @@ function saveAttendance($userId,$sessionId, $courseId = null) {
     }
 
 
+}
+
+function showSessionInfo($session) {
+    $allowedSessionStatuses = array(SESS_STATUS_OPEN,SESS_STATUS_WAITING,SESS_STATUS_TOO_LATE,SESS_STATUS_FINISHED);
+    return in_array($session->session_final_status,$allowedSessionStatuses);
+}
+
+function getSessionTime($sessionId) {
+    $date = new DateTime(rwmb_meta('_session_time',array(),$sessionId));
+    return $date->format('H:i');
 }
 
 
