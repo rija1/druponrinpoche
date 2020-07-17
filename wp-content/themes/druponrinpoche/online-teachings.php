@@ -26,7 +26,7 @@ $userId = get_current_user_id();
                         <?php while ( $the_query->have_posts() ) : ?>
                             <?php
                             $the_query->the_post();
-                            $dates = getDatesFromSessions(get_post_custom_values('teaching_sessions'));
+                            $dates = getCourseFromToDates(get_the_ID());
                             $registered = MB_Relationships_API::has( $userId, get_the_ID(), 'users_to_course' );
                             $registrationOpen = isRegistrationOpen();
                             $currentSession = getCurrentSession(get_the_ID());

@@ -195,7 +195,7 @@ function mbRelationships()
             'post_type' => 'ot-session',
             'admin_column' => true,  // THIS!
             'meta_box' => [
-                'title' => 'Session A',
+                'title' => 'Session Attendance',
                 'context' => 'normal',
             ],
         ],
@@ -377,14 +377,19 @@ function ot_get_meta_box( $meta_boxes ) {
  * @param $sessionsRaw
  * @return string
  */
-function getDatesFromSessions($sessionsRaw) {
+function getCourseFromToDates($courseId) {
 
-    // TODO use new metabox data
+    $sessions = getCourseSessions($courseId);
 
-    $sessions = explode(',',$sessionsRaw[0]);
+    $dates = array();
+    foreach($sessions as $session) {
+        $dates[] = rwmb_meta('_session_time',null,$session->ID);
+    }
 
-    $startDate = strftime('%d %B %Y ', strtotime($sessions[0]));
-    $endDate = strftime('%d %B %Y ', strtotime($sessions[count($sessions)-1]));
+    sort($dates);
+
+    $startDate = strftime('%d %B %Y ', strtotime($dates[0]));
+    $endDate = strftime('%d %B %Y ', strtotime($dates[count($dates)-1]));
 
     return $startDate . ' - ' .$endDate;
 }
@@ -621,7 +626,7 @@ function getCurrentSession($courseId) {
 
     foreach($sessions as $session) {
 
-        ///
+        /// TEST
         $session->session_final_status = SESS_STATUS_OPEN;
         return $session;
         ///
@@ -645,10 +650,10 @@ function getCurrentSession($courseId) {
         // Session has started
         } elseif($sessionStatus == SESS_STATUS_OPEN) {
             // TODO : User has already visited the session page
-            if(true) {
+            if(!MB_Relationships_API::has($userId,$session->ID,'user_to_session')) {
                 $session->session_final_status = SESS_STATUS_OPEN;
                 return $session;
-            // TODO : User has already visited the session page
+            // TODO : User has not already visited the session page
             } else {
                 // Session has started more than 10 minutes ago
                 if (new DateTime('now',$tmzObj) > new DateTime($sessionTime.' + 10 minute',$tmzObj)) {

@@ -965,8 +965,7 @@ img.alignnone {
 
 /**  green  **/
 .color-green, a, h1, .logo, h1 a, .article-welcome h2 a:hover, .article-procedure h2 a:hover {
-  color: #ffffff;
-  }
+  color: #656250; }
 
 .teachings_category .pagination span.left, .teachings_category .pagination span.right {
   margin: 25px 0 0 0; }
@@ -2417,9 +2416,8 @@ div.uimob800 .um-account-side li a.current:hover,
 .online-teachings .dc_left_title {
   font-family: 'TSFont', cursive;
   font-size: 28px;
-  color: #ffffff;
-  padding-bottom: 20px;
-  }
+  color: #495a6f;
+  padding-bottom: 20px; }
 .online-teachings .dc_logged {
   padding-bottom: 20px;
   font-size: 12px;
@@ -2502,8 +2500,7 @@ div.uimob800 .um-account-side li a.current:hover,
   grid-template-columns: 1fr 250px;
   grid-column-gap: 10px;
   border-radius: 4px;
-  background: #ffffff;
-  }
+  background: #f6f6f6; }
   .online-teachings .teaching .teaching_left .teachingDates {
     font-weight: 500;
     color: #495a6e; }
