@@ -2402,7 +2402,8 @@ div.uimob800 .um-account-side li a.current:hover,
     content: '\f078'; }
 
 .online-teachings {
-  font-family: 'Raleway'; }
+  font-family: 'Raleway';
+  font-weight: 400; }
   .online-teachings .blog-columns {
     grid-template-columns: 250px 1fr; }
   .online-teachings .ts_top {
