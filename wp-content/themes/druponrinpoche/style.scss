@@ -3309,7 +3309,7 @@ div.uimob800 .um-account-side li a.current:hover,
 .um-page-account .sidebar-container>ul>li.current_page_item,
 .online-teachings .sidebar-container>ul>li.current_page_item {
     background: $dkr-ot-blue;
-    background: linear-gradient(0deg, #7b8a9c 0%, #495a6f 100%);
+    //background: linear-gradient(0deg, #7b8a9c 0%, #495a6f 100%);
     a {
     color:#fff;
     }
@@ -3320,7 +3320,8 @@ div.uimob800 .um-account-side li a.current:hover,
     padding: 12px 0 12px 18px;
     color: #ffffff;
     border-color: $dkr-ot-blue;
-    background: linear-gradient(0deg, #7b8a9c 0%, #495a6f 100%);
+    background: $dkr-ot-blue;
+    //background: linear-gradient(0deg, #7b8a9c 0%, #495a6f 100%);
     font-family: 'Raleway';
     border-radius: 5px;
     border:none;

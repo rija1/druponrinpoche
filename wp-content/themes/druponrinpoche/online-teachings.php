@@ -6,6 +6,7 @@ if ( !is_user_logged_in() ) {
     exit( wp_redirect( $redirect ) );
 }
 $userId = get_current_user_id();
+
 ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>

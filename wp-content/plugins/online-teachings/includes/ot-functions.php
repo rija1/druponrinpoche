@@ -3,6 +3,7 @@ add_action( 'init', 'script_enqueuer' );
 add_action( 'init', 'create_ot_course' );
 add_action( 'init', 'create_ot_session' );
 add_action( 'init', 'create_ot_attendance' );
+add_action( 'init', 'create_ot_group' );
 add_filter( 'rwmb_meta_boxes', 'ot_get_meta_box' );
 add_action("wp_ajax_online_teaching_register", "online_teaching_register");
 add_action("wp_ajax_nopriv_online_teaching_register", "please_login");
@@ -24,6 +25,7 @@ const ATT_STATUS_NOT_JOINED = 0;
 const ATT_STATUS_JOINED_ONTIME = 1;
 const ATT_STATUS_JOINED_LATE = 2;
 const ATT_STATUS_JOINED_VERYLATE = 3;
+const ATT_STATUS_PART_OF_GROUP = 4;
 
 function script_enqueuer() {
 
@@ -100,7 +102,6 @@ function create_ot_session() {
             'menu_position' => 15,
             'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
             'taxonomies' => array( '' ),
-            'menu_icon' => plugins_url( 'images/teaching.png', __FILE__ ),
             'has_archive' => true,
         )
     );
@@ -130,12 +131,43 @@ function create_ot_attendance() {
             'public' => true,
             'publicly_queryable' => true,
             'menu_position' => 35,
-            'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
+            'supports' => array( 'title','custom-fields' ),
             'taxonomies' => array( '' ),
-//            'menu_icon' => plugins_url( 'images/teaching.png', __FILE__ ),
             'has_archive' => true,
         )
     );
+}
+/**
+ * Create Online Course Custom Post Type
+ */
+function create_ot_group() {
+    register_post_type( 'ot-att-group',
+        array(
+            'labels' => array(
+                'name' => 'Attendees Group',
+                'singular_name' => 'Attendees Group',
+                'add_new' => 'Add Attendees Group',
+                'add_new_item' => 'Add New Attendees Group',
+                'edit' => 'Edit',
+                'edit_item' => 'Edit Attendees Group',
+                'new_item' => 'New Attendees Group',
+                'view' => 'View',
+                'view_item' => 'View Attendees Group',
+                'search_items' => 'Search Attendees Group',
+                'not_found' => 'No Online Attendees Group found',
+                'not_found_in_trash' => 'No Attendees Group found in Trash',
+                'parent' => 'Parent Attendees Group'
+            ),
+            'show_in_menu' => 'edit.php?post_type=online-course',
+            'public' => true,
+            'publicly_queryable' => true,
+            'menu_position' => 15,
+            'supports' => array( 'title','custom-fields' ),
+            'taxonomies' => array( '' ),
+            'has_archive' => true,
+        )
+    );
+//    flush_rewrite_rules();
 }
 
 /**
@@ -263,6 +295,55 @@ function mbRelationships()
             ],
         ],
     ]);
+
+    // Add Att Group / Course  Relationship
+    MB_Relationships_API::register([
+        'id' => 'att_group_to_course',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-att-group',
+            'meta_box' => [
+                'title' => 'Online Course',
+                'context' => 'normal',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'post',
+            'post_type' => 'online-course',
+        ],
+    ]);
+
+    // Add Att Group / Host User Relationship
+    MB_Relationships_API::register([
+        'id' => 'att_group_host_to_user',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-att-group',
+            'meta_box' => [
+                'title' => 'Host',
+                'context' => 'normal',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'user',
+        ],
+    ]);
+
+    // Add Att Group / Guest User Relationship
+    MB_Relationships_API::register([
+        'id' => 'att_group_guests_to_user',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-att-group',
+            'meta_box' => [
+                'title' => 'Guests',
+                'context' => 'normal',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'user',
+        ],
+    ]);
 }
 /**
  * Add Meta Boxes
@@ -363,6 +444,7 @@ function ot_get_meta_box( $meta_boxes ) {
                     array( 'value' => ATT_STATUS_JOINED_ONTIME, 'label' => 'Joined On Time' ),
                     array( 'value' => ATT_STATUS_JOINED_LATE, 'label' => 'Joined Late' ),
                     array( 'value' => ATT_STATUS_JOINED_VERYLATE, 'label' => 'Joined Very Late' ),
+                    array( 'value' => ATT_STATUS_JOINED_VERYLATE, 'label' => 'Part of Group' ),
                 ),
             ),
         ),
@@ -731,6 +813,30 @@ function showSessionInfo($session) {
 function getSessionTime($sessionId) {
     $date = new DateTime(rwmb_meta('_session_time',array(),$sessionId));
     return $date->format('H:i');
+}
+
+function isUserPartOfGroup($userId, $courseId) {
+
+    global $wpdb;
+
+    $rel_id = $wpdb->get_var(
+        $wpdb->prepare(
+            "
+                SELECT wmr.`ID` FROM wp_mb_relationships wmr
+                INNER JOIN wp_mb_relationships wmr2
+                ON wmr.`from` = wmr2.`from`
+                AND wmr.`to`=%d
+                AND wmr.`type`='att_group_guests_to_user'
+                AND wmr2.`to`=%d
+                AND wmr2.`type`='att_group_to_course'            
+            ",
+            $userId,
+            $courseId
+        )
+    );
+
+    return (bool) $rel_id;
+
 }
 
 
