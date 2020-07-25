@@ -16,6 +16,8 @@ $currentSession = getCurrentSession(get_the_ID());
 $showSessionInfo = showSessionInfo($currentSession);
 ?>
 
+
+
 <?php while (have_posts()) : the_post(); ?>
     <div class="section section-blog online-teachings single-online-teaching">
         <div class="container">
@@ -41,10 +43,10 @@ $showSessionInfo = showSessionInfo($currentSession);
 
                         <div class="currentSession">
                         <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
-                            <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Attend '.getSessionTime($currentSession->ID).' Teaching Now'); ?></a>
+                                <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Access '.getSessionTime($currentSession->ID).' Teaching'); ?></a>
                         <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
 <!--                        TODO : Handle Waiting / Refresh Button -->
-                            Please wait.... or Refresh
+                            Please refresh this page 30mn before the teaching
                         <?php endif; ?>
                         </div>
                     <?php endif; ?>

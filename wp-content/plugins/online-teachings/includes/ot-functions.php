@@ -11,7 +11,12 @@ add_action( 'mb_relationships_init', 'mbRelationships');
 add_filter( 'um_shortcode_args_filter', 'umShortcode', 10, 3 );
 add_filter( 'manage_users_columns', 'new_modify_user_table' );
 add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
+add_filter( 'manage_ot-session_posts_columns' , 'new_modify_session_table');
+add_action( 'manage_ot-session_posts_custom_column', 'new_modify_session_table_row', 10, 2 );
+add_filter( 'manage_ot-attendance_posts_columns' , 'new_modify_attendance_table');
+add_action( 'manage_ot-attendance_posts_custom_column', 'new_modify_attendance_table_row', 10, 2 );
 add_action('save_post','createOnlineCourseSessions');
+add_action('save_post','initAllAttendance');
 
 const TS_TMZ = 'Europe/London';
 
@@ -182,6 +187,7 @@ function mbRelationships()
             'object_type' => 'user',
             'admin_column' => true,  // THIS!
             'meta_box' => [
+                'type'  => 'user',
                 'title' => 'Teachings Attended',
                 'context' => 'normal',
             ],
@@ -269,6 +275,9 @@ function mbRelationships()
         'id' => 'user_to_attendance',
         'from' => [
             'object_type' => 'user',
+            'meta_box' => [
+                'title' => 'Attendance',
+            ],
         ],
         'to' => [
             'object_type' => 'post',
@@ -285,6 +294,9 @@ function mbRelationships()
         'id' => 'user_to_session',
         'from' => [
             'object_type' => 'user',
+            'meta_box' => [
+                'title' => 'Sessions',
+            ],
         ],
         'to' => [
             'object_type' => 'post',
@@ -326,6 +338,9 @@ function mbRelationships()
         ],
         'to' => [
             'object_type' => 'user',
+            'meta_box' => [
+                'title' => 'Host of Groups',
+            ],
         ],
     ]);
 
@@ -342,6 +357,9 @@ function mbRelationships()
         ],
         'to' => [
             'object_type' => 'user',
+            'meta_box' => [
+                'title' => 'Guest of Groups',
+            ],
         ],
     ]);
 }
@@ -561,12 +579,86 @@ function pa($a,$b=0,$c=0) {
 
 }
 
+function new_modify_session_table( $column ) {
+    $column['sess_status'] = ' Status';
+    return $column;
+}
+
+function new_modify_attendance_table( $column ) {
+    $column['att_status'] = 'Status';
+    $column['joined_time'] = 'Joined Time';
+    return $column;
+}
+
 function new_modify_user_table( $column ) {
     $column['passport'] = 'Passport';
     $column['registration_date'] = 'Registration Date';
     $column['group_host'] = 'Group Host';
     return $column;
 }
+
+function getSessionStatusName($status) {
+    switch($status) {
+        case SESS_STATUS_OPEN:
+            return 'Open';
+            break;
+        case SESS_STATUS_FINISHED:
+            return 'Finished';
+            break;
+        case SESS_STATUS_WAITING:
+            return 'Waiting';
+            break;
+        case SESS_STATUS_NOT_STARTED:
+            return 'Not Started';
+            break;
+        default:
+            return 'Not Started';
+            break;
+    }
+}
+
+function getAttendanceStatusName($status) {
+    switch($status) {
+        case ATT_STATUS_NOT_JOINED:
+            return 'Not Joined';
+            break;
+        case ATT_STATUS_JOINED_LATE:
+            return 'Joined Late';
+            break;
+        case ATT_STATUS_JOINED_ONTIME:
+            return 'Joined On Time';
+            break;
+        case ATT_STATUS_JOINED_VERYLATE:
+            return 'Joined Very Late';
+            break;
+        default:
+            return 'Not Joined';
+            break;
+    }
+}
+
+function new_modify_session_table_row( $column, $sessionId ) {
+    switch ($column) {
+        case 'sess_status' :
+            echo getSessionStatusName(rwmb_meta('_status',array(),$sessionId));
+            break;
+        default:
+    }
+}
+
+function new_modify_attendance_table_row( $column, $attendanceId ) {
+    switch ($column) {
+        case 'att_status' :
+            echo getAttendanceStatusName(rwmb_meta('_attendance_status',array(),$attendanceId));
+            break;
+        case 'joined_time' :
+            echo rwmb_meta('_joined_time',array(),$attendanceId);
+            break;
+        default:
+    }
+}
+
+
 
 function new_modify_user_table_row( $val, $column_name, $user_id ) {
     switch ($column_name) {
@@ -652,15 +744,41 @@ function createOnlineCourseSessions($courseId)
                     MB_Relationships_API::add( $courseId, $newOtSessionId, 'course_to_sessions' );
                 }
             }
-
-
-
-
-
-
-
         }
     }
+}
+
+function initAllAttendance($sessionId)
+{
+    $session = get_post($sessionId);
+    // Check if post is a session
+    if($session->post_type == 'ot-session') {
+
+        $sessionStatus = rwmb_meta('_status',array(),$sessionId);
+        $courseId = getSessionCourse($sessionId)->ID;
+
+        // If we open the session
+        if($sessionStatus == SESS_STATUS_OPEN) {
+            // TODO: Check if other open session exists for course
+            if(true) {
+
+            }
+
+            // Create all attendances
+            $users = getCourseUsers($courseId);
+            foreach ($users as $user) {
+                saveAttendance($user->ID,$sessionId,$courseId);
+            }
+        }
+
+    }
+}
+
+function getCourseUsers($courseId) {
+    return MB_Relationships_API::get_connected( [
+        'id'   => 'users_to_course',
+        'to' => $courseId,
+    ] );
 }
 
 function getCourseSessions($courseId) {
@@ -693,6 +811,34 @@ function getSessionAttendance($sessionId) {
         'id'   => 'session_to_attendance',
         'from' => $sessionId,
     ] );
+}
+
+function getUserSessionAttendance($userId,$sessionId) {
+
+    global $wpdb;
+
+    $attendanceId = $wpdb->get_var(
+        $wpdb->prepare(
+            "
+                SELECT wmr.`to` FROM wp_mb_relationships wmr
+                INNER JOIN wp_mb_relationships wmr2
+                ON wmr.`to` = wmr2.`to`
+                AND wmr.`type`='user_to_attendance'
+                AND wmr.`from`=%d
+                AND wmr2.`type`='session_to_attendance'
+                AND wmr2.`from`=%d 
+        
+            ",
+            $userId,
+            $sessionId
+        )
+    );
+
+    if($attendanceId) {
+        return get_post($attendanceId);
+    }
+
+    return false;
 }
 
 function isUserRegisteredToCourse($userId, $courseId) {
@@ -734,22 +880,6 @@ function getCurrentSession($courseId) {
             $session->session_final_status = SESS_STATUS_OPEN;
             return $session;
 
-//            Handle Too Late status
-//            // User has already visited the session page
-//            if(!MB_Relationships_API::has($userId,$session->ID,'user_to_session')) {
-//                $session->session_final_status = SESS_STATUS_OPEN;
-//                return $session;
-//            // User has not already visited the session page
-//            } else {
-//                // Session has started more than 10 minutes ago
-//                if (new DateTime('now',$tmzObj) > new DateTime($sessionTime.' + 10 minute',$tmzObj)) {
-//                    $session->session_final_status = SESS_STATUS_TOO_LATE;
-//                    return $session;
-//                } else {
-//                    $session->session_final_status = SESS_STATUS_OPEN;
-//                    return $session;
-//                }
-//            }
         }
 
     }
@@ -757,12 +887,12 @@ function getCurrentSession($courseId) {
     return false;
 }
 
-function saveAttendance($userId,$sessionId, $courseId = null) {
+function saveAttendance($userId,$sessionId, $courseId) {
 
     $tmzObj = new DateTimeZone(TS_TMZ);
     $joinedTime = new DateTime('now',$tmzObj);
 
-    // If no user/session relationships = user has not joined the session before
+    // If user has not joined yet
     if(!MB_Relationships_API::has($userId,$sessionId,'user_to_session')) {
         // We create the user/session relationship
         MB_Relationships_API::add($userId,$sessionId,'user_to_session');
@@ -782,24 +912,34 @@ function saveAttendance($userId,$sessionId, $courseId = null) {
         );
         $newOtAttendanceId = wp_insert_post( $newOtAttendanceData, true);
 
-        // ... and set the joined time.
-        rwmb_set_meta( $newOtAttendanceId, '_joined_time', $joinedTime->format('Y-m-d H:i'));
+        // We initialize the attendance status as "Not joined yet"
+        rwmb_set_meta( $newOtAttendanceId, '_attendance_status', ATT_STATUS_NOT_JOINED);
 
-        $sessionTime = rwmb_meta('_session_time',array(),$sessionId);
-        // Depending on the joined time we put the status to on time, late or verylate
-        if ($joinedTime > new DateTime($sessionTime.' + 20 minute',$tmzObj)) {
-            rwmb_set_meta( $newOtAttendanceId, '_attendance_status', ATT_STATUS_JOINED_VERYLATE);
-        } elseif($joinedTime > new DateTime($sessionTime.' + 0 minute',$tmzObj)) {
-            rwmb_set_meta( $newOtAttendanceId, '_attendance_status', ATT_STATUS_JOINED_LATE);
-        } else {
-            rwmb_set_meta( $newOtAttendanceId, '_attendance_status', ATT_STATUS_JOINED_ONTIME);
-        }
-
-        // We associate the Attendance to the Session, Course and User
+        // Finally, we associate the Attendance to the Session, Course and User
         MB_Relationships_API::add( $sessionId, $newOtAttendanceId, 'session_to_attendance' );
         MB_Relationships_API::add( $courseId, $newOtAttendanceId, 'course_to_attendance' );
         MB_Relationships_API::add( $userId, $newOtAttendanceId, 'user_to_attendance' );
+    } else {    // Now the attendance exists already so we will update it
+        // We load the attendance
+        $attendance = getUserSessionAttendance($userId,$sessionId);
+        // We check the status, if already initialized we leave it otherwise we will update joined time and status
+        if($attendance) {
+            $attendanceStatus = rwmb_meta( '_status', null, $attendance->ID );
+            if(empty($attendanceStatus)) {
+                // Set the joined time.
+                rwmb_set_meta( $attendance->ID, '_joined_time', $joinedTime->format('Y-m-d H:i'));
 
+                $sessionTime = rwmb_meta('_session_time',array(),$sessionId);
+                // Depending on the joined time we put the status to on time, late or verylate
+                if ($joinedTime > new DateTime($sessionTime.' + 20 minute',$tmzObj)) {
+                    rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_VERYLATE);
+                } elseif($joinedTime > new DateTime($sessionTime.' + 0 minute',$tmzObj)) {
+                    rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_LATE);
+                } else {
+                    rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_ONTIME);
+                }
+            }
+        }
     }
 
 

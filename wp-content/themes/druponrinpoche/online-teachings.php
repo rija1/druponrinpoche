@@ -47,8 +47,17 @@ $userId = get_current_user_id();
                                 </div>
                                 <div class="teaching_right">
                                     <?php if($registered && $currentSession) : ?>
-                                    <!--  TODO : Handle WAITING and OPEN final statusesWaiting / Refresh Button -->
-                                        <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Attend '.getSessionTime($currentSession->ID).' Teaching Now'); ?></a>
+                                        <!--  TODO : Handle WAITING and OPEN final statusesWaiting / Refresh Button -->
+<!--                                        <div class="currentSession">-->
+                                            <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
+                                                <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Attend '.getSessionTime($currentSession->ID).' Teaching Now'); ?></a>
+                                            <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
+                                                <!--                        TODO : Handle Waiting / Refresh Button -->
+                                                Please wait.... or Refresh
+                                            <?php endif; ?>
+<!--                                        </div>-->
+
+
                                     <?php endif; ?>
                                     <a class="teaching_details" href="<?php echo the_permalink(); ?>"><?php echo pll__('Details & Registration'); ?></a>
                                 </div>
