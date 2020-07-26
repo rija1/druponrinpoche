@@ -6,7 +6,6 @@ if ( !is_user_logged_in() ) {
     exit( wp_redirect( $redirect ) );
 }
 $userId = get_current_user_id();
-
 ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
@@ -50,7 +49,7 @@ $userId = get_current_user_id();
                                         <!--  TODO : Handle WAITING and OPEN final statusesWaiting / Refresh Button -->
 <!--                                        <div class="currentSession">-->
                                             <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
-                                                <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Attend '.getSessionTime($currentSession->ID).' Teaching Now'); ?></a>
+                                            <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Access '.getSessionTime($currentSession->ID).' Teaching'); ?></a>
                                             <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
                                                 <!--                        TODO : Handle Waiting / Refresh Button -->
                                                 Please wait.... or Refresh

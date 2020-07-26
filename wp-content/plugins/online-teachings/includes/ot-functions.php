@@ -32,6 +32,9 @@ const ATT_STATUS_JOINED_LATE = 2;
 const ATT_STATUS_JOINED_VERYLATE = 3;
 const ATT_STATUS_PART_OF_GROUP = 4;
 
+const ATT_GROUP_HOST_TO_USER = 'att_group_host_to_user';
+const ATT_GROUP_GUESTS_TO_USER = 'att_group_guests_to_user';
+
 function script_enqueuer() {
 
     // Register the JS file with a unique handle, file location, and an array of dependencies
@@ -767,7 +770,7 @@ function initAllAttendance($sessionId)
             // Create all attendances
             $users = getCourseUsers($courseId);
             foreach ($users as $user) {
-                saveAttendance($user->ID,$sessionId,$courseId);
+                saveAttendance($user->ID,$sessionId,$courseId,true);
             }
         }
 
@@ -887,10 +890,9 @@ function getCurrentSession($courseId) {
     return false;
 }
 
-function saveAttendance($userId,$sessionId, $courseId) {
+function saveAttendance($userId,$sessionId, $courseId,$create=false) {
 
-    $tmzObj = new DateTimeZone(TS_TMZ);
-    $joinedTime = new DateTime('now',$tmzObj);
+    $joinedTime = new DateTime('now',new DateTimeZone(TS_TMZ));
 
     // If user has not joined yet
     if(!MB_Relationships_API::has($userId,$sessionId,'user_to_session')) {
@@ -919,7 +921,43 @@ function saveAttendance($userId,$sessionId, $courseId) {
         MB_Relationships_API::add( $sessionId, $newOtAttendanceId, 'session_to_attendance' );
         MB_Relationships_API::add( $courseId, $newOtAttendanceId, 'course_to_attendance' );
         MB_Relationships_API::add( $userId, $newOtAttendanceId, 'user_to_attendance' );
+
+        if(!$create) {
+            setAttendanceData($joinedTime,$sessionId,$userId,$courseId);
+        }
+
     } else {    // Now the attendance exists already so we will update it
+        setAttendanceData($joinedTime,$sessionId,$userId,$courseId);
+    }
+
+
+}
+
+/**
+ *
+ * Set Attendance Status and Joined Time
+ *
+ * @param $joinedTime
+ * @param $sessionId
+ * @param $userId
+ * @throws Exception
+ */
+function setAttendanceData($joinedTime,$sessionId,$userId,$courseId) {
+    $tmzObj = new DateTimeZone(TS_TMZ);
+    $userIds = array();
+    $userIds[] = $userId;
+
+    // If user is group host we get all guests
+    $groupId = getHostGroupId($userId,$courseId);
+    if($groupId) {
+        $groupGuests = getGroupGuests($groupId);
+        foreach($groupGuests as $groupGuest) {
+            $userIds[] = $groupGuest->ID;
+        }
+    }
+
+    // We update user, and host guests if there are some
+    foreach($userIds as $userId) {
         // We load the attendance
         $attendance = getUserSessionAttendance($userId,$sessionId);
         // We check the status, if already initialized we leave it otherwise we will update joined time and status
@@ -942,7 +980,6 @@ function saveAttendance($userId,$sessionId, $courseId) {
         }
     }
 
-
 }
 
 function showSessionInfo($session) {
@@ -955,11 +992,11 @@ function getSessionTime($sessionId) {
     return $date->format('H:i');
 }
 
-function isUserPartOfGroup($userId, $courseId) {
+function isUserGroupGuest($userId, $courseId) {
 
     global $wpdb;
 
-    $rel_id = $wpdb->get_var(
+    $relId = $wpdb->get_var(
         $wpdb->prepare(
             "
                 SELECT wmr.`ID` FROM wp_mb_relationships wmr
@@ -975,8 +1012,43 @@ function isUserPartOfGroup($userId, $courseId) {
         )
     );
 
-    return (bool) $rel_id;
+    return (bool) $relId;
 
+}
+
+function getHostGroupId($userId, $courseId) {
+
+    global $wpdb;
+
+    $groupId = $wpdb->get_var(
+        $wpdb->prepare(
+            "
+                SELECT wmr.`from` FROM wp_mb_relationships wmr
+                INNER JOIN wp_mb_relationships wmr2
+                ON wmr.`from` = wmr2.`from`
+                AND wmr.`to`=%d
+                AND wmr.`type`='att_group_host_to_user'
+                AND wmr2.`to`=%d
+                AND wmr2.`type`='att_group_to_course'            
+            ",
+            $userId,
+            $courseId
+        )
+    );
+
+    if((bool) $groupId) {
+        return $groupId;
+    }
+
+    return false;
+
+}
+
+function getGroupGuests($groupId) {
+    return MB_Relationships_API::get_connected( [
+        'id'   => 'att_group_guests_to_user',
+        'from' => $groupId,
+    ] );
 }
 
 
