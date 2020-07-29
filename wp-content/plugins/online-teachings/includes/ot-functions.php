@@ -1208,16 +1208,18 @@ function getUpcomingTeachingHtml($userId,$nonce) {
     $courses = getUserCourses($userId);
     foreach($courses as $course) {
         $session = getCurrentSession($course->ID);
-        if($session && ($session->session_final_status == SESS_STATUS_WAITING)) {
-
+        if($session && (in_array($session->session_final_status,array(SESS_STATUS_WAITING,SESS_STATUS_OPEN)) )) {
             $html =  '
             <div class="teaching_waiting_open" id="session_waiting_open_'.$session->ID.'">'.getSessionWaitingOpenHtml($session->ID,false).'</div>
-            <script type="text/javascript">
-                jQuery( document ).ready(function() {
-                    sessionWaitingOpenRefresh("'.$session->ID.'","'.$nonce.'");
-                });
-            </script>
             ';
+            if($session->session_final_status==SESS_STATUS_WAITING) {
+                $html .= '<script type="text/javascript">
+                jQuery( document ).ready(function() {
+                    sessionWaitingOpenRefresh("' . $session->ID . '","' . $nonce . '");
+                });
+                </script>
+                ';
+            }
 
             return $html;
         }

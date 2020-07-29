@@ -47,14 +47,6 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
                                     </span>
                                 </div>
                                 <div class="teaching_right">
-                                    <?php if($registered && $currentSession) : ?>
-<!--                                        <div class="currentSession">-->
-                                            <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
-                                            <a class="join_session_main" href="<?php the_permalink($currentSession->ID); ?>"><?php echo pll__('Access '.getSessionTime($currentSession->ID).' Teaching'); ?></a>
-                                            <?php endif; ?>
-
-
-                                    <?php endif; ?>
                                     <a class="teaching_details" href="<?php echo the_permalink(); ?>"><?php echo pll__('Details & Registration'); ?></a>
                                 </div>
                             </div>
