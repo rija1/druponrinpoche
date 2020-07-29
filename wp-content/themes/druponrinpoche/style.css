@@ -2486,13 +2486,45 @@ div.uimob800 .um-account-side li a.current:hover,
   font-size: 24px;
   color: #495a6f; }
 
+.online-teachings h1 {
+  margin-bottom: 20px; }
 .online-teachings a.join_session_main, .online-teachings a.teaching_details {
   display: block;
   border-radius: 3px;
   color: #ffffff;
   text-align: center;
   height: 30px;
-  padding-top: 11px; }
+  padding-top: 11px;
+  margin-top: 10px; }
+.online-teachings .teaching_waiting_open {
+  padding: 15px;
+  margin-top: 9px;
+  font-weight: 900;
+  background: #fff;
+  border: solid 1px #495a6f;
+  border-radius: 11px;
+  margin-bottom: 20px; }
+  .online-teachings .teaching_waiting_open p {
+    padding-bottom: 10px; }
+.online-teachings .teaching_waiting_open_wait {
+  grid-template-columns: 1fr 100px;
+  display: grid; }
+.online-teachings .teaching_waiting_open_right {
+  text-align: right; }
+  .online-teachings .teaching_waiting_open_right img {
+    margin-right: 10px;
+    animation: wheelRotation 6s infinite linear; }
+@keyframes wheelRotation {
+  from {
+    transform: rotate(0deg); }
+  to {
+    transform: rotate(359deg); } }
+.online-teachings .waitMinutes {
+  font-weight: 900;
+  animation: pleaseWaitBlinker 2s linear infinite; }
+@keyframes pleaseWaitBlinker {
+  50% {
+    color: #fff; } }
 .online-teachings a.join_session_main {
   grid-row: 1;
   background: #a95d63;
@@ -2531,6 +2563,23 @@ div.uimob800 .um-account-side li a.current:hover,
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 10px; }
+.online-teachings .container h2 {
+  color: #495a6f; }
+.online-teachings .session_video_title {
+  font-size: 18px;
+  text-align: center; }
+.online-teachings .session_video {
+  display: grid;
+  grid-row-gap: 15px;
+  padding-bottom: 20px; }
+  .online-teachings .session_video iframe {
+    margin: 0 auto 0 auto; }
+.online-teachings .zoom_details {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  grid-row-gap: 10px; }
+  .online-teachings .zoom_details .details_left {
+    font-weight: 900; }
 
 .single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
   display: block;

@@ -7,6 +7,7 @@ add_action( 'init', 'create_ot_group' );
 add_filter( 'rwmb_meta_boxes', 'ot_get_meta_box' );
 add_action("wp_ajax_online_teaching_register", "online_teaching_register");
 add_action("wp_ajax_nopriv_online_teaching_register", "please_login");
+add_action("wp_ajax_session_waiting_open", "session_waiting_open");
 add_action( 'mb_relationships_init', 'mbRelationships');
 add_filter( 'um_shortcode_args_filter', 'umShortcode', 10, 3 );
 add_filter( 'manage_users_columns', 'new_modify_user_table' );
@@ -17,6 +18,7 @@ add_filter( 'manage_ot-attendance_posts_columns' , 'new_modify_attendance_table'
 add_action( 'manage_ot-attendance_posts_custom_column', 'new_modify_attendance_table_row', 10, 2 );
 add_action('save_post','createOnlineCourseSessions');
 add_action('save_post','initAllAttendance');
+add_action( 'delete_post', 'deleteAllObjectRelationships', 10 );
 
 const TS_TMZ = 'Europe/London';
 
@@ -234,7 +236,6 @@ function mbRelationships()
         'from' => [
             'object_type' => 'post',
             'post_type' => 'ot-session',
-            'admin_column' => true,  // THIS!
             'meta_box' => [
                 'title' => 'Session Attendance',
                 'context' => 'normal',
@@ -289,24 +290,6 @@ function mbRelationships()
                 'title' => 'User',
                 'context' => 'normal',
 
-            ],
-        ],
-    ]);
-    // Add User / Session Relationship
-    MB_Relationships_API::register([
-        'id' => 'user_to_session',
-        'from' => [
-            'object_type' => 'user',
-            'meta_box' => [
-                'title' => 'Sessions',
-            ],
-        ],
-        'to' => [
-            'object_type' => 'post',
-            'post_type' => 'ot-session',
-            'meta_box' => [
-                'title' => 'User',
-                'context' => 'normal',
             ],
         ],
     ]);
@@ -439,6 +422,16 @@ function ot_get_meta_box( $meta_boxes ) {
                     'https://www.youtube.com/watch?v=abcd' => 'Video URL',
                 ),
             ),
+            array(
+                'id'              => $prefix . 'zoom_meeting',
+                'name'    => 'Zoom Meeting Details',
+                'type'    => 'text_list',
+                'options' => array(
+                    'https://....'      => 'Join Zoom Meeting URL',
+                    '123456' => 'Meeting ID',
+                    'xxxxx' => 'Passcode',
+                ),
+            ),
         ),
     );
 
@@ -504,7 +497,7 @@ function online_teaching_register() {
 
     // nonce check for an extra layer of security, the function will exit if it fails
     if ( !wp_verify_nonce( $_REQUEST['nonce'], "online_teaching_register_nonce")) {
-        exit("Woof Woof Woof");
+        exit("Can't verify your session.");
     }
 
     $userId = get_current_user_id();
@@ -560,6 +553,83 @@ function please_login() {
     die();
 }
 
+function getSessionWaitingOpenHtml($sessionId,$timeOnly=false)
+{
+
+    if (rwmb_meta('_status', array(), $sessionId) == SESS_STATUS_OPEN) {
+        $session = get_post($sessionId);
+        $html = '<div>'.
+                pll__('The teaching livestream is now open : ').
+                '<a class="join_session_main" href="' . get_permalink($sessionId) . '">' . pll__('Access <i>' . $session->post_title . '</i>') . '</a>
+                </div>';
+        return $html;
+    } else {
+
+        $tmzObj = new DateTimeZone(TS_TMZ);
+        $sessionTime = new DateTime(rwmb_meta('_session_time', array(), $sessionId), $tmzObj);
+        $now = new DateTime('now', $tmzObj);
+        $session = get_post($sessionId);
+
+        // If session start time has passed
+        if(!$timeOnly) {
+            $timeLeftDisplay = '<div class="teaching_waiting_open_wait">';
+            $timeLeftDisplay .= '<div class="teaching_waiting_open_left">';
+            if ($now <= $sessionTime) {
+                $timeLeft = $sessionTime->diff($now, false);
+                $timeLeftDisplay .= '<p>' . $session->post_title . pll__(' starts in ') . '<span class="waitMinutes">' . $timeLeft->format('%i minutes') . '</span></p>';
+                $timeLeftDisplay .= '<div id="session_waiting_open_time" >';
+            }
+        }
+
+        $timeLeftDisplay .= '<div class="pleaseWait">' . pll__('Please wait, the link to access the livestream will appear here shortly...') . '</div>';
+
+        if(!$timeOnly) {
+            $timeLeftDisplay .= '</div>';
+            $timeLeftDisplay .= '</div>';
+            $timeLeftDisplay .= '<div class="teaching_waiting_open_right"><img width="55" src="' . get_stylesheet_directory_uri() . '/assets/images/logo_dharma_wheel_gold.png"/></div>';
+            $timeLeftDisplay .= '</div>';
+        }
+
+        return $timeLeftDisplay;
+
+    }
+    return '';
+}
+
+function session_waiting_open() {
+
+    // nonce check for an extra layer of security, the function will exit if it fails
+    if ( !wp_verify_nonce( $_REQUEST['nonce'], "session_waiting_open_nonce")) {
+        exit("Can't verify your session.");
+    }
+
+    $sessionId = $_REQUEST["session_id"];
+    $result = array();
+
+    if(rwmb_meta('_status',array(),$sessionId) == SESS_STATUS_OPEN) {
+        $result['status'] = "open";
+        $result['message'] = getSessionWaitingOpenHtml($sessionId,false);
+    } else {
+        $result['status'] = "waiting";
+        $result['message'] = getSessionWaitingOpenHtml($sessionId,true);
+    }
+
+    $result['type'] = "success";
+
+
+    // Check if action was fired via Ajax call. If yes, JS code will be triggered, else the user is redirected to the post page
+    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+        $result = json_encode($result);
+        echo $result;
+    }
+    else {
+        header("Location: ".$_SERVER["HTTP_REFERER"]);
+    }
+
+    // don't forget to end your scripts with a die() function - very important
+    die();
+}
+
 // The filter callback function.
 function umShortcode( $args ) {
     if (in_array($args['mode'],array('login','register'))) {
@@ -583,7 +653,8 @@ function pa($a,$b=0,$c=0) {
 }
 
 function new_modify_session_table( $column ) {
-    $column['sess_status'] = ' Status';
+    $column['sess_status'] = 'Status';
+    $column['sess_time'] = 'Session Time';
     return $column;
 }
 
@@ -644,6 +715,9 @@ function new_modify_session_table_row( $column, $sessionId ) {
     switch ($column) {
         case 'sess_status' :
             echo getSessionStatusName(rwmb_meta('_status',array(),$sessionId));
+            break;
+        case 'sess_time' :
+            echo rwmb_meta('_session_time',array(),$sessionId);
             break;
         default:
     }
@@ -770,7 +844,10 @@ function initAllAttendance($sessionId)
             // Create all attendances
             $users = getCourseUsers($courseId);
             foreach ($users as $user) {
-                saveAttendance($user->ID,$sessionId,$courseId,true);
+                // Do not create if attendance already exists
+                if(!getAttendance($user->ID,$sessionId)) {
+                    saveAttendance($user->ID, $sessionId, $courseId, true);
+                }
             }
         }
 
@@ -781,6 +858,13 @@ function getCourseUsers($courseId) {
     return MB_Relationships_API::get_connected( [
         'id'   => 'users_to_course',
         'to' => $courseId,
+    ] );
+}
+
+function getUserCourses($userId) {
+    return MB_Relationships_API::get_connected( [
+        'id'   => 'users_to_course',
+        'from' => $userId,
     ] );
 }
 
@@ -857,11 +941,6 @@ function getCurrentSession($courseId) {
 
     foreach($sessions as $session) {
 
-        /// ENABLE FOR TEST
-//        $session->session_final_status = SESS_STATUS_OPEN;
-//        return $session;
-        ///
-
         $session->session_final_status = SESS_STATUS_OPEN;
 
         $sessionTime = rwmb_meta( '_session_time', null, $session->ID );
@@ -895,9 +974,7 @@ function saveAttendance($userId,$sessionId, $courseId,$create=false) {
     $joinedTime = new DateTime('now',new DateTimeZone(TS_TMZ));
 
     // If user has not joined yet
-    if(!MB_Relationships_API::has($userId,$sessionId,'user_to_session')) {
-        // We create the user/session relationship
-        MB_Relationships_API::add($userId,$sessionId,'user_to_session');
+    if(!getAttendance($userId,$sessionId)) {
 
         // Load the session
         $session = get_post($sessionId);
@@ -988,7 +1065,8 @@ function showSessionInfo($session) {
 }
 
 function getSessionTime($sessionId) {
-    $date = new DateTime(rwmb_meta('_session_time',array(),$sessionId));
+    $tmzObj = new DateTimeZone(TS_TMZ);
+    $date = new DateTime(rwmb_meta('_session_time',array(),$sessionId),$tmzObj);
     return $date->format('H:i');
 }
 
@@ -1049,6 +1127,104 @@ function getGroupGuests($groupId) {
         'id'   => 'att_group_guests_to_user',
         'from' => $groupId,
     ] );
+}
+
+/**
+ * Delete all relationships to an object.
+ *
+ * @param int    $object_id ID of the object metadata is for.
+ * @param string $type      The relationship type.
+ */
+ function deleteAllObjectRelationships( $object_id ) {
+    global $wpdb;
+    $wpdb->query(
+        $wpdb->prepare(
+            "DELETE FROM $wpdb->mb_relationships WHERE (`from`=%d OR `to`=%d)",
+            $object_id,
+            $object_id
+        )
+    );
+}
+
+
+function getAttendance($userId, $sessionId) {
+
+    global $wpdb;
+
+    $attId = $wpdb->get_var(
+        $wpdb->prepare(
+            "
+                SELECT wmr.`to` FROM wp_mb_relationships wmr
+                INNER JOIN wp_mb_relationships wmr2
+                ON wmr.`to` = wmr2.`to`
+                AND wmr.`from`=%d
+                AND wmr.`type`='user_to_attendance'
+                AND wmr2.`from`=%d
+                AND wmr2.`type`='session_to_attendance'            
+            ",
+            $userId,
+            $sessionId
+        )
+    );
+
+    if($attId) {
+        return $attId;
+    }
+
+    return false;
+
+}
+
+function dateSort($a, $b) {
+    return strtotime($a) - strtotime($b);
+}
+
+
+function getSessionDayNb($currentSessionId) {
+    $tmzObj = new DateTimeZone(TS_TMZ);
+
+
+    $course = getSessionCourse($currentSessionId);
+    $sessions = getCourseSessions($course->ID);
+    $dates = array();
+    $datesByDay = array();
+    $currentSessionTimeRaw = rwmb_meta('_session_time',array(),$currentSessionId->ID);
+    $currentSessionTime = new DateTime($currentSessionTimeRaw,$tmzObj);
+    foreach($sessions as $session) {
+        $sessionTime = new DateTime(rwmb_meta('_session_time',array(),$session->ID),$tmzObj);
+        $dates[$sessionTime->format('Y-m-d')][] = rwmb_meta('_session_time',null,$session->ID);
+    }
+//    usort($dates, "dateSort");
+    pa($dates);
+    pa($currentSessionTime->format('Y-m-d'));
+    if(array_key_exists( $currentSessionTime->format('Y-m-d'),$dates)) {
+        $res = array_search($currentSessionTime->format('Y-m-d'),$dates);
+        pa($res   ,1,1);
+    }
+
+}
+
+function getUpcomingTeachingHtml($userId,$nonce) {
+    $courses = getUserCourses($userId);
+    foreach($courses as $course) {
+        $session = getCurrentSession($course->ID);
+        if($session && ($session->session_final_status == SESS_STATUS_WAITING)) {
+
+            $html =  '
+            <div class="teaching_waiting_open" id="session_waiting_open_'.$session->ID.'">'.getSessionWaitingOpenHtml($session->ID,false).'</div>
+            <script type="text/javascript">
+                jQuery( document ).ready(function() {
+                    sessionWaitingOpenRefresh("'.$session->ID.'","'.$nonce.'");
+                });
+            </script>
+            ';
+
+            return $html;
+        }
+    }
+
+    return '';
+
 }
 
 

@@ -6,6 +6,7 @@ if ( !is_user_logged_in() ) {
     exit( wp_redirect( $redirect ) );
 }
 $userId = get_current_user_id();
+$nonce = wp_create_nonce("session_waiting_open_nonce");
 ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
@@ -22,6 +23,7 @@ $userId = get_current_user_id();
                     );
                     $the_query = new WP_Query( $args );
                     ?>
+                    <?php echo getUpcomingTeachingHtml($userId,$nonce); ?>
                     <?php if($the_query->have_posts() ) : ?>
                         <?php while ( $the_query->have_posts() ) : ?>
                             <?php
@@ -46,15 +48,10 @@ $userId = get_current_user_id();
                                 </div>
                                 <div class="teaching_right">
                                     <?php if($registered && $currentSession) : ?>
-                                        <!--  TODO : Handle WAITING and OPEN final statusesWaiting / Refresh Button -->
 <!--                                        <div class="currentSession">-->
                                             <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
-                                            <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Access '.getSessionTime($currentSession->ID).' Teaching'); ?></a>
-                                            <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
-                                                <!--                        TODO : Handle Waiting / Refresh Button -->
-                                                Please wait.... or Refresh
+                                            <a class="join_session_main" href="<?php the_permalink($currentSession->ID); ?>"><?php echo pll__('Access '.getSessionTime($currentSession->ID).' Teaching'); ?></a>
                                             <?php endif; ?>
-<!--                                        </div>-->
 
 
                                     <?php endif; ?>
@@ -70,3 +67,30 @@ $userId = get_current_user_id();
     </div> <!--  END section-blog  -->
 <?php endwhile; ?>
 <?php get_footer(); ?>
+
+<script type="text/javascript">
+    function sessionWaitingOpenRefresh(session_id,nonce) {
+
+        session_id = "<?php echo $currentSession->ID; ?>";
+        nonce = "<?php echo $nonce; ?>";
+        jQuery.ajax({
+            type : "post",
+            dataType : "json",
+            url : myAjax.ajaxurl,
+            data : {action: "session_waiting_open", session_id : session_id, nonce: nonce},
+            success: function(response) {
+
+                if(response.status == "waiting") {
+                    setTimeout( function(){
+                        jQuery("#session_waiting_open_time").html(response.message);
+                        sessionWaitingOpenRefresh(session_id,nonce);
+                    }, 10000 );
+                } else if(response.status == "open")
+                    jQuery("#session_waiting_open_"+session_id).html(response.message);
+                // TODO : Add button BEFORE details and regis
+               // jQuery("#session_waiting_open_"+session_id).html(response.message);
+                }
+
+            });
+        }
+</script>

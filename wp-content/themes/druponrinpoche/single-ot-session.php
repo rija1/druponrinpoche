@@ -4,6 +4,7 @@ $course = getSessionCourse(get_the_ID());
 $userId = get_current_user_id();
 $registeredToCourse = isUserRegisteredToCourse($userId, $course->ID);
 
+// We check if the user is logged in and registered to the course
 if ( !is_user_logged_in() || !$registeredToCourse) {
     $curr = UM()->permalinks()->get_current_url();
     $redirect = esc_url( add_query_arg( 'redirect_to', urlencode_deep( $curr ), um_get_core_page( 'login' ) ) );
@@ -13,6 +14,37 @@ if ( !is_user_logged_in() || !$registeredToCourse) {
 saveAttendance($userId,get_the_ID(),$course->ID);
 
 $youtubeVideos = rwmb_meta('_youtube_lang_url');
+$zoomMeeting = rwmb_meta('_zoom_meeting');
+
+// ROTATE ZOOM USERS - FOR FOUR DHARMAS OF GAMPOPA COURSE (Hard Coded IDS!!!)
+$sessionId = get_the_ID();
+$sessionZoomGroups = array (
+    '15036' => 'odd',
+    '15037' => 'even',
+    '15038' => 'odd',
+    '15039' => 'even',
+    '15040' => 'odd',
+    '15041' => 'even',
+);
+
+if(array_key_exists($sessionId,$sessionZoomGroups)) {
+
+    $thisSessionZoomGroup = $sessionZoomGroups[$sessionId];
+    $showZoom = false;
+
+    //If User
+    if($userId % 2 == 0){
+        if($thisSessionZoomGroup == 'even') {
+            $showZoom = true;
+        }
+    } else{
+        if($thisSessionZoomGroup == 'odd') {
+            $showZoom = true;
+        }
+    }
+}
+// END ROTATE ZOOM USERS
+
 ?>
     <div class="section section-blog online-teachings">
         <div class="container">
@@ -24,23 +56,44 @@ $youtubeVideos = rwmb_meta('_youtube_lang_url');
                     </div>
                     <article class="single-post">
                         <div class="article-text">
-                            <h2><?php the_title(); ?></h2>
-
                             <?php the_content(); ?>
-                            <?php foreach ($youtubeVideos as $youtubeVideo): ?>
+                            <?php if($showZoom): // ROTATE ZOOM USERS ?>
+                            <?php if($zoomMeeting): ?>
+                            <h2>Access Teaching via Zoom</h2>
                                 <?php
-                                $url = $youtubeVideo[1];
-                                preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-                                $youtubeId = $matches[1];
-                                $youtubeWidth = '800px';
-                                $youtubeHeight = '450px';
+                                $zoomMeetingUrl = $zoomMeeting[0];
+                                $zoomMeetingId = $zoomMeeting[1];
+                                $zoomMeetingPasscode = $zoomMeeting[2];
                                 ?>
+                                <div class="zoom_details">
+                                    <div class="details_left"><?php echo pll__(' Join Zoom Meeting'); ?></div><div class="details_right"><a target="_blank" href="<?php echo $zoomMeetingUrl; ?>"><?php echo $zoomMeetingUrl; ?></a></div>
+                                    <div class="details_left"><?php echo pll__(' Meeting ID'); ?></div><div class="details_right"><?php echo $zoomMeetingId; ?></div>
+                                    <div class="details_left"><?php echo pll__(' Passcode'); ?></div><div class="details_right"><?php echo $zoomMeetingPasscode; ?></div>
+                                    </div>
+                                </div>
+                            <?php endif; ?>
+                            <?php endif; ?>
 
-                                <span><?php echo $youtubeVideo[0]; ?></span>
-                                <iframe width="560" height="315"
-                                        src="https://www.youtube.com/embed/<?php echo $youtubeId ?>"
-                                        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>></iframe>
-                            <?php endforeach; ?>
+                            <?php if($youtubeVideos): ?>
+                                <h2>Access Teaching via YouTube</h2>
+                                <?php foreach ($youtubeVideos as $youtubeVideo): ?>
+                                    <?php
+                                    $url = $youtubeVideo[1];
+                                    preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+                                    $youtubeId = $matches[1];
+                                    $youtubeWidth = '800px';
+                                    $youtubeHeight = '450px';
+                                    ?>
+                                    <div class="session_video">
+                                        <div class="session_video_title"><?php echo pll__('With ').$youtubeVideo[0].pll__(' Translation'); ?></div>
+                                        <div class="session_video">
+                                            <iframe width="560" height="315"
+                                                    src="https://www.youtube.com/embed/<?php echo $youtubeId ?>"
+                                                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>></iframe>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div>
                     </article>
                 </div>

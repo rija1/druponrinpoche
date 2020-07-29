@@ -29,7 +29,6 @@ $showSessionInfo = showSessionInfo($currentSession);
                     </div>
                     <div class="registrationStatus registYes" style="<?php echo ($alreadyRegistered && !$showSessionInfo) ? 'display:block;' : 'display:none;' ; ?>">
                         <p><?php echo pll__('You are registered to this course.'); ?></p>
-                        <p><?php echo pll__('A link to the Youtube live teaching video will appear on this page about 15 minutes before each session.'); ?></p>
                     </div>
                     <div class="registrationStatus registNo" style="<?php echo ($alreadyRegistered) ? 'display:none;' : 'display:block;' ; ?>">
                         <?php if($registrationOpen): ?>
@@ -39,17 +38,6 @@ $showSessionInfo = showSessionInfo($currentSession);
                         <?php endif; ?>
                     </div>
 
-                    <?php if($alreadyRegistered && $showSessionInfo) : ?>
-
-                        <div class="currentSession">
-                        <?php if($currentSession->session_final_status == SESS_STATUS_OPEN) : ?>
-                                <a class="join_session_main" href="<?php echo the_permalink($currentSession->ID); ?>"><?php echo pll__('Access '.getSessionTime($currentSession->ID).' Teaching'); ?></a>
-                        <?php elseif($currentSession->session_final_status == SESS_STATUS_WAITING) : ?>
-<!--                        TODO : Handle Waiting / Refresh Button -->
-                            Please refresh this page 30mn before the teaching
-                        <?php endif; ?>
-                        </div>
-                    <?php endif; ?>
                     <article class="single-post">
                         <div class="article-text">
                             <?php the_content(); ?>
