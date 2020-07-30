@@ -85,12 +85,12 @@ if(array_key_exists($sessionId,$sessionZoomGroups)) {
                                     $youtubeHeight = '450px';
                                     ?>
                                     <div class="session_video">
-                                        <div class="session_video_title"><?php echo pll__('With ').$youtubeVideo[0].pll__(' Translation'); ?></div>
-                                        <div class="session_video">
-                                            <iframe width="560" height="315"
-                                                    src="https://www.youtube.com/embed/<?php echo $youtubeId ?>"
-                                                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>></iframe>
-                                        </div>
+<!--                                        <div class="session_video_title">--><?php //echo pll__('With ').$youtubeVideo[0].pll__(' Translation'); ?><!--</div>-->
+                                        <div class="session_video_title"><?php echo pll__('With ').$youtubeVideo[0].pll__(' Translation :'); ?></div>
+                                        <div class="session_video_link"><a target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
+<!--                                            <iframe width="560" height="315"-->
+<!--                                                    src="https://www.youtube.com/embed/--><?php //echo $youtubeId ?><!--"-->
+<!--                                                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>></iframe>-->
                                     </div>
                                 <?php endforeach; ?>
                             <?php endif; ?>

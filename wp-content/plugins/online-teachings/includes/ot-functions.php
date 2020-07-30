@@ -726,7 +726,17 @@ function new_modify_session_table_row( $column, $sessionId ) {
 function new_modify_attendance_table_row( $column, $attendanceId ) {
     switch ($column) {
         case 'att_status' :
-            echo getAttendanceStatusName(rwmb_meta('_attendance_status',array(),$attendanceId));
+            $status = rwmb_meta('_attendance_status',array(),$attendanceId);
+            if($status == ATT_STATUS_NOT_JOINED) {
+                $circle = '<div style="background:red; width:15px; height:15px;float: left;border-radius: 10px;margin: 2px 15px 0 0;"></div>';
+            } elseif($status == ATT_STATUS_JOINED_LATE) {
+                $circle = '<div style="background:yellow; width:15px; height:15px;float: left;border-radius: 10px;margin: 2px 15px 0 0;"></div>';
+            } elseif($status == ATT_STATUS_JOINED_VERYLATE) {
+                $circle = '<div style="background:orange; width:15px; height:15px;float: left;border-radius: 10px;margin: 2px 15px 0 0;"></div>';
+             }elseif($status == ATT_STATUS_JOINED_ONTIME) {
+                $circle = '<div style="background:lawngreen; width:15px; height:15px;float: left;border-radius: 10px;margin: 2px 15px 0 0;"></div>';
+            }
+            echo $circle.getAttendanceStatusName($status);
             break;
         case 'joined_time' :
             echo rwmb_meta('_joined_time',array(),$attendanceId);
@@ -973,8 +983,10 @@ function saveAttendance($userId,$sessionId, $courseId,$create=false) {
 
     $joinedTime = new DateTime('now',new DateTimeZone(TS_TMZ));
 
+    $attendanceId = getAttendance($userId,$sessionId);
+
     // If user has not joined yet
-    if(!getAttendance($userId,$sessionId)) {
+    if(!$attendanceId) {
 
         // Load the session
         $session = get_post($sessionId);
@@ -1004,7 +1016,11 @@ function saveAttendance($userId,$sessionId, $courseId,$create=false) {
         }
 
     } else {    // Now the attendance exists already so we will update it
-        setAttendanceData($joinedTime,$sessionId,$userId,$courseId);
+        $attendanceStatus = rwmb_meta( '_status', null, $attendanceId );
+        // We check the status, if already initialized we leave it otherwise we will update joined time and status
+        if(empty($attendanceStatus)) {
+            setAttendanceData($joinedTime, $sessionId, $userId, $courseId);
+        }
     }
 
 
@@ -1037,22 +1053,17 @@ function setAttendanceData($joinedTime,$sessionId,$userId,$courseId) {
     foreach($userIds as $userId) {
         // We load the attendance
         $attendance = getUserSessionAttendance($userId,$sessionId);
-        // We check the status, if already initialized we leave it otherwise we will update joined time and status
         if($attendance) {
-            $attendanceStatus = rwmb_meta( '_status', null, $attendance->ID );
-            if(empty($attendanceStatus)) {
-                // Set the joined time.
-                rwmb_set_meta( $attendance->ID, '_joined_time', $joinedTime->format('Y-m-d H:i'));
-
-                $sessionTime = rwmb_meta('_session_time',array(),$sessionId);
-                // Depending on the joined time we put the status to on time, late or verylate
-                if ($joinedTime > new DateTime($sessionTime.' + 20 minute',$tmzObj)) {
-                    rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_VERYLATE);
-                } elseif($joinedTime > new DateTime($sessionTime.' + 0 minute',$tmzObj)) {
-                    rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_LATE);
-                } else {
-                    rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_ONTIME);
-                }
+            // Set the joined time.
+            rwmb_set_meta( $attendance->ID, '_joined_time', $joinedTime->format('Y-m-d H:i'));
+            $sessionTime = rwmb_meta('_session_time',array(),$sessionId);
+            // Depending on the joined time we put the status to on time, late or verylate
+            if ($joinedTime > new DateTime($sessionTime.' + 20 minute',$tmzObj)) {
+                rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_VERYLATE);
+            } elseif($joinedTime > new DateTime($sessionTime.' + 0 minute',$tmzObj)) {
+                rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_LATE);
+            } else {
+                rwmb_set_meta( $attendance->ID, '_attendance_status', ATT_STATUS_JOINED_ONTIME);
             }
         }
     }

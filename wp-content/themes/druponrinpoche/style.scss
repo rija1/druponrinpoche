@@ -3645,11 +3645,19 @@ div.uimob800 .um-account-side li a.current:hover,
     }
     .session_video {
         display: grid;
-        grid-row-gap: 15px;
+        //grid-row-gap: 15px;
+        grid-template-columns: 140px 1fr ;
+        grid-column-gap: 30px;
         iframe {
             margin: 0 auto 0 auto;
         }
         padding-bottom: 20px;
+        .session_video_title {
+            text-align: right;
+        }
+        .session_video_link {
+
+        }
     }
     .zoom_details {
         display: grid;
