@@ -2493,8 +2493,7 @@ div.uimob800 .um-account-side li a.current:hover,
   border-radius: 3px;
   color: #ffffff;
   text-align: center;
-  height: 30px;
-  padding-top: 11px;
+  padding: 11px;
   margin-top: 10px; }
 .online-teachings .teaching_waiting_open {
   padding: 15px;
@@ -2990,6 +2989,15 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     grid-template-columns: 1fr;
     grid-row-gap: 15px; }
   .online-teachings .ts_menu {
-    grid-row: 3; } }
+    grid-row: 3; }
+  .online-teachings .teaching_waiting_open_wait {
+    grid-template-columns: 1fr 70px;
+    display: grid; }
+  .online-teachings .zoom_details {
+    grid-template-columns: 1fr; }
+  .online-teachings .session_video {
+    grid-template-columns: 1fr; }
+    .online-teachings .session_video .session_video_title {
+      text-align: left; } }
 
 /*# sourceMappingURL=style.css.map */

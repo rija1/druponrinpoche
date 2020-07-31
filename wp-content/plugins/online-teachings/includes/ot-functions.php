@@ -326,6 +326,7 @@ function mbRelationships()
             'object_type' => 'user',
             'meta_box' => [
                 'title' => 'Host of Groups',
+                'context' => 'normal',
             ],
         ],
     ]);
