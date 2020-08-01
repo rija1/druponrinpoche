@@ -68,6 +68,7 @@ $zoomMeeting = rwmb_meta('_zoom_meeting');
                                 $zoomMeetingId = $zoomMeeting[1];
                                 $zoomMeetingPasscode = $zoomMeeting[2];
                                 ?>
+                            <p>If you are Zoom set up please join us using the details below. Please also use your actual name (Dharma name for monastics) and have your camera turned on when the teaching starts.</p>
                                 <div class="zoom_details">
                                     <div class="details_left"><?php echo pll__(' Join Zoom Meeting'); ?></div><div class="details_right"><a target="_blank" href="<?php echo $zoomMeetingUrl; ?>"><?php echo $zoomMeetingUrl; ?></a></div>
                                     <div class="details_left"><?php echo pll__(' Meeting ID'); ?></div><div class="details_right"><?php echo $zoomMeetingId; ?></div>

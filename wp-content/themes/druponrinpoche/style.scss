@@ -3379,6 +3379,10 @@ div.uimob800 .um-account-side li a.current:hover,
 
 // Tirthika Square
 
+.container .online-teachings h2 {
+    margin: 25px 0 20px !important;
+}
+
 .online-teachings {
     font-family: 'Raleway';
     font-weight: 400;
@@ -3663,8 +3667,11 @@ div.uimob800 .um-account-side li a.current:hover,
         display: grid;
         grid-template-columns: 170px 1fr ;
         grid-row-gap: 10px;
+        padding-top: 10px;
         .details_left {
             font-weight: 900;
+            text-align: right;
+            padding-right: 14px;
         }
 
     }

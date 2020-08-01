@@ -2400,6 +2400,9 @@ div.uimob800 .um-account-side li a.current:hover,
     font-family: "FontAwesome";
     content: '\f078'; }
 
+.container .online-teachings h2 {
+  margin: 25px 0 20px !important; }
+
 .online-teachings {
   font-family: 'Raleway';
   font-weight: 400; }
@@ -2578,9 +2581,12 @@ div.uimob800 .um-account-side li a.current:hover,
 .online-teachings .zoom_details {
   display: grid;
   grid-template-columns: 170px 1fr;
-  grid-row-gap: 10px; }
+  grid-row-gap: 10px;
+  padding-top: 10px; }
   .online-teachings .zoom_details .details_left {
-    font-weight: 900; }
+    font-weight: 900;
+    text-align: right;
+    padding-right: 14px; }
 
 .single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
   display: block;
