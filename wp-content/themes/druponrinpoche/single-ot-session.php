@@ -18,34 +18,34 @@ $zoomMeeting = rwmb_meta('_zoom_meeting');
 
 
 // ROTATE ZOOM USERS - FOR FOUR DHARMAS OF GAMPOPA COURSE (Hard Coded IDS!!!)
-$sessionId = get_the_ID();
-$sessionZoomGroups = array (
-    '15036' => 'odd',
-    '15037' => 'even',
-    '15038' => 'odd',
-    '15039' => 'even',
-    '15040' => 'odd',
-    '15041' => 'even',
-);
-
-$spanishUsers = array();
-
-if(array_key_exists($sessionId,$sessionZoomGroups)) {
-
-    $thisSessionZoomGroup = $sessionZoomGroups[$sessionId];
-    $showZoom = false;
-
-    //If User
-    if($userId % 2 == 0){
-        if($thisSessionZoomGroup == 'even') {
-            $showZoom = true;
-        }
-    } else{
-        if($thisSessionZoomGroup == 'odd') {
-            $showZoom = true;
-        }
-    }
-}
+//$sessionId = get_the_ID();
+//$sessionZoomGroups = array (
+//    '15036' => 'odd',
+//    '15037' => 'even',
+//    '15038' => 'odd',
+//    '15039' => 'even',
+//    '15040' => 'odd',
+//    '15041' => 'even',
+//);
+//
+//$spanishUsers = array();
+//
+//if(array_key_exists($sessionId,$sessionZoomGroups)) {
+//
+//    $thisSessionZoomGroup = $sessionZoomGroups[$sessionId];
+//    $showZoom = false;
+//
+//    //If User
+//    if($userId % 2 == 0){
+//        if($thisSessionZoomGroup == 'even') {
+//            $showZoom = true;
+//        }
+//    } else{
+//        if($thisSessionZoomGroup == 'odd') {
+//            $showZoom = true;
+//        }
+//    }
+//}
 // END ROTATE ZOOM USERS
 
 ?>
