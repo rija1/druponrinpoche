@@ -89,7 +89,7 @@ $zoomMeeting = rwmb_meta('_zoom_meeting');
                                     $youtubeHeight = '450px';
                                     ?>
                                     <div class="session_video">
-                                        <div class="details_left"><?php echo pll__('With ').$youtubeVideo[0]; ?></div>
+                                        <div class="details_left"><?php $youtubeVideo[0]; ?></div>
                                         <div class="details_right"><a target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
                                     </div>
                                 <?php endforeach; ?>
