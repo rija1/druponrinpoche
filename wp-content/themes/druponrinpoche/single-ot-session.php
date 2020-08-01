@@ -60,7 +60,7 @@ $zoomMeeting = rwmb_meta('_zoom_meeting');
                     <article class="single-post">
                         <div class="article-text">
                             <?php the_content(); ?>
-                            <?php if($showZoom): // ROTATE ZOOM USERS ?>
+                            <?php // if($showZoom): // ROTATE ZOOM USERS ?>
                             <?php if($zoomMeeting): ?>
                             <h2>Access Teaching via Zoom</h2>
                                 <?php
@@ -75,7 +75,7 @@ $zoomMeeting = rwmb_meta('_zoom_meeting');
                                     </div>
                                 </div>
                             <?php endif; ?>
-                            <?php endif; ?>
+                            <?php // endif; ?>
 
                             <?php if($youtubeVideos): ?>
                                 <h2>Access Teaching via YouTube</h2>
