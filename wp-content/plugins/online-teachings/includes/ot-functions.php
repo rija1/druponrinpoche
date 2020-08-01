@@ -581,6 +581,9 @@ function getSessionWaitingOpenHtml($sessionId,$timeOnly=false)
         $now = new DateTime('now', $tmzObj);
         $session = get_post($sessionId);
 
+        // TODO : FIXME 
+        $timeOnly = false;
+
         // If session start time has passed
         if(!$timeOnly) {
             $timeLeftDisplay = '<div class="teaching_waiting_open_wait">';
