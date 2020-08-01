@@ -2566,27 +2566,21 @@ div.uimob800 .um-account-side li a.current:hover,
     grid-row-gap: 10px; }
 .online-teachings .container h2 {
   color: #495a6f; }
-.online-teachings .session_video_title {
-  font-size: 18px;
-  text-align: center; }
-.online-teachings .session_video {
+
+.single-ot-session .session_video {
   display: grid;
   grid-template-columns: 140px 1fr;
   grid-column-gap: 30px;
   padding-bottom: 20px; }
-  .online-teachings .session_video iframe {
-    margin: 0 auto 0 auto; }
-  .online-teachings .session_video .session_video_title {
-    text-align: right; }
-.online-teachings .zoom_details {
+.single-ot-session .session.details_left {
+  font-weight: 900;
+  text-align: right;
+  padding-right: 14px; }
+.single-ot-session .zoom_details {
   display: grid;
   grid-template-columns: 170px 1fr;
   grid-row-gap: 10px;
   padding-top: 10px; }
-  .online-teachings .zoom_details .details_left {
-    font-weight: 900;
-    text-align: right;
-    padding-right: 14px; }
 
 .single-online-teaching a.teaching_register, .single-online-teaching a.teaching_unregister {
   display: block;

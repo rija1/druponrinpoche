@@ -89,12 +89,8 @@ $zoomMeeting = rwmb_meta('_zoom_meeting');
                                     $youtubeHeight = '450px';
                                     ?>
                                     <div class="session_video">
-<!--                                        <div class="session_video_title">--><?php //echo pll__('With ').$youtubeVideo[0].pll__(' Translation'); ?><!--</div>-->
-                                        <div class="session_video_title"><?php echo pll__('With ').$youtubeVideo[0].pll__(' Translation :'); ?></div>
-                                        <div class="session_video_link"><a target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
-<!--                                            <iframe width="560" height="315"-->
-<!--                                                    src="https://www.youtube.com/embed/--><?php //echo $youtubeId ?><!--"-->
-<!--                                                    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>></iframe>-->
+                                        <div class="details_left"><?php echo pll__('With ').$youtubeVideo[0]; ?></div>
+                                        <div class="details_right"><a target="_blank" href="<?php echo $url; ?>"><?php echo $url; ?></a></div>
                                     </div>
                                 <?php endforeach; ?>
                             <?php endif; ?>
