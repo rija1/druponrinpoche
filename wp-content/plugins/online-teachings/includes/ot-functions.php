@@ -328,6 +328,11 @@ function mbRelationships()
                 'title' => 'Host of Groups',
                 'context' => 'normal',
             ],
+            'field' => [
+                'query_args' => [
+                    'number' => 200 // This
+                ]
+            ]
         ],
     ]);
 
@@ -347,6 +352,11 @@ function mbRelationships()
             'meta_box' => [
                 'title' => 'Guest of Groups',
             ],
+            'field' => [
+                'query_args' => [
+                    'number' => 200 // This
+                ]
+            ]
         ],
     ]);
 }
