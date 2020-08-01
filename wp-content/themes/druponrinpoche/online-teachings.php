@@ -74,7 +74,7 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
 
                 if(response.status == "waiting") {
                     setTimeout( function(){
-                        jQuery("#session_waiting_open_time").html(response.message);
+                        jQuery("#session_waiting_open_"+session_id).html(response.message);
                         sessionWaitingOpenRefresh(session_id,nonce);
                     }, 10000 );
                 } else if(response.status == "open")
