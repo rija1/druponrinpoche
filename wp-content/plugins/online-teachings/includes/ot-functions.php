@@ -581,7 +581,7 @@ function getSessionWaitingOpenHtml($sessionId,$timeOnly=false)
         $now = new DateTime('now', $tmzObj);
         $session = get_post($sessionId);
 
-        // TODO : FIXME 
+        // TODO : FIXME
         $timeOnly = false;
 
         // If session start time has passed
@@ -595,7 +595,7 @@ function getSessionWaitingOpenHtml($sessionId,$timeOnly=false)
             }
         }
 
-        $timeLeftDisplay .= '<div class="pleaseWait">' . pll__('Please wait, the link to access the livestream will appear here shortly...') . '</div>';
+        $timeLeftDisplay .= '<div class="pleaseWait">' . '<b>' . pll__('Please refresh this page closer to the time.') .'</b>'.pll__(' The link to access the livestream will appear here shortly...') . '</div>';
 
         if(!$timeOnly) {
             $timeLeftDisplay .= '</div>';
@@ -1240,7 +1240,8 @@ function getUpcomingTeachingHtml($userId,$nonce) {
             if($session->session_final_status==SESS_STATUS_WAITING) {
                 $html .= '<script type="text/javascript">
                 jQuery( document ).ready(function() {
-                    sessionWaitingOpenRefresh("' . $session->ID . '","' . $nonce . '");
+                    // TODO : RESTORE WHEN SERVER CAN HANDLE
+                    //sessionWaitingOpenRefresh("' . $session->ID . '","' . $nonce . '");
                 });
                 </script>
                 ';

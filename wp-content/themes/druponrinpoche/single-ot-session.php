@@ -16,6 +16,7 @@ saveAttendance($userId,get_the_ID(),$course->ID);
 $youtubeVideos = rwmb_meta('_youtube_lang_url');
 $zoomMeeting = rwmb_meta('_zoom_meeting');
 
+
 // ROTATE ZOOM USERS - FOR FOUR DHARMAS OF GAMPOPA COURSE (Hard Coded IDS!!!)
 $sessionId = get_the_ID();
 $sessionZoomGroups = array (
@@ -26,6 +27,8 @@ $sessionZoomGroups = array (
     '15040' => 'odd',
     '15041' => 'even',
 );
+
+$spanishUsers = array();
 
 if(array_key_exists($sessionId,$sessionZoomGroups)) {
 
