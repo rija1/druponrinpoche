@@ -60,8 +60,6 @@ $zoomMeeting = rwmb_meta('_zoom_meeting');
                     <article class="single-post">
                         <div class="article-text">
                             <?php the_content(); ?>
-                            <p style="color: #da3535;">If you have the Zoom software installed and ready for use then please try to use it first. If you do not have Zoom set up, or are experiencing internet issues, then it is fine to use Youtube first. It is also fine to switch from one to the other depending on the difficulties you are experiencing.</p>
-                            <p style="color: #da3535;">If our picture disappears in Zoom and someone else is shown instead, this means that we have lost our internet connection altogether and will join the meeting again as soon as it is restored.</p>
                             <?php // if($showZoom): // ROTATE ZOOM USERS ?>
                             <?php if($zoomMeeting): ?>
                             <h2>Access Teaching via Zoom</h2>
