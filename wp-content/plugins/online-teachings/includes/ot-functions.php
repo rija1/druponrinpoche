@@ -49,9 +49,6 @@ const COURSE_STATUS_FINISHED = 2;
 
 function script_enqueuer() {
 
-    // Register the JS file with a unique handle, file location, and an array of dependencies
-    wp_register_script( "online_teaching_script", plugin_dir_url(__FILE__).'/includes/js/online_teaching.js', array('jquery') );
-
     // localize the script to your domain name, so that you can reference the url to admin-ajax.php file easily
     wp_localize_script( 'online_teaching_script', 'myAjax', array( 'ajaxurl' => admin_url( 'admin-ajax.php' )));
 

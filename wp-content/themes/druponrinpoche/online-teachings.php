@@ -62,6 +62,8 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
                             </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>
+                    <?php else: ?>
+                        <p><?php echo pll__('There is no upcoming online course.'); ?></p>
                    <?php endif; ?>
                 </div>
             </div>
