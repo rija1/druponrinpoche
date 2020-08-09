@@ -18,16 +18,26 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
                     <h1><?php echo pll__('Online Courses'); ?></h1>
                     <?php
                     $args = array(
-                        'post_type'=> 'online-course',
-                        'order'    => 'ASC'
+                        'post_type'  => 'online-course',
+                        'order'    => 'ASC',
+                        'meta_query' => array(
+                            array(
+                                'key'     => '_status',
+                                'value'   => COURSE_REGIS_STATUS_COMPLETE,
+                                'compare' => '!='
+                            )
+                        )
                     );
                     $the_query = new WP_Query( $args );
+                    // pa(get_class_methods($the_query));
+   
                     ?>
                     <?php echo getUpcomingTeachingHtml($userId,$nonce); ?>
                     <?php if($the_query->have_posts() ) : ?>
                         <?php while ( $the_query->have_posts() ) : ?>
                             <?php
                             $the_query->the_post();
+                            // $the_query->next_post();
                             $dates = getCourseFromToDates(get_the_ID());
                             $registered = MB_Relationships_API::has( $userId, get_the_ID(), 'users_to_course' );
                             $registrationOpen = isRegistrationOpen();

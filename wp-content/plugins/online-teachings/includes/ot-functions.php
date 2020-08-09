@@ -4,6 +4,7 @@ add_action( 'init', 'create_ot_course' );
 add_action( 'init', 'create_ot_session' );
 add_action( 'init', 'create_ot_attendance' );
 add_action( 'init', 'create_ot_group' );
+add_action( 'init', 'create_ot_course_regis' );
 add_filter( 'rwmb_meta_boxes', 'ot_get_meta_box' );
 add_action("wp_ajax_online_teaching_register", "online_teaching_register");
 add_action("wp_ajax_nopriv_online_teaching_register", "please_login");
@@ -36,6 +37,15 @@ const ATT_STATUS_PART_OF_GROUP = 4;
 
 const ATT_GROUP_HOST_TO_USER = 'att_group_host_to_user';
 const ATT_GROUP_GUESTS_TO_USER = 'att_group_guests_to_user';
+
+const COURSE_REGIS_STATUS_NOT_ATTENDED = 0;
+const COURSE_REGIS_STATUS_INCOMPLETE = 1;
+const COURSE_REGIS_STATUS_COMPLETE = 2;
+
+const COURSE_STATUS_NOT_STARTED = 0;
+const COURSE_STATUS_STARTED = 1;
+const COURSE_STATUS_FINISHED = 2;
+
 
 function script_enqueuer() {
 
@@ -83,7 +93,37 @@ function create_ot_course() {
     );
 //    flush_rewrite_rules();
 }
-
+/**
+ * Create Course Teaching Session Custom Post Type
+ */
+function create_ot_course_regis() {
+    register_post_type( 'ot-course-regis',
+        array(
+            'labels' => array(
+                'name' => 'Course Registration',
+                'singular_name' => 'Course Registration',
+                'add_new' => 'Add New',
+                'add_new_item' => 'Add New Course Registration',
+                'edit' => 'Edit',
+                'edit_item' => 'Edit Course Registration',
+                'new_item' => 'New Course Registration',
+                'view' => 'View',
+                'view_item' => 'View Course Registration',
+                'search_items' => 'Search Course Registration',
+                'not_found' => 'No Course Registration found',
+                'not_found_in_trash' => 'No Course Registration found in Trash',
+                'parent' => 'Parent Course Registration'
+            ),
+            'show_in_menu' => 'edit.php?post_type=online-course',
+            'public' => true,
+            'publicly_queryable' => true,
+            'menu_position' => 1,
+            'supports' => array( 'custom-fields' ),
+            'taxonomies' => array( '' ),
+            'has_archive' => true,                                                
+        )
+    );
+}
 
 /**
  * Create Course Teaching Session Custom Post Type
@@ -109,14 +149,15 @@ function create_ot_session() {
             'show_in_menu' => 'edit.php?post_type=online-course',
             'public' => true,
             'publicly_queryable' => true,
-            'menu_position' => 15,
+            'menu_position' => 18,
             'supports' => array( 'title', 'editor', 'comments', 'thumbnail', 'custom-fields' ),
             'taxonomies' => array( '' ),
             'has_archive' => true,
         )
     );
 
-}/**
+}
+/**
  * Create Course Teaching Session Custom Post Type
  */
 function create_ot_attendance() {
@@ -177,9 +218,9 @@ function create_ot_group() {
             'has_archive' => true,
         )
     );
-//    flush_rewrite_rules();
 }
 
+/**
 /**
  * Add relationships between different custom post types
  */
@@ -289,7 +330,6 @@ function mbRelationships()
             'meta_box' => [
                 'title' => 'User',
                 'context' => 'normal',
-
             ],
         ],
     ]);
@@ -336,6 +376,31 @@ function mbRelationships()
         ],
     ]);
 
+    // Add Att Course Regis / Guest User Relationship
+    MB_Relationships_API::register([
+        'id' => 'course_regis_to_guests',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-course-regis',
+            'meta_box' => [
+                'title' => 'Viewer Guests',
+                'context' => 'normal',
+                // 'priority' => '1',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'user',
+            'meta_box' => [
+                'title' => 'Guest of Course Registrations',
+            ],
+            'field' => [
+                'query_args' => [
+                    'number' => 200 // This
+                ]
+            ]
+        ],
+    ]);
+
     // Add Att Group / Guest User Relationship
     MB_Relationships_API::register([
         'id' => 'att_group_guests_to_user',
@@ -359,6 +424,49 @@ function mbRelationships()
             ]
         ],
     ]);
+
+    // Add Course Registration / Course
+    MB_Relationships_API::register([
+        'id' => 'course_regis_to_course',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-course-regis',
+            'meta_box' => [
+                'title' => 'Course',
+                'context' => 'normal',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'post',
+            'post_type' => 'online-course',
+        ],
+    ]);
+
+    // Add Course Registration / User
+    MB_Relationships_API::register([
+        'id' => 'course_regis_to_user',
+        'from' => [
+            'object_type' => 'post',
+            'post_type' => 'ot-course-regis',
+            'meta_box' => [
+                'title' => 'User',
+                'context' => 'normal',
+                // 'priority' => '99',
+            ],
+        ],
+        'to' => [
+            'object_type' => 'user',
+            'meta_box' => [
+                'title' => 'Course Registrations',
+                'context' => 'normal',
+            ],
+            'field' => [
+                'query_args' => [
+                    'number' => 2000 // This
+                ]
+            ]
+        ],
+    ]);
 }
 /**
  * Add Meta Boxes
@@ -376,6 +484,19 @@ function ot_get_meta_box( $meta_boxes ) {
         'autosave' => 'false',
         'fields' => array(
             array(
+                'name'            => 'Course Status',
+                'id'              => $prefix . 'status',
+                'type'            => 'select',
+                // Array of 'value' => 'Label' pairs
+                'options'         => array(
+                    array( 'value' => COURSE_STATUS_NOT_STARTED, 'label' => 'Not Started' ),
+                    array( 'value' => COURSE_STATUS_STARTED, 'label' => 'Started' ),
+                    array( 'value' => COURSE_STATUS_FINISHED, 'label' => 'Finished' ),
+                ),
+                // Placeholder text
+                'placeholder'     => 'Select an Item',
+            ),
+            array(
                 'id' => $prefix . 'short_name',
                 'type' => 'text',
                 'name' => esc_html__( 'Short name', 'ot_txtd' ),
@@ -390,6 +511,47 @@ function ot_get_meta_box( $meta_boxes ) {
                 'type' => 'datetime',
                 'clone' => 'true',
                 'name' => esc_html__( 'Session Times (UK Time)', 'ot_txtd' ),
+            ),
+        ),
+    );
+
+    $meta_boxes[] = array(
+        'id' => 'ot-course-regis-info',
+        'title' => esc_html__( 'Course Registration Info' ),
+        'post_types' => array('ot-course-regis'),
+        'context' => 'after_editor',
+        'priority' => 'default',
+        'autosave' => 'false',
+        'fields' => array(
+            array(
+                'id' => $prefix . 'registration_time',
+                'type' => 'datetime',
+                'name' => esc_html__( 'Registration Time (UK Time)', 'ot_txtd' ),
+            ),
+            array(
+                'name'            => 'Status',
+                'id'              => $prefix . 'status',
+                'type'            => 'select',
+                // Array of 'value' => 'Label' pairs
+                'options'         => array(
+                    array( 'value' => COURSE_REGIS_STATUS_NOT_ATTENDED, 'label' => 'Course Not Attended' ),
+                    array( 'value' => COURSE_REGIS_STATUS_INCOMPLETE, 'label' => 'Course Incomplete' ),
+                    array( 'value' => COURSE_REGIS_STATUS_COMPLETE, 'label' => 'Course Complete' ),
+                ),
+                // Placeholder text
+                'placeholder'     => 'Select an Item',
+            ),
+            array(
+                'name'            => 'Is Group Viewing Host',
+                'id'              => $prefix . 'is_group_viewing_host',
+                'type'            => 'select',
+                // Array of 'value' => 'Label' pairs
+                'options'         => array(
+                    array( 'value' => 0, 'label' => 'No' ),
+                    array( 'value' => 1, 'label' => 'Yes' ),
+                ),
+                // Placeholder text
+                'placeholder'     => 'Select an Item',
             ),
         ),
     );
@@ -989,7 +1151,6 @@ function getCurrentSession($courseId) {
         }
 
     }
-
     return false;
 }
 

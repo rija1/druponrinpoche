@@ -29,3 +29,5 @@ dumps/
 /sitemap.xml.gz
 
 *.scssc
+.vscode/settings.json
+.vscode/launch.json
