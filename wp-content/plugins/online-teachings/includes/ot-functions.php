@@ -13,6 +13,8 @@ add_action( 'mb_relationships_init', 'mbRelationships');
 add_filter( 'um_shortcode_args_filter', 'umShortcode', 10, 3 );
 add_filter( 'manage_users_columns', 'new_modify_user_table' );
 add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
+add_filter( 'manage_ot-course-regis_posts_columns' , 'new_modify_course_regis_table');
+add_action( 'manage_ot-course-regis_posts_custom_column', 'new_modify_course_regis_table_row', 10, 2 );
 add_filter( 'manage_ot-session_posts_columns' , 'new_modify_session_table');
 add_action( 'manage_ot-session_posts_custom_column', 'new_modify_session_table_row', 10, 2 );
 add_filter( 'manage_ot-attendance_posts_columns' , 'new_modify_attendance_table');
@@ -113,7 +115,7 @@ function create_ot_course_regis() {
             ),
             'show_in_menu' => 'edit.php?post_type=online-course',
             'public' => true,
-            'publicly_queryable' => true,
+            'publicly_queryable' => false,
             'menu_position' => 1,
             'supports' => array( 'custom-fields' ),
             'taxonomies' => array( '' ),
@@ -177,7 +179,7 @@ function create_ot_attendance() {
             ),
             'show_in_menu' => 'edit.php?post_type=online-course',
             'public' => true,
-            'publicly_queryable' => true,
+            'publicly_queryable' => false,
             'menu_position' => 35,
             'supports' => array( 'title','custom-fields' ),
             'taxonomies' => array( '' ),
@@ -208,7 +210,7 @@ function create_ot_group() {
             ),
             'show_in_menu' => 'edit.php?post_type=online-course',
             'public' => true,
-            'publicly_queryable' => true,
+            'publicly_queryable' => false,
             'menu_position' => 15,
             'supports' => array( 'title','custom-fields' ),
             'taxonomies' => array( '' ),
@@ -831,6 +833,16 @@ function new_modify_session_table( $column ) {
     return $column;
 }
 
+function new_modify_course_regis_table( $column ) {
+    $column['creg_name'] = 'Name';
+    $column['creg_course'] = 'Course';
+    $column['creg_regis_date'] = 'Registration Date';
+    $column['creg_status'] = 'Status';
+    unset ($column['title']);
+    unset ($column['date']);
+    return $column;
+}
+
 function new_modify_attendance_table( $column ) {
     $column['att_status'] = 'Status';
     $column['joined_time'] = 'Joined Time';
@@ -881,6 +893,24 @@ function getAttendanceStatusName($status) {
         default:
             return 'Not Joined';
             break;
+    }
+}
+
+function new_modify_course_regis_table_row( $column, $courseregId ) {
+    switch ($column) {
+        case 'creg_name' :
+            // echo getSessionStatusName(rwmb_meta('_status',array(),$courseregId));
+            break;
+        case 'creg_course' :
+            // echo rwmb_meta('_session_time',array(),$courseregId);
+            break;
+        case 'creg_regis_date' :
+            // echo getSessionStatusName(rwmb_meta('_status',array(),$courseregId));
+            break;
+        case 'creg_status' :
+            // echo rwmb_meta('_session_time',array(),$courseregId);
+            break;
+        default:
     }
 }
 
