@@ -48,7 +48,6 @@ const COURSE_STATUS_NOT_STARTED = 0;
 const COURSE_STATUS_STARTED = 1;
 const COURSE_STATUS_FINISHED = 2;
 
-
 function script_enqueuer() {
 
     // localize the script to your domain name, so that you can reference the url to admin-ajax.php file easily
@@ -116,6 +115,7 @@ function create_ot_course_regis() {
             'show_in_menu' => 'edit.php?post_type=online-course',
             'public' => true,
             'publicly_queryable' => false,
+            'exclude_from_search' => true,
             'menu_position' => 1,
             'supports' => array( 'custom-fields' ),
             'taxonomies' => array( '' ),
@@ -180,6 +180,7 @@ function create_ot_attendance() {
             'show_in_menu' => 'edit.php?post_type=online-course',
             'public' => true,
             'publicly_queryable' => false,
+            'exclude_from_search' => true,
             'menu_position' => 35,
             'supports' => array( 'title','custom-fields' ),
             'taxonomies' => array( '' ),
@@ -211,6 +212,7 @@ function create_ot_group() {
             'show_in_menu' => 'edit.php?post_type=online-course',
             'public' => true,
             'publicly_queryable' => false,
+            'exclude_from_search' => true,
             'menu_position' => 15,
             'supports' => array( 'title','custom-fields' ),
             'taxonomies' => array( '' ),
@@ -838,8 +840,8 @@ function new_modify_course_regis_table( $column ) {
     $column['creg_course'] = 'Course';
     $column['creg_regis_date'] = 'Registration Date';
     $column['creg_status'] = 'Status';
-    unset ($column['title']);
-    unset ($column['date']);
+    // unset ($column['title']);
+    // unset ($column['date']);
     return $column;
 }
 
@@ -896,19 +898,35 @@ function getAttendanceStatusName($status) {
     }
 }
 
+function getCourseRegisStatusName($status) {
+    switch($status) {
+        case COURSE_REGIS_STATUS_NOT_ATTENDED:
+            return 'Not Attended';
+            break;
+        case COURSE_REGIS_STATUS_INCOMPLETE:
+            return 'Incomplete';
+            break;
+        case COURSE_REGIS_STATUS_COMPLETE:
+            return 'Complete';
+            break;
+    }
+}
+
 function new_modify_course_regis_table_row( $column, $courseregId ) {
     switch ($column) {
         case 'creg_name' :
-            // echo getSessionStatusName(rwmb_meta('_status',array(),$courseregId));
+            $user = getCourseRegisUser($courseregId);
+            echo ($user) ? $user->data->display_name : '';
             break;
         case 'creg_course' :
-            // echo rwmb_meta('_session_time',array(),$courseregId);
+            $courseId = getCourseRegisCourse($courseregId);
+            echo get_the_title($courseId);
             break;
         case 'creg_regis_date' :
-            // echo getSessionStatusName(rwmb_meta('_status',array(),$courseregId));
+            echo rwmb_meta('_registration_time',array(),$courseregId);
             break;
         case 'creg_status' :
-            // echo rwmb_meta('_session_time',array(),$courseregId);
+            echo getCourseRegisStatusName(rwmb_meta('_status',array(),$courseregId));
             break;
         default:
     }
@@ -1098,6 +1116,29 @@ function getSessionCourse($sessionId) {
     }
     return false;
 }
+
+function getCourseRegisCourse($regisId) {
+    $courses = MB_Relationships_API::get_connected( [
+        'id'   => 'course_regis_to_course',
+        'from' => $regisId,
+    ] );
+    if(is_array($courses) && !empty($courses)) {
+        return $courses[0];
+    }
+    return false;
+}
+
+function getCourseRegisUser($regisId) {
+    $users = MB_Relationships_API::get_connected( [
+        'id'   => 'course_regis_to_user',
+        'from' => $regisId,
+    ] );
+    if(is_array($users) && !empty($users)) {
+        return $users[0];
+    }
+    return false;
+}
+
 
 function getCourseAttendance($courseId) {
     return MB_Relationships_API::get_connected( [

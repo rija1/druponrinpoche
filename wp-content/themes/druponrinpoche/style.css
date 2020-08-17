@@ -2777,6 +2777,13 @@ a.view_full_schedule {
   padding: 5px 9px 5px 9px;
 }
 
+a.gold_button {
+  display: block;
+  color: #fff;
+  background: #bb9b25;
+  padding: 5px 9px 5px 9px;
+}
+
 .page-id-1581 .container .single-post h2 {
   margin: 45px 0 35px 0 !important;
 }
@@ -3491,6 +3498,26 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
   -ms-transition: all .3s ease;
   -o-transition: all .3s ease;
   transition: all .3s ease;
+}
+
+.error404 h1 {
+  font: 50px "Roboto Slab";
+  text-align: center;
+}
+
+.error404 .article-text {
+  text-align: center;
+}
+
+.error404 .gold_button {
+  margin: 0 auto 0 auto;
+  padding: 10px;
+  width: 200px;
+}
+
+.error404 .gold_button:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 @media only screen and (max-width: 810px) {

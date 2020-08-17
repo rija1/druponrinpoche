@@ -31,3 +31,4 @@ dumps/
 *.scssc
 .vscode/settings.json
 .vscode/launch.json
+wp-content/plugins/elastic-email-sender/api/error_log.php

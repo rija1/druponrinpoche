@@ -1,20 +1,24 @@
 <?php
 /**
- * The template for displaying page NOT FOUND.
  *
  * @package Onsen
  */
- get_header(); ?>
-<section class="section section-page-title" <?php if(get_theme_mod('dkr_blog_image')) { ?> style="background-image: url('<?php echo esc_url(get_theme_mod('dkr_blog_image')); ?>')"  <?php } ?>>
-	<div class="overlay">
-		<div class="container">
-			<div class="section-title">
-				<div class="gutter">
-					<h4><?php _e( 'Not found', 'dkr' ); ?></h4>
-					<p><?php _e( 'Sorry, but you are looking for something that isn\'t here.', 'dkr' ); ?></p>
-				</div>
-			</div>
-		</div> <!--  END container  -->
-	</div> <!--  END overlay  -->
+ get_header();
+?>
+<section class="section section-page-title">
 </section> <!--  END section-page-title  -->
+<div class="section section-blog">
+	<div class="container">
+		<div class="inner-page-container">
+				<article class="single-post">
+					<div class="article-text">
+						<h1><?php pll_e('Page Not Found'); ?></h1>
+						<h2><?php pll_e("The page you are looking for doesn't exist."); ?></h2>
+						<a class="gold_button" href="<?php echo get_home_url()?>"><span><?php pll_e('Return to the homepage');?></span></a>
+<!--                            <p class="tags">--><?php //the_tags(); ?><!--</p>-->
+					</div>
+				</article>
+		</div>
+	</div> <!--  END container  -->
+</div> <!--  END section-blog  -->
 <?php get_footer(); ?>
