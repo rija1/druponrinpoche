@@ -41,13 +41,63 @@ $showSessionInfo = showSessionInfo($currentSession);
                     <article class="single-post">
                         <div class="article-text">
                             <?php the_content(); ?>
-
+                            
                             <a style="display:<?php echo ($alreadyRegistered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
                                 <span><?php echo pll__('Unregister from this course'); ?></span>
                             </a>
-                            <a style="display:<?php echo ($alreadyRegistered) ? 'none' : 'block' ; ?>;" class="teaching_register teaching_reg_action" href="<?php echo $regLink; ?>">
-                                <span><?php echo pll__('Register to this course'); ?></span>
-                            </a>
+                            <?php if(!$alreadyRegistered): ?>
+                                <div class="course_registration um-form um">
+                                    <form>
+                                        <h3>Course Registration</h3>        
+                                        <div id="attend_all_sessions" class="um-field um-field-checkbox um-field-type_checkbox">
+                                            <div class="um-field-area">
+                                                <label class="um-field-checkbox">
+                                                    <input type="checkbox" name="attent_all_sessions[]" value="I confirm that I can attend all sessions for this course.">
+                                                    <span class="um-field-checkbox-state"><i class="um-icon-android-checkbox-outline-blank"></i></span>
+                                                    <span class="um-field-checkbox-option">I confirm that I can attend all sessions for this course, unless in case of emergency or the like.</span>
+                                                </label>
+                                                <div class="um-clear"></div>
+                                            </div>
+                                        </div>
+
+                                        <div id="is_group_viewing_host" class="um-field um-field-checkbox um-field-type_checkbox">
+                                            <div class="um-field-area">
+                                                <label class="um-field-checkbox">
+                                                    <input type="checkbox" name="attent_all_sessions[]" value="I will host a group viewing. (Only your account will be used to join the Zoom meeting)">
+                                                    <span class="um-field-checkbox-state"><i class="um-icon-android-checkbox-outline-blank"></i></span>
+                                                    <span class="um-field-checkbox-option">I will host a group viewing, meaning that other Tirthika Square members will view the teaching with me, all using a single account.</span>
+                                                </label>
+                                                <div class="um-clear"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="group_viewing_fields">
+                                            <span><?php echo pll__('Participants details (please use the e-mail address they have registered a Tirthika Square account with)'); ?></span>
+                                            <div class="group_viewing_participants">
+                                            <div class="group_viewing_participant">
+                                                <span><?php echo pll__('Participant 1:'); ?></span>
+                                                <div class="course_regi_part_field_lbl"><?php echo pll__('Email'); ?></div>
+                                                <div class="course_regi_part_field_input"><input type="text" name="group_guest_email_[1]" id="group_guest_email_1" value=""></div>
+                                            </div>
+                                                <input type="button" value="<?php echo pll__('Add More'); ?>" />
+                                            </div>
+                                        </div>
+
+                                        <div class="group_viewing_participant_tpl">
+                                            <div class="group_viewing_participant">
+                                                <span><?php echo pll__('Participant [rplnb]:'); ?></span>
+                                                <div class="course_regi_part_field_lbl"><?php echo pll__('Email'); ?></div>
+                                                <div class="course_regi_part_field_input"><input type="text" name="group_guest_email_[[rplnb]]" id="group_guest_email_[rplnb]" value=""></div>
+                                            </div>
+                                        </div>
+                                            
+                                        <a class="teaching_register teaching_reg_action" href="<?php echo $regLink; ?>">
+                                        <span><?php echo pll__('Register to this course'); ?></span>
+                                        </a>
+                                    </form>
+                                </div>
+                                
+                            <?php endif; ?>
 
                             <div id="modal_register" class="modal">
                                 <div class="modal_confirm">

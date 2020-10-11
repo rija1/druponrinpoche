@@ -135,6 +135,29 @@ function um_submit_form_errors_hook( $args ) {
 		 */
 		do_action( 'um_submit_form_errors_hook__registration', $args );
 
+	} elseif ( $mode == 'profile' ) {
+
+		/**
+		 * UM hook
+		 *
+		 * @type action
+		 * @title um_submit_form_errors_hook__registration
+		 * @description Submit registration form validation
+		 * @input_vars
+		 * [{"var":"$args","type":"array","desc":"Form Arguments"}]
+		 * @change_log
+		 * ["Since: 2.0"]
+		 * @usage add_action( 'um_submit_form_errors_hook__registration', 'function_name', 10, 1 );
+		 * @example
+		 * <?php
+		 * add_action( 'um_submit_form_errors_hook__profile', 'my_submit_form_errors_hook__profile', 10, 1 );
+		 * function my_submit_form_errors_registration( $args ) {
+		 *     // your code here
+		 * }
+		 * ?>
+		 */
+		do_action( 'um_submit_form_errors_hook__profile', $args );
+
 	}
 
 	/**
@@ -523,10 +546,8 @@ function um_submit_form_errors_hook_( $args ) {
 					}
 				}
 
-				$profile_show_html_bio = UM()->options()->get( 'profile_show_html_bio' );
-
-				if ( $profile_show_html_bio == 1 && $key !== 'description' ) {
-					if ( isset( $array['html'] ) && $array['html'] == 0 ) {
+				if ( isset( $array['type'] ) && $array['type'] == 'textarea' && UM()->profile()->get_show_bio_key( $args ) !== $key ) {
+					if ( ! isset( $array['html'] ) || $array['html'] == 0 ) {
 						if ( wp_strip_all_tags( $args[ $key ] ) != trim( $args[ $key ] ) ) {
 							UM()->form()->add_error( $key, __( 'You can not use HTML tags here', 'ultimate-member' ) );
 						}
@@ -535,7 +556,7 @@ function um_submit_form_errors_hook_( $args ) {
 
 				if ( isset( $array['force_good_pass'] ) && $array['force_good_pass'] == 1 ) {
 					if ( ! UM()->validation()->strong_pass( $args[ $key ] ) ) {
-						UM()->form()->add_error( $key, __('Your password must contain at least one lowercase letter, one capital letter and one number', 'ultimate-member' ) );
+						UM()->form()->add_error( $key, __( 'Your password must contain at least one lowercase letter, one capital letter and one number', 'ultimate-member' ) );
 					}
 				}
 

@@ -367,18 +367,45 @@ function um_user_edit_profile( $args ) {
 		$to_update[ $description_key ] = $args['submitted'][ $description_key ];
 	}
 
-	if ( ! empty( $args['submitted']['role'] ) ) {
-		global $wp_roles;
-		$role_keys = array_map( function( $item ) {
-			return 'um_' . $item;
-		}, get_option( 'um_roles' ) );
-		$exclude_roles = array_diff( array_keys( $wp_roles->roles ), array_merge( $role_keys, array( 'subscriber' ) ) );
 
-		if ( ! in_array( $args['submitted']['role'], $exclude_roles ) ) {
-			$to_update['role'] = $args['submitted']['role'];
+	// Secure selected role
+	if ( is_admin() ) {
+
+		if ( ! empty( $args['submitted']['role'] ) ) {
+			global $wp_roles;
+			$role_keys = array_map( function( $item ) {
+				return 'um_' . $item;
+			}, get_option( 'um_roles' ) );
+			$exclude_roles = array_diff( array_keys( $wp_roles->roles ), array_merge( $role_keys, array( 'subscriber' ) ) );
+
+			if ( ! in_array( $args['submitted']['role'], $exclude_roles ) ) {
+				$to_update['role'] = $args['submitted']['role'];
+			}
+
+			$args['roles_before_upgrade'] = UM()->roles()->get_all_user_roles( $user_id );
 		}
 
-		$args['roles_before_upgrade'] = UM()->roles()->get_all_user_roles( $user_id );
+	} else {
+
+		if ( ( isset( $fields['role'] ) && $fields['role']['editable'] != 0 && um_can_view_field( $fields['role'] ) ) ||
+		     ( isset( $fields['role_select'] ) && $fields['role_select']['editable'] != 0 && um_can_view_field( $fields['role_select'] ) ) ||
+		     ( isset( $fields['role_radio'] ) ) && $fields['role_radio']['editable'] != 0 && um_can_view_field( $fields['role_radio'] ) ) {
+
+			if ( ! empty( $args['submitted']['role'] ) ) {
+				global $wp_roles;
+				$role_keys = array_map( function( $item ) {
+					return 'um_' . $item;
+				}, get_option( 'um_roles' ) );
+				$exclude_roles = array_diff( array_keys( $wp_roles->roles ), array_merge( $role_keys, array( 'subscriber' ) ) );
+
+				if ( ! in_array( $args['submitted']['role'], $exclude_roles ) ) {
+					$to_update['role'] = $args['submitted']['role'];
+				}
+
+				$args['roles_before_upgrade'] = UM()->roles()->get_all_user_roles( $user_id );
+			}
+		}
+
 	}
 
 	/**
@@ -537,6 +564,19 @@ function um_user_edit_profile( $args ) {
 add_action( 'um_user_edit_profile', 'um_user_edit_profile', 10 );
 
 
+/**
+ * @param array $post_form
+ */
+function um_profile_validate_nonce( $post_form ) {
+	$user_id = isset( $post_form['user_id'] ) ? $post_form['user_id'] : '';
+	$nonce = isset( $post_form['profile_nonce'] ) ? $post_form['profile_nonce'] : '';
+	if ( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'um-profile-nonce' . $user_id ) ) {
+		wp_die( __( 'This is not possible for security reasons.', 'ultimate-member' ) );
+	}
+}
+add_action( 'um_submit_form_errors_hook__profile', 'um_profile_validate_nonce', 10, 1 );
+
+
 add_filter( 'um_user_pre_updating_files_array', array( UM()->validation(), 'validate_files' ), 10, 1 );
 add_filter( 'um_before_save_filter_submitted', array( UM()->validation(), 'validate_fields_values' ), 10, 2 );
 
@@ -548,7 +588,7 @@ add_filter( 'um_before_save_filter_submitted', array( UM()->validation(), 'valid
  * @param $to_update
  */
 function um_restore_default_roles( $user_id, $args, $to_update ) {
-	if ( ! empty( $args['submitted']['role'] ) ) {
+	if ( ! empty( $args['submitted']['role'] ) && ! empty( $to_update['role'] ) ) {
 		$wp_user = new WP_User( $user_id );
 
 		$role_keys = array_map( function( $item ) {
@@ -581,6 +621,7 @@ function um_editing_user_id_input( $args ) {
 	if ( UM()->fields()->editing == 1 && UM()->fields()->set_mode == 'profile' && UM()->user()->target_id ) { ?>
 
 		<input type="hidden" name="user_id" id="user_id" value="<?php echo esc_attr( UM()->user()->target_id ); ?>" />
+		<input type="hidden" name="profile_nonce" id="profile_nonce" value="<?php echo esc_attr( wp_create_nonce( 'um-profile-nonce' . UM()->user()->target_id ) ); ?>" />
 
 	<?php }
 }
@@ -608,8 +649,12 @@ if ( !function_exists( 'um_profile_remove_wpseo' ) ) {
 			/* Yoast SEO 14.1 */
 			remove_all_filters( 'wpseo_head' );
 
-			if( ! has_action( 'wp_head', '_wp_render_title_tag' ) ){
+			/* Restore title and canonical if broken */
+			if ( ! has_action( 'wp_head', '_wp_render_title_tag' ) ) {
 				add_action( 'wp_head', '_wp_render_title_tag', 18 );
+			}
+			if ( ! has_action( 'wp_head', 'rel_canonical' ) ) {
+				add_action( 'wp_head', 'rel_canonical', 18 );
 			}
 		}
 	}
@@ -619,8 +664,8 @@ add_action( 'get_header', 'um_profile_remove_wpseo', 8 );
 
 
 /**
- * Meta description
- * 
+ * The profile page SEO tags
+ *
  * @see https://ogp.me/ - The Open Graph protocol
  * @see https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary - The Twitter Summary card
  * @see https://schema.org/Person - The schema.org Person schema
@@ -629,6 +674,20 @@ function um_profile_dynamic_meta_desc() {
 	if ( um_is_core_page( 'user' ) && um_get_requested_user() ) {
 
 		$user_id = um_get_requested_user();
+
+		$privacy = get_user_meta( $user_id, 'profile_privacy', true );
+		if ( $privacy == __( 'Only me', 'ultimate-member' ) || $privacy == 'Only me' ) {
+			return;
+		}
+
+		$noindex = get_user_meta( $user_id, 'profile_noindex', true );
+		if ( ! empty( $noindex ) ) { ?>
+
+			<meta name="robots" content="noindex, nofollow" />
+
+			<?php return;
+		}
+
 		um_fetch_user( $user_id );
 
 		$locale = get_user_locale( $user_id );
@@ -647,19 +706,18 @@ function um_profile_dynamic_meta_desc() {
 		$image = um_get_user_avatar_url( $user_id, $size );
 
 		$person = array(
-				"@context" => "http://schema.org",
-				"@type" => "Person",
-				"name" => esc_attr( $title ),
-				"description" => esc_attr( $description ),
-				"image" => esc_url( $image ),
-				"url" => esc_url( $url )
+			"@context"      => "http://schema.org",
+			"@type"         => "Person",
+			"name"          => esc_attr( $title ),
+			"description"   => esc_attr( stripslashes( $description ) ),
+			"image"         => esc_url( $image ),
+			"url"           => esc_url( $url ),
 		);
 
 		um_reset_user();
 		?>
 		<!-- START - Ultimate Member profile SEO meta tags -->
 
-		<link rel="canonical" href="<?php echo esc_url( $url ); ?>"/>
 		<link rel="image_src" href="<?php echo esc_url( $image ); ?>"/>
 
 		<meta name="description" content="<?php echo esc_attr( $description ); ?>"/>
@@ -698,7 +756,7 @@ add_action( 'wp_head', 'um_profile_dynamic_meta_desc', 20 );
  * @param $args
  */
 function um_profile_header_cover_area( $args ) {
-	if ( $args['cover_enabled'] == 1 ) {
+	if ( isset( $args['cover_enabled'] ) && $args['cover_enabled'] == 1 ) {
 
 		$default_cover = UM()->options()->get( 'default_cover' );
 

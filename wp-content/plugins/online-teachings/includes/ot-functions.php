@@ -22,6 +22,8 @@ add_action( 'manage_ot-attendance_posts_custom_column', 'new_modify_attendance_t
 add_action('save_post','createOnlineCourseSessions');
 add_action('save_post','initAllAttendance');
 add_action( 'delete_post', 'deleteAllObjectRelationships', 10 );
+add_filter( 'um_account_tab_general_fields', 'my_account_tab_general_fields', 10, 2 );
+// TODO : handle um_predefined_fields_hook to add email_updates field
 
 const TS_TMZ = 'Europe/London';
 
@@ -1483,5 +1485,10 @@ function getUpcomingTeachingHtml($userId,$nonce) {
     return '';
 
 }
+
+function my_account_tab_general_fields( $args, $shortcode_args ) {
+    $args .= ',email_updates';
+    return $args;
+ }
 
 

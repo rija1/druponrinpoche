@@ -1697,7 +1697,7 @@ img.alignleft {
         color: #444;
         line-height: 22px;
         font-size: 21px;
-        font-family: 'Roboto Slab', serif;
+        font-family: '  ', serif;
     }
 }
 
@@ -3444,7 +3444,7 @@ div.uimob800 .um-account-side li a.current:hover,
     }
 }
 
-
+// Course Page
 
 .single-online-teaching {
     .registrationStatus {
@@ -3457,6 +3457,11 @@ div.uimob800 .um-account-side li a.current:hover,
     .join_session_main {
         margin-bottom: 30px;
     }
+
+    .group_viewing_participant_tpl {
+        display: none;
+    }
+
 }
 
 .registrationStatus {
