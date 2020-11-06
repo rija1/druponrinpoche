@@ -1481,13 +1481,6 @@ img.alignleft {
   height: 100%;
 }
 
-.latestnews_list {
-  list-style: none;
-  display: grid;
-  grid-row-gap: 8px;
-  grid-template-columns: 1fr;
-}
-
 .home_pages_grid li img {
   width: 100%;
 }
@@ -1598,21 +1591,56 @@ div {
   box-sizing: border-box;
 }
 
-.home_news_carousel {
+.home_lineage {
+  display: block;
+}
+
+.home .home_news_carousel {
+  float: left;
   display: block;
   padding: 20px 30px 30px 30px;
 }
-.home_news_carousel .latestnews_title h5, .home_news_carousel .schedule_title h5 {
+.home .home_news_carousel h5 {
   text-align: left;
   border-bottom: solid 1px #bc9c09;
   padding: 15px 0 8px 0;
   color: #bc9c09;
 }
-.home_news_carousel .latestnews_title h5 {
+.home .home_news_carousel .latestnews .latestnews_list {
+  list-style: none;
+  display: grid;
+  grid-row-gap: 8px;
+  grid-template-columns: 1fr;
+}
+.home .home_news_carousel .latestnews .latestnews_title h5 {
   margin-bottom: 10px;
 }
-
-.home h5 {
+.home .home_news_carousel .home_excerpts {
+  list-style: none;
+  display: grid;
+  grid-row-gap: 8px;
+  grid-template-columns: 1fr;
+}
+.home .home_news_carousel .home_excerpts .excerpts_list {
+  list-style: none;
+  display: grid;
+  grid-row-gap: 18px;
+  grid-template-columns: 1fr;
+}
+.home .home_news_carousel .home_excerpts .excerpts_list .home_post {
+  padding: 20px;
+  height: auto;
+  width: auto;
+}
+.home .home_news_carousel .home_excerpts .excerpts_list .home_post p {
+  font-size: 15px;
+  padding-top: 15px;
+}
+.home .home_news_carousel .home_excerpts .excerpts_list .home_post .excerpt_title {
+  font-size: 17px;
+  color: #555555;
+}
+.home .home_pages_grid h5 {
   padding-top: 15px;
   text-align: center;
 }
@@ -1683,6 +1711,20 @@ li.home_post p {
 .home_news_carousel li h5 {
   padding: 10px 0;
   margin: 0;
+  color: #bb9b25;
+}
+.home_news_carousel .home_excerpts {
+  float: right;
+  width: 42%;
+  font-size: 12px;
+  color: #444;
+}
+.home_news_carousel .home_excerpts .home_excerpt_link:hover .home_post .excerpt_title {
+  -webkit-transition: all 0.1s ease;
+  -moz-transition: all 0.1s ease;
+  -ms-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
+  transition: all 0.1s ease;
   color: #bb9b25;
 }
 

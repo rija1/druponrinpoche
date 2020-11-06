@@ -45,7 +45,7 @@ $showSessionInfo = showSessionInfo($currentSession);
                             <a style="display:<?php echo ($alreadyRegistered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
                                 <span><?php echo pll__('Unregister from this course'); ?></span>
                             </a>
-                            <?php if(!$alreadyRegistered): ?>
+                            <?php if(!$alreadyRegistered && $registrationOpen): ?>
                                 <div class="course_registration um-form um">
                                     <form>
                                         <h3>Course Registration</h3>        
@@ -68,26 +68,6 @@ $showSessionInfo = showSessionInfo($currentSession);
                                                     <span class="um-field-checkbox-option">I will host a group viewing, meaning that other Tirthika Square members will view the teaching with me, all using a single account.</span>
                                                 </label>
                                                 <div class="um-clear"></div>
-                                            </div>
-                                        </div>
-
-                                        <div class="group_viewing_fields">
-                                            <span><?php echo pll__('Participants details (please use the e-mail address they have registered a Tirthika Square account with)'); ?></span>
-                                            <div class="group_viewing_participants">
-                                            <div class="group_viewing_participant">
-                                                <span><?php echo pll__('Participant 1:'); ?></span>
-                                                <div class="course_regi_part_field_lbl"><?php echo pll__('Email'); ?></div>
-                                                <div class="course_regi_part_field_input"><input type="text" name="group_guest_email_[1]" id="group_guest_email_1" value=""></div>
-                                            </div>
-                                                <input type="button" value="<?php echo pll__('Add More'); ?>" />
-                                            </div>
-                                        </div>
-
-                                        <div class="group_viewing_participant_tpl">
-                                            <div class="group_viewing_participant">
-                                                <span><?php echo pll__('Participant [rplnb]:'); ?></span>
-                                                <div class="course_regi_part_field_lbl"><?php echo pll__('Email'); ?></div>
-                                                <div class="course_regi_part_field_input"><input type="text" name="group_guest_email_[[rplnb]]" id="group_guest_email_[rplnb]" value=""></div>
                                             </div>
                                         </div>
                                             
@@ -127,13 +107,15 @@ $showSessionInfo = showSessionInfo($currentSession);
 <?php get_footer(); ?>
 
 <script type="text/javascript">
+alert("ok");
+alert(myAjax.ajaxurl);
 
     function teachingRegUnregAction(action) {
 
         jQuery(".modal_buttons").show();
 
         if(action == 'register') {
-            var modalText = '<?php echo pll__('I confirm I can attend all the sessions for this course.'); ?>';
+            var modalText = '<?php echo pll__('I confirm I want to register for this course.'); ?>';
 
         } else if (action == 'unregister') {
             var modalText = '<?php echo pll__('Do you confirm you want to unregister from this course ?<br/>You cannot register again once the course has started.'); ?>';

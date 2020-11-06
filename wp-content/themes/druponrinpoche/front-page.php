@@ -8,7 +8,7 @@ $drWebsiteConfig = getDrWebsiteConfig();
 $locale = get_locale();
 
 get_header();
-$r = new WP_Query( apply_filters( 'widget_posts_args', array(
+$recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
     'posts_per_page'      => $drWebsiteConfig['nb_latest_news_posts'],
     'no_found_rows'       => true,
     'post_status'         => 'publish',
@@ -85,22 +85,29 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 </ul>
 
 <div class="home_news_carousel">
+<?php
+// Get Schedule Events
+    $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
+    $scheduleData = $table['data'];
+    unset($scheduleData[0]);   
+    foreach ($scheduleData as $k =>$scheduleDataLine) {
+        if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
+            unset($scheduleData[$k]);
+        }
+        if($scheduleDataLine[5]==1) {
+            unset($scheduleData[$k]);
+        }
+    }
+    $isSchedule = count($scheduleData);
+    $isSchedule = false;
+?>
 
+<?php if($isSchedule): ?>
     <div class="home_mini_carousel">
         <div class="schedule_title"><h5><?php pll_e('Upcoming Schedule'); ?></h5></div>
         <?php
-        $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
-        $scheduleData = $table['data'];
-        unset($scheduleData[0]);
-
-        foreach ($scheduleData as $k =>$scheduleDataLine) {
-            if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
-                unset($scheduleData[$k]);
-            }
-            if($scheduleDataLine[5]==1) {
-                unset($scheduleData[$k]);
-            }
-        }
+        
+        
 
         $schBatch2 = false;
 
@@ -164,15 +171,43 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
             <div class="sched_carousel_arrows"></div>
             <a class="view_full_schedule" href="<?php echo get_page_link($drWebsiteConfig['schedule_page_id'])?>"><span><?php pll_e('View Full Schedule');?></span></a>
         </div>
-
-
-
     </div>
+    <?php else: // No Schedule displayed?> 
+        <?php 
+        $excerpts = new WP_Query( apply_filters( 'widget_posts_args', array(
+            'posts_per_page'      => 4,
+            'no_found_rows'       => true,
+            'post_status'         => 'publish',
+            'ignore_sticky_posts' => true,
+            'category__in' => $drWebsiteConfig['excerpts_cat_id'],
+        ), 'wpa' ) );
+        ?>
+        
+    <div class="home_excerpts">
+        <h5><?php pll_e('Teaching Excerpts'); ?></h5>
+        <div class="excerpts_list">
+        <?php foreach ( $excerpts->posts as $excerptPost ) : ?>
+                <?php
+                $post_title = get_the_title( $excerptPost->ID );
+                $title      = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)' );
+                ?>
+                <a class="home_excerpt_link" href="<?php the_permalink( $excerptPost->ID ); ?>">
+                    <li class="home_post">
+                        <span class="excerpt_title"><?php echo $title ; ?></span>
+                        <p><?php 
+                        echo get_the_excerpt($excerptPost->ID);
+                        ?></p>
+                    </li>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <div class="latestnews">
         <div class="latestnews_title"><h5><?php pll_e('Latest News'); ?></h5></div>
         <ul class="latestnews_list">
-            <?php foreach ( $r->posts as $recent_post ) : ?>
+            <?php foreach ( $recentPosts->posts as $recent_post ) : ?>
                 <?php
                 $post_title = get_the_title( $recent_post->ID );
                 $title      = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)' );
