@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package Polylang-Pro
+ */
 
 /**
  * A class to handle cross domain data and single sign on for subdomains
@@ -13,7 +16,7 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 	 *
 	 * @since 2.0
 	 *
-	 * @param object $polylang
+	 * @param object $polylang Polylang object.
 	 */
 	public function __construct( &$polylang ) {
 		parent::__construct( $polylang );
@@ -28,13 +31,13 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 			$this->ajax_urls[ $lang->slug ] = $this->links_model->switch_language_in_link( admin_url( 'admin-ajax.php' ), $this->model->get_language( $lang ) );
 		}
 
-		if ( empty( $_POST['wp_customize'] ) ) {
+		if ( empty( $_POST['wp_customize'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 			add_action( 'wp_head', array( $this, 'maybe_language_switched' ) );
 		}
 
 		// Post preview
-		if ( isset( $_GET['preview_id'] ) ) {
-			add_action( 'init', array( $this, 'maybe_language_switched' ), 5 ); // Before _show_post_preview
+		if ( isset( $_GET['preview_id'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+			add_action( 'init', array( $this, 'maybe_language_switched' ), 5 ); // Before _show_post_preview.
 		}
 
 		add_filter( 'site_url', array( $this, 'site_url' ) );
@@ -44,13 +47,13 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 
 	/**
 	 * Builds an ajax request url to the domain defined by a language
-	 * Overrides parent method to take care of inactive languages
+	 * Overrides the parent method to take care of inactive languages
 	 *
 	 * @since 2.0
 	 *
-	 * @param string $lang
-	 * @param array  $args
-	 * @return string
+	 * @param string $lang The language slug.
+	 * @param array  $args Existing url parameters.
+	 * @return string The ajax url.
 	 */
 	public function ajax_url( $lang, $args ) {
 		return add_query_arg( $args, $this->ajax_urls[ $lang ] );
@@ -62,10 +65,8 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 	 * @since 2.0
 	 */
 	public function maybe_language_switched() {
-		$redirect = urlencode( ( is_ssl() ? 'https://' : 'http://' ) . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
-
-		if ( $js = $this->maybe_get_xdomain_js( $redirect, $this->curlang ) ) {
-			echo '<script async type="text/javascript">' . $js . '</script>';
+		if ( $js = $this->maybe_get_xdomain_js( pll_get_requested_url(), $this->curlang ) ) {
+			echo '<script async type="text/javascript">' . $js . '</script>'; // phpcs:ignore WordPress.Security.EscapeOutput
 		}
 	}
 
@@ -79,7 +80,7 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 	 * @param WP_User|WP_Error $user                  WP_User object if login was successful, WP_Error object otherwise.
 	 * @return string
 	 */
-	function login_redirect( $redirect_to, $requested_redirect_to, $user ) {
+	public function login_redirect( $redirect_to, $requested_redirect_to, $user ) {
 		if ( ! $this->options['hide_default'] && ! is_wp_error( $user ) ) {
 			$redirect_to = $this->_login_redirect( $redirect_to, $requested_redirect_to, $user );
 		}
@@ -91,7 +92,7 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 	 *
 	 * @since 2.0
 	 *
-	 * @param string $url
+	 * @param string $url The main site url.
 	 * @return string
 	 */
 	public function site_url( $url ) {
@@ -106,7 +107,7 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 	 *
 	 * @since 2.1
 	 *
-	 * @param string $location Redirect url
+	 * @param string $location Redirect url.
 	 * @return string
 	 */
 	public function fix_cookie_in_redirect( $location ) {
@@ -117,10 +118,10 @@ class PLL_Xdata_Subdomain extends PLL_Xdata_Base {
 
 			setcookie(
 				PLL_COOKIE,
-				$_COOKIE[ PLL_COOKIE ],
+				sanitize_key( $_COOKIE[ PLL_COOKIE ] ),
 				time() + $expiration,
 				COOKIEPATH,
-				parse_url( $this->links_model->home, PHP_URL_HOST ),
+				wp_parse_url( $this->links_model->home, PHP_URL_HOST ),
 				is_ssl()
 			);
 		}

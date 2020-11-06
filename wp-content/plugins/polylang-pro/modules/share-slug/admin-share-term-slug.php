@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package Polylang-Pro
+ */
 
 /**
  * Manages shared slugs for taxonomy terms on admin side
@@ -12,27 +15,23 @@ class PLL_Admin_Share_Term_Slug extends PLL_Share_Term_Slug {
 	 *
 	 * @since 1.9
 	 *
-	 * @param object $polylang
+	 * @param object $polylang Polylang object.
 	 */
 	public function __construct( &$polylang ) {
 		parent::__construct( $polylang );
 
-		remove_action( 'pre_post_update', array( &$polylang->filters_term, 'pre_post_update' ) );
-		remove_filter( 'pre_term_name', array( &$polylang->filters_term, 'pre_term_name' ) );
-		remove_filter( 'pre_term_slug', array( &$polylang->filters_term, 'pre_term_slug' ), 10, 2 );
-
-		add_action( 'pre_post_update', array( $this, 'pre_post_update' ) );
-		add_filter( 'pre_term_name', array( $this, 'pre_term_name' ) );
-		add_filter( 'pre_term_slug', array( $this, 'pre_term_slug' ), 10, 2 );
+		add_action( 'pre_post_update', array( $this, 'pre_post_update' ), 5 );
+		add_filter( 'pre_term_name', array( $this, 'pre_term_name' ), 5 );
+		add_filter( 'pre_term_slug', array( $this, 'pre_term_slug' ), 5, 2 );
 	}
 
 	/**
-	 * Stores the term name for use in pre_term_slug
+	 * Stores the name of a term being saved, for use in the filter pre_term_slug
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $name term name
-	 * @return string unmodified term name
+	 * @param string $name The term name to store.
+	 * @return string Unmodified term name.
 	 */
 	public function pre_term_name( $name ) {
 		return $this->pre_term_name = $name;
@@ -43,10 +42,10 @@ class PLL_Admin_Share_Term_Slug extends PLL_Share_Term_Slug {
 	 *
 	 * @since 1.9
 	 *
-	 * @param int $post_id
+	 * @param int $post_id The id of the current post being updated.
 	 */
 	public function pre_post_update( $post_id ) {
-		if ( isset( $_GET['bulk_edit'] ) ) {
+		if ( isset( $_GET['bulk_edit'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 			$this->post_id = $post_id;
 		}
 	}
@@ -56,8 +55,8 @@ class PLL_Admin_Share_Term_Slug extends PLL_Share_Term_Slug {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $slug
-	 * @param string $taxonomy
+	 * @param string $slug     The inputed slug of the term being saved, may be empty.
+	 * @param string $taxonomy The term taxonomy.
 	 * @return string
 	 */
 	public function pre_term_slug( $slug, $taxonomy ) {
@@ -66,31 +65,48 @@ class PLL_Admin_Share_Term_Slug extends PLL_Share_Term_Slug {
 		}
 
 		if ( $this->model->is_translated_taxonomy( $taxonomy ) && term_exists( $slug, $taxonomy ) ) {
-			if ( isset( $_POST['term_lang_choice'] ) ) {
-				$slug .= '___' . $this->model->get_language( $_POST['term_lang_choice'] )->slug;
-			}
+			$parent = 0;
 
-			elseif ( isset( $_POST['inline_lang_choice'] ) ) {
-				$slug .= '___' . $this->model->get_language( $_POST['inline_lang_choice'] )->slug;
-			}
+			if ( isset( $_POST['term_lang_choice'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$lang = $this->model->get_language( sanitize_key( $_POST['term_lang_choice'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 
-			// *Post* bulk edit, in case a new term is created
-			elseif ( isset( $_GET['bulk_edit'], $_GET['inline_lang_choice'] ) ) {
-				// Bulk edit does not modify the language
-				if ( -1 == $_GET['inline_lang_choice'] ) {
-					$slug .= '___' . $this->model->post->get_language( $this->post_id )->slug;
-				} else {
-					$slug .= '___' . $this->model->get_language( $_GET['inline_lang_choice'] )->slug;
+				if ( isset( $_POST['parent'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$parent = intval( $_POST['parent'] ); // phpcs:ignore WordPress.Security.NonceVerification
+				} elseif ( isset( $_POST[ "new{$taxonomy}_parent" ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$parent = intval( $_POST[ "new{$taxonomy}_parent" ] ); // phpcs:ignore WordPress.Security.NonceVerification
 				}
 			}
 
-			// Special cases for default categories as the select is disabled
-			elseif ( ! empty( $_POST['tag_ID'] ) && in_array( get_option( 'default_category' ), $this->model->term->get_translations( $_POST['tag_ID'] ) ) ) {
-				$slug .= '___' . $this->model->term->get_language( $_POST['tag_ID'] )->slug;
+			elseif ( isset( $_POST['inline_lang_choice'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$lang = $this->model->get_language( sanitize_key( $_POST['inline_lang_choice'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
 			}
 
-			elseif ( ! empty( $_POST['tax_ID'] ) && in_array( get_option( 'default_category' ), $this->model->term->get_translations( $_POST['tax_ID'] ) ) ) {
-				$slug .= '___' . $this->model->term->get_language( $_POST['tax_ID'] )->slug;
+			// *Post* bulk edit, in case a new term is created.
+			elseif ( isset( $_GET['bulk_edit'], $_GET['inline_lang_choice'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				// Bulk edit does not modify the language.
+				if ( -1 == $_GET['inline_lang_choice'] ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$lang = $this->model->post->get_language( $this->post_id );
+				} else {
+					$lang = $this->model->get_language( sanitize_key( $_GET['inline_lang_choice'] ) ); // phpcs:ignore WordPress.Security.NonceVerification
+				}
+			}
+
+			// Special cases for default categories as the select is disabled.
+			elseif ( ! empty( $_POST['tag_ID'] ) && in_array( get_option( 'default_category' ), $this->model->term->get_translations( (int) $_POST['tag_ID'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$lang = $this->model->term->get_language( (int) $_POST['tag_ID'] ); // phpcs:ignore WordPress.Security.NonceVerification
+			}
+
+			elseif ( ! empty( $_POST['tax_ID'] ) && in_array( get_option( 'default_category' ), $this->model->term->get_translations( (int) $_POST['tax_ID'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+				$lang = $this->model->term->get_language( (int) $_POST['tax_ID'] ); // phpcs:ignore WordPress.Security.NonceVerification
+			}
+
+			if ( ! empty( $lang ) ) {
+				$term_id = $this->model->term_exists_by_slug( $slug, $lang, $taxonomy, $parent );
+
+				// If no term exists or if we are editing the existing term, trick WP to allow shared slugs.
+				if ( ! $term_id || ( ! empty( $_POST['tag_ID'] ) && $_POST['tag_ID'] == $term_id ) || ( ! empty( $_POST['tax_ID'] ) && $_POST['tax_ID'] == $term_id ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+					$slug .= '___' . $lang->slug;
+				}
 			}
 		}
 

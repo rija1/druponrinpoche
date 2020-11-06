@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package Polylang-Pro
+ */
 
 /**
  * Advanced media functionalities
@@ -10,16 +13,32 @@ class PLL_Admin_Advanced_Media {
 	 * Constructor: setups filters and actions
 	 *
 	 * @since 1.9
+	 * @since 2.7 Now registers an option for the Translate bulk action.
 	 *
-	 * @param object $polylang
+	 * @param object $polylang Polylang object.
 	 */
 	public function __construct( &$polylang ) {
 		$this->options = &$polylang->options;
-		$this->model = &$polylang->model;
-		$this->filters_media = &$polylang->filters_media;
+		$this->model   = &$polylang->model;
+		$this->posts   = &$polylang->posts;
+
+		if ( isset( $polylang->bulk_translate ) ) {
+			$polylang->bulk_translate->register_options(
+				array(
+					new PLL_Media_Bulk_Option(
+						array(
+							'name'        => 'pll_copy_media',
+							'description' => __( 'Copy original items to selected languages', 'polylang-pro' ),
+						),
+						$polylang->model,
+						$this->posts
+					),
+				)
+			);
+		}
 
 		if ( ! empty( $this->options['media']['duplicate'] ) ) {
-			add_action( 'add_attachment', array( $this, 'duplicate_media' ), 20 ); // After Polylang
+			add_action( 'add_attachment', array( $this, 'duplicate_media' ), 20 ); // After Polylang.
 		}
 	}
 
@@ -28,12 +47,12 @@ class PLL_Admin_Advanced_Media {
 	 *
 	 * @since 1.9
 	 *
-	 * @param int $post_id
+	 * @param int $post_id The id of the attachment to duplicate.
 	 */
 	public function duplicate_media( $post_id ) {
 		static $avoid_recursion = false;
 
-		// Avoid recursion and bails if adding a translation from PLL_Admin_Filters_Media::translate_media()
+		// Avoid recursion and bails if adding a translation from PLL_Admin_Filters_Media::translate_media().
 		if ( $avoid_recursion || doing_action( 'admin_init' ) ) {
 			return;
 		}
@@ -44,21 +63,23 @@ class PLL_Admin_Advanced_Media {
 		 * @since 2.1.1
 		 *
 		 * @param bool $enable  Whether to enable the media duplication. Defaults to true.
-		 * @param int  $post_id Media post id
+		 * @param int  $post_id Media id.
 		 */
 		if ( ! apply_filters( 'pll_enable_duplicate_media', true, $post_id ) ) {
 			return;
 		}
 
+		require_once ABSPATH . 'wp-admin/includes/media.php'; // Needed when uploading audio or video files from the block editor.
 		$avoid_recursion = true;
+
 		$src_language = $this->model->post->get_language( $post_id );
 
 		if ( ! empty( $src_language ) ) {
-			// Don't attempt to create already existing translations (useful in case the function is reused)
+			// Don't attempt to create already existing translations (useful in case the function is reused).
 			$languages = array_diff( $this->model->get_languages_list( array( 'fields' => 'slug' ) ), array_keys( $this->model->post->get_translations( $post_id ) ) );
 
 			foreach ( $languages as $lang ) {
-				$tr_id = $this->filters_media->create_media_translation( $post_id, $lang );
+				$tr_id = $this->posts->create_media_translation( $post_id, $lang );
 
 				if ( ! empty( $tr_id ) ) {
 					$post = get_post( $tr_id );

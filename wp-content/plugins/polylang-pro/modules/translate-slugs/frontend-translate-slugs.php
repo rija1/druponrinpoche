@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package Polylang-Pro
+ */
 
 /**
  * Modifies links on frontend
@@ -12,16 +15,16 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param object $slugs_model
+	 * @param object $slugs_model An instance of PLL_Translate_Slugs_Model.
 	 * @param object $curlang     Current language
 	 */
 	public function __construct( &$slugs_model, &$curlang ) {
 		parent::__construct( $slugs_model, $curlang );
 
-		$this->model = &$slugs_model->model;
+		$this->model       = &$slugs_model->model;
 		$this->links_model = &$slugs_model->links_model;
 
-		// Translates slugs in archive link
+		// Translates slugs in archive link.
 		if ( $this->links_model->using_permalinks ) {
 			foreach ( array( 'author_link', 'search_link', 'get_pagenum_link', 'attachment_link' ) as $filter ) {
 				add_filter( $filter, array( $this, 'translate_slug' ), 20 );
@@ -30,7 +33,7 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 
 		add_filter( 'pll_get_archive_url', array( $this, 'pll_get_archive_url' ), 10, 2 );
 		add_filter( 'pll_check_canonical_url', array( $this, 'pll_check_canonical_url' ), 10, 2 );
-		add_action( 'template_redirect', array( $this, 'fix_wp_rewrite' ), 1 ); // After the language is set (when set from content)
+		add_action( 'template_redirect', array( $this, 'fix_wp_rewrite' ), 1 ); // After the language is set (when set from content).
 
 		add_filter( 'pll_remove_paged_from_link', array( $this, 'remove_paged_from_link' ), 10, 2 );
 		add_filter( 'pll_add_paged_to_link', array( $this, 'add_paged_to_link' ), 10, 3 );
@@ -41,17 +44,21 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $url
-	 * @param object $language
-	 * @return string Modified url
+	 * @param string $url      The archive url in which want to translat a slug.
+	 * @param object $language The language.
+	 * @return string Modified url.
 	 */
 	public function pll_get_archive_url( $url, $language ) {
-		if ( is_post_type_archive() && ( $post_type = get_query_var( 'post_type' ) ) ) {
-			$url = $this->slugs_model->switch_translated_slug( $url, $language, 'archive_' . $post_type );
+		global $wp_rewrite;
+
+		if ( is_post_type_archive() ) {
+			$post_type = get_queried_object();
+			$url = $this->slugs_model->switch_translated_slug( $url, $language, 'archive_' . $post_type->name );
 		}
 
 		if ( is_tax( 'post_format' ) ) {
 			$term = get_queried_object();
+
 			$url = $this->slugs_model->switch_translated_slug( $url, $language, 'post_format' );
 			$url = $this->slugs_model->switch_translated_slug( $url, $language, $term->slug );
 		}
@@ -64,7 +71,7 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 			$url = $this->slugs_model->switch_translated_slug( $url, $language, 'search' );
 		}
 
-		if ( ! empty( $GLOBALS['wp_rewrite'] ) ) {
+		if ( ! empty( $wp_rewrite->front ) && trim( $wp_rewrite->front, '/' ) ) {
 			$url = $this->slugs_model->switch_translated_slug( $url, $language, 'front' );
 		}
 
@@ -78,17 +85,17 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $redirect_url
-	 * @param object $language
-	 * @return string Modified canonical url
+	 * @param string $redirect_url The canonical url to redirect to as evaluated in Polylang.
+	 * @param object $language     The language.
+	 * @return string Modified canonical url.
 	 */
 	public function pll_check_canonical_url( $redirect_url, $language ) {
-		global $wp_query, $post;
+		global $wp_query, $post, $wp_rewrite;
 
 		$slugs = array();
 
 		if ( is_post_type_archive() ) {
-			$obj = $wp_query->get_queried_object();
+			$obj     = $wp_query->get_queried_object();
 			$slugs[] = 'archive_' . $obj->name;
 		}
 
@@ -100,11 +107,14 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 
 		elseif ( is_category() || is_tag() || is_tax() ) {
 			$obj = $wp_query->get_queried_object();
-			if ( $this->model->is_translated_taxonomy( $obj->taxonomy ) ) {
-				$slugs[] = $obj->taxonomy;
-			} elseif ( 'post_format' == $obj->taxonomy ) {
-				$slugs[] = 'post_format';
-				$slugs[] = $obj->slug;
+
+			if ( ! empty( $obj ) ) {
+				if ( $this->model->is_translated_taxonomy( $obj->taxonomy ) ) {
+					$slugs[] = $obj->taxonomy;
+				} elseif ( 'post_format' == $obj->taxonomy ) {
+					$slugs[] = 'post_format';
+					$slugs[] = $obj->slug;
+				}
 			}
 		}
 
@@ -124,7 +134,7 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 			$slugs[] = 'attachment';
 		}
 
-		if ( ! empty( $GLOBALS['wp_rewrite'] ) ) {
+		if ( ! empty( $wp_rewrite->front ) && trim( $wp_rewrite->front, '/' ) ) {
 			$slugs[] = 'front';
 		}
 
@@ -163,16 +173,18 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $_link Url to modify
-	 * @param string $link  Original url to modify
-	 * @return string Modified link
+	 * @param string $_link Url to modify.
+	 * @param string $link  Original url to modify.
+	 * @return string Modified link.
 	 */
 	public function remove_paged_from_link( $_link, $link ) {
 		if ( isset( $this->slugs_model->translated_slugs['paged'] ) ) {
-			$slugs = $this->slugs_model->translated_slugs['paged']['translations'];
+			$slugs   = $this->slugs_model->translated_slugs['paged']['translations'];
 			$slugs[] = $this->slugs_model->translated_slugs['paged']['slug'];
+			$slugs   = $this->slugs_model->encode_deep( $slugs );
+
 			return preg_replace(
-				'#\/(' . implode( '|', array_unique( $slugs ) ) . ')\/[0-9]+\/#',
+				'#/(' . implode( '|', array_unique( $slugs ) ) . ')/[0-9]+/#',
 				'/',
 				$link
 			);
@@ -185,10 +197,10 @@ class PLL_Frontend_Translate_Slugs extends PLL_Translate_Slugs {
 	 *
 	 * @since 2.0.6
 	 *
-	 * @param string $_url Url to modify
-	 * @param string $url  Original url to modify
-	 * @param int    $page
-	 * @return string Modified url
+	 * @param string $_url Url to modify.
+	 * @param string $url  Original url to modify.
+	 * @param int    $page The page number.
+	 * @return string Modified url.
 	 */
 	public function add_paged_to_link( $_url, $url, $page ) {
 		if ( isset( $this->slugs_model->translated_slugs['paged'] ) ) {

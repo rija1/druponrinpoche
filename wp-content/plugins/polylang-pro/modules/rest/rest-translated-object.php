@@ -1,84 +1,81 @@
 <?php
+/**
+ * @package Polylang-Pro
+ */
 
 /**
  * Abstract class to expose posts (or terms) language and translations in the REST API
  *
  * @since 2.2
  */
-abstract class PLL_REST_Translated_Object {
-	public $model;
-	protected $type, $id;
+abstract class PLL_REST_Translated_Object extends PLL_REST_Filtered_Object {
+	/**
+	 * Instance of PLL_Links
+	 *
+	 * @var object
+	 */
+	public $links;
+
+	/**
+	 * How is named the object id, typically 'ID' for posts and 'term_id' for terms
+	 * defined by the child class
+	 *
+	 * @var string
+	 */
+	protected $id;
 
 	/**
 	 * Constructor
 	 *
 	 * @since 2.2
 	 * @since 2.2.1 $content_types is an array of arrays
+	 * @since 2.6   The first parameter is an instance of PLL_REST_API instead of PLL_Model
 	 *
-	 * @param object $model         Instance of PLL_Model
+	 * @param object $rest_api      Instance of PLL_REST_API
 	 * @param array  $content_types Array of arrays with post types or taxonomies as keys and options as values
 	 *                              The possible options are:
 	 *                              filters:      whether to filter queries, defaults to true
 	 *                              lang:         whether to return the language in the response, defaults to true
 	 *                              translations: whether to return the translations in the response, defaults to true
 	 */
-	public function __construct( &$model, $content_types ) {
-		$this->model = &$model;
+	public function __construct( &$rest_api, $content_types ) {
+		parent::__construct( $rest_api, $content_types );
+
+		$this->links = &$rest_api->links;
 
 		foreach ( $content_types as $type => $args ) {
-
-			$args = wp_parse_args( $args, array_fill_keys( array( 'filters', 'lang', 'translations' ), true ) );
-
-			if ( $args['filters'] ) {
-				add_filter( "rest_{$type}_query", array( $this, 'query' ), 10, 2 );
-				add_filter( "rest_{$type}_collection_params", array( $this, 'collection_params' ) );
-			}
+			$args = wp_parse_args( $args, array_fill_keys( array( 'lang', 'translations' ), true ) );
 
 			if ( $args['lang'] ) {
-				register_rest_field( $type, 'lang', array(
-					'get_callback'    => array( $this, 'get_language' ),
-					'update_callback' => array( $this, 'set_language' ),
-				) );
+				register_rest_field(
+					$this->get_rest_field_type( $type ),
+					'lang',
+					array(
+						'get_callback'    => array( $this, 'get_language' ),
+						'update_callback' => array( $this, 'set_language' ),
+						'schema'          => array(
+							'lang' => __( 'Language', 'polylang' ),
+							'type' => 'string',
+						),
+					)
+				);
 			}
 
 			if ( $args['translations'] ) {
-				register_rest_field( $type, 'translations', array(
-					'get_callback' => array( $this, 'get_translations' ),
-					'update_callback' => array( $this, 'save_translations' ),
-				) );
+				register_rest_field(
+					$this->get_rest_field_type( $type ),
+					'translations',
+					array(
+						'get_callback'    => array( $this, 'get_translations' ),
+						'update_callback' => array( $this, 'save_translations' ),
+						'schema'          => array(
+							'translations' => __( 'Translations', 'polylang' ),
+							'type' => 'object',
+						),
+					)
+				);
 			}
 		}
-	}
-
-	/**
-	 * Filters the query per language according to the 'lang' parameter
-	 *
-	 * @since 2.2
-	 *
-	 * @param array $args    Query args
-	 * @param array $request REST API request args
-	 * @return array
-	 */
-	public function query( $args, $request ) {
-		$args['lang'] = isset( $request['lang'] ) && in_array( $request['lang'], $this->model->get_languages_list( array( 'fields' => 'slug' ) ) ) ? $request['lang'] : '';
-		return $args;
-	}
-
-	/**
-	 * Exposes the 'lang' param for posts and terms
-	 *
-	 * @since 2.2
-	 *
-	 * @param array $query_params JSON Schema-formatted collection parameters.
-	 * @return array
-	 */
-	public function collection_params( $query_params ) {
-		$query_params['lang'] = array(
-			'description' => __( 'Limit result set to a specific language.', 'polylang' ),
-			'type'        => 'string',
-			'enum'        => $this->model->get_languages_list( array( 'fields' => 'slug' ) ),
-		);
-		return $query_params;
 	}
 
 	/**

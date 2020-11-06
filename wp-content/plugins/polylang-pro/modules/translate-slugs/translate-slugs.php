@@ -1,4 +1,7 @@
 <?php
+/**
+ * @package Polylang-Pro
+ */
 
 /**
  * Modifies links on both frontend and admin side
@@ -13,12 +16,12 @@ class PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param object $slugs_model
-	 * @param object $curlang     Current language
+	 * @param object $slugs_model An instance of PLL_Translate_Slugs_Model.
+	 * @param object $curlang     The Current language.
 	 */
 	public function __construct( &$slugs_model, &$curlang ) {
 		$this->slugs_model = &$slugs_model;
-		$this->curlang = &$curlang;
+		$this->curlang     = &$curlang;
 
 		add_filter( 'pll_post_type_link', array( $this, 'pll_post_type_link' ), 10, 3 );
 		add_filter( 'pll_term_link', array( $this, 'pll_term_link' ), 10, 3 );
@@ -30,13 +33,15 @@ class PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $url
-	 * @param object $lang
-	 * @param object $post
+	 * @param string $url  The post link.
+	 * @param object $lang The post language.
+	 * @param object $post The post object.
 	 * @return string
 	 */
 	public function pll_post_type_link( $url, $lang, $post ) {
-		if ( ! empty( $GLOBALS['wp_rewrite'] ) ) {
+		global $wp_rewrite;
+
+		if ( ! empty( $wp_rewrite->front ) && trim( $wp_rewrite->front, '/' ) ) {
 			$url = $this->slugs_model->translate_slug( $url, $lang, 'front' );
 		}
 
@@ -48,17 +53,19 @@ class PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $url
-	 * @param object $lang
-	 * @param object $term
+	 * @param string $url  The term link.
+	 * @param object $lang The term language.
+	 * @param object $term The term object.
 	 * @return string
 	 */
 	public function pll_term_link( $url, $lang, $term ) {
+		global $wp_rewrite;
+
 		if ( 'post_format' == $term->taxonomy ) {
-			$url = $this->slugs_model->translate_slug( $url, $lang, $term->slug ); // Occurs only on frontend
+			$url = $this->slugs_model->translate_slug( $url, $lang, $term->slug ); // Occurs only on frontend.
 		}
 
-		if ( ! empty( $GLOBALS['wp_rewrite'] ) ) {
+		if ( ! empty( $wp_rewrite->front ) && trim( $wp_rewrite->front, '/' ) ) {
 			$url = $this->slugs_model->translate_slug( $url, $lang, 'front' );
 		}
 
@@ -73,11 +80,13 @@ class PLL_Translate_Slugs {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $link
-	 * @param string $post_type Optional
+	 * @param string $link      The link in which we want to translate a slug.
+	 * @param string $post_type Optional, Post type.
 	 * @return string Modified link
 	 */
 	public function translate_slug( $link, $post_type = '' ) {
+		global $wp_rewrite;
+
 		if ( empty( $this->curlang ) ) {
 			return $link;
 		}
@@ -89,9 +98,10 @@ class PLL_Translate_Slugs {
 			'attachment_link'        => 'attachment',
 			'search_link'            => 'search',
 		);
+
 		$link = $this->slugs_model->translate_slug( $link, $this->curlang, $types[ current_filter() ] );
 
-		if ( ! empty( $GLOBALS['wp_rewrite'] ) ) {
+		if ( ! empty( $wp_rewrite->front ) && trim( $wp_rewrite->front, '/' ) ) {
 			$link = $this->slugs_model->translate_slug( $link, $this->curlang, 'front' );
 		}
 
