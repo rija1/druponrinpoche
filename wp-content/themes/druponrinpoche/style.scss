@@ -994,45 +994,6 @@ nav {
 .article-blog, .container .single-post {
     *zoom: 1;
 }
-//
-//.article-blog {
-//    position: relative;
-//    padding-bottom: 63px;
-//    margin-bottom: 50px;
-//    background: url('../images/tracery.png') no-repeat 50% 100% transparent;
-//    &:before, &:after {
-//        content: '';
-//        display: block;
-//        height: 0px;
-//        position: absolute;
-//        bottom: 7px;
-//        border-top-width: 1px;
-//        border-top-style: solid;
-//    }
-//    &:before {
-//        left: 0;
-//        right: 50%;
-//        margin-right: 55px;
-//    }
-//    &:after {
-//        right: 0;
-//        left: 50%;
-//        margin-left: 55px;
-//    }
-//    .article-image {
-//        margin-bottom: 30px;
-//    }
-//}
-//
-//.container .single-post .article-image {
-//    margin-bottom: 30px;
-//}
-//
-//.article-blog {
-//    p, ol, ul {
-//        margin-bottom: 10px;
-//    }
-//}
 
 .container .single-post {
     p, ol, ul {
@@ -1832,6 +1793,27 @@ div{
                 grid-row-gap: 18px;
                 grid-template-columns: 1fr;
                 .home_post {
+                    p:before, p:after {
+                        font-family: "FontAwesome";
+                        font-size: 12px;
+                        position: relative;
+                        bottom: 3px;
+                        font-size: 12px;
+                    }
+                    p:before {
+                        content: "";
+                        float:left;
+                        padding-right: 6px;
+                        padding-top:6px;
+                        height:10px; 
+                    }
+                    p:after {
+                        content: "";
+                        // padding-left: 6px;
+                        padding-top:6px;
+                        float: right;
+                    }
+                    
                     padding: 20px;
                     height:auto;
                     width:auto;
@@ -2223,6 +2205,76 @@ li.page_item_has_children a {
     float: left;
     /*width:18px;*/
 }
+
+/* Translation Page */
+.bo_text {
+    // font-family:"SambothaDege";
+}
+
+.trsl_text {
+    display: grid;
+    row-gap: 10px;
+    ol {
+        list-style-position: outside;
+    }
+}
+
+.trsl_title {
+    padding:30px 20px 0px 20px;
+}
+
+.trsl_tib_title {
+    font-size:32px;
+    color:$dkr-brown;
+}
+
+.trsl_en_title {
+}
+
+.trsl_en_author {
+    font-size: 22px;
+    color: $dkr-gold;
+    padding-bottom: 30px;
+}
+
+.trsl_paragraph, .trsl_verse  {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top:15px;
+    column-gap: 25px;
+    text-align: justify;
+}
+
+.trsl_tib_paragraph {
+    font-size:22px;
+    grid-column: 2;
+    grid-row:1;
+}
+.trsl_en_paragraph {
+    grid-column: 1;
+    grid-row:1;
+}
+
+.trsl_tib_verse {
+    font-size:22px;
+    grid-column: 2;
+    grid-row:1;
+}
+.trsl_en_verse {
+    grid-column: 1;
+    grid-row:1;
+}
+
+
+.trsl_notes {
+    padding-top:25px; 
+    font-style: italic;
+}
+
+.trsl_colophon {
+    padding-top:25px; 
+}
+
 
 /*About Pages*/
 
