@@ -130,12 +130,11 @@ __webpack_require__.r(__webpack_exports__);
 _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default.a.use(
 // phpcs:disable PEAR.Functions.FunctionCallSignature.Indent
 function (options, next) {
-	var isRequestForCurrentPost = isCurrentPostRequest(options);
 	// If options.url is defined, this is not a REST request but a direct call to post.php for legacy metaboxes.
 	if (Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isUndefined"])(options.url)) {
 		if (isSaveRequest(options)) {
 			options.data.is_block_editor = true;
-			if (!isRequestForCurrentPost) {
+			if (!isCurrentPostRequest(options)) {
 				options.data.lang = getCurrentLanguage();
 			}
 		} else {
@@ -151,20 +150,34 @@ function (options, next) {
 /**
  * Is the request concerned the current post type ?
  *
+ * Useful when saving a reusable block contained in another post type.
+ * Indeed a reusable block is also a post, but its saving request doesn't concern the post currently edited.
+ * As we don't know the language of the reusable block when the user triggers the reusable block saving action,
+ * we need to pass the current post language to be sure that the reusable block will have a language.
+ * @see https://github.com/polylang/polylang/issues/437 - Reusable block has no language when it's saved from another post type editing.
+ *
  * @param {type} options the initial request
  * @returns {Boolean}
  */
 function isCurrentPostRequest(options) {
-	// save translation datas is needed for all post types only
+	// Save translation datas is needed for all post types only
 	// it's done by verifying options.path matches with one of baseURL of all post types
 	// and compare current post id with this sent in the request
+
+	// List of post type baseURLs.
 	var postTypeURLs = Object(lodash__WEBPACK_IMPORTED_MODULE_3__["map"])(Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__["select"])('core').getEntitiesByKind('postType'), Object(lodash__WEBPACK_IMPORTED_MODULE_3__["property"])('baseURL'));
-	// add specific REST API URL for the language switcher block.
-	postTypeURLs.push('/wp/v2/block-renderer/polylang/language-switcher');
+
+	// Id from the post currently edited.
 	var postId = Object(_wordpress_data__WEBPACK_IMPORTED_MODULE_0__["select"])('core/editor').getCurrentPostId();
-	// for GET request post_id parameter exists only for other requests than post request itself.
-	// null for post request to avoid to fetch again the preloaded post request.
-	var id = !Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isUndefined"])(options.data) ? options.data.id || null : !Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isUndefined"])(options.path) ? parseInt(Object(_wordpress_url__WEBPACK_IMPORTED_MODULE_2__["getQueryArg"])(options.path, 'post_id'), 10) || null : null;
+
+	// Id from the REST request.
+	// options.data never isNil here because it's already verified before in isSaveRequest() function
+	var id = options.data.id;
+
+	// Return true
+	// if REST request baseURL matches with one of the known post type baseURLs
+	// and the id from the post currently edited corresponds on the id passed to the REST request
+	// Return false otherwise
 	return -1 !== postTypeURLs.findIndex(function (element) {
 		return new RegExp('' + Object(lodash__WEBPACK_IMPORTED_MODULE_3__["escapeRegExp"])(element)).test(options.path); // phpcs:ignore WordPress.WhiteSpace.OperatorSpacing.NoSpaceBefore, WordPress.WhiteSpace.OperatorSpacing.NoSpaceAfter
 	}) && postId === id;
@@ -177,8 +190,11 @@ function isCurrentPostRequest(options) {
  * @returns {Boolean}
  */
 function isSaveRequest(options) {
-	// if data is defined we are in a PUT or POST request method otherwise a GET request method
-	if (!Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isUndefined"])(options.data)) {
+	// If data is defined we are in a PUT or POST request method otherwise a GET request method
+	// Test options.method property isn't efficient because most of REST request which use fetch API doesn't pass this property.
+	// So, test options.data is necessary to know if the REST request is to save datas.
+	// However test if options.data is undefined isn't sufficient because some REST request pass a null value as the ServerSideRender Gutenberg component.
+	if (!Object(lodash__WEBPACK_IMPORTED_MODULE_3__["isNil"])(options.data)) {
 		return true;
 	} else {
 		return false;

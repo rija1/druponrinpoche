@@ -33,7 +33,8 @@ class PLL_Export_Download_Zip {
 
 	/**
 	 * Creates a new zip containing several files
-	 * Uses PHP ZipArchive library: @link https://www.php.net/manual/class.ziparchive.php
+	 *
+	 * @see https://www.php.net/manual/class.ziparchive.php PHP ZipArchive library
 	 *
 	 * @param PLL_Export_File_Interface $export An instance representing a file, or a collection of files to be exported as zip.
 	 * @return bool true if file have been created.

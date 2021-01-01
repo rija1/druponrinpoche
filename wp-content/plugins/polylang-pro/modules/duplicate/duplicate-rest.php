@@ -24,7 +24,7 @@ class PLL_Duplicate_REST {
 		$this->options      = &$polylang->options;
 		$this->sync_content = &$polylang->sync_content;
 
-		add_action( 'rest_api_init', array( $this, 'new_post_translation' ), 2 );
+		add_filter( 'block_editor_preload_paths', array( $this, 'block_editor_preload_paths' ) );
 
 		register_rest_field(
 			'user',
@@ -58,5 +58,18 @@ class PLL_Duplicate_REST {
 	 */
 	public function udpate_duplicate_content_meta( $options, $user ) {
 		return update_user_meta( $user->ID, 'pll_duplicate_content', $options );
+	}
+
+	/**
+	 * Fires the content copy by hooking to the filter 'block_editor_preload_paths'.
+	 *
+	 * @since 2.9
+	 *
+	 * @param array $preload_paths Array of paths to preload, not used.
+	 * @return array
+	 */
+	public function block_editor_preload_paths( $preload_paths ) {
+			$this->new_post_translation();
+		return $preload_paths;
 	}
 }

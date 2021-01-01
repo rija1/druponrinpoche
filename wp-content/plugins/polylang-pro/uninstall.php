@@ -11,7 +11,7 @@ add_action(
 	'pll_uninstall',
 	function() {
 		// Executes each module's uninstall script, if it exists.
-		foreach ( glob( __DIR__ . '/modules/*/uninstall.php', GLOB_NOSORT ) as $uninstall_script ) { // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
+		foreach ( glob( __DIR__ . '/modules/*/uninstall.php', GLOB_NOSORT ) as $uninstall_script ) {
 			require $uninstall_script; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 		}
 	}

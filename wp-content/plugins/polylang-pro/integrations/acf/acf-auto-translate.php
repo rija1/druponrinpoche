@@ -26,8 +26,8 @@ class PLL_ACF_Auto_Translate {
 	public function __construct() {
 		add_filter( 'acf/update_value', array( $this, 'store_updated_field' ), 10, 3 );
 		add_filter( 'acf/delete_value', array( $this, 'store_updated_field' ), 10, 3 );
-		add_action( 'pll_save_term', array( $this, 'store_term_fields' ), 5, 2 ); // Before PLL_Sync_Metas.
-		add_action( 'pll_duplicate_term', array( $this, 'store_duplicated_term_fields' ), 5 ); // Before PLL_Sync_Metas.
+		add_action( 'pll_save_term', array( $this, 'store_term_fields' ), 5 ); // Before PLL_Sync_Metas.
+		add_action( 'pll_duplicate_term', array( $this, 'store_term_fields' ), 5 ); // Before PLL_Sync_Metas.
 
 		add_filter( 'acf/load_value', array( $this, 'load_value' ), 10, 3 );
 		add_filter( 'acf/load_value/type=repeater', array( $this, 'load_value' ), 20, 3 );
@@ -53,27 +53,14 @@ class PLL_ACF_Auto_Translate {
 	}
 
 	/**
-	 * Store fields when saving a term
+	 * Store fields when saving a term or when duplicating a term.
 	 *
 	 * @since 2.3
 	 *
-	 * @param int    $term_id  Id of the term being saved.
-	 * @param string $taxonomy Taxonomy for the term being saved.
+	 * @param int $term_id Id of the term being saved.
 	 */
-	public function store_term_fields( $term_id, $taxonomy ) {
-		$this->fields = get_field_objects( acf_get_term_post_id( $taxonomy, $term_id ) );
-	}
-
-	/**
-	 * Store fields when duplicating a term
-	 *
-	 * @since 2.6
-	 *
-	 * @param int $term_id Source term id.
-	 */
-	public function store_duplicated_term_fields( $term_id ) {
-		$term = get_term( $term_id );
-		$this->fields = get_field_objects( acf_get_term_post_id( $term->taxonomy, $term_id ) );
+	public function store_term_fields( $term_id ) {
+		$this->fields = get_field_objects( 'term_' . $term_id );
 	}
 
 	/**
@@ -87,16 +74,16 @@ class PLL_ACF_Auto_Translate {
 	 * @return mixed
 	 */
 	public function load_value( $value, $post_id, $field ) {
-		if ( 'term_0' === $post_id && isset( $_GET['taxonomy'], $_GET['from_tag'], $_GET['new_lang'] ) && taxonomy_exists( $taxonomy = sanitize_key( $_GET['taxonomy'] ) ) && $lang = PLL()->model->get_language( sanitize_key( $_GET['new_lang'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( 'term_0' === $post_id && isset( $_GET['taxonomy'], $_GET['from_tag'], $_GET['new_lang'] ) && taxonomy_exists( sanitize_key( $_GET['taxonomy'] ) ) && $lang = PLL()->model->get_language( sanitize_key( $_GET['new_lang'] ) ) ) { // phpcs:ignore WordPress.Security.NonceVerification
 
 			$from_tag = (int) $_GET['from_tag']; // phpcs:ignore WordPress.Security.NonceVerification
-			$tr_id    = acf_get_term_post_id( $taxonomy, $from_tag ); // Since ACF 5.5.6.
+			$tr_id    = 'term_' . $from_tag; // Converts to ACF internal id.
 			$fields   = get_field_objects( $tr_id );
 
 			if ( ! empty( $fields ) ) {
 				$keys = array_keys( $fields );
 
-				/** This filter is documented in modules/sync/admin-sync.php */
+				/** This filter is documented in /polylang/modules/sync/admin-sync.php */
 				$keys = array_unique( apply_filters( 'pll_copy_term_metas', $keys, false, $from_tag, 0, $lang->slug ) );
 
 				// Second test to load the values of subfields of accepted fields.

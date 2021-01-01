@@ -30,8 +30,8 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $url;?>" />
             <div class="inner">
-                <h5><?php pll_e('About Rinpoche'); ?></h5>
-                <p><?php pll_e('From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.'); ?></p>
+                <h5><?php dkr_str('About Rinpoche'); ?></h5>
+                <p><?php dkr_str('From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.'); ?></p>
             </div>
         </a>
 
@@ -47,7 +47,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
             <img  src="<?php echo $url;?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php pll_e('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
+                <p><?php dkr_str('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
             </div>
         </a>
 
@@ -62,7 +62,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
          <img  src="<?php echo $image[0];?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php pll_e('The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.'); ?></p>
+                <p><?php dkr_str('The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.'); ?></p>
             </div>
         </a>
 
@@ -77,7 +77,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $image[0];?>" />
             <div class="inner">
-                <h5><?php pll_e('Lineage')?></h5>
+                <h5><?php dkr_str('Lineage')?></h5>
             </div>
         </a>
 
@@ -94,7 +94,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
         if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
             unset($scheduleData[$k]);
         }
-        if($scheduleDataLine[5]==1) {
+        if(!empty($scheduleDataLine[5]) && ($scheduleDataLine[5]==1)) {
             unset($scheduleData[$k]);
         }
     }
@@ -104,7 +104,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
 
 <?php if($isSchedule): ?>
     <div class="home_mini_carousel">
-        <div class="schedule_title"><h5><?php pll_e('Upcoming Schedule'); ?></h5></div>
+        <div class="schedule_title"><h5><?php dkr_str('Upcoming Schedule'); ?></h5></div>
         <?php
         
         
@@ -124,9 +124,9 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
                 <div>
                     <table>
                         <tr>
-                            <th><?php pll_e('Date'); ?></th>
-                            <th><?php pll_e('Location'); ?></th>
-                            <th><?php pll_e('Details'); ?></th>
+                            <th><?php dkr_str('Date'); ?></th>
+                            <th><?php dkr_str('Location'); ?></th>
+                            <th><?php dkr_str('Details'); ?></th>
                         </tr>
                         <?php foreach($schBatch1 as $schBatch1Line) :?>
                             <tr>
@@ -141,9 +141,9 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
                 <div>
                     <table>
                         <tr>
-                            <th><?php pll_e('Date'); ?></th>
-                            <th><?php pll_e('Location'); ?></th>
-                            <th><?php pll_e('Details'); ?></th>
+                            <th><?php dkr_str('Date'); ?></th>
+                            <th><?php dkr_str('Location'); ?></th>
+                            <th><?php dkr_str('Details'); ?></th>
                         </tr>
                         <?php foreach($schBatch2 as $schBatch2Line) :?>
                             <tr>
@@ -169,7 +169,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
                 <?php endif; ?>
             </div>
             <div class="sched_carousel_arrows"></div>
-            <a class="view_full_schedule" href="<?php echo get_page_link($drWebsiteConfig['schedule_page_id'])?>"><span><?php pll_e('View Full Schedule');?></span></a>
+            <a class="view_full_schedule" href="<?php echo get_page_link($drWebsiteConfig['schedule_page_id'])?>"><span><?php dkr_str('View Full Schedule');?></span></a>
         </div>
     </div>
     <?php else: // No Schedule displayed?> 
@@ -184,7 +184,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
         ?>
         
     <div class="home_excerpts">
-        <h5><?php pll_e('Teaching Excerpts'); ?></h5>
+        <h5><?php dkr_str('Teaching Excerpts'); ?></h5>
         <div class="excerpts_list">
         <?php foreach ( $excerpts->posts as $excerptPost ) : ?>
                 <?php
@@ -205,7 +205,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
     <?php endif; ?>
 
     <div class="latestnews">
-        <div class="latestnews_title"><h5><?php pll_e('Latest News'); ?></h5></div>
+        <div class="latestnews_title"><h5><?php dkr_str('Latest News'); ?></h5></div>
         <ul class="latestnews_list">
             <?php foreach ( $recentPosts->posts as $recent_post ) : ?>
                 <?php
@@ -220,7 +220,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
                         <div class="home_post_txt">
                         <span class="recent_post_title"><?php echo $title ; ?></span>
                         <p><?php echo get_post_meta($recent_post->ID, 'short_excerpt', true);?></p>
-<!--                        <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
+<!--                        <span class="read_more">--><?php //dkr_str('Read More'); ?><!--</span>-->
                         </div>
                     </li>
                 </a>

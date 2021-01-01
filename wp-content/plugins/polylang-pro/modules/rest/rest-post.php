@@ -9,6 +9,12 @@
  * @since 2.2
  */
 class PLL_REST_Post extends PLL_REST_Translated_Object {
+	/**
+	 * Instance of PLL_Filters_Sanitization
+	 *
+	 * @var object
+	 */
+	public $filters_sanitization;
 
 	/**
 	 * Constructor
@@ -31,8 +37,10 @@ class PLL_REST_Post extends PLL_REST_Translated_Object {
 			add_filter( "rest_prepare_{$post_type}", array( $this, 'prepare_response' ), 10, 3 );
 		}
 
-		// Use rest_pre_dispatch_filter to be sure to get translations_table parameter in time
+		// Use rest_pre_dispatch_filter to be sure to get translations_table parameter in time.
 		add_filter( 'rest_pre_dispatch', array( $this, 'get_rest_query_params' ), 10, 3 );
+		// Use rest_pre_dispatch_filter to get the right language locale and initialize correctly sanitization filters.
+		add_filter( 'rest_pre_dispatch', array( $this, 'set_filters_sanitization' ), 10, 3 );
 	}
 
 	/**
@@ -123,6 +131,31 @@ class PLL_REST_Post extends PLL_REST_Translated_Object {
 	}
 
 	/**
+	 * Initialize correctly sanitization filters with the correct language locale.
+	 *
+	 * @see WP_REST_Server::dispatch()
+	 *
+	 * @since 2.9
+	 *
+	 * @param mixed           $result  Response to replace the requested version with. Can be anything
+	 *                                 a normal endpoint can return, or null to not hijack the request.
+	 * @param WP_REST_Server  $server  Server instance.
+	 * @param WP_REST_Request $request Request used to generate the response.
+	 */
+	public function set_filters_sanitization( $result, $server, $request ) {
+		if ( current_user_can( 'edit_posts' ) ) {
+			if ( ! empty( $request->get_param( 'lang' ) ) ) {
+				$this->filters_sanitization = new PLL_Filters_Sanitization( $this->model->get_language( sanitize_key( $request->get_param( 'lang' ) ) )->locale );
+			} elseif ( ! empty( $request->get_param( 'id' ) ) ) {
+				// Otherwise we need to get the language from the post itself.
+				$this->filters_sanitization = new PLL_Filters_Sanitization( $this->model->post->get_language( (int) $request->get_param( 'id' ) )->locale );
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Check if the request is a REST API post type request for saving
 	 *
 	 * @since 2.7.3
@@ -206,7 +239,7 @@ class PLL_REST_Post extends PLL_REST_Translated_Object {
 	 *
 	 * When a media is edited in the block image, a new media is created and we need to set the language from the original one.
 	 *
-	 * @see new WordPress 5.5 feature https://make.wordpress.org/core/2020/07/20/editing-images-in-the-block-editor/
+	 * @see https://make.wordpress.org/core/2020/07/20/editing-images-in-the-block-editor/ the new WordPress 5.5 feature: Editing Images in the Block Editor.
 	 * @since 2.8
 	 *
 	 * @param int $post_id

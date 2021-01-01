@@ -293,7 +293,7 @@ class PLL_Bulk_Translate {
 	 * @since 2.4
 	 */
 	public function display_form() {
-		global $post_type; // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
+		global $post_type; // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		$bulk_translate_options = $this->options;
 		usort(
 			$bulk_translate_options,

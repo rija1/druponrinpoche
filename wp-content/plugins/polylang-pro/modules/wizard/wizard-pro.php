@@ -35,7 +35,7 @@ class PLL_Wizard_Pro {
 		$this->model      = &$polylang->model;
 		$this->sync_model = &$polylang->sync_post_model;
 
-		// @see pll_wizard_create_home_page_translations filter in PLL_Wizard class.
+		// See pll_wizard_create_home_page_translations filter in PLL_Wizard class.
 		add_filter( 'pll_wizard_create_home_page_translations', array( $this, 'replace_create_home_page_translations' ) );
 	}
 
@@ -43,10 +43,8 @@ class PLL_Wizard_Pro {
 	 * Replace function to apply to process the home page transations creation.
 	 *
 	 * @since 2.7
-	 *
-	 * @param array $function The function to process the home page translations creation.
 	 */
-	public function replace_create_home_page_translations( $function ) {
+	public function replace_create_home_page_translations() {
 		return array( $this, 'create_home_page_translations' );
 	}
 

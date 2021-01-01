@@ -34,12 +34,12 @@ $featuredPostIds = array();
                     <span class="category-post-title"><?php echo the_title();  ?></span>
                     <div class="post-info">
                         <?php if (!empty($author)): ?>
-                            <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
+                            <div class="post-author"><?php echo dkr_str('By').' '.$author; ?></div>
                         <?php endif; ?>
                         <div class="post_date"><?php echo get_the_date(); ?></div>
                     </div>
                     <p><?php echo get_text_excerpt(get_the_excerpt(),240);?></p>
-<!--                    <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
+<!--                    <span class="read_more">--><?php //dkr_str('Read More'); ?><!--</span>-->
                 </div>
             </div>
             </a>
@@ -47,7 +47,7 @@ $featuredPostIds = array();
         <?php endwhile; ?> <?php wp_reset_query(); /*4*/ ?>
 
         <div class="news_right_block">
-            <h5><?php pll_e('Selected Pictures'); ?></h5>
+            <h5><?php dkr_str('Selected Pictures'); ?></h5>
             <?php
             if ( function_exists( 'rl_gallery' ) ) { rl_gallery(array('id'=> '1293')); }
             ?>
@@ -72,12 +72,12 @@ $featuredPostIds = array();
                 <span class="category-post-title" href="<?php the_permalink() ?>"><?php if(get_the_title()) { echo get_the_title(); } else { echo get_the_time(); } ?></span>
                 <div class="post-info">
                     <?php if (!empty($author)): ?>
-                        <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
+                        <div class="post-author"><?php echo dkr_str('By').' '.$author; ?></div>
                     <?php endif; ?>
                     <div class="post_date"><?php echo get_the_date(); ?></div>
                 </div>
                 <p><?php echo get_text_excerpt(get_the_excerpt($post),140);?></p>
-<!--                <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
+<!--                <span class="read_more">--><?php //dkr_str('Read More'); ?><!--</span>-->
             </div>
         </div>
     </article>
@@ -90,8 +90,8 @@ $featuredPostIds = array();
     the_posts_pagination( array(
         'mid_size'  => 2,
         'show_all' => true,
-        'prev_text' => pll__('Previous Posts'),
-        'next_text' => pll__('Next posts'),
+        'prev_text' => dkr_str('Previous Posts',1),
+        'next_text' => dkr_str('Next posts',1),
     ) );
     ?>
 

@@ -1141,9 +1141,9 @@ function getDrWebsiteConfig()
 
 }
 
-
-
 add_action('init', function() {
+
+if (function_exists('pll_register_string')){
     pll_register_string('read-more', 'Read More','drupon-rinpoche');
     pll_register_string('home-about-rinpoche', 'About Rinpoche','drupon-rinpoche');
     pll_register_string('home-about-rinpoche-intro', 'From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.','drupon-rinpoche');
@@ -1163,6 +1163,7 @@ add_action('init', function() {
     pll_register_string('by','By','drupon-rinpoche');
     pll_register_string('selected-pictures','Selected Pictures','drupon-rinpoche');
     pll_register_string('lineage','Lineage','drupon-rinpoche');
+} 
 
 });
 
@@ -1197,6 +1198,23 @@ function teaching_single_template($single) {
 
     return $single;
 
+}
+
+function dkr_str($string,$return=false) {
+    if (function_exists('pll_e')) {
+        if($return){
+            return pll__($string);
+        } else {
+            pll_e($string);
+        }
+    } else {
+        if($return){
+            return $string;
+        } else {
+            echo $string;
+        }
+    }
+    return;
 }
 
 //

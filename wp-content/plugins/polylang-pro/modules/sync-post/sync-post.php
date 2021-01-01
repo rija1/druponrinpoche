@@ -54,7 +54,7 @@ class PLL_Sync_Post {
 			);
 		}
 
-		add_action( 'pll_save_post', array( $this, 'sync_posts' ), 5, 2 ); // Before PLL_Admin_Sync, Before PLL_ACF, Before PLLWC
+		add_action( 'pll_save_post', array( $this, 'sync_posts' ), 5 ); // Before PLL_Admin_Sync, Before PLL_ACF, Before PLLWC.
 	}
 
 	/**
@@ -62,10 +62,9 @@ class PLL_Sync_Post {
 	 *
 	 * @since 2.1
 	 *
-	 * @param int    $post_id The post id.
-	 * @param object $post    The post object.
+	 * @param int $post_id The post id.
 	 */
-	public function sync_posts( $post_id, $post ) {
+	public function sync_posts( $post_id ) {
 		static $avoid_recursion = false;
 
 		if ( $avoid_recursion ) {

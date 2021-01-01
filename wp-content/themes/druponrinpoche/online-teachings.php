@@ -15,7 +15,7 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
             <div class="blog-columns">
                 <?php get_template_part( 'online-teaching-left-menu'); ?>
                 <div class="inner-page-container">
-                    <h1><?php echo pll__('Online Courses'); ?></h1>
+                    <h1><?php dkr_str('Online Courses'); ?></h1>
                     <?php
                     $args = array(
                         'post_type'  => 'online-course',
@@ -47,23 +47,23 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
                                 <div class="teaching_left">
                                     <div class="teachingDates"><?php echo $dates;  ?></div>
                                     <div class="teachingTitle"><a href="<?php echo the_permalink(); ?>"><?php echo the_title(); ?></a></div>
-                                    <div class="registrationStatus registYes" style="<?php echo ($registered) ? 'display:block;' : 'display:none;' ; ?>"><?php echo pll__('You are registered to this course.'); ?></div>
+                                    <div class="registrationStatus registYes" style="<?php echo ($registered) ? 'display:block;' : 'display:none;' ; ?>"><?php dkr_str('You are registered to this course.'); ?></div>
                                     <span class="registrationStatus registNo" style="<?php echo ($registered) ? 'display:none;' : 'display:block;' ; ?>">
                                         <?php if($registrationOpen) : ?>
-                                        <?php echo pll__('You are not registered to this course.'); ?>
+                                        <?php dkr_str('You are not registered to this course.'); ?>
                                         <?php else: ?>
-                                        <span class="redText"><?php echo pll__('Registration for this course is now closed.'); ?></span>
+                                        <span class="redText"><?php dkr_str('Registration for this course is now closed.'); ?></span>
                                         <?php endif; ?>
                                     </span>
                                 </div>
                                 <div class="teaching_right">
-                                    <a class="teaching_details" href="<?php echo the_permalink(); ?>"><?php echo pll__('Details & Registration'); ?></a>
+                                    <a class="teaching_details" href="<?php echo the_permalink(); ?>"><?php dkr_str('Details & Registration'); ?></a>
                                 </div>
                             </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>
                     <?php else: ?>
-                        <p><?php echo pll__('There is no upcoming online course.'); ?></p>
+                        <p><?php dkr_str('There is no upcoming online course.'); ?></p>
                    <?php endif; ?>
                 </div>
             </div>

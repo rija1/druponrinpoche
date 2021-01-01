@@ -8,18 +8,20 @@
  *
  * List of parameters accepted in $args:
  *
- * dropdown               => displays a dropdown if set to 1, defaults to 0
- * echo                   => echoes the switcher if set to 1 ( default )
- * hide_if_empty          => hides languages with no posts ( or pages ) if set to 1 ( default )
- * show_flags             => shows flags if set to 1, defaults to 0
- * show_names             => shows languages names if set to 1 ( default )
- * display_names_as       => whether to display the language name or its slug, valid options are 'slug' and 'name', defaults to name
- * force_home             => forces linking to the home page is set to 1, defaults to 0
- * hide_if_no_translation => hides the link if there is no translation if set to 1, defaults to 0
- * hide_current           => hides the current language if set to 1, defaults to 0
- * post_id                => if not null, link to translations of post defined by post_id, defaults to null
- * raw                    => set this to true to build your own custom language switcher, defaults to 0
- * item_spacing           => whether to preserve or discard whitespace between list items, valid options are 'preserve' and 'discard', defaults to preserve
+ * - dropdown               => displays a dropdown if set to 1, defaults to 0
+ * - echo                   => echoes the switcher if set to 1 ( default )
+ * - hide_if_empty          => hides languages with no posts ( or pages ) if set to 1 ( default )
+ * - show_flags             => shows flags if set to 1, defaults to 0
+ * - show_names             => shows languages names if set to 1 ( default )
+ * - display_names_as       => whether to display the language name or its slug, valid options are 'slug' and 'name',
+ * defaults to name
+ * - force_home             => forces linking to the home page is set to 1, defaults to 0
+ * - hide_if_no_translation => hides the link if there is no translation if set to 1, defaults to 0
+ * - hide_current           => hides the current language if set to 1, defaults to 0
+ * - post_id                => if not null, link to translations of post defined by post_id, defaults to null
+ * - raw                    => set this to true to build your own custom language switcher, defaults to 0
+ * - item_spacing           => whether to preserve or discard whitespace between list items, valid options are
+ * 'preserve' and 'discard', defaults to preserve
  *
  * @api
  * @since 0.5
@@ -130,7 +132,7 @@ function pll_home_url( $lang = '' ) {
  * @param string $context   optional the group in which the string is registered, defaults to 'polylang'
  * @param bool   $multiline optional whether the string table should display a multiline textarea or a single line input, defaults to single line
  */
-function pll_register_string( $name, $string, $context = 'polylang', $multiline = false ) {
+function pll_register_string( $name, $string, $context = 'Polylang', $multiline = false ) {
 	if ( PLL() instanceof PLL_Admin_Base ) {
 		PLL_Admin_Strings::register_string( $name, $string, $context, $multiline );
 	}

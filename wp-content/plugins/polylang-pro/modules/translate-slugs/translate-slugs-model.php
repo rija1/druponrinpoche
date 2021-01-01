@@ -34,7 +34,7 @@ class PLL_Translate_Slugs_Model {
 
 		// Register strings for translated slugs.
 		add_action( 'admin_init', array( $this, 'register_slugs' ) );
-		add_filter( 'pll_sanitize_string_translation', array( $this, 'sanitize_string_translation' ), 10, 3 );
+		add_filter( 'pll_sanitize_string_translation', array( $this, 'sanitize_string_translation' ), 10, 2 );
 
 		// Reset cache when adding or modifying languages.
 		add_action( 'pll_add_language', array( $this, 'clean_cache' ) );
@@ -450,10 +450,9 @@ class PLL_Translate_Slugs_Model {
 	 *
 	 * @param string $translation Translation to sanitize.
 	 * @param string $name        Unique name for the string, not used.
-	 * @param string $context     The group in which the string is registered.
 	 * @return string
 	 */
-	public function sanitize_string_translation( $translation, $name, $context ) {
+	public function sanitize_string_translation( $translation, $name ) {
 		if ( 0 === strpos( $name, 'slug_' ) ) {
 			// Inspired by category base sanitization.
 			$translation = preg_replace( '#/+#', '/', str_replace( '#', '', $translation ) );

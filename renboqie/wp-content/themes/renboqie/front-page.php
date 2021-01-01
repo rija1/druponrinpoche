@@ -29,8 +29,8 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $url;?>" />
             <div class="inner">
-                <h5><?php pll_e('About Rinpoche'); ?></h5>
-                <p><?php pll_e('From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.'); ?></p>
+                <h5><?php dkr_str('About Rinpoche'); ?></h5>
+                <p><?php dkr_str('From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.'); ?></p>
             </div>
         </a>
 
@@ -46,7 +46,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
             <img  src="<?php echo $url;?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php pll_e('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
+                <p><?php dkr_str('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
             </div>
         </a>
 
@@ -61,7 +61,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
          <img  src="<?php echo $image[0];?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php pll_e('The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.'); ?></p>
+                <p><?php dkr_str('The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.'); ?></p>
             </div>
         </a>
 
@@ -76,7 +76,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $image[0];?>" />
             <div class="inner">
-                <h5><?php pll_e('Lineage')?></h5>
+                <h5><?php dkr_str('Lineage')?></h5>
             </div>
         </a>
 

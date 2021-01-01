@@ -19,9 +19,12 @@ class PLL_Pro {
 	 * @since 2.6
 	 */
 	public function __construct() {
-		foreach ( glob( POLYLANG_PRO_DIR . '/integrations/*/load.php', GLOB_NOSORT ) as $load_script ) { // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
+		require_once __DIR__ . '/../include/functions.php';
+		foreach ( glob( POLYLANG_PRO_DIR . '/integrations/*/load.php', GLOB_NOSORT ) as $load_script ) {
 			require_once $load_script; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 		}
+
+		add_filter( 'pll_languages_list', array( 'PLL_Locale_Fallback', 'pll_languages_list' ) );
 	}
 
 	/**
@@ -44,7 +47,7 @@ class PLL_Pro {
 		}
 
 		// Loads the modules.
-		foreach ( glob( POLYLANG_PRO_DIR . '/modules/*/load.php', GLOB_NOSORT ) as $load_script ) { // phpcs:ignore WordPressVIPMinimum.Variables.VariableAnalysis.UnusedVariable
+		foreach ( glob( POLYLANG_PRO_DIR . '/modules/*/load.php', GLOB_NOSORT ) as $load_script ) {
 			require_once $load_script; // phpcs:ignore WordPressVIPMinimum.Files.IncludingFile.UsingVariable
 		}
 	}

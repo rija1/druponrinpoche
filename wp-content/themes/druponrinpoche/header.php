@@ -7,26 +7,27 @@
  * @package Onsen
  */
 
-$polylang = new PLL_Widget_Languages();
-$drConfig = getDrWebsiteConfig();
-$pllSwitcher = new PLL_Switcher();
-$pllArgs = array(
-    'dropdown'               => 0, // display as list and not as dropdown
-    'echo'                   => 1, // echoes the list
-    'hide_if_empty'          => 0, // hides languages with no posts ( or pages )
-    'menu'                   => 0, // not for nav menu ( this argument is deprecated since v1.1.1 )
-    'show_flags'             => 0, // don't show flags
-    'show_names'             => 1, // show language names
-    'display_names_as'       => 'name', // valid options are slug and name
-    'force_home'             => 0, // tries to find a translation
-    'hide_if_no_translation' => 0, // don't hide the link if there is no translation
-    'hide_current'           => 0, // don't hide current language
-    'post_id'                => null, // if not null, link to translations of post defined by post_id
-    'raw'                    => 0, // set this to true to build your own custom language switcher
-    'item_spacing'           => 'preserve', // 'preserve' or 'discard' whitespace between list items
-);
+if (is_plugin_active('polylang-pro/polylang.php')){
+    $polylang = new PLL_Widget_Languages();
+    $pllSwitcher = new PLL_Switcher();
+    $pllArgs = array(
+        'dropdown'               => 0, // display as list and not as dropdown
+        'echo'                   => 1, // echoes the list
+        'hide_if_empty'          => 0, // hides languages with no posts ( or pages )
+        'menu'                   => 0, // not for nav menu ( this argument is deprecated since v1.1.1 )
+        'show_flags'             => 0, // don't show flags
+        'show_names'             => 1, // show language names
+        'display_names_as'       => 'name', // valid options are slug and name
+        'force_home'             => 0, // tries to find a translation
+        'hide_if_no_translation' => 0, // don't hide the link if there is no translation
+        'hide_current'           => 0, // don't hide current language
+        'post_id'                => null, // if not null, link to translations of post defined by post_id
+        'raw'                    => 0, // set this to true to build your own custom language switcher
+        'item_spacing'           => 'preserve', // 'preserve' or 'discard' whitespace between list items
+    );
+}
 
-//pa(PLL()->links,1);
+$drConfig = getDrWebsiteConfig();
 
 ?>
 <!DOCTYPE html>
@@ -74,19 +75,21 @@ $pllArgs = array(
                             <a href="<?php echo esc_url(home_url('/')); ?>">
                                 <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.png" />
                                 <div class="logo_name">
-                                    <span class="logo_dkr"><?php pll_e('Drupon Khen Rinpoche'); ?></span>
-                                    <span class="logo_kl"><?php pll_e('Karma Lhabu'); ?></span>
+                                    <span class="logo_dkr"><?php dkr_str('Drupon Khen Rinpoche'); ?></span>
+                                    <span class="logo_kl"><?php dkr_str('Karma Lhabu'); ?></span>
                                 </div>
                             </a>
                         </div>
 <!--                        <span class="dc_header">Tirthika Square</span>-->
                         <div class="header_top_right">
                             <div class="top_ts_link"><a href="<?php echo get_permalink( get_page_by_path( 'tirthika-square' ) ); ?>">Tirthika Square</a></div>
+                            <?php if (is_plugin_active('polylang-pro/polylang.php')) : ?>
                             <ul class="poly_switcher">
                                 <?php
                                 $pllSwitcher->the_languages(PLL()->links,$pllArgs);
                                 ?>
                             </ul>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <nav class="menu-top-container">

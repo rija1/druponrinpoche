@@ -44,7 +44,7 @@ class PLL_Share_Term_Slug {
 
 		// Quick check.
 		if ( ! $this->model->term_exists_by_slug( $slug, $lang, $term->taxonomy ) ) {
-			/** This filter is documented in wp-includes/taxonomy.php */
+			/** This filter is documented in /wordpress/wp-includes/taxonomy.php */
 			return apply_filters( 'wp_unique_term_slug', $slug, $term, $original_slug );
 		}
 
@@ -62,7 +62,7 @@ class PLL_Share_Term_Slug {
 				}
 				$slug .= '-' . $parent_term->slug;
 				if ( ! $this->model->term_exists_by_slug( $slug, $lang ) ) { // Calls our own term_exists.
-					/** This filter is documented in wp-includes/taxonomy.php */
+					/** This filter is documented in /wordpress/wp-includes/taxonomy.php */
 					return apply_filters( 'wp_unique_term_slug', $slug, $term, $original_slug );
 				}
 
@@ -92,7 +92,7 @@ class PLL_Share_Term_Slug {
 			$slug = $alt_slug;
 		}
 
-		/** This filter is documented in wp-includes/taxonomy.php */
+		/** This filter is documented in /wordpress/wp-includes/taxonomy.php */
 		return apply_filters( 'wp_unique_term_slug', $slug, $term, $original_slug );
 	}
 

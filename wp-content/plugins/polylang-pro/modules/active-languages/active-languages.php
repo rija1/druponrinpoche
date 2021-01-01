@@ -91,7 +91,7 @@ class PLL_Active_Languages {
 					'<a title="%s" href="%s">%s</a>',
 					esc_attr__( 'Activate this language', 'polylang-pro' ),
 					wp_nonce_url( '?page=mlang&amp;pll_action=enable&amp;noheader=true&amp;lang=' . $language->term_id, 'enable-lang' ),
-					esc_html__( 'Activate', 'polylang' )
+					esc_html__( 'Activate', 'polylang-pro' )
 				),
 			) :
 			array(
@@ -99,7 +99,7 @@ class PLL_Active_Languages {
 					'<a title="%s" href="%s">%s</a>',
 					esc_attr__( 'Deactivate this language', 'polylang-pro' ),
 					wp_nonce_url( '?page=mlang&amp;pll_action=disable&amp;noheader=true&amp;lang=' . $language->term_id, 'disable-lang' ),
-					esc_html__( 'Deactivate', 'polylang' )
+					esc_html__( 'Deactivate', 'polylang-pro' )
 				),
 			);
 

@@ -1,3 +1,14 @@
+.tablepress tfoot th,
+.tablepress thead th {
+	background-color: #e6e1c8;
+}
+
+.tablepress .sorting:hover,
+.tablepress .sorting_asc,
+.tablepress .sorting_desc {
+	background-color: #e6e1c8;
+}
+
 #tablepress-8 .column-1 {
 	width: 22%;
 }

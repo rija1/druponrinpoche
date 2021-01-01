@@ -57,30 +57,26 @@ class PLL_TEC {
 		add_filter( 'tribe_events_get_link', array( $this, 'get_link' ) );
 		add_filter( 'pll_get_archive_url', array( $this, 'pll_get_archive_url' ), 10, 2 );
 		add_filter( 'pll_translated_slugs', array( $this, 'pll_translated_slugs' ), 10, 3 );
-		add_filter( 'pll_sanitize_string_translation', array( $this, 'sanitize_string_translation' ), 10, 3 );
+		add_filter( 'pll_sanitize_string_translation', array( $this, 'sanitize_string_translation' ), 10, 2 );
 		add_filter( 'tribe_events_rewrite_i18n_slugs_raw', array( $this, 'rewrite_slugs' ) );
 
-		// Options to translate
-		self::$options = array(
-			'dateWithYearFormat'    => array( 'name' => __( 'Date with year', 'polylang-pro' ) ),
-			'dateWithoutYearFormat' => array( 'name' => __( 'Date without year', 'polylang-pro' ) ),
-			'monthAndYearFormat'    => array( 'name' => __( 'Month and year format', 'polylang-pro' ) ),
-			'dateTimeSeparator'     => array( 'name' => __( 'Date time separator', 'polylang-pro' ) ),
-			'timeRangeSeparator'    => array( 'name' => __( 'Time range separator', 'polylang-pro' ) ),
-			'tribeEventsBeforeHTML' => array( 'name' => __( 'Add HTML before event content', 'polylang-pro' ), 'multiline' => true ),
-			'tribeEventsAfterHTML'  => array( 'name' => __( 'Add HTML after event content', 'polylang-pro' ), 'multiline' => true ),
+		// Options to translate.
+		$keys = array(
+			'dateWithYearFormat'    => 1,
+			'dateWithoutYearFormat' => 1,
+			'monthAndYearFormat'    => 1,
+			'dateTimeSeparator'     => 1,
+			'timeRangeSeparator'    => 1,
+			'tribeEventsBeforeHTML' => 1,
+			'tribeEventsAfterHTML'  => 1,
 		);
 
-		// Register strings
-		if ( PLL() instanceof PLL_Settings ) {
-			add_action( 'init', array( $this, 'register_strings' ), 1 );
-			add_filter( 'pll_sanitize_string_translation', array( $this, 'sanitize_strings' ), 10, 3 );
-		}
+		$args = array(
+			'context'           => 'The Events Calendar',
+			'sanitize_callback' => array( $this, 'sanitize_strings' ),
+		);
 
-		// Translate strings on frontend
-		if ( PLL() instanceof PLL_Frontend ) {
-			add_action( 'option_tribe_events_calendar_options', array( $this, 'translate_strings' ) );
-		}
+		new PLL_Translate_Option( 'tribe_events_calendar_options', $keys, $args );
 	}
 
 	/**
@@ -186,10 +182,9 @@ class PLL_TEC {
 	 *
 	 * @since 2.2
 	 *
-	 * @param object $strategy
 	 * @return $strategy
 	 */
-	public function default_value_strategy( $strategy ) {
+	public function default_value_strategy() {
 		return new PLL_TEC_Default_Values();
 	}
 
@@ -197,10 +192,8 @@ class PLL_TEC {
 	 * Removes date filters when searching for untranslated events in the metabox autocomplete field
 	 *
 	 * @since 2.2.8
-	 *
-	 * @param object $query WP_Query object
 	 */
-	public function pre_get_posts( $query ) {
+	public function pre_get_posts() {
 		if ( wp_doing_ajax() && isset( $_GET['action'] ) && 'pll_posts_not_translated' === $_GET['action'] ) { // phpcs:ignore WordPress.Security.NonceVerification
 			// See Tribe__Events__Query::pre_get_posts() when should_remove_date_filters() returns true
 			remove_filter( 'posts_where', array( 'Tribe__Events__Query', 'posts_where' ), 10, 2 );
@@ -352,12 +345,11 @@ class PLL_TEC {
 	 *
 	 * @since 1.9
 	 *
-	 * @param string $translation Translation to sanitize
-	 * @param string $name        Unique name for the string, not used
-	 * @param string $context     The group in which the string is registered
+	 * @param string $translation Translation to sanitize.
+	 * @param string $name        Unique name for the string.
 	 * @return string
 	 */
-	public function sanitize_string_translation( $translation, $name, $context ) {
+	public function sanitize_string_translation( $translation, $name ) {
 		if ( 'slug_archive_tribe_events' === $name || 0 === strpos( $name, 'slug_tribe_' ) ) {
 			$slugs = explode( '/', $translation );
 			$slugs = array_map( 'sanitize_title', $slugs );
@@ -389,23 +381,6 @@ class PLL_TEC {
 	}
 
 	/**
-	 * Register strings
-	 *
-	 * @since 2.2
-	 */
-	public function register_strings() {
-
-		$option = get_option( 'tribe_events_calendar_options' );
-
-		foreach ( self::$options as $string => $arr ) {
-			if ( ! empty( $option[ $string ] ) ) {
-				pll_register_string( $arr['name'], $option[ $string ], 'The Events Calendar', ! empty( $arr['multiline'] ) );
-			}
-		}
-
-	}
-
-	/**
 	 * Translated strings must be sanitized the same way The Events Calendar does before they are saved
 	 * All are of validation_type 'html'
 	 *
@@ -422,20 +397,5 @@ class PLL_TEC {
 		}
 
 		return $translation;
-	}
-
-	/**
-	 * Translate strings in options
-	 *
-	 * @since 2.2
-	 *
-	 * @param array $options
-	 * @return array
-	 */
-	public function translate_strings( $options ) {
-		foreach ( array_intersect( array_keys( $options ), array_keys( self::$options ) ) as $key ) {
-			$options[ $key ] = pll__( $options[ $key ] );
-		}
-		return $options;
 	}
 }

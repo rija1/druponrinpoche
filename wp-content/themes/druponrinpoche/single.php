@@ -19,7 +19,7 @@ $author = get_post_meta(get_the_ID(), 'Post Author', true);
                             <h2><?php the_title(); ?></h2>
                             <div class="post-info">
                                 <?php if (!empty($author)): ?>
-                                    <div class="post-author"><?php echo pll_e('By').' '.$author; ?></div>
+                                    <div class="post-author"><?php echo dkr_str('By').' '.$author; ?></div>
                                 <?php endif; ?>
 <!--                            <p class="meta"><span class="meta-auth">--><?php //the_author(); ?><!--</span> <span class="meta-categ">--><?php //the_category(', '); ?><!--</span></p>-->
                                 <div class="post_date"><?php the_date(); ?></div>

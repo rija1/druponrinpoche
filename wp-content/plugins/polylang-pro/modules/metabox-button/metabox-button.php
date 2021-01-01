@@ -51,7 +51,7 @@ abstract class PLL_Metabox_Button {
 	 * @param bool   $active    New requested button state.
 	 * @return bool Whether the new button state is accepted or not.
 	 */
-	protected function toggle_option( $post_type, $active ) {
+	protected function toggle_option( $post_type, $active ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		return true;
 	}
 
@@ -145,7 +145,7 @@ abstract class PLL_Metabox_Button {
 			wp_localize_script(
 				'pll_metabox_button',
 				'confirm_text',
-				__( 'You are about to overwrite an existing translation. Are you sure you want to proceed?', 'polylang' )
+				__( 'You are about to overwrite an existing translation. Are you sure you want to proceed?', 'polylang-pro' )
 			);
 
 			wp_enqueue_style(

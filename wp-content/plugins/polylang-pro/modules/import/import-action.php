@@ -169,7 +169,7 @@ class PLL_Import_Action {
 				$entry->translations[0] = '';
 			}
 
-			/** This filter is documented in settings/table-string.php */
+			/** This filter is documented in /polylang/settings/table-string.php */
 			$sanitized_translation = apply_filters( 'pll_sanitize_string_translation', $entry->translations[0], $entry->extracted_comments, $entry->context );
 			$security_check = wp_kses_post( $sanitized_translation );
 			if ( $security_check === $sanitized_translation ) {

@@ -54,7 +54,7 @@ abstract class PLL_REST_Translated_Object extends PLL_REST_Filtered_Object {
 						'get_callback'    => array( $this, 'get_language' ),
 						'update_callback' => array( $this, 'set_language' ),
 						'schema'          => array(
-							'lang' => __( 'Language', 'polylang' ),
+							'lang' => __( 'Language', 'polylang-pro' ),
 							'type' => 'string',
 						),
 					)
@@ -69,7 +69,7 @@ abstract class PLL_REST_Translated_Object extends PLL_REST_Filtered_Object {
 						'get_callback'    => array( $this, 'get_translations' ),
 						'update_callback' => array( $this, 'save_translations' ),
 						'schema'          => array(
-							'translations' => __( 'Translations', 'polylang' ),
+							'translations' => __( 'Translations', 'polylang-pro' ),
 							'type' => 'object',
 						),
 					)

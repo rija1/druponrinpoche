@@ -17,44 +17,29 @@ class PLL_CPTUI {
 	 * @since 2.1
 	 */
 	public function init() {
-		add_filter( 'cptui_pre_register_post_type', array( $this, 'translate_strings' ) );
-		add_filter( 'cptui_pre_register_taxonomy', array( $this, 'translate_strings' ) );
+		$keys = array(
+			'*' => array(
+				'*_label' => 1,
+				'*_singular_label' => 1,
+				'*_description' => 1,
+				'labels' => array(
+					'*' => 1,
+				),
+			),
+		);
 
-		if ( PLL() instanceof PLL_Frontend ) {
-			if ( ! PLL()->options['force_lang'] ) {
-				// Special case when the language is set from the content as CPT and taxonomies are registered before the language is defined
-				add_action( 'pll_language_defined', array( $this, 'pll_language_defined' ) );
-			}
-		} else {
-			// Register strings on admin
-			$cptui_post_types = get_option( 'cptui_post_types' );
-			$this->register_strings( $cptui_post_types );
+		new PLL_Translate_Option( 'cptui_post_types', $keys, array( 'context' => 'CPT UI' ) );
+		new PLL_Translate_Option( 'cptui_taxonomies', $keys, array( 'context' => 'CPT UI' ) );
 
-			$cptui_taxonomies = get_option( 'cptui_taxonomies' );
-			$this->register_strings( $cptui_taxonomies );
-
-			// Add CPT UI post types and taxonomies to Polylang settings
-			add_filter( 'pll_get_post_types', array( $this, 'pll_get_types' ), 10, 2 );
-			add_filter( 'pll_get_taxonomies', array( $this, 'pll_get_types' ), 10, 2 );
-		}
-	}
-
-	/**
-	 * Translates custom post types and taxonomies labels
-	 *
-	 * @since 2.1
-	 *
-	 * @param array $args Array of post types or taxonomies arguments
-	 * @return array
-	 */
-	public function translate_strings( $args ) {
-		$args['description'] = pll__( $args['description'] );
-
-		foreach ( $args['labels'] as $key => $label ) {
-			$args['labels'][ $key ] = pll__( $label );
+		if ( PLL() instanceof PLL_Frontend && ! PLL()->options['force_lang'] ) {
+			// Special case when the language is set from the content as CPT and taxonomies are registered before the language is defined
+			add_action( 'pll_language_defined', array( $this, 'pll_language_defined' ) );
 		}
 
-		return $args;
+
+		// Add CPT UI post types and taxonomies to Polylang settings
+		add_filter( 'pll_get_post_types', array( $this, 'pll_get_types' ), 10, 2 );
+		add_filter( 'pll_get_taxonomies', array( $this, 'pll_get_types' ), 10, 2 );
 	}
 
 	/**
@@ -86,27 +71,6 @@ class PLL_CPTUI {
 	public function pll_language_defined() {
 		$this->translate_registered_types( $GLOBALS['wp_post_types'], array_keys( get_option( 'cptui_post_types', array() ) ) );
 		$this->translate_registered_types( $GLOBALS['wp_taxonomies'], array_keys( get_option( 'cptui_taxonomies', array() ) ) );
-	}
-
-	/**
-	 * Registers custom post types and taxonomies labels
-	 *
-	 * @since 2.1
-	 *
-	 * @param array $objects Array of CPT UI post types or taxonomies
-	 */
-	public function register_strings( $objects ) {
-		if ( ! empty( $objects ) ) {
-			foreach ( $objects as $name => $obj ) {
-				pll_register_string( $name . '_label', $obj['label'], 'CPT UI' );
-				pll_register_string( $name . '_singular_label', $obj['singular_label'], 'CPT UI' );
-				pll_register_string( $name . '_description', $obj['description'], 'CPT UI' );
-
-				foreach ( $obj['labels'] as $key => $label ) {
-					pll_register_string( $name . '_' . $key, $label, 'CPT UI' );
-				}
-			}
-		}
 	}
 
 	/**

@@ -112,7 +112,7 @@ class PLL_PO_Export implements PLL_Export_File_Interface {
 	 * @param string $type Type of data to be exported, @see PLL_Export_File_Interface .
 	 * @param string $id   Optional, unique identifier to retrieve the data in the database.
 	 */
-	public function set_source_reference( $type, $id = '' ) {
+	public function set_source_reference( $type, $id = '' ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 		$this->po->set_header( 'Source-Reference', $type );
 	}
 
