@@ -17,6 +17,7 @@ wp-content/ai1wm-backups/*
 wp-content/tablepress*.css
 wp-content/ewww/*
 shrineapp/
+wp-content/tablepress-*
 
 dumps/
 .idea/
