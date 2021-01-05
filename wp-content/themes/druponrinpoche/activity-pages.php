@@ -1,7 +1,7 @@
-<?php /* Template Name: LeftPageMenu */ ?>
+<?php /* Template Name: ActivityPages */ ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
-    <div class="section section-blog">
+    <div class="activity-pages section section-blog">
         <div class="container">
             <div class="blog-columns">
                 <div class="sidebar-container">

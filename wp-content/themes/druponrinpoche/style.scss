@@ -942,6 +942,10 @@ nav {
     grid-column-gap: 20px;
 }
 
+.activity-pages .blog-columns {
+    grid-template-columns: 250px 1fr; 
+}
+
 /**  articles  **/
 
 .article-text .button, .article-service .article-icon .fa {
