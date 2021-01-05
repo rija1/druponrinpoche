@@ -3404,6 +3404,10 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     grid-row: 2;
   }
 
+  .activity-pages .blog-columns {
+    grid-template-columns: 1fr;
+  }
+
   .header .menu-bar {
     height: 120px;
   }
@@ -3488,6 +3492,10 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 }
 /**  MOBILE  **/
 @media only screen and (max-width: 480px) {
+  .activity-pages .blog-columns {
+    grid-template-columns: 1fr;
+  }
+
   .container .single-post h1 {
     font-size: 24px;
   }
