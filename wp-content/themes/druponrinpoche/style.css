@@ -1600,9 +1600,10 @@ div {
 }
 
 .home .home_news_carousel {
-  float: left;
-  display: block;
-  padding: 20px 30px 30px 30px;
+  display: grid;
+  grid-template-columns: 58% 1fr;
+  padding: 5px 30px 30px 30px;
+  grid-column-gap: 20px;
 }
 .home .home_news_carousel h5 {
   text-align: left;
@@ -1624,6 +1625,8 @@ div {
   display: grid;
   grid-row-gap: 8px;
   grid-template-columns: 1fr;
+  grid-column: 2;
+  grid-row: 1;
 }
 .home .home_news_carousel .home_excerpts .excerpts_list {
   list-style: none;
@@ -1689,9 +1692,8 @@ li.home_post p {
 }
 
 .home_news_carousel .latestnews {
-  display: block;
-  width: 58%;
-  padding-right: 20px;
+  grid-column: 1;
+  grid-row: 1;
 }
 .home_news_carousel .latestnews .recent_post_link {
   font-size: 13px;
@@ -1737,8 +1739,6 @@ li.home_post p {
   color: #bb9b25;
 }
 .home_news_carousel .home_excerpts {
-  float: right;
-  width: 42%;
   font-size: 12px;
   color: #444;
 }
@@ -3429,14 +3429,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     display: none;
   }
 
-  .home_mini_carousel {
-    width: 66%;
-  }
-
-  .home_news_carousel .latestnews {
-    width: 34%;
-  }
-
   .latestnews .latestnews_list {
     grid-template-columns: 1fr;
   }
@@ -3689,64 +3681,68 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     font-size: 14px;
   }
 
-  .home_news_carousel {
+  .home .home_news_carousel {
     list-style: none;
     display: grid;
     grid-template-columns: 1fr;
     padding: 10px 15px 30px 15px;
   }
-  .home_news_carousel .home_mini_carousel {
+  .home .home_news_carousel .home_mini_carousel {
     width: auto;
     grid-column: 1;
     grid-row: 2;
     float: none;
   }
-  .home_news_carousel .home_mini_carousel .schedule_carousel_wrap {
+  .home .home_news_carousel .home_mini_carousel .schedule_carousel_wrap {
     margin-bottom: 0;
     width: 92.5vw;
   }
-  .home_news_carousel .latestnews {
+  .home .home_news_carousel .home_excerpts {
+    grid-column: 1;
+    grid-row: 2;
+  }
+  .home .home_news_carousel .latestnews {
     width: auto;
     padding: 0;
     grid-column: 1;
     grid-row: 1;
   }
-  .home_news_carousel .latestnews .latestnews_list {
+  .home .home_news_carousel .latestnews .latestnews_list {
     padding-top: 20px;
     grid-column-gap: 15px;
     grid-row-gap: 15px;
     grid-template-columns: 1fr 1fr;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link {
     padding: 0px;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link .post-date {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link .post-date {
     display: none;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post {
     height: auto;
     width: auto;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img {
     height: auto;
     float: 115px;
     padding-bottom: 4px;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img img {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img img {
     width: auto;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt {
     padding: 10px 8px 10px 8px;
     text-align: center;
     margin: 0;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt p {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt p {
     display: none;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .read_more {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .read_more {
     display: none;
   }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .recent_post_title {
+  .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .recent_post_title {
     padding-top: 10px;
     font-size: 15px;
   }
