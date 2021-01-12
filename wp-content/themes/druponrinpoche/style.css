@@ -1622,9 +1622,7 @@ div {
 }
 .home .home_news_carousel .home_excerpts {
   list-style: none;
-  display: grid;
   grid-row-gap: 8px;
-  grid-template-columns: 1fr;
   grid-column: 2;
   grid-row: 1;
 }
@@ -3430,8 +3428,11 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     display: none;
   }
 
+  .home .home_news_carousel {
+    grid-template-columns: 33% 1fr;
+  }
   .home .home_news_carousel .latestnews .latestnews_list {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     grid-column-gap: 20px;
   }
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link {
