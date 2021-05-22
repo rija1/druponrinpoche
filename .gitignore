@@ -13,10 +13,13 @@ wp-content/plugins/wordpress-seo/frontend/schema/*.php
 wp-content/plugins/bwp-minify/cache/*
 wp-content/upgrade/
 wp-content/uploads/
+wp-content/uploads
 wp-content/ai1wm-backups/*
 wp-content/tablepress*.css
 wp-content/ewww/*
 shrineapp/
+error_log
+.htpasswd
 
 dumps/
 .idea/
