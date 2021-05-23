@@ -15,6 +15,8 @@ wp-content/upgrade/
 wp-content/uploads/
 wp-content/ai1wm-backups/*
 wp-content/tablepress*.css
+wp-content/tablepress-custom.min.css
+wp-content/tablepress-combined.min.css
 wp-content/ewww/*
 shrineapp/
 wp-content/tablepress-*
@@ -33,3 +35,4 @@ dumps/
 .vscode/settings.json
 .vscode/launch.json
 wp-content/plugins/elastic-email-sender/api/error_log.php
+wp-content/tablepress-custom.min.css
