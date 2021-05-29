@@ -25,6 +25,7 @@ if ( ! class_exists( 'um\core\User' ) ) {
 			$this->data = null;
 			$this->profile = null;
 			$this->cannot_edit = null;
+			$this->password_reset_key = null;
 
 			global $wpdb;
 
@@ -729,7 +730,7 @@ if ( ! class_exists( 'um\core\User' ) ) {
 		public function secondary_role_field( $content, $userdata ) {
 			$roles = array();
 
-			$role_keys = get_option( 'um_roles' );
+			$role_keys = get_option( 'um_roles', array() );
 			if ( $role_keys ) {
 				foreach ( $role_keys as $role_key ) {
 					$role_meta = get_option( "um_role_{$role_key}_meta" );
@@ -1228,7 +1229,7 @@ if ( ! class_exists( 'um\core\User' ) ) {
 		 * Set last login for new registered users
 		 */
 		function set_last_login() {
-			update_user_meta(  $this->id, '_um_last_login', current_time( 'timestamp' ) );
+			update_user_meta( $this->id, '_um_last_login', current_time( 'timestamp' ) );
 		}
 
 
@@ -1335,6 +1336,13 @@ if ( ! class_exists( 'um\core\User' ) ) {
 
 			$this->profile['account_secret_hash'] = UM()->validation()->generate();
 			$this->update_usermeta_info( 'account_secret_hash' );
+
+			$expiry_time = UM()->options()->get( 'activation_link_expiry_time' );
+			if ( ! empty( $expiry_time ) && is_numeric( $expiry_time ) ) {
+				$this->profile['account_secret_hash_expiry'] = time() + $expiry_time;
+				$this->update_usermeta_info( 'account_secret_hash_expiry' );
+			}
+
 			/**
 			 * UM hook
 			 *
@@ -1357,11 +1365,26 @@ if ( ! class_exists( 'um\core\User' ) ) {
 
 
 		/**
+		 * @param \WP_User $userdata
+		 *
+		 * @return string|\WP_Error
+		 */
+		function maybe_generate_password_reset_key( $userdata ) {
+			if ( empty( $this->password_reset_key ) ) {
+				$this->password_reset_key = get_password_reset_key( $userdata );
+			}
+
+			return $this->password_reset_key ;
+		}
+
+
+		/**
 		 * Password reset email
 		 */
 		function password_reset() {
 			$userdata = get_userdata( um_user( 'ID' ) );
-			get_password_reset_key( $userdata );
+
+			$this->maybe_generate_password_reset_key( $userdata );
 
 			add_filter( 'um_template_tags_patterns_hook', array( UM()->password(), 'add_placeholder' ), 10, 1 );
 			add_filter( 'um_template_tags_replaces_hook', array( UM()->password(), 'add_replace_placeholder' ), 10, 1 );
@@ -1407,17 +1430,20 @@ if ( ! class_exists( 'um\core\User' ) ) {
 
 			if ( um_user( 'account_status' ) == 'awaiting_admin_review' ) {
 				$userdata = get_userdata( $user_id );
-				get_password_reset_key( $userdata );
+
+				$this->maybe_generate_password_reset_key( $userdata );
+
 				UM()->mail()->send( um_user( 'user_email' ), 'approved_email' );
 
 			} else {
-				$userdata = get_userdata( $user_id );
-				get_password_reset_key( $userdata );
+				//$userdata = get_userdata( $user_id );
+				//get_password_reset_key( $userdata );
 				UM()->mail()->send( um_user( 'user_email' ), 'welcome_email' );
 			}
 
 			$this->set_status( 'approved' );
 			$this->delete_meta( 'account_secret_hash' );
+			$this->delete_meta( 'account_secret_hash_expiry' );
 
 			/**
 			 * UM hook
@@ -1687,6 +1713,52 @@ if ( ! class_exists( 'um\core\User' ) ) {
 
 
 		/**
+		 * This method checks if the profile indexing is disabled
+		 *
+		 * @param int $user_id
+		 *
+		 * @since 2.1.16
+		 * @usage <?php UM()->user()->is_profile_noindex( $user_id ); ?>
+		 *
+		 * @return boolean  Is the profile indexing disabled?
+		 */
+		function is_profile_noindex( $user_id ) {
+			$profile_noindex = false;
+
+			if ( ! get_option( 'blog_public' ) ) {
+				// Option "Search engine visibility" in [wp-admin > Settings > Reading]
+				$profile_noindex = true;
+
+			} elseif ( $this->is_private_profile( $user_id ) ) {
+				// Setting "Profile Privacy" in [Account > Privacy]
+				$profile_noindex = true;
+
+			} elseif ( get_user_meta( $user_id, 'profile_noindex', true ) === '1' ) {
+				// Setting "Avoid indexing my profile by search engines in [Account > Privacy]
+				$profile_noindex = true;
+
+			}
+
+			if ( ! $profile_noindex ) {
+				$role = UM()->roles()->get_priority_user_role( $user_id );
+				$permissions = UM()->roles()->role_data( $role );
+
+				if ( isset( $permissions['profile_noindex'] ) && $permissions['profile_noindex'] === '1' ) {
+					// Setting "Avoid indexing profile by search engines" in [wp-admin > Ultimate Member > User Roles > Edit Role]
+					$profile_noindex = true;
+
+				} elseif ( ( ! isset( $permissions['profile_noindex'] ) || $permissions['profile_noindex'] === '' ) && UM()->options()->get( 'profile_noindex' ) === '1' ) {
+					// Setting "Avoid indexing profile by search engines" in [wp-admin > Ultimate Member > Settings > General > Users]
+					$profile_noindex = true;
+
+				}
+			}
+
+			return apply_filters( 'um_user_is_profile_noindex', $profile_noindex, $user_id, $this );
+		}
+
+
+		/**
 		 * This method checks if give user profile is private.
 		 *
 		 * @usage <?php UM()->user()->is_private_profile( $user_id ); ?>
@@ -1858,12 +1930,12 @@ if ( ! class_exists( 'um\core\User' ) ) {
 				//if isset roles argument validate role to properly for security reasons
 				if ( isset( $args['role'] ) ) {
 					global $wp_roles;
-					$um_roles = get_option( 'um_roles' );
+					$um_roles = get_option( 'um_roles', array() );
 
 					if ( ! empty( $um_roles ) ) {
 						$role_keys = array_map( function( $item ) {
 							return 'um_' . $item;
-						}, get_option( 'um_roles' ) );
+						}, $um_roles );
 					} else {
 						$role_keys = array();
 					}
@@ -2013,7 +2085,7 @@ if ( ! class_exists( 'um\core\User' ) ) {
 		 *
 		 */
 		function user_exists_by_id( $user_id ) {
-			$aux = get_userdata( intval( $user_id ) );
+			$aux = get_userdata( absint( $user_id ) );
 			if ( $aux == false ) {
 				return false;
 			} else {

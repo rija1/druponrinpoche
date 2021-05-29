@@ -41,7 +41,21 @@ class autoptimizeCriticalCSSEnqueue {
             global $ao_ccss_forcepath;
 
             // Get request path and page type, and initialize the queue update flag.
-            $req_path        = strtok( $_SERVER['REQUEST_URI'], '?' );
+            $req_orig        = $_SERVER['REQUEST_URI'];
+            $req_path        = strtok( $req_orig, '?' );
+
+            // Check if we have a lang param. we need to keep as WPML can switch languages based on that
+            // and that includes RTL -> LTR so diff. structure, so rules would be RTL vs LTR
+            // but this needs changes in the structur of the rule object so off by default for now
+            // as now this will simply result in conditional rules being overwritten.
+            if ( apply_filters( 'autoptimize_filter_ccss_coreenqueue_honor_lang', false ) && strpos( $req_orig, 'lang=' ) !== false ) {
+                $req_params = strtok( '?' );
+                parse_str( $req_params, $req_params_arr );
+                if ( array_key_exists( 'lang', $req_params_arr ) && !empty( $req_params_arr['lang'] ) ) {
+                    $req_path .= '?lang=' . $req_params_arr['lang'];
+                }
+            }
+
             $req_type        = $self->ao_ccss_get_type();
             $job_qualify     = false;
             $target_rule     = false;
@@ -199,6 +213,10 @@ class autoptimizeCriticalCSSEnqueue {
             if ( is_404() ) {
                 $page_type = 'is_404';
                 break;
+            } elseif ( is_front_page() ) {
+                // identify frontpage immediately to avoid it also matching a CPT or template.
+                $page_type = 'is_front_page';
+                break;
             } elseif ( strpos( $type, 'custom_post_' ) !== false && ( ! $ao_ccss_forcepath || ! is_page() ) ) {
                 // Match custom post types and not page or page not forced to path-based.
                 if ( get_post_type( get_the_ID() ) === substr( $type, 12 ) ) {
@@ -216,8 +234,8 @@ class autoptimizeCriticalCSSEnqueue {
                 // but remove prefix to be able to check if the function exists & returns true.
                 $_type = str_replace( array( 'woo_', 'bp_', 'bbp_', 'edd_' ), '', $type );
                 if ( function_exists( $_type ) && call_user_func( $_type ) ) {
-                    // Make sure we only return is_front_page (and is_home) for one page, not for the "paged frontpage" (/page/2 ..).
-                    if ( ( 'is_front_page' !== $_type && 'is_home' !== $_type ) || ! is_paged() ) {
+                    // Make sure we only return for one page, not for the "paged pages" (/page/2 ..).
+                    if ( ! is_page() || ! is_paged() ) {
                         $page_type = $type;
                         break;
                     }

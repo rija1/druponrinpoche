@@ -37,6 +37,15 @@ class ApiClient
     private static $ApiUri = "https://api.elasticemail.com/v2/";
     private static $postbody, $boundary;
 
+    public static function insert_log($error) {
+        global $wpdb;
+        $table = $wpdb->prefix . 'elasticemail_log';
+        $wpdb->insert($table, array(
+            'date' => date("d/m/Y:H:i:s").'UTC',
+            'error' => $error,
+        ));
+    }
+
     public static function Request($target, $data = array(), $method = "GET", array $attachments = array())
     {
 
@@ -60,16 +69,13 @@ class ApiClient
                     'content-type' => 'multipart/form-data; boundary=' . self::$boundary
                 ),
                 'body' => implode("", self::$postbody)));
-
+               
             if (is_array($response) && !empty($response['body'])) {
                 $jsonresponse = json_decode($response['body'], true);
 
-                // error log to file /api/error_log.php
                 if (!$jsonresponse['success']) {
                     if (get_option('ees-connecting-status') === 'connecting') {
-                        $filename = plugin_dir_path(__FILE__) . 'error_log.php';
-                        $errorMessage = date("d/m/Y:H:i:s") . 'UTC => ' . $jsonresponse['error'] . PHP_EOL;
-                        file_put_contents($filename, $errorMessage, FILE_APPEND);
+                        self::insert_log($jsonresponse['error']);                        
                     }
                 }
 
@@ -3724,102 +3730,6 @@ abstract class CampaignStatus
 
 /**
  *
- */
-class CampaignTemplate
-{
-
-    /**
-     * ID number of selected Channel.
-     */
-    public /* ?int */
-        $ChannelID;
-
-    /**
-     * Name of campaign's status
-     */
-    public /* ApiTypes\CampaignStatus */
-        $Status;
-
-    /**
-     * Name of your custom IP Pool to be used in the sending process
-     */
-    public /* string */
-        $PoolName;
-
-    /**
-     * ID number of template.
-     */
-    public /* ?int */
-        $TemplateID;
-
-    /**
-     * Default subject of email.
-     */
-    public /* string */
-        $TemplateSubject;
-
-    /**
-     * Default From: email address.
-     */
-    public /* string */
-        $TemplateFromEmail;
-
-    /**
-     * Default From: name.
-     */
-    public /* string */
-        $TemplateFromName;
-
-    /**
-     * Default Reply: email address.
-     */
-    public /* string */
-        $TemplateReplyEmail;
-
-    /**
-     * Default Reply: name.
-     */
-    public /* string */
-        $TemplateReplyName;
-
-}
-
-/**
- *
- * Enum class
- */
-abstract class CampaignTriggerType
-{
-
-    /**
-     *
-     */
-    const SendNow = 1;
-
-    /**
-     *
-     */
-    const FutureScheduled = 2;
-
-    /**
-     *
-     */
-    const OnAdd = 3;
-
-    /**
-     *
-     */
-    const OnOpen = 4;
-
-    /**
-     *
-     */
-    const OnClick = 5;
-
-}
-
-/**
- *
  * Enum class
  */
 abstract class CertificateValidationStatus
@@ -6932,238 +6842,6 @@ abstract class SurveyStepType
      *
      */
     const ExpiredPage = 5;
-
-}
-
-/**
- * Template
- */
-class Template
-{
-
-    /**
-     * ID number of template.
-     */
-    public /* int */
-        $TemplateID;
-
-    /**
-     * 0 for API connections
-     */
-    public /* ApiTypes\TemplateType */
-        $TemplateType;
-
-    /**
-     * Filename
-     */
-    public /* string */
-        $Name;
-
-    /**
-     * Date of creation in YYYY-MM-DDThh:ii:ss format
-     */
-    public /* DateTime */
-        $DateAdded;
-
-    /**
-     * CSS style
-     */
-    public /* string */
-        $Css;
-
-    /**
-     * Default subject of email.
-     */
-    public /* string */
-        $Subject;
-
-    /**
-     * Default From: email address.
-     */
-    public /* string */
-        $FromEmail;
-
-    /**
-     * Default From: name.
-     */
-    public /* string */
-        $FromName;
-
-    /**
-     * HTML code of email (needs escaping).
-     */
-    public /* string */
-        $BodyHtml;
-
-    /**
-     * Text body of email.
-     */
-    public /* string */
-        $BodyText;
-
-    /**
-     * ID number of original template.
-     */
-    public /* int */
-        $OriginalTemplateID;
-
-    /**
-     * Enum: 0 - private, 1 - public, 2 - mockup
-     */
-    public /* ApiTypes\TemplateScope */
-        $TemplateScope;
-
-}
-
-/**
- * List of templates (including drafts)
- */
-class TemplateList
-{
-
-    /**
-     * List of templates
-     */
-    public /* Array<ApiTypes\Template> */
-        $Templates;
-
-    /**
-     * List of draft templates
-     */
-    public /* Array<ApiTypes\Template> */
-        $DraftTemplate;
-
-}
-
-/**
- *
- * Enum class
- */
-abstract class TemplateScope
-{
-
-    /**
-     * Template is available for this account only.
-     */
-    const EEPrivate = 0;
-
-    /**
-     * Template is available for this account and it's sub-accounts.
-     */
-    const EEPublic = 1;
-
-}
-
-/**
- *
- * Enum class
- */
-abstract class TemplateType
-{
-
-    /**
-     * Template supports any valid HTML
-     */
-    const RawHTML = 0;
-
-    /**
-     * Template is created and can only be modified in drag and drop editor
-     */
-    const DragDropEditor = 1;
-
-}
-
-/**
- * Information about tracking link and its clicks.
- */
-class TrackedLink
-{
-
-    /**
-     * URL clicked
-     */
-    public /* string */
-        $Link;
-
-    /**
-     * Number of clicks
-     */
-    public /* string */
-        $Clicks;
-
-    /**
-     * Percent of clicks
-     */
-    public /* string */
-        $Percent;
-
-}
-
-/**
- *
- * Enum class
- */
-abstract class TrackingType
-{
-
-    /**
-     *
-     */
-    const None = -2;
-
-    /**
-     *
-     */
-    const EEDelete = -1;
-
-    /**
-     *
-     */
-    const Http = 0;
-
-    /**
-     *
-     */
-    const ExternalHttps = 1;
-
-    /**
-     *
-     */
-    const InternalCertHttps = 2;
-
-    /**
-     *
-     */
-    const LetsEncryptCert = 3;
-
-}
-
-/**
- * Status of ValidDomain used by DomainValidationService to determine how often tracking validation should be performed.
- * Enum class
- */
-abstract class TrackingValidationStatus
-{
-
-    /**
-     *
-     */
-    const Validated = 0;
-
-    /**
-     *
-     */
-    const NotValidated = 1;
-
-    /**
-     *
-     */
-    const Invalid = 2;
-
-    /**
-     *
-     */
-    const Broken = 3;
 
 }
 

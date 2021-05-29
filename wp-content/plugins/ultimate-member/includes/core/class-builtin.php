@@ -510,7 +510,7 @@ if ( ! class_exists( 'um\core\Builtin' ) ) {
 				'divider' => array(
 					'name' => 'Divider',
 					'col1' => array('_title','_width','_divider_text','_visibility'),
-					'col2' => array('_style','_color'),
+					'col2' => array('_style','_color','_public','_roles'),
 					'form_only' => true,
 					'validate' => array(
 						'_title' => array(
@@ -633,7 +633,7 @@ if ( ! class_exists( 'um\core\Builtin' ) ) {
 		function set_predefined_fields() {
 
 			global $wp_roles;
-			$role_keys = get_option( 'um_roles' );
+			$role_keys = get_option( 'um_roles', array() );
 			if ( ! empty( $role_keys ) && is_array( $role_keys ) ) {
 				$role_keys = array_map( function( $item ) {
 					return 'um_' . $item;
@@ -1139,7 +1139,7 @@ if ( ! class_exists( 'um\core\Builtin' ) ) {
 					'required'      => 0,
 					'public'        => 1,
 					'editable'      => 1,
-					'default'       => '0',
+					'default'       => UM()->roles()->um_user_can( 'profile_noindex' ) ? '1' : '0',
 					'options'       => array(
 						'0'     => __( 'No', 'ultimate-member' ),
 						'1'     => __( 'Yes', 'ultimate-member' ),

@@ -3,7 +3,7 @@
  * Options Page For Default Images
  *
  * @package   Quick_Featured_Images_Defaults
- * @author    Martin Stehle <shop@stehle-internet.de>
+ * @author    Kybernetik Services <wordpress@kybernetik.com.de>
  * @license   GPL-2.0+
  * @link      http://wordpress.org/plugins/quick-featured-images/
  * @copyright 2014 
@@ -221,7 +221,7 @@ if ( ! current_theme_supports( 'post-thumbnails' ) ) {
 <?php 
 }
 ?>
-<p class="qfi_ad_for_pro"><?php esc_html_e( 'Do you want to use external featured images, e.g. from a CDN?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.quickfeaturedimages.com<?php esc_html_e( '/', 'quick-featured-images' ); ?>">Quick Featured Images Pro</a>.</p>
+<p class="qfi_ad_for_pro"><?php esc_html_e( 'Do you want to use external featured images, e.g. from a CDN?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro" target="_blank">Quick Featured Images Pro</a>.</p>
 
 <form method="post" action="">
 	<table class="widefat">
@@ -512,13 +512,13 @@ wp_nonce_field( $this->main_function_name, $this->nonce );
 </ol>
 <p><?php esc_html_e( 'Bear in mind that if two or more rules with the same taxonomy would fit to the post it is unforeseeable which image will become the featured image.', 'quick-featured-images' ); ?></p>
 <h3><?php esc_html_e( 'Additional rules in the Pro version', 'quick-featured-images' ); ?></h3>
-<ol>
-	<li><?php esc_html_e( 'Multiple images to set them randomly as featured image', 'quick-featured-images' ); ?></li>
-	<li><?php esc_html_e( 'Random featured images at each page load', 'quick-featured-images' ); ?></li>
-	<li><?php esc_html_e( 'The first content image can be also an image from an external server to set it as automated featured image', 'quick-featured-images' ); ?></li>
-	<li><?php esc_html_e( 'Remove the first content image automatically after the featured image was set successfully', 'quick-featured-images' ); ?></li>
-	<li><?php esc_html_e( 'Match with a search string in post title', 'quick-featured-images' ); ?></li>
-	<li><?php esc_html_e( 'Match with a selected post format', 'quick-featured-images' ); ?></li>
-	<li><?php esc_html_e( 'User defined order of rules', 'quick-featured-images' ); ?></li>
-	<li><?php esc_html_e( 'Import your rules from this plugin into the Pro plugin', 'quick-featured-images' ); ?></li>
+<ol start="8">
+    <li><?php esc_html_e( 'Multiple images to set them randomly as featured image', 'quick-featured-images' ); ?></li>
+    <li><?php esc_html_e( 'Random featured images at each page load', 'quick-featured-images' ); ?></li>
+    <li><?php esc_html_e( 'The first content image can be also an image from an external server to set it as automated featured image', 'quick-featured-images' ); ?></li>
+    <li><?php esc_html_e( 'Remove the first content image automatically after the featured image was set successfully', 'quick-featured-images' ); ?></li>
+    <li><?php esc_html_e( 'Match with a search string in post title', 'quick-featured-images' ); ?></li>
+    <li><?php esc_html_e( 'Match with a selected post format', 'quick-featured-images' ); ?></li>
+    <li><?php esc_html_e( 'User defined order of rules', 'quick-featured-images' ); ?></li>
+    <li><?php esc_html_e( 'Import your rules from this plugin into the Pro plugin', 'quick-featured-images' ); ?></li>
 </ol>

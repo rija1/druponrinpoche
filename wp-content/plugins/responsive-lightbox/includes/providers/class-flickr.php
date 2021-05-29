@@ -46,7 +46,7 @@ class Responsive_Lightbox_Remote_Library_Flickr extends Responsive_Lightbox_Remo
 	 */
 	public function render_field() {
 		echo '
-		<p><label class="cb-checkbox"><input id="rl_flickr_active" class="rl-media-provider-expandable" type="checkbox" name="responsive_lightbox_remote_library[flickr][active]" value="1" ' . checked( $this->rl->options['remote_library']['flickr']['active'], true, false ) . ' />' . __( 'Enable Flickr.', 'responsive-lightbox' ) . '</label></p>
+		<p><label><input id="rl_flickr_active" class="rl-media-provider-expandable" type="checkbox" name="responsive_lightbox_remote_library[flickr][active]" value="1" ' . checked( $this->rl->options['remote_library']['flickr']['active'], true, false ) . ' />' . __( 'Enable Flickr.', 'responsive-lightbox' ) . '</label></p>
 		<div class="rl-media-provider-options"' . ( $this->rl->options['remote_library']['flickr']['active'] ? '' : ' style="display: none;"' ) . '>
 			<p><input id="rl_flickr_api_key" class="large-text" placeholder="' . __( 'API key', 'responsive-lightbox' ) . '" type="text" value="' . $this->rl->options['remote_library']['flickr']['api_key'] . '" name="responsive_lightbox_remote_library[flickr][api_key]"></p>
 			<p class="description">' . sprintf( __( 'Provide your <a href="%s">Flickr API key</a>.', 'responsive-lightbox' ), 'https://www.flickr.com/services/apps/create/' ) . '</p>

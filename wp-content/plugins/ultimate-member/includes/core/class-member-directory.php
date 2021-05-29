@@ -687,7 +687,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 									<?php disabled( ! empty( $filter_from_url ) && in_array( $opt, $filter_from_url ) );
 
 									if ( $admin ) {
-										if ( is_string( $default_value ) ) {
+										if ( ! is_array( $default_value ) ) {
 											$default_value = array( $default_value );
 										}
 
@@ -712,7 +712,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 
 						<input type="hidden" id="<?php echo $filter; ?>_min" name="<?php echo $filter; ?>[]" class="um_range_min" value="<?php echo ! empty( $default_value ) ? esc_attr( min( $default_value ) ) : '' ?>" />
 						<input type="hidden" id="<?php echo $filter; ?>_max" name="<?php echo $filter; ?>[]" class="um_range_max" value="<?php echo ! empty( $default_value ) ? esc_attr( max( $default_value ) ) : '' ?>" />
-						<div class="um-slider" data-field_name="<?php echo $filter; ?>" data-min="<?php echo $range[0] ?>" data-max="<?php echo $range[1] ?>"></div>
+						<div class="um-slider" data-field_name="<?php echo $filter; ?>" data-min="<?php echo esc_attr( $range[0] ); ?>" data-max="<?php echo esc_attr( $range[1] ); ?>"></div>
 						<div class="um-slider-range" data-placeholder-s="<?php echo esc_attr( $single_placeholder ); ?>" data-placeholder-p="<?php echo esc_attr( $plural_placeholder ); ?>" data-label="<?php echo ( ! empty( $attrs['label'] ) ) ? esc_attr__( stripslashes( $attrs['label'] ), 'ultimate-member' ) : ''; ?>"></div>
 					<?php }
 
@@ -794,22 +794,23 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 		function slider_filters_range( $filter, $directory_data ) {
 			global $wpdb;
 
+			$range = false;
+
 			switch ( $filter ) {
 
 				default: {
 
 					$meta = $wpdb->get_row( $wpdb->prepare(
-						"SELECT MIN( meta_value ) as min_meta,
-						MAX( meta_value ) as max_meta,
+						"SELECT MIN( CONVERT( meta_value, DECIMAL ) ) as min_meta,
+						MAX( CONVERT( meta_value, DECIMAL ) ) as max_meta,
 						COUNT( DISTINCT meta_value ) as amount
 						FROM {$wpdb->usermeta}
 						WHERE meta_key = %s",
 						$filter
 					), ARRAY_A );
 
-					$range = false;
-					if ( isset( $meta['min_meta'] ) && isset( $meta['max_meta'] ) ) {
-						$range = array( $meta['min_meta'], $meta['max_meta'] );
+					if ( isset( $meta['min_meta'] ) && isset( $meta['max_meta'] ) && isset( $meta['amount'] ) && $meta['amount'] > 1 ) {
+						$range = array( (float) $meta['min_meta'], (float) $meta['max_meta'] );
 					}
 
 					$range = apply_filters( 'um_member_directory_filter_slider_common', $range, $directory_data, $filter );
@@ -845,9 +846,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 							  meta_value != ''",
 					ARRAY_A );
 
-					if ( empty( $meta ) || ! isset( $meta['amount'] ) || $meta['amount'] === 1 ) {
-						$range = false;
-					} elseif ( isset( $meta['min_meta'] ) && isset( $meta['max_meta'] ) ) {
+					if ( isset( $meta['min_meta'] ) && isset( $meta['max_meta'] ) && isset( $meta['amount'] ) && $meta['amount'] > 1 ) {
 						$range = array( $this->borndate( strtotime( $meta['max_meta'] ) ), $this->borndate( strtotime( $meta['min_meta'] ) ) );
 					}
 
@@ -1429,18 +1428,20 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 			if ( ! empty( $_POST['search'] ) ) {
 				// complex using with change_meta_sql function
 
+				$search = trim( stripslashes( $_POST['search'] ) );
+
 				$meta_query = array(
 					'relation' => 'OR',
 					array(
-						'value'     => trim( stripslashes( $_POST['search'] ) ),
+						'value'     => $search,
 						'compare'   => '=',
 					),
 					array(
-						'value'     => trim( stripslashes( $_POST['search'] ) ),
+						'value'     => $search,
 						'compare'   => 'LIKE',
 					),
 					array(
-						'value'     => trim( serialize( strval( stripslashes( $_POST['search'] ) ) ) ),
+						'value'     => serialize( (string) $search ),
 						'compare'   => 'LIKE',
 					),
 				);
@@ -1595,13 +1596,12 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 								case 'text':
 
 									$value = stripslashes( $value );
-
 									$field_query = array(
 										'relation' => 'OR',
 										array(
 											'key'       => $field,
 											'value'     => trim( $value ),
-											'compare'   => 'LIKE',
+											'compare'   => apply_filters( 'um_members_directory_filter_text', 'LIKE', $field )
 										),
 									);
 
@@ -1614,22 +1614,22 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 										$field_query = array( 'relation' => 'OR' );
 
 										foreach ( $value as $single_val ) {
-											$single_val = stripslashes( $single_val );
+											$single_val = trim( stripslashes( $single_val ) );
 
 											$arr_meta_query = array(
 												array(
 													'key'       => $field,
-													'value'     => trim( $single_val ),
+													'value'     => $single_val,
 													'compare'   => '=',
 												),
 												array(
 													'key'       => $field,
-													'value'     => serialize( strval( trim( $single_val ) ) ),
+													'value'     => serialize( (string) $single_val ),
 													'compare'   => 'LIKE',
 												),
 												array(
 													'key'       => $field,
-													'value'     => '"' . trim( $single_val ) . '"',
+													'value'     => '"' . $single_val . '"',
 													'compare'   => 'LIKE',
 												)
 											);
@@ -1638,7 +1638,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 
 												$arr_meta_query[] = array(
 													'key'       => $field,
-													'value'     => serialize( intval( trim( $single_val ) ) ),
+													'value'     => serialize( (int) $single_val ),
 													'compare'   => 'LIKE',
 												);
 
@@ -1870,7 +1870,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 									$field_query = array(
 										'key'       => $field,
 										'value'     => $value,
-										'compare'   => '=',
+										'compare'   => apply_filters( 'um_members_directory_filter_text', '=', $field ),
 									);
 
 									break;
@@ -1883,20 +1883,22 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 									$field_query = array( 'relation' => 'OR' );
 
 									foreach ( $value as $single_val ) {
+										$single_val = trim( $single_val );
+
 										$arr_meta_query = array(
 											array(
 												'key'       => $field,
-												'value'     => trim( $single_val ),
+												'value'     => $single_val,
 												'compare'   => '=',
 											),
 											array(
 												'key'       => $field,
-												'value'     => serialize( strval( trim( $single_val ) ) ),
+												'value'     => serialize( (string) $single_val ),
 												'compare'   => 'LIKE',
 											),
 											array(
 												'key'       => $field,
-												'value'     => '"' . trim( $single_val ) . '"',
+												'value'     => '"' . $single_val . '"',
 												'compare'   => 'LIKE',
 											)
 										);
@@ -1905,7 +1907,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 
 											$arr_meta_query[] = array(
 												'key'       => $field,
-												'value'     => serialize( intval( trim( $single_val ) ) ),
+												'value'     => serialize( (int) $single_val ),
 												'compare'   => 'LIKE',
 											);
 
@@ -2209,7 +2211,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 			$dropdown_actions = $this->build_user_actions_list( $user_id );
 
 			$actions = array();
-			$can_edit = UM()->roles()->um_current_user_can( 'edit', $user_id ) || UM()->roles()->um_user_can( 'can_edit_everyone' );
+			$can_edit = UM()->roles()->um_current_user_can( 'edit', $user_id );
 
 			// Replace hook 'um_members_just_after_name'
 			ob_start();
@@ -2514,25 +2516,28 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 			 * @change_log
 			 * ["Since: 2.0"]
 			 * @usage
-			 * <?php add_filter( 'um_prepare_user_results_array', 'function_name', 10, 1 ); ?>
+			 * <?php add_filter( 'um_prepare_user_results_array', 'function_name', 10, 2 ); ?>
 			 * @example
 			 * <?php
-			 * add_filter( 'um_prepare_user_results_array', 'my_prepare_user_results', 10, 1 );
-			 * function my_prepare_user_results( $user_ids ) {
+			 * add_filter( 'um_prepare_user_results_array', 'my_prepare_user_results', 10, 2 );
+			 * function my_prepare_user_results( $user_ids, $query ) {
 			 *     // your code here
 			 *     return $user_ids;
 			 * }
 			 * ?>
 			 */
-			$user_ids = apply_filters( 'um_prepare_user_results_array', $user_ids );
+			$user_ids = apply_filters( 'um_prepare_user_results_array', $user_ids, $this->query_args );
 
 
 			$sizes = UM()->options()->get( 'cover_thumb_sizes' );
 
 			$this->cover_size = UM()->mobile()->isTablet() ? $sizes[1] : end( $sizes );
 
+			$this->cover_size = apply_filters( 'um_member_directory_cover_image_size', $this->cover_size, $directory_data );
+
 			$avatar_size = UM()->options()->get( 'profile_photosize' );
 			$this->avatar_size = str_replace( 'px', '', $avatar_size );
+			$this->avatar_size = apply_filters( 'um_member_directory_avatar_image_size', $this->avatar_size, $directory_data );
 
 			$users = array();
 			foreach ( $user_ids as $user_id ) {

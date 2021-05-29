@@ -99,14 +99,10 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 
 				$metakeys = array();
 				foreach ( UM()->builtin()->all_user_fields as $all_user_field ) {
-					if ( $all_user_field['type'] == 'user_location' ) {
-						$metakeys[] = $all_user_field['metakey'] . '_lat';
-						$metakeys[] = $all_user_field['metakey'] . '_lng';
-						$metakeys[] = $all_user_field['metakey'] . '_url';
-					} else {
-						$metakeys[] = $all_user_field['metakey'];
-					}
+					$metakeys[] = $all_user_field['metakey'];
 				}
+
+				$metakeys = apply_filters( 'um_metadata_same_page_update_ajax', $metakeys, UM()->builtin()->all_user_fields );
 
 				if ( is_multisite() ) {
 
@@ -126,6 +122,16 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 				$metakeys[] = '_money_spent';
 				$metakeys[] = '_completed';
 				$metakeys[] = '_reviews_avg';
+
+				//myCred meta
+				if (  function_exists( 'mycred_get_types' ) ) {
+					$mycred_types = mycred_get_types();
+					if ( ! empty( $mycred_types ) ) {
+						foreach ( array_keys( $mycred_types ) as $point_type ) {
+							$metakeys[] = $point_type;
+						}
+					}
+				}
 
 				$sortby_custom_keys = $wpdb->get_col( "SELECT DISTINCT meta_value FROM {$wpdb->postmeta} WHERE meta_key='_um_sortby_custom'" );
 				if ( empty( $sortby_custom_keys ) ) {
@@ -326,7 +332,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 							'tooltip'       => __( 'Select the the user roles allowed to view this tab.', 'ultimate-member' ),
 							'options'       => UM()->roles()->get_roles(),
 							'placeholder'   => __( 'Choose user roles...', 'ultimate-member' ),
-							'conditional'   => array( 'profile_tab_' . $id . '_privacy', '=', 4 ),
+							'conditional'   => array( 'profile_tab_' . $id . '_privacy', '=', [ '4', '5' ] ),
 							'size'          => 'small'
 						)
 					);
@@ -630,7 +636,25 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 									'type'      => 'checkbox',
 									'label'     => __( 'Require a strong password? (when user resets password only)', 'ultimate-member' ),
 									'tooltip'   => __( 'Enable or disable a strong password rules on password reset and change procedure', 'ultimate-member' ),
-								)
+								),
+								array(
+									'id'        => 'profile_noindex',
+									'type'      => 'select',
+									'size'      => 'small',
+									'label'     => __( 'Avoid indexing profile by search engines', 'ultimate-member' ),
+									'tooltip'   => __( 'Hides the profile page for robots. This setting can be overridden by individual role settings.', 'ultimate-member' ),
+									'options'   => [
+										'0' => __( 'No', 'ultimate-member' ),
+										'1' => __( 'Yes', 'ultimate-member' ),
+									]
+								),
+								array(
+									'id'        => 'activation_link_expiry_time',
+									'type'      => 'number',
+									'label'     => __( 'Activation link lifetime', 'ultimate-member' ),
+									'tooltip'   => __( 'How long does an activation link live in seconds? Leave empty for endless links.', 'ultimate-member' ),
+									'size'      => 'small',
+								),
 							)
 						),
 						'account'   => array(
@@ -717,10 +741,11 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 									'tooltip'   => __( 'Enable or disable a strong password rules on account page / change password tab', 'ultimate-member' ),
 								),
 								array(
-									'id'        => 'account_hide_in_directory',
-									'type'      => 'checkbox',
-									'label'     => __( 'Allow users to hide their profiles from directory', 'ultimate-member' ),
-									'tooltip'   => __( 'Whether to allow users changing their profile visibility from member directory in account page.', 'ultimate-member' ),
+									'id'            => 'account_hide_in_directory',
+									'type'          => 'checkbox',
+									'label'         => __( 'Allow users to hide their profiles from directory', 'ultimate-member' ),
+									'tooltip'       => __( 'Whether to allow users changing their profile visibility from member directory in account page.', 'ultimate-member' ),
+									'conditional'   => array( 'account_tab_privacy', '=', '1' ),
 								),
 								array(
 									'id'          => 'account_hide_in_directory_default',
@@ -1703,7 +1728,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Settings' ) ) {
 
 				if ( ( ! wp_verify_nonce( $nonce, 'um-settings-nonce' ) || empty( $nonce ) ) || ! current_user_can( 'manage_options' ) ) {
 					// This nonce is not valid.
-					wp_die( 'Security Check' );
+					wp_die( __( 'Security Check', 'ultimate-member' ) );
 				}
 
 				/**
@@ -2689,7 +2714,7 @@ Require a strong password: 	<?php echo $this->info_value( UM()->options()->get('
 --- UM Access Configuration ---
 
 Panic Key: 								<?php  echo UM()->options()->get('panic_key') . "\n"; ?>
-Global Site Access:						<?php  $arr = array('Site accessible to Everyone','','Site accessible to Logged In Users'); echo $arr[ intval( UM()->options()->get('accessible') ) ] . "\n"; ?>
+Global Site Access:						<?php  $arr = array('Site accessible to Everyone','','Site accessible to Logged In Users'); echo $arr[ (int) UM()->options()->get('accessible') ] . "\n"; ?>
 <?php if( UM()->options()->get('accessible') == 2 ) { ?>
 Custom Redirect URL:						<?php echo UM()->options()->get('access_redirect')."\n";?>
 Exclude the following URLs:<?php echo "\t\t\t\t".implode("\t\n\t\t\t\t\t\t\t\t\t\t",UM()->options()->get('access_exclude_uris') )."\n";?>

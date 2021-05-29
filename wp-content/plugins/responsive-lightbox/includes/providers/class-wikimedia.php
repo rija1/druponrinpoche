@@ -53,7 +53,7 @@ class Responsive_Lightbox_Remote_Library_Wikimedia extends Responsive_Lightbox_R
 	 */
 	public function render_field() {
 		echo '
-		<p><label class="cb-checkbox"><input id="rl_wikimedia_active" type="checkbox" name="responsive_lightbox_remote_library[wikimedia][active]" value="1" ' . checked( $this->rl->options['remote_library']['wikimedia']['active'], true, false ) . ' />' . __( 'Enable Wikimedia.', 'responsive-lightbox' ) . '</label></p>';
+		<p><label><input id="rl_wikimedia_active" type="checkbox" name="responsive_lightbox_remote_library[wikimedia][active]" value="1" ' . checked( $this->rl->options['remote_library']['wikimedia']['active'], true, false ) . ' />' . __( 'Enable Wikimedia.', 'responsive-lightbox' ) . '</label></p>';
 	}
 
 	/**

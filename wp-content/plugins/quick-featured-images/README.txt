@@ -1,11 +1,11 @@
 === Quick Featured Images ===
-Contributors: Hinjiriyo
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2KUW27NECWVWJ
+Contributors: kybernetikservices,Hinjiriyo
+Donate link: https://www.paypal.com/donate?hosted_button_id=NSEQX73VHXKS8
 Tags: featured image,featured images,bulk set,automatic,thumbnails
 Requires at least: 3.8
 Requires PHP: 5.2
-Tested up to: 5.5
-Stable tag: 13.5.0
+Tested up to: 5.7
+Stable tag: 13.5.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,7 +15,7 @@ Your time-saving Swiss army knife for managing tons of featured images within mi
 
 Your time-saving Swiss army knife for managing tons of featured images within minutes: Set, replace and delete them in bulk, in posts lists and set default images for future posts.
 
-The plugin is available in English and German (Deutsch), for the most part in Spanish (Español), Brazilian Portuguese (Português do Brasil), French (Francais), Arabic (العربية) Japanese (日本語) and Greek (Ελληνικά). It does not collect any personal data, so it is ready for EU General Data Protection Regulation (GDPR) compliance.
+The plugin is available in English, German (Deutsch) and Catalan (Català), for the most part in Spanish (Español), Brazilian Portuguese (Português do Brasil), French (Francais), Arabic (العربية) Japanese (日本語) and Greek (Ελληνικά). It does not collect any personal data, so it is ready for EU General Data Protection Regulation (GDPR) compliance.
 
 = Manage featured images quickly =
 
@@ -26,9 +26,11 @@ The plugin 'Quick Featured Images' helps you bulk managing featured images, sett
 3. It enables you to **define presets for automatic default featured images** for future posts as many as you need. You can set **accurate rules based on post properties**.
 4. It **removes database entries of featured images without existing image files** with a simple single click
 
-You get the free version here. If you want to include **audios, videos and custom post types** and get more options then take a look the **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/).
+If you want to include **audios, videos and custom post types** and get more options then take a look the **Pro version** [Quick Featured Images Pro](https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro).
 
 = What users said =
+* **&#8220;OMG, so good!&#8221;** in [Reviews at wordpress.org](https://wordpress.org/support/topic/omg-so-good-2/) by marverix on February 27, 2021
+* **&#8220;This was awesome and saves so much time&#8221;** in [Reviews at wordpress.org](https://wordpress.org/support/topic/this-was-awesome-and-saves-so-much-time/) by frank on December 31, 2020
 * **&#8220;One of My Must Have Plugins&#8221;** in [Reviews at wordpress.org](https://wordpress.org/support/topic/must-have-plugins-2/) by WillOfTheWeb on June 25, 2020
 * **&#8220;I&#39;m confused about it. It&#39;s very very very useful!&#8221;** in [Reviews at wordpress.org](https://wordpress.org/support/topic/cool-928/) by yueli on December 19, 2019
 * **&#8220;Doing the job perfect&#8221;** in [Reviews at wordpress.org](https://wordpress.org/support/topic/doing-the-job-perfect/) by stigbarrett on February 14, 2019
@@ -42,12 +44,11 @@ You get the free version here. If you want to include **audios, videos and custo
 
 See more comments under [Reviews](https://wordpress.org/plugins/quick-featured-images/#reviews).
 
-
 = Access =
 
 1. You will find the plugin under the own **menu item 'Featured Images'** 
 2. You can select an image in the media library with the **action link 'Bulk set as featured image'**. Click on it and you can go on with the plugin.
-3. You can set in 'Settings' which **minimum user role is allowed to see the plugin** in his/her adminstration area. You can switch between 'Administrator' and 'Editor'. The default value is 'Editor'.
+3. You can set in 'Settings' which **minimum user role is allowed to see the plugin** in his/her administration area. You can switch between 'Administrator' and 'Editor'. The default value is 'Editor'.
 
 = Bulk Edit: Actions =
 
@@ -58,7 +59,7 @@ With Quick Featured Images you can apply time-saving tasks with many featured im
 3. **Deleting featured images:** You can remove a selected featured image or all existing featured images in one go.
 4. **Removing database entries of featured images without existing image files:** You can remove them and clean your database with a simple single click.
 
-If you want to **set the first content image as featured**? Or want to **bulk set external featured images**, e.g. for a CDN? Then take a look the **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/).
+If you want to **set the first content image as featured**? Or want to **bulk set external featured images**, e.g. for a CDN? Then take a look the **Pro version** [Quick Featured Images Pro](https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=readme).
 
 = Bulk Edit: Options =
 
@@ -67,7 +68,7 @@ Based on your selected action you can toggle on and off some options:
 1. **overwrite existing featured images** or **keeping them unchanged**. The latter setting is the default.
 2. **consider only posts without a featured image**. This will hide posts with featured images in the results list and will speed up the process.
 
-If you want to use the option to **remove the first image in the content** then take a look the **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/).
+If you want to use the option to **remove the first image in the content** then take a look the **Pro version** [Quick Featured Images Pro](https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=readme).
 
 The **Pro version** offers you several approaches for **setting the first image as featured** additionally:
 
@@ -84,7 +85,7 @@ The **Pro version** offers you two more options if you selected multiple images 
 1. **Use each selected image only once**. If there are more posts than selected images the remaining posts will not be changed.
 2. **Remove excess featured images** after all selected images are used.
 
-If you want to use these options then take a look the **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/).
+If you want to use these options then take a look the **Pro version** [Quick Featured Images Pro](https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=readme).
 
 = Bulk Edit: Filters =
 
@@ -108,7 +109,7 @@ The **Pro version** offers you additionally:
 8. Filter by **time**: Search by time specifications
 9. Filter by **parent page**: Search child pages by parent page
 
-If you want to use these filters then take a look the **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/). 
+If you want to use these filters then take a look the **Pro version** [Quick Featured Images Pro](https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=readme).
 
 = Bulk Edit: Presets (Pro only) =
 
@@ -129,13 +130,13 @@ You can define the rules based on
 
 The **Pro version** offers you additionally:
 
-1. **multiple random images** to assign one of them to a new post
-2. **external featured images**, e.g. from a CDN, to assign them automatically
-3. **user defined order** of applying the types of rules
-4. **first content image** if available on an external server
-5. **post format** match
-6. **search string in post title** match
-7. **random featured images at each page load**
+7. **multiple random images** to assign one of them to a new post
+8. **external featured images**, e.g. from a CDN, to assign them automatically
+9. **user defined order** of applying the types of rules
+10. **first content image** if available on an external server
+11. **post format** match
+12. **search string in post title** match
+13. **random featured images at each page load**
 
 The rules are easy to set: choose an image, a taxonomy, a value and save the settings. That's it. **You do not need to code.**
 
@@ -170,6 +171,7 @@ For the most part the user interface is available in
 
 * Arabic (العربية), kindly drawn up by [Shadi AlZard](https://wordpress.org/support/profile/salzard)
 * Brazilian Portuguese (Português do Brasil)
+* Catalan (Català), kindly drawn up by [Ibidem Group](https://www.ibidemgroup.com/)
 * English
 * French (Francais), kindly drawn up by Ivan M. Frakov
 * German (Deutsch)
@@ -290,6 +292,33 @@ If you want to contribute a translation of the plugin in your language it would 
 
 == Changelog ==
 
+= 13.5.6 =
+* added autoload class
+* small improvements and fixes
+* moved language files to [GlotPress](https://translate.wordpress.org/locale/ca/default/wp-plugins/quick-featured-images/). So, please contribute as a translator to make Quick Featured Images available in more and more languages.
+* added information about the [Pro version](https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro)
+
+= 13.5.5 =
+* new branding
+* Tested successfully with WordPress 5.6.2
+* Tested successfully with WordPress 5.7
+
+= 13.5.4 =
+* Fixed assignments errors in the image column on the post overview page
+
+= 13.5.3 =
+* Corrected some texts
+
+= 13.5.2 =
+* Fixed text domain name in the footer section
+* Updated screenshots for the plugin page
+* Tested successfully with WordPress 5.6
+
+= 13.5.1 =
+* Added catalan translation, thanks to Ibidem Group
+* Changed order of action links 
+* Tested successfully with WordPress 5.5.3
+
 = 13.5.0 =
 * Fixed missed binding to dynamically created selection options in 'Default Images'
 * Fixed missed higher upgrade of the version number
@@ -314,8 +343,8 @@ If you want to contribute a translation of the plugin in your language it would 
 * Improved performance for the image column on post overview pages
 * Updated translations
 * Tested successfully with WordPress 5.2.4
-* in Pro version: Added support of plugin 'Featured Image From URL' in 'Bulk Edit', 'Default Images' and image column
-* in Pro version: Added support of plugin 'Featured Image By URL' in 'Bulk Edit', 'Default Images' and image column
+* Pro: Added support of plugin 'Featured Image From URL' in 'Bulk Edit', 'Default Images' and image column
+* Pro: Added support of plugin 'Featured Image By URL' in 'Bulk Edit', 'Default Images' and image column
 
 = 13.3.4 =
 * Tested successfully with WordPress 5.2.1
@@ -328,7 +357,7 @@ If you want to contribute a translation of the plugin in your language it would 
 * Refactored 'Default Images' for more robustness
 * Updated translations
 * Tested successfully with WordPress 4.9.7
-* In Pro version: Added support of Facebook images, added Export/Import of rules on page 'Default Images'
+* Pro: Added support of Facebook images, added Export/Import of rules on page 'Default Images'
 
 = 13.3.1 =
 * Added greek translation. Thank you, Kostas Arvanitidis!
@@ -337,6 +366,7 @@ If you want to contribute a translation of the plugin in your language it would 
 * Changed previous mentioned labels in readme file
 * Updated translations due to WordPress 4.9
 * Tested successfully with WordPress 4.9.1
+* Pro: Added in 'Set, replace, remove': Presets for recurring tasks managing featured images
 
 = 13.3 =
 * Added japanese translation. Thank you, [Kazuyuki Kumai](https://wordpress.org/support/users/kazuyk/)!
@@ -362,7 +392,6 @@ If you want to contribute a translation of the plugin in your language it would 
 * Revised sanitations for texts and URLs on the pages
 * Revised translations
 * Set activation message as dismissible
-* in Pro version: Added in 'Set, replace, remove': Presets for recurring tasks managing featured images
 
 = 13.0.1 =
 Fixed in 'Set, replace, remove': unnecessary HTML escaping
@@ -380,7 +409,7 @@ Fixed in 'Set, replace, remove': unnecessary HTML escaping
 
 = 12.3.6 =
 * Fixed missing sanitations of ID in "Columns" class to close possible cross-site-scripting security hole
- 
+
 = 12.3.5 =
 * Fixed outdated (pre WP 4.8) texts for WP 4.8
 * Tested successfully with WordPress 4.8
@@ -521,13 +550,24 @@ Added spanish translation for the main texts of the plugin
 * Updated *.pot file and german translation
 
 = 10.0 =
-* Introducing **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/)
+* Introducing **Pro version** [Quick Featured Images Pro](https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=readme)
 * Deleted in 'Set, replace, remove': some filters and options in favor of the Pro version
 * Corrected CSS height for images in image column to keep the aspect ratio
 * Updated *.pot file and german translation
 
-
 == Upgrade Notice ==
+
+= 13.5.4 =
+Fixed assignments errors in the image column on the post overview page
+
+= 13.5.3 =
+Corrected some texts
+
+= 13.5.2 =
+Tested successfully with WordPress 5.6
+
+= 13.5.1 =
+Added catalan translation, changed order of action links, tested with WordPress 5.5.3
 
 = 13.5.0 =
 Fixed missed binding to dynamically created selection options in 'Default Images'

@@ -1,15 +1,15 @@
-# Copyright (C) 2020 Ultimate Member
+# Copyright (C) 2021 Ultimate Member
 # This file is distributed under the same license as the Ultimate Member plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Ultimate Member 2.1.7\n"
+"Project-Id-Version: Ultimate Member 2.1.15\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ultimate-member\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-08-12T16:16:16+03:00\n"
+"POT-Creation-Date: 2021-02-18T02:35:50+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: ultimate-member\n"
@@ -17,7 +17,7 @@ msgstr ""
 #. Plugin Name of the plugin
 #. Author of the plugin
 #: includes/admin/core/class-admin-menu.php:147
-#: includes/core/class-user.php:712
+#: includes/core/class-user.php:714
 msgid "Ultimate Member"
 msgstr ""
 
@@ -90,101 +90,120 @@ msgstr ""
 msgid "Here you can setup conditional logic to show/hide this field based on specific fields value or conditions"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:230
+#: includes/admin/core/class-admin-builder.php:232
+msgid "Use the condition operator `equals to` or `not equals` if the parent field has a single option."
+msgstr ""
+
+#: includes/admin/core/class-admin-builder.php:233
+msgid "Use the condition operator `greater than` or `less than` if the parent field is a number."
+msgstr ""
+
+#: includes/admin/core/class-admin-builder.php:234
+msgid "Use the condition operator `contains` if the parent field has multiple options."
+msgstr ""
+
+#: includes/admin/core/class-admin-builder.php:237
 msgid "Add new rule"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:231
+#: includes/admin/core/class-admin-builder.php:238
 msgid "Reset all rules"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:284
-#: includes/admin/core/class-admin-builder.php:604
-#: includes/admin/core/class-admin-builder.php:763
+#: includes/admin/core/class-admin-builder.php:292
+#: includes/admin/core/class-admin-builder.php:612
+#: includes/admin/core/class-admin-builder.php:771
 #: includes/admin/core/class-admin-dragdrop.php:33
 #: includes/admin/core/class-admin-menu.php:106
-#: includes/core/class-fields.php:4565
+#: includes/core/class-fields.php:4601
 msgid "Please login as administrator"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:391
-#: includes/admin/core/class-admin-builder.php:461
+#: includes/admin/core/class-admin-builder.php:399
+#: includes/admin/core/class-admin-builder.php:469
 #: includes/admin/core/class-admin-dragdrop.php:165
 msgid "Add Row"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:392
-#: includes/admin/core/class-admin-builder.php:462
+#: includes/admin/core/class-admin-builder.php:400
+#: includes/admin/core/class-admin-builder.php:470
 #: includes/admin/core/class-admin-dragdrop.php:166
 msgid "Edit Row"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:465
+#: includes/admin/core/class-admin-builder.php:473
 #: includes/admin/core/class-admin-dragdrop.php:168
 #: includes/admin/core/class-admin-dragdrop.php:183
 #: includes/admin/core/class-admin-dragdrop.php:208
 msgid "Delete Row"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:538
+#: includes/admin/core/class-admin-builder.php:546
 msgid "(no title)"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:543
+#: includes/admin/core/class-admin-builder.php:551
 #: includes/admin/core/list-tables/roles-list-table.php:339
 msgid "Edit"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:545
+#: includes/admin/core/class-admin-builder.php:553
 #: includes/admin/core/class-admin-columns.php:102
 msgid "Duplicate"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:549
+#: includes/admin/core/class-admin-builder.php:557
 msgid "Delete Group"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:552
-#: includes/admin/core/class-admin-enqueue.php:497
+#: includes/admin/core/class-admin-builder.php:560
+#: includes/admin/core/class-admin-enqueue.php:499
 #: includes/admin/core/list-tables/roles-list-table.php:342
 #: includes/admin/core/list-tables/roles-list-table.php:410
 msgid "Delete"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:829
+#: includes/admin/core/class-admin-builder.php:837
 msgid "Search Icons..."
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:849
+#: includes/admin/core/class-admin-builder.php:857
 msgid "Setup New Field"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:866
+#: includes/admin/core/class-admin-builder.php:874
 msgid "Predefined Fields"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:878
+#: includes/admin/core/class-admin-builder.php:886
 #: includes/core/class-builtin.php:1363
 msgid "None"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:883
+#: includes/admin/core/class-admin-builder.php:891
 msgid "Custom Fields"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:897
+#: includes/admin/core/class-admin-builder.php:901
+#: includes/admin/core/class-admin-metabox.php:2184
+#: includes/admin/core/class-admin-metabox.php:2190
+msgid "Meta Key"
+msgstr ""
+
+#: includes/admin/core/class-admin-builder.php:905
 msgid "You did not create any custom fields"
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:929
-#: includes/admin/core/class-admin-builder.php:1003
+#: includes/admin/core/class-admin-builder.php:937
+#: includes/admin/core/class-admin-builder.php:1011
 msgid "This field type is not setup correcty."
 msgstr ""
 
-#: includes/admin/core/class-admin-builder.php:1174
+#: includes/admin/core/class-admin-builder.php:1190
 #: includes/core/class-form.php:176
-#: includes/core/class-form.php:396
+#: includes/core/class-form.php:422
 #: includes/core/class-password.php:535
+#: includes/core/um-actions-profile.php:579
 msgid "This is not possible for security reasons."
 msgstr ""
 
@@ -193,7 +212,7 @@ msgid "Status"
 msgstr ""
 
 #: includes/admin/core/class-admin-columns.php:151
-#: includes/admin/core/class-admin-metabox.php:2158
+#: includes/admin/core/class-admin-metabox.php:2159
 #: includes/admin/templates/role/role-edit.php:193
 #: includes/widgets/class-um-search-widget.php:86
 msgid "Title"
@@ -204,8 +223,8 @@ msgid "ID"
 msgstr ""
 
 #: includes/admin/core/class-admin-columns.php:154
-#: includes/admin/core/class-admin-metabox.php:812
-#: includes/admin/core/class-admin-metabox.php:974
+#: includes/admin/core/class-admin-metabox.php:813
+#: includes/admin/core/class-admin-metabox.php:975
 msgid "Shortcode"
 msgstr ""
 
@@ -266,8 +285,8 @@ msgstr ""
 #: includes/core/class-builtin.php:1145
 #: includes/core/class-builtin.php:1164
 #: includes/core/class-builtin.php:1181
-#: includes/core/class-user.php:212
-#: includes/core/class-user.php:213
+#: includes/core/class-user.php:214
+#: includes/core/class-user.php:215
 #: includes/core/um-actions-account.php:284
 msgid "Yes"
 msgstr ""
@@ -280,28 +299,28 @@ msgstr ""
 msgid "e.g. New Registration Form"
 msgstr ""
 
-#: includes/admin/core/class-admin-enqueue.php:485
+#: includes/admin/core/class-admin-enqueue.php:487
 #: includes/core/class-builtin.php:706
 #: includes/core/class-builtin.php:709
 #: includes/core/class-builtin.php:1188
 #: includes/core/class-builtin.php:1191
-#: includes/core/um-actions-account.php:558
-#: includes/core/um-actions-account.php:630
+#: includes/core/um-actions-account.php:560
+#: includes/core/um-actions-account.php:632
 msgid "Password"
 msgstr ""
 
-#: includes/admin/core/class-admin-enqueue.php:489
-#: includes/admin/core/class-admin-metabox.php:2279
+#: includes/admin/core/class-admin-enqueue.php:491
+#: includes/admin/core/class-admin-metabox.php:2280
 #: includes/core/class-account.php:109
 msgid "Privacy"
 msgstr ""
 
-#: includes/admin/core/class-admin-enqueue.php:493
+#: includes/admin/core/class-admin-enqueue.php:495
 #: includes/core/class-account.php:115
 msgid "Notifications"
 msgstr ""
 
-#: includes/admin/core/class-admin-enqueue.php:547
+#: includes/admin/core/class-admin-enqueue.php:545
 msgid "Ultimate Member Blocks"
 msgstr ""
 
@@ -311,14 +330,14 @@ msgid "Required"
 msgstr ""
 
 #: includes/admin/core/class-admin-forms.php:526
-#: includes/admin/core/class-admin-metabox.php:1448
-#: includes/admin/core/class-admin-metabox.php:1476
+#: includes/admin/core/class-admin-metabox.php:1449
+#: includes/admin/core/class-admin-metabox.php:1477
 msgid "Choose Icon"
 msgstr ""
 
 #: includes/admin/core/class-admin-forms.php:532
-#: includes/admin/core/class-admin-metabox.php:1450
-#: includes/admin/core/class-admin-metabox.php:1478
+#: includes/admin/core/class-admin-metabox.php:1451
+#: includes/admin/core/class-admin-metabox.php:1479
 #: includes/admin/assets/js/um-admin-modal.js:415
 #: includes/admin/assets/js/um-admin-modal.js:419
 msgid "No Icon"
@@ -338,7 +357,7 @@ msgstr ""
 #: includes/admin/core/class-admin-forms.php:1537
 #: includes/admin/core/class-admin-forms.php:1559
 #: includes/admin/core/class-admin-notices.php:400
-#: includes/core/um-actions-profile.php:765
+#: includes/core/um-actions-profile.php:811
 #: includes/admin/assets/js/um-admin-forms.js:201
 #: includes/admin/assets/js/um-admin-forms.js:266
 #: includes/admin/assets/js/um-admin-forms.js:539
@@ -368,7 +387,7 @@ msgstr ""
 
 #: includes/admin/core/class-admin-forms.php:1539
 #: includes/admin/core/class-admin-forms.php:1561
-#: includes/admin/core/class-admin-metabox.php:2250
+#: includes/admin/core/class-admin-metabox.php:2251
 #: includes/admin/assets/js/um-admin-forms.js:204
 msgid "Label"
 msgstr ""
@@ -491,1069 +510,1060 @@ msgid "Users Overview"
 msgstr ""
 
 #: includes/admin/core/class-admin-menu.php:221
-msgid "Latest from our blog"
-msgstr ""
-
-#: includes/admin/core/class-admin-menu.php:223
 msgid "Purge Temp Files"
 msgstr ""
 
-#: includes/admin/core/class-admin-menu.php:225
+#: includes/admin/core/class-admin-menu.php:223
 msgid "User Cache"
 msgstr ""
 
-#: includes/admin/core/class-admin-menu.php:230
+#: includes/admin/core/class-admin-menu.php:228
 msgid "Upgrade's Manual Request"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:233
+#: includes/admin/core/class-admin-metabox.php:234
 msgid "UM Content Restriction"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:385
-#: includes/admin/core/class-admin-metabox.php:536
+#: includes/admin/core/class-admin-metabox.php:386
+#: includes/admin/core/class-admin-metabox.php:537
 #: includes/admin/templates/access/restrict_content.php:53
 msgid "Restrict access to this content?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:386
-#: includes/admin/core/class-admin-metabox.php:393
-#: includes/admin/core/class-admin-metabox.php:406
-#: includes/admin/core/class-admin-metabox.php:537
-#: includes/admin/core/class-admin-metabox.php:545
-#: includes/admin/core/class-admin-metabox.php:559
+#: includes/admin/core/class-admin-metabox.php:387
+#: includes/admin/core/class-admin-metabox.php:394
+#: includes/admin/core/class-admin-metabox.php:407
+#: includes/admin/core/class-admin-metabox.php:538
+#: includes/admin/core/class-admin-metabox.php:546
+#: includes/admin/core/class-admin-metabox.php:560
 #: includes/admin/templates/access/restrict_content.php:54
 #: includes/admin/templates/access/restrict_content.php:61
 #: includes/admin/templates/access/restrict_content.php:74
 msgid "Activate content restriction for this post"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:392
-#: includes/admin/core/class-admin-metabox.php:544
+#: includes/admin/core/class-admin-metabox.php:393
+#: includes/admin/core/class-admin-metabox.php:545
 #: includes/admin/templates/access/restrict_content.php:60
-#: includes/admin/assets/js/um-admin-blocks.js:91
-msgid "Who can access this content?"
-msgstr ""
-
-#: includes/admin/core/class-admin-metabox.php:396
-#: includes/admin/core/class-admin-metabox.php:548
-#: includes/admin/core/class-admin-metabox.php:2269
-#: includes/admin/core/class-admin-navmenu.php:81
-#: includes/admin/core/class-admin-navmenu.php:242
-#: includes/admin/templates/access/restrict_content.php:64
-#: includes/core/class-builtin.php:670
 #: includes/admin/assets/js/um-admin-blocks.js:95
-msgid "Everyone"
+msgid "Who can access this content?"
 msgstr ""
 
 #: includes/admin/core/class-admin-metabox.php:397
 #: includes/admin/core/class-admin-metabox.php:549
-#: includes/admin/templates/access/restrict_content.php:65
-#: includes/admin/assets/js/um-admin-blocks.js:103
-msgid "Logged out users"
+#: includes/admin/core/class-admin-metabox.php:2270
+#: includes/admin/core/class-admin-navmenu.php:81
+#: includes/admin/core/class-admin-navmenu.php:242
+#: includes/admin/templates/access/restrict_content.php:64
+#: includes/core/class-builtin.php:670
+#: includes/admin/assets/js/um-admin-blocks.js:99
+msgid "Everyone"
 msgstr ""
 
 #: includes/admin/core/class-admin-metabox.php:398
 #: includes/admin/core/class-admin-metabox.php:550
+#: includes/admin/templates/access/restrict_content.php:65
+#: includes/admin/assets/js/um-admin-blocks.js:107
+msgid "Logged out users"
+msgstr ""
+
+#: includes/admin/core/class-admin-metabox.php:399
+#: includes/admin/core/class-admin-metabox.php:551
 #: includes/admin/templates/access/restrict_content.php:66
-#: includes/admin/assets/js/um-admin-blocks.js:99
+#: includes/admin/assets/js/um-admin-blocks.js:103
 msgid "Logged in users"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:405
-#: includes/admin/core/class-admin-metabox.php:558
+#: includes/admin/core/class-admin-metabox.php:406
+#: includes/admin/core/class-admin-metabox.php:559
 #: includes/admin/templates/access/restrict_content.php:73
 msgid "Select which roles can access this content"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:414
-#: includes/admin/core/class-admin-metabox.php:569
+#: includes/admin/core/class-admin-metabox.php:415
+#: includes/admin/core/class-admin-metabox.php:570
 #: includes/admin/templates/access/restrict_content.php:83
 msgid "What happens when users without access tries to view the content?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:415
-#: includes/admin/core/class-admin-metabox.php:427
-#: includes/admin/core/class-admin-metabox.php:570
-#: includes/admin/core/class-admin-metabox.php:583
+#: includes/admin/core/class-admin-metabox.php:416
+#: includes/admin/core/class-admin-metabox.php:428
+#: includes/admin/core/class-admin-metabox.php:571
+#: includes/admin/core/class-admin-metabox.php:584
 #: includes/admin/templates/access/restrict_content.php:84
 #: includes/admin/templates/access/restrict_content.php:96
 msgid "Action when users without access tries to view the content"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:418
-#: includes/admin/core/class-admin-metabox.php:573
+#: includes/admin/core/class-admin-metabox.php:419
+#: includes/admin/core/class-admin-metabox.php:574
 #: includes/admin/templates/access/restrict_content.php:87
 msgid "Show access restricted message"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:419
-#: includes/admin/core/class-admin-metabox.php:574
+#: includes/admin/core/class-admin-metabox.php:420
+#: includes/admin/core/class-admin-metabox.php:575
 #: includes/admin/templates/access/restrict_content.php:88
 msgid "Redirect user"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:426
-#: includes/admin/core/class-admin-metabox.php:582
+#: includes/admin/core/class-admin-metabox.php:427
+#: includes/admin/core/class-admin-metabox.php:583
 #: includes/admin/templates/access/restrict_content.php:95
 msgid "Would you like to use the global default message or apply a custom message to this content?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:430
-#: includes/admin/core/class-admin-metabox.php:586
+#: includes/admin/core/class-admin-metabox.php:431
+#: includes/admin/core/class-admin-metabox.php:587
 #: includes/admin/templates/access/restrict_content.php:99
 msgid "Global default message (default)"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:431
-#: includes/admin/core/class-admin-metabox.php:587
+#: includes/admin/core/class-admin-metabox.php:432
+#: includes/admin/core/class-admin-metabox.php:588
 #: includes/admin/templates/access/restrict_content.php:100
 msgid "Custom message"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:438
-#: includes/admin/core/class-admin-metabox.php:595
+#: includes/admin/core/class-admin-metabox.php:439
+#: includes/admin/core/class-admin-metabox.php:596
 #: includes/admin/templates/access/restrict_content.php:107
 msgid "Custom Restrict Content message"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:439
-#: includes/admin/core/class-admin-metabox.php:459
-#: includes/admin/core/class-admin-metabox.php:596
-#: includes/admin/core/class-admin-metabox.php:618
+#: includes/admin/core/class-admin-metabox.php:440
+#: includes/admin/core/class-admin-metabox.php:460
+#: includes/admin/core/class-admin-metabox.php:597
+#: includes/admin/core/class-admin-metabox.php:619
 #: includes/admin/templates/access/restrict_content.php:108
 #: includes/admin/templates/access/restrict_content.php:128
 msgid "Changed global restrict message"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:446
-#: includes/admin/core/class-admin-metabox.php:604
+#: includes/admin/core/class-admin-metabox.php:447
+#: includes/admin/core/class-admin-metabox.php:605
 #: includes/admin/templates/access/restrict_content.php:115
 msgid "Where should users be redirected to?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:447
-#: includes/admin/core/class-admin-metabox.php:605
+#: includes/admin/core/class-admin-metabox.php:448
+#: includes/admin/core/class-admin-metabox.php:606
 #: includes/admin/templates/access/restrict_content.php:116
 msgid "Select redirect to page when user hasn't access to content"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:451
-#: includes/admin/core/class-admin-metabox.php:609
+#: includes/admin/core/class-admin-metabox.php:452
+#: includes/admin/core/class-admin-metabox.php:610
 #: includes/admin/templates/access/restrict_content.php:120
 msgid "Login page"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:452
-#: includes/admin/core/class-admin-metabox.php:610
+#: includes/admin/core/class-admin-metabox.php:453
+#: includes/admin/core/class-admin-metabox.php:611
 #: includes/admin/templates/access/restrict_content.php:121
 msgid "Custom URL"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:458
-#: includes/admin/core/class-admin-metabox.php:617
+#: includes/admin/core/class-admin-metabox.php:459
+#: includes/admin/core/class-admin-metabox.php:618
 #: includes/admin/templates/access/restrict_content.php:127
 msgid "Redirect URL"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:466
-#: includes/admin/core/class-admin-metabox.php:626
+#: includes/admin/core/class-admin-metabox.php:467
+#: includes/admin/core/class-admin-metabox.php:627
 #: includes/admin/templates/access/restrict_content.php:135
 msgid "Hide from queries"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:467
-#: includes/admin/core/class-admin-metabox.php:627
+#: includes/admin/core/class-admin-metabox.php:468
+#: includes/admin/core/class-admin-metabox.php:628
 #: includes/admin/templates/access/restrict_content.php:136
 msgid "Hide this content from archives, RSS feeds etc for users who do not have permission to view this content"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:807
+#: includes/admin/core/class-admin-metabox.php:808
 msgid "General Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:808
+#: includes/admin/core/class-admin-metabox.php:809
 msgid "Sorting"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:809
+#: includes/admin/core/class-admin-metabox.php:810
 msgid "Profile Card"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:810
+#: includes/admin/core/class-admin-metabox.php:811
 msgid "Search Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:811
+#: includes/admin/core/class-admin-metabox.php:812
 msgid "Results &amp; Pagination"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:813
+#: includes/admin/core/class-admin-metabox.php:814
 msgid "Styling: General"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:826
+#: includes/admin/core/class-admin-metabox.php:827
 msgid "Administrative Permissions"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:834
+#: includes/admin/core/class-admin-metabox.php:835
 msgid "General Permissions"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:842
+#: includes/admin/core/class-admin-metabox.php:843
 msgid "Profile Access"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:853
+#: includes/admin/core/class-admin-metabox.php:854
 msgid "Homepage Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:864
+#: includes/admin/core/class-admin-metabox.php:865
 msgid "Registration Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:872
+#: includes/admin/core/class-admin-metabox.php:873
 msgid "Login Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:880
+#: includes/admin/core/class-admin-metabox.php:881
 msgid "Logout Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:888
+#: includes/admin/core/class-admin-metabox.php:889
 msgid "Delete Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:896
+#: includes/admin/core/class-admin-metabox.php:897
 msgid "Publish"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:945
+#: includes/admin/core/class-admin-metabox.php:946
 msgid "WP Capabilities"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:972
+#: includes/admin/core/class-admin-metabox.php:973
 msgid "Select Form Type"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:973
+#: includes/admin/core/class-admin-metabox.php:974
 msgid "Form Builder"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:976
-#: includes/admin/core/class-admin-metabox.php:997
-#: includes/admin/core/class-admin-metabox.php:1019
+#: includes/admin/core/class-admin-metabox.php:977
+#: includes/admin/core/class-admin-metabox.php:998
+#: includes/admin/core/class-admin-metabox.php:1020
 msgid "Customize this form"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:998
+#: includes/admin/core/class-admin-metabox.php:999
 msgid "User Meta"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1020
+#: includes/admin/core/class-admin-metabox.php:1021
 msgid "Options"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1072
+#: includes/admin/core/class-admin-metabox.php:1073
 msgid "Directory #%s"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1165
+#: includes/admin/core/class-admin-metabox.php:1166
 msgid "Form #%s"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1269
+#: includes/admin/core/class-admin-metabox.php:1270
 msgid "Visibility"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1269
+#: includes/admin/core/class-admin-metabox.php:1270
 msgid "Select where this field should appear. This option should only be changed on the profile form and allows you to show a field in one mode only (edit or view) or in both modes."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1271
+#: includes/admin/core/class-admin-metabox.php:1272
 msgid "View everywhere"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1272
+#: includes/admin/core/class-admin-metabox.php:1273
 msgid "Edit mode only"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1273
+#: includes/admin/core/class-admin-metabox.php:1274
 msgid "View mode only"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1378
+#: includes/admin/core/class-admin-metabox.php:1379
 msgid "Value"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1387
+#: includes/admin/core/class-admin-metabox.php:1388
 msgid "Validate"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1387
+#: includes/admin/core/class-admin-metabox.php:1388
 msgid "Does this field require a special validation"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1388
+#: includes/admin/core/class-admin-metabox.php:1389
 msgid "Select a validation type..."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1432
+#: includes/admin/core/class-admin-metabox.php:1433
 msgid "Custom Action"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1432
+#: includes/admin/core/class-admin-metabox.php:1433
 msgid "If you want to apply your custom validation, you can use action hooks to add custom validation. Please refer to documentation for further details."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1446
-#: includes/admin/core/class-admin-metabox.php:1474
+#: includes/admin/core/class-admin-metabox.php:1447
+#: includes/admin/core/class-admin-metabox.php:1475
 msgid "Icon"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1446
-#: includes/admin/core/class-admin-metabox.php:1474
+#: includes/admin/core/class-admin-metabox.php:1447
+#: includes/admin/core/class-admin-metabox.php:1475
 msgid "Select an icon to appear in the field. Leave blank if you do not want an icon to show in the field."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1501
+#: includes/admin/core/class-admin-metabox.php:1502
 msgid "CSS Class"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1501
+#: includes/admin/core/class-admin-metabox.php:1502
 msgid "Specify a custom CSS class to be applied to this element"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1511
+#: includes/admin/core/class-admin-metabox.php:1512
 msgid "Thickness (in pixels)"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1511
+#: includes/admin/core/class-admin-metabox.php:1512
 msgid "This is the width in pixels, e.g. 4 or 2, etc"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1521
+#: includes/admin/core/class-admin-metabox.php:1522
 msgid "Optional Text"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1521
+#: includes/admin/core/class-admin-metabox.php:1522
 msgid "Optional text to include with the divider"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1531
+#: includes/admin/core/class-admin-metabox.php:1532
 msgid "Padding"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1531
+#: includes/admin/core/class-admin-metabox.php:1532
 msgid "Set padding for this section"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1541
+#: includes/admin/core/class-admin-metabox.php:1542
 msgid "Margin"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1541
+#: includes/admin/core/class-admin-metabox.php:1542
 msgid "Set margin for this section"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1551
+#: includes/admin/core/class-admin-metabox.php:1552
 msgid "Border"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1551
+#: includes/admin/core/class-admin-metabox.php:1552
 msgid "Set border for this section"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1561
-#: includes/admin/core/class-admin-metabox.php:1732
+#: includes/admin/core/class-admin-metabox.php:1562
+#: includes/admin/core/class-admin-metabox.php:1733
 msgid "Style"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1561
+#: includes/admin/core/class-admin-metabox.php:1562
 msgid "Choose the border style"
-msgstr ""
-
-#: includes/admin/core/class-admin-metabox.php:1563
-#: includes/admin/core/class-admin-metabox.php:1734
-msgid "Solid"
 msgstr ""
 
 #: includes/admin/core/class-admin-metabox.php:1564
 #: includes/admin/core/class-admin-metabox.php:1735
-msgid "Dotted"
+msgid "Solid"
 msgstr ""
 
 #: includes/admin/core/class-admin-metabox.php:1565
 #: includes/admin/core/class-admin-metabox.php:1736
-msgid "Dashed"
+msgid "Dotted"
 msgstr ""
 
 #: includes/admin/core/class-admin-metabox.php:1566
 #: includes/admin/core/class-admin-metabox.php:1737
+msgid "Dashed"
+msgstr ""
+
+#: includes/admin/core/class-admin-metabox.php:1567
+#: includes/admin/core/class-admin-metabox.php:1738
 msgid "Double"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1576
+#: includes/admin/core/class-admin-metabox.php:1577
 msgid "Border Radius"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1576
+#: includes/admin/core/class-admin-metabox.php:1577
 msgid "Rounded corners can be applied by setting a pixels value here. e.g. 5px"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1586
+#: includes/admin/core/class-admin-metabox.php:1587
 msgid "Border Color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1586
+#: includes/admin/core/class-admin-metabox.php:1587
 msgid "Give a color to this border"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1596
+#: includes/admin/core/class-admin-metabox.php:1597
 msgid "Enable Row Heading"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1596
+#: includes/admin/core/class-admin-metabox.php:1597
 msgid "Whether to enable a heading for this row"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1606
+#: includes/admin/core/class-admin-metabox.php:1607
 msgid "Heading Text"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1606
+#: includes/admin/core/class-admin-metabox.php:1607
 msgid "Enter the row heading text here"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1616
+#: includes/admin/core/class-admin-metabox.php:1617
 msgid "Background Color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1616
+#: includes/admin/core/class-admin-metabox.php:1617
 msgid "This will be the background of entire section"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1626
+#: includes/admin/core/class-admin-metabox.php:1627
 msgid "Heading Background Color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1626
+#: includes/admin/core/class-admin-metabox.php:1627
 msgid "This will be the background of the heading section"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1636
+#: includes/admin/core/class-admin-metabox.php:1637
 msgid "Heading Text Color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1636
+#: includes/admin/core/class-admin-metabox.php:1637
 msgid "This will be the text color of heading part only"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1646
+#: includes/admin/core/class-admin-metabox.php:1647
 msgid "Text Color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1646
+#: includes/admin/core/class-admin-metabox.php:1647
 msgid "This will be the text color of entire section"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1656
+#: includes/admin/core/class-admin-metabox.php:1657
 msgid "Icon Color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1656
+#: includes/admin/core/class-admin-metabox.php:1657
 msgid "This will be the color of selected icon. By default It will be the same color as heading text color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1666
+#: includes/admin/core/class-admin-metabox.php:1667
 msgid "Color"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1666
+#: includes/admin/core/class-admin-metabox.php:1667
 msgid "Select a color for this divider"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1676
+#: includes/admin/core/class-admin-metabox.php:1677
 msgid "URL Alt Text"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1676
+#: includes/admin/core/class-admin-metabox.php:1677
 msgid "Entering custom text here will replace the url with a text link"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1686
+#: includes/admin/core/class-admin-metabox.php:1687
 msgid "Link Target"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1686
+#: includes/admin/core/class-admin-metabox.php:1687
 msgid "Choose whether to open this link in same window or in a new window"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1688
+#: includes/admin/core/class-admin-metabox.php:1689
 msgid "Open in new window"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1689
+#: includes/admin/core/class-admin-metabox.php:1690
 msgid "Same window"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1699
+#: includes/admin/core/class-admin-metabox.php:1700
 msgid "SEO Follow"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1699
+#: includes/admin/core/class-admin-metabox.php:1700
 msgid "Whether to follow or nofollow this link by search engines"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1701
+#: includes/admin/core/class-admin-metabox.php:1702
 msgid "Follow"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1702
+#: includes/admin/core/class-admin-metabox.php:1703
 msgid "No-Follow"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1712
+#: includes/admin/core/class-admin-metabox.php:1713
 msgid "Force strong password?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1712
+#: includes/admin/core/class-admin-metabox.php:1713
 msgid "Turn on to force users to create a strong password (A combination of one lowercase letter, one uppercase letter, and one number). If turned on this option is only applied to register forms and not to login forms."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1722
+#: includes/admin/core/class-admin-metabox.php:1723
 msgid "Automatically add a confirm password field?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1722
+#: includes/admin/core/class-admin-metabox.php:1723
 msgid "Turn on to add a confirm password field. If turned on the confirm password field will only show on register forms and not on login forms."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1732
+#: includes/admin/core/class-admin-metabox.php:1733
 msgid "This is the line-style of divider"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1748
+#: includes/admin/core/class-admin-metabox.php:1749
 msgid "Time Intervals (in minutes)"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1748
+#: includes/admin/core/class-admin-metabox.php:1749
 msgid "Choose the minutes interval between each time in the time picker."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1749
+#: includes/admin/core/class-admin-metabox.php:1750
 msgid "e.g. 30, 60, 120"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1761
+#: includes/admin/core/class-admin-metabox.php:1762
 msgid "Date User-Friendly Format"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1761
+#: includes/admin/core/class-admin-metabox.php:1762
 msgid "The display format of the date which is visible to user."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1772
+#: includes/admin/core/class-admin-metabox.php:1773
 msgid "Time Format"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1772
+#: includes/admin/core/class-admin-metabox.php:1773
 msgid "Choose the displayed time-format for this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1774
 #: includes/admin/core/class-admin-metabox.php:1775
+#: includes/admin/core/class-admin-metabox.php:1776
 msgid "( 12-hr format )"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1776
+#: includes/admin/core/class-admin-metabox.php:1777
 msgid "( 24-hr format )"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1787
+#: includes/admin/core/class-admin-metabox.php:1788
 msgid "Use custom Date format"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1787
+#: includes/admin/core/class-admin-metabox.php:1788
 msgid "This option overrides \"Date User-Friendly Format\" option. See https://www.php.net/manual/en/function.date.php"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1797
+#: includes/admin/core/class-admin-metabox.php:1798
 msgid "Displayed Date Format"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1797
+#: includes/admin/core/class-admin-metabox.php:1798
 msgid "Whether you wish to show the date in full or only show the years e.g. 25 Years"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1799
+#: includes/admin/core/class-admin-metabox.php:1800
 msgid "Show full date"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1800
+#: includes/admin/core/class-admin-metabox.php:1801
 msgid "Show years only"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1816
+#: includes/admin/core/class-admin-metabox.php:1817
 msgid "Disable specific weekdays"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1816
+#: includes/admin/core/class-admin-metabox.php:1817
 msgid "Disable specific week days from being available for selection in this date picker"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1818
+#: includes/admin/core/class-admin-metabox.php:1819
 msgid "Sunday"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1819
+#: includes/admin/core/class-admin-metabox.php:1820
 msgid "Monday"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1820
+#: includes/admin/core/class-admin-metabox.php:1821
 msgid "Tuesday"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1821
+#: includes/admin/core/class-admin-metabox.php:1822
 msgid "Wednesday"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1822
+#: includes/admin/core/class-admin-metabox.php:1823
 msgid "Thursday"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1823
+#: includes/admin/core/class-admin-metabox.php:1824
 msgid "Friday"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1824
+#: includes/admin/core/class-admin-metabox.php:1825
 msgid "Saturday"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1834
+#: includes/admin/core/class-admin-metabox.php:1835
 msgid "Number of Years to pick from"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1834
+#: includes/admin/core/class-admin-metabox.php:1835
 msgid "Number of years available for the date selection. Default to last 50 years"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1844
+#: includes/admin/core/class-admin-metabox.php:1845
 msgid "Years Selection"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1844
+#: includes/admin/core/class-admin-metabox.php:1845
 msgid "This decides which years should be shown relative to today date"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1846
+#: includes/admin/core/class-admin-metabox.php:1847
 msgid "Equal years before / after today"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1847
+#: includes/admin/core/class-admin-metabox.php:1848
 msgid "Past years only"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1848
+#: includes/admin/core/class-admin-metabox.php:1849
 msgid "Future years only"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1858
+#: includes/admin/core/class-admin-metabox.php:1859
 msgid "Date Range Start"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1858
+#: includes/admin/core/class-admin-metabox.php:1859
 msgid "Set the minimum date/day in range in the format YYYY/MM/DD"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1859
-#: includes/admin/core/class-admin-metabox.php:1869
+#: includes/admin/core/class-admin-metabox.php:1860
+#: includes/admin/core/class-admin-metabox.php:1870
 msgid "YYYY/MM/DD"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1868
+#: includes/admin/core/class-admin-metabox.php:1869
 msgid "Date Range End"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1868
+#: includes/admin/core/class-admin-metabox.php:1869
 msgid "Set the maximum date/day in range in the format YYYY/MM/DD"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1878
+#: includes/admin/core/class-admin-metabox.php:1879
 msgid "Set Date Range"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1878
+#: includes/admin/core/class-admin-metabox.php:1879
 msgid "Whether to show a specific number of years or specify a date range to be available for the date picker."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1880
+#: includes/admin/core/class-admin-metabox.php:1881
 msgid "Fixed Number of Years"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1881
+#: includes/admin/core/class-admin-metabox.php:1882
 msgid "Specific Date Range"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1894
+#: includes/admin/core/class-admin-metabox.php:1895
 msgid "Enter Shortcode"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1894
+#: includes/admin/core/class-admin-metabox.php:1895
 msgid "Enter the shortcode in the following textarea and it will be displayed on the fields"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1895
+#: includes/admin/core/class-admin-metabox.php:1896
 msgid "e.g. [my_custom_shortcode]"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1904
+#: includes/admin/core/class-admin-metabox.php:1905
 msgid "Content Editor"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1904
+#: includes/admin/core/class-admin-metabox.php:1905
 msgid "Edit the content of this field here"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1917
+#: includes/admin/core/class-admin-metabox.php:1918
 msgid "Crop Feature"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1917
+#: includes/admin/core/class-admin-metabox.php:1918
 msgid "Enable/disable crop feature for this image upload and define ratio"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1919
+#: includes/admin/core/class-admin-metabox.php:1920
 msgid "Turn Off (Default)"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1920
+#: includes/admin/core/class-admin-metabox.php:1921
 msgid "Crop and force 1:1 ratio"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1921
+#: includes/admin/core/class-admin-metabox.php:1922
 msgid "Crop and force user-defined ratio"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1938
+#: includes/admin/core/class-admin-metabox.php:1939
 msgid "Allowed Image Types"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1938
-#: includes/admin/core/class-admin-metabox.php:1956
+#: includes/admin/core/class-admin-metabox.php:1939
+#: includes/admin/core/class-admin-metabox.php:1957
 msgid "Select the image types that you want to allow to be uploaded via this field."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1956
+#: includes/admin/core/class-admin-metabox.php:1957
 msgid "Allowed File Types"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1973
+#: includes/admin/core/class-admin-metabox.php:1974
 msgid "Drag &amp; Drop Photo"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1976
+#: includes/admin/core/class-admin-metabox.php:1977
 msgid "Drag &amp; Drop File"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1981
-#: includes/admin/core/class-admin-metabox.php:2001
+#: includes/admin/core/class-admin-metabox.php:1982
+#: includes/admin/core/class-admin-metabox.php:2002
 msgid "Upload Box Text"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1981
+#: includes/admin/core/class-admin-metabox.php:1982
 msgid "This is the headline that appears in the upload box for this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1991
+#: includes/admin/core/class-admin-metabox.php:1992
 msgid "Additional Instructions Text"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:1991
+#: includes/admin/core/class-admin-metabox.php:1992
 msgid "If you need to add information or secondary line below the headline of upload box, enter it here"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2001
+#: includes/admin/core/class-admin-metabox.php:2002
 msgid "The text that appears on the button. e.g. Upload"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2002
-#: includes/core/class-fields.php:1717
-#: includes/core/class-fields.php:1758
-#: includes/core/class-fields.php:2608
-#: includes/core/class-fields.php:2683
+#: includes/admin/core/class-admin-metabox.php:2003
+#: includes/core/class-fields.php:1727
+#: includes/core/class-fields.php:1768
+#: includes/core/class-fields.php:2629
+#: includes/core/class-fields.php:2704
 msgid "Upload"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2011
+#: includes/admin/core/class-admin-metabox.php:2012
 msgid "Maximum Size in bytes"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2011
+#: includes/admin/core/class-admin-metabox.php:2012
 msgid "The maximum size for image that can be uploaded through this field. Leave empty for unlimited size."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2021
+#: includes/admin/core/class-admin-metabox.php:2022
 msgid "Textarea Height"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2021
+#: includes/admin/core/class-admin-metabox.php:2022
 msgid "The height of textarea in pixels. Default is 100 pixels"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2031
+#: includes/admin/core/class-admin-metabox.php:2032
 msgid "Spacing"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2031
+#: includes/admin/core/class-admin-metabox.php:2032
 msgid "This is the required spacing in pixels. e.g. 20px"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2041
+#: includes/admin/core/class-admin-metabox.php:2042
 msgid "Allow multiple selections"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2041
+#: includes/admin/core/class-admin-metabox.php:2042
 msgid "Enable/disable multiple selections for this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2051
+#: includes/admin/core/class-admin-metabox.php:2052
 msgid "Maximum number of selections"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2051
+#: includes/admin/core/class-admin-metabox.php:2052
 msgid "Enter a number here to force a maximum number of selections by user for this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2061
+#: includes/admin/core/class-admin-metabox.php:2062
 msgid "Minimum number of selections"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2061
+#: includes/admin/core/class-admin-metabox.php:2062
 msgid "Enter a number here to force a minimum number of selections by user for this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2071
+#: includes/admin/core/class-admin-metabox.php:2072
 msgid "Maximum number of entries"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2071
+#: includes/admin/core/class-admin-metabox.php:2072
 msgid "This is the max number of entries the user can add via field group."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2081
+#: includes/admin/core/class-admin-metabox.php:2082
 msgid "Maximum allowed words"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2081
+#: includes/admin/core/class-admin-metabox.php:2082
 msgid "If you want to enable a maximum number of words to be input in this textarea. Leave empty to disable this setting"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2091
+#: includes/admin/core/class-admin-metabox.php:2092
 msgid "Minimum Number"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2091
+#: includes/admin/core/class-admin-metabox.php:2092
 msgid "Minimum number that can be entered in this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2101
+#: includes/admin/core/class-admin-metabox.php:2102
 msgid "Maximum Number"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2101
+#: includes/admin/core/class-admin-metabox.php:2102
 msgid "Maximum number that can be entered in this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2111
+#: includes/admin/core/class-admin-metabox.php:2112
 msgid "Minimum length"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2111
+#: includes/admin/core/class-admin-metabox.php:2112
 msgid "If you want to enable a minimum number of characters to be input in this field. Leave empty to disable this setting"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2121
+#: includes/admin/core/class-admin-metabox.php:2122
 msgid "Maximum length"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2121
+#: includes/admin/core/class-admin-metabox.php:2122
 msgid "If you want to enable a maximum number of characters to be input in this field. Leave empty to disable this setting"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2131
+#: includes/admin/core/class-admin-metabox.php:2132
 msgid "Does this textarea accept HTML?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2131
+#: includes/admin/core/class-admin-metabox.php:2132
 msgid "Turn on/off HTML tags for this textarea"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2148
+#: includes/admin/core/class-admin-metabox.php:2149
 msgid "Edit Choices"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2148
+#: includes/admin/core/class-admin-metabox.php:2149
 msgid "Enter one choice per line. This will represent the available choices or selections available for user."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2158
+#: includes/admin/core/class-admin-metabox.php:2159
 msgid "This is the title of the field for your reference in the backend. The title will not appear on the front-end of your website."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2169
+#: includes/admin/core/class-admin-metabox.php:2170
 msgid "Unique ID"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2183
-#: includes/admin/core/class-admin-metabox.php:2189
-msgid "Meta Key"
-msgstr ""
-
-#: includes/admin/core/class-admin-metabox.php:2183
+#: includes/admin/core/class-admin-metabox.php:2184
 msgid "The meta key cannot be changed for duplicated fields or when editing an existing field. If you require a different meta key please create a new field."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2189
+#: includes/admin/core/class-admin-metabox.php:2190
 msgid "A meta key is required to store the entered info in this field in the database. The meta key should be unique to this field and be written in lowercase with an underscore ( _ ) separating words e.g country_list or job_title"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2202
+#: includes/admin/core/class-admin-metabox.php:2203
 msgid "Help Text"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2202
+#: includes/admin/core/class-admin-metabox.php:2203
 msgid "This is the text that appears in a tooltip when a user hovers over the info icon. Help text is useful for providing users with more information about what they should enter in the field. Leave blank if no help text is needed for field."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2214
+#: includes/admin/core/class-admin-metabox.php:2215
 msgid "Default Text"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2214
+#: includes/admin/core/class-admin-metabox.php:2215
 msgid "Text to display by default in this field"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2220
+#: includes/admin/core/class-admin-metabox.php:2221
 msgid "Default Date"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2220
-#: includes/admin/core/class-admin-metabox.php:2226
+#: includes/admin/core/class-admin-metabox.php:2221
+#: includes/admin/core/class-admin-metabox.php:2227
 msgid "You may use all PHP compatible date formats such as: 2020-02-02, 02/02/2020, yesterday, today, tomorrow, next monday, first day of next month, +3 day"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2226
+#: includes/admin/core/class-admin-metabox.php:2227
 msgid "Default Time"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2232
+#: includes/admin/core/class-admin-metabox.php:2233
 msgid "Default Rating"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2232
+#: includes/admin/core/class-admin-metabox.php:2233
 msgid "If you wish the rating field to be prefilled with a number of stars, enter it here."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2238
+#: includes/admin/core/class-admin-metabox.php:2239
 msgid "Default Value"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2238
+#: includes/admin/core/class-admin-metabox.php:2239
 msgid "This option allows you to pre-fill the field with a default value prior to the user entering a value in the field. Leave blank to have no default value"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2250
+#: includes/admin/core/class-admin-metabox.php:2251
 msgid "The field label is the text that appears above the field on your front-end form. Leave blank to not show a label above field."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2260
+#: includes/admin/core/class-admin-metabox.php:2261
 msgid "Placeholder"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2260
+#: includes/admin/core/class-admin-metabox.php:2261
 msgid "This is the text that appears within the field e.g please enter your email address. Leave blank to not show any placeholder text."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2270
+#: includes/admin/core/class-admin-metabox.php:2271
 #: includes/class-config.php:134
 #: includes/class-config.php:794
 msgid "Members"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2271
+#: includes/admin/core/class-admin-metabox.php:2272
 msgid "Only visible to profile owner and admins"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2272
+#: includes/admin/core/class-admin-metabox.php:2273
 msgid "Only visible to profile owner and specific roles"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2273
+#: includes/admin/core/class-admin-metabox.php:2274
 msgid "Only specific member roles"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2279
+#: includes/admin/core/class-admin-metabox.php:2280
 msgid "Field privacy allows you to select who can view this field on the front-end. The site admin can view all fields regardless of the option set here."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2302
+#: includes/admin/core/class-admin-metabox.php:2303
 msgid "Select member roles"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2302
+#: includes/admin/core/class-admin-metabox.php:2303
 msgid "Select the member roles that can view this field on the front-end."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2328
+#: includes/admin/core/class-admin-metabox.php:2329
 msgid "Is this field required?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2328
+#: includes/admin/core/class-admin-metabox.php:2329
 msgid "This option allows you to set whether the field must be filled in before the form can be processed."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2342
+#: includes/admin/core/class-admin-metabox.php:2343
 msgid "Can user edit this field?"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2342
+#: includes/admin/core/class-admin-metabox.php:2343
 msgid "This option allows you to set whether or not the user can edit the information in this field."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2355
+#: includes/admin/core/class-admin-metabox.php:2356
 msgid "Rating System"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2355
+#: includes/admin/core/class-admin-metabox.php:2356
 msgid "Choose whether you want a 5-stars or 10-stars ratings based here."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2357
+#: includes/admin/core/class-admin-metabox.php:2358
 msgid "5  stars rating system"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2358
+#: includes/admin/core/class-admin-metabox.php:2359
 msgid "10 stars rating system"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2368
+#: includes/admin/core/class-admin-metabox.php:2369
 msgid "Choices Callback"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2368
+#: includes/admin/core/class-admin-metabox.php:2369
 msgid "Add a callback source to retrieve choices."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2379
+#: includes/admin/core/class-admin-metabox.php:2380
 msgid "Parent Option"
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2379
+#: includes/admin/core/class-admin-metabox.php:2380
 msgid "Dynamically populates the option based from selected parent option."
 msgstr ""
 
-#: includes/admin/core/class-admin-metabox.php:2381
+#: includes/admin/core/class-admin-metabox.php:2382
 msgid "No Selected"
 msgstr ""
 
@@ -2098,6 +2108,8 @@ msgstr ""
 #: includes/class-config.php:136
 #: includes/class-config.php:796
 #: includes/core/class-account.php:97
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:305
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:365
 msgid "Account"
 msgstr ""
 
@@ -2837,6 +2849,10 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
+#: includes/admin/core/class-admin-settings.php:1706
+msgid "Security Check"
+msgstr ""
+
 #: includes/admin/core/class-admin-settings.php:2158
 msgid "Subject Line"
 msgstr ""
@@ -2963,86 +2979,90 @@ msgstr ""
 msgid "Upgrade Log"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:117
-#: includes/admin/core/class-admin-users.php:120
+#: includes/admin/core/class-admin-users.php:141
+msgid "This action is not allowed in backend."
+msgstr ""
+
+#: includes/admin/core/class-admin-users.php:156
+#: includes/admin/core/class-admin-users.php:159
 msgid "UM Action"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:124
-#: includes/core/class-fields.php:2664
+#: includes/admin/core/class-admin-users.php:163
+#: includes/core/class-fields.php:2685
 msgid "Apply"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:166
+#: includes/admin/core/class-admin-users.php:205
 #: includes/core/um-filters-user.php:19
 #: includes/core/um-filters-user.php:24
 msgid "Approve Membership"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:169
+#: includes/admin/core/class-admin-users.php:208
 #: includes/core/um-filters-user.php:20
 msgid "Reject Membership"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:172
+#: includes/admin/core/class-admin-users.php:211
 #: includes/core/um-filters-user.php:28
 msgid "Put as Pending Review"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:175
+#: includes/admin/core/class-admin-users.php:214
 #: includes/core/um-filters-user.php:32
 msgid "Resend Activation E-mail"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:178
+#: includes/admin/core/class-admin-users.php:217
 msgid "Deactivate"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:181
+#: includes/admin/core/class-admin-users.php:220
 msgid "Reactivate"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:204
+#: includes/admin/core/class-admin-users.php:242
 #: templates/account.php:43
 #: templates/account.php:84
 msgid "View profile"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:209
+#: includes/admin/core/class-admin-users.php:247
 msgid "Info"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:308
-#: includes/admin/core/class-admin-users.php:310
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:340
+#: includes/admin/core/class-admin-users.php:372
+#: includes/admin/core/class-admin-users.php:374
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:326
 msgid "All"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:314
+#: includes/admin/core/class-admin-users.php:378
 #: includes/admin/templates/dashboard/users.php:28
-#: includes/core/class-user.php:981
+#: includes/core/class-user.php:983
 msgid "Approved"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:315
+#: includes/admin/core/class-admin-users.php:379
 msgid "Pending review"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:316
+#: includes/admin/core/class-admin-users.php:380
 msgid "Waiting e-mail confirmation"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:317
+#: includes/admin/core/class-admin-users.php:381
 #: includes/admin/templates/dashboard/users.php:86
 msgid "Inactive"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:318
+#: includes/admin/core/class-admin-users.php:382
 #: includes/admin/templates/dashboard/users.php:41
 msgid "Rejected"
 msgstr ""
 
-#: includes/admin/core/class-admin-users.php:381
+#: includes/admin/core/class-admin-users.php:458
 msgid "You do not have enough permissions to do that."
 msgstr ""
 
@@ -3201,75 +3221,75 @@ msgstr ""
 msgid "Upgrade Styles..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:38
+#: includes/admin/core/packages/2.0-beta1/init.php:41
 msgid "Upgrade Roles..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:52
+#: includes/admin/core/packages/2.0-beta1/init.php:55
 msgid "Upgrade Users..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:73
+#: includes/admin/core/packages/2.0-beta1/init.php:79
 msgid "Getting "
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:73
-#: includes/admin/core/packages/2.0-beta1/init.php:85
+#: includes/admin/core/packages/2.0-beta1/init.php:79
+#: includes/admin/core/packages/2.0-beta1/init.php:91
 #: includes/admin/core/packages/2.1.3-beta3/init.php:22
 msgid " users..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:85
+#: includes/admin/core/packages/2.0-beta1/init.php:91
 #: includes/admin/core/packages/2.1.3-beta3/init.php:22
 #: includes/admin/assets/js/um-admin-forms.js:66
 msgid "There are "
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:86
+#: includes/admin/core/packages/2.0-beta1/init.php:92
 msgid "Start users upgrading..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:139
+#: includes/admin/core/packages/2.0-beta1/init.php:153
 msgid "Upgrade Content Restriction Settings..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:165
+#: includes/admin/core/packages/2.0-beta1/init.php:181
 msgid "Upgrade Settings..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:191
+#: includes/admin/core/packages/2.0-beta1/init.php:209
 msgid "Upgrade Menu Items..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:217
+#: includes/admin/core/packages/2.0-beta1/init.php:237
 msgid "Upgrade Mailchimp Lists..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:243
+#: includes/admin/core/packages/2.0-beta1/init.php:265
 msgid "Upgrade Social Login Forms..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:269
+#: includes/admin/core/packages/2.0-beta1/init.php:293
 msgid "Upgrade UM Custom Post Types..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:295
+#: includes/admin/core/packages/2.0-beta1/init.php:321
 msgid "Upgrade bbPress Forums..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:296
+#: includes/admin/core/packages/2.0-beta1/init.php:322
 msgid "Get bbPress Forums count..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:355
+#: includes/admin/core/packages/2.0-beta1/init.php:387
 msgid "Upgrade Woocommerce Products..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:356
+#: includes/admin/core/packages/2.0-beta1/init.php:388
 msgid "Get all Products..."
 msgstr ""
 
-#: includes/admin/core/packages/2.0-beta1/init.php:417
+#: includes/admin/core/packages/2.0-beta1/init.php:454
 msgid "Upgrade Email Templates..."
 msgstr ""
 
@@ -3277,7 +3297,7 @@ msgstr ""
 msgid "Users cache was cleared successfully"
 msgstr ""
 
-#: includes/admin/core/packages/2.0.10/init.php:32
+#: includes/admin/core/packages/2.0.10/init.php:34
 msgid "Clear Users Cache..."
 msgstr ""
 
@@ -3318,7 +3338,7 @@ msgstr ""
 msgid "Upgrade user metadata..."
 msgstr ""
 
-#: includes/admin/core/packages/2.1.0-beta1/init.php:33
+#: includes/admin/core/packages/2.1.0-beta1/init.php:35
 msgid "Upgrade Member Directories..."
 msgstr ""
 
@@ -3335,7 +3355,7 @@ msgstr ""
 msgid "Start metadata upgrading..."
 msgstr ""
 
-#: includes/admin/core/packages/2.1.3-beta3/init.php:69
+#: includes/admin/core/packages/2.1.3-beta3/init.php:75
 msgid "Create additional metadata table..."
 msgstr ""
 
@@ -3349,10 +3369,6 @@ msgstr ""
 
 #: includes/admin/templates/dashboard/cache.php:15
 msgid "Clear cache of %s users"
-msgstr ""
-
-#: includes/admin/templates/dashboard/feed.php:7
-msgid "Latest From Ultimate Member"
 msgstr ""
 
 #: includes/admin/templates/dashboard/purge.php:7
@@ -3376,12 +3392,12 @@ msgid "Get latest versions"
 msgstr ""
 
 #: includes/admin/templates/dashboard/users.php:60
-#: includes/core/class-user.php:989
+#: includes/core/class-user.php:991
 msgid "Pending Review"
 msgstr ""
 
 #: includes/admin/templates/dashboard/users.php:73
-#: includes/core/class-user.php:985
+#: includes/core/class-user.php:987
 msgid "Awaiting E-mail Confirmation"
 msgstr ""
 
@@ -3653,29 +3669,29 @@ msgstr ""
 msgid "Add New Field"
 msgstr ""
 
-#: includes/admin/templates/extensions.php:173
+#: includes/admin/templates/extensions.php:179
 msgid "<strong>All Access Pass</strong> – Get access to all Ultimate Member extensions at a significant discount with our All Access Pass."
 msgstr ""
 
-#: includes/admin/templates/extensions.php:177
+#: includes/admin/templates/extensions.php:183
 msgid "View Pricing"
 msgstr ""
 
-#: includes/admin/templates/extensions.php:186
+#: includes/admin/templates/extensions.php:192
 msgid "Premium"
 msgstr ""
 
-#: includes/admin/templates/extensions.php:191
+#: includes/admin/templates/extensions.php:197
 msgid "Free"
 msgstr ""
 
-#: includes/admin/templates/extensions.php:217
-#: includes/admin/templates/extensions.php:251
+#: includes/admin/templates/extensions.php:223
+#: includes/admin/templates/extensions.php:257
 msgid "Get this Add on"
 msgstr ""
 
-#: includes/admin/templates/extensions.php:222
-#: includes/admin/templates/extensions.php:256
+#: includes/admin/templates/extensions.php:228
+#: includes/admin/templates/extensions.php:262
 msgid "More Details"
 msgstr ""
 
@@ -3887,8 +3903,8 @@ msgstr ""
 
 #: includes/admin/templates/form/register_gdpr.php:42
 #: includes/admin/templates/form/register_gdpr.php:43
-#: templates/gdpr-register.php:15
-#: templates/gdpr-register.php:17
+#: templates/gdpr-register.php:16
+#: templates/gdpr-register.php:18
 msgid "Show privacy policy"
 msgstr ""
 
@@ -3898,7 +3914,7 @@ msgstr ""
 
 #: includes/admin/templates/form/register_gdpr.php:50
 #: includes/admin/templates/form/register_gdpr.php:51
-#: templates/gdpr-register.php:16
+#: templates/gdpr-register.php:17
 msgid "Hide privacy policy"
 msgstr ""
 
@@ -3908,7 +3924,7 @@ msgstr ""
 
 #: includes/admin/templates/form/register_gdpr.php:58
 #: includes/admin/templates/form/register_gdpr.php:59
-#: templates/gdpr-register.php:27
+#: templates/gdpr-register.php:28
 msgid "Please confirm that you agree to our privacy policy"
 msgstr ""
 
@@ -3918,7 +3934,7 @@ msgstr ""
 
 #: includes/admin/templates/form/register_gdpr.php:66
 #: includes/admin/templates/form/register_gdpr.php:67
-#: templates/gdpr-register.php:40
+#: templates/gdpr-register.php:41
 msgid "Please confirm your acceptance of our privacy policy"
 msgstr ""
 
@@ -3983,14 +3999,14 @@ msgstr ""
 #: includes/admin/templates/modal/fonticons.php:14
 #: includes/admin/templates/role/publish.php:24
 #: includes/class-config.php:254
-#: includes/core/class-fields.php:2665
-#: includes/core/class-fields.php:2764
-#: includes/core/um-actions-profile.php:766
-#: includes/core/um-actions-profile.php:778
-#: includes/core/um-actions-profile.php:966
-#: includes/core/um-actions-profile.php:999
-#: includes/core/um-actions-profile.php:1346
-#: includes/core/um-actions-profile.php:1353
+#: includes/core/class-fields.php:2686
+#: includes/core/class-fields.php:2785
+#: includes/core/um-actions-profile.php:812
+#: includes/core/um-actions-profile.php:824
+#: includes/core/um-actions-profile.php:1012
+#: includes/core/um-actions-profile.php:1045
+#: includes/core/um-actions-profile.php:1392
+#: includes/core/um-actions-profile.php:1399
 msgid "Cancel"
 msgstr ""
 
@@ -4250,7 +4266,7 @@ msgstr ""
 
 #: includes/admin/templates/role/register.php:57
 #: includes/admin/templates/role/register.php:91
-#: includes/admin/assets/js/um-admin-blocks.js:153
+#: includes/admin/assets/js/um-admin-blocks.js:159
 msgid "Show custom message"
 msgstr ""
 
@@ -4338,16 +4354,16 @@ msgstr ""
 
 #: includes/class-config.php:135
 #: includes/class-config.php:795
-#: includes/core/class-member-directory.php:2185
-#: includes/core/um-actions-profile.php:1352
+#: includes/core/class-member-directory.php:2191
+#: includes/core/um-actions-profile.php:1398
 #: includes/core/um-actions-user.php:19
 msgid "Logout"
 msgstr ""
 
 #: includes/class-config.php:137
 #: includes/class-config.php:797
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:276
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:296
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:262
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:283
 msgid "Password Reset"
 msgstr ""
 
@@ -4481,27 +4497,27 @@ msgstr ""
 msgid "Are you sure you want to delete your account? This will erase all of your account data from the site. To delete your account, click on the button below."
 msgstr ""
 
-#: includes/class-dependencies.php:207
+#: includes/class-dependencies.php:204
 msgid "This version of <strong>\"%s\"</strong> requires the core <strong>%s</strong> plugin to be <strong>%s</strong> or higher."
 msgstr ""
 
-#: includes/class-dependencies.php:209
+#: includes/class-dependencies.php:206
 msgid "Please update <strong>%s</strong> to the latest version."
 msgstr ""
 
-#: includes/class-dependencies.php:211
+#: includes/class-dependencies.php:208
 msgid "Sorry, but this version of <strong>%s</strong> does not work with extension <strong>\"%s\" %s</strong> version."
 msgstr ""
 
-#: includes/class-dependencies.php:213
+#: includes/class-dependencies.php:210
 msgid "Please update extension <strong>\"%s\"</strong> to the latest version."
 msgstr ""
 
-#: includes/class-dependencies.php:222
+#: includes/class-dependencies.php:219
 msgid "Please check <strong>\"%s\" %s</strong> extension's folder name."
 msgstr ""
 
-#: includes/class-dependencies.php:224
+#: includes/class-dependencies.php:221
 msgid "Correct folder name is <strong>\"%s\"</strong>"
 msgstr ""
 
@@ -4509,8 +4525,8 @@ msgstr ""
 msgid "%s License Key"
 msgstr ""
 
-#: includes/class-init.php:158
-#: includes/class-init.php:167
+#: includes/class-init.php:159
+#: includes/class-init.php:168
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
@@ -4631,8 +4647,8 @@ msgid "You must add a shortcode to the content area"
 msgstr ""
 
 #: includes/core/class-builtin.php:671
-#: includes/core/class-user.php:1711
-#: includes/core/um-actions-profile.php:638
+#: includes/core/class-user.php:1713
+#: includes/core/um-actions-profile.php:684
 #: includes/core/um-filters-profile.php:22
 msgid "Only me"
 msgstr ""
@@ -4824,7 +4840,7 @@ msgid "Cover Photo"
 msgstr ""
 
 #: includes/core/class-builtin.php:1093
-#: includes/core/um-actions-profile.php:726
+#: includes/core/um-actions-profile.php:772
 msgid "Change your cover photo"
 msgstr ""
 
@@ -6662,8 +6678,9 @@ msgid "Zimbabwe"
 msgstr ""
 
 #: includes/core/class-common.php:59
-#: includes/um-short-functions.php:792
-#: includes/um-short-functions.php:802
+#: includes/um-short-functions.php:690
+#: includes/um-short-functions.php:700
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:6
 msgid "Form"
 msgstr ""
 
@@ -6689,6 +6706,7 @@ msgid "Search Forms"
 msgstr ""
 
 #: includes/core/class-common.php:89
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:136
 msgid "Member Directory"
 msgstr ""
 
@@ -6751,101 +6769,105 @@ msgstr ""
 msgid "Less than 1 year old"
 msgstr ""
 
-#: includes/core/class-fields.php:1342
+#. translators: %s: The message after registration process based on a role data and user status after registration
+#. translators: %s: Restricted taxonomy message.
+#: includes/core/class-fields.php:1348
 #: includes/core/um-actions-account.php:436
-#: templates/message.php:6
+#: templates/message.php:8
+#: templates/restricted-taxonomy.php:47
 msgid "%s"
 msgstr ""
 
-#: includes/core/class-fields.php:1363
+#: includes/core/class-fields.php:1369
 msgid "Custom Field"
 msgstr ""
 
-#: includes/core/class-fields.php:1706
+#: includes/core/class-fields.php:1716
 msgid "Please upload a valid image!"
 msgstr ""
 
-#: includes/core/class-fields.php:1720
+#: includes/core/class-fields.php:1730
 msgid "Sorry this is not a valid image."
 msgstr ""
 
-#: includes/core/class-fields.php:1723
+#: includes/core/class-fields.php:1733
 msgid "This image is too large!"
 msgstr ""
 
-#: includes/core/class-fields.php:1726
+#: includes/core/class-fields.php:1736
 msgid "This image is too small!"
 msgstr ""
 
-#: includes/core/class-fields.php:1729
+#: includes/core/class-fields.php:1739
 msgid "You can only upload one image"
 msgstr ""
 
-#: includes/core/class-fields.php:1761
+#: includes/core/class-fields.php:1771
 msgid "Sorry this is not a valid file."
 msgstr ""
 
-#: includes/core/class-fields.php:1764
+#: includes/core/class-fields.php:1774
 msgid "This file is too large!"
 msgstr ""
 
-#: includes/core/class-fields.php:1767
+#: includes/core/class-fields.php:1777
 msgid "This file is too small!"
 msgstr ""
 
-#: includes/core/class-fields.php:1770
+#: includes/core/class-fields.php:1780
 msgid "You can only upload one file"
 msgstr ""
 
-#: includes/core/class-fields.php:2299
+#: includes/core/class-fields.php:2309
 msgid "Current Password"
 msgstr ""
 
-#: includes/core/class-fields.php:2330
+#: includes/core/class-fields.php:2340
 msgid "New Password"
 msgstr ""
 
-#: includes/core/class-fields.php:2369
+#: includes/core/class-fields.php:2382
+#: includes/core/class-fields.php:2398
 msgid "Confirm %s"
 msgstr ""
 
-#: includes/core/class-fields.php:2618
+#: includes/core/class-fields.php:2639
 msgid "Upload Photo"
 msgstr ""
 
-#: includes/core/class-fields.php:2640
-#: includes/core/class-fields.php:2664
-#: includes/core/um-actions-profile.php:997
+#: includes/core/class-fields.php:2661
+#: includes/core/class-fields.php:2685
+#: includes/core/um-actions-profile.php:1043
 msgid "Change photo"
 msgstr ""
 
-#: includes/core/class-fields.php:2664
-#: includes/core/class-fields.php:2763
+#: includes/core/class-fields.php:2685
+#: includes/core/class-fields.php:2784
 msgid "Processing..."
 msgstr ""
 
-#: includes/core/class-fields.php:2688
+#: includes/core/class-fields.php:2709
 msgid "Upload File"
 msgstr ""
 
-#: includes/core/class-fields.php:2730
+#: includes/core/class-fields.php:2751
 #: includes/core/um-filters-fields.php:267
 msgid "This file has been removed."
 msgstr ""
 
-#: includes/core/class-fields.php:2733
+#: includes/core/class-fields.php:2754
 msgid "Change file"
 msgstr ""
 
-#: includes/core/class-fields.php:2763
+#: includes/core/class-fields.php:2784
 msgid "Save"
 msgstr ""
 
-#: includes/core/class-fields.php:4298
+#: includes/core/class-fields.php:4334
 msgid "Your profile is looking a little empty. Why not <a href=\"%s\">add</a> some information!"
 msgstr ""
 
-#: includes/core/class-fields.php:4300
+#: includes/core/class-fields.php:4336
 msgid "This user has not added any information to their profile yet."
 msgstr ""
 
@@ -6892,14 +6914,15 @@ msgstr ""
 msgid "Original size"
 msgstr ""
 
-#: includes/core/class-login.php:78
-#: includes/core/class-register.php:71
-msgid "Invalid Nonce."
+#: includes/core/class-form.php:442
+#: includes/core/class-password.php:448
+#: includes/core/class-password.php:530
+msgid "Hello, spam bot!"
 msgstr ""
 
 #: includes/core/class-mail.php:615
 #: includes/core/class-password.php:703
-#: includes/core/class-profile.php:481
+#: includes/core/class-profile.php:484
 msgid "Your set password"
 msgstr ""
 
@@ -6951,28 +6974,28 @@ msgstr ""
 msgid "User Registered"
 msgstr ""
 
-#: includes/core/class-member-directory.php:882
-#: includes/core/class-member-directory.php:883
+#: includes/core/class-member-directory.php:884
+#: includes/core/class-member-directory.php:885
 msgid " stars"
 msgstr ""
 
-#: includes/core/class-member-directory.php:893
+#: includes/core/class-member-directory.php:895
 msgid "<strong>Age:</strong>&nbsp;{value} years old"
 msgstr ""
 
-#: includes/core/class-member-directory.php:894
+#: includes/core/class-member-directory.php:896
 msgid "<strong>Age:</strong>&nbsp;{min_range} - {max_range} years old"
 msgstr ""
 
-#: includes/core/class-member-directory.php:2130
-#: includes/core/class-member-directory.php:2174
-#: includes/core/um-actions-profile.php:1319
-#: includes/core/um-actions-profile.php:1350
+#: includes/core/class-member-directory.php:2136
+#: includes/core/class-member-directory.php:2180
+#: includes/core/um-actions-profile.php:1365
+#: includes/core/um-actions-profile.php:1396
 msgid "Edit Profile"
 msgstr ""
 
-#: includes/core/class-member-directory.php:2180
-#: includes/core/um-actions-profile.php:1351
+#: includes/core/class-member-directory.php:2186
+#: includes/core/um-actions-profile.php:1397
 msgid "My Account"
 msgstr ""
 
@@ -7004,7 +7027,7 @@ msgstr ""
 
 #: includes/core/class-password.php:553
 #: includes/core/um-actions-account.php:83
-#: includes/core/um-actions-form.php:536
+#: includes/core/um-actions-form.php:567
 msgid "Your password must contain at least one lowercase letter, one capital letter and one number"
 msgstr ""
 
@@ -7013,11 +7036,11 @@ msgid "You must confirm your new password"
 msgstr ""
 
 #: includes/core/class-password.php:563
-#: includes/core/um-actions-form.php:545
+#: includes/core/um-actions-form.php:576
 msgid "Your passwords do not match"
 msgstr ""
 
-#: includes/core/class-permalinks.php:188
+#: includes/core/class-permalinks.php:187
 msgid "This activation link is expired or have already been used."
 msgstr ""
 
@@ -7061,7 +7084,7 @@ msgstr ""
 msgid "You are already registered"
 msgstr ""
 
-#: includes/core/class-shortcodes.php:936
+#: includes/core/class-shortcodes.php:940
 msgid "Default Template"
 msgstr ""
 
@@ -7086,19 +7109,19 @@ msgstr ""
 msgid "This file type is not recognized."
 msgstr ""
 
-#: includes/core/class-user.php:773
+#: includes/core/class-user.php:775
 msgid "Ultimate Member Role"
 msgstr ""
 
-#: includes/core/class-user.php:776
+#: includes/core/class-user.php:778
 msgid "&mdash; No role for Ultimate Member &mdash;"
 msgstr ""
 
-#: includes/core/class-user.php:993
+#: includes/core/class-user.php:995
 msgid "Membership Rejected"
 msgstr ""
 
-#: includes/core/class-user.php:997
+#: includes/core/class-user.php:999
 msgid "Membership Inactive"
 msgstr ""
 
@@ -7223,84 +7246,84 @@ msgstr ""
 msgid "You can request a file with the information that we believe is most relevant and useful to you."
 msgstr ""
 
-#: includes/core/um-actions-account.php:530
+#: includes/core/um-actions-account.php:532
 msgid "You could download your previous data:"
 msgstr ""
 
-#: includes/core/um-actions-account.php:531
-msgid "download personal data"
+#: includes/core/um-actions-account.php:533
+msgid "Download Personal Data"
 msgstr ""
 
-#: includes/core/um-actions-account.php:532
+#: includes/core/um-actions-account.php:534
 msgid "You could send a new request for an export of personal your data."
 msgstr ""
 
-#: includes/core/um-actions-account.php:548
-#: includes/core/um-actions-account.php:622
-#: includes/core/um-actions-account.php:699
+#: includes/core/um-actions-account.php:550
+#: includes/core/um-actions-account.php:624
+#: includes/core/um-actions-account.php:701
 msgid "A confirmation email has been sent to your email. Click the link within the email to confirm your export request."
 msgstr ""
 
-#: includes/core/um-actions-account.php:550
+#: includes/core/um-actions-account.php:552
 msgid "The administrator has not yet approved downloading the data. Please expect an email with a link to your data."
 msgstr ""
 
-#: includes/core/um-actions-account.php:555
+#: includes/core/um-actions-account.php:557
 msgid "Enter your current password to confirm a new export of your personal data."
 msgstr ""
 
-#: includes/core/um-actions-account.php:560
-#: includes/core/um-actions-account.php:632
+#: includes/core/um-actions-account.php:562
+#: includes/core/um-actions-account.php:634
 msgid "You must enter a password"
 msgstr ""
 
-#: includes/core/um-actions-account.php:568
+#: includes/core/um-actions-account.php:570
 msgid "To export of your personal data, click the button below."
 msgstr ""
 
-#: includes/core/um-actions-account.php:575
+#: includes/core/um-actions-account.php:577
 msgid "Request data"
 msgstr ""
 
-#: includes/core/um-actions-account.php:584
+#: includes/core/um-actions-account.php:586
 msgid "Erase of your data"
 msgstr ""
 
-#: includes/core/um-actions-account.php:586
+#: includes/core/um-actions-account.php:588
 msgid "You can request erasing of the data that we have about you."
 msgstr ""
 
-#: includes/core/um-actions-account.php:605
+#: includes/core/um-actions-account.php:607
 msgid "Your personal data has been deleted."
 msgstr ""
 
-#: includes/core/um-actions-account.php:606
+#: includes/core/um-actions-account.php:608
 msgid "You could send a new request for deleting your personal data."
 msgstr ""
 
-#: includes/core/um-actions-account.php:624
+#: includes/core/um-actions-account.php:626
 msgid "The administrator has not yet approved deleting your data. Please expect an email with a link to your data."
 msgstr ""
 
-#: includes/core/um-actions-account.php:629
+#: includes/core/um-actions-account.php:631
 msgid "Enter your current password to confirm the erasure of your personal data."
 msgstr ""
 
-#: includes/core/um-actions-account.php:640
+#: includes/core/um-actions-account.php:642
 msgid "Require erasure of your personal data, click on the button below."
 msgstr ""
 
-#: includes/core/um-actions-account.php:647
+#: includes/core/um-actions-account.php:649
 msgid "Request data erase"
 msgstr ""
 
-#: includes/core/um-actions-account.php:661
-#: includes/core/um-actions-account.php:692
+#: includes/core/um-actions-account.php:663
+#: includes/core/um-actions-account.php:694
 msgid "Wrong request."
 msgstr ""
 
-#: includes/core/um-actions-account.php:672
-#: includes/core/um-actions-account.php:679
+#: includes/core/um-actions-account.php:674
+#: includes/core/um-actions-account.php:681
 msgid "The password you entered is incorrect."
 msgstr ""
 
@@ -7324,149 +7347,157 @@ msgstr ""
 msgid "You are not allowed to use this word as your username."
 msgstr ""
 
-#: includes/core/um-actions-form.php:394
+#: includes/core/um-actions-form.php:417
 msgid "Profile Photo is required."
 msgstr ""
 
-#: includes/core/um-actions-form.php:447
-#: includes/core/um-actions-form.php:448
+#: includes/core/um-actions-form.php:470
+#: includes/core/um-actions-form.php:471
 msgid "%s - wrong conditions."
 msgstr ""
 
-#: includes/core/um-actions-form.php:456
-#: includes/core/um-actions-form.php:460
-#: includes/core/um-actions-form.php:464
+#: includes/core/um-actions-form.php:479
+#: includes/core/um-actions-form.php:483
+#: includes/core/um-actions-form.php:487
 msgid "%s is required."
 msgstr ""
 
-#: includes/core/um-actions-form.php:469
+#: includes/core/um-actions-form.php:492
 msgid "Please specify account type."
 msgstr ""
 
-#: includes/core/um-actions-form.php:499
+#: includes/core/um-actions-form.php:522
 msgid "This field is required"
 msgstr ""
 
-#: includes/core/um-actions-form.php:501
+#: includes/core/um-actions-form.php:524
 msgid "%s is required"
 msgstr ""
 
-#: includes/core/um-actions-form.php:510
+#: includes/core/um-actions-form.php:533
 msgid "You are only allowed to enter a maximum of %s words"
 msgstr ""
 
-#: includes/core/um-actions-form.php:516
-msgid "Your %s must contain at least %s characters"
-msgstr ""
-
-#: includes/core/um-actions-form.php:522
-msgid "Your %s must contain less than %s characters"
-msgstr ""
-
-#: includes/core/um-actions-form.php:529
-msgid "You can not use HTML tags here"
+#: includes/core/um-actions-form.php:540
+msgid "This field must contain at least %s characters"
 msgstr ""
 
 #: includes/core/um-actions-form.php:542
+msgid "Your %s must contain at least %s characters"
+msgstr ""
+
+#: includes/core/um-actions-form.php:550
+msgid "This field must contain less than %s characters"
+msgstr ""
+
+#: includes/core/um-actions-form.php:552
+msgid "Your %s must contain less than %s characters"
+msgstr ""
+
+#: includes/core/um-actions-form.php:560
+msgid "You can not use HTML tags here"
+msgstr ""
+
+#: includes/core/um-actions-form.php:573
 msgid "Please confirm your password"
 msgstr ""
 
-#: includes/core/um-actions-form.php:551
+#: includes/core/um-actions-form.php:582
 msgid "Please select at least %s choices"
 msgstr ""
 
-#: includes/core/um-actions-form.php:557
+#: includes/core/um-actions-form.php:588
 msgid "You can only select up to %s choices"
 msgstr ""
 
-#: includes/core/um-actions-form.php:563
+#: includes/core/um-actions-form.php:594
 msgid "Minimum number limit is %s"
 msgstr ""
 
-#: includes/core/um-actions-form.php:569
+#: includes/core/um-actions-form.php:600
 msgid "Maximum number limit is %s"
 msgstr ""
 
-#: includes/core/um-actions-form.php:605
+#: includes/core/um-actions-form.php:636
 msgid "Please enter numbers only in this field"
 msgstr ""
 
-#: includes/core/um-actions-form.php:611
+#: includes/core/um-actions-form.php:642
 msgid "Please enter a valid phone number"
 msgstr ""
 
-#: includes/core/um-actions-form.php:617
-#: includes/core/um-actions-form.php:623
-#: includes/core/um-actions-form.php:629
-#: includes/core/um-actions-form.php:635
 #: includes/core/um-actions-form.php:648
 #: includes/core/um-actions-form.php:654
 #: includes/core/um-actions-form.php:660
+#: includes/core/um-actions-form.php:666
+#: includes/core/um-actions-form.php:679
+#: includes/core/um-actions-form.php:685
+#: includes/core/um-actions-form.php:691
 msgid "Please enter a valid %s username or profile URL"
 msgstr ""
 
-#: includes/core/um-actions-form.php:642
+#: includes/core/um-actions-form.php:673
 msgid "Please enter a valid %s profile URL"
 msgstr ""
 
-#: includes/core/um-actions-form.php:666
+#: includes/core/um-actions-form.php:697
 msgid "Please enter a valid URL"
 msgstr ""
 
-#: includes/core/um-actions-form.php:673
-#: includes/core/um-actions-form.php:687
+#: includes/core/um-actions-form.php:704
+#: includes/core/um-actions-form.php:718
 msgid "You must provide a username"
 msgstr ""
 
-#: includes/core/um-actions-form.php:675
-#: includes/core/um-actions-form.php:689
+#: includes/core/um-actions-form.php:706
+#: includes/core/um-actions-form.php:720
 msgid "Your username is already taken"
 msgstr ""
 
-#: includes/core/um-actions-form.php:677
+#: includes/core/um-actions-form.php:708
 msgid "Username cannot be an email"
 msgstr ""
 
-#: includes/core/um-actions-form.php:679
-#: includes/core/um-actions-form.php:693
+#: includes/core/um-actions-form.php:710
+#: includes/core/um-actions-form.php:724
 msgid "Your username contains invalid characters"
 msgstr ""
 
-#: includes/core/um-actions-form.php:691
-#: includes/core/um-actions-form.php:713
-#: includes/core/um-actions-form.php:715
-#: includes/core/um-actions-form.php:727
-#: includes/core/um-actions-form.php:734
+#: includes/core/um-actions-form.php:722
+#: includes/core/um-actions-form.php:744
+#: includes/core/um-actions-form.php:746
+#: includes/core/um-actions-form.php:758
+#: includes/core/um-actions-form.php:765
 msgid "This email is already linked to an existing account"
 msgstr ""
 
-#: includes/core/um-actions-form.php:711
+#: includes/core/um-actions-form.php:742
 msgid "You must provide your email"
 msgstr ""
 
-#: includes/core/um-actions-form.php:717
-#: includes/core/um-actions-form.php:725
-#: includes/core/um-actions-form.php:749
+#: includes/core/um-actions-form.php:748
+#: includes/core/um-actions-form.php:756
+#: includes/core/um-actions-form.php:780
 msgid "This is not a valid email"
 msgstr ""
 
-#: includes/core/um-actions-form.php:719
+#: includes/core/um-actions-form.php:750
 msgid "Your email contains invalid characters"
 msgstr ""
 
-#: includes/core/um-actions-form.php:768
+#: includes/core/um-actions-form.php:799
 msgid "You must provide a unique value"
 msgstr ""
 
-#: includes/core/um-actions-form.php:778
+#: includes/core/um-actions-form.php:809
 msgid "You must provide alphabetic letters"
 msgstr ""
 
-#: includes/core/um-actions-form.php:790
+#: includes/core/um-actions-form.php:821
 msgid "You must provide lowercase letters."
 msgstr ""
 
-#: includes/core/um-actions-form.php:808
+#: includes/core/um-actions-form.php:839
 msgid "Your user description must contain less than %s characters"
 msgstr ""
 
@@ -7556,42 +7587,46 @@ msgstr ""
 msgid "Your membership request has been rejected."
 msgstr ""
 
+#: includes/core/um-actions-misc.php:190
+msgid "An error has been encountered. Probably page was cached. Please try again."
+msgstr ""
+
 #: includes/core/um-actions-profile.php:204
 msgid "You are not allowed to edit this user."
 msgstr ""
 
-#: includes/core/um-actions-profile.php:350
+#: includes/core/um-actions-profile.php:355
 msgid "Your choosed %s"
 msgstr ""
 
-#: includes/core/um-actions-profile.php:690
-#: includes/core/um-actions-profile.php:700
+#: includes/core/um-actions-profile.php:736
+#: includes/core/um-actions-profile.php:746
 msgid "Profile photo"
 msgstr ""
 
-#: includes/core/um-actions-profile.php:761
-#: includes/core/um-actions-profile.php:777
-#: includes/core/um-actions-profile.php:848
+#: includes/core/um-actions-profile.php:807
+#: includes/core/um-actions-profile.php:823
+#: includes/core/um-actions-profile.php:894
 msgid "Upload a cover photo"
 msgstr ""
 
-#: includes/core/um-actions-profile.php:761
+#: includes/core/um-actions-profile.php:807
 msgid "Change cover photo"
 msgstr ""
 
-#: includes/core/um-actions-profile.php:965
+#: includes/core/um-actions-profile.php:1011
 msgid "Upload photo"
 msgstr ""
 
-#: includes/core/um-actions-profile.php:998
+#: includes/core/um-actions-profile.php:1044
 msgid "Remove photo"
 msgstr ""
 
-#: includes/core/um-actions-profile.php:1161
+#: includes/core/um-actions-profile.php:1207
 msgid "Tell us a bit about yourself..."
 msgstr ""
 
-#: includes/core/um-actions-profile.php:1176
+#: includes/core/um-actions-profile.php:1222
 msgid "This user account status is %s"
 msgstr ""
 
@@ -7632,22 +7667,22 @@ msgstr ""
 msgid "Login as this user"
 msgstr ""
 
-#: includes/um-short-functions.php:752
-#: includes/um-short-functions.php:987
+#: includes/um-deprecated-functions.php:665
+#: includes/um-short-functions.php:891
 msgid "date submitted"
 msgstr ""
 
-#: includes/um-short-functions.php:758
-#: includes/um-short-functions.php:956
-#: includes/um-short-functions.php:993
+#: includes/um-deprecated-functions.php:671
+#: includes/um-short-functions.php:860
+#: includes/um-short-functions.php:897
 msgid "(empty)"
 msgstr ""
 
-#: includes/um-short-functions.php:791
+#: includes/um-short-functions.php:689
 msgid "Date Submitted"
 msgstr ""
 
-#: includes/um-short-functions.php:945
+#: includes/um-short-functions.php:843
 msgid "%s - Form ID#: %s"
 msgstr ""
 
@@ -7812,105 +7847,73 @@ msgstr ""
 msgid "Not rated yet!"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:20
-msgid "UM Form"
-msgstr ""
-
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:21
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:150
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:7
 msgid "Choose display form"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:86
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:213
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:72
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:200
 msgid "Loading Forms"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:94
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:221
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:80
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:208
 msgid "No Posts"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:114
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:100
 msgid "Select Forms"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:149
-msgid "UM Member Directories"
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:137
+msgid "Choose display directory"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:241
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:228
 msgid "Select Directories"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:275
-msgid "UM Password Reset"
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:263
+msgid "Displaying the password reset form"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:318
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:319
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:379
-msgid "UM Account"
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:306
+msgid "Displaying the account page of the current user"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:387
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:373
 msgid "Account Tab"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:392
+#: includes/admin/assets/js/um-admin-blocks-shortcode.js:378
 msgid "Select Tab"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:454
-msgid "User Profile Wall"
-msgstr ""
-
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:455
-msgid "Used on the user profile page"
-msgstr ""
-
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:525
-msgid "Select User"
-msgstr ""
-
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:541
-msgid "Hashtag"
-msgstr ""
-
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:558
-msgid "Shortcode Attribute"
-msgstr ""
-
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:563
-#: includes/admin/assets/js/um-admin-blocks-shortcode.js:577
-msgid "Show the form on the wall?"
-msgstr ""
-
-#: includes/admin/assets/js/um-admin-blocks.js:66
+#: includes/admin/assets/js/um-admin-blocks.js:68
 msgid "UM access Controls"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks.js:71
+#: includes/admin/assets/js/um-admin-blocks.js:73
 msgid "Restrict access?"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks.js:128
+#: includes/admin/assets/js/um-admin-blocks.js:134
 msgid "What roles can access this content?"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks.js:141
+#: includes/admin/assets/js/um-admin-blocks.js:147
 msgid "Restriction Action"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks.js:145
+#: includes/admin/assets/js/um-admin-blocks.js:151
 msgid "Hide block"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks.js:149
+#: includes/admin/assets/js/um-admin-blocks.js:155
 msgid "Show global default message"
 msgstr ""
 
-#: includes/admin/assets/js/um-admin-blocks.js:172
+#: includes/admin/assets/js/um-admin-blocks.js:178
 msgid "Restriction Message Content"
 msgstr ""
 

@@ -256,6 +256,14 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 				do_action( 'um_delete_custom_field', $id, $args );
 
 				update_option( 'um_fields', $fields );
+
+				global $wpdb;
+				$forms = $wpdb->get_col( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'um_form'" );
+				foreach ( $forms as $form_id ) {
+					$form_fields = get_post_meta( $form_id, '_um_custom_fields', true );
+					unset( $form_fields[ $id ] );
+					update_post_meta( $form_id, '_um_custom_fields', $form_fields );
+				}
 			}
 		}
 
@@ -568,7 +576,13 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 				$label = apply_filters( 'um_edit_label_all_fields', $label, $data );
 			}
 
-			$output .= '<label for="' . esc_attr( $key . UM()->form()->form_suffix ) . '">' . __( $label, 'ultimate-member' ) . '</label>';
+			$fields_without_metakey = UM()->builtin()->get_fields_without_metakey();
+			$for_attr = '';
+			if ( ! in_array( $data['type'], $fields_without_metakey ) ) {
+				$for_attr = ' for="' . esc_attr( $key . UM()->form()->form_suffix ) . '"';
+			}
+
+			$output .= '<label' . $for_attr . '>' . __( $label, 'ultimate-member' ) . '</label>';
 
 			if ( ! empty( $data['help'] ) && $this->viewing == false && ! strstr( $key, 'confirm_user_pass' ) ) {
 
@@ -978,7 +992,7 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 				if ( strstr( $key, 'role_' ) || $key == 'role' ) {
 					$field_value = strtolower( UM()->roles()->get_editable_priority_user_role( um_user( 'ID' ) ) );
 
-					$role_keys = get_option( 'um_roles' );
+					$role_keys = get_option( 'um_roles', array() );
 
 					if ( ! empty( $role_keys ) ) {
 						if ( in_array( $field_value, $role_keys ) ) {
@@ -1039,9 +1053,6 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 				if ( ! $this->editing || 'custom' == $this->set_mode ) {
 					// show default on register screen if there is default
 					if ( isset( $data['default'] ) ) {
-						if ( ! is_array( $data['default'] ) && strstr( $data['default'], ', ' ) ) {
-							$data['default'] = explode( ', ', $data['default'] );
-						}
 
 						if ( ! is_array( $data['default'] ) && $data['default'] === $value ) {
 							return true;
@@ -1053,6 +1064,14 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 
 						if ( is_array( $data['default'] ) && array_intersect( $data['options'], $data['default'] ) ) {
 							return true;
+						}
+
+						// default value with comma
+						if ( is_string( $data['default'] ) && strstr( $data['default'], ',' ) ) {
+							$choices = array_map( 'trim', explode( ',', $data['default'] ) );
+							if ( in_array( $value, $choices ) ) {
+								return true;
+							}
 						}
 
 					}
@@ -1125,7 +1144,7 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 						if ( strstr( $key, 'role_' ) || $key == 'role' ) {
 							$um_user_value = strtolower( UM()->roles()->get_editable_priority_user_role( um_user( 'ID' ) ) );
 
-							$role_keys = get_option( 'um_roles' );
+							$role_keys = get_option( 'um_roles', array() );
 
 							if ( ! empty( $role_keys ) ) {
 								if ( in_array( $um_user_value, $role_keys ) ) {
@@ -1443,7 +1462,11 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 				$array['conditional'] = null;
 			}
 
-			$array['classes'] .= ' um-field-' . esc_attr( $key );
+			$fields_without_metakey = UM()->builtin()->get_fields_without_metakey();
+
+			if ( ! in_array( $array['type'], $fields_without_metakey ) ) {
+				$array['classes'] .= ' um-field-' . esc_attr( $key );
+			}
 			$array['classes'] .= ' um-field-' . esc_attr( $array['type'] );
 			$array['classes'] .= ' um-field-type_' . esc_attr( $array['type'] );
 
@@ -2354,7 +2377,7 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 
 						if ( $this->is_error( $key ) ) {
 							$output .= $this->field_error( $this->show_error( $key ) );
-						}else if ( $this->is_notice( $key ) ) {
+						} elseif ( $this->is_notice( $key ) ) {
 							$output .= $this->field_notice( $this->show_notice( $key ) );
 						}
 
@@ -2366,6 +2389,9 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 							$output .= '<div ' . $this->get_atts( $key, $classes, $conditional, $data ) . '>';
 
 							if ( isset( $data['label'] ) ) {
+
+								$data['label'] = __( $data['label'], 'ultimate-member' );
+
 								$output .= $this->field_label( sprintf( __( 'Confirm %s', 'ultimate-member' ), $data['label'] ), $key, $data );
 							}
 
@@ -2382,11 +2408,17 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 								$name = $key;
 							}
 
-							$placeholder = sprintf( __( 'Confirm %s', 'ultimate-member' ), $data['label'] );
+							if( ! empty( $placeholder ) && ! isset( $data['label'] ) ){
+									$placeholder = sprintf( __( 'Confirm %s', 'ultimate-member' ), $placeholder );
+							}else if( isset( $data['label'] ) ){
+								$placeholder = sprintf( __( 'Confirm %s', 'ultimate-member' ), $data['label'] );
+							}
+							
 
-							$output .= '<input class="' . $this->get_class( $key, $data ) . '" type="' . esc_attr( $input ) . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $key . UM()->form()->form_suffix ) . '" value="' . $this->field_value( $key, $default, $data ) . '" placeholder="' . esc_attr( $placeholder ) . '" data-validate="' . esc_attr( $validate ) . '" data-key="' . esc_attr( $key ) . '" />
+							$output .= '<input class="' . $this->get_class( $key, $data ) . '" type="' . esc_attr( $input ) . '" name="' . esc_attr( $name ) . '" id="' . esc_attr( $key . UM()->form()->form_suffix ) . '" value="' . $this->field_value( $key, $default, $data ) . '" placeholder="' . esc_attr( $placeholder ) . '" data-validate="' . esc_attr( $validate ) . '" data-key="' . esc_attr( $key ) . '" />';
+							
 
-								</div>';
+							$output .= '</div>';
 
 							if ( $this->is_error( $key ) ) {
 								$output .= $this->field_error( $this->show_error( $key ) );
@@ -3728,11 +3760,14 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 			$sort_col = array();
 			foreach ( $arr as $key => $row ) {
 				if ( $key == 'form_id' ) {
+					unset( $arr['form_id'] );
 					continue;
 				}
 
 				if ( isset( $row[ $col ] ) ) {
 					$sort_col[ $key ] = $row[ $col ];
+				} else {
+					unset( $arr[ $key ] );
 				}
 			}
 
@@ -4056,9 +4091,10 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 
 					$_field_value = $this->field_value( $key, $default, $data );
 
-					if ( ! isset( $_field_value ) || $_field_value == '' ) {
+					if ( ! in_array( $type, $fields_without_metakey ) && ( ! isset( $_field_value ) || $_field_value == '' ) ) {
 						$output = '';
 					} else {
+
 						$output .= '<div ' . $this->get_atts( $key, $classes, $conditional, $data ) . '>';
 
 						if ( isset( $data['label'] ) || ! empty( $data['icon'] ) ) {
@@ -4123,11 +4159,20 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 						 */
 						$res = apply_filters( "um_view_field_value_{$type}", $res, $data );
 
-						$output .= '<div class="um-field-area">';
-						$output .= '<div class="um-field-value" id="' . esc_attr( $key . UM()->form()->form_suffix ) . '">' . $res . '</div>';
-						$output .= '</div>';
+						$id_attr = '';
+						if ( ! in_array( $type, $fields_without_metakey ) ) {
+							$id_attr = ' id="' . esc_attr( $key . UM()->form()->form_suffix ) . '"';
+						}
 
-						$output .= '</div>';
+						if ( empty( $res ) ) {
+							$output = '';
+						} else {
+							$output .= '<div class="um-field-area">';
+							$output .= '<div class="um-field-value"' . $id_attr . '>' . $res . '</div>';
+							$output .= '</div>';
+
+							$output .= '</div>';
+						}
 					}
 
 					break;
@@ -4301,14 +4346,14 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 			if ( UM()->options()->get( 'profile_empty_text' ) ) {
 
 				$emo = UM()->options()->get( 'profile_empty_text_emo' );
-				if ($emo) {
+				if ( $emo ) {
 					$emo = '<i class="um-faicon-frown-o"></i>';
 				} else {
 					$emo = false;
 				}
 
-				if (um_is_myprofile()) {
-					$output .= '<p class="um-profile-note">' . $emo . '<span>' . sprintf( __( 'Your profile is looking a little empty. Why not <a href="%s">add</a> some information!', 'ultimate-member' ), um_edit_profile_url() ) . '</span></p>';
+				if ( um_is_myprofile() ) {
+					$output .= '<p class="um-profile-note">' . $emo . '<span>' . sprintf( __( 'Your profile is looking a little empty. Why not <a href="%s">add</a> some information!', 'ultimate-member' ), esc_url( um_edit_profile_url() ) ) . '</span></p>';
 				} else {
 					$output .= '<p class="um-profile-note">' . $emo . '<span>' . __( 'This user has not added any information to their profile yet.', 'ultimate-member' ) . '</span></p>';
 				}
@@ -4661,6 +4706,16 @@ if ( ! class_exists( 'um\core\Fields' ) ) {
 					esc_attr( $key )
 				)
 			);
+
+			$fields_without_metakey = UM()->builtin()->get_fields_without_metakey();
+
+			if ( in_array( $data['type'], $fields_without_metakey ) ) {
+				unset( $field_atts['id'] );
+
+				if ( empty( $field_atts['data-key'] ) ) {
+					unset( $field_atts['data-key'] );
+				}
+			}
 
 			if ( ! empty( $field_style ) && is_array( $field_style ) ) {
 

@@ -80,7 +80,7 @@ class MetaSlider_Api
         add_action('wp_ajax_ms_save_slideshow_default_settings', array(self::$instance, 'save_slideshow_default_settings'));
 
         // Global settings
-        add_action('wp_ajax_ms_get_single_setting', array(self::$instance, 'ms_get_single_setting'));
+        add_action('wp_ajax_ms_get_single_setting', array(self::$instance, 'get_single_setting'));
         add_action('wp_ajax_ms_get_global_settings', array(self::$instance, 'get_global_settings'));
         add_action('wp_ajax_ms_update_global_settings', array(self::$instance, 'save_global_settings'));
         add_action('wp_ajax_ms_update_global_settings_single', array(self::$instance, 'save_global_settings_single'));
@@ -1001,7 +1001,7 @@ if (class_exists('WP_REST_Controller')) :
             )));
             register_rest_route($this->namespace, '/slideshow/export', array(array(
                 'methods' => 'GET',
-                'callbacks' => array($this->api, 'export_slideshows'),
+                'callback' => array($this->api, 'export_slideshows'),
                 'permission_callback' => array($this->api, 'can_access')
             )));
             register_rest_route($this->namespace, '/slideshow/import', array(array(

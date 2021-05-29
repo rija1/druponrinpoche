@@ -6,8 +6,8 @@ Donate link:
 Tags: community, member, membership, user-profile, user-registration
 Requires PHP: 5.6
 Requires at least: 5.0
-Tested up to: 5.5.1
-Stable tag: 2.1.12
+Tested up to: 5.7
+Stable tag: 2.1.20
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -154,6 +154,124 @@ The plugin works with popular caching plugins by automatically excluding Ultimat
 
 * To learn more about version 2.1 please see this [docs](https://docs.ultimatemember.com/article/1512-upgrade-2-1-0)
 * UM2.1+ is a significant update to the Member Directories' code base from 2.0.x. Please make sure you take a full-site backup with restore point before updating the plugin
+
+= 2.1.20: May 7, 2021 =
+
+* Enhancements:
+  - Added: Hook `um_registration_for_loggedin_users` to unlock the ability to add new users through the registration form
+  - Added: Filter hook 'um_change_usermeta_for_update' for extending `$to_update` usermeta array after all profile fields validations
+  - Added: Filter hook 'um_profile_tabs_privacy_list' and 'um_profile_menu_can_view_tab' for extending privacy options for Profile Tabs
+
+* Bugfixes:
+  - Fixed: XSS vulnerability when getting user profile URL
+  - Fixed: Temp directory size calculation
+
+= 2.1.19: April 20, 2021 =
+
+* Bugfixes:
+  - Fixed: Endless JS loop when filtering on Member Directory page
+
+= 2.1.18: April 19, 2021 =
+
+* Bugfixes:
+  - Fixed: Endless JS loop when filtering on Member Directory page
+  - Fixed: Regular expression for registration form and username field (added ability to use spaces) (#812)
+
+= 2.1.17: April 14, 2021 =
+
+* Enhancements:
+  - Added: Activation link expiration setting (#803)
+  - Added: 'Owner and specific roles' privacy type for the Profile tabs (#773)
+  - Added: Hooks `um_before_email_notification_sending` and `um_after_email_notification_sending` regarding #743 pull-request
+  - Added: Hooks for integration member directory filters with different conditions for query to DB
+
+* Bugfixes:
+  - Fixed: Editing private profiles capability. Removed the priority for "Can edit other member accounts?" capability when the account is private. (#805)
+  - Fixed: PHP notice when the admin filtering field has the not array default value (e.g. bool)
+  - Fixed: The conflict with [Disable Blog](https://wordpress.org/plugins/disable-blog/) plugin regarding this [issue](https://wordpress.org/support/topic/ultimate-member-file-image-download/). `download_routing` callback has the highest priority now.
+  - Fixed: Fields privacy functionality. This function `um_can_view_field()` has been rewritten (#780)
+  - Fixed: Fields privacy + form validation functionality. Skip the field's validation that aren't visible on the form based on the privacy settings (#795)
+  - Fixed: PHP notice in the confirm password label [wp.org thread](https://wordpress.org/support/topic/undefined-index-label-php-notice/)
+  - Fixed: Confirm password placeholder when label is empty
+  - Fixed: Permanently deleting form's field (#786)
+  - Fixed: Default value with comma for checkbox field-type (#729)
+  - Fixed: Gutenberg blocks conditional settings (#793)
+  - Fixed: Getting active Profile tab when some of them are hidden
+  - Fixed: Restricted content message is showing twice and removing header, avoid the conflicts with themes that use 'the_content' filter in header or footer (#799)
+  - Fixed: "Is required" validation for the multiselect field-type when it's empty on submit
+  - Fixed: Using 'wp_login_failed' hook, added 2nd parameter required since WordPress 5.4 version (#810)
+
+= 2.1.16: March 10, 2021 =
+
+* Enhancements:
+  - Added: General and role setting to avoid indexing users' profiles
+  - Added: `um_prepare_user_results_array_meta` hook and the 2nd argument for `um_prepare_user_results_array` hook for handle $user_ids based on getting members query
+  - Added: Change password email when the password has been reset
+  - Added: jQuery v3 compatibility
+  - Added: An option "Administrator" in a menu settings to make the menu visible for administrators only
+
+* Bugfixes:
+  - Fixed: Creating and removing usermeta data with `password_rst_attempts` key, just update if exists for now
+  - Fixed: Using 'edit_users' capability instead of 'manage_options' for approve|reject membership
+  - Fixed: Using 'manage_options' capability instead of 'delete_users' for switching between members
+  - Fixed: Using myCRED points metakeys in UM usermeta table
+  - Fixed: Empty icons are shown in the popup "Choose from... available icons"
+  - Fixed: Member Directory slider filter with NaN or decimal range
+  - Fixed: PHP notices and warnings
+  - Fixed: Security vulnerability with User Account page and password field
+  - Fixed: User creating without username but based on first+last name with not-ASCII symbols
+  - Fixed: Password reset hash generating more than 1 time
+  - Fixed: Random order type translation string on the member directory
+  - Fixed: Resize and compress images when uploading on User Profile images fields or user wall
+  - Fixed: Displaying more than 1 UM popups on the same page
+  - Fixed: UM dropdown.js position calculation
+  - Fixed: Select2 dropdown block position calculation
+
+* Tweaks:
+  - Updated: Select2 to 4.0.13 version
+
+= 2.1.15: December 24, 2020 =
+
+* Bugfixes:
+  - Fixed: Conditional logic for the form fields without metakeys
+
+= 2.1.14: December 22, 2020 =
+
+* Enhancements:
+  - Added a tooltip with meta key name for fields in a form settings
+  - Added `Administrator` user role to a restriction setting (to make the content visible only for `Administrator` role)
+
+* Bugfixes:
+  - Added third parameter $args to the action hook for Profile Tab redirections `um_user_after_updating_profile`
+  - Fixed issues with fields without metakeys when trying to display them by the hook
+  - Fixed PHP notices/warnings
+
+= 2.1.13: December 8, 2020 =
+
+* Enhancements:
+
+  - Added: `um_member_directory_cover_image_size` hook with ability to change the cover photo size on the member directory
+  - Added: `um_member_directory_avatar_image_size` hook with ability to change the profile photo size on the member directory
+  - Added: `um_member_directory_get_members_allow` JS hook for 3rd-party integration with the member directory. You could use a time throttle until some data is loaded
+  - Added: Notice about the fields' conditional logic rules + small CSS enhancements
+  - Added: Invalid nonce validation on Login and Registration pages instead of wp_die()
+  - Added: Privacy settings for the Divider field type (#688)
+  - Added: Ability for the integration with Gutenberg Block restriction settings (extends the block restriction settings via 3rd-party plugins)
+  - Added: Strings translations
+
+* Bugfixes:
+
+  - Fixed: Upgrade process on websites where a hosting locks the frequent AJAX requests (added default JS throttle between requests)
+  - Fixed: Getting page content of the GDPR privacy policies
+  - Fixed: Password strength validation for Unicode symbols
+  - Fixed: Issue with apostrophe options in the multiselect/checkbox fields (#689)
+  - Fixed: Translation for Password field's label
+  - Fixed: Download Personal Data URL
+  - Fixed: Vulnerability with timestamp field on UM Forms (the hidden field with name='timestamp' is deprecated)
+
+* Tweaks:
+
+  - There are changed PHP’s intval(), strval(), floatval(), and boolval() typecasting functions to (int), (string), (float) and (bool) regarding [this doc](https://make.wordpress.org/core/2020/11/20/miscellaneous-developer-focused-changes-in-wordpress-5-6/).
 
 = 2.1.12: October 29, 2020 =
 

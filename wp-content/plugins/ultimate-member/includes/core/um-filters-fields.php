@@ -441,7 +441,20 @@ function um_get_custom_field_array( $array, $fields ) {
 
 	if ( ! empty( $array['conditions'] ) ) {
 		foreach ( $array['conditions'] as $key => $value ) {
+			if ( ! isset( $value[1] ) ) {
+				continue;
+			}
+
+			if ( empty( $fields[ $value[1] ] ) ) {
+				continue;
+			}
+
+			if ( empty( $fields[ $value[1] ]['metakey'] ) ) {
+				continue;
+			}
+
 			$condition_metakey = $fields[ $value[1] ]['metakey'];
+
 			if ( isset( $_POST[ $condition_metakey ] ) ) {
 				$cond_value = ( $fields[ $value[1] ]['type'] == 'radio' ) ? $_POST[ $condition_metakey ][0] : $_POST[ $condition_metakey ];
 				list( $visibility, $parent_key, $op, $parent_value ) = $value;
@@ -763,7 +776,9 @@ function um_profile_field_filter_xss_validation( $value, $data, $type = '' ) {
 			}
 
 			if ( ! empty( $arr ) && empty( $data['custom_dropdown_options_source'] ) ) {
-				$value = array_intersect( $value, array_map( 'trim', $arr ) );
+				$arr = wp_unslash( $arr );
+				$arr = wp_slash( array_map( 'trim', $arr ) );
+				$value = array_intersect( $value, $arr );
 			}
 
 			if ( $option_pairs ) {

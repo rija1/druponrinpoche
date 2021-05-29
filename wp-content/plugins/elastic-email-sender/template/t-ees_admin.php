@@ -11,24 +11,18 @@ if (isset($_GET['settings-updated'])):
     </div>
 <?php endif; ?>
 
-<?php
-if (filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS) === 'elasticemail-settings' && filter_input(INPUT_GET, 'errorlog', FILTER_SANITIZE_SPECIAL_CHARS) === 'PxY471j1Y9') {
-    include_once 't-ees_log.php';
-}
-
-?>
-
-<div id="eewp_plugin" class="row eewp_container" style="margin-right: 0px; margin-left: 0px;">
+<div class="eewp-evmab-frvvr">
+<div class="eewp-container">
     <div class="col-12 col-md-12 col-lg-7">
-        <div class="ee_header">
-            <div class="ee_pagetitle">
+        <div class="ee-header">
+            <div class="ee-pagetitle">
                 <h1><?php _e('General Settings', 'elastic-email-sender') ?></h1>
             </div>
         </div>
 
-        <p class="ee_p margin-p-xs">
+        <p class="ee-p margin-p-xs">
             <?php
-            _e('Welcome to Elastic Email WordPress Plugin! From now on, you can send your emails in the 
+            _e('Welcome to the Elastic Email WordPress Plugin! From now on, you can send your emails in the 
                     fastest and most reliable way! Just one quick step and you will be ready to rock your 
                     subscribers\' inbox. Fill in the details about the main configuration of 
                     Elastic Email connections.', 'elastic-email-sender');
@@ -47,15 +41,15 @@ if (filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS) === 'elastice
 
                     if (get_option('ees-connecting-status') === 'connecting') {
                         if (empty($error) === true) {
-                            $error_stat = 'ee_success';
+                            $error_stat = 'ee-success';
                         }
                     }
                     if (get_option('ees-connecting-status') === 'disconnected') {
                         if (empty($error) === false) {
-                            $error_stat = 'ee_error';
+                            $error_stat = 'ee-error';
                         } else {
                             $error = 'false';
-                            $error_stat = 'ee_error';
+                            $error_stat = 'ee-error';
                         }
                     }
 
@@ -84,12 +78,12 @@ if (filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS) === 'elastice
                         <?php
                         if (isset($accountstatus)) {
                             if ($accountstatus == 1) {
-                                $accountstatusname = '<span class="ee_account-status-active">' . __('Active', 'elastic-email-sender') . '</span>';
+                                $accountstatusname = '<span class="ee-account-status-active">' . __('Active', 'elastic-email-sender') . '</span>';
                             } else {
-                                $accountstatusname = '<span class="ee_account-status-deactive">' . __('Please conect to Elastic Email API or complete the profile', 'elastic-email-sender') . ' <a href="https://elasticemail.com/account/#/account/profile">' . __('Complete your profile', 'elastic-email-sender') . '</a>' . __(' or connect to Elastic Email API to start using the plugin.', 'elastic-email-sender') . '</span>';
+                                $accountstatusname = '<span class="ee-account-status-deactive">' . __('Please conect to Elastic Email API or complete the profile', 'elastic-email-sender') . ' <a href="https://elasticemail.com/account/#/account/profile">' . __('Complete your profile', 'elastic-email-sender') . '</a>' . __(' or connect to Elastic Email API to start using the plugin.', 'elastic-email-sender') . '</span>';
                             }
                         } else {
-                            $accountstatusname = '<span class="ee_account-status-deactive">' . __('Please conect to Elastic Email API or complete the profile', 'elastic-email-sender') . ' <a href="https://elasticemail.com/account/#/account/profile">' . __('Complete your profile', 'elastic-email-sender') . '</a>' . __(' or connect to Elastic Email API to start using the plugin.', 'elastic-email-sender') . '</span>';
+                            $accountstatusname = '<span class="ee-account-status-deactive">' . __('Please conect to Elastic Email API or complete the profile', 'elastic-email-sender') . ' <a href="https://elasticemail.com/account/#/account/profile">' . __('Complete your profile', 'elastic-email-sender') . '</a>' . __(' or connect to Elastic Email API to start using the plugin.', 'elastic-email-sender') . '</span>';
                         }
                         echo $accountstatusname;
                         ?>
@@ -173,4 +167,5 @@ if (filter_input(INPUT_GET, 'page', FILTER_SANITIZE_SPECIAL_CHARS) === 'elastice
     include 't-ees_marketing.php';
     ?>
 
+</div>
 </div>

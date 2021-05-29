@@ -46,7 +46,7 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 	 */
 	public function render_field() {
 		echo '
-		<p><label class="cb-checkbox"><input id="rl_unsplash_active" class="rl-media-provider-expandable" type="checkbox" name="responsive_lightbox_remote_library[unsplash][active]" value="1" ' . checked( $this->rl->options['remote_library']['unsplash']['active'], true, false ) . ' />' . __( 'Enable Unsplash.', 'responsive-lightbox' ) . '</label></p>
+		<p><label><input id="rl_unsplash_active" class="rl-media-provider-expandable" type="checkbox" name="responsive_lightbox_remote_library[unsplash][active]" value="1" ' . checked( $this->rl->options['remote_library']['unsplash']['active'], true, false ) . ' />' . __( 'Enable Unsplash.', 'responsive-lightbox' ) . '</label></p>
 		<div class="rl-media-provider-options"' . ( $this->rl->options['remote_library']['unsplash']['active'] ? '' : ' style="display: none;"' ) . '>
 			<p><input id="rl_unsplash_api_key" class="large-text" placeholder="' . __( 'Access key', 'responsive-lightbox' ) . '" type="text" value="' . $this->rl->options['remote_library']['unsplash']['api_key'] . '" name="responsive_lightbox_remote_library[unsplash][api_key]"></p>
 			<p class="description">' . sprintf( __( 'Provide your <a href="%s">Unsplash API key</a>.', 'responsive-lightbox' ), 'https://unsplash.com/oauth/applications/new' ) . '</p>

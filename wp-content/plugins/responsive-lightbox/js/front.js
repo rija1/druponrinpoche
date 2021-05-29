@@ -1,22 +1,22 @@
-( function ( $ ) {
+( function( $ ) {
 
 	// parse query string
 	var parse_str = function( name, str ) {
-		var regex = new RegExp( '[?&]' + name.replace( /[\[\]]/g, '\\$&' ) + '(=([^&#]*)|&|#|$)' ),
-			results = regex.exec( '&' + str );
+		var regex = new RegExp( '[?&]' + name.replace( /[\[\]]/g, '\\$&' ) + '(=([^&#]*)|&|#|$)' );
+		var results = regex.exec( '&' + str );
 
 		return ( ! results || ! results[2] ? '' : decodeURIComponent( results[2].replace( /\+/g, ' ' ) ) );
 	}
 
 	// observe DOM changes
-	var observe_script_dom = ( function () {
-		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
-			eventListenerSupported = window.addEventListener;
+	var observe_script_dom = ( function() {
+		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+		var eventListenerSupported = window.addEventListener;
 
-		return function ( obj, only_added, callback ) {
+		return function( obj, only_added, callback ) {
 			if ( MutationObserver ) {
 				// define a new observer
-				var obs = new MutationObserver( function ( mutations, observer ) {
+				var obs = new MutationObserver( function( mutations, observer ) {
 					if ( only_added ) {
 						if ( mutations[0].addedNodes.length )
 							callback();
@@ -31,15 +31,23 @@
 			} else if ( eventListenerSupported ) {
 				obj.addEventListener( 'DOMNodeInserted', callback, false );
 
-				if ( !only_added ) {
+				if ( !only_added )
 					obj.addEventListener( 'DOMNodeRemoved', callback, false );
-				}
 			}
 		}
 	} )();
 
-	// ready event handler
-	$( document ).on( 'ready' + rlArgs.customEvents, function () {
+	// ready event
+	$( function() {
+		init_rl();
+	} );
+
+	// custom events trigger
+	$( document ).on( rlArgs.customEvents, function() {
+		init_rl();
+	} );
+
+	function init_rl() {
 		var containers = [];
 
 		// check for infinite galleries
@@ -47,22 +55,21 @@
 			var container = $( this );
 
 			// is it ifinite scroll gallery?
-			if ( container.hasClass( 'rl-pagination-infinite' ) ) {
+			if ( container.hasClass( 'rl-pagination-infinite' ) )
 				containers.push( container );
-			} else {
-				// remove loading class
+			// remove loading class
+			else
 				container.removeClass( 'rl-loading' );
-			}
 		} );
 
 		// any infinite galleries?
 		if ( containers.length > 0 ) {
 			for ( var i = 0; i < containers.length; i++ ) {
-				var container = containers[i],
-					gallery = container.find( '.rl-gallery' ),
-					gallery_id = parseInt( container.data( 'gallery_id' ) ),
-					gallery_scroll_type = container.find( '.rl-pagination-bottom' ).data( 'button' ),
-					gallery_button = typeof gallery_scroll_type !== 'undefined' && gallery_scroll_type === 'manually';
+				var container = containers[i];
+				var gallery = container.find( '.rl-gallery' );
+				var gallery_id = parseInt( container.data( 'gallery_id' ) );
+				var gallery_scroll_type = container.find( '.rl-pagination-bottom' ).data( 'button' );
+				var gallery_button = typeof gallery_scroll_type !== 'undefined' && gallery_scroll_type === 'manually';
 
 				// initialize infinite scroll
 				gallery.infiniteScroll( {
@@ -93,7 +100,7 @@
 						} );
 
 						// append event
-						this.on( 'append', function ( response, path, items ) {
+						this.on( 'append', function( response, path, items ) {
 							// remove loading class
 							container.removeClass( 'rl-loading' );
 
@@ -124,12 +131,12 @@
 			selector: rlArgs.selector,
 			args: rlArgs
 		} );
-	} );
+	}
 
 	// pagination
-	$( document ).on( 'click', '.rl-pagination a.page-numbers', function ( e ) {
-		var link = $( this ),
-			container = link.closest( '.rl-gallery-container' );
+	$( document ).on( 'click', '.rl-pagination a.page-numbers', function( e ) {
+		var link = $( this );
+		var container = link.closest( '.rl-gallery-container' );
 
 		// ajax type pagination?
 		if ( container.hasClass( 'rl-pagination-ajax' ) ) {
@@ -146,7 +153,7 @@
 				gallery_id: gallery_id,
 				page: parse_str( 'rl_page', link.prop( 'href' ) ),
 				nonce: rlArgs.nonce
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				// replace container with new content
 				container.replaceWith( $( response ).removeClass( 'rl-loading' ) );
 
@@ -159,7 +166,7 @@
 					pagination_type: 'ajax',
 					gallery_id: gallery_id
 				} );
-			} ).fail( function () {
+			} ).fail( function() {
 				container.removeClass( 'rl-loading' );
 			} );
 
@@ -168,20 +175,18 @@
 	} );
 
 	// this is similar to the WP function add_action();
-	$( document ).on( 'doResponsiveLightbox', function ( event ) {
-		if ( typeof event.masonry !== 'undefined' && event.masonry === true ) {
+	$( document ).on( 'doResponsiveLightbox', function( event ) {
+		if ( typeof event.masonry !== 'undefined' && event.masonry === true )
 			return false;
-		}
 
-		var script = event.script,
-			selector = event.selector,
-			args = event.args;
+		var script = event.script;
+		var selector = event.selector;
+		var args = event.args;
 
-		if ( typeof script === 'undefined' || typeof selector === 'undefined' ) {
+		if ( typeof script === 'undefined' || typeof selector === 'undefined' )
 			return false;
-		}
 
-		rl_view_image = function ( script, url ) {
+		rl_view_image = function( script, url ) {
 			$.event.trigger( {
 				type: 'doLightboxViewImage',
 				script: script,
@@ -189,7 +194,7 @@
 			} );
 		}
 
-		rl_hide_image = function ( script, url ) {
+		rl_hide_image = function( script, url ) {
 			$.event.trigger( {
 				type: 'doLightboxHideImage',
 				script: script,
@@ -198,11 +203,8 @@
 		}
 
 		// WooCommerce 3.0+ compatibility
-		setTimeout( function () {
+		setTimeout( function() {
 			var flex = $( '.flex-viewport' );
-
-			// if ( flex.length )
-				// flex.css( 'cursor', 'pointer' );
 
 			if ( args.woocommerce_gallery === '1' ) {
 				var gallery = $( '.woocommerce-product-gallery' );
@@ -226,10 +228,10 @@
 		// init lightbox
 		switch ( script ) {
 			case 'swipebox':
-				var slide = $( '#swipebox-overlay' ).find( '.slide.current' ),
-					image_source = '',
-					allow_hide = false,
-					close_executed = false;
+				var slide = $( '#swipebox-overlay' ).find( '.slide.current' );
+				var image_source = '';
+				var allow_hide = false;
+				var close_executed = false;
 
 				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).swipebox( {
 					useCSS: ( args.animation === '1' ? true : false ),
@@ -239,7 +241,7 @@
 					hideBarsDelay: ( args.hideBars === '1' ? parseInt( args.hideBarsDelay ) : 0 ),
 					videoMaxWidth: parseInt( args.videoMaxWidth ),
 					loopAtEnd: ( args.loopAtEnd === '1' ? true : false ),
-					afterOpen: function () {
+					afterOpen: function() {
 						close_executed = false;
 
 						// update current slide container
@@ -259,7 +261,7 @@
 						}
 
 						// add current slide observer
-						observe_script_dom( document.getElementById( 'swipebox-slider' ), false, function () {
+						observe_script_dom( document.getElementById( 'swipebox-slider' ), false, function() {
 							if ( image_source === '' ) {
 								// get image source
 								var image = slide.find( 'img' ).attr( 'src' );
@@ -276,7 +278,7 @@
 							}
 						} );
 					},
-					nextSlide: function () {
+					nextSlide: function() {
 						// update current slide container
 						slide = $( '#swipebox-overlay' ).find( '.slide.current' );
 
@@ -293,7 +295,7 @@
 							image_source = '';
 						}
 					},
-					prevSlide: function () {
+					prevSlide: function() {
 						// update current slide container
 						slide = $( '#swipebox-overlay' ).find( '.slide.current' );
 
@@ -310,7 +312,7 @@
 							image_source = '';
 						}
 					},
-					afterClose: function () {
+					afterClose: function() {
 						// afterClose event executed
 						close_executed = true;
 
@@ -325,18 +327,18 @@
 				} );
 
 				// additional event to prevent rl_hide_image to execure while opening modal
-				$( window ).on( 'resize', function () {
-					if ( !close_executed ) {
+				$( window ).on( 'resize', function() {
+					if ( ! close_executed ) {
 						allow_hide = true;
 					}
 				} );
 				break;
 
 			case 'prettyphoto':
-				var view_disabled = false,
-					last_image = '';
+				var view_disabled = false;
+				var last_image = '';
 
-				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function () {
+				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function() {
 					var el = $( this );
 
 					// set description
@@ -369,7 +371,7 @@
 					keyboard_shortcuts: ( args.keyboardShortcuts === '1' ? true : false ),
 					social_tools: ( args.social === '1' ? '<div class="pp_social"><div class="twitter"><a href="//twitter.com/share" class="twitter-share-button" data-count="none">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></div><div class="facebook"><iframe src="//www.facebook.com/plugins/like.php?locale=en_US&href=' + location.href + '&amp;layout=button_count&amp;show_faces=true&amp;width=500&amp;action=like&amp;font&amp;colorscheme=light&amp;height=23" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:500px; height:23px;" allowTransparency="true"></iframe></div></div>' : '' ),
 					ie6_fallback: true,
-					changepicturecallback: function () {
+					changepicturecallback: function() {
 						// is view disabled?
 						if ( view_disabled ) {
 							// enable view
@@ -386,12 +388,12 @@
 						// is expanding allowed?
 						if ( args.allowExpand === '1' ) {
 							// disable changepicturecallback event after expanding
-							$( 'a.pp_expand' ).on( 'click', function () {
+							$( 'a.pp_expand' ).on( 'click', function() {
 								view_disabled = true;
 							} );
 						}
 					},
-					callback: function () {
+					callback: function() {
 						// trigger image hide
 						rl_hide_image( script, last_image );
 					}
@@ -430,13 +432,13 @@
 					margin: parseInt( args.margin ),
 					width: parseInt( args.videoWidth ),
 					height: parseInt( args.videoHeight ),
-					onComplete: function () {
+					onComplete: function() {
 						last_image = $( '#fancybox-content' ).find( 'img' ).attr( 'src' );
 
 						// trigger image view
 						rl_view_image( script, last_image );
 					},
-					onClosed: function () {
+					onClosed: function() {
 						// trigger image hide
 						rl_hide_image( script, last_image );
 					}
@@ -445,7 +447,7 @@
 				break;
 
 			case 'nivo':
-				$.each( $( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ), function () {
+				$.each( $( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ), function() {
 					var attr = $( this ).attr( 'data-rel' );
 
 					// check data-rel attribute first
@@ -458,23 +460,21 @@
 					if ( typeof attr !== 'undefined' && attr !== false ) {
 						var match = attr.match( new RegExp( selector + '\\-(gallery\\-(?:[\\da-z]{1,4}))', 'ig' ) );
 
-						if ( match !== null ) {
+						if ( match !== null )
 							$( this ).attr( 'data-lightbox-gallery', match[0] );
-						}
 					}
-
 				} );
 
-				var observer_initialized = false,
-					change_allowed = true,
-					last_image = '';
+				var observer_initialized = false;
+				var change_allowed = true;
+				var last_image = '';
 
 				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).nivoLightbox( {
 					effect: args.effect,
 					clickOverlayToClose: ( args.clickOverlayToClose === '1' ? true : false ),
 					keyboardNav: ( args.keyboardNav === '1' ? true : false ),
 					errorMessage: args.errorMessage,
-					afterShowLightbox: function ( lightbox ) {
+					afterShowLightbox: function( lightbox ) {
 						var content = $( lightbox )[0].find( '.nivo-lightbox-content' );
 
 						// is observer initialized?
@@ -483,7 +483,7 @@
 							observer_initialized = true;
 
 							// add content observer
-							observe_script_dom( document.getElementsByClassName( 'nivo-lightbox-content' )[0], true, function () {
+							observe_script_dom( document.getElementsByClassName( 'nivo-lightbox-content' )[0], true, function() {
 								if ( change_allowed ) {
 									last_image = content.find( '.nivo-lightbox-image img' ).attr( 'src' );
 
@@ -496,14 +496,14 @@
 							} );
 						}
 					},
-					afterHideLightbox: function () {
+					afterHideLightbox: function() {
 						// allow observer changes
 						change_allowed = true;
 
 						// trigger image hide
 						rl_hide_image( script, last_image );
 					},
-					onPrev: function ( element ) {
+					onPrev: function( element ) {
 						// disallow observer changes
 						change_allowed = false;
 
@@ -512,7 +512,7 @@
 						// trigger image view
 						rl_view_image( script, last_image );
 					},
-					onNext: function ( element ) {
+					onNext: function( element ) {
 						// disallow observer changes
 						change_allowed = false;
 
@@ -525,10 +525,10 @@
 				break;
 
 			case 'imagelightbox':
-				var selectors = [ ],
-					last_image = '';
+				var selectors = [];
+				var last_image = '';
 
-				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function ( i, item ) {
+				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function( i, item ) {
 					var attr = $( item ).attr( 'data-rel' );
 
 					// check data-rel attribute first
@@ -545,9 +545,9 @@
 
 				if ( selectors.length > 0 ) {
 					// make unique
-					selectors = $.unique( selectors );
+					selectors = _.uniq( selectors );
 
-					$( selectors ).each( function ( i, item ) {
+					$( selectors ).each( function( i, item ) {
 						if ( typeof event.pagination_type !== 'undefined' ) {
 							$( 'a[data-rel="' + item + '"], a[rel="' + item + '"]' ).each( function() {
 								$( this ).off( 'click.imageLightbox' );
@@ -561,13 +561,13 @@
 							quitOnEnd: ( args.quitOnEnd === '1' ? true : false ),
 							quitOnImgClick: ( args.quitOnImageClick === '1' ? true : false ),
 							quitOnDocClick: ( args.quitOnDocumentClick === '1' ? true : false ),
-							onLoadEnd: function () {
+							onLoadEnd: function() {
 								last_image = $( '#imagelightbox' ).attr( 'src' );
  
 								// trigger image view
 								rl_view_image( script, last_image );
 							},
-							onEnd: function () {
+							onEnd: function() {
 								// trigger image hide
 								rl_hide_image( script, last_image );
 							}
@@ -577,10 +577,10 @@
 				break;
 
 			case 'tosrus':
-				var selectors = [ ],
-					last_image = '';
+				var selectors = [];
+				var last_image = '';
 
-				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function ( i, item ) {
+				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function( i, item ) {
 					var attr = $( item ).attr( 'data-rel' );
 
 					// check data-rel attribute first
@@ -597,9 +597,9 @@
 
 				if ( selectors.length > 0 ) {
 					// make unique
-					selectors = $.unique( selectors );
+					selectors = _.uniq( selectors );
 
-					$( selectors ).each( function ( i, item ) {
+					$( selectors ).each( function( i, item ) {
 						if ( typeof event.pagination_type !== 'undefined' ) {
 							$( 'body' ).find( '.tosrus-' + item ).remove();
 
@@ -638,14 +638,14 @@
 							}
 						} );
 
-						tos.bind( 'sliding.tos', function ( event, number ) {
+						tos.on( 'sliding.tos', function( event, number ) {
 							last_image = $( $( event.target ).find( '.tos-slider .tos-slide' )[number] ).find( 'img' ).attr( 'src' );
 
 							// trigger image view
 							rl_view_image( script, last_image );
 						} );
 
-						tos.bind( 'closing.tos', function () {
+						tos.on( 'closing.tos', function() {
 							// trigger image hide
 							rl_hide_image( script, last_image );
 						} );
@@ -654,10 +654,10 @@
 				break;
 
 			case 'featherlight':
-				var selectors = [ ],
-					last_image = '';
+				var selectors = [];
+				var last_image = '';
 
-				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function ( i, item ) {
+				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function( i, item ) {
 					var attr = $( item ).attr( 'data-rel' );
 
 					// check data-rel attribute first
@@ -674,7 +674,7 @@
 
 				if ( selectors.length > 0 ) {
 					// make unique
-					selectors = $.unique( selectors );
+					selectors = _.uniq( selectors );
 
 					// set defaults
 					$.extend( $.featherlight.defaults, {
@@ -682,19 +682,19 @@
 						closeSpeed: parseInt( args.closeSpeed ),
 						closeOnClick: args.closeOnClick,
 						closeOnEsc: ( args.closeOnEsc === '1' ? true : false ),
-						afterOpen: function ( event ) {
+						afterOpen: function( event ) {
 							last_image = event.currentTarget.href;
 
 							// trigger image view
 							rl_view_image( script, last_image );
 						},
-						afterClose: function () {
+						afterClose: function() {
 							// trigger image hide
 							rl_hide_image( script, last_image );
 						}
 					} );
 
-					$( selectors ).each( function ( i, item ) {
+					$( selectors ).each( function( i, item ) {
 						if ( typeof event.pagination_type !== 'undefined' ) {
 							$( 'a[data-rel="' + item + '"], a[rel="' + item + '"]' ).each( function() {
 								$( this ).off( 'click.featherlight' );
@@ -722,10 +722,10 @@
 				break;
 
 			case 'magnific':
-				var selectors = [ ],
-					last_image = '';
+				var selectors = [];
+				var last_image = '';
 
-				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function ( i, item ) {
+				$( 'a[rel*="' + selector + '"], a[data-rel*="' + selector + '"]' ).each( function( i, item ) {
 					var attr = $( item ).attr( 'data-rel' );
 
 					// check data-rel attribute first
@@ -742,23 +742,21 @@
 
 				if ( selectors.length > 0 ) {
 					// make unique
-					selectors = $.unique( selectors );
+					selectors = _.uniq( selectors );
 
-					$( selectors ).each( function ( i, item ) {
-						var subselector = $( 'a[data-rel="' + item + '"], a[rel="' + item + '"]' ),
-							element = $( subselector[0] ),
-							media_type = element.data( 'magnific_type' ),
-							content_type = element.data( 'rl_content' );
+					$( selectors ).each( function( i, item ) {
+						var subselector = $( 'a[data-rel="' + item + '"], a[rel="' + item + '"]' );
+						var element = $( subselector[0] );
+						var media_type = element.data( 'magnific_type' );
+						var content_type = element.data( 'rl_content' );
 
 						// check content type first
-						if ( typeof content_type !== 'undefined' ) {
+						if ( typeof content_type !== 'undefined' )
 							media_type = content_type;
-						}
 
 						// then media type if needed
-						if ( typeof media_type === 'undefined' ) {
+						if ( typeof media_type === 'undefined' )
 							media_type = 'image';
-						}
 
 						subselector.magnificPopup( {
 							type: media_type === 'gallery' ? 'image' : ( media_type === 'video' ? 'iframe' : media_type ),
@@ -775,7 +773,7 @@
 							fixedContentPos: args.fixedContentPos === 'auto' ? 'auto' : ( args.fixedContentPos === '1' ),
 							fixedBgPos: args.fixedBgPos === 'auto' ? 'auto' : ( args.fixedBgPos === '1' ),
 							image: {
-								titleSrc: function ( item ) {
+								titleSrc: function( item ) {
 									return item.el.attr( 'data-rl_title' ) + '<small>' + item.el.attr( 'data-rl_caption' ) + '</small>';
 								}
 							},

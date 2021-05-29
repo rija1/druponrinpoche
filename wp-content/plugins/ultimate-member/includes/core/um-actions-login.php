@@ -75,7 +75,7 @@ function um_submit_form_errors_hook_login( $args ) {
 
 	// if there is an error notify wp
 	if ( UM()->form()->has_error( $field ) || UM()->form()->has_error( $user_password ) || UM()->form()->count_errors() > 0 ) {
-		do_action( 'wp_login_failed', $user_name );
+		do_action( 'wp_login_failed', $user_name, UM()->form()->errors );
 	}
 }
 add_action( 'um_submit_form_errors_hook_login', 'um_submit_form_errors_hook_login', 10 );
@@ -165,7 +165,12 @@ add_action( 'um_on_login_before_redirect', 'um_store_lastlogin_timestamp', 10, 1
 function um_store_lastlogin_timestamp_( $login ) {
 	$user = get_user_by( 'login', $login );
 	um_store_lastlogin_timestamp( $user->ID );
-	delete_user_meta( $user->ID, 'password_rst_attempts' );
+
+	$attempts = (int) get_user_meta( $user->ID, 'password_rst_attempts', true );
+	if ( $attempts ) {
+		//don't create meta but update if it's exists only
+		update_user_meta( $user->ID, 'password_rst_attempts', 0 );
+	}
 }
 add_action( 'wp_login', 'um_store_lastlogin_timestamp_' );
 

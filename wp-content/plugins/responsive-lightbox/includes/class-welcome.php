@@ -65,11 +65,9 @@ class Responsive_Lightbox_Welcome_Page {
 		<div class="rl-badge" style="position: absolute; top: 0; right: 0; box-shadow: 0 1px 3px rgba(0,0,0,.1); max-width: 180px;"><img src="<?php echo RESPONSIVE_LIGHTBOX_URL . '/images/logo-rl.png'; ?>" width="180" height="180" /></div>
 
 		<div class="changelog">
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=responsive-lightbox-tour' ) ); ?>" class="button button-primary button-large"><?php _e( 'Start Tour', 'responsive-lightbox' ); ?></a>
-			<a href="<?php echo esc_url( admin_url( 'admin.php?page=responsive-lightbox-settings' ) ); ?>" class="button button-primary button-large"><?php _e( 'Settings', 'responsive-lightbox' ); ?></a>
-			<a href="https://dfactory.eu/docs/responsive-lightbox/?utm_source=responsive-lightbox-welcome&utm_medium=button&utm_campaign=documentation" class="button button-secondary button-large" target="_blank"><?php _e( 'Documentation', 'responsive-lightbox' ); ?></a>
-			<a href="https://dfactory.eu/support/?utm_source=responsive-lightbox-welcome&utm_medium=button&utm_campaign=support" class="button button-secondary button-large" target="_blank"><?php _e( 'Support', 'responsive-lightbox' ); ?></a>
-			<a href="https://dfactory.eu/?utm_source=responsive-lightbox-welcome&utm_medium=button&utm_campaign=dfactory-plugins" class="button button-secondary button-large" target="_blank"><?php _e( 'dFactory Plugins', 'responsive-lightbox' ); ?></a>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=responsive-lightbox-tour' ) ); ?>" class="button button-primary button-hero"><?php _e( 'Start Tour', 'responsive-lightbox' ); ?></a>
+			<a href="<?php echo esc_url( admin_url( 'admin.php?page=responsive-lightbox-settings' ) ); ?>" class="button button-hero"><?php _e( 'Settings', 'responsive-lightbox' ); ?></a>
+			<a href="https://dfactory.eu/products/responsive-lightbox-gallery-extensions/?utm_source=responsive-lightbox-welcome&utm_medium=button&utm_campaign=dfactory-plugins" class="button button-hero" target="_blank"><?php _e( 'Addons', 'responsive-lightbox' ); ?></a>
 		</div>
 		
 		<hr />
@@ -105,7 +103,7 @@ class Responsive_Lightbox_Welcome_Page {
 			
 			<div class="feature-section">
 				<h2><?php _e( 'Powerful Addons', 'responsive-lightbox' ); ?></h2>
-				<p><?php printf( __( 'Responsive Lightbox & Gallery enhances your site by making its images and galleries look visually appealing to your site users. And when you want to kick things up a notch you can pair the free, core plugin with <del>one of 10</del> one of 12 <a href="%s">premium extensions.</a>', 'responsive-lightbox' ), esc_url( admin_url( 'admin.php?page=responsive-lightbox-addons' ) ) ); ?></p>
+				<p><?php printf( __( 'Responsive Lightbox & Gallery enhances your site by making its images and galleries look visually appealing to your site users. And when you want to kick things up a notch you can pair the free, core plugin with <del>one of 10</del> one of 12 <a href="%s" target="_blank">premium extensions.</a>', 'responsive-lightbox' ), 'https://dfactory.eu/products/responsive-lightbox-gallery-extensions/' ); ?></p>
 			</div>
 			
 			<hr />

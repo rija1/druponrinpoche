@@ -486,14 +486,15 @@ class autoptimizeMain
 
         $classoptions = array(
             'autoptimizeScripts' => array(
-                'aggregate'       => $conf->get( 'autoptimize_js_aggregate' ),
-                'justhead'        => $conf->get( 'autoptimize_js_justhead' ),
-                'forcehead'       => $conf->get( 'autoptimize_js_forcehead' ),
-                'trycatch'        => $conf->get( 'autoptimize_js_trycatch' ),
-                'js_exclude'      => $conf->get( 'autoptimize_js_exclude' ),
-                'cdn_url'         => $conf->get( 'autoptimize_cdn_url' ),
-                'include_inline'  => $conf->get( 'autoptimize_js_include_inline' ),
-                'minify_excluded' => $conf->get( 'autoptimize_minify_excluded' ),
+                'aggregate'           => $conf->get( 'autoptimize_js_aggregate' ),
+                'defer_not_aggregate' => $conf->get( 'autoptimize_js_defer_not_aggregate' ),
+                'justhead'            => $conf->get( 'autoptimize_js_justhead' ),
+                'forcehead'           => $conf->get( 'autoptimize_js_forcehead' ),
+                'trycatch'            => $conf->get( 'autoptimize_js_trycatch' ),
+                'js_exclude'          => $conf->get( 'autoptimize_js_exclude' ),
+                'cdn_url'             => $conf->get( 'autoptimize_cdn_url' ),
+                'include_inline'      => $conf->get( 'autoptimize_js_include_inline' ),
+                'minify_excluded'     => $conf->get( 'autoptimize_minify_excluded' ),
             ),
             'autoptimizeStyles'  => array(
                 'aggregate'       => $conf->get( 'autoptimize_css_aggregate' ),
@@ -565,6 +566,7 @@ class autoptimizeMain
             'autoptimize_enable_site_config',
             'autoptimize_js',
             'autoptimize_js_aggregate',
+            'autoptimize_js_defer_not_aggregate',
             'autoptimize_js_exclude',
             'autoptimize_js_forcehead',
             'autoptimize_js_justhead',
@@ -590,6 +592,7 @@ class autoptimizeMain
             'autoptimize_ccss_viewport',
             'autoptimize_ccss_finclude',
             'autoptimize_ccss_rlimit',
+            'autoptimize_ccss_rtimelimit',
             'autoptimize_ccss_noptimize',
             'autoptimize_ccss_debug',
             'autoptimize_ccss_key',
@@ -681,13 +684,14 @@ class autoptimizeMain
     public static function notice_plug_imgopt()
     {
         // Translators: the URL added points to the Autopmize Extra settings.
-        $_ao_imgopt_plug_notice      = sprintf( __( 'Did you know Autoptimize includes on-the-fly image optimization (with support for WebP) and CDN via ShortPixel? Check out the %1$sAutoptimize Image settings%2$s to activate this option.', 'autoptimize' ), '<a href="options-general.php?page=autoptimize_imgopt">', '</a>' );
+        $_ao_imgopt_plug_notice      = sprintf( __( 'Did you know Autoptimize includes on-the-fly image optimization (with support for WebP and AVIF) and CDN via ShortPixel? Check out the %1$sAutoptimize Image settings%2$s to activate this option.', 'autoptimize' ), '<a href="options-general.php?page=autoptimize_imgopt">', '</a>' );
         $_ao_imgopt_plug_notice      = apply_filters( 'autoptimize_filter_main_imgopt_plug_notice', $_ao_imgopt_plug_notice );
         $_ao_imgopt_launch_ok        = autoptimizeImages::launch_ok_wrapper();
         $_ao_imgopt_plug_dismissible = 'ao-img-opt-plug-123';
         $_ao_imgopt_active           = autoptimizeImages::imgopt_active();
+        $_is_ao_settings_page        = ( str_replace( array( 'autoptimize', 'autoptimize_imgopt', 'ao_critcss', 'autoptimize_extra', 'ao_partners' ), '', $_SERVER['REQUEST_URI'] ) !== $_SERVER['REQUEST_URI'] ? true : false );
 
-        if ( current_user_can( 'manage_options' ) && '' !== $_ao_imgopt_plug_notice && ! $_ao_imgopt_active && $_ao_imgopt_launch_ok && PAnD::is_admin_notice_active( $_ao_imgopt_plug_dismissible ) ) {
+        if ( current_user_can( 'manage_options' ) && $_is_ao_settings_page && '' !== $_ao_imgopt_plug_notice && ! $_ao_imgopt_active && $_ao_imgopt_launch_ok && PAnD::is_admin_notice_active( $_ao_imgopt_plug_dismissible ) ) {
             echo '<div class="notice notice-info is-dismissible" data-dismissible="' . $_ao_imgopt_plug_dismissible . '"><p>';
             echo $_ao_imgopt_plug_notice;
             echo '</p></div>';

@@ -59,6 +59,10 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 			add_filter( 'get_pages', array( &$this, 'filter_protected_posts' ), 99, 2 );
 			//filter menu items
 			add_filter( 'wp_nav_menu_objects', array( &$this, 'filter_menu' ), 99, 2 );
+
+			// turn on/off content replacement on the filter 'the_content'
+			add_action( 'get_header', array( &$this, 'replace_post_content_on' ), 12 );
+			add_action( 'get_footer', array( &$this, 'replace_post_content_off' ), 8 );
 			
 			//filter attachment
 			add_filter( 'wp_get_attachment_url', array( &$this, 'filter_attachment' ), 99, 2 );
@@ -756,7 +760,6 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 								}
 
 								$this->current_single_post = $post;
-								add_filter( 'the_content', array( &$this, 'replace_post_content' ), 9999, 1 );
 
 								/**
 								 * UM hook
@@ -858,7 +861,6 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 									$post->post_content = stripslashes( $restricted_global_message );
 
 									$this->current_single_post = $post;
-									add_filter( 'the_content', array( &$this, 'replace_post_content' ), 9999, 1 );
 
 									if ( 'attachment' == $post->post_type ) {
 										remove_filter( 'the_content', 'prepend_attachment' );
@@ -867,7 +869,6 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 									$post->post_content = ! empty( $restriction['_um_restrict_custom_message'] ) ? stripslashes( $restriction['_um_restrict_custom_message'] ) : '';
 
 									$this->current_single_post = $post;
-									add_filter( 'the_content', array( &$this, 'replace_post_content' ), 9999, 1 );
 
 									if ( 'attachment' == $post->post_type ) {
 										remove_filter( 'the_content', 'prepend_attachment' );
@@ -947,7 +948,6 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 									$post->post_content = stripslashes( $restricted_global_message );
 
 									$this->current_single_post = $post;
-									add_filter( 'the_content', array( &$this, 'replace_post_content' ), 9999, 1 );
 
 									if ( 'attachment' == $post->post_type ) {
 										remove_filter( 'the_content', 'prepend_attachment' );
@@ -956,7 +956,6 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 									$post->post_content = ! empty( $restriction['_um_restrict_custom_message'] ) ? stripslashes( $restriction['_um_restrict_custom_message'] ) : '';
 
 									$this->current_single_post = $post;
-									add_filter( 'the_content', array( &$this, 'replace_post_content' ), 9999, 1 );
 
 									if ( 'attachment' == $post->post_type ) {
 										remove_filter( 'the_content', 'prepend_attachment' );
@@ -1033,13 +1032,38 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 
 
 		/**
-		 * @param $content
+		 * Replace the content on the filter 'the_content'
 		 *
+		 * @param $content
 		 * @return string
 		 */
 		function replace_post_content( $content ) {
-			$content = $this->current_single_post->post_content;
+			if ( ! empty( $this->current_single_post ) ) {
+				$content = $this->current_single_post->post_content;
+			}
 			return $content;
+		}
+
+
+		/**
+		 * Turn on the content replacement on the filter 'the_content'
+		 * 
+		 * @hooked  get_header 12
+		 * @since   2.1.17
+		 */
+		public function replace_post_content_on() {
+			add_filter( 'the_content', array( $this, 'replace_post_content' ), 9999, 1 );
+		}
+
+
+		/**
+		 * Turn off the content replacement on the filter 'the_content'
+		 *
+		 * @hooked  get_footer 8
+		 * @since   2.1.17
+		 */
+		public function replace_post_content_off() {
+			remove_filter( 'the_content', array( $this, 'replace_post_content' ), 9999 );
 		}
 
 
@@ -1394,6 +1418,9 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 							}
 						}
 					} else {
+						$display = true;
+
+						// What roles can access this content?
 						if ( ! empty( $block['attrs']['um_roles_access'] ) ) {
 							$display = false;
 							foreach ( $block['attrs']['um_roles_access'] as $role ) {
@@ -1401,15 +1428,17 @@ if ( ! class_exists( 'um\core\Access' ) ) {
 									$display = true;
 								}
 							}
+						}
 
-							if ( ! $display ) {
-								$block_content = '';
-								if ( isset( $block['attrs']['um_message_type'] ) ) {
-									if ( $block['attrs']['um_message_type'] == '1' ) {
-										$block_content = $default_message;
-									} elseif ( $block['attrs']['um_message_type'] == '2' ) {
-										$block_content = $block['attrs']['um_message_content'];
-									}
+						$display = apply_filters( 'um_loggedin_block_restriction', $display, $block );
+
+						if ( ! $display ) {
+							$block_content = '';
+							if ( isset( $block['attrs']['um_message_type'] ) ) {
+								if ( $block['attrs']['um_message_type'] == '1' ) {
+									$block_content = $default_message;
+								} elseif ( $block['attrs']['um_message_type'] == '2' ) {
+									$block_content = $block['attrs']['um_message_content'];
 								}
 							}
 						}

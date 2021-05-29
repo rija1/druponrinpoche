@@ -1,6 +1,8 @@
 .tablepress tfoot th,
 .tablepress thead th {
-	background-color: #e6e1c8;
+	background-color: #f9f9f9;
+	color: #80784c;
+	font-weight: 400;
 }
 
 .tablepress .sorting:hover,

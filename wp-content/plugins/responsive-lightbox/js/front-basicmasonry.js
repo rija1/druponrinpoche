@@ -1,13 +1,12 @@
-( function ( $ ) {
+( function( $ ) {
 
 	/**
 	 * Hook into doResponsiveLightbox event
 	 */
-	$( document ).on( 'doResponsiveLightbox', function ( event ) {
+	$( document ).on( 'doResponsiveLightbox', function( event ) {
 		// special masonry check
-		if ( typeof event.masonry !== 'undefined' && event.masonry === false ) {
+		if ( typeof event.masonry !== 'undefined' && event.masonry === false )
 			return false;
-		}
 
 		if ( typeof event.pagination_type !== 'undefined' ) {
 			// infinite scroll
@@ -32,7 +31,7 @@
 					grid.append( elements ).masonry( 'appended', elements );
 
 					// layout masonry
-					grid.imagesLoaded( function () {
+					grid.imagesLoaded( function() {
 						grid.masonry( 'layout' );
 
 						// reinitialize lightbox
@@ -63,13 +62,13 @@
 					} );
 
 					// layout masonry
-					grid.imagesLoaded( function () {
+					grid.imagesLoaded( function() {
 						grid.masonry( 'layout' );
 					} );
 				}
 			}
 		} else {
-			$( '.rl-basicmasonry-gallery' ).each( function () {
+			$( '.rl-basicmasonry-gallery' ).each( function() {
 				var grid = $( this ),
 					gallery_no = parseInt( grid.data( 'gallery_no' ) ) + 1;
 
@@ -86,7 +85,7 @@
 					} );
 
 					// layout masonry
-					grid.imagesLoaded( function () {
+					grid.imagesLoaded( function() {
 						// remove loading class
 						grid.parent().removeClass( 'rl-loading' );
 						grid.masonry( 'layout' );

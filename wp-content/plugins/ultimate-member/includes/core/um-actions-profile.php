@@ -363,6 +363,9 @@ function um_user_edit_profile( $args ) {
 
 				}
 
+				// use this filter after all validations has been completed and we can extends data based on key
+				$to_update = apply_filters( 'um_change_usermeta_for_update', $to_update, $args, $fields, $key );
+
 			}
 		}
 	}
@@ -380,7 +383,7 @@ function um_user_edit_profile( $args ) {
 			global $wp_roles;
 			$role_keys = array_map( function( $item ) {
 				return 'um_' . $item;
-			}, get_option( 'um_roles' ) );
+			}, get_option( 'um_roles', array() ) );
 			$exclude_roles = array_diff( array_keys( $wp_roles->roles ), array_merge( $role_keys, array( 'subscriber' ) ) );
 
 			if ( ! in_array( $args['submitted']['role'], $exclude_roles ) ) {
@@ -400,7 +403,7 @@ function um_user_edit_profile( $args ) {
 				global $wp_roles;
 				$role_keys = array_map( function( $item ) {
 					return 'um_' . $item;
-				}, get_option( 'um_roles' ) );
+				}, get_option( 'um_roles', array() ) );
 				$exclude_roles = array_diff( array_keys( $wp_roles->roles ), array_merge( $role_keys, array( 'subscriber' ) ) );
 
 				if ( ! in_array( $args['submitted']['role'], $exclude_roles ) ) {
@@ -536,7 +539,7 @@ function um_user_edit_profile( $args ) {
 	 * }
 	 * ?>
 	 */
-	do_action( 'um_user_after_updating_profile', $to_update, $user_id );
+	do_action( 'um_user_after_updating_profile', $to_update, $user_id, $args );
 
 	/**
 	 * UM hook
@@ -598,7 +601,7 @@ function um_restore_default_roles( $user_id, $args, $to_update ) {
 
 		$role_keys = array_map( function( $item ) {
 			return 'um_' . $item;
-		}, get_option( 'um_roles' ) );
+		}, get_option( 'um_roles', array() ) );
 
 		$leave_roles = array_diff( $args['roles_before_upgrade'], array_merge( $role_keys, array( 'subscriber' ) ) );
 
@@ -680,20 +683,22 @@ function um_profile_dynamic_meta_desc() {
 
 		$user_id = um_get_requested_user();
 
-		$privacy = get_user_meta( $user_id, 'profile_privacy', true );
-		if ( $privacy == __( 'Only me', 'ultimate-member' ) || $privacy == 'Only me' ) {
+		if ( $user_id !== um_user('ID') ) {
+			um_fetch_user( $user_id );
+		}
+
+		/**
+		 * Settings by the priority:
+		 *  "Search engine visibility" in [wp-admin > Settings > Reading]
+		 *  "Profile Privacy" in [Account > Privacy]
+		 *  "Avoid indexing my profile by search engines in [Account > Privacy]
+		 *  "Avoid indexing profile by search engines" in [wp-admin > Ultimate Member > User Roles > Edit Role]
+		 *  "Avoid indexing profile by search engines" in [wp-admin > Ultimate Member > Settings > General > Users]
+		 */
+		if ( UM()->user()->is_profile_noindex( $user_id ) ) {
+			echo '<meta name="robots" content="noindex, nofollow" />';
 			return;
 		}
-
-		$noindex = get_user_meta( $user_id, 'profile_noindex', true );
-		if ( ! empty( $noindex ) ) { ?>
-
-			<meta name="robots" content="noindex, nofollow" />
-
-			<?php return;
-		}
-
-		um_fetch_user( $user_id );
 
 		$locale = get_user_locale( $user_id );
 		$site_name = get_bloginfo( 'name' );
@@ -733,9 +738,9 @@ function um_profile_dynamic_meta_desc() {
 		<meta property="og:title" content="<?php echo esc_attr( $title ); ?>"/>
 		<meta property="og:description" content="<?php echo esc_attr( $description ); ?>"/>
 		<meta property="og:image" content="<?php echo esc_url( $image ); ?>"/>
-		<meta property="og:image:alt" content="<?php echo esc_attr_e( 'Profile photo', 'ultimate-member' ); ?>"/>
-		<meta property="og:image:height" content="<?php echo intval( $size ); ?>"/>
-		<meta property="og:image:width" content="<?php echo intval( $size ); ?>"/>
+		<meta property="og:image:alt" content="<?php esc_attr_e( 'Profile photo', 'ultimate-member' ); ?>"/>
+		<meta property="og:image:height" content="<?php echo (int) $size; ?>"/>
+		<meta property="og:image:width" content="<?php echo (int) $size; ?>"/>
 		<meta property="og:url" content="<?php echo esc_url( $url ); ?>"/>
 
 		<meta name="twitter:card" content="summary"/>
@@ -743,7 +748,7 @@ function um_profile_dynamic_meta_desc() {
 		<meta name="twitter:title" content="<?php echo esc_attr( $title ); ?>"/>
 		<meta name="twitter:description" content="<?php echo esc_attr( $description ); ?>"/>
 		<meta name="twitter:image" content="<?php echo esc_url( $image ); ?>"/>
-		<meta name="twitter:image:alt" content="<?php echo esc_attr_e( 'Profile photo', 'ultimate-member' ); ?>"/>
+		<meta name="twitter:image:alt" content="<?php esc_attr_e( 'Profile photo', 'ultimate-member' ); ?>"/>
 		<meta name="twitter:url" content="<?php echo esc_url( $url ); ?>"/>
 
 		<script type="application/ld+json"><?php echo json_encode( $person ); ?></script>
@@ -1292,42 +1297,38 @@ function um_pre_profile_shortcode( $args ) {
 	 */
 	extract( $args );
 
-	if ( $mode == 'profile' && UM()->fields()->editing == false ) {
-		UM()->fields()->viewing = 1;
-
-		if ( um_get_requested_user() ) {
-			if ( ! um_can_view_profile( um_get_requested_user() ) && ! um_is_myprofile() ) {
-				um_redirect_home( um_get_requested_user(), um_is_myprofile() );
+	if ( $mode == 'profile' ) {
+		if ( UM()->fields()->editing ) {
+			if ( um_get_requested_user() ) {
+				if ( ! UM()->roles()->um_current_user_can( 'edit', um_get_requested_user() ) ) {
+					um_redirect_home( um_get_requested_user(), um_is_myprofile() );
+				}
+				um_fetch_user( um_get_requested_user() );
 			}
-
-			if ( ! UM()->roles()->um_current_user_can( 'edit', um_get_requested_user() ) ) {
-				UM()->user()->cannot_edit = 1;
-			}
-
-			um_fetch_user( um_get_requested_user() );
 		} else {
-			if ( ! is_user_logged_in() ) {
-				um_redirect_home( um_get_requested_user(), um_is_myprofile() );
-			}
+			UM()->fields()->viewing = 1;
 
-			if ( ! um_user( 'can_edit_profile' ) ) {
-				UM()->user()->cannot_edit = 1;
+			if ( um_get_requested_user() ) {
+				if ( ! um_can_view_profile( um_get_requested_user() ) && ! um_is_myprofile() ) {
+					um_redirect_home( um_get_requested_user(), um_is_myprofile() );
+				}
+
+				if ( ! UM()->roles()->um_current_user_can( 'edit', um_get_requested_user() ) ) {
+					UM()->user()->cannot_edit = 1;
+				}
+
+				um_fetch_user( um_get_requested_user() );
+			} else {
+				if ( ! is_user_logged_in() ) {
+					um_redirect_home( um_get_requested_user(), um_is_myprofile() );
+				}
+
+				if ( ! um_user( 'can_edit_profile' ) ) {
+					UM()->user()->cannot_edit = 1;
+				}
 			}
 		}
 	}
-
-	if ( $mode == 'profile' && UM()->fields()->editing == true ) {
-		UM()->fields()->editing = 1;
-
-		if ( um_get_requested_user() ) {
-			if ( ! UM()->roles()->um_current_user_can( 'edit', um_get_requested_user() ) ) {
-				um_redirect_home( um_get_requested_user(), um_is_myprofile() );
-			}
-			um_fetch_user( um_get_requested_user() );
-		}
-
-	}
-
 }
 add_action( 'um_pre_profile_shortcode', 'um_pre_profile_shortcode' );
 

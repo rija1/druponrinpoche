@@ -632,7 +632,7 @@ class autoptimizeCache
         $_fallback_php      = trailingslashit( WP_CONTENT_DIR ) . $_fallback_filename;
         $_fallback_status   = true;
 
-        if ( ! file_exists( $_fallback_php ) ) {
+        if ( ! file_exists( $_fallback_php ) && is_writable( WP_CONTENT_DIR ) ) {
             $_fallback_php_contents = file_get_contents( AUTOPTIMIZE_PLUGIN_DIR . 'config/' . $_fallback_filename );
             $_fallback_php_contents = str_replace( '<?php exit;', '<?php', $_fallback_php_contents );
             $_fallback_php_contents = str_replace( '<!--ao-cache-dir-->', AUTOPTIMIZE_CACHE_DIR, $_fallback_php_contents );
@@ -827,6 +827,9 @@ class autoptimizeCache
                 prune_super_cache( $cache_path . 'supercache/', true );
                 prune_super_cache( $cache_path, true );
             }
+        } elseif ( class_exists( 'NginxCache' ) ) {
+            $nginx_cache = new NginxCache();
+            $nginx_cache->purge_zone_once();
         }
     }
     // @codingStandardsIgnoreEnd

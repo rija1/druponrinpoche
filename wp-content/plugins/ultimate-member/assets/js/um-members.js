@@ -4,7 +4,6 @@ var um_member_directories = [];
 
 var um_member_directory_last_data = [];
 
-
 function um_parse_current_url() {
 	var data = {};
 
@@ -54,7 +53,7 @@ function um_set_url_from_data( directory, key, value ) {
 
 	var new_data = {};
 
-	if ( jQuery.isArray( value ) ) {
+	if ( Array.isArray( value ) ) {
 		jQuery.each( value, function( i ) {
 			value[ i ] = encodeURIComponent( value[ i ] );
 		});
@@ -218,8 +217,14 @@ function um_ajax_get_members( directory, args ) {
 	 *
 	 */
 
-
 	var hash = um_members_get_hash( directory );
+
+	var allow = wp.hooks.applyFilters( 'um_member_directory_get_members_allow', true, hash, directory );
+	if ( ! allow ) {
+		setTimeout( um_ajax_get_members, 600, directory, args );
+		return;
+	}
+
 	var page = um_get_current_page( directory );
 	var search = um_get_search( directory );
 	var sorting = um_get_sort( directory );
@@ -385,11 +390,14 @@ function um_build_template( directory, data ) {
 function UM_Member_Grid( container ) {
 	if ( container.find( '.um-member' ).length ) {
 		container.imagesLoaded( function() {
-			var $grid = container.masonry({
+
+			var masonry_args = wp.hooks.applyFilters( 'um_member_directory_grid_masonry_attrs', {
 				itemSelector: '.um-member',
 				columnWidth: '.um-member',
 				gutter: '.um-gutter-sizer'
-			});
+			}, container );
+
+			var $grid = container.masonry( masonry_args );
 
 			$grid.on( 'layoutComplete', function( event, laidOutItems ) {
 				jQuery( document ).trigger( "um_grid_initialized", [ event, laidOutItems ] );
@@ -627,7 +635,11 @@ jQuery(document.body).ready( function() {
 		if ( jQuery(this).find('option:not(:disabled)').length === 1 ) {
 			jQuery(this).prop('disabled', true);
 		}
-		jQuery(this).select2('destroy').select2();
+
+		var obj = jQuery(this);
+		obj.select2('destroy').select2({
+			dropdownParent: obj.parent()
+		});
 	});
 
 	/**
@@ -916,7 +928,7 @@ jQuery(document.body).ready( function() {
 
 
 	//filters controls
-	jQuery('.um-member-directory-filters-a').click( function() {
+	jQuery('.um-member-directory-filters-a').on( 'click', function() {
 		var obj = jQuery(this);
 		var search_bar = obj.parents('.um-directory').find('.um-search');
 
@@ -980,8 +992,11 @@ jQuery(document.body).ready( function() {
 			jQuery(this).prop('disabled', true);
 		}
 
-		jQuery(this).select2('destroy').select2();
-		jQuery(this).val('').trigger( 'change' );
+		var obj = jQuery(this);
+		obj.select2('destroy').select2({
+			dropdownParent: obj.parent()
+		});
+		obj.val('').trigger( 'change' );
 
 		um_ajax_get_members( directory );
 
@@ -1118,7 +1133,10 @@ jQuery(document.body).ready( function() {
 			if ( select.find('option:not(:disabled)').length > 1 ) {
 				select.prop('disabled', false);
 			}
-			select.select2('destroy').select2();
+
+			select.select2('destroy').select2({
+				dropdownParent: select.parent()
+			});
 
 			if ( directory.find( '.um-search-filter select[data-um-parent="' +  filter_name + '"]' ).length > 0 ) {
 				select.trigger('change');
@@ -1242,7 +1260,9 @@ jQuery(document.body).ready( function() {
 				if ( select.find('option:not(:disabled)').length > 1 ) {
 					select.prop('disabled', false);
 				}
-				select.select2('destroy').select2();
+				select.select2('destroy').select2({
+					dropdownParent: select.parent()
+				});
 
 				if ( directory.find( '.um-search-filter select[data-um-parent="' +  filter_name + '"]' ).length > 0 ) {
 					select.trigger('change');
@@ -1330,6 +1350,7 @@ jQuery(document.body).ready( function() {
 	jQuery( '.um-directory' ).each( function() {
 		var directory = jQuery(this);
 		var hash = um_members_get_hash( directory );
+
 		um_member_directories.push( hash );
 
 		// slideup/slidedown animation fix for grid filters bar

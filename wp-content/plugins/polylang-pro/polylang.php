@@ -10,7 +10,7 @@
  * Plugin Name:       Polylang Pro
  * Plugin URI:        https://polylang.pro
  * Description:       Adds multilingual capability to WordPress
- * Version:           2.9.1
+ * Version:           3.0.4
  * Requires at least: 5.1
  * Requires PHP:      5.6
  * Author:            WP SYNTEX
@@ -21,7 +21,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-3.0.txt
  *
  * Copyright 2011-2019 Frédéric Demarle
- * Copyright 2019-2020 WP SYNTEX
+ * Copyright 2019-2021 WP SYNTEX
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -45,6 +45,10 @@ define( 'POLYLANG_PRO', true );
 define( 'POLYLANG_PRO_FILE', __FILE__ );
 define( 'POLYLANG_PRO_DIR', __DIR__ );
 
+if ( ! defined( 'POLYLANG_ROOT_FILE' ) ) {
+	define( 'POLYLANG_ROOT_FILE', __FILE__ );
+}
+
 if ( defined( 'POLYLANG_BASENAME' ) ) {
 	// The user is attempting to activate a second plugin instance, typically Polylang and Polylang Pro.
 	require_once ABSPATH . 'wp-admin/includes/plugin.php';
@@ -57,6 +61,5 @@ require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/vendor/wpsyntex/polylang/polylang.php';
 
 if ( empty( $_GET['deactivate-polylang'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
-	add_action( 'pll_init', array( new PLL_Pro(), 'init' ), 0 );
+	add_action( 'pll_pre_init', array( new PLL_Pro(), 'init' ), 0 );
 }
-

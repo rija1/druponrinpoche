@@ -3,7 +3,7 @@
  * Options Page
  *
  * @package   Quick_Featured_Images_Admin
- * @author    Martin Stehle <shop@stehle-internet.de>
+ * @author    Kybernetik Services <wordpress@kybernetik.com.de>
  * @license   GPL-2.0+
  * @link      http://wordpress.org/plugins/quick-featured-images/
  * @copyright 2014 
@@ -85,10 +85,10 @@ if ( current_user_can( $qfi_settings_instance->get_required_user_cap() ) ) {
 }
 ?>
 	</li>
-	<li>
-		<h3><?php esc_html_e( 'The Pro version', 'quick-featured-images' ); ?></h3>
-		<p><a href="https://www.quickfeaturedimages.com<?php esc_attr_e( '/', 'quick-featured-images' ); ?>"><img alt="Quick Featured Images Pro" src="<?php echo plugin_dir_url( dirname( dirname( __FILE__ ) ) ); ?>admin/assets/images/logo_qfi_pro.gif" style="width:100%;height:auto;"></a></p>
-		<p><?php esc_html_e( 'Are you looking for more options and more filters?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.quickfeaturedimages.com<?php esc_attr_e( '/', 'quick-featured-images' ); ?>">Quick Featured Images Pro</a>.</p>
-	</li>
+    <li>
+        <h3><?php esc_html_e( 'The Pro version', 'quick-featured-images' ); ?></h3>
+        <p><a href="https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro" target="_blank"><img alt="Quick Featured Images Pro" src="<?php echo plugin_dir_url( dirname( dirname( __FILE__ ) ) ); ?>admin/assets/images/logo_pro.png" style="height:auto;"></a></p>
+        <p><?php esc_html_e( 'Are you looking for more options and more filters?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro" target="_blank">Quick Featured Images Pro</a>.</p>
+    </li>
 </ul>
 

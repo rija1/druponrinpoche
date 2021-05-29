@@ -1,6 +1,7 @@
-( function ( $ ) {
+( function( $ ) {
 
-	$( document ).on( 'ready', function() {
+	// ready event
+	$( function() {
 		if ( $.isEmptyObject( wp.media.view ) )
 			return;
 

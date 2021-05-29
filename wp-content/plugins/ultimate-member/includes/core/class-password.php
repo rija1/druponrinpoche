@@ -44,7 +44,7 @@ if ( ! class_exists( 'um\core\Password' ) ) {
 
 			//new reset password key via WP native field
 			$user_data = get_userdata( $user_id );
-			$key = get_password_reset_key( $user_data );
+			$key = UM()->user()->maybe_generate_password_reset_key( $user_data );
 
 			$url =  add_query_arg( array( 'act' => 'reset_password', 'hash' => $key, 'user_id' => $user_id ), um_get_core_page( 'password-reset' ) );
 			return $url;
@@ -445,7 +445,7 @@ if ( ! class_exists( 'um\core\Password' ) ) {
 		function um_reset_password_errors_hook( $args ) {
 
 			if ( $_POST[ UM()->honeypot ] != '' ) {
-				wp_die( 'Hello, spam bot!', 'ultimate-member' );
+				wp_die( __( 'Hello, spam bot!', 'ultimate-member' ) );
 			}
 
 			$user = "";
@@ -471,7 +471,7 @@ if ( ! class_exists( 'um\core\Password' ) ) {
 				}
 
 				$attempts = (int) get_user_meta( $user_id, 'password_rst_attempts', true );
-				$is_admin = user_can( intval( $user_id ),'manage_options' );
+				$is_admin = user_can( absint( $user_id ),'manage_options' );
 
 				if ( UM()->options()->get( 'enable_reset_password_limit' ) ) { // if reset password limit is set
 
@@ -527,7 +527,7 @@ if ( ! class_exists( 'um\core\Password' ) ) {
 		 */
 		function um_change_password_errors_hook( $args ) {
 			if ( isset( $_POST[ UM()->honeypot ] ) && $_POST[ UM()->honeypot ] != '' ) {
-				wp_die( 'Hello, spam bot!', 'ultimate-member' );
+				wp_die( __( 'Hello, spam bot!', 'ultimate-member' ) );
 			}
 
 			if ( ! is_user_logged_in() && isset( $args ) && ! um_is_core_page( 'password-reset' ) ||
@@ -618,8 +618,18 @@ if ( ! class_exists( 'um\core\Password' ) ) {
 
 				if ( ( ! $errors->get_error_code() ) ) {
 					reset_password( $user, $args['user_password'] );
-					delete_user_meta( $args['user_id'], 'password_rst_attempts' );
+
+					// send the Password Changed Email
+					UM()->user()->password_changed();
+
+					// clear temporary data
+					$attempts = (int) get_user_meta( $user->ID, 'password_rst_attempts', true );
+					if ( $attempts ) {
+						update_user_meta( $user->ID, 'password_rst_attempts', 0 );
+					}
 					$this->setcookie( $rp_cookie, false );
+
+					// logout
 					if ( is_user_logged_in() ) {
 						wp_logout();
 					}

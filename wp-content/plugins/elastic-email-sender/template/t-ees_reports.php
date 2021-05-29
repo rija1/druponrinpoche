@@ -12,13 +12,14 @@ if (isset($_GET['settings-updated'])):
         <p><strong><?php _e('Settings saved.', 'elastic-email-sender') ?></strong></p>
     </div>
 <?php endif; ?>
-<div id="eewp_plugin" class="row eewp_container" style="margin-right: 0px; margin-left: 0px;">
+<div class="eewp-evmab-frvvr">
+<div class="eewp-container">
     <div class="col-12 col-md-12 col-lg-7">
         <?php if (get_option('ees-connecting-status') === 'disconnected') {
             include 't-ees_connecterror.php';
         } else { ?>
-            <div class="ee_header">
-                <div class="ee_pagetitle">
+            <div class="ee-header">
+                <div class="ee-pagetitle">
                     <h1><?php _e('Reports', 'elastic-email-sender') ?></h1>
                 </div>
             </div>
@@ -28,7 +29,7 @@ if (isset($_GET['settings-updated'])):
                 if (isset($_POST['daterange'])) update_option('daterangeselect', $_POST['daterange']);
                 ?>
 
-                <div class="ee_select-form-box">
+                <div class="ee-select-form-box">
                     <form name="form" id="daterange" method="post">
                         <?php _e('Date range:', 'elastic-email-sender') ?>
                         <select id="daterange-select" name="daterange" onchange="this.form.submit()">
@@ -39,20 +40,20 @@ if (isset($_GET['settings-updated'])):
                     </form>
                 </div>
 
-                <div class="ee_reports-container">
+                <div class="ee-reports-container">
 
                     <?php
                     $chartHide = false;
                     if ((empty($total) === true || $total === 0)):
                         echo '
                             <div class="empty-chart">
-                                <img src="' . esc_url(plugins_url('/assets/images/template-empty.svg', dirname(__FILE__))) . '" >
-                                <p class="ee_p">' . __("No data to display. Send campaign to see results.", "elastic-email-sender") . '</p>
+                                <img src="' . esc_url(plugins_url('/src/img/template-empty.svg', dirname(__FILE__))) . '" >
+                                <p class="ee-p">' . __("No data to display. Send campaign to see results.", "elastic-email-sender") . '</p>
                             </div>';
                         $chartHide = true;
                     endif;
                     ?>
-                    <div class="ee_reports-list" style="display: <?php echo $hide = $chartHide ? 'none' : 'block' ?>">
+                    <div class="ee-reports-list" style="display: <?php echo $hide = $chartHide ? 'none' : 'block' ?>">
                         <div id="canvas-holder" style="width:80%;">
                             <canvas id="chart-area"/>
                         </div>
@@ -113,4 +114,5 @@ if (isset($_GET['settings-updated'])):
     include 't-ees_marketing.php';
     ?>
 
+</div>
 </div>

@@ -858,15 +858,23 @@ class Responsive_Lightbox_Galleries {
 				// set new gallery type
 				$gallery_type = $rl->options['settings']['builder_gallery'];
 
-				// assign gallery settings and defaults
-				$gallery_fields = $rl->settings->settings[$gallery_type . '_gallery']['fields'];
-				$gallery_defaults = $rl->options[$gallery_type . '_gallery'];
+				// assign gallery settings
+				if ( array_key_exists( $gallery_type . '_gallery', $rl->settings->settings ) )
+					$gallery_fields = $rl->settings->settings[$gallery_type . '_gallery']['fields'];
+
+				// assign gallery defaults
+				if ( array_key_exists( $gallery_type . '_gallery', $rl->options ) )
+					$gallery_defaults = $rl->options[$gallery_type . '_gallery'];
 			} else {
 				$gallery_type = $config['menu_item'];
 
-				// assign gallery settings and defaults
-				$gallery_fields = $rl->settings->settings[$config['menu_item'] . '_gallery']['fields'];
-				$gallery_defaults = $rl->defaults[$config['menu_item'] . '_gallery'];
+				// assign gallery settings
+				if ( array_key_exists( $config['menu_item'] . '_gallery', $rl->settings->settings ) )
+					$gallery_fields = $rl->settings->settings[$config['menu_item'] . '_gallery']['fields'];
+
+				// assign gallery defaults
+				if ( array_key_exists( $config['menu_item'] . '_gallery', $rl->defaults ) )
+					$gallery_defaults = $rl->defaults[$config['menu_item'] . '_gallery'];
 			}
 
 			if ( isset( $gallery_fields, $gallery_defaults ) ) {
@@ -2459,13 +2467,13 @@ class Responsive_Lightbox_Galleries {
 	}
 
 	/**
-     * Create gallery pagination.
+	 * Create gallery pagination.
 	 *
 	 * @param array $args Arguments
 	 * @param int $gallery_id Arguments
 	 * @return string Rendered HTML
-     */
-    public function do_pagination( $args, $gallery_id ) {
+	 */
+	public function do_pagination( $args, $gallery_id ) {
 		global $wp;
 
 		// get current action
@@ -2503,12 +2511,12 @@ class Responsive_Lightbox_Galleries {
 	}
 
 	/**
-     * Get gallery page.
-     *
+	 * Get gallery page.
+	 *
 	 * @param array $args Arguments
-     * @return void
-     */
-    public function get_gallery_page( $args ) {
+	 * @return void
+	 */
+	public function get_gallery_page( $args ) {
 		if ( isset( $_POST['gallery_id'], $_POST['page'], $_POST['nonce'] ) && wp_verify_nonce( $_POST['nonce'], 'rl_nonce' ) ) {
 			$_GET['rl_page'] = (int) $_POST['page'];
 
@@ -2516,14 +2524,14 @@ class Responsive_Lightbox_Galleries {
 		}
 
 		exit;
-    }
+	}
 
 	/**
-     * Generate gallery preview.
-     *
-     * @return void
-     */
-    public function post_gallery_preview() {
+	 * Generate gallery preview.
+	 *
+	 * @return void
+	 */
+	public function post_gallery_preview() {
 		if ( ! isset( $_POST['post_id'], $_POST['gallery_id'], $_POST['nonce'] ) || ! check_ajax_referer( 'rl-gallery-post', 'nonce', false ) || ! current_user_can( 'edit_post', (int) $_POST['post_id'] ) )
 			wp_send_json_error();
 
@@ -2565,14 +2573,14 @@ class Responsive_Lightbox_Galleries {
 				'edit_url'		=> current_user_can( 'edit_post', $gallery_id ) ? admin_url( 'post.php?post=' . $gallery_id . '&action=edit' ): ''
 			)
 		);
-    }
+	}
 
 	/**
-     * Get all galleries.
-     *
-     * @return void
-     */
-    public function post_get_galleries() {
+	 * Get all galleries.
+	 *
+	 * @return void
+	 */
+	public function post_get_galleries() {
 		if ( ! isset( $_POST['post_id'], $_POST['search'], $_POST['nonce'] ) || ! check_ajax_referer( 'rl-gallery-post', 'nonce', false ) || ! current_user_can( 'edit_post', $post_id = (int) $_POST['post_id'] ) )
 			wp_send_json_error();
 
@@ -2642,14 +2650,14 @@ class Responsive_Lightbox_Galleries {
 
 		// send galleries content
 		wp_send_json_success( $html );
-    }
+	}
 
 	/**
-     * Get gallery content based on request.
-     *
-     * @return void
-     */
-    public function get_menu_content() {
+	 * Get gallery content based on request.
+	 *
+	 * @return void
+	 */
+	public function get_menu_content() {
 		if ( ! isset( $_POST['post_id'], $_POST['tab'], $_POST['menu_item'], $_POST['nonce'] ) || ! check_ajax_referer( 'rl-gallery', 'nonce', false ) || ! current_user_can( 'edit_post', $post_id = (int) $_POST['post_id'] ) || ! array_key_exists( $_POST['tab'], $this->tabs ) )
 			wp_send_json_error();
 
@@ -2658,14 +2666,14 @@ class Responsive_Lightbox_Galleries {
 
 		// get tab content
 		wp_send_json_success( $this->get_metabox_content( $_POST['tab'], get_post_meta( $post_id, '_rl_' . $_POST['tab'], true ), $menu_item, $post_id ) );
-    }
+	}
 
 	/**
-     * Get gallery preview content based on request.
-     *
-     * @return void
-     */
-    public function get_gallery_preview_content() {
+	 * Get gallery preview content based on request.
+	 *
+	 * @return void
+	 */
+	public function get_gallery_preview_content() {
 		// initial checks
 		if ( ! isset( $_POST['post_id'], $_POST['menu_item'], $_POST['nonce'], $_POST['preview_type'] ) || ! check_ajax_referer( 'rl-gallery', 'nonce', false ) )
 			wp_send_json_error();
@@ -2794,7 +2802,7 @@ class Responsive_Lightbox_Galleries {
 
 		// send JSON
 		wp_send_json_success( $data );
-    }
+	}
 
 	/**
 	 * Get gallery image link.

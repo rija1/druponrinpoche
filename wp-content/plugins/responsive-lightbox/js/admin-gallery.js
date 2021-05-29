@@ -1,4 +1,4 @@
-( function ( $ ) {
+( function( $ ) {
 
 	ResponsiveLightboxGallery = {
 		modal: null,
@@ -151,7 +151,7 @@
 						post_id: rlArgsGallery.post_id,
 						gallery_id: gallery_id,
 						nonce: rlArgsGallery.nonce
-					} ).done( function ( response ) {
+					} ).done( function( response ) {
 						try {
 							if ( response.success ) {
 								// store gallery data
@@ -165,7 +165,7 @@
 						} catch( e ) {
 							//@TODO
 						}
-					} ).always( function () {
+					} ).always( function() {
 						// hide spinner
 						spinner.fadeOut( 'fast' );
 
@@ -192,7 +192,7 @@
 			var shortcode = '[rl_gallery id="' + this.lastGalleryID + '"]';
 				editor = tinyMCE.get( 'content' );
 
-			if ( editor )
+			if ( editor && ! editor.isHidden() )
 				editor.execCommand( 'mceInsertContent', false, shortcode );
 			else
 				wp.media.editor.insert( shortcode );
@@ -224,7 +224,7 @@
 				search: search,
 				nonce: rlArgsGallery.nonce,
 				category: _this.resetFilters ? 0 : modal.find( '#rl-media-attachment-categories' ).val()
-			} ).done( function ( response ) {
+			} ).done( function( response ) {
 				try {
 					if ( response.success ) {
 						if ( response.data !== '' ) {
@@ -233,7 +233,7 @@
 
 							// select gallery	
 							if ( galleryID !== 0 )
-								galleries.find( 'li[data-id="' + galleryID + '"] .js--select-attachment' ).click();
+								galleries.find( 'li[data-id="' + galleryID + '"] .js--select-attachment' ).trigger( 'click' );
 						} else
 							modal.find( '.rl-no-galleries' ).show();
 					} else {
@@ -242,7 +242,7 @@
 				} catch( e ) {
 					//
 				}
-			} ).always( function () {
+			} ).always( function() {
 				// hide spinner
 				spinner.fadeOut( 'fast' );
 			} );
@@ -281,17 +281,17 @@
 			// add gallery
 			$( document ).on( 'click', '#rl-insert-modal-gallery-button', function( e ) { _this.open( 0 ); } );
 
-			// ready?
-			$( document ).on( 'ready', function() {
+			// ready event
+			$( function() {
 				_this.modal = $( '#rl-modal-gallery' );
 
 				// search galleries
-				_this.modal.on( 'keyup', '#rl-media-search-input', function () {
+				_this.modal.on( 'keyup', '#rl-media-search-input', function() {
 					_this.searchGalleries( $( this ).val() );
 				} );
 
 				// reload galleries
-				_this.modal.on( 'click', '.rl-reload-galleries', function ( e ) {
+				_this.modal.on( 'click', '.rl-reload-galleries', function( e ) {
 					_this.reloadGalleries( e );
 				} );
 
@@ -301,27 +301,27 @@
 				} );
 
 				// close gallery
-				_this.modal.on( 'click', '.media-modal-close, .media-modal-backdrop, .rl-media-button-cancel-gallery', function ( e ) {
+				_this.modal.on( 'click', '.media-modal-close, .media-modal-backdrop, .rl-media-button-cancel-gallery', function( e ) {
 					_this.close( e );
 				} );
 
 				// click gallery
-				_this.modal.on( 'click', '.rl-galleries-list li .js--select-attachment, .rl-galleries-list li button', function ( e ) {
+				_this.modal.on( 'click', '.rl-galleries-list li .js--select-attachment, .rl-galleries-list li button', function( e ) {
 					_this.handleClickGallery( e );
 				} );
 
 				// insert gallery (classic editor)
-				_this.modal.on( 'click', '.rl-media-button-insert-gallery', function ( e ) {
+				_this.modal.on( 'click', '.rl-media-button-insert-gallery', function( e ) {
 					_this.insertGallery( e );
 				} );
 
 				// select gallery (block editor)
-				_this.modal.on( 'click', '.rl-media-button-select-gallery', function ( e ) {
+				_this.modal.on( 'click', '.rl-media-button-select-gallery', function( e ) {
 					_this.selectGallery( e );
 				} );
 
 				// resize window
-				$( window ).on( 'resize', function () {
+				$( window ).on( 'resize', function() {
 					_this.setColumns();
 				} );
 			} );

@@ -34,15 +34,19 @@ if ( ! class_exists( 'um\admin\core\Admin_Metabox' ) ) {
 		private $custom_nonce_added = false;
 
 
+		var $init_icon = false;
+
+
 		/**
 		 * Admin_Metabox constructor.
 		 */
 		function __construct() {
 			$this->in_edit = false;
 			$this->edit_mode_value = null;
+			$this->edit_array = [];
 
 			add_action( 'admin_head', array( &$this, 'admin_head' ), 9);
-			add_action( 'admin_footer', array( &$this, 'load_modal_content' ), 9);
+			add_action( 'admin_footer', array( &$this, 'load_modal_content' ), 9 );
 
 			add_action( 'load-post.php', array( &$this, 'add_metabox' ), 9 );
 			add_action( 'load-post-new.php', array( &$this, 'add_metabox' ), 9 );
@@ -404,7 +408,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Metabox' ) ) {
 					'type'          => 'multi_checkbox',
 					'label'         => __( 'Select which roles can access this content', 'ultimate-member' ),
 					'description'   => __( 'Activate content restriction for this post', 'ultimate-member' ),
-					'options'       => UM()->roles()->get_roles( false, array( 'administrator' ) ),
+					'options'       => UM()->roles()->get_roles( false ),
 					'columns'       => 3,
 					'conditional'   => array( '_um_accessible', '=', '2' )
 				),
@@ -558,7 +562,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Metabox' ) ) {
 					'label'         => __( 'Select which roles can access this content', 'ultimate-member' ),
 					'description'   => __( 'Activate content restriction for this post', 'ultimate-member' ),
 					'value'         => $_um_access_roles_value,
-					'options'       => UM()->roles()->get_roles( false, array( 'administrator' ) ),
+					'options'       => UM()->roles()->get_roles( false ),
 					'columns'       => 3,
 					'conditional'   => array( '_um_accessible', '=', '2' )
 				),
@@ -1130,7 +1134,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Metabox' ) ) {
 				}
 			}
 
-			update_post_meta( $post_id, '_um_search_filters_gmt', intval( $_POST['um-gmt-offset'] ) );
+			update_post_meta( $post_id, '_um_search_filters_gmt', (int) $_POST['um-gmt-offset'] );
 		}
 
 
@@ -1197,12 +1201,20 @@ if ( ! class_exists( 'um\admin\core\Admin_Metabox' ) ) {
 		 * Load modal content
 		 */
 		function load_modal_content() {
-
 			$screen = get_current_screen();
-			if ( UM()->admin()->is_um_screen() ) {
-				foreach ( glob( um_path . 'includes/admin/templates/modal/*.php' ) as $modal_content ) {
+
+			if ( isset( $screen->id ) && strstr( $screen->id, 'um_form' ) ) {
+				foreach ( glob( um_path . 'includes/admin/templates/modal/forms/*.php' ) as $modal_content ) {
 					include_once $modal_content;
 				}
+			}
+
+			if ( $this->init_icon ) {
+				include_once um_path . 'includes/admin/templates/modal/forms/fonticons.php';
+			}
+
+			if ( $screen->id == 'users' ) {
+				include_once um_path . 'includes/admin/templates/modal/dynamic_registration_preview.php';
 			}
 
 			// needed on forms only
@@ -1233,7 +1245,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Metabox' ) ) {
 
 			if ( $this->in_edit == true ) { // we're editing a field
 				$real_attr = substr( $attribute, 1 );
-				$this->edit_mode_value = (isset( $this->edit_array[ $real_attr ] ) ) ? $this->edit_array[ $real_attr ] : null;
+				$this->edit_mode_value = isset( $this->edit_array[ $real_attr ] ) ? $this->edit_array[ $real_attr ] : null;
 			}
 
 			switch ( $attribute ) {
@@ -2268,7 +2280,7 @@ if ( ! class_exists( 'um\admin\core\Admin_Metabox' ) ) {
 					$privacy_options = array(
 						'1'     => __( 'Everyone', 'ultimate-member' ),
 						'2'     => __( 'Members', 'ultimate-member' ),
-						'-1'    => __( 'Only visible to profile owner and admins', 'ultimate-member' ),
+						'-1'    => __( 'Only visible to profile owner and users who can edit other member accounts', 'ultimate-member' ),
 						'-3'    => __( 'Only visible to profile owner and specific roles', 'ultimate-member' ),
 						'-2'    => __( 'Only specific member roles', 'ultimate-member' ),
 					);

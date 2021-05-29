@@ -78,7 +78,19 @@ class Meow_WPMC_Support {
 
 		if ( class_exists( 'JustifiedImageGrid' ) ) {
 			array_push( $unsupported, 'Justified Image Grid' );
-		}
+    }
+
+    if ( class_exists( 'Advanced_Ads' ) ) {
+			array_push( $unsupported, 'Advanced Ads' );
+    }
+
+    if ( function_exists( 'smart_slider_3_plugins_loaded' ) ) {
+			array_push( $unsupported, 'Smart Slider' );
+    }
+
+    if ( class_exists( 'w2dc_plugin' ) ) {
+			array_push( $unsupported, 'WebDirectory' );
+    }
 
     return $unsupported;
   }

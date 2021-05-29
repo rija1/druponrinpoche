@@ -26,7 +26,8 @@ class eemail
         {
             try {
 
-                $rs = eemail::send($to, $subject, $message, $headers, $attachments);
+                $rs = eemail::send($to, $subject, $message, $headers, $attachments, $ee_channel);
+
                 if ($rs !== true) {
                     return eemail::wp_mail_native($to, $subject, $message, $headers, $attachments, $rs);
                 }
@@ -39,7 +40,7 @@ class eemail
 
     }
 
-    static function send($to, $subject, $message, $headers, $attachments)
+    static function send($to, $subject, $message, $headers, $attachments, $ee_channel = null)
     {
 
         $atts = apply_filters('wp_mail', compact('to', 'subject', 'message', 'headers', 'attachments'));
@@ -154,7 +155,7 @@ class eemail
             $charset = get_bloginfo('charset');
         }
         if (!is_array($to)) {
-            $to = array_merge(explode(',', $to), $bcc);
+            $to = array_merge(explode(',', $to));
         }
 
         $from_email = apply_filters('wp_mail_from', $from_email);
@@ -169,8 +170,14 @@ class eemail
         if (!isset($reply_to_name)) {
             $reply_to_name = '';
         }
-        
-        $emailsend = $Email->Send($subject, $from_email, $from_name, null, null, null, null, $reply_to, $reply_to_name, $to, array(), $cc, $bcc, array(), array(), null, 'Elastic Email Sender', $message /* bodyHTML */, $message /* bodyText */, $charset, /*charsetBodyHtml*/ null, /*charsetBodyText*/ null, ApiTypes\EncodingType::None, null, $attachments, $headers, null, array(), null, null, get_option('ee_send-email-type'));
+
+        if($ee_channel === null) {
+            $ee_channel = 'Elastic Email Sender';
+        } else {
+            $ee_channel = 'Elastic Email - Send Test';
+        }
+
+        $emailsend = $Email->Send($subject, $from_email, $from_name, null, null, null, null, $reply_to, $reply_to_name, array(), $to, $cc, $bcc, array(), array(), null, $ee_channel, $message /* bodyHTML */, $message /* bodyText */, $charset, /*charsetBodyHtml*/ null, /*charsetBodyText*/ null, ApiTypes\EncodingType::None, null, $attachments, $headers, null, array(), null, null, get_option('ee_send-email-type'));
 
         if (isset($emailsend)) {
             if ($emailsend == TRUE) {
@@ -179,6 +186,7 @@ class eemail
                 return false;
             }
         }
+
     }
 
     static function wp_mail_native($to, $subject, $message, $headers, $attachments, $error)

@@ -23,9 +23,9 @@ class Postman {
 	const MANAGE_POSTMAN_CAPABILITY_LOGS = 'manage_postman_logs';
 
 	/**
-	 * Use the text domain directly instead of this constant, as it 
+	 * Use the text domain directly instead of this constant, as it
 	 * causes issues with https://translate.wordpress.org.
-	 * 
+	 *
 	 * @deprecated
 	 * @see https://github.com/yehudah/Post-SMTP/issues/1#issuecomment-421940923
 	 */
@@ -70,7 +70,6 @@ class Postman {
 		require_once 'Postman-Mail/PostmanMyMailConnector.php';
 		require_once 'Postman-Mail/PostmanContactForm7.php';
 		require_once 'Phpmailer/PostsmtpMailer.php';
-        require_once 'Extensions/License/PostmanLicenseManager.php';
         require_once 'Extensions/Admin/PostmanAdmin.php';
 		//require_once 'Postman-Mail/PostmanWooCommerce.php';
 
@@ -97,7 +96,7 @@ class Postman {
 		}
 
 		// register the email transports
-		
+
         // store an instance of the WpMailBinder
         $this->wpMailBinder = PostmanWpMailBinder::getInstance();
 
@@ -146,17 +145,7 @@ class Postman {
 				'on_plugins_loaded',
 		) );
 
-		/**
-		 * @todo: WPML say they fix the issue in version 3.9
-		 * https://wordpress.org/support/topic/error-in-pluggable-php173/#post-10021301
-		 */
-		if ( get_option( 'icl_sitepress_version' ) && version_compare( get_option( 'icl_sitepress_version' ), '3.9', '<' ) ) {
-
-			$active_plugins = (array)get_option('active_plugins', array());
-			if (in_array('sitepress-multilingual-cms/sitepress.php', $active_plugins) && !get_option('postman_wpml_fixed')) {
-				add_action('admin_notices', array($this, 'post_smtp_wpml_admin_notice'));
-			}
-		}
+        add_filter( 'extra_plugin_headers', [ $this, 'add_extension_headers' ] );
 
 		// hook on the wp_loaded event
 		add_action( 'wp_loaded', array(
@@ -178,6 +167,12 @@ class Postman {
 
 	}
 
+    function add_extension_headers($headers) {
+        $headers[] = 'Class';
+        $headers[] = 'Slug';
+
+        return $headers;
+    }
 
 	/**
 	 * Functions to execute on the plugins_loaded event
@@ -186,8 +181,6 @@ class Postman {
 	 * ref: http://codex.wordpress.org/Plugin_API/Action_Reference#Actions_Run_During_a_Typical_Request
 	 */
 	public function on_plugins_loaded() {
-
-		PostmanLicenseManager::get_instance()->init();
 
 		// register the email transports
 		$this->registerTransports( $this->rootPluginFilenameAndPath );
@@ -262,6 +255,9 @@ class Postman {
 		require_once 'Postman-Configuration/PostmanConfigurationController.php';
 		require_once 'Postman-Send-Test-Email/PostmanSendTestEmailController.php';
 		require_once 'Postman-Diagnostic-Test/PostmanDiagnosticTestController.php';
+        require_once 'Extensions/License/PostmanLicenseManager.php';
+
+        PostmanLicenseManager::get_instance()->init();
 
 		// create and store an instance of the MessageHandler
 		$this->messageHandler = new PostmanMessageHandler();
@@ -415,7 +411,7 @@ class Postman {
 			}
 			$message .= (sprintf( ' %s | %s', $goToEmailLog, $goToSettings ));
 			$message .= '<input type="hidden" name="security" class="security" value="' . wp_create_nonce('postsmtp') . '">';
-			
+
 			$hide = get_option('postman_release_version' );
 
 			if ( $msg['error'] == true && ! $hide ) {

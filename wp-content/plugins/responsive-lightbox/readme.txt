@@ -2,9 +2,9 @@
 Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: gallery, galleries, image, images, responsive, lightbox, photo, photography, masonry, video, builder
-Requires at least: 4.0
-Tested up to: 5.4.1
-Stable tag: 2.2.3.1
+Requires at least: 5.0
+Tested up to: 5.6.1
+Stable tag: 2.3.2
 Requires PHP: 5.2.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
@@ -139,8 +139,20 @@ Responsive Lightbox and Gallery plugin comes with many styles and effects alread
 
 == Changelog ==
 
-= 2.2.3.1 =
-* Fix: Missing class-multilang.php file 
+= 2.3.2 =
+* Fix: Add option to enable/disable advanced capability management
+* Fix: Insert gallery into post not working in Gutenberg editor
+* Fix: Remove "ready" deprecated event from front.js
+* Fix: array_combine() function error class-folders.php
+* FIx: $.uniqueSort is not a function error
+
+= 2.3.1 =
+* Fix: Plugin capabilities not granted properly
+
+= 2.3.0 =
+* New: WordPress 5.6 compatibility
+* New: Capabilities management
+* New: Admin breadcrumb navigation
 
 = 2.2.3 =
 * Fix: Media Folders js and CSS issues in Media Library
@@ -448,5 +460,5 @@ Initial release
 
 == Upgrade Notice ==
 
-= 2.2.3 =
-* Fix: Media Folders js and CSS issues in Media Library
+= 2.3.2 =
+* Fix: Multiple bugfixes and improvements

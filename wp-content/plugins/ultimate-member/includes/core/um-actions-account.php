@@ -276,6 +276,10 @@ function um_submit_account_details( $args ) {
 			continue;
 		}
 
+		if ( $k == 'single_user_password' ) {
+			continue;
+		}
+
 		$changes[ $k ] = $v;
 	}
 
@@ -449,7 +453,7 @@ function um_before_account_notifications( $args = array() ) {
 	$output = UM()->account()->get_tab_fields( 'notifications', $args );
 	if ( substr_count( $output, '_enable_new_' ) ) { ?>
 
-		<p><?php _e( 'Select what email notifications do you want to receive', 'ultimate-member' ); ?></p>
+		<p><?php _e( 'Select what email notifications you want to receive', 'ultimate-member' ); ?></p>
 
 	<?php }
 }
@@ -526,9 +530,11 @@ function um_after_account_privacy( $args ) {
 		ARRAY_A );
 
 		if ( ! empty( $completed ) ) {
-
+			
+			$exports_url = wp_privacy_exports_url();
+ 
 			echo '<p>' . esc_html__( 'You could download your previous data:', 'ultimate-member' ) . '</p>';
-			echo '<a href="' . get_post_meta( $completed['ID'], '_export_file_url', true ) . '">' . esc_html__( 'download personal data', 'ultimate-member' ) . '</a>';
+			echo '<a href="'.esc_attr( $exports_url . get_post_meta( $completed['ID'], '_export_file_name', true ) ) . '">' . esc_html__( 'Download Personal Data', 'ultimate-member' ) . '</a>';
 			echo '<p>' . esc_html__( 'You could send a new request for an export of personal your data.', 'ultimate-member' ) . '</p>';
 
 		}

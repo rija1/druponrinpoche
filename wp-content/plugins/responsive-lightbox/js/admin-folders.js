@@ -185,8 +185,8 @@
 		} );
 	}
 
-	// are we ready?
-	$( document ).ready( function() {
+	// ready event
+	$( function() {
 		// wpuploader
 		if ( typeof wp.Uploader !== 'undefined' ) {
 			// extend uploader to apply dynamic folder ID
@@ -333,9 +333,9 @@
 					link.hide().after( '<span id="' + parent_node + '_span">' + content + '<input id="rl-folders-enter-new-folder" type="text" value="' + rlFoldersArgs.new_folder + '" placeholder="" data-term_id="' + parseInt( link.data( 'term_id' ) ) + '" data-nof="0" /></span>' );
 
 					// select text inside input
-					$( '#rl-folders-enter-new-folder' ).select();
+					$( '#rl-folders-enter-new-folder' ).trigger( 'select' );
 
-					$( '#rl-folders-enter-new-folder' ).keyup( function( e ) {
+					$( '#rl-folders-enter-new-folder' ).on( 'keyup', function( e ) {
 						// enter button
 						if ( e.which === 13 ) {
 							save_node( true, parseInt( $( '#' + parent_node + '_anchor' ).data( 'term_id' ) ) );
@@ -389,9 +389,9 @@
 				link.hide().after( '<span id="' + node_id + '_span">' + content[1] + '<input id="rl-folders-enter-folder" type="text" value="' + name + '" placeholder="' + name + '" data-term_id="' + parseInt( term_id ) + '" data-nof="' + nof + '" /></span>' );
 
 				// select text inside input
-				$( '#rl-folders-enter-folder' ).select();
+				$( '#rl-folders-enter-folder' ).trigger( 'select' );
 
-				$( '#rl-folders-enter-folder' ).keyup( function( e ) {
+				$( '#rl-folders-enter-folder' ).on( 'keyup', function( e ) {
 					// enter button
 					if ( e.which === 13 ) {
 						save_node( false, 0 );
@@ -474,7 +474,7 @@
 								$( '#rl-folders-tree' ).jstree( 'select_node', parent );
 
 								// force to update view
-								$( '#media-attachment-rl-folders-filters' ).val( $( '#' + parent + '_anchor' ).data( 'term_id' ) ).change();
+								$( '#media-attachment-rl-folders-filters' ).val( $( '#' + parent + '_anchor' ).data( 'term_id' ) ).trigger( 'change' );
 
 								refresh_scrollbars();
 							} else {
@@ -591,7 +591,7 @@
 
 				// replace edit function to prevent using F2 key natively by jstree
 				$.jstree.core.prototype.edit = function( obj, default_text, callback ) {
-					$( '.rl-folders-rename-folder' ).click();
+					$( '.rl-folders-rename-folder' ).trigger( 'click' );
 				};
 
 				// update mode links
@@ -743,7 +743,7 @@
 
 				// escape key
 				if ( e.keyCode === 27 )
-					$( '.media-modal-close' ).click();
+					$( '.media-modal-close' ).trigger( 'click' );
 			} );
 		}
 	} );
@@ -1162,7 +1162,7 @@
 	function save_node( new_node, parent_id ) {
 		var input = $( new_node ? '#rl-folders-enter-new-folder' : '#rl-folders-enter-folder' );
 			node_id = $( '#rl-folders-tree' ).jstree().get_selected().toString(),
-			name = $.trim( input.val() ),
+			name = input.val().trim(),
 			nof = input.data( 'nof' );
 
 		if ( ! new_node ) {
@@ -1234,7 +1234,7 @@
 						$( '#' + node_id + '_anchor' ).attr( 'data-term_id', response.data.term_id ).attr( 'href', response.data.url );
 
 						// force to update view
-						$( '#media-attachment-rl-folders-filters' ).val( response.data.term_id ).change();
+						$( '#media-attachment-rl-folders-filters' ).val( response.data.term_id ).trigger( 'change' );
 
 						if ( active_mode === 'list' )
 							window.location.replace( response.data.url );
@@ -1266,7 +1266,7 @@
 
 	// click node handler
 	function click_node() {
-		$( '#media-attachment-rl-folders-filters' ).val( $( this ).data( 'term_id' ) ).change();
+		$( '#media-attachment-rl-folders-filters' ).val( $( this ).data( 'term_id' ) ).trigger( 'change' );
 	}
 
 	// parse query string

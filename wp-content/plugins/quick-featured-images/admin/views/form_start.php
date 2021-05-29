@@ -53,7 +53,7 @@ if ( $this->selected_image_id ) {
 }
 ?>
 					<input type="hidden" id="image_id" name="image_id" value="<?php echo $this->selected_image_id; ?>">
-					<img id="selected_image" src="<?php echo $img_url; ?>" alt="<?php $text = 'Featured Image'; echo esc_attr( _x( $text, 'post' ) ); ?>" class="<?php echo $img_class; ?>" style="<?php echo $img_style; ?>" /><br />
+					<img id="selected_image" src="<?php echo $img_url; ?>" alt="<?php $text = "Featured image"; echo esc_attr( _x( $text, 'post' ) ); ?>" class="<?php echo $img_class; ?>" style="<?php echo $img_style; ?>" /><br />
 					<input type="button" id="upload_image_button" class="button qfi_select_image" value="<?php esc_attr_e( 'Choose Image', 'quick-featured-images' ); ?>" />
 				</p>
 			</div>
@@ -110,9 +110,9 @@ foreach ( $this->valid_actions_without_image as $name => $label ) {
 <?php
 }
 ?>
-		<p class="qfi_ad_for_pro"><?php esc_html_e( 'Do you want to assign the first image of each post?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.quickfeaturedimages.com<?php esc_html_e( '/', 'quick-featured-images' ); ?>">Quick Featured Images Pro</a>.</p>
-		<p class="qfi_ad_for_pro"><?php esc_html_e( 'Do you want to use external featured images, e.g. from a CDN?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.quickfeaturedimages.com<?php esc_html_e( '/', 'quick-featured-images' ); ?>">Quick Featured Images Pro</a>.</p>
-	</fieldset>
+        <p class="qfi_ad_for_pro"><?php esc_html_e( 'Do you want to assign the first image of each post?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro" target="_blank">Quick Featured Images Pro</a>.</p>
+        <p class="qfi_ad_for_pro"><?php esc_html_e( 'Do you want to use external featured images, e.g. from a CDN?', 'quick-featured-images' ); ?> <?php esc_html_e( 'Get the Pro version', 'quick-featured-images' ); ?> <a href="https://www.kybernetik-services.com/plugins/quick-featured-images-pro/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro" target="_blank">Quick Featured Images Pro</a>.</p>
+    </fieldset>
 <?php 
 wp_nonce_field( 'quickfi_start', $this->plugin_slug . '_nonce' );
 $text = 'Next &raquo;';

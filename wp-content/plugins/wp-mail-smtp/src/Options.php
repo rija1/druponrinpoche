@@ -69,6 +69,7 @@ class Options {
 		],
 		'sendgrid'    => [
 			'api_key',
+			'domain',
 		],
 		'smtpcom'     => [
 			'api_key',
@@ -76,6 +77,7 @@ class Options {
 		],
 		'sendinblue'  => [
 			'api_key',
+			'domain',
 		],
 		'pepipostapi' => [
 			'api_key',
@@ -551,6 +553,10 @@ class Options {
 						/** @noinspection PhpUndefinedConstantInspection */
 						$return = $this->is_const_defined( $group, $key ) ? WPMS_SENDGRID_API_KEY : $value;
 						break;
+					case 'domain':
+						/** @noinspection PhpUndefinedConstantInspection */
+						$return = $this->is_const_defined( $group, $key ) ? WPMS_SENDGRID_DOMAIN : $value;
+						break;
 				}
 
 				break;
@@ -574,6 +580,10 @@ class Options {
 					case 'api_key':
 						/** @noinspection PhpUndefinedConstantInspection */
 						$return = $this->is_const_defined( $group, $key ) ? WPMS_SENDINBLUE_API_KEY : $value;
+						break;
+					case 'domain':
+						/** @noinspection PhpUndefinedConstantInspection */
+						$return = $this->is_const_defined( $group, $key ) ? WPMS_SENDINBLUE_DOMAIN : $value;
 						break;
 				}
 
@@ -785,6 +795,9 @@ class Options {
 					case 'api_key':
 						$return = defined( 'WPMS_SENDGRID_API_KEY' ) && WPMS_SENDGRID_API_KEY;
 						break;
+					case 'domain':
+						$return = defined( 'WPMS_SENDGRID_DOMAIN' ) && WPMS_SENDGRID_DOMAIN;
+						break;
 				}
 
 				break;
@@ -805,6 +818,9 @@ class Options {
 				switch ( $key ) {
 					case 'api_key':
 						$return = defined( 'WPMS_SENDINBLUE_API_KEY' ) && WPMS_SENDINBLUE_API_KEY;
+						break;
+					case 'domain':
+						$return = defined( 'WPMS_SENDINBLUE_DOMAIN' ) && WPMS_SENDINBLUE_DOMAIN;
 						break;
 				}
 
@@ -870,7 +886,11 @@ class Options {
 		if ( $once ) {
 			add_option( self::META_KEY, $options, '', 'no' ); // Do not autoload these options.
 		} else {
-			update_option( self::META_KEY, $options, 'no' );
+			if ( is_multisite() && WP::use_global_plugin_settings() ) {
+				update_blog_option( get_main_site_id(), self::META_KEY, $options );
+			} else {
+				update_option( self::META_KEY, $options, 'no' );
+			}
 		}
 
 		// Now we need to re-cache values.
@@ -983,7 +1003,7 @@ class Options {
 						break;
 
 					case 'api_key': // mailgun/sendgrid/sendinblue/pepipostapi/smtpcom.
-					case 'domain': // mailgun/zoho.
+					case 'domain': // mailgun/zoho/sendgrid/sendinblue.
 					case 'client_id': // gmail/outlook/amazonses/zoho.
 					case 'client_secret': // gmail/outlook/amazonses/zoho.
 					case 'auth_code': // gmail/outlook.
@@ -1120,5 +1140,44 @@ class Options {
 		}
 
 		return $options;
+	}
+
+	/**
+	 * Parse boolean value from string.
+	 *
+	 * @since 2.8.0
+	 *
+	 * @param string|boolean $value String or boolean value.
+	 *
+	 * @return boolean
+	 */
+	public function parse_boolean( $value ) {
+
+		// Return early if it's boolean.
+		if ( is_bool( $value ) ) {
+			return $value;
+		}
+
+		$value = trim( $value );
+
+		return $value === 'true';
+	}
+
+	/**
+	 * Get a message of a constant that was set inside wp-config.php file.
+	 *
+	 * @since 2.8.0
+	 *
+	 * @param string $constant Constant name.
+	 *
+	 * @return string
+	 */
+	public function get_const_set_message( $constant ) {
+
+		return sprintf( /* translators: %1$s - constant that was used; %2$s - file where it was used. */
+			esc_html__( 'The value of this field was set using a constant %1$s most likely inside %2$s of your WordPress installation.', 'wp-mail-smtp' ),
+			'<code>' . esc_html( $constant ) . '</code>',
+			'<code>wp-config.php</code>'
+		);
 	}
 }

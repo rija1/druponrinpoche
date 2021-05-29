@@ -1,6 +1,6 @@
 <div class="connection-error-container">
-    <img src="<?php echo esc_url(plugins_url('/assets/images/connect_apikey.png', dirname(__FILE__))) ?>">
-    <p class="ee_p"><?php _e('Sending via Elastic Email API is disabled.', 'elastic-email-sender') ?></p>
+    <img src="<?php echo esc_url(plugins_url('/src/img/connect_apikey.png', dirname(__FILE__))) ?>">
+    <p class="ee-p"><?php _e('Sending via Elastic Email API is disabled.', 'elastic-email-sender') ?></p>
     <p class="user-info">
         <?php _e('You are currently sending through the basic Wordpress settings', 'elastic-email-sender') ?> <code>WP_MAIL()</code>.
         <?php _e('This screen is only available for sending via Elastic Email API. ', 'elastic-email-sender') ?>

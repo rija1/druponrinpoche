@@ -56,51 +56,25 @@ if ( ! class_exists( 'um\core\Member_Directory_Meta' ) ) {
 		function on_delete_custom_field( $metakey, $args ) {
 			$metakeys = get_option( 'um_usermeta_fields', array() );
 
-			if ( $args['type'] == 'user_location' ) {
-				if ( array_intersect( array( $metakey . '_lat', $metakey . '_lng', $metakey . '_url' ), $metakeys ) ) {
-					if ( false !== $searched = array_search( $metakey . '_lat', $metakeys ) ) {
-						unset( $metakeys[ $searched ] );
-					}
-					if ( false !== $searched = array_search( $metakey . '_lng', $metakeys ) ) {
-						unset( $metakeys[ $searched ] );
-					}
-					if ( false !== $searched = array_search( $metakey . '_url', $metakeys ) ) {
-						unset( $metakeys[ $searched ] );
-					}
+			if ( in_array( $metakey, $metakeys ) ) {
+				unset( $metakeys[ array_search( $metakey, $metakeys ) ] );
 
-					global $wpdb;
+				global $wpdb;
 
-					$wpdb->query( $wpdb->prepare(
-						"DELETE FROM {$wpdb->prefix}um_metadata 
-						WHERE um_key = %s OR 
-							  um_key = %s OR 
-							  um_key = %s",
-						$metakey . '_lat',
-						$metakey . '_lng',
-						$metakey . '_url'
-					) );
+				$wpdb->delete(
+					"{$wpdb->prefix}um_metadata",
+					array(
+						'um_key'    => $metakey
+					),
+					array(
+						'%s'
+					)
+				);
 
-					update_option( 'um_usermeta_fields', array_values( $metakeys ) );
-				}
-			} else {
-				if ( in_array( $metakey, $metakeys ) ) {
-					unset( $metakeys[ array_search( $metakey, $metakeys ) ] );
-
-					global $wpdb;
-
-					$wpdb->delete(
-						"{$wpdb->prefix}um_metadata",
-						array(
-							'um_key'    => $metakey
-						),
-						array(
-							'%s'
-						)
-					);
-
-					update_option( 'um_usermeta_fields', array_values( $metakeys ) );
-				}
+				update_option( 'um_usermeta_fields', array_values( $metakeys ) );
 			}
+
+			do_action( 'um_metadata_on_delete_custom_field', $metakeys, $metakey, $args );
 		}
 
 
@@ -113,32 +87,12 @@ if ( ! class_exists( 'um\core\Member_Directory_Meta' ) ) {
 		function on_new_field_added( $metakey, $args ) {
 			$metakeys = get_option( 'um_usermeta_fields', array() );
 
-			if ( $args['type'] == 'user_location' ) {
-				$update = false;
-				if ( ! in_array( $metakey . '_lat', $metakeys ) ) {
-					$update = true;
-					$metakeys[] = $metakey . '_lat';
-				}
-
-				if ( ! in_array( $metakey . '_lng', $metakeys ) ) {
-					$update = true;
-					$metakeys[] = $metakey . '_lng';
-				}
-
-				if ( ! in_array( $metakey . '_url', $metakeys ) ) {
-					$update = true;
-					$metakeys[] = $metakey . '_url';
-				}
-
-				if ( $update ) {
-					update_option( 'um_usermeta_fields', array_values( $metakeys ) );
-				}
-			} else {
-				if ( ! in_array( $metakey, $metakeys ) ) {
-					$metakeys[] = $metakey;
-					update_option( 'um_usermeta_fields', array_values( $metakeys ) );
-				}
+			if ( ! in_array( $metakey, $metakeys ) ) {
+				$metakeys[] = $metakey;
+				update_option( 'um_usermeta_fields', array_values( $metakeys ) );
 			}
+
+			do_action( 'um_metadata_on_new_field_added', $metakeys, $metakey, $args );
 		}
 
 
@@ -291,7 +245,10 @@ if ( ! class_exists( 'um\core\Member_Directory_Meta' ) ) {
 
 								$value = trim( stripslashes( $value ) );
 
-								$this->where_clauses[] = $wpdb->prepare( "{$join_slug}{$i}.um_key = %s AND {$join_slug}{$i}.um_value = %s", $field, $value );
+								$compare = apply_filters( 'um_members_directory_filter_text', '=', $field );
+								$value = apply_filters( 'um_members_directory_filter_text_meta_value', $value, $field );
+
+								$this->where_clauses[] = $wpdb->prepare( "{$join_slug}{$i}.um_key = %s AND {$join_slug}{$i}.um_value {$compare} %s", $field, $value );
 
 								if ( ! $is_default ) {
 									$this->custom_filters_in_query[ $field ] = $value;
@@ -308,14 +265,14 @@ if ( ! class_exists( 'um\core\Member_Directory_Meta' ) ) {
 
 								$values_array = array();
 								foreach ( $value as $single_val ) {
-									$single_val = stripslashes( $single_val );
+									$single_val = trim( stripslashes( $single_val ) );
 
-									$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value LIKE %s", '%"' . trim( $single_val ) . '"%' );
-									$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value LIKE %s", '%' . serialize( strval( trim( $single_val ) ) ) . '%' );
-									$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value = %s", trim( $single_val ) );
+									$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value LIKE %s", '%"' . $single_val . '"%' );
+									$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value LIKE %s", '%' . serialize( (string) $single_val ) . '%' );
+									$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value = %s", $single_val );
 
 									if ( is_numeric( $single_val ) ) {
-										$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value LIKE %s", '%' . serialize( intval( trim( $single_val ) ) ) . '%' );
+										$values_array[] = $wpdb->prepare( "{$join_slug}{$i}.um_value LIKE %s", '%' . serialize( (int) $single_val ) . '%' );
 									}
 								}
 
@@ -629,7 +586,7 @@ if ( ! class_exists( 'um\core\Member_Directory_Meta' ) ) {
 
 				$search_like_string = apply_filters( 'um_member_directory_meta_search_like_type', '%' . $search_line . '%', $search_line );
 
-				$this->where_clauses[] = $wpdb->prepare( "( umm_search.um_value = %s OR umm_search.um_value LIKE %s OR umm_search.um_value LIKE %s OR {$core_search}{$additional_search})", $search_line, $search_like_string, '%' . serialize( strval( $search_line ) ) . '%' );
+				$this->where_clauses[] = $wpdb->prepare( "( umm_search.um_value = %s OR umm_search.um_value LIKE %s OR umm_search.um_value LIKE %s OR {$core_search}{$additional_search})", $search_line, $search_like_string, '%' . serialize( (string) $search_line ) . '%' );
 
 				$this->is_search = true;
 			}
@@ -818,6 +775,12 @@ if ( ! class_exists( 'um\core\Member_Directory_Meta' ) ) {
 
 			global $wpdb;
 
+			/*
+			 *
+			 * SQL_CALC_FOUND_ROWS is deprecated as of MySQL 8.0.17
+			 * https://core.trac.wordpress.org/ticket/47280
+			 *
+			 * */
 			$user_ids = $wpdb->get_col(
 				"SELECT SQL_CALC_FOUND_ROWS DISTINCT u.ID
 				{$this->select}
@@ -829,7 +792,37 @@ if ( ! class_exists( 'um\core\Member_Directory_Meta' ) ) {
 				{$this->sql_limit}"
 			);
 
+			$query = array(
+				'select'    => $this->select,
+				'sql_where' => $sql_where,
+				'having'    => $this->having,
+				'sql_limit' => $this->sql_limit,
+			);
+
 			$total_users = (int) $wpdb->get_var( 'SELECT FOUND_ROWS()' );
+
+			/**
+			 * UM hook
+			 *
+			 * @type filter
+			 * @title um_prepare_user_results_array_meta
+			 * @description Extend member directory query result
+			 * @input_vars
+			 * [{"var":"$result","type":"array","desc":"Members Query Result"}]
+			 * @change_log
+			 * ["Since: 2.0"]
+			 * @usage
+			 * <?php add_filter( 'um_prepare_user_results_array', 'function_name', 10, 2 ); ?>
+			 * @example
+			 * <?php
+			 * add_filter( 'um_prepare_user_results_array', 'my_prepare_user_results', 10, 2 );
+			 * function my_prepare_user_results( $user_ids, $query ) {
+			 *     // your code here
+			 *     return $user_ids;
+			 * }
+			 * ?>
+			 */
+			$user_ids = apply_filters( 'um_prepare_user_results_array_meta', $user_ids, $query );
 
 			$pagination_data = $this->calculate_pagination( $directory_data, $total_users );
 

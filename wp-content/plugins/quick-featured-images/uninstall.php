@@ -3,10 +3,10 @@
  * Fired when the plugin is uninstalled.
  *
  * @package   Quick_Featured_Images
- * @author    Martin Stehle <shop@stehle-internet.de>
+ * @author    Kybernetik Services <wordpress@kybernetik.com.de>
  * @license   GPL-2.0+
- * @link      http://stehle-internet.de
- * @copyright 2014 Martin Stehle
+ * @link      https://www.kybernetik-services.com
+ * @copyright 2014 Kybernetik Services
  */
 
 // If uninstall not called from WordPress, then exit
