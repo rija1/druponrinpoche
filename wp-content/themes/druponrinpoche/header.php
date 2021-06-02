@@ -72,11 +72,7 @@ $pllArgs = array(
                     <div class="header_top_block">
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
-                                <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.png" />
-                                <div class="logo_name">
-                                    <span class="logo_dkr"><?php pll_e('Drupon Khen Rinpoche'); ?></span>
-                                    <span class="logo_kl"><?php pll_e('Karma Lhabu'); ?></span>
-                                </div>
+                                <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/renboqie_logo.png" />
                             </a>
                         </div>
                         <ul class="poly_switcher">
