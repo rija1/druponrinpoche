@@ -78,7 +78,7 @@ $locale = get_locale();
 						<div class="column-6-12 right">
 
 							<div class="gutter">
-                                </p><?php pll_e('© 2019 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.'); ?></p>
+                                </p><?php rbq_trsl('© 2019 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.'); ?></p>
 <!--								<p>--><?php //do_action( 'dkr_display_credits' ); ?><!--</p>-->
 							</div>
 						</div>

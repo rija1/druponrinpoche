@@ -327,6 +327,7 @@ add_action( 'init', 'register_teachings_tags_menu' );
 if ( function_exists('register_sidebar') )
     register_sidebar(array(
             'name' => 'Homepage Content',
+            'id' => 'homepage_content',
             'before_widget' => '<div class = "widgetizedArea">',
             'after_widget' => '</div>',
             'before_title' => '<h3>',
@@ -1161,6 +1162,14 @@ add_action('init', function() {
     // pll_register_string('lineage','Lineage','drupon-rinpoche');
 
 });
+
+function rbq_trsl($string) {
+    if(function_exists('pll_e')) {
+        return pll_e($string);
+    } else {
+        return $string;
+    }
+}
 
 
 /**

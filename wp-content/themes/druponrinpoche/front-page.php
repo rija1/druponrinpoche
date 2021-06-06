@@ -30,8 +30,8 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $url;?>" />
             <div class="inner">
-                <h5><?php pll_e('About Rinpoche'); ?></h5>
-                <p><?php pll_e('From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.'); ?></p>
+                <h5><?php rbq_trsl('About Rinpoche'); ?></h5>
+                <p><?php rbq_trsl('From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.'); ?></p>
             </div>
         </a>
 
@@ -47,7 +47,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
             <img  src="<?php echo $url;?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php pll_e('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
+                <p><?php rbq_trsl('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
             </div>
         </a>
 
@@ -62,7 +62,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
          <img  src="<?php echo $image[0];?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php pll_e('The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.'); ?></p>
+                <p><?php rbq_trsl('The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.'); ?></p>
             </div>
         </a>
 
@@ -77,7 +77,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $image[0];?>" />
             <div class="inner">
-                <h5><?php pll_e('Lineage')?></h5>
+                <h5><?php rbq_trsl('Lineage')?></h5>
             </div>
         </a>
 
@@ -87,7 +87,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 <div class="home_news_carousel">
 
     <div class="home_mini_carousel">
-        <div class="schedule_title"><h5><?php pll_e('Upcoming Schedule'); ?></h5></div>
+        <div class="schedule_title"><h5><?php rbq_trsl('Upcoming Schedule'); ?></h5></div>
         <?php
         $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
         $scheduleData = $table['data'];
@@ -117,9 +117,9 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                 <div>
                     <table>
                         <tr>
-                            <th><?php pll_e('Date'); ?></th>
-                            <th><?php pll_e('Location'); ?></th>
-                            <th><?php pll_e('Details'); ?></th>
+                            <th><?php rbq_trsl('Date'); ?></th>
+                            <th><?php rbq_trsl('Location'); ?></th>
+                            <th><?php rbq_trsl('Details'); ?></th>
                         </tr>
                         <?php foreach($schBatch1 as $schBatch1Line) :?>
                             <tr>
@@ -134,9 +134,9 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                 <div>
                     <table>
                         <tr>
-                            <th><?php pll_e('Date'); ?></th>
-                            <th><?php pll_e('Location'); ?></th>
-                            <th><?php pll_e('Details'); ?></th>
+                            <th><?php rbq_trsl('Date'); ?></th>
+                            <th><?php rbq_trsl('Location'); ?></th>
+                            <th><?php rbq_trsl('Details'); ?></th>
                         </tr>
                         <?php foreach($schBatch2 as $schBatch2Line) :?>
                             <tr>
@@ -162,7 +162,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                 <?php endif; ?>
             </div>
             <div class="sched_carousel_arrows"></div>
-            <a class="view_full_schedule" href="<?php echo get_page_link($drWebsiteConfig['schedule_page_id'])?>"><span><?php pll_e('View Full Schedule');?></span></a>
+            <a class="view_full_schedule" href="<?php echo get_page_link($drWebsiteConfig['schedule_page_id'])?>"><span><?php rbq_trsl('View Full Schedule');?></span></a>
         </div>
 
 
@@ -170,7 +170,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     </div>
 
     <div class="latestnews">
-        <div class="latestnews_title"><h5><?php pll_e('Latest News'); ?></h5></div>
+        <div class="latestnews_title"><h5><?php rbq_trsl('Latest News'); ?></h5></div>
         <ul class="latestnews_list">
             <?php foreach ( $r->posts as $recent_post ) : ?>
                 <?php
@@ -185,7 +185,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                         <div class="home_post_txt">
                         <span class="recent_post_title"><?php echo $title ; ?></span>
                         <p><?php echo get_post_meta($recent_post->ID, 'short_excerpt', true);?></p>
-<!--                        <span class="read_more">--><?php //pll_e('Read More'); ?><!--</span>-->
+<!--                        <span class="read_more">--><?php //rbq_trsl('Read More'); ?><!--</span>-->
                         </div>
                     </li>
                 </a>
