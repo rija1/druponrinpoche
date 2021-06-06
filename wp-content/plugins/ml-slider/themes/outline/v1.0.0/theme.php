@@ -29,16 +29,13 @@ class MetaSlider_Theme_Outline extends MetaSlider_Theme_Base {
 	 *
 	 * @var string
 	 */
-	public $slider_parameters = array(
-		"prevText" => "'<i class=\"left\"></i>'",
-		"nextText" => "'<i class=\"right\"></i>'"
-	);
+	public $slider_parameters = array();
 
 	/**
 	 * Enqueues theme specific styles and scripts
 	 */
 	public function enqueue_assets() {
-		wp_enqueue_style('metaslider_outline_theme_styles', METASLIDER_THEMES_URL . $this->id . '/v1.0.0/style.css', array('metaslider-public'), '1.0.0');
+		wp_enqueue_style('metaslider_outline_theme_styles', METASLIDER_THEMES_URL . $this->id . '/v1.0.0/style.min.css', array('metaslider-public'), '1.0.0');
 	}
 }
 

@@ -10,10 +10,12 @@ class Red_Plugin_Importer {
 			'safe-redirect-manager',
 			'wordpress-old-slugs',
 			'rank-math',
+			'quick-redirects',
+			'pretty-links',
 		);
 
 		foreach ( $importers as $importer ) {
-			$importer = Red_Plugin_Importer::get_importer( $importer );
+			$importer = self::get_importer( $importer );
 			$results[] = $importer->get_data();
 		}
 
@@ -41,16 +43,119 @@ class Red_Plugin_Importer {
 			return new Red_RankMath_Importer();
 		}
 
+		if ( $id === 'quick-redirects' ) {
+			return new Red_QuickRedirect_Importer();
+		}
+
+		if ( $id === 'pretty-links' ) {
+			return new Red_PrettyLinks_Importer();
+		}
+
 		return false;
 	}
 
 	public static function import( $plugin, $group_id ) {
-		$importer = Red_Plugin_Importer::get_importer( $plugin );
+		$importer = self::get_importer( $plugin );
 		if ( $importer ) {
 			return $importer->import_plugin( $group_id );
 		}
 
 		return 0;
+	}
+}
+
+class Red_PrettyLinks_Importer extends Red_Plugin_Importer {
+	public function import_plugin( $group_id ) {
+		global $wpdb;
+
+		$count = 0;
+		$redirects = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}prli_links" );
+
+		foreach ( $redirects as $redirect ) {
+			$created = $this->create_for_item( $group_id, $redirect );
+
+			if ( $created ) {
+				$count++;
+			}
+		}
+
+		return $count;
+	}
+
+	private function create_for_item( $group_id, $link ) {
+		$item = array(
+			'url'         => '/' . $link->slug,
+			'action_data' => array( 'url' => $link->url ),
+			'regex'       => false,
+			'group_id'    => $group_id,
+			'match_type'  => 'url',
+			'action_type' => 'url',
+			'title'       => $link->name,
+			'action_code' => $link->redirect_type,
+		);
+
+		return Red_Item::create( $item );
+	}
+
+	public function get_data() {
+		$data = get_option( 'prli_db_version' );
+
+		if ( $data ) {
+			global $wpdb;
+
+			return [
+				'id' => 'pretty-links',
+				'name' => 'PrettyLinks',
+				'total' => $wpdb->get_var( "SELECT COUNT(*) FROM {$wpdb->prefix}prli_links" ),
+			];
+		}
+
+		return false;
+	}
+}
+
+class Red_QuickRedirect_Importer extends Red_Plugin_Importer {
+	public function import_plugin( $group_id ) {
+		$redirects = get_option( 'quickppr_redirects' );
+		$count = 0;
+
+		foreach ( $redirects as $source => $target ) {
+			$item = $this->create_for_item( $group_id, $source, $target );
+
+			if ( $item ) {
+				$count++;
+			}
+		}
+
+		return $count;
+	}
+
+	private function create_for_item( $group_id, $source, $target ) {
+		$item = array(
+			'url'         => $source,
+			'action_data' => array( 'url' => $target ),
+			'regex'       => false,
+			'group_id'    => $group_id,
+			'match_type'  => 'url',
+			'action_type' => 'url',
+			'action_code' => 301,
+		);
+
+		return Red_Item::create( $item );
+	}
+
+	public function get_data() {
+		$data = get_option( 'quickppr_redirects' );
+
+		if ( $data ) {
+			return array(
+				'id' => 'quick-redirects',
+				'name' => 'Quick Page/Post Redirects',
+				'total' => count( $data ),
+			);
+		}
+
+		return false;
 	}
 }
 
@@ -70,7 +175,9 @@ class Red_RankMath_Importer extends Red_Plugin_Importer {
 	}
 
 	private function create_for_item( $group_id, $redirect ) {
+		// phpcs:ignore
 		$sources = unserialize( $redirect->sources );
+		$items = [];
 
 		foreach ( $sources as $source ) {
 			$url = $source['pattern'];
@@ -80,7 +187,7 @@ class Red_RankMath_Importer extends Red_Plugin_Importer {
 
 			$data = array(
 				'url'         => $url,
-				'action_data' => array( 'url' => $redirect->url_to ),
+				'action_data' => array( 'url' => str_replace( '\\\\', '\\', $redirect->url_to ) ),
 				'regex'       => $source['comparison'] === 'regex' ? true : false,
 				'group_id'    => $group_id,
 				'match_type'  => 'url',
@@ -102,7 +209,7 @@ class Red_RankMath_Importer extends Red_Plugin_Importer {
 		}
 
 		if ( ! function_exists( 'is_plugin_active' ) ) {
-			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 		}
 
 		$total = 0;
@@ -174,7 +281,7 @@ class Red_WordPressOldSlug_Importer extends Red_Plugin_Importer {
 		$count = 0;
 		$redirects = $wpdb->get_results(
 			"SELECT {$wpdb->prefix}postmeta.* FROM {$wpdb->prefix}postmeta INNER JOIN {$wpdb->prefix}posts ON {$wpdb->prefix}posts.ID={$wpdb->prefix}postmeta.post_id " .
-			"WHERE {$wpdb->prefix}postmeta.meta_key = '_wp_old_slug' AND {$wpdb->prefix}posts.post_status='publish' AND {$wpdb->prefix}posts.post_type IN ('page', 'post')"
+			"WHERE {$wpdb->prefix}postmeta.meta_key = '_wp_old_slug' AND {$wpdb->prefix}postmeta.meta_value != '' AND {$wpdb->prefix}posts.post_status='publish' AND {$wpdb->prefix}posts.post_type IN ('page', 'post')"
 		);
 
 		foreach ( $redirects as $redirect ) {
@@ -197,6 +304,7 @@ class Red_WordPressOldSlug_Importer extends Red_Plugin_Importer {
 		$new_path = wp_parse_url( $new, PHP_URL_PATH );
 		$old = rtrim( dirname( $new_path ), '/' ) . '/' . rtrim( $redirect->meta_value, '/' ) . '/';
 		$old = str_replace( '\\', '', $old );
+		$old = str_replace( '//', '/', $old );
 
 		$data = array(
 			'url'         => $old,
@@ -215,7 +323,7 @@ class Red_WordPressOldSlug_Importer extends Red_Plugin_Importer {
 		global $wpdb;
 
 		$total = $wpdb->get_var(
-			"SELECT COUNT(*) FROM {$wpdb->prefix}postmeta INNER JOIN {$wpdb->prefix}posts ON {$wpdb->prefix}posts.ID={$wpdb->prefix}postmeta.post_id WHERE {$wpdb->prefix}postmeta.meta_key = '_wp_old_slug' AND {$wpdb->prefix}posts.post_status='publish' AND {$wpdb->prefix}posts.post_type IN ('page', 'post')"
+			"SELECT COUNT(*) FROM {$wpdb->prefix}postmeta INNER JOIN {$wpdb->prefix}posts ON {$wpdb->prefix}posts.ID={$wpdb->prefix}postmeta.post_id WHERE {$wpdb->prefix}postmeta.meta_key = '_wp_old_slug' AND {$wpdb->prefix}postmeta.meta_value != '' AND {$wpdb->prefix}posts.post_status='publish' AND {$wpdb->prefix}posts.post_type IN ('page', 'post')"
 		);
 
 		if ( $total ) {

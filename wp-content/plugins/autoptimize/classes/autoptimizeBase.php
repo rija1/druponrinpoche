@@ -23,7 +23,11 @@ abstract class autoptimizeBase
      */
     public $debug_log = false;
 
-    /** @var string */
+    /**
+     * Initiated $cdn_url.
+     *
+     * @var string
+     */
     public $cdn_url = '';
 
     public function __construct( $content )
@@ -140,6 +144,14 @@ abstract class autoptimizeBase
             // As we replaced the content-domain with the site-domain, we should match against that.
             $tmp_ao_root = preg_replace( '/https?:/', '', AUTOPTIMIZE_WP_SITE_URL );
         }
+        
+        if ( is_multisite() && ! is_main_site() && ! empty( $this->cdn_url ) ) {
+            // multisite child sites with CDN need the network_site_url as tmp_ao_root but only if directory-based multisite.
+            $_network_site_url = network_site_url();
+            if ( strpos( AUTOPTIMIZE_WP_SITE_URL, $_network_site_url ) !== false ) {
+                $tmp_ao_root = preg_replace( '/https?:/', '', $_network_site_url );
+            }
+        }
 
         $tmp_url = preg_replace( '/https?:/', '', $url );
         $path    = str_replace( $tmp_ao_root, '', $tmp_url );
@@ -152,7 +164,7 @@ abstract class autoptimizeBase
         }
 
         // Prepend with WP_ROOT_DIR to have full path to file.
-        $path = str_replace( '//', '/', WP_ROOT_DIR . $path );
+        $path = str_replace( '//', '/', trailingslashit( WP_ROOT_DIR ) . $path );
 
         // Final check: does file exist and is it readable?
         if ( file_exists( $path ) && is_file( $path ) && is_readable( $path ) ) {
@@ -302,7 +314,7 @@ abstract class autoptimizeBase
 
             // Simple str_replace-based approach fails when $url is protocol-or-host-relative.
             $is_protocol_relative = autoptimizeUtils::is_protocol_relative( $url );
-            $is_host_relative     = ( ! $is_protocol_relative && ( '/' === $url{0} ) );
+            $is_host_relative     = ( ! $is_protocol_relative && ( '/' === $url[0] ) );
             $cdn_url              = rtrim( $cdn_url, '/' );
 
             if ( $is_host_relative ) {
@@ -639,9 +651,9 @@ abstract class autoptimizeBase
     protected function prepare_minify_single( $filepath )
     {
         // Decide what we're dealing with, return false if we don't know.
-        if ( $this->str_ends_in( $filepath, '.js' ) ) {
+        if ( autoptimizeUtils::str_ends_in( $filepath, '.js' ) ) {
             $type = 'js';
-        } elseif ( $this->str_ends_in( $filepath, '.css' ) ) {
+        } elseif ( autoptimizeUtils::str_ends_in( $filepath, '.css' ) ) {
             $type = 'css';
         } else {
             return false;
@@ -655,7 +667,7 @@ abstract class autoptimizeBase
             'js/jquery/jquery.js',
         );
         foreach ( $minified_variants as $ending ) {
-            if ( $this->str_ends_in( $filepath, $ending ) ) {
+            if ( autoptimizeUtils::str_ends_in( $filepath, $ending ) ) {
                 return false;
             }
         }
@@ -682,25 +694,5 @@ abstract class autoptimizeBase
         $url = $this->url_replace_cdn( $url );
 
         return $url;
-    }
-
-    /**
-     * Returns true if given $str ends with given $test.
-     *
-     * @param string $str String to check.
-     * @param string $test Ending to match.
-     *
-     * @return bool
-     */
-    protected function str_ends_in( $str, $test )
-    {
-        // @codingStandardsIgnoreStart
-        // substr_compare() is bugged on 5.5.11: https://3v4l.org/qGYBH
-        // return ( 0 === substr_compare( $str, $test, -strlen( $test ) ) );
-        // @codingStandardsIgnoreEnd
-
-        $length = strlen( $test );
-
-        return ( substr( $str, -$length, $length ) === $test );
     }
 }

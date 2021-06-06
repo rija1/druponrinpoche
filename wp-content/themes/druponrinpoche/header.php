@@ -7,9 +7,9 @@
  * @package Onsen
  */
 
-$polylang = new PLL_Widget_Languages();
+// $polylang = new PLL_Widget_Languages();
 $drConfig = getDrWebsiteConfig();
-$pllSwitcher = new PLL_Switcher();
+// $pllSwitcher = new PLL_Switcher();
 $pllArgs = array(
     'dropdown'               => 0, // display as list and not as dropdown
     'echo'                   => 1, // echoes the list
@@ -77,7 +77,7 @@ $pllArgs = array(
                         </div>
                         <ul class="poly_switcher">
                             <?php
-                            $pllSwitcher->the_languages(PLL()->links,$pllArgs);
+                    //   /      $pllSwitcher->the_languages(PLL()->links,$pllArgs);
                             ?>
                         </ul>
                     </div>
