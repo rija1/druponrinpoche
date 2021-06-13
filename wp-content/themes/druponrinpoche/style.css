@@ -1260,7 +1260,7 @@ blockquote {
   background: none;
   border: none;
   font-style: italic;
-  margin: 10px 0px 30px;
+  margin: 10px 0px 5px;
   padding: 20px 20px 5px;
   quotes: none;
 }
@@ -3170,9 +3170,6 @@ div.uimob800 .um-account-side li a.current:hover,
 .single-online-teaching h1 {
   margin-bottom: 30px;
 }
-.single-online-teaching .join_session_main {
-  margin-bottom: 30px;
-}
 .single-online-teaching .group_viewing_participant_tpl {
   display: none;
 }
@@ -3236,67 +3233,13 @@ div.uimob800 .um-account-side li a.current:hover,
 .online-teachings h1 {
   margin-bottom: 20px;
 }
-.online-teachings a.join_session_main, .online-teachings a.teaching_details {
+.online-teachings a.teaching_details {
   display: block;
   border-radius: 3px;
   color: #ffffff;
   text-align: center;
   padding: 11px;
   margin-top: 10px;
-}
-.online-teachings .teaching_waiting_open {
-  padding: 15px;
-  margin-top: 9px;
-  font-weight: 900;
-  background: #fff;
-  border: solid 1px #495a6f;
-  border-radius: 11px;
-  margin-bottom: 20px;
-}
-.online-teachings .teaching_waiting_open p {
-  padding-bottom: 10px;
-}
-.online-teachings .teaching_waiting_open_wait {
-  grid-template-columns: 1fr 100px;
-  display: grid;
-}
-.online-teachings .teaching_waiting_open_right {
-  text-align: right;
-}
-.online-teachings .teaching_waiting_open_right img {
-  margin-right: 10px;
-  animation: wheelRotation 6s infinite linear;
-}
-@keyframes wheelRotation {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(359deg);
-  }
-}
-.online-teachings .waitMinutes {
-  font-weight: 900;
-}
-@keyframes pleaseWaitBlinker {
-  50% {
-    color: #fff;
-  }
-}
-.online-teachings a.join_session_main {
-  grid-row: 1;
-  background: #a95d63;
-  background: #80784c;
-  background: #bb9b25;
-  font-weight: 400;
-  animation: joinSessionBlinker 1s linear infinite;
-}
-@keyframes joinSessionBlinker {
-  50% {
-    background: #cb6a3c;
-    background: #bb9b25;
-    box-shadow: inset 0 0 18px 4px rgba(0, 0, 0, 0.3);
-  }
 }
 .online-teachings a.teaching_details {
   grid-row: 2;
@@ -3393,6 +3336,175 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 .error404 .gold_button:hover {
   color: #fff;
   text-decoration: none;
+}
+
+table.tablepress-id-19 {
+  border: none;
+}
+table.tablepress-id-19 tbody {
+  border: none;
+}
+table.tablepress-id-19 tbody td {
+  vertical-align: middle;
+}
+table.tablepress-id-19 tbody tr.row-1, table.tablepress-id-19 tbody tr.row-8, table.tablepress-id-19 tbody tr.row-45, table.tablepress-id-19 tbody tr.row-93, table.tablepress-id-19 tbody tr.row-133, table.tablepress-id-19 tbody tr.row-152,
+table.tablepress-id-19 tbody tr.row-185, table.tablepress-id-19 tbody tr.row-9, table.tablepress-id-19 tbody tr.row-21, table.tablepress-id-19 tbody tr.row-35, table.tablepress-id-19 tbody tr.row-46, table.tablepress-id-19 tbody tr.row-57,
+table.tablepress-id-19 tbody tr.row-67, table.tablepress-id-19 tbody tr.row-81, table.tablepress-id-19 tbody tr.row-94, table.tablepress-id-19 tbody tr.row-110, table.tablepress-id-19 tbody tr.row-119, table.tablepress-id-19 tbody tr.row-134,
+table.tablepress-id-19 tbody tr.row-146, table.tablepress-id-19 tbody tr.row-153, table.tablepress-id-19 tbody tr.row-173, table.tablepress-id-19 tbody tr.row-186, table.tablepress-id-19 tbody tr.row-195, table.tablepress-id-19 tbody tr.row-208,
+table.tablepress-id-19 tbody tr.row-223, table.tablepress-id-19 tbody tr.row-243, table.tablepress-id-19 tbody tr.row-259 {
+  background: #f5f3e7;
+  border-top: solid 10px #fff;
+  border-bottom: solid 10px #fff;
+}
+table.tablepress-id-19 tbody tr.row-1 td, table.tablepress-id-19 tbody tr.row-8 td, table.tablepress-id-19 tbody tr.row-45 td, table.tablepress-id-19 tbody tr.row-93 td, table.tablepress-id-19 tbody tr.row-133 td, table.tablepress-id-19 tbody tr.row-152 td,
+table.tablepress-id-19 tbody tr.row-185 td, table.tablepress-id-19 tbody tr.row-9 td, table.tablepress-id-19 tbody tr.row-21 td, table.tablepress-id-19 tbody tr.row-35 td, table.tablepress-id-19 tbody tr.row-46 td, table.tablepress-id-19 tbody tr.row-57 td,
+table.tablepress-id-19 tbody tr.row-67 td, table.tablepress-id-19 tbody tr.row-81 td, table.tablepress-id-19 tbody tr.row-94 td, table.tablepress-id-19 tbody tr.row-110 td, table.tablepress-id-19 tbody tr.row-119 td, table.tablepress-id-19 tbody tr.row-134 td,
+table.tablepress-id-19 tbody tr.row-146 td, table.tablepress-id-19 tbody tr.row-153 td, table.tablepress-id-19 tbody tr.row-173 td, table.tablepress-id-19 tbody tr.row-186 td, table.tablepress-id-19 tbody tr.row-195 td, table.tablepress-id-19 tbody tr.row-208 td,
+table.tablepress-id-19 tbody tr.row-223 td, table.tablepress-id-19 tbody tr.row-243 td, table.tablepress-id-19 tbody tr.row-259 td {
+  background: none;
+  border: none;
+}
+table.tablepress-id-19 tbody tr.row-1, table.tablepress-id-19 tbody tr.row-8, table.tablepress-id-19 tbody tr.row-45, table.tablepress-id-19 tbody tr.row-93, table.tablepress-id-19 tbody tr.row-133, table.tablepress-id-19 tbody tr.row-152, table.tablepress-id-19 tbody tr.row-185 {
+  border-top: solid 17px #fff;
+}
+table.tablepress-id-19 tbody tr.row-1 td, table.tablepress-id-19 tbody tr.row-8 td, table.tablepress-id-19 tbody tr.row-45 td, table.tablepress-id-19 tbody tr.row-93 td, table.tablepress-id-19 tbody tr.row-133 td, table.tablepress-id-19 tbody tr.row-152 td, table.tablepress-id-19 tbody tr.row-185 td {
+  padding: 15px 0 4px 0;
+  margin-top: 10px;
+}
+table.tablepress-id-19 tbody .sp_lvl_en:before {
+  padding-right: 15px;
+  font-size: 22px;
+  display: block;
+  float: left;
+  font-weight: 200;
+  padding-top: 0px;
+  font-family: "FontAwesome";
+  content: "";
+  color: #80784c;
+  color: #bb9b25;
+}
+table.tablepress-id-19 tbody .sp_year_en:before {
+  margin: 4px 0 0 2px;
+  padding: 18px 13px 0px 0px;
+  font-size: 15px;
+  display: block;
+  float: left;
+  font-weight: 200;
+  padding-top: 0px;
+  height: 18px;
+  font-size: 10px;
+  color: #bb9b25;
+  color: #80784c;
+  font-family: "FontAwesome";
+  content: "";
+}
+
+.sp_tib {
+  padding-bottom: 11px;
+  color: #80784c;
+  font-size: 18px;
+  display: none;
+}
+
+.sp_auth_tib {
+  display: none;
+  padding-bottom: 8px;
+  color: #80784c;
+}
+
+.sp_auth_en {
+  font-size: 13px;
+  font-weight: 400px;
+}
+
+.sp_head_tib, .sp_head_en {
+  float: left;
+  padding-right: 10px;
+}
+
+.sp_head_tib {
+  display: none;
+  font-size: 18px;
+}
+
+.sp_head_en {
+  font-weight: 500;
+  padding-top: 5px;
+}
+
+.sp_lvl_tib {
+  display: none;
+  color: #80784c;
+  font-size: 22px;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  padding-left: 17px;
+}
+
+.sp_lvl_en {
+  color: #bb9b25;
+  font-size: 21px;
+  font-weight: 400;
+  padding-bottom: 13px;
+  padding-left: 17px;
+}
+.sp_lvl_en .equiv_lvl_en {
+  padding-left: 11px;
+  color: #80784c;
+  font-size: 13px;
+}
+
+.sp_year_en {
+  padding-top: 5px;
+  color: #80784c;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.sp_year_tib {
+  display: none;
+  color: #80784c;
+  font-size: 18px;
+}
+
+.sp_tib_note {
+  display: none;
+}
+
+.sp_year_numbers_en {
+  padding-right: 5px;
+}
+
+.sp_sticky_menu ul > li.page_item {
+  text-align: justify;
+}
+.sp_sticky_menu ul > li.page_item > a {
+  display: inline-block;
+  padding: 11px 10px 10px 15px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+}
+.sp_sticky_menu li.page_item ul.children a {
+  padding: 0px 0 0px 0;
+}
+.sp_sticky_menu ul ul {
+  padding: 0 15px 10px 17px;
+}
+.sp_sticky_menu ul.children li {
+  list-style-type: none;
+  padding: 3px 0 3px 0;
+}
+
+.twentyone-yr-curriculum h1 {
+  text-align: center;
+}
+.twentyone-yr-curriculum .sidebar-container li.page_item ul {
+  display: block;
+}
+.twentyone-yr-curriculum .blog-columns {
+  grid-template-columns: 260px 1fr;
 }
 
 @media only screen and (max-width: 810px) {
@@ -3926,10 +4038,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
   .online-teachings .ts_menu {
     grid-row: 3;
   }
-  .online-teachings .teaching_waiting_open_wait {
-    grid-template-columns: 1fr 70px;
-    display: grid;
-  }
   .online-teachings .zoom_details {
     grid-template-columns: 1fr;
   }
@@ -3938,5 +4046,15 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
   }
   .online-teachings .session_video .session_video_title {
     text-align: left;
+  }
+  .online-teachings .zoomNumber .zoomNumberNotif {
+    color: #c04c29;
+    font-weight: bold;
+  }
+  .online-teachings .zoomNumber .yourZoomNumberLine {
+    font-size: 24px;
+  }
+  .online-teachings .zoomNumber .yourZoomNumber {
+    font-weight: bold;
   }
 }

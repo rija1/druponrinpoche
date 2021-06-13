@@ -1386,7 +1386,7 @@ blockquote {
     background: none;
     border:none;
     font-style: italic;
-    margin: 10px 0px 30px;
+    margin: 10px 0px 5px;
     padding: 20px 20px 5px;
     quotes: none;
 }
@@ -3573,10 +3573,6 @@ div.uimob800 .um-account-side li a.current:hover,
     h1 {
         margin-bottom:30px;
     }
-    .join_session_main {
-        margin-bottom: 30px;
-    }
-
     .group_viewing_participant_tpl {
         display: none;
     }
@@ -3646,7 +3642,7 @@ div.uimob800 .um-account-side li a.current:hover,
         margin-bottom: 20px;
     }
 
-    a.join_session_main, a.teaching_details {
+    a.teaching_details {
         display: block;
         border-radius: 3px;
         color: #ffffff;
@@ -3654,84 +3650,6 @@ div.uimob800 .um-account-side li a.current:hover,
         //height: 30px;
         padding: 11px;
         margin-top: 10px;
-    }
-
-    .teaching_waiting_open {
-        padding: 15px;
-        margin-top: 9px;
-        font-weight: 900;
-        background: #fff;
-        border: solid 1px $dkr-ot-blue;
-        border-radius: 11px;
-        margin-bottom: 20px;
-
-        p {
-            padding-bottom: 10px;
-        }
-    }
-
-    .teaching_waiting_open_wait {
-        grid-template-columns: 1fr 100px;
-        display: grid;
-    }
-
-    .teaching_waiting_open_left {
-        //padding: 11px;
-    }
-
-    .teaching_waiting_open_right {
-        text-align: right;
-        //background: url('assets/images/');
-        //padding: 11px;
-        img {
-            margin-right: 10px;
-            animation: wheelRotation 6s infinite linear;
-        }
-    }
-
-    @keyframes wheelRotation {
-        from {
-            transform: rotate(0deg);
-        }
-        to {
-            transform: rotate(359deg);
-        }
-    }
-
-    .pleaseWait {
-
-    }
-
-    .waitMinutes {
-        font-weight: 900;
-        //animation: pleaseWaitBlinker 2s linear infinite;
-    }
-
-
-    @keyframes pleaseWaitBlinker {
-        50% {
-            color:#fff;
-        }
-    }
-
-    a.join_session_main {
-        grid-row:1;
-        background: #a95d63;
-        background: $dkr-brown;
-        background: $dkr-gold;
-        font-weight: 400;
-        animation: joinSessionBlinker 1s linear infinite;
-
-    }
-
-    @keyframes joinSessionBlinker {
-        50% {
-            background: #cb6a3c;
-            background: $dkr-gold;
-            box-shadow: inset 0 0 18px 4px rgba(0, 0, 0, 0.3);
-            //color: #e7e2b0;
-            //border:solid 3px red;
-        }
     }
 
     a.teaching_details {
@@ -3845,6 +3763,209 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
             color: #fff;
             text-decoration: none;
         }
+    }
+}
+
+// SHEDRA PROGRAMME
+
+// .tablepress tbody td
+
+table.tablepress-id-19 {
+
+    // border-collapse: separate;
+    // border-spacing: 4px;
+    border: none;
+    tbody {
+        td {
+            vertical-align: middle;
+        }
+
+        border:none;
+
+        tr.row-1,tr.row-8,tr.row-45,tr.row-93,tr.row-133,tr.row-152,
+        tr.row-185,tr.row-9,tr.row-21,tr.row-35,tr.row-46,tr.row-57,
+        tr.row-67,tr.row-81,tr.row-94,tr.row-110,tr.row-119,tr.row-134,
+        tr.row-146,tr.row-153,tr.row-173,tr.row-186,tr.row-195,tr.row-208,
+        tr.row-223,tr.row-243,tr.row-259 {
+            // background: none;
+            // border-top:solid 5px #e9e4ce;
+            background: #f5f3e7;
+            td {
+                background: none;
+                border:none;
+            }
+            border-top:solid 10px #fff;
+            border-bottom:solid 10px #fff;
+        }
+
+        // Levels
+        tr.row-1,tr.row-8,tr.row-45,tr.row-93,tr.row-133,tr.row-152,tr.row-185 {
+            // border-top: solid 12px #e9e4ce;
+            border-top:solid 17px #fff;
+            td {
+                padding: 15px 0 4px 0;
+                margin-top: 10px;
+            }
+            
+        }
+
+        .sp_lvl_en:before {
+                padding-right: 15px;
+                font-size: 22px;
+                display: block;
+                float: left;
+                font-weight: 200;
+                padding-top: 0px; 
+                font-family:"FontAwesome";
+                // content: '\f19c'; // Star
+                // content: '\f18c'; // Leaf
+                // content: "\f19d"; // Hat
+                content: "\f054"; // Hat
+                // content: "\f111"; // Circle
+                color: $dkr-brown;
+                color: $dkr-gold;
+        }
+
+        .sp_year_en:before {
+            margin: 4px 0 0 2px;
+            padding: 18px 13px 0px 0px;
+            font-size: 15px;
+            display: block;
+            float: left;
+            font-weight: 200;
+            padding-top: 0px;
+            height: 18px;
+            font-size: 10px;
+            color: $dkr-gold;
+            color:$dkr-brown;
+            // color: $dkr-brown;
+            font-family:"FontAwesome";
+            content: "\f111"; // Circle
+        }
+
+    }
+}
+
+.sp_en {
+    // font-weight: 400;
+} 
+.sp_tib { 
+    padding-bottom:11px;
+    color:$dkr-brown;
+    font-size: 18px;
+    display: none;
+}
+.sp_auth_tib {
+    display: none;
+    padding-bottom: 8px;
+    color:$dkr-brown;
+}
+.sp_auth_en {
+    font-size: 13px;
+    font-weight: 400px;
+}
+.sp_head_tib, .sp_head_en {
+    float:left;
+    padding-right: 10px;
+}
+.sp_head_tib {
+    display: none;
+    font-size:18px;
+}
+.sp_head_en {
+    font-weight: 500;
+    padding-top:5px;
+}
+
+.sp_lvl_tib {
+    display: none;
+    color:$dkr-brown;
+    font-size:22px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    padding-left:17px;
+}
+.sp_lvl_en {
+    color:$dkr-gold;
+    font-size:21px;
+    font-weight: 400;
+    padding-bottom: 13px;
+    padding-left:17px;
+    .equiv_lvl_en {
+        padding-left:11px;
+        color:$dkr-brown;
+        font-size: 13px;
+    }
+}
+.sp_year_en {
+    padding-top: 5px;
+    // color:$dkr-gold;
+    color:$dkr-brown;
+    font-size:16px;
+    font-weight: 400;
+}
+.sp_year_tib {
+    display: none;
+    color:$dkr-brown;
+    font-size:18px;
+}
+
+.sp_tib_note {
+    display: none;
+}
+.sp_year_numbers_en {
+    padding-right: 5px;
+}
+
+// CURRIC LEFT MENU
+
+.sp_sticky_menu {
+    // position:-webkit-sticky;
+    // position: sticky;
+    // top: 0;
+    ul > li.page_item {
+        text-align: justify;
+    }
+    ul > li.page_item > a {
+        display: inline-block;
+        padding: 11px 10px 10px 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        position: relative;
+    }
+    li.page_item ul.children a {
+        padding: 0px 0 0px 0;
+    }
+
+    ul ul {
+        padding: 0 15px 10px 17px;
+    }
+
+    // li.page_item ul.children {
+    //     border-top: solid 1px #eee;
+    //     overflow: hidden;
+    //     transition: height 200ms;
+    // }
+    ul.children li {
+        list-style-type: none;
+        padding: 3px 0 3px 0;
+    }
+    
+}
+
+.twentyone-yr-curriculum {
+    h1 {
+        text-align: center;
+        
+    }
+    .sidebar-container {
+        li.page_item ul {
+            display: block;
+        }
+    }
+    .blog-columns {
+        grid-template-columns: 260px 1fr;
     }
 }
 
@@ -4481,10 +4602,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
         .ts_menu {
             grid-row : 3;
         }
-        .teaching_waiting_open_wait {
-            grid-template-columns: 1fr 70px;
-            display: grid;
-        }
         .zoom_details {
             grid-template-columns: 1fr;
         }
@@ -4492,6 +4609,19 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
             grid-template-columns: 1fr;
             .session_video_title {
                 text-align: left;
+            }
+        }
+
+        .zoomNumber {
+            .zoomNumberNotif {
+                color:#c04c29;
+                font-weight: bold;
+            }
+            .yourZoomNumberLine {
+                font-size: 24px;
+            }
+            .yourZoomNumber {
+                font-weight: bold;
             }
         }
 
