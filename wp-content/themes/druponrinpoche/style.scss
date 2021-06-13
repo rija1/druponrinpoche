@@ -3770,6 +3770,25 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 
 // .tablepress tbody td
 
+.sp_menu_year {
+    font-weight:400;
+    color:#c5b681;
+}
+
+.sp_tib_version_link {
+    position: absolute;
+    text-decoration: underline;
+    right: 32px;
+    top: 103px;
+    &:after {
+        font-family:"FontAwesome";
+        content: '\f1c1';
+        content: '\f0f6';
+        padding-left: 10px;
+        padding-top:2px;
+    }
+}
+
 table.tablepress-id-19 {
 
     // border-collapse: separate;

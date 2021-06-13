@@ -17,7 +17,6 @@
                         <div class="gutter">
                             <h1><?php the_title(); ?></h1>
                             <a href="<?php echo site_url().'/full-biography-tibetan'; ?>"><div class="full-bio-tib-link">Tibetan version</div></a>
-                            <?php //the_excerpt(); ?>
                         </div>
                     </div>
                     <div class="gutter">
