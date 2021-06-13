@@ -3768,18 +3768,18 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 
 // SHEDRA PROGRAMME
 
-// .tablepress tbody td
-
 .sp_menu_year {
     font-weight:400;
-    color:#c5b681;
+    color:#c5b681; 
 }
 
 .sp_tib_version_link {
-    position: absolute;
+    text-align: right;
+    padding-bottom: 15px;
+    // position: absolute;
     text-decoration: underline;
-    right: 32px;
-    top: 103px;
+    // right: 32px;
+    // top: 103px;
     &:after {
         font-family:"FontAwesome";
         content: '\f1c1';
@@ -3801,9 +3801,10 @@ table.tablepress-id-19 {
 
         border:none;
 
+        // Year rows
         tr.row-1,tr.row-8,tr.row-45,tr.row-93,tr.row-133,tr.row-152,
         tr.row-185,tr.row-9,tr.row-21,tr.row-35,tr.row-46,tr.row-57,
-        tr.row-67,tr.row-81,tr.row-94,tr.row-110,tr.row-119,tr.row-134,
+        tr.row-67,tr.row-81,tr.row-94,tr.row-102,tr.row-110,tr.row-119,tr.row-134,
         tr.row-146,tr.row-153,tr.row-173,tr.row-186,tr.row-195,tr.row-208,
         tr.row-223,tr.row-243,tr.row-259 {
             // background: none;
@@ -3817,7 +3818,7 @@ table.tablepress-id-19 {
             border-bottom:solid 10px #fff;
         }
 
-        // Levels
+        // Level rows
         tr.row-1,tr.row-8,tr.row-45,tr.row-93,tr.row-133,tr.row-152,tr.row-185 {
             // border-top: solid 12px #e9e4ce;
             border-top:solid 17px #fff;
@@ -3866,7 +3867,7 @@ table.tablepress-id-19 {
 }
 
 .sp_en {
-    // font-weight: 400;
+    text-align: justify;
 } 
 .sp_tib { 
     padding-bottom:11px;
@@ -3878,10 +3879,12 @@ table.tablepress-id-19 {
     display: none;
     padding-bottom: 8px;
     color:$dkr-brown;
+    font-weight: 400;
 }
 .sp_auth_en {
     font-size: 13px;
-    font-weight: 400px;
+    // font-weight: 400;
+    text-align: left;
 }
 .sp_head_tib, .sp_head_en {
     float:left;
@@ -3974,9 +3977,16 @@ table.tablepress-id-19 {
 }
 
 .twentyone-yr-curriculum {
+
+    @media only screen and (max-width: 480px) {
+        .section-title {
+            margin-bottom: 40px;
+        }
+    }
+
     h1 {
         text-align: center;
-        
+        margin-bottom:20px;
     }
     .sidebar-container {
         li.page_item ul {
@@ -3985,6 +3995,16 @@ table.tablepress-id-19 {
     }
     .blog-columns {
         grid-template-columns: 260px 1fr;
+    }
+    @media only screen and (max-width: 480px) {
+        .blog-columns {
+            grid-template-columns: none;
+        }
+    }
+    @media only screen and (max-width: 810px) {
+        .blog-columns {
+            grid-template-columns: none;
+        }
     }
 }
 
@@ -4200,6 +4220,10 @@ table.tablepress-id-19 {
     }
 
     span.logo_kl {
+        font-size: 18px;
+    }
+
+    span.logo_dkr {
         font-size: 18px;
     }
 

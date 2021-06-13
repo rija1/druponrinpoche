@@ -3344,10 +3344,9 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 }
 
 .sp_tib_version_link {
-  position: absolute;
+  text-align: right;
+  padding-bottom: 15px;
   text-decoration: underline;
-  right: 32px;
-  top: 103px;
 }
 .sp_tib_version_link:after {
   font-family: "FontAwesome";
@@ -3368,7 +3367,7 @@ table.tablepress-id-19 tbody td {
 }
 table.tablepress-id-19 tbody tr.row-1, table.tablepress-id-19 tbody tr.row-8, table.tablepress-id-19 tbody tr.row-45, table.tablepress-id-19 tbody tr.row-93, table.tablepress-id-19 tbody tr.row-133, table.tablepress-id-19 tbody tr.row-152,
 table.tablepress-id-19 tbody tr.row-185, table.tablepress-id-19 tbody tr.row-9, table.tablepress-id-19 tbody tr.row-21, table.tablepress-id-19 tbody tr.row-35, table.tablepress-id-19 tbody tr.row-46, table.tablepress-id-19 tbody tr.row-57,
-table.tablepress-id-19 tbody tr.row-67, table.tablepress-id-19 tbody tr.row-81, table.tablepress-id-19 tbody tr.row-94, table.tablepress-id-19 tbody tr.row-110, table.tablepress-id-19 tbody tr.row-119, table.tablepress-id-19 tbody tr.row-134,
+table.tablepress-id-19 tbody tr.row-67, table.tablepress-id-19 tbody tr.row-81, table.tablepress-id-19 tbody tr.row-94, table.tablepress-id-19 tbody tr.row-102, table.tablepress-id-19 tbody tr.row-110, table.tablepress-id-19 tbody tr.row-119, table.tablepress-id-19 tbody tr.row-134,
 table.tablepress-id-19 tbody tr.row-146, table.tablepress-id-19 tbody tr.row-153, table.tablepress-id-19 tbody tr.row-173, table.tablepress-id-19 tbody tr.row-186, table.tablepress-id-19 tbody tr.row-195, table.tablepress-id-19 tbody tr.row-208,
 table.tablepress-id-19 tbody tr.row-223, table.tablepress-id-19 tbody tr.row-243, table.tablepress-id-19 tbody tr.row-259 {
   background: #f5f3e7;
@@ -3377,7 +3376,7 @@ table.tablepress-id-19 tbody tr.row-223, table.tablepress-id-19 tbody tr.row-243
 }
 table.tablepress-id-19 tbody tr.row-1 td, table.tablepress-id-19 tbody tr.row-8 td, table.tablepress-id-19 tbody tr.row-45 td, table.tablepress-id-19 tbody tr.row-93 td, table.tablepress-id-19 tbody tr.row-133 td, table.tablepress-id-19 tbody tr.row-152 td,
 table.tablepress-id-19 tbody tr.row-185 td, table.tablepress-id-19 tbody tr.row-9 td, table.tablepress-id-19 tbody tr.row-21 td, table.tablepress-id-19 tbody tr.row-35 td, table.tablepress-id-19 tbody tr.row-46 td, table.tablepress-id-19 tbody tr.row-57 td,
-table.tablepress-id-19 tbody tr.row-67 td, table.tablepress-id-19 tbody tr.row-81 td, table.tablepress-id-19 tbody tr.row-94 td, table.tablepress-id-19 tbody tr.row-110 td, table.tablepress-id-19 tbody tr.row-119 td, table.tablepress-id-19 tbody tr.row-134 td,
+table.tablepress-id-19 tbody tr.row-67 td, table.tablepress-id-19 tbody tr.row-81 td, table.tablepress-id-19 tbody tr.row-94 td, table.tablepress-id-19 tbody tr.row-102 td, table.tablepress-id-19 tbody tr.row-110 td, table.tablepress-id-19 tbody tr.row-119 td, table.tablepress-id-19 tbody tr.row-134 td,
 table.tablepress-id-19 tbody tr.row-146 td, table.tablepress-id-19 tbody tr.row-153 td, table.tablepress-id-19 tbody tr.row-173 td, table.tablepress-id-19 tbody tr.row-186 td, table.tablepress-id-19 tbody tr.row-195 td, table.tablepress-id-19 tbody tr.row-208 td,
 table.tablepress-id-19 tbody tr.row-223 td, table.tablepress-id-19 tbody tr.row-243 td, table.tablepress-id-19 tbody tr.row-259 td {
   background: none;
@@ -3418,6 +3417,10 @@ table.tablepress-id-19 tbody .sp_year_en:before {
   content: "";
 }
 
+.sp_en {
+  text-align: justify;
+}
+
 .sp_tib {
   padding-bottom: 11px;
   color: #80784c;
@@ -3429,11 +3432,12 @@ table.tablepress-id-19 tbody .sp_year_en:before {
   display: none;
   padding-bottom: 8px;
   color: #80784c;
+  font-weight: 400;
 }
 
 .sp_auth_en {
   font-size: 13px;
-  font-weight: 400px;
+  text-align: left;
 }
 
 .sp_head_tib, .sp_head_en {
@@ -3516,14 +3520,30 @@ table.tablepress-id-19 tbody .sp_year_en:before {
   padding: 3px 0 3px 0;
 }
 
+@media only screen and (max-width: 480px) {
+  .twentyone-yr-curriculum .section-title {
+    margin-bottom: 40px;
+  }
+}
 .twentyone-yr-curriculum h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 .twentyone-yr-curriculum .sidebar-container li.page_item ul {
   display: block;
 }
 .twentyone-yr-curriculum .blog-columns {
   grid-template-columns: 260px 1fr;
+}
+@media only screen and (max-width: 480px) {
+  .twentyone-yr-curriculum .blog-columns {
+    grid-template-columns: none;
+  }
+}
+@media only screen and (max-width: 810px) {
+  .twentyone-yr-curriculum .blog-columns {
+    grid-template-columns: none;
+  }
 }
 
 @media only screen and (max-width: 810px) {
@@ -3704,6 +3724,10 @@ table.tablepress-id-19 tbody .sp_year_en:before {
   }
 
   span.logo_kl {
+    font-size: 18px;
+  }
+
+  span.logo_dkr {
     font-size: 18px;
   }
 
