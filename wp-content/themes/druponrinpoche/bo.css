@@ -2,31 +2,40 @@
   font-family: 'SambhotaDegeWeb';
   src: url("assets/fonts/SambhotaDege.ttf");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+}
+
 body {
-  font-family: 'SambhotaDegeWeb','Roboto','Verdana'; }
+  font-family: 'SambhotaDegeWeb','Roboto','Verdana';
+}
 
 .menu-bar-logo-block .logo_name {
-  padding-top: 4px; }
+  padding-top: 4px;
+}
 
 span.logo_kl {
   font-size: 28px;
-  padding-top: 12px; }
+  padding-top: 12px;
+}
 
 span.logo_dkr {
-  font-size: 28px; }
+  font-size: 28px;
+}
 
 .menu-bar-logo-block span {
-  font-family: 'SambhotaDegeWeb'; }
+  font-family: 'SambhotaDegeWeb';
+}
 
 .menu-top-container .menu-top a {
   font-size: 21px;
-  padding: 10px 10px 15px 10px; }
+  padding: 10px 10px 15px 10px;
+}
 
 .home_mini_carousel {
-  display: none; }
+  display: none;
+}
 
 .home_news_carousel .latestnews {
-  width: auto; }
-
+  width: auto;
+}
 /*# sourceMappingURL=bo.css.map */

@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
   margin: 0;
@@ -8,94 +9,144 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   border: 0;
   outline: 0;
   vertical-align: baseline;
-  background: transparent; }
+  background: transparent;
+}
 
 img {
   border: none;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
 ul.faceGrid {
   margin: 0;
   padding: 10px;
   background: #f2efdf;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
-  list-style: none; }
-  ul.faceGrid li {
-    margin: 0;
-    padding: 0;
-    height: auto; }
-    ul.faceGrid li a {
-      float: left;
-      display: block;
-      width: 100%; }
-    ul.faceGrid li img {
-      border-radius: 210px;
-      border-radius: 17px;
-      width: 100%; }
+  list-style: none;
+}
+
+ul.faceGrid li {
+  margin: 0;
+  padding: 0;
+  height: auto;
+}
+
+ul.faceGrid li a {
+  float: left;
+  display: block;
+  width: 100%;
+}
+
+ul.faceGrid li img {
+  border-radius: 210px;
+  border-radius: 17px;
+  width: 100%;
+}
 
 .filters {
   padding: 10px 0 10px 0;
   background: #a4a8af;
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 0px;
   grid-column-gap: 0px;
-  list-style: none; }
-  .filters ul {
-    list-style: none; }
-    .filters ul li {
-      text-align: center;
-      display: none; }
-      .filters ul li a img {
-        width: 50px; }
-    .filters ul li:first-of-type {
-      display: block; }
+  list-style: none;
+}
+
+.filters ul {
+  list-style: none;
+}
+
+.filters ul li {
+  text-align: center;
+  display: none;
+}
+
+.filters ul li a img {
+  width: 50px;
+}
+
+.filters ul li:first-of-type {
+  display: block;
+}
 
 img.modalFace {
-  width: 50%; }
+  width: 50%;
+}
 
 ul.actions {
+  display: -ms-grid;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
-  list-style: none; }
-  ul.actions li {
-    margin: 0;
-    padding: 0;
-    height: auto; }
-    ul.actions li a {
-      float: left;
-      display: block;
-      width: 100%; }
+  list-style: none;
+}
+
+ul.actions li {
+  margin: 0;
+  padding: 0;
+  height: auto;
+}
+
+ul.actions li a {
+  float: left;
+  display: block;
+  width: 100%;
+}
 
 #action_modal {
   text-align: center;
   max-width: 100%;
-  width: auto; }
+  width: auto;
+}
 
 #action_modal a.close-modal {
   width: 10%;
-  height: 10%; }
+  height: 10%;
+}
 
 @media only screen and (min-width: 350px) {
   ul.faceGrid {
-    grid-template-columns: 1fr 1fr 1fr; } }
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
 @media only screen and (min-width: 480px) {
   ul.faceGrid {
-    grid-template-columns: 1fr 1fr 1fr 1fr; } }
+    -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
 @media only screen and (min-width: 670px) {
   ul.faceGrid {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr; } }
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
 @media only screen and (min-width: 900px) {
   ul.faceGrid {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; } }
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
+
 @media only screen and (min-width: 1000px) {
   ul.faceGrid {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; } }
-
+    -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  }
+}
 /*# sourceMappingURL=style.css.map */
