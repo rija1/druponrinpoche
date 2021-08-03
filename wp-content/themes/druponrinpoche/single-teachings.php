@@ -2,12 +2,12 @@
 /**
  * Category Template: Teachings
  */
-if ( !is_user_logged_in() ) {
-    $curr = UM()->permalinks()->get_current_url();
-    $redirect = esc_url( add_query_arg( 'redirect_to', urlencode_deep( $curr ), um_get_core_page( 'login' ) ) );
-    exit( wp_redirect( $redirect ) );
-}
-$userId = get_current_user_id();
+// if ( !is_user_logged_in() ) {
+//     $curr = UM()->permalinks()->get_current_url();
+//     $redirect = esc_url( add_query_arg( 'redirect_to', urlencode_deep( $curr ), um_get_core_page( 'login' ) ) );
+//     exit( wp_redirect( $redirect ) );
+// }
+// $userId = get_current_user_id();
 
 $author = get_post_meta(get_the_ID(), 'Post Author', true);
 $childOfCat = get_the_category();
