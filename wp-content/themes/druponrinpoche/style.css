@@ -1763,7 +1763,6 @@ div {
 }
 
 .home .home_news_carousel .home_excerpts .excerpts_list {
-  background: #f2efdf;
   list-style: none;
   display: -ms-grid;
   display: grid;
@@ -1773,6 +1772,7 @@ div {
 }
 
 .home .home_news_carousel .home_excerpts .excerpts_list .home_post {
+  background: #f2efdf;
   padding: 20px;
   height: auto;
   width: auto;

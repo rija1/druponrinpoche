@@ -1795,12 +1795,15 @@ div{
             grid-column: 2;
             grid-row:1;
             .excerpts_list {
-                background:#f2efdf;
                 list-style: none;
                 display: grid;
                 grid-row-gap: 18px;
                 grid-template-columns: 1fr;
                 .home_post {
+                    background:#f2efdf;
+                    padding: 20px;
+                    height:auto;
+                    width:auto;
                     p:before, p:after {
                         font-family: "FontAwesome";
                         font-size: 12px;
@@ -1821,10 +1824,6 @@ div{
                         padding-top:6px;
                         float: right;
                     }
-                    
-                    padding: 20px;
-                    height:auto;
-                    width:auto;
                     p {
                         font-size: 15px;
                         padding-top: 15px;
