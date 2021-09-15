@@ -1,13 +1,13 @@
 === Media Cleaner - Clean & Optimize Space ===
 Contributors: TigrouMeow
 Tags: clean, delete, file, files, images, image, media, library, upload, acf
-Donate link: https://commerce.coinbase.com/checkout/d047546a-77a8-41c8-9ea9-4a950f61832f
+Donate link: https://meowapps.com/donation/
 Requires at least: 5.0
-Tested up to: 5.6
-Requires PHP: 5.6
-Stable tag: 6.1.7
+Tested up to: 5.8.1
+Requires PHP: 7.0
+Stable tag: 6.2.1
 
-Clean your WordPress Website from unused or broken media entries and files.
+Clean your WordPress from unused files, broken media entries. Powerful engine and beautiful UI!
 
 == Description ==
 
@@ -46,7 +46,7 @@ With the Filesystem Analysis, [Media Cleaner Pro](https://meowapps.com/plugin/me
 - Oxygen Builder
 - Slider Revolution
 - Avia Framework
-- And more (Theme X, YooTheme, WP Residence, WCFM MarketPlace, UberMenu, Justified Image Grid, ZipList Recipe, SmartSlider...)
+- And more (Theme X, YooTheme, WP Residence, WCFM MarketPlace, UberMenu, Justified Image Grid, ZipList Recipe, SmartSlider, Jet Engine...)
 
 The Live Site option will analyze the online version of your website, which might enhance the accuracy of the Cleaner in edge-cases.
 
@@ -74,6 +74,31 @@ Better to be safe than sorry. This plugin deletes files! Therefore, backup is no
 1. Media -> Media Cleaner
 
 == Changelog ==
+
+= 6.2.1 (2021/09/11) =
+* Fix: Images Only now includes PNG, GIF, ICO and BMP on top of the JPGs.
+* Add: Support for ACF Repeater with Array of Images ID.
+* Add: Support for ACF Blocks.
+* Add: Support for Jet Engine.
+* Add: Support for Social Warfare.
+* Add: Support for WP Job Manager.
+* Add: Support for wpDiscuz.
+* Fix: Better support for Salient Theme.
+* Update: More powerful CLI.
+* Info: This plugin is a lot of work everyday. Please help me by giving it a nice review, [here](https://wordpress.org/support/plugin/media-cleaner/reviews/?rate=5#new-post). Thank you so much :)
+
+= 6.2.0 (2021/08/28) =
+* Fix: Little UI glitches fixed.
+
+= 6.1.9 (2021/07/05) =
+* Add: Updated UI and libraries.
+* Add: Support for Simple 3D Carousel.
+* Update: Better codebase that will allow new features and enhancements (like Pause, Retry, etc).
+
+= 6.1.8 (2021/06/14) =
+* Add: Support SVG.
+* Add: Support for Elfsight Slider.
+* Add: Support for Nimble Builder.
 
 = 6.1.7 (2021/04/16) =
 * Add: Support for Siteground cache.
@@ -161,7 +186,6 @@ Better to be safe than sorry. This plugin deletes files! Therefore, backup is no
 * Add: Filter to allow developers to override the decisions of the plugin.
 * Add: Auto-add MEDIA_TRASH.
 * Fix: Fuzzier pattern matching for wording variety.
-* Info: This plugin is a lot of work. Please help me by giving it a nice review, [here](https://wordpress.org/support/plugin/media-cleaner/reviews/?rate=5#new-post).
 
 = 5.6.2 =
 * Add: Always Skip/Retry feature.

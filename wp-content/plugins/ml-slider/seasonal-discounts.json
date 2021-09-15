@@ -15,9 +15,9 @@
 		"valid_to": "2022-01-14 23:59:59"
 	},
 	"spring": {
-		"discount_code": "springsale2021",
-		"valid_from": "2021-04-01 00:00:00",
-		"valid_to": "2021-04-30 23:59:59"
+		"discount_code": "springsale2022",
+		"valid_from": "2022-04-01 00:00:00",
+		"valid_to": "2022-04-30 23:59:59"
 	},
 	"summer": {
 		"discount_code": "summersale2021",

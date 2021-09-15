@@ -323,6 +323,17 @@ class eeadmin
             ]
         );
 
+        add_settings_field(
+            'ee_mime_type',
+            __('MIME type:', 'elastic-email-sender'),
+            [$this, 'mimetype_input'],
+            'ee-settings',
+            'setting_section_id',
+            [
+                'input_name' => 'ee_mime_type_input'
+            ]
+        );
+
         if (is_plugin_active('woocommerce/woocommerce.php')) {
             add_settings_field(
                 'ee_override_wooCommerce',
@@ -443,9 +454,12 @@ class eeadmin
     {
         if (!isset($this->options[$arg['input_name']]) || empty($this->options[$arg['input_name']])) {
             $type = 'marketing';
+            update_option('ee_send-email-type', $type);
         } else {
             $type = $this->options[$arg['input_name']];
+            update_option('ee_send-email-type', $type);
         }
+
         echo '
                 <div class="ee-admin-settings-radio-inline">
                     <input
@@ -463,6 +477,48 @@ class eeadmin
                         ' . (($type === 'transactional') ? 'checked' : '') . '
                     />
                     <span>' . __('Transactional', 'elastic-email-sender') . '</span>
+                </div>';
+    }
+
+    /**
+     * Displays the settings MIME Types
+     */
+    public function mimetype_input($arg)
+    {
+        if (!isset($this->options[$arg['input_name']]) || empty($this->options[$arg['input_name']])) {
+            $mimetype = 'auto';
+            update_option('ee_mimetype', $mimetype);
+        } else {
+            $mimetype = $this->options[$arg['input_name']];
+            update_option('ee_mimetype',  $mimetype);
+        }
+
+        echo '
+                <div class="ee-admin-settings-radio-inline">
+                    <input
+                        type="radio"
+                        name="ee_options[' . $arg['input_name'] . ']"
+                        value="auto"
+                        ' . (($mimetype === 'auto') ? 'checked' : '') . '
+                    />
+                    <span>' . __('Auto (default)', 'elastic-email-sender') . '</span>
+
+                    <input
+                        type="radio"
+                        name="ee_options[' . $arg['input_name'] . ']"
+                        value="plaintext"
+                        ' . (($mimetype === 'plaintext') ? 'checked' : '') . '
+                    />
+                    <span style="padding-right: 10px">' . __('plain/text', 'elastic-email-sender') . '</span>
+
+                    <input
+                    type="radio"
+                    name="ee_options[' . $arg['input_name'] . ']"
+                    value="texthtml"
+                    ' . (($mimetype === 'texthtml') ? 'checked' : '') . '
+                    />
+                    <span>' . __('text/html', 'elastic-email-sender') . '</span>
+
                 </div>';
     }
 

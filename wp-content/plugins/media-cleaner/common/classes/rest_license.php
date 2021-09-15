@@ -8,19 +8,22 @@ class MeowCommon_Classes_Rest_License
 	public function __construct( &$licenser ) {
     $this->licenser = $licenser;
 		$this->namespace = "meow-licenser/{$licenser->prefix}/v1";
-		if ( !current_user_can( 'administrator' ) ) {
-			return;
-		} 
 		add_action( 'rest_api_init', array( $this, 'rest_api_init' ) );
 	}
 
 	function rest_api_init() {
 		register_rest_route( $this->namespace, '/get_license/', [
 			'methods' => 'POST',
+			'permission_callback' => function () { 
+				return current_user_can( 'administrator' );
+			},
 			'callback' => [ $this, 'get_license' ]
     ]);
     register_rest_route( $this->namespace, '/set_license/', [
 			'methods' => 'POST',
+			'permission_callback' => function () { 
+				return current_user_can( 'administrator' );
+			},
 			'callback' => [ $this, 'set_license' ]
 		]);
 	}

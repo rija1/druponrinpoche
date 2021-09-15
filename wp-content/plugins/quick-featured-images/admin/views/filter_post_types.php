@@ -10,3 +10,4 @@ foreach ( $this->valid_post_types as $key => $label ) {
 }
 ?>
 </p>
+<p class="qfi_ad_for_pro"><?php esc_html_e( 'Do you miss post types? Custom post types are supported with', 'quick-featured-images' ); ?> <a href="https://www.quickfeaturedimages.com/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro" target="_blank">Quick Featured Images Pro</a>.</p>

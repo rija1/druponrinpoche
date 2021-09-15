@@ -9,7 +9,7 @@ class Meow_WPMC_Core {
 	public $engine = null;
 	public $catch_timeout = true; // This will halt the plugin before reaching the PHP timeout.
 	private $regex_file = '/[A-Za-z0-9-_,.\(\)\s]+[.]{1}(MIMETYPES)/';
-	public $types = "jpg|jpeg|jpe|gif|png|tiff|bmp|csv|pdf|xls|xlsx|doc|docx|odt|wpd|rtf|tiff|mp3|mp4|mov|wav|lua";
+	public $types = "jpg|jpeg|jpe|gif|png|tiff|bmp|csv|svg|pdf|xls|xlsx|doc|docx|odt|wpd|rtf|tiff|mp3|mp4|mov|wav|lua";
 	public $current_method = 'media';
 	private $refcache = array();
 	public $servername = null; // meowapps.com (site URL without http/https)
@@ -343,7 +343,7 @@ class Meow_WPMC_Core {
 		preg_match_all( "/((https?:\/\/)?[^\\&\#\[\] \"\?]+\.pdf)/", $html, $res );
 		if ( !empty( $res ) && isset( $res[1] ) && count( $res[1] ) > 0 ) {
 			foreach ( $res[1] as $url ) {
-				if ( $this->is_url($url) )
+				if ( $this->is_url( $url ) )
 					array_push( $results, $this->clean_url( $url ) );
 			}
 		}
@@ -352,7 +352,7 @@ class Meow_WPMC_Core {
 		preg_match_all( "/url\(\'?\"?((https?:\/\/)?[^\\&\#\[\] \"\?]+\.(jpe?g|gif|png))\'?\"?/", $html, $res );
 		if ( !empty( $res ) && isset( $res[1] ) && count( $res[1] ) > 0 ) {
 			foreach ( $res[1] as $url ) {
-				if ( $this->is_url($url) )
+				if ( $this->is_url( $url ) )
 					array_push( $results, $this->clean_url( $url ) );
 			}
 		}
@@ -654,6 +654,12 @@ class Meow_WPMC_Core {
 		global $wpdb;
 		$table_name = $wpdb->prefix . "mclean_scan";
 		$issue = $wpdb->get_row( $wpdb->prepare( "SELECT * FROM $table_name WHERE id = %d", $id ), OBJECT );
+
+		if ( !isset( $issue ) ) {
+			$this->log( "🚫 Issue {$id} could not be found." );
+			return false;
+		}
+
 		$regex = "^(.*)(\\s\\(\\+.*)$";
 		$issue->path = preg_replace( '/' . $regex . '/i', '$1', $issue->path ); // remove " (+ 6 files)" from path
 
@@ -1100,6 +1106,19 @@ class Meow_WPMC_Core {
 			echo $issue;
 		}
 	}
+
+	/**
+	 *
+	 * Roles & Access Rights
+	 *
+	 */
+	public function can_access_settings() {
+		return apply_filters( 'wpmc_allow_setup', current_user_can( 'manage_options' ) );
+	}
+
+	public function can_access_features() {
+		return apply_filters( 'wpmc_allow_usage', current_user_can( 'administrator' ) );
+	}
 }
 
 /*
@@ -1122,8 +1141,11 @@ function wpmc_reset () {
 }
 
 function wpmc_uninstall () {
-	//wpmc_remove_options();
-	//wpmc_remove_database();
+	$cleanUninstall = get_option( 'wpmc_clean_uninstall', false );
+	if ($cleanUninstall) {
+		wpmc_remove_options();
+		wpmc_remove_database();
+	}
 }
 
 // Check the DB. If does not exist, let's create it.

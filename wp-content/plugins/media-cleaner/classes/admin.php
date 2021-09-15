@@ -60,27 +60,38 @@ class Meow_WPMC_Admin extends MeowCommon_Admin {
     echo '<div id="wpmc-admin-settings"></div>';
   }
 
+  function list_options() {
+    return array(
+      'wpmc_method' => 'media',
+      'wpmc_content' => true,
+      'wpmc_filesystem_content' => false,
+      'wpmc_media_library' => true,
+      'wpmc_live_content' => false,
+      'wpmc_debuglogs' => false,
+      'wpmc_images_only' => false,
+      'wpmc_thumbnails_only' => false,
+      'wpmc_dirs_filter' => '',
+      'wpmc_files_filter' => '',
+      'wpmc_hide_thumbnails' => false,
+      'wpmc_hide_warning' => false,
+      'wpmc_medias_buffer' => 100,
+      'wpmc_posts_buffer' => 5,
+      'wpmc_analysis_buffer' => 100,
+      'wpmc_file_op_buffer' => 20,
+      'wpmc_delay' => 100,
+      'wpmc_shortcodes_disabled' => false,
+      'wpmc_posts_per_page' => 10,
+      'wpmc_clean_uninstall' => false,
+    );
+  }
+
   function get_all_options() {
-    return [
-      'wpmc_method' => get_option( 'wpmc_method', 'media' ),
-      'wpmc_content' => get_option( 'wpmc_content', true ),
-      'wpmc_filesystem_content' => get_option( 'wpmc_filesystem_content', false ),
-      'wpmc_media_library' => get_option( 'wpmc_media_library', true ),
-      'wpmc_live_content' => get_option( 'wpmc_live_content', false ),
-      'wpmc_debuglogs' => get_option( 'wpmc_debuglogs', false ),
-      'wpmc_images_only' => get_option( 'wpmc_images_only', false ),
-      'wpmc_thumbnails_only' => get_option( 'wpmc_thumbnails_only', false ),
-      'wpmc_dirs_filter' => get_option( 'wpmc_dirs_filter', '' ),
-      'wpmc_files_filter' => get_option( 'wpmc_files_filter', '' ),
-      'wpmc_hide_thumbnails' => get_option( 'wpmc_hide_thumbnails' ),
-      'wpmc_hide_warning' => get_option( 'wpmc_hide_warning' ),
-      'wpmc_medias_buffer' => get_option( 'wpmc_medias_buffer', 100 ),
-      'wpmc_posts_buffer' => get_option( 'wpmc_posts_buffer', 5 ),
-      'wpmc_analysis_buffer' => get_option( 'wpmc_analysis_buffer', 100 ),
-      'wpmc_file_op_buffer' => get_option( 'wpmc_file_op_buffer', 20 ),
-      'wpmc_delay' => get_option( 'wpmc_delay', 100 ),
-      'wpmc_shortcodes_disabled' => get_option( 'wpmc_shortcodes_disabled' ),
-    ];
+    $options = $this->list_options();
+    $current_options = array();
+    foreach ( $options as $option => $default ) {
+      $current_options[$option] = get_option( $option, $default );
+    }
+    return $current_options;
   }
 
 }

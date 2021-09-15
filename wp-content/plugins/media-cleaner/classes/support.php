@@ -92,6 +92,34 @@ class Meow_WPMC_Support {
 			array_push( $unsupported, 'WebDirectory' );
     }
 
+    if ( class_exists( 'ElfsightSliderPlugin' ) ) {
+      array_push( $unsupported, 'Elfsight Slider' );
+    }
+
+		if ( class_exists( '\Nimble\CZR_Fmk_Base' ) ) {
+      array_push( $unsupported, 'Nimble Builder' );
+    }
+
+		if ( class_exists( 'fwds3dcar' ) ) {
+      array_push( $unsupported, 'Simple 3D Carousel' );
+    }
+
+    if ( class_exists( 'Jet_Engine' ) ) {
+      array_push( $unsupported, 'Jet Engine' );
+    }
+
+    if ( class_exists( 'Social_Warfare' ) ) {
+      array_push( $unsupported, 'Social Warfare' );
+    }
+
+		if ( class_exists( 'WP_Job_Manager' ) ) {
+			array_push( $unsupported, 'WP Job Manager' );
+    }
+
+    if ( class_exists( 'WpdiscuzCore' ) ) {
+			array_push( $unsupported, 'wpDiscuz' );
+    }
+
     return $unsupported;
   }
 }

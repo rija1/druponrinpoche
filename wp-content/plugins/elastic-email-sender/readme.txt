@@ -96,6 +96,12 @@ You can translate Elastic Email Sender on [__translate.wordpress.org__](https://
 
 == Changelog ==
 
+= 1.2.2 =
+* Fix: Update MIME type after update
+
+= 1.2.1 =
+* Fix: MIME types and transactional message type
+
 = 1.2 =
 * Regular update
 

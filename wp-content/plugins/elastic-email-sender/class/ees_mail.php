@@ -171,13 +171,29 @@ class eemail
             $reply_to_name = '';
         }
 
-        if($ee_channel === null) {
-            $ee_channel = 'Elastic Email Sender';
-        } else {
-            $ee_channel = 'Elastic Email - Send Test';
-        }
+        $ee_channel = ($ee_channel === null) ? 'Elastic Email Sender' : 'Elastic Email - Send Test';
 
-        $emailsend = $Email->Send($subject, $from_email, $from_name, null, null, null, null, $reply_to, $reply_to_name, array(), $to, $cc, $bcc, array(), array(), null, $ee_channel, $message /* bodyHTML */, $message /* bodyText */, $charset, /*charsetBodyHtml*/ null, /*charsetBodyText*/ null, ApiTypes\EncodingType::None, null, $attachments, $headers, null, array(), null, null, get_option('ee_send-email-type'));
+        $emailType = (get_option('ee_send-email-type') === 'transactional') ? true : false;
+
+        $searchword = '';
+        $matches = [];
+        foreach($headers as $k=>$v) {
+            if (preg_match("/\b$searchword\b/i", $v)) {
+                $matches[$k] = $v;
+            }
+        }
+        $isHeaderPlain = (sizeof($matches) >= 1) ? true : false;
+
+        $sendPlain = true;
+        if (get_option('ee_mimetype') === 'auto') {
+            $sendPlain = $isHeaderPlain;
+        } elseif (get_option('ee_mimetype') === 'texthtml') {
+            $sendPlain = false;
+        } else {
+            $sendPlain = true;
+        }
+        
+        $emailsend = $Email->Send($subject, $from_email, $from_name, null, null, null, null, $reply_to, $reply_to_name, array(), $to, $cc, $bcc, array(), array(), null, $ee_channel, $sendPlain ? null : $message  /* bodyHTML */, $sendPlain ? $message : null /* bodyText */, $charset, /*charsetBodyHtml*/ null, /*charsetBodyText*/ null, ApiTypes\EncodingType::None, null, $attachments, $headers, null, array(), array(), null, $emailType);
 
         if (isset($emailsend)) {
             if ($emailsend == TRUE) {
@@ -195,7 +211,7 @@ class eemail
         require_once plugin_dir_path(__DIR__) . 'defaults/function.wp_mail.php';
     }
 
-//Helpers method
+    //Helpers method
     static function adminNotices()
     {
         if (self::$conflict) {
