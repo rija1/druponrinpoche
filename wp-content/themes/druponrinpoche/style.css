@@ -2767,6 +2767,10 @@ p.teaching_info {
   list-style-type: none;
 }
 
+.single-post .rl-gallery .rl-gallery-link .rl-gallery-caption {
+  display: none;
+}
+
 .closed .vertical {
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
