@@ -40,7 +40,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
         <?php
         $id=$drWebsiteConfig['sekhar_page_id'];
         $post = get_post( $id );
-        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), array(600,400));
+        $src = wp_get_attachment_image_src( get_post_thumbnail_id($id), 'medium');
         $url = $src[0];
         ?>
         <a href="<?php echo get_page_link($post)?>">
