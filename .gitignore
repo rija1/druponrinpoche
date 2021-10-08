@@ -39,3 +39,6 @@ wp-content/plugins/elastic-email-sender/api/error_log.php
 wp-content/tablepress-custom.min.css
 wp-content/updraft/log.*
 wp-content/updraft/backup*
+
+wp-content/themes/druponrinpoche/ultimate-member/email/
+wp-content/uploads
