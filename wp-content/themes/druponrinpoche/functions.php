@@ -443,7 +443,8 @@ function wp_list_pages_dkr( $args = '' ) {
                 $current_page = $queried_object->ID;
             }
         }
-
+// @FIXME 
+//PHP Notice:  Trying to get property 'post_parent' of non-object
 //        pa($current_page,1,1);
         if($current_page->post_parent ) {
             $pages[] = $current_page->post_parent;
@@ -1270,6 +1271,48 @@ function um_custom_allow_frontend_image_uploads( $allowed, $user_id, $key ){
 
     return $allowed; // false
 }
+
+
+// add_menu_page( 'Attendance Check','Attendance Check', 'manage_options', 
+// 'attendance_check', 'attendanceCheckAction','', null );
+
+// add_menu_page( 'Zoom','Zoom Callback Action', 'manage_options', 
+// 'zoom_callback', 'zoomCallbackAction','', null );
+
+
+// add_action( 'admin_menu', function() {
+//     add_dashboard_page(
+//         __( 'Welcome', 'textdomain' ),
+//         __( 'Welcome', 'textdomain' ),
+//         'manage_options',
+//         'zoom_callback',
+//         'zoomCallbackAction'
+//     );
+// } );
+
+// add_action( 'admin_head', function() {
+//     remove_submenu_page( 'index.php', 'zoom_callback' );
+// });
+
+// function attendanceCheckAction() {
+
+//     $html= "Hello Zoom World";
+    
+//         echo $html;
+// }
+
+// function zoomCallbackAction() {
+
+//     require_once('zoom-api/vendor/autoload.php');
+
+//     $clientId = 'QJbmaVfTEuZeUPs7Ctfqw';
+//     $clientSecret = '';
+//     $redirectUri = '';
+
+//     $html= "Hello Zoom Callback";
+    
+//     echo $html;
+// }
 
 
 /* End of customization in your theme's function.php file*/
