@@ -19,7 +19,7 @@ Text Domain:  druponrinpoche
 
 @font-face {
   font-family: 'TSFont';
-  src: url("assets/fonts/BerkshireSwash-Regular.ttf");
+  src: url("assets/fonts/berkshireswash-reg-tsquare.woff2") format("woff2"), url("assets/fonts/berkshireswash-reg-tsquare.woff") format("woff"), url("assets/fonts/berkshireswash-reg-tsquare.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
