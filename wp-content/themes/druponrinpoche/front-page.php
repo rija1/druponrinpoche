@@ -86,29 +86,29 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 
 <div class="home_news_carousel">
 
-    <div class="home_mini_carousel">
+    <!-- <div class="home_mini_carousel">
         <div class="schedule_title"><h5><?php rbq_trsl('Upcoming Schedule'); ?></h5></div>
         <?php
-        $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
-        $scheduleData = $table['data'];
-        unset($scheduleData[0]);
+        // $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
+        // $scheduleData = $table['data'];
+        // unset($scheduleData[0]);
 
-        foreach ($scheduleData as $k =>$scheduleDataLine) {
-            if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
-                unset($scheduleData[$k]);
-            }
-            if($scheduleDataLine[5]==1) {
-                unset($scheduleData[$k]);
-            }
-        }
+        // foreach ($scheduleData as $k =>$scheduleDataLine) {
+        //     if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
+        //         unset($scheduleData[$k]);
+        //     }
+        //     if($scheduleDataLine[5]==1) {
+        //         unset($scheduleData[$k]);
+        //     }
+        // }
 
-        $schBatch2 = false;
+        // $schBatch2 = false;
 
-        if(count($scheduleData) >= 12) {
-            list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
-        } else {
-            $schBatch1 = $scheduleData;
-        }
+        // if(count($scheduleData) >= 12) {
+        //     list($schBatch1, $schBatch2) = array_chunk($scheduleData, ceil(count($scheduleData) / 2));
+        // } else {
+        //     $schBatch1 = $scheduleData;
+        // }
 
 
         ?>
@@ -148,18 +148,6 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
                     </table>
                 </div>
                 <?php endif; ?>
-                <?php if($locale == 'en_US') : ?>
-<!--                <div>-->
-<!--                    <a href="--><?php //echo site_url(); ?><!--/wp-content/uploads/2019/10/poster_sa_2019.jpg" title="" data-rl_title="" class="rl-gallery-link" data-rl_caption="" data-rel="lightbox-gallery-0">-->
-<!--                        <img src="--><?php //echo site_url(); ?><!--/wp-content/uploads/2019/10/poster_sa_2019.jpg" alt="" >-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--                <div>-->
-<!--                    <a href="--><?php //echo site_url(); ?><!--/wp-content/uploads/2019/10/poster_congo_2019.jpg" title="" data-rl_title="" class="rl-gallery-link" data-rl_caption="" data-rel="lightbox-gallery-0">-->
-<!--                        <img src="--><?php //echo site_url(); ?><!--/wp-content/uploads/2019/10/poster_congo_2019.jpg" alt="" >-->
-<!--                    </a>-->
-<!--                </div>-->
-                <?php endif; ?>
             </div>
             <div class="sched_carousel_arrows"></div>
             <a class="view_full_schedule" href="<?php echo get_page_link($drWebsiteConfig['schedule_page_id'])?>"><span><?php rbq_trsl('View Full Schedule');?></span></a>
@@ -167,31 +155,8 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 
 
 
-    </div>
+    </div> -->
 
-    <div class="latestnews">
-        <div class="latestnews_title"><h5><?php rbq_trsl('Latest News'); ?></h5></div>
-        <ul class="latestnews_list">
-            <?php foreach ( $r->posts as $recent_post ) : ?>
-                <?php
-                $post_title = get_the_title( $recent_post->ID );
-                $title      = ( ! empty( $post_title ) ) ? $post_title : __( '(no title)' );
-                $image = wp_get_attachment_image_src( get_post_thumbnail_id($recent_post->ID) , 'medium');
-                ?>
-                <a class="recent_post_link" href="<?php the_permalink( $recent_post->ID ); ?>">
-                    <span class="post-date"><?php echo get_the_date( '', $recent_post->ID ); ?></span>
-                    <li class="home_post">
-                        <div class="home_post_img"><img src="<?php echo $image[0];?>" /></div>
-                        <div class="home_post_txt">
-                        <span class="recent_post_title"><?php echo $title ; ?></span>
-                        <p><?php echo get_post_meta($recent_post->ID, 'short_excerpt', true);?></p>
-<!--                        <span class="read_more">--><?php //rbq_trsl('Read More'); ?><!--</span>-->
-                        </div>
-                    </li>
-                </a>
-            <?php endforeach; ?>
-        </ul>
-    </div>
 
 
 </div>
