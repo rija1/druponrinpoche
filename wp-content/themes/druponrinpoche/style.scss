@@ -22,13 +22,6 @@ $dkr-ot-blue-hover:#647cab;
 /**  fonts  **/
 
 @font-face {
-    font-family: 'FontAwesome';
-    src: url('assets/fonts/fontawesome-webfont.ttf');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
   font-family: 'TSFont';
   src: 
   url('assets/fonts/berkshireswash-reg-tsquare.woff2') format('woff2'), 
@@ -38,6 +31,15 @@ $dkr-ot-blue-hover:#647cab;
   font-style: normal;
 }
 
+@font-face {
+    font-family: 'FontAwesome';
+    src: 
+    url('assets/fonts/fontawesome-webfont-webfont.woff2') format('woff2'), 
+    url('assets/fonts/fontawesome-webfont-webfont.woff') format('woff'), 
+    url('assets/fonts/fontawesome-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 
 
@@ -1809,14 +1811,14 @@ div{
                         font-size: 12px;
                     }
                     p:before {
-                        content: "";
+                        content: "\f10d";
                         float:left;
                         padding-right: 6px;
                         padding-top:6px;
                         height:10px; 
                     }
                     p:after {
-                        content: "";
+                        content: "\f10e";
                         // padding-left: 6px;
                         padding-top:6px;
                         float: right;
@@ -3493,7 +3495,6 @@ div.uimob800 .um-account-side li a.current:hover,
         font-size: 30px;
         color:#5c9e47;
         font-family:"FontAwesome";
-        content: '\f05d';
         content: '\f00c';
     }
     .modal_msg_hey:before {
@@ -3783,7 +3784,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
     // top: 103px;
     &:after {
         font-family:"FontAwesome";
-        content: '\f1c1';
         content: '\f0f6';
         padding-left: 10px;
         padding-top:2px;
@@ -4253,7 +4253,6 @@ table.tablepress-id-19 {
                 font-size: 15px;
                 color:$dkr-gold;
                 font-family:"FontAwesome";
-                content: '\f078';
                 content: '\f13a';
 
             }

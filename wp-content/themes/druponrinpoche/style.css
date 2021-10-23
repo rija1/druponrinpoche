@@ -1,4 +1,3 @@
-@charset "UTF-8";
 /*
 Theme Name: Drupon Rinpoche
 Author: Reedz
@@ -11,15 +10,15 @@ Text Domain:  druponrinpoche
 */
 /**  fonts  **/
 @font-face {
-  font-family: 'FontAwesome';
-  src: url("assets/fonts/fontawesome-webfont.ttf");
+  font-family: 'TSFont';
+  src: url("assets/fonts/berkshireswash-reg-tsquare.woff2") format("woff2"), url("assets/fonts/berkshireswash-reg-tsquare.woff") format("woff"), url("assets/fonts/berkshireswash-reg-tsquare.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'TSFont';
-  src: url("assets/fonts/berkshireswash-reg-tsquare.woff2") format("woff2"), url("assets/fonts/berkshireswash-reg-tsquare.woff") format("woff"), url("assets/fonts/berkshireswash-reg-tsquare.ttf") format("truetype");
+  font-family: 'FontAwesome';
+  src: url("assets/fonts/fontawesome-webfont-webfont.woff2") format("woff2"), url("assets/fonts/fontawesome-webfont-webfont.woff") format("woff"), url("assets/fonts/fontawesome-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -1787,7 +1786,7 @@ div {
 }
 
 .home .home_news_carousel .home_excerpts .excerpts_list .home_post p:before {
-  content: "";
+  content: "\f10d";
   float: left;
   padding-right: 6px;
   padding-top: 6px;
@@ -1795,7 +1794,7 @@ div {
 }
 
 .home .home_news_carousel .home_excerpts .excerpts_list .home_post p:after {
-  content: "";
+  content: "\f10e";
   padding-top: 6px;
   float: right;
 }
@@ -3432,7 +3431,6 @@ div.uimob800 .um-account-side li a.current:hover,
   font-size: 30px;
   color: #5c9e47;
   font-family: "FontAwesome";
-  content: '\f05d';
   content: '\f00c';
 }
 
@@ -3724,7 +3722,6 @@ a.teaching_register:hover, .online-teachings a.teaching_details:hover, input[typ
 
 .sp_tib_version_link:after {
   font-family: "FontAwesome";
-  content: '\f1c1';
   content: '\f0f6';
   padding-left: 10px;
   padding-top: 2px;
@@ -4151,7 +4148,6 @@ table.tablepress-id-19 tbody .sp_year_en:before {
     font-size: 15px;
     color: #bb9b25;
     font-family: "FontAwesome";
-    content: '\f078';
     content: '\f13a';
   }
   .menu-top-mob-container .menu-top-mob ul.sub-menu ul.sub-menu {
