@@ -18,7 +18,7 @@ Text Domain:  druponrinpoche
 
 @font-face {
   font-family: 'FontAwesome';
-  src: url("assets/fonts/fontawesome-webfont-webfont.woff2") format("woff2"), url("assets/fonts/fontawesome-webfont-webfont.woff") format("woff"), url("assets/fonts/fontawesome-webfont.ttf") format("truetype");
+  src: url("assets/fonts/fontawesome-webfont-webfont.woff2") format("woff2"), url("assets/fonts/fontawesome-webfont-webfont.woff") format("woff"), url("assets/fonts/fontawesome-webfont-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
