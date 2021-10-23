@@ -150,6 +150,7 @@
 						action: 'rl-post-gallery-preview',
 						post_id: rlArgsGallery.post_id,
 						gallery_id: gallery_id,
+						page: rlArgsGallery.page,
 						nonce: rlArgsGallery.nonce
 					} ).done( function( response ) {
 						try {
@@ -222,6 +223,7 @@
 				action: 'rl-post-get-galleries',
 				post_id: rlArgsGallery.post_id,
 				search: search,
+				page: rlArgsGallery.page,
 				nonce: rlArgsGallery.nonce,
 				category: _this.resetFilters ? 0 : modal.find( '#rl-media-attachment-categories' ).val()
 			} ).done( function( response ) {

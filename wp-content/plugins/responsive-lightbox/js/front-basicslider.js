@@ -6,7 +6,7 @@
 	$( document ).on( 'doResponsiveLightbox', function() {
 		$( '.rl-basicslider-gallery' ).each( function( index ) {
 			var gallery = $( this ),
-				options = JSON.parse( window['rlArgsBasicSliderGallery' + ( gallery.data( 'gallery_no' ) + 1 )] );
+				options = window['rlArgsBasicSliderGallery' + ( gallery.data( 'gallery_no' ) + 1 )].data;
 
 			if ( typeof options !== 'undefined' && typeof options !== false ) {
 				gallery.slippry( {

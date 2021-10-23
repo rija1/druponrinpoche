@@ -631,7 +631,17 @@ class Responsive_Lightbox_Frontend {
 			if ( $field['type'] === 'checkbox' ) {
 				// valid argument?
 				if ( array_key_exists( $field_key, $atts ) ) {
-					$atts[$field_key] = $rl->galleries->sanitize_field( $field_key, array_flip( $atts[$field_key] ), $field );
+					if ( is_array( $atts[$field_key] ) )
+						$array = $atts[$field_key];
+					elseif ( is_string( $atts[$field_key] ) ) {
+						if ( $atts[$field_key] === '' )
+							$array = [];
+						else
+							$array = explode( ',', $atts[$field_key] );
+					} else
+						$array = [];
+
+					$atts[$field_key] = $rl->galleries->sanitize_field( $field_key, array_flip( $array ), $field );
 				}
 			// boolean field?
 			} elseif ( $field['type'] === 'boolean' ) {
@@ -1825,8 +1835,8 @@ class Responsive_Lightbox_Frontend {
 		wp_localize_script(
 			'responsive-lightbox-basicslider-gallery',
 			'rlArgsBasicSliderGallery' . ( $gallery_no + 1 ),
-			json_encode(
-				array(
+			array(
+				'data' => array(
 					'adaptive_height'		=> $atts['adaptive_height'],
 					'loop'					=> $atts['loop'],
 					'captions'				=> $atts['captions'],
@@ -2088,8 +2098,8 @@ class Responsive_Lightbox_Frontend {
 		wp_localize_script(
 			'responsive-lightbox-basicmasonry-gallery',
 			'rlArgsBasicMasonryGallery' . ( $gallery_no + 1 ),
-			json_encode(
-				array(
+			array(
+				'data' => array(
 					'originLeft'	=> $atts['origin_left'],
 					'originTop'		=> $atts['origin_top']
 				)

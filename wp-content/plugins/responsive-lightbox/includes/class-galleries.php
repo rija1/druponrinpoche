@@ -36,6 +36,7 @@ class Responsive_Lightbox_Galleries {
 		add_action( 'admin_init', array( $this, 'init_admin' ) );
 		add_action( 'edit_form_after_title', array( $this, 'after_title_nav_menu' ) );
 		add_action( 'admin_footer', array( $this, 'modal_gallery_template' ) );
+		add_action( 'customize_controls_print_footer_scripts', array( $this, 'modal_gallery_template' ) );
 		add_action( 'media_buttons', array( $this, 'add_gallery_button' ) );
 		add_action( 'add_meta_boxes_rl_gallery', array( $this, 'add_meta_boxes' ) );
 		add_action( 'save_post_rl_gallery', array( $this, 'save_post' ), 10, 3 );
@@ -953,6 +954,8 @@ class Responsive_Lightbox_Galleries {
 	 * @return void
 	 */
 	public function enqueue_gallery_scripts_styles() {
+		global $pagenow;
+
 		// count how many times function was executed
 		static $run = 0;
 
@@ -972,7 +975,8 @@ class Responsive_Lightbox_Galleries {
 			'rlArgsGallery',
 			array(
 				'nonce'		=> wp_create_nonce( 'rl-gallery-post' ),
-				'post_id'	=> get_the_ID()
+				'post_id'	=> get_the_ID(),
+				'page'		=> esc_url( $pagenow )
 			)
 		);
 
@@ -985,14 +989,17 @@ class Responsive_Lightbox_Galleries {
 	 * @return void
 	 */
 	public function modal_gallery_template() {
+		global $wp_version;
 		global $pagenow;
 
 		// display only for post edit pages
-		if ( ! ( ( $pagenow === 'post.php' || $pagenow === 'post-new.php' ) && get_post_type() !== 'rl_gallery' ) )
+		if ( ! ( ( ( $pagenow === 'post.php' || $pagenow === 'post-new.php' ) && get_post_type() !== 'rl_gallery' ) || ( version_compare( $wp_version, '5.8', '>=' ) && ( $pagenow === 'widgets.php' || $pagenow === 'customize.php' ) ) ) )
 			return;
 
+		// get main instance
 		$rl = Responsive_Lightbox();
 
+		// builder categories?
 		if ( $rl->options['builder']['categories'] ) {
 			$terms = get_terms(
 				array(
@@ -1004,6 +1011,7 @@ class Responsive_Lightbox_Galleries {
 				)
 			);
 
+			// get categories dropdown
 			$categories = wp_dropdown_categories(
 				array(
 					'orderby'			=> 'name',
@@ -2532,7 +2540,20 @@ class Responsive_Lightbox_Galleries {
 	 * @return void
 	 */
 	public function post_gallery_preview() {
-		if ( ! isset( $_POST['post_id'], $_POST['gallery_id'], $_POST['nonce'] ) || ! check_ajax_referer( 'rl-gallery-post', 'nonce', false ) || ! current_user_can( 'edit_post', (int) $_POST['post_id'] ) )
+		// check data
+		if ( ! isset( $_POST['post_id'], $_POST['gallery_id'], $_POST['nonce'], $_POST['page'] ) || ! check_ajax_referer( 'rl-gallery-post', 'nonce', false ) )
+			wp_send_json_error();
+
+		// check page
+		if ( ! in_array( $_POST['page'], [ 'widgets.php', 'customize.php', 'post.php', 'post-new.php' ], true ) )
+			wp_send_json_error();
+
+		// check edit_post capability
+		if ( ( $_POST['page'] === 'post.php' || $_POST['page'] === 'post-new.php' ) && ! current_user_can( 'edit_post', (int) $_POST['post_id'] ) )
+			wp_send_json_error();
+
+		// check edit_theme_options capability
+		if ( ( $_POST['page'] === 'widgets.php' || $_POST['page'] === 'customize.php' ) && ! current_user_can( 'edit_theme_options' ) )
 			wp_send_json_error();
 
 		// parse gallery ID
@@ -2581,7 +2602,20 @@ class Responsive_Lightbox_Galleries {
 	 * @return void
 	 */
 	public function post_get_galleries() {
-		if ( ! isset( $_POST['post_id'], $_POST['search'], $_POST['nonce'] ) || ! check_ajax_referer( 'rl-gallery-post', 'nonce', false ) || ! current_user_can( 'edit_post', $post_id = (int) $_POST['post_id'] ) )
+		// check data
+		if ( ! isset( $_POST['post_id'], $_POST['search'], $_POST['nonce'], $_POST['page'] ) || ! check_ajax_referer( 'rl-gallery-post', 'nonce', false ) )
+			wp_send_json_error();
+
+		// check page
+		if ( ! in_array( $_POST['page'], [ 'widgets.php', 'customize.php', 'post.php', 'post-new.php' ], true ) )
+			wp_send_json_error();
+
+		// check edit_post capability
+		if ( ( $_POST['page'] === 'post.php' || $_POST['page'] === 'post-new.php' ) && ! current_user_can( 'edit_post', (int) $_POST['post_id'] ) )
+			wp_send_json_error();
+
+		// check edit_theme_options capability
+		if ( ( $_POST['page'] === 'widgets.php' || $_POST['page'] === 'customize.php' ) && ! current_user_can( 'edit_theme_options' ) )
 			wp_send_json_error();
 
 		$args = array(

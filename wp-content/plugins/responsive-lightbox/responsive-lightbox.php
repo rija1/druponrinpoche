@@ -2,7 +2,7 @@
 /*
 Plugin Name: Responsive Lightbox & Gallery
 Description: Responsive Lightbox & Gallery allows users to create galleries and view larger versions of images, galleries and videos in a lightbox (overlay) effect optimized for mobile devices.
-Version: 2.3.2
+Version: 2.3.3
 Author: dFactory
 Author URI: http://www.dfactory.eu/
 Plugin URI: http://www.dfactory.eu/plugins/responsive-lightbox/
@@ -43,7 +43,7 @@ include_once( RESPONSIVE_LIGHTBOX_PATH . 'includes' . DIRECTORY_SEPARATOR . 'fun
  * Responsive Lightbox class.
  *
  * @class Responsive_Lightbox
- * @version	2.3.2
+ * @version	2.3.3
  */
 class Responsive_Lightbox {
 
@@ -305,7 +305,7 @@ class Responsive_Lightbox {
 			'origin_left'		=> true,
 			'origin_top'		=> true
 		),
-		'version' => '2.3.2',
+		'version' => '2.3.3',
 		'activation_date' => ''
 	);
 	public $options = array();
@@ -560,7 +560,7 @@ class Responsive_Lightbox {
 	 */
 	public function update_plugin( $upgrader_object, $options ) {
 		// plugin update?
-		if ( $options['action'] === 'update' && $options['type'] === 'plugin' ) {
+		if ( $options['action'] === 'update' && $options['type'] === 'plugin' && array_key_exists( 'plugins', $options ) && is_array( $options['plugins'] ) ) {
 			// get current plugin name
 			$current_plugin = plugin_basename( __FILE__ );
 
@@ -1651,11 +1651,16 @@ class Responsive_Lightbox {
 	 * @return void
 	 */
 	public function init_gutenberg() {
+		global $wp_version;
+
 		// actions
 		add_action( 'enqueue_block_editor_assets', array( $this, 'gutenberg_enqueue_scripts' ) );
 
 		// filters
-		add_filter( 'block_categories', array( $this, 'block_category' ) );
+		if ( version_compare( $wp_version, '5.8', '>=' ) )
+			add_filter( 'block_categories_all', array( $this, 'block_category' ) );
+		else
+			add_filter( 'block_categories', array( $this, 'block_category' ) );
 	}
 
 	/**
@@ -1681,10 +1686,26 @@ class Responsive_Lightbox {
 	 * @return void
 	 */
 	public function gutenberg_enqueue_scripts() {
+		global $pagenow;
+
+		// get main instance
 		$rl = Responsive_Lightbox();
 
+		// block editor dependencies
+		$dependencies = [ 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-components' ];
+
+		// widgets page?
+		if ( $pagenow === 'widgets.php' )
+			$dependencies[] = 'wp-edit-widgets';
+		// customizer?
+		elseif ( $pagenow === 'customize.php' )
+			$dependencies[] = 'wp-customize-widgets';
+		// post page?
+		else
+			$dependencies[] = 'wp-editor';
+
 		// enqueue script
-		wp_enqueue_script( 'responsive-lightbox-block-editor-script', RESPONSIVE_LIGHTBOX_URL . '/js/gutenberg.min.js', array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor', 'wp-components' ), $rl->defaults['version'] );
+		wp_enqueue_script( 'responsive-lightbox-block-editor-script', RESPONSIVE_LIGHTBOX_URL . '/js/gutenberg.min.js', $dependencies, $rl->defaults['version'] );
 
 		// enqueue styles
 		wp_enqueue_style( 'responsive-lightbox-block-editor-styles', RESPONSIVE_LIGHTBOX_URL . '/css/gutenberg.min.css', '', $rl->defaults['version'] );

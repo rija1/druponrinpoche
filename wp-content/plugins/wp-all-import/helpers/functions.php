@@ -75,7 +75,7 @@ function wpai_wp_enqueue_code_editor( $args ) {
 }
 
 	if ( ! function_exists('pmxi_if') ) {
-		function pmxi_if( $left_condition, $operand = '', $right_condition = '', $then, $else = '' ) {
+		function pmxi_if( $left_condition, $operand, $right_condition, $then, $else = '' ) {
 			$str = trim(implode(' ', array($left_condition, html_entity_decode($operand), $right_condition)));												
 			return (eval ("return ($str);")) ? $then : $else;
 		}		

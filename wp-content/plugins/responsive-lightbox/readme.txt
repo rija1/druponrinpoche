@@ -3,8 +3,8 @@ Contributors: dfactory
 Donate link: http://www.dfactory.eu/
 Tags: gallery, galleries, image, images, responsive, lightbox, photo, photography, masonry, video, builder
 Requires at least: 5.0
-Tested up to: 5.6.1
-Stable tag: 2.3.2
+Tested up to: 5.8.1
+Stable tag: 2.3.3
 Requires PHP: 5.2.4
 License: MIT License
 License URI: http://opensource.org/licenses/MIT
@@ -138,6 +138,11 @@ Responsive Lightbox and Gallery plugin comes with many styles and effects alread
 2. screenshot-2.jpg
 
 == Changelog ==
+
+= 2.3.3 =
+* Fix: Invalid argument in upgrader process
+* Fix: Widgets warning in WordPress 5.8
+* Fix: Warning in wp_localize_script usage
 
 = 2.3.2 =
 * Fix: Add option to enable/disable advanced capability management
@@ -460,5 +465,7 @@ Initial release
 
 == Upgrade Notice ==
 
-= 2.3.2 =
-* Fix: Multiple bugfixes and improvements
+= 2.3.3 =
+* Fix: Invalid argument in upgrader process
+* Fix: Widgets warning in WordPress 5.8
+* Fix: Warning in wp_localize_script usage

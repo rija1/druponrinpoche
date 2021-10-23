@@ -16,7 +16,7 @@
 					elements = $( event.infinite.response ).find( '.rl-gallery-container[data-gallery_id="' + event.gallery_id + '"] .rl-gallery-item' );
 
 				if ( typeof window['rlArgsBasicMasonryGallery' + gallery_no] !== 'undefined' ) {
-					var options = JSON.parse( window['rlArgsBasicMasonryGallery' + gallery_no] );
+					var options = window['rlArgsBasicMasonryGallery' + gallery_no].data;
 
 					// init masonry
 					grid = gallery.masonry( {
@@ -50,7 +50,7 @@
 					gallery_no = parseInt( grid.data( 'gallery_no' ) ) + 1;
 
 				if ( typeof window['rlArgsBasicMasonryGallery' + gallery_no] !== 'undefined' ) {
-					var options = JSON.parse( window['rlArgsBasicMasonryGallery' + gallery_no] );
+					var options = window['rlArgsBasicMasonryGallery' + gallery_no].data;
 
 					// init masonry
 					grid.masonry( {
@@ -73,7 +73,7 @@
 					gallery_no = parseInt( grid.data( 'gallery_no' ) ) + 1;
 
 				if ( typeof window['rlArgsBasicMasonryGallery' + gallery_no] !== 'undefined' ) {
-					var options = JSON.parse( window['rlArgsBasicMasonryGallery' + gallery_no] );
+					var options = window['rlArgsBasicMasonryGallery' + gallery_no].data;
 
 					// init masonry
 					grid.masonry( {

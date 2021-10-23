@@ -143,10 +143,11 @@ class Responsive_Lightbox_Remote_Library {
 	 * @return void
 	 */
 	public function remote_library_scripts() {
+		global $wp_version;
 		global $pagenow;
 
 		// display only for post edit pages
-		if ( ! ( $pagenow === 'post.php' || $pagenow === 'post-new.php' ) )
+		if ( ! ( ( $pagenow === 'post.php' || $pagenow === 'post-new.php' ) || ( version_compare( $wp_version, '5.8', '>=' ) && ( $pagenow === 'widgets.php' || $pagenow === 'customize.php' ) ) ) )
 			return;
 
 		// get main instance
