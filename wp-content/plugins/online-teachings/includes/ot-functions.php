@@ -8,7 +8,6 @@ add_action( 'init', 'create_ot_course_regis' );
 add_filter( 'rwmb_meta_boxes', 'ot_get_meta_box' );
 add_action("wp_ajax_online_teaching_register", "online_teaching_register");
 add_action("wp_ajax_nopriv_online_teaching_register", "please_login");
-add_action("wp_ajax_session_waiting_open", "session_waiting_open");
 add_action( 'mb_relationships_init', 'mbRelationships');
 add_filter( 'um_shortcode_args_filter', 'umShortcode', 10, 3 );
 add_filter( 'manage_users_columns', 'new_modify_user_table' );
@@ -22,8 +21,8 @@ add_action( 'manage_ot-attendance_posts_custom_column', 'new_modify_attendance_t
 add_action('save_post','createOnlineCourseSessions');
 add_action('save_post','initAllAttendance');
 add_action( 'delete_post', 'deleteAllObjectRelationships', 10 );
-add_filter( 'um_account_tab_general_fields', 'my_account_tab_general_fields', 10, 2 );
-// TODO : handle um_predefined_fields_hook to add email_updates field
+add_action('um_after_account_general', 'after_account_general_custom_fields', 100);
+add_action('um_account_pre_update_profile', 'account_pre_update_profile_newsletter_subscription', 100, 2);
 
 const TS_TMZ = 'Europe/London';
 
@@ -49,6 +48,10 @@ const COURSE_REGIS_STATUS_COMPLETE = 2;
 const COURSE_STATUS_NOT_STARTED = 0;
 const COURSE_STATUS_STARTED = 1;
 const COURSE_STATUS_FINISHED = 2;
+
+const MCHIMP_API_KEY = '287c02b9a2ef8cc3fea196fb44097d5a';
+const MCHIMP_SVR_PREF = 'us10';
+const MCHIMP_LIST_ID = 'ca06c2bf51';
 
 function script_enqueuer() {
 
@@ -515,6 +518,21 @@ function ot_get_meta_box( $meta_boxes ) {
                 'clone' => 'true',
                 'name' => esc_html__( 'Session Times (UK Time)', 'ot_txtd' ),
             ),
+            array(
+                'id'              => $prefix . 'zoom_meeting',
+                'name'    => 'Zoom Meeting Details',
+                'type'    => 'text_list',
+                'options' => array(
+                    'https://....'      => 'Join Zoom Meeting URL',
+                    '123456' => 'Meeting ID',
+                    'xxxxx' => 'Passcode',
+                ),
+            ),
+            array(
+                'id' => $prefix . 'zoom_name',
+                'type' => 'text',
+                'name' => esc_html__( 'Zoom Name', 'ot_txtd' ),
+            ),
         ),
     );
 
@@ -585,29 +603,6 @@ function ot_get_meta_box( $meta_boxes ) {
                 // Placeholder text
                 'placeholder'     => 'Select an Item',
             ),
-            array(
-                'id'              => $prefix . 'youtube_lang_url',
-                'name'    => 'Youtube Videos Language / URLs',
-                'type'    => 'text_list',
-                'clone' => true,
-
-                // Options: array of Placeholder => Label for text boxes
-                // Number of options are not limited
-                'options' => array(
-                    'English'      => 'Language',
-                    'https://www.youtube.com/watch?v=abcd' => 'Video URL',
-                ),
-            ),
-            array(
-                'id'              => $prefix . 'zoom_meeting',
-                'name'    => 'Zoom Meeting Details',
-                'type'    => 'text_list',
-                'options' => array(
-                    'https://....'      => 'Join Zoom Meeting URL',
-                    '123456' => 'Meeting ID',
-                    'xxxxx' => 'Passcode',
-                ),
-            ),
         ),
     );
 
@@ -675,27 +670,45 @@ function online_teaching_register() {
     if ( !wp_verify_nonce( $_REQUEST['nonce'], "online_teaching_register_nonce")) {
         exit("Can't verify your session.");
     }
+    
+    $result=array();
 
     $userId = get_current_user_id();
-    $postId = $_REQUEST["post_id"];
+    $courseId = $_REQUEST["post_id"];
     $registerAction = $_REQUEST["register"];
 
-    $already_registered = MB_Relationships_API::has( $userId, $postId, 'users_to_course' );
-
+    $already_registered = MB_Relationships_API::has( $userId, $courseId, 'users_to_course' );
+    
     if($registerAction == 1) { // REGISTER ACTION
         if ( $already_registered ) {
             $result['type'] = "error";
             $result['registered'] = "1";
             $result['message'] = '<span class="modal_msg_hey">You are already registered to this course.</span>';
         } else {
-            MB_Relationships_API::add( $userId, $postId, 'users_to_course' );
+
+            // We create the course registration object
+            $newCourseRegisData = array(
+            'post_content'  => '',
+            'post_status'   => 'publish',
+            'post_type'     => 'ot-course-regis'
+            );
+            $newCourseRegisId = wp_insert_post( $newCourseRegisData, true);
+
+            rwmb_set_meta( $newCourseRegisId, '_status', COURSE_REGIS_STATUS_COMPLETE);
+            // Associate course registration with user
+            MB_Relationships_API::add( $newCourseRegisId, $userId, 'course_regis_to_user' );
+            // Associate course registration with course
+            MB_Relationships_API::add( $newCourseRegisId, $courseId, 'course_regis_to_course' );
+
+            // Associate course with user
+            MB_Relationships_API::add( $userId, $courseId, 'users_to_course' );
             $result['type'] = "success";
             $result['message'] = '<span class="modal_msg_alright">You have been successfully registered to this course. <br/>A link to the Youtube teaching video will appear on this page about 15 minutes before each session.</span>';
             $result['registered'] = "1";
         }
     } elseif($registerAction == 2) { // UNREGISTER ACTION
         if ( $already_registered ) {
-            MB_Relationships_API::delete( $userId, $postId, 'users_to_course' );
+            MB_Relationships_API::delete( $userId, $courseId, 'users_to_course' );
             $result['type'] = "success";
             $result['message'] = '<span class="modal_msg_alright">You have been unregistered from this course.</span>';
             $result['registered'] = "0";
@@ -726,86 +739,6 @@ function online_teaching_register() {
  */
 function please_login() {
     echo "You must log in to register to a course";
-    die();
-}
-
-function getSessionWaitingOpenHtml($sessionId,$timeOnly=false)
-{
-
-    if (rwmb_meta('_status', array(), $sessionId) == SESS_STATUS_OPEN) {
-        $session = get_post($sessionId);
-        $html = '<div>'.
-                pll__('The teaching livestream is now open : ').
-                '<a class="join_session_main" href="' . get_permalink($sessionId) . '">' . pll__('Access <i>' . $session->post_title . '</i>') . '</a>
-                </div>';
-        return $html;
-    } else {
-
-        $tmzObj = new DateTimeZone(TS_TMZ);
-        $sessionTime = new DateTime(rwmb_meta('_session_time', array(), $sessionId), $tmzObj);
-        $now = new DateTime('now', $tmzObj);
-        $session = get_post($sessionId);
-
-        // TODO : FIXME
-        $timeOnly = false;
-
-        // If session start time has passed
-        if(!$timeOnly) {
-            $timeLeftDisplay = '<div class="teaching_waiting_open_wait">';
-            $timeLeftDisplay .= '<div class="teaching_waiting_open_left">';
-            if ($now <= $sessionTime) {
-                $timeLeft = $sessionTime->diff($now, false);
-                $timeLeftDisplay .= '<p>' . $session->post_title . pll__(' starts in ') . '<span class="waitMinutes">' . $timeLeft->format('%i minutes') . '</span></p>';
-                $timeLeftDisplay .= '<div id="session_waiting_open_time" >';
-            }
-        }
-
-        $timeLeftDisplay .= '<div class="pleaseWait">' . '<b>' . pll__('Please refresh this page closer to the time.') .'</b>'.pll__(' The link to access the livestream will appear here shortly...') . '</div>';
-
-        if(!$timeOnly) {
-            $timeLeftDisplay .= '</div>';
-            $timeLeftDisplay .= '</div>';
-            $timeLeftDisplay .= '<div class="teaching_waiting_open_right"><img width="55" src="' . get_stylesheet_directory_uri() . '/assets/images/logo_dharma_wheel_gold.png"/></div>';
-            $timeLeftDisplay .= '</div>';
-        }
-
-        return $timeLeftDisplay;
-
-    }
-    return '';
-}
-
-function session_waiting_open() {
-
-    // nonce check for an extra layer of security, the function will exit if it fails
-    if ( !wp_verify_nonce( $_REQUEST['nonce'], "session_waiting_open_nonce")) {
-        exit("Can't verify your session.");
-    }
-
-    $sessionId = $_REQUEST["session_id"];
-    $result = array();
-
-    if(rwmb_meta('_status',array(),$sessionId) == SESS_STATUS_OPEN) {
-        $result['status'] = "open";
-        $result['message'] = getSessionWaitingOpenHtml($sessionId,false);
-    } else {
-        $result['status'] = "waiting";
-        $result['message'] = getSessionWaitingOpenHtml($sessionId,true);
-    }
-
-    $result['type'] = "success";
-
-
-    // Check if action was fired via Ajax call. If yes, JS code will be triggered, else the user is redirected to the post page
-    if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-        $result = json_encode($result);
-        echo $result;
-    }
-    else {
-        header("Location: ".$_SERVER["HTTP_REFERER"]);
-    }
-
-    // don't forget to end your scripts with a die() function - very important
     die();
 }
 
@@ -1316,6 +1249,7 @@ function setAttendanceData($joinedTime,$sessionId,$userId,$courseId) {
 }
 
 function showSessionInfo($session) {
+
     $allowedSessionStatuses = array(SESS_STATUS_OPEN,SESS_STATUS_WAITING,SESS_STATUS_TOO_LATE,SESS_STATUS_FINISHED);
     return in_array($session->session_final_status,$allowedSessionStatuses);
 }
@@ -1435,60 +1369,180 @@ function dateSort($a, $b) {
     return strtotime($a) - strtotime($b);
 }
 
+function after_account_general_custom_fields()
+{
+    $custom_fields = [
+        'newsletter_subscription' => [
+            'title'    => 'Newsletter subscription',
+            'label'    => 'Newsletter subscription',
+            'metakey'  => 'newsletter_subscription',
+            'type'     => 'checkbox',
+            'options' => ['Subscribe'],
+            'required' => 0,
+            'public'   => 1,
+            'editable' => 1,
+        ],
+        'email_notifications' => [
+            'title'    => 'Email notifications',
+            'label'    => 'Receive email updates about courses you are registered to',
+            'metakey'  => 'email_notifications',
+            'type'     => 'checkbox',
+            'options' => ['Yes'],
+            'required' => 0,
+            'public'   => 1,
+            'editable' => 1,
+        ],
+    ];
 
-function getSessionDayNb($currentSessionId) {
-    $tmzObj = new DateTimeZone(TS_TMZ);
+    $fields = apply_filters('um_account_secure_fields', $custom_fields, um_user('ID'));
 
+    UM()->builtin()->saved_fields = $fields;
+    UM()->builtin()->set_custom_fields();
 
-    $course = getSessionCourse($currentSessionId);
-    $sessions = getCourseSessions($course->ID);
-    $dates = array();
-    $datesByDay = array();
-    $currentSessionTimeRaw = rwmb_meta('_session_time',array(),$currentSessionId->ID);
-    $currentSessionTime = new DateTime($currentSessionTimeRaw,$tmzObj);
-    foreach($sessions as $session) {
-        $sessionTime = new DateTime(rwmb_meta('_session_time',array(),$session->ID),$tmzObj);
-        $dates[$sessionTime->format('Y-m-d')][] = rwmb_meta('_session_time',null,$session->ID);
+    $output = '';
+    foreach ($fields as $key => $data) {
+        $output .= UM()->fields()->edit_field($key, $data);
     }
-//    usort($dates, "dateSort");
-    pa($dates);
-    pa($currentSessionTime->format('Y-m-d'));
-    if(array_key_exists( $currentSessionTime->format('Y-m-d'),$dates)) {
-        $res = array_search($currentSessionTime->format('Y-m-d'),$dates);
-        pa($res   ,1,1);
-    }
-
+    echo $output;
 }
 
-function getUpcomingTeachingHtml($userId,$nonce) {
-    $courses = getUserCourses($userId);
-    foreach($courses as $course) {
-        $session = getCurrentSession($course->ID);
-        if($session && (in_array($session->session_final_status,array(SESS_STATUS_WAITING,SESS_STATUS_OPEN)) )) {
-            $html =  '
-            <div class="teaching_waiting_open" id="session_waiting_open_'.$session->ID.'">'.getSessionWaitingOpenHtml($session->ID,false).'</div>
-            ';
-            if($session->session_final_status==SESS_STATUS_WAITING) {
-                $html .= '<script type="text/javascript">
-                jQuery( document ).ready(function() {
-                    // TODO : RESTORE WHEN SERVER CAN HANDLE
-                    //sessionWaitingOpenRefresh("' . $session->ID . '","' . $nonce . '");
-                });
-                </script>
-                ';
-            }
+function account_pre_update_profile_newsletter_subscription($changes, $user_id)
+{
+    $fields = array('newsletter_subscription',
+                    'email_notifications');
 
-            return $html;
+    $userdata = get_userdata($user_id);
+    $email = $userdata->data->user_email;
+
+    $newsletterSubs = false;
+    $emailNotifSubs = false;
+    if(array_key_exists('newsletter_subscription',$_POST)) {
+        $newsletterSubs = true;
+    }
+    if(array_key_exists('email_notifications',$_POST)) {
+        $emailNotifSubs = true;
+    }
+
+    $email='newreedz@test.com';
+
+    // If one of the checkboxes is ticked user must be subscribed to our list
+    if($newsletterSubs || $emailNotifSubs) {
+        subscribeNewMchimpUser($email);
+    }
+
+    if ($userObject = userMchimpExists($email)) {
+        // if ($userObject->status == 'unsubscribed') {
+
+        // }
+    }
+
+    // if (isUserMchimpTag($email,'tsquare_newsletter')) {
+
+    // }
+
+    // if (isUserMchimpTag($email,'tsquare_notifications')) {
+
+    // }
+
+    foreach($fields as $field) {
+        update_user_meta($user_id, $field, $_POST[$field]);
+    }
+    
+};
+
+function subscribeNewMchimpUser($email) {
+
+    $client = getMchimpMarketingConnClient();
+
+    try {
+        $response = $client->lists->addListMember(MCHIMP_LIST_ID, [
+            "email_address" => $email,
+            "status" => "subscribed",
+            "merge_fields" => [
+            "FNAME" => "Prudence",
+            "LNAME" => "McVankab"
+            ]
+        ]);
+        pa($response,1);
+    } catch (GuzzleHttp\Exception\ClientException $e) {
+        if ($e->getCode() == '400') {
+            pa('HELLO',1);
+            // User exists, needs updating
         }
     }
 
-    return '';
+}
+
+function getUserMchimpTags($email) {
+
+    require_once __DIR__ . '/lib/mailchimp-marketing-php/vendor/autoload.php';
+
+    $client = new MailchimpMarketing\ApiClient();
+    $client->setConfig([
+        'apiKey' => '',
+        'server' => 'us10',
+    ]);
+
+    $response = $client->lists->getListMemberTags("list_id", "subscriber_hash");
+
+    $response = $client->lists->getListMemberTags("ca06c2bf51", md5(strtolower($email)));
+
+
+    return $response['tags'];
+}
+
+function isUserMchimpTag($email,$tag) {
+    $userTags = getUserMchimpTags($email);
+    if (in_array($tag,$userTags)) {
+        return true;
+    }
+    return false;
+}
+
+
+function getMchimpMarketingConnClient() {
+    require_once __DIR__ . '/lib/mailchimp-marketing-php/vendor/autoload.php';
+
+    $client = new MailchimpMarketing\ApiClient();
+    $client->setConfig([
+        'apiKey' => MCHIMP_API_KEY,
+        'server' => MCHIMP_SVR_PREF,
+    ]);
+
+    return $client;
+}
+
+function userMchimpExists($email) {
+
+    $client = getMchimpMarketingConnClient();
+    
+try {
+    
+    $response = $client->lists->getListMember(MCHIMP_LIST_ID, md5(strtolower($email)));
+    
+} catch (GuzzleHttp\Exception\ClientException $e) {
+    // 404 error means user is not found
+      if($e->getCode()=='404') {
+          return false;
+      }
+}
+
+// ID is found, user exists
+if(!empty($response->id)) {
+    return $response;
+}
+
+return false;
 
 }
 
-function my_account_tab_general_fields( $args, $shortcode_args ) {
-    $args .= ',email_updates';
-    return $args;
- }
-
-
+/**
+ * Get number to be used at start of Zoom name
+ * 
+ */
+function getZoomNumber($userId) {
+    $zoomNumber = str_pad($userId,4,'0',STR_PAD_LEFT);
+    return $zoomNumber;
+    // pa($user,1);
+    // pa($zoomName,1);
+}
