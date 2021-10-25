@@ -13,7 +13,8 @@ $unregLink = admin_url('admin-ajax.php?action=online_teaching_register&register=
 $regLink = admin_url('admin-ajax.php?action=online_teaching_register&register=1&post_id='.$post->ID.'&nonce='.$nonce);
 $registrationOpen = isRegistrationOpen();
 $currentSession = getCurrentSession(get_the_ID());
-$showSessionInfo = showSessionInfo($currentSession);
+$zoomNumber = getZoomNumber($userId);
+$showSessionInfo = false; // We don't bother with stuff regarding current session anymore //showSessionInfo($currentSession);
 ?>
 
 
@@ -42,6 +43,12 @@ $showSessionInfo = showSessionInfo($currentSession);
                         <div class="article-text">
                             <?php the_content(); ?>
                             
+<div class="zoomNumber">
+<div class="zoomNumberNotif">Please ensure that your username in Zoom starts with your zoom number below, so that you can be identified and marked as present.</div>
+<div class="yourZoomNumberLine">Your Zoom Number : <span class="yourZoomNumber"><?php echo $zoomNumber; ?></span></div>
+</div>
+
+
                             <a style="display:<?php echo ($alreadyRegistered) ? 'block' : 'none' ; ?>;" class="teaching_unregister teaching_reg_action" href="<?php echo $unregLink; ?>">
                                 <span><?php echo pll__('Unregister from this course'); ?></span>
                             </a>
@@ -65,7 +72,7 @@ $showSessionInfo = showSessionInfo($currentSession);
                                                 <label class="um-field-checkbox">
                                                     <input type="checkbox" name="attent_all_sessions[]" value="I will host a group viewing. (Only your account will be used to join the Zoom meeting)">
                                                     <span class="um-field-checkbox-state"><i class="um-icon-android-checkbox-outline-blank"></i></span>
-                                                    <span class="um-field-checkbox-option">I will host a group viewing, meaning that other Tirthika Square members will view the teaching with me, all using a single account.</span>
+                                                    <span class="um-field-checkbox-option">I will host a group viewing, meaning that other Tirthika Square members will view the teaching with me.</span>
                                                 </label>
                                                 <div class="um-clear"></div>
                                             </div>
@@ -107,8 +114,6 @@ $showSessionInfo = showSessionInfo($currentSession);
 <?php get_footer(); ?>
 
 <script type="text/javascript">
-alert("ok");
-alert(myAjax.ajaxurl);
 
     function teachingRegUnregAction(action) {
 
@@ -136,10 +141,15 @@ alert(myAjax.ajaxurl);
         jQuery.ajax({
             type : "post",
             dataType : "json",
-            url : myAjax.ajaxurl,
-            data : {action: "online_teaching_register", post_id : post_id, register : regaction, nonce: nonce},
+            url : "<?php echo admin_url( 'admin-ajax.php' ); ?>",
+            data : { action: "online_teaching_register", post_id : post_id, register : regaction, nonce: nonce },
+            // error: function (response) {alert(response.message);return;},
             success: function(response) {
-//                    if(response.type == "success") {
+            // if(response.type == "success") {
+                alert(response.message);
+                alert(response.type);
+                alert(response.registered);
+                
                 jQuery(".modal_text").html(response.message);
                 jQuery(".modal_loading").hide();
                 jQuery(".modal_content").show();
@@ -157,8 +167,11 @@ alert(myAjax.ajaxurl);
                     jQuery('.registYes').hide();
                     jQuery('.registNo').show();
                 }
-            }
+            // }
+        }
         });
+
+return;
 
 
     }

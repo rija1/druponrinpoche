@@ -6,7 +6,6 @@ if ( !is_user_logged_in() ) {
     exit( wp_redirect( $redirect ) );
 }
 $userId = get_current_user_id();
-$nonce = wp_create_nonce("session_waiting_open_nonce");
 ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
@@ -32,7 +31,6 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
                     // pa(get_class_methods($the_query));
    
                     ?>
-                    <?php echo getUpcomingTeachingHtml($userId,$nonce); ?>
                     <?php if($the_query->have_posts() ) : ?>
                         <?php while ( $the_query->have_posts() ) : ?>
                             <?php
@@ -71,30 +69,3 @@ $nonce = wp_create_nonce("session_waiting_open_nonce");
     </div> <!--  END section-blog  -->
 <?php endwhile; ?>
 <?php get_footer(); ?>
-
-<script type="text/javascript">
-    function sessionWaitingOpenRefresh(session_id,nonce) {
-
-        session_id = "<?php echo $currentSession->ID; ?>";
-        nonce = "<?php echo $nonce; ?>";
-        jQuery.ajax({
-            type : "post",
-            dataType : "json",
-            url : myAjax.ajaxurl,
-            data : {action: "session_waiting_open", session_id : session_id, nonce: nonce},
-            success: function(response) {
-
-                if(response.status == "waiting") {
-                    setTimeout( function(){
-                        jQuery("#session_waiting_open_"+session_id).html(response.message);
-                        sessionWaitingOpenRefresh(session_id,nonce);
-                    }, 10000 );
-                } else if(response.status == "open")
-                    jQuery("#session_waiting_open_"+session_id).html(response.message);
-                // TODO : Add button BEFORE details and regis
-               // jQuery("#session_waiting_open_"+session_id).html(response.message);
-                }
-
-            });
-        }
-</script>
