@@ -14,6 +14,7 @@ $dkr-brown: #80784c;
 $dkr-gold:#9b940d;
 $dkr-lightgrey: #f6f6f6;
 $dkr-darkgrey: #656250;
+$grey : #9d9b9b;
 
 
 /**  fonts  **/
@@ -460,13 +461,13 @@ img {
 /**  gray  **/
 
 .color-gray, html, body, .footer a, .testimonials-carousel .owl-controls .owl-buttons div {
-    color: #9d9b9b;
+    color: $grey;
 }
 
 .table-support {
-    color: #9d9b9b;
+    color: $grey;
     a {
-        color: #9d9b9b;
+        color: $grey;
     }
 }
 
@@ -1933,84 +1934,6 @@ li.home_post {
     }
 }
 
-/*li.lang-item-en a {*/
-/*display:block;*/
-/*background: url('assets/images/flag_en.png');*/
-/*width:16px;*/
-/*height:11px;*/
-/*}*/
-
-/*li.lang-item-zh a {*/
-/*display:block;*/
-/*background: url('assets/images/flag_zh.png');*/
-/*width:16px;*/
-/*height:11px;*/
-/*}*/
-
-/*li.lang-item-bo a {*/
-/*display:block;*/
-/*background: url('assets/images/flag_bo.png');*/
-/*width:16px;*/
-/*height:11px;*/
-/*content: '';*/
-/*}*/
-
-/*Language Switcher*/
-
-.poly_switcher {
-    padding-top: 10px;
-}
-
-ul.poly_switcher {
-    position: absolute;
-    right: 0;
-    margin-right: 0;
-    display: grid;
-    grid-gap: 10px;
-//    grid-template-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr; // when 3 languages
-    margin-right: 10px;
-    a {
-        font-family: 'Raleway';
-        color: $dkr-brown;
-        font-size: 11px;
-        font-weight: 300;
-    }
-}
-
-li {
-    &.lang-item-bo a {
-        font-size: 14px;
-    }
-    &.lang-item-zh a {
-        font-size: 11px;
-    }
-}
-
-ul.poly_switcher li {
-    padding: 3px 5px 5px 5px;
-    text-align: center;
-    &.current-lang {
-        /*border:solid 1px #555;*/
-        background: #fff;
-        border-radius: 3px;
-        /*background: #fff;*/
-    }
-}
-
-/**  gray  **/
-
-.color-gray, html, body, .footer a, .testimonials-carousel .owl-controls .owl-buttons div {
-    color: #656250;
-}
-
-.table-support {
-    color: #656250;
-    a {
-        color: #656250;
-    }
-}
-
 /*Breadcrumbs*/
 
 .breadcrumbs {
@@ -3256,6 +3179,33 @@ a.course_link {
 
 .full-bio-tibetan {
         font-size:24px;
+}
+
+.home_quote {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 30px;
+    padding: 35px 170px 20px 170px;
+}
+.home_quote_title {
+    text-align: center;
+    font-size: 24px;   
+}
+.home_quote_text {
+    text-align: center;   
+    font-size: 18px; 
+}
+.home_quote_button {
+    text-align: center;
+    font-size: 12px; 
+    a {
+        border:solid 1px $grey;
+        padding:8px;
+        &:hover {
+            border:solid 1px $dkr-gold;
+            color:$dkr-gold;
+        }
+    }
 }
 
 

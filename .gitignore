@@ -31,3 +31,5 @@ dumps/
 /sitemap.xml
 /sitemap.xml.gz
 
+wp-content/.DS_Store
+.DS_Store
