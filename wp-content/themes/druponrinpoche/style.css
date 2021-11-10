@@ -3084,11 +3084,13 @@ a.course_link {
 .home_quote_text {
   text-align: center;
   font-size: 18px;
+  line-height: 31px;
 }
 
 .home_quote_button {
   text-align: center;
   font-size: 12px;
+  margin-top: 10px;
 }
 
 .home_quote_button a {
@@ -3099,6 +3101,8 @@ a.course_link {
 .home_quote_button a:hover {
   border: solid 1px #9b940d;
   color: #9b940d;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
 }
 
 /**  mobile  **/

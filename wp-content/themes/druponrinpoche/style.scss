@@ -3194,16 +3194,23 @@ a.course_link {
 .home_quote_text {
     text-align: center;   
     font-size: 18px; 
+    line-height: 31px;
 }
 .home_quote_button {
     text-align: center;
-    font-size: 12px; 
+    font-size: 12px;
+    margin-top: 10px;
     a {
         border:solid 1px $grey;
         padding:8px;
         &:hover {
             border:solid 1px $dkr-gold;
             color:$dkr-gold;
+            -webkit-transition: all .3s ease;
+            -moz-transition: all .3s ease;
+            -ms-transition: all .3s ease;
+            -o-transition: all .3s ease;
+            transition: all .3s ease;
         }
     }
 }
