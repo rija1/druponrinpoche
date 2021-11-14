@@ -22,6 +22,15 @@ $dkr-ot-blue-hover:#647cab;
 /**  fonts  **/
 
 @font-face {
+    font-family: 'drfont';
+    src: 
+    url('assets/fonts/drfont.woff') format('woff'), 
+    url('assets/fonts/drfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+@font-face {
   font-family: 'TSFont';
   src: 
   url('assets/fonts/berkshireswash-reg-tsquare.woff2') format('woff2'), 
@@ -41,6 +50,12 @@ $dkr-ot-blue-hover:#647cab;
     font-style: normal;
 }
 
+
+
+.icon-drawing:before {
+    font-family: "drfont";
+  content: "\e900";
+} 
 
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
@@ -1887,6 +1902,8 @@ li.home_post {
         li.home_post {
             .home_post_txt {
                 position: relative;
+                height: 125px;
+                overflow: hidden; 
                 .read_more {
                     position: absolute;
                     top: 85px;
@@ -1953,10 +1970,7 @@ li.home_post {
 .menu-top-container .menu-top a {
     font-weight:400;
 }
-.posts-grid .article-text, .featured-grid .article-text {
-    font-weight: 400;
-    font-family: 'Raleway';
-}
+
 // Home post new style - END
 
 .wide {
@@ -2382,7 +2396,10 @@ li.page_item_has_children a {
     font-size: 14px;
     color: #fff;
 }
-
+.posts-grid .article-text, .featured-grid .article-text {
+    font-weight: 400;
+    font-family: 'Raleway';
+}
 .category-news .featured-grid {
     padding: 5px 30px 5px 30px;
     display: grid;
@@ -2401,6 +2418,7 @@ li.page_item_has_children a {
             font-size: 13px;
         }
         .article-text {
+            height: 165px;
             p {
                 font-size:14px;
             }
@@ -2971,7 +2989,7 @@ p.teaching_info {
 
 
 .category-news .article-blog .article-text {
-    padding: 0 17px 10px 17px;
+    
 }
 
 .category-news {
@@ -2979,6 +2997,22 @@ p.teaching_info {
         height: 416px;
         .article-text {
             position:relative;
+            padding: 0 17px 10px 17px;
+            height: 180px;
+            overflow:hidden; 
+            // .article-text-gradient {
+            //     position:absolute;
+            //     bottom:0px;
+            //     left:0px;
+            //     width:100%;
+            //     height:10px;
+            //     background: -moz-linear-gradient(top,  rgba(137,255,241,0) 0%, rgba(255,255,255,255) 100%); /* FF3.6+ */
+            //     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,255)), color-stop(100%,rgba(0,0,0,1))); /* Chrome,Safari4+ */
+            //     background: -webkit-linear-gradient(top,  rgba(137,255,241,0) 0%,rgba(255,255,255,255) 100%); /* Chrome10+,Safari5.1+ */
+            //     background: -o-linear-gradient(top,  rgba(137,255,241,0) 0%,rgba(255,255,255,255) 100%); /* Opera 11.10+ */
+            //     background: -ms-linear-gradient(top,  rgba(137,255,241,0) 0%,rgba(255,255,255,255) 100%); /* IE10+ */
+            //     background: linear-gradient(to bottom,  rgba(137,255,241,0) 0%,rgba(255,255,255,255) 100%); /* W3C */
+            // }       
         }
     }
     a.article-link {

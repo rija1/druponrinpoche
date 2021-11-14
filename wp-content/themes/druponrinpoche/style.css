@@ -10,6 +10,13 @@ Text Domain:  druponrinpoche
 */
 /**  fonts  **/
 @font-face {
+  font-family: 'drfont';
+  src: url("assets/fonts/drfont.woff") format("woff"), url("assets/fonts/drfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
   font-family: 'TSFont';
   src: url("assets/fonts/berkshireswash-reg-tsquare.woff2") format("woff2"), url("assets/fonts/berkshireswash-reg-tsquare.woff") format("woff"), url("assets/fonts/berkshireswash-reg-tsquare.ttf") format("truetype");
   font-weight: normal;
@@ -21,6 +28,11 @@ Text Domain:  druponrinpoche
   src: url("assets/fonts/fontawesome-webfont-webfont.woff2") format("woff2"), url("assets/fonts/fontawesome-webfont-webfont.woff") format("woff"), url("assets/fonts/fontawesome-webfont-webfont.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+}
+
+.icon-drawing:before {
+  font-family: "drfont";
+  content: "\e900";
 }
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
@@ -1863,6 +1875,8 @@ li.home_post p {
 
 .home_news_carousel .latestnews li.home_post .home_post_txt {
   position: relative;
+  height: 125px;
+  overflow: hidden;
   text-align: left;
   margin-left: 180px;
   padding: 10px 14px 10px 14px;
@@ -1929,11 +1943,6 @@ li.home_post {
 
 .menu-top-container .menu-top a {
   font-weight: 400;
-}
-
-.posts-grid .article-text, .featured-grid .article-text {
-  font-weight: 400;
-  font-family: 'Raleway';
 }
 
 .wide {
@@ -2351,6 +2360,11 @@ li.page_item_has_children a {
   color: #fff;
 }
 
+.posts-grid .article-text, .featured-grid .article-text {
+  font-weight: 400;
+  font-family: 'Raleway';
+}
+
 .category-news .featured-grid {
   padding: 5px 30px 5px 30px;
   display: -ms-grid;
@@ -2379,6 +2393,10 @@ li.page_item_has_children a {
 
 .category-news .featured-grid .article-blog:first-child .category-post-date {
   font-size: 13px;
+}
+
+.category-news .featured-grid .article-blog:first-child .article-text {
+  height: 165px;
 }
 
 .category-news .featured-grid .article-blog:first-child .article-text p {
@@ -2935,16 +2953,15 @@ p.teaching_info {
   background: #ffffff;
 }
 
-.category-news .article-blog .article-text {
-  padding: 0 17px 10px 17px;
-}
-
 .category-news .article-blog {
   height: 416px;
 }
 
 .category-news .article-blog .article-text {
   position: relative;
+  padding: 0 17px 10px 17px;
+  height: 180px;
+  overflow: hidden;
 }
 
 .category-news a.article-link {

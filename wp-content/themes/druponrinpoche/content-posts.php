@@ -79,7 +79,7 @@ $featuredPostIds = array();
                     <div class="post_date"><?php echo get_the_date(); ?></div>
                 </div>
                 <p><?php echo get_text_excerpt(get_the_excerpt($post),140);?></p>
-<!--                <span class="read_more">--><?php //dkr_str('Read More'); ?><!--</span>-->
+                <!-- <div class="article-text-gradient"></div> -->
             </div>
         </div>
     </article>
