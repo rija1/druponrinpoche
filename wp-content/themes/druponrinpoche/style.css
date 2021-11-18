@@ -16,6 +16,13 @@ Text Domain:  druponrinpoche
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'FangsongLogo';
+  src: url("assets/fonts/fangsong-logo-subset.woff2") format("woff2"), url("assets/fonts/fangsong-logo-subset.woff") format("woff"), url("assets/fonts/fangsong-logo-subset.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
@@ -222,6 +229,26 @@ img {
   height: auto;
   border: 0;
   -ms-interpolation-mode: bicubic;
+}
+
+.menu-bar-logo-block {
+  float: left;
+  width: 420px;
+  padding-top: 16px;
+  padding-left: 24px;
+}
+
+.menu-bar-logo-block img {
+  float: left;
+  width: 115px;
+  padding-right: 24px;
+}
+
+.menu-bar-logo-block .logo_name {
+  padding-top: 25px;
+  font-family: "FangsongLogo";
+  font-size: 32px;
+  color: #656250;
 }
 
 /**  grid system  **/
@@ -448,14 +475,6 @@ h1 span, h1 a span {
   color: #5f5f5d;
 }
 
-.logo span {
-  color: #5f5f5d;
-}
-
-.logo a span, .logo a:hover span {
-  color: #5f5f5d;
-}
-
 h2 {
   color: #5f5f5d;
 }
@@ -591,22 +610,6 @@ nav ol, nav ul {
   z-index: 999;
   padding-bottom: 28px;
   *padding-bottom: 0;
-}
-
-/**  header-block  **/
-.header-block {
-  padding-top: 40px;
-  padding-bottom: 40px;
-}
-
-.header-block .logo {
-  word-wrap: normal;
-  white-space: nowrap;
-  float: left;
-}
-
-.header-block .social {
-  float: right;
 }
 
 /**  menu-bar  **/
@@ -1259,11 +1262,6 @@ img.alignnone {
   left: 1px;
 }
 
-/**  green  **/
-.color-green, a, h1, .logo, h1 a, .article-welcome h2 a:hover, .article-procedure h2 a:hover {
-  color: #656250;
-}
-
 .teachings_category .pagination span.left, .teachings_category .pagination span.right {
   margin: 25px 0 0 0;
 }
@@ -1429,96 +1427,6 @@ img.alignleft {
   margin-left: 30px;
 }
 
-.header-block {
-  background: url("assets/images/dkr1.jpg");
-  height: 264px;
-  padding: 0px;
-}
-
-.logo-block-img {
-  width: 140px;
-  margin: 20px auto 10px auto;
-}
-
-.logo-block-txt {
-  width: 150px;
-  margin: 0 auto;
-  font-family: 'Roboto Slab', serif;
-  line-height: 28px;
-  text-align: center;
-  font-size: 24px;
-  color: #fff;
-}
-
-.header-block {
-  /*background: url(assets/images/header_repeat2.png);*/
-}
-
-.header-block .quote-block {
-  /*position: absolute;*/
-  top: 0;
-  left: 0;
-  padding-left: 50%;
-  padding-top: 10%;
-  font: 24px Futura;
-  color: #fff;
-  /*width: 40%;*/
-}
-
-.header-block .logo-block {
-  background: inherit;
-  width: 185px;
-  height: 264px;
-  position: absolute;
-  overflow: hidden;
-}
-
-.header-block .logo-block:before {
-  content: "";
-  width: 230px;
-  height: 250px;
-  background: inherit;
-  position: absolute;
-  left: 0px;
-  right: 0;
-  top: 0px;
-  bottom: 0;
-  -webkit-box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.3);
-          box-shadow: inset 0 0 0 200px rgba(255, 255, 255, 0.3);
-  -webkit-filter: blur(18px);
-          filter: blur(18px);
-}
-
-.header-block .container {
-  padding-top: 36px;
-  padding-bottom: 42px;
-  padding-left: 20px;
-  /*margin: 0 auto;*/
-  margin: 0;
-}
-
-/* HEADER BG 1 */
-.header-block2 {
-  /*background: url(assets/images/header2.png);*/
-  background-repeat: no-repeat;
-  background-position: right;
-}
-
-/* END HEADER BG 1 */
-/* HEADER BG 1 */
-/*.header-block .container {*/
-/*}*/
-/*.header-block {*/
-/*background: url(assets/images/Sky.jpg);*/
-/*}*/
-/* END HEADER BG 1 */
-/*SCHEDULE PAGE*/
-.page-id-43 .overlay {
-  background: url(assets/images/Sky.jpg);
-  padding-top: 60px;
-  padding-bottom: 15px;
-}
-
 /*POST*/
 .container .single-post p {
   text-align: justify;
@@ -1591,27 +1499,6 @@ img.alignleft {
 .home_pages_grid li p {
   text-align: justify;
   color: #404040;
-}
-
-.menu-bar-logo-block {
-  float: left;
-  width: 410px;
-  padding-top: 16px;
-  padding-left: 22px;
-}
-
-.menu-bar-logo-block img {
-  float: left;
-}
-
-.menu-bar-logo-block span {
-  padding-top: 1px;
-  padding-left: 17px;
-  float: left;
-  color: #444;
-  line-height: 22px;
-  font-size: 21px;
-  font-family: 'Roboto Slab', serif;
 }
 
 /*SCHEDULE START*/
@@ -3139,14 +3026,14 @@ a.course_link {
   .category .post_date {
     padding-top: 8px;
   }
+  .menu-bar-logo-block {
+    padding-top: 13px;
+    padding-left: 13px;
+  }
   .menu-bar-logo-block img {
     float: left;
     width: 175px;
     margin-top: 7px;
-  }
-  .menu-bar-logo-block {
-    padding-top: 13px;
-    padding-left: 13px;
   }
   .menu-bar-logo-block span {
     padding-top: 3px;
@@ -3154,7 +3041,8 @@ a.course_link {
     line-height: 21px;
     font-size: 18px;
   }
-  .menu-top-container {
+  .menu-bar-logo-block
+.menu-top-container {
     display: none;
   }
   .menu-top-mob-container {

@@ -73,7 +73,8 @@ $pllArgs = array(
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
                                 <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/renboqie_logo.png" />
-                            </a>
+                                <div class="logo_name">根绒多吉仁波切</div>
+                            </a>  
                         </div>
                         <ul class="poly_switcher">
                             <?php
