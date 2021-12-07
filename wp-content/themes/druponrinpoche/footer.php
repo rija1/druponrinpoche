@@ -60,7 +60,8 @@ $locale = get_locale();
 							<div class="gutter">
                                 <div class="footer_social">
                                     <a class="fb" href="http://www.facebook.com/drupon.rinpoche.7" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/fb_icon.png" /></a>
-
+									<a href="https://www.youtube.com/channel/UCCnDGLyvm8lsZsQazI-5m1g" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/yt_icon.webp" /></a>
+ 
                                     <?php if($locale == 'zh_CN') : ?>
                                     <a class="weibo" href="https://www.weibo.com/u/3165475344" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/weibo_logo.png" /></a>
 
