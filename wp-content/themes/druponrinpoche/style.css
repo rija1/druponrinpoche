@@ -60,6 +60,10 @@ body {
   /* Cover BG by http://gradient.quasi.ink */
 }
 
+.bodyTibetan {
+  font-size: 21px;
+}
+
 .redText {
   color: #e05656;
 }
