@@ -1877,7 +1877,22 @@ li.home_post {
     border: 1px solid #eaeaea;
 }
 
-
+.fb_page_link {
+    span {
+        float: left;
+        margin-top: 5px;
+        text-decoration: underline;
+    }
+    &:before {
+        padding-right: 10px;
+        font-size: 22px;
+        display: block;
+        float: left;
+        font-family:"FontAwesome";
+        content: "\f082";
+        color: #4050b5;
+    }
+}
 
 .home_news_carousel {
     .latestnews {
