@@ -3,7 +3,7 @@ Contributors: elasticemail, rafkwa
 Donate link: https://elasticemail.com/
 Tags:  elastic email, email marketing, transactional email, email sender, email, mailer, send email
 Requires at least: 4.1
-Tested up to: 5.7
+Tested up to: 5.8
 Stable tag: 4.1.2
 Requires PHP: 5.6
 License: GPLv2 or later
@@ -95,6 +95,9 @@ You can see your reports and sending history in Reports/Email logs. Keep in mind
 You can translate Elastic Email Sender on [__translate.wordpress.org__](https://translate.wordpress.org/projects/wp-plugins/elastic-email-sender).
 
 == Changelog ==
+
+= 1.2.3 =
+* Regular update
 
 = 1.2.2 =
 * Fix: Update MIME type after update

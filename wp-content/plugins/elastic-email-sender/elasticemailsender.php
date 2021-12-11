@@ -23,7 +23,7 @@ if (is_plugin_active(get_option('elastic-email-subscribe-basename')) === true) {
 
     /*
      * Plugin Name: Elastic Email Sender
-     * Version: 1.2.2
+     * Version: 1.2.3
      * Plugin URI: https://wordpress.org/plugins/elastic-email-sender/
      * Description: This plugin reconfigures the <code>wp_mail()</code> function to send email using API (via Elastic Email) instead of SMTP and creates an options page that allows you to specify various options.
      * Author: Elastic Email Inc.
@@ -70,7 +70,7 @@ if (is_plugin_active(get_option('elastic-email-subscribe-basename')) === true) {
         add_action('wp_ajax_clean_error_log', 'eeCleanErrorLog');
         
         require_once 'class/ees_admin.php';
-        $ee_admin = new eeadmin(__DIR__);
+        $ee_admin = new eeadmin5120420526(__DIR__);
 
     }
 
@@ -126,39 +126,11 @@ if (is_plugin_active(get_option('elastic-email-subscribe-basename')) === true) {
     function elasticemailsender_deactivate()
     {
         require_once 'class/ees_admin.php';
-        $ee_admin = new eeadmin(__DIR__);
+        $ee_admin = new eeadmin5120420526(__DIR__);
 
         if (class_exists('ElasticEmailClient\\ApiClient')) {
             $ee_admin->addToUserList('D');
         }
-
-        // only for tests! remove me!
-        $optionsList = [
-            'ees-connecting-status',
-            'ee_publicaccountid',
-            'ee_enablecontactfeatures',
-            'ee_options',
-            'ee_accountemail',
-            'ee_accountemail_2',
-            'ee_setapikey',
-            'ee_send-email-type',
-            'ees_plugin_dir_name',
-            'ee_config_from_name',
-            'ee_config_from_email',
-            'ee_from_email',
-            'daterangeselect',
-            'elastic-email-sender-basename',
-            'ee_config_override_wooCommerce',
-            'ee_config_woocommerce_original_email',
-            'ee_config_woocommerce_original_name',
-            'ee_is_created_channels',
-            'ee_mimetype'
-        ];
-
-        foreach ($optionsList as $option) {
-            delete_option($option);
-        }
-        // end
     }
 
     function eeSenderTestMsg()
@@ -207,7 +179,7 @@ if (is_plugin_active(get_option('elastic-email-subscribe-basename')) === true) {
         }
 
         require_once 'class/ees_admin.php';
-        $ee_admin = new eeadmin(__DIR__);
+        $ee_admin = new eeadmin5120420526(__DIR__);
 
         if (class_exists('ElasticEmailClient\\ApiClient')) {
             $ee_admin->addToUserList('D');

@@ -23,12 +23,12 @@ class Meow_WPMC_Rest
 			) );
 			register_rest_route( $this->namespace, '/update_option', array(
 				'methods' => 'POST',
-				'permission_callback' => array( $this->core, 'can_access_settings' ),
+				'permission_callback' => array( $this->core, 'can_access_features' ),
 				'callback' => array( $this, 'rest_update_option' )
 			) );
 			register_rest_route( $this->namespace, '/all_settings', array(
 				'methods' => 'GET',
-				'permission_callback' => array( $this->core, 'can_access_settings' ),
+				'permission_callback' => array( $this->core, 'can_access_features' ),
 				'callback' => array( $this, 'rest_all_settings' ),
 			) );
 

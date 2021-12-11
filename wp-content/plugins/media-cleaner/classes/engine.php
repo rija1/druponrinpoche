@@ -26,7 +26,7 @@ class Meow_WPMC_Engine {
 		$q = <<<SQL
 SELECT p.ID FROM $wpdb->posts p
 WHERE p.post_status NOT IN ('inherit', 'trash', 'auto-draft')
-AND p.post_type NOT IN ('attachment', 'shop_order', 'shop_order_refund', 'nav_menu_item', 'revision', 'auto-draft', 'wphb_minify_group', 'customize_changeset', 'oembed_cache', 'nf_sub')
+AND p.post_type NOT IN ('attachment', 'shop_order', 'shop_order_refund', 'nav_menu_item', 'revision', 'auto-draft', 'wphb_minify_group', 'customize_changeset', 'oembed_cache', 'nf_sub', 'jp_img_sitemap')
 AND p.post_type NOT LIKE 'dlssus_%'
 AND p.post_type NOT LIKE 'ml-slide%'
 AND p.post_type NOT LIKE '%acf-%'

@@ -92,6 +92,9 @@ class UpdraftPlus_Backup {
 	
 	private $expected_rows = false;
 	
+	// @var Boolean
+	private $try_split = false;
+	
 	/**
 	 * Class constructor
 	 *
@@ -428,7 +431,7 @@ class UpdraftPlus_Backup {
 		$do_prune = array();
 
 		// If there was no check-in last time, then attempt a different service first - in case a time-out on the attempted service leads to no activity and everything stopping
-		if (count($services) >1 && !empty($updraftplus->no_checkin_last_time)) {
+		if (count($services) >1 && $updraftplus->no_checkin_last_time) {
 			$updraftplus->log('No check-in last time: will try a different remote service first');
 			array_push($services, array_shift($services));
 			// Make sure that the 'no worthwhile activity' detector isn't flumoxed by the starting of a new upload at 0%
@@ -460,6 +463,11 @@ class UpdraftPlus_Backup {
 							$updraftplus->log("Already uploaded: $file");
 						} else {
 							$updraftplus->uploaded_file($file, true);
+						}
+						$fullpath = $this->updraft_dir.'/'.$file;
+						if (file_exists($fullpath.'.list.tmp')) {
+							$updraftplus->log("Deleting zip manifest ({$file}.list.tmp)");
+							unlink($fullpath.'.list.tmp');
 						}
 					}
 					$this->prune_retained_backups(array('none' => array('all' => array(null, null))));
@@ -1232,7 +1240,7 @@ class UpdraftPlus_Backup {
 
 			// 03-Sep-2015 - came across a case (HS#2052) where there apparently was a check-in 'last time', but no resumption was scheduled because the 'useful_checkin' jobdata was *not* last time - which must indicate dying at a very unfortunate/unlikely point in the code. As a result, the split was not auto-reduced. Consequently, we've added !$updraftplus->newresumption_scheduled as a condition on the first check here (it was already on the second), as if no resumption is scheduled then whatever checkin there was last time was only partial. This was on GoDaddy, for which a number of curious I/O event combinations have been seen in recent months - their platform appears to have some odd behaviour when PHP is killed off.
 			// 04-Sep-2015 - move the '$updraftplus->current_resumption<=10' check to the inner loop (instead of applying to this whole section), as I see no reason for that restriction (case seen in HS#2064 where it was required on resumption 15)
-			if (!empty($updraftplus->no_checkin_last_time) || !$updraftplus->newresumption_scheduled) {
+			if ($updraftplus->no_checkin_last_time || !$updraftplus->newresumption_scheduled) {
 				// Apr 2015: !$updraftplus->newresumption_scheduled added after seeing a log where there was no activity on resumption 9, and extra resumption 10 then tried the same operation.
 				if ($updraftplus->current_resumption - $updraftplus->last_successful_resumption > 2 || !$updraftplus->newresumption_scheduled) {
 					$this->try_split = true;
@@ -1867,8 +1875,11 @@ class UpdraftPlus_Backup {
 			foreach ($table_stitch_files as $table_file) {
 				$updraftplus->log("{$table_file} ($sind/$how_many_tables/$open_function): adding to final database dump");
 
-				if (!$handle = call_user_func($open_function, $this->updraft_dir.'/'.$table_file, "r")) {
-					$updraftplus->log("Error: Failed to open database file for reading: ${table_file}.gz");
+				if (filesize($this->updraft_dir.'/'.$table_file) < 27 && '.gz' == substr($table_file, -3, 3)) {
+					// It's a null gzip file. Don't waste time on gzopen/gzgets/gzclose. This micro-optimisation was added after seeing a site with >3000 files that was running out of time (it could apparently process 30 files/second)
+					$unlink_files[] = $this->updraft_dir.'/'.$table_file;
+				} elseif (!$handle = call_user_func($open_function, $this->updraft_dir.'/'.$table_file, 'r')) {
+					$updraftplus->log("Error: Failed to open database file for reading: ${table_file}");
 					$updraftplus->log(__("Failed to open database file for reading:", 'updraftplus').' '.$table_file, 'error');
 					$errors++;
 				} else {
@@ -3271,13 +3282,14 @@ class UpdraftPlus_Backup {
 
 			// If the file exists, then we should grab its index of files inside, and sizes
 			// Then, when we come to write a file, we should check if it's already there, and only add if it is not
-			if (file_exists($examine_zip) && is_readable($examine_zip) && filesize($examine_zip)>0) {
+			if (file_exists($examine_zip) && is_readable($examine_zip) && filesize($examine_zip) > 0) {
 
-				$this->populate_existing_files_list($examine_zip, true);
-
-				// try_split is set if there have been no check-ins recently - or if it needs to be split anyway
+				// Do not use (which also means do not create) a manifest if the file is still a .tmp file, since this may not be complete. If we are in this place in the code from a resumption, creating a manifest here will mean the manifest becomes out-of-date if further files are added.
+				$this->populate_existing_files_list($examine_zip, substr($examine_zip, -4, 4) === '.zip');
+				
+				// try_split is true if there have been no check-ins recently - or if it needs to be split anyway
 				if ($j == $this->index) {
-					if (isset($this->try_split)) {
+					if ($this->try_split) {
 						if (filesize($examine_zip) > 50*1048576) {
 							// We could, as a future enhancement, save this back to the job data, if we see a case that needs it
 							$this->zip_split_every = max(
@@ -4206,7 +4218,7 @@ class UpdraftPlus_Backup {
 				$updraftplus->log("Rename failed for $full_path.tmp");
 			} else {
 				$manifest = $full_path.'.list.tmp';
-				if (!file_exists($manifest)) $this->write_zip_manifest_from_zip($full_path.'.tmp');
+				if (!file_exists($manifest)) $this->write_zip_manifest_from_zip($full_path);
 				UpdraftPlus_Job_Scheduler::something_useful_happened();
 			}
 		}
@@ -4235,7 +4247,12 @@ class UpdraftPlus_Backup {
 	private function populate_existing_files_list($zip_path, $read_from_manifest) {
 		global $updraftplus;
 
-		$manifest = preg_replace('/\.tmp$/', '.list.tmp', $zip_path);
+		// Get the name of the final manifest file
+		if (preg_match('/\.tmp$/', $zip_path)) {
+			$manifest = preg_replace('/\.tmp$/', '.list.tmp', $zip_path);
+		} else {
+			$manifest = $zip_path.'.list.tmp';
+		}
 
 		if ($read_from_manifest && file_exists($manifest)) {
 			$manifest_contents = json_decode(file_get_contents($manifest), true);
@@ -4243,14 +4260,14 @@ class UpdraftPlus_Backup {
 			if (empty($manifest_contents)) {
 				$updraftplus->log("Zip manifest file found, but reading failed: ".basename($manifest));
 			} elseif (!empty($manifest_contents['files'])) {
-				$this->existing_files = $manifest_contents['files'];
+				$this->existing_files = array_merge($this->existing_files, $manifest_contents['files'][0]);
 				$updraftplus->log("Successfully read zip manifest file contents");
 				return;
 			} else {
 				$updraftplus->log("Zip manifest file found, but no files contents were found: ".basename($manifest));
 			}
 		} elseif ($read_from_manifest) {
-			$updraftplus->log("No zip manifest file found will create one");
+			$updraftplus->log("No zip manifest file found; will create one");
 		}
 
 		$zip = new $this->use_zip_object;
@@ -4277,7 +4294,12 @@ class UpdraftPlus_Backup {
 
 			@$zip->close();// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 
-			$manifest = preg_replace('/\.tmp$/', '.list-temp.tmp', $zip_path);
+			if (preg_match('/\.tmp$/', $zip_path)) {
+				$manifest = preg_replace('/\.tmp$/', '.list-temp.tmp', $zip_path);
+			} else {
+				$manifest = $zip_path.'.list-temp.tmp';
+			}
+
 			$this->write_zip_manifest_from_list($manifest, $this->existing_files);
 
 			$updraftplus->log(basename($zip_path).": Zip file already exists, with ".count($this->existing_files)." files");
@@ -4321,7 +4343,11 @@ class UpdraftPlus_Backup {
 			return false;
 		}
 
-		$manifest = preg_replace('/\.tmp$/', '.list-temp.tmp', $zip_path);
+		if (preg_match('/\.tmp$/', $zip_path)) {
+			$manifest = preg_replace('/\.tmp$/', '.list-temp.tmp', $zip_path);
+		} else {
+			$manifest = $zip_path.'.list-temp.tmp';
+		}
 
 		$this->write_zip_manifest_from_list($manifest, $zip_files);
 		

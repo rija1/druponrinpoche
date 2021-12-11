@@ -150,7 +150,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 		if ( $id ) { // update requested but corresponding import is not found
 			if ( $import->getById($id)->isEmpty() ) {
-				if ( ! empty($_GET['deligate']) and $_GET['deligate'] == 'wpallexport' ) {
+				if ( ! empty($_GET['deligate']) and sanitize_key($_GET['deligate']) == 'wpallexport' ) {
 					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('The import associated with this export has been deleted.', 'wp_all_import_plugin')), 'updated' => urlencode(__('Please re-run your export by clicking Run Export on the All Export -> Manage Exports page. Then try your import again.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();
 				} else {
 					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('This import has been deleted.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();
@@ -931,10 +931,10 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					$this->data['title'] = "";
 				} else {				
 					list($this->data['title']) = XmlImportParser::factory($xml, $xpath, $post['title'], $file)->parse(); unlink($file);
-					if ( ! isset($this->data['title']) or '' == strval(trim(strip_tags($this->data['title'], '<img><input><textarea><iframe><object><embed>')))) {
+					if ( ! isset($this->data['title']) || '' == strval(trim(strip_tags($this->data['title'], '<img><input><textarea><iframe><object><embed>'))) || '' == wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['title']) : $this->data['title'])) {
 						$this->errors->add('xml-parsing', __('<strong>Warning</strong>: resulting post title is empty', 'wp_all_import_plugin'));
 					}
-					else $this->data['title'] = ($post['is_leave_html']) ? html_entity_decode($this->data['title']) : $this->data['title']; 
+					else $this->data['title'] = wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['title']) : $this->data['title']);
 				}
 			} catch (XmlImportException $e) {
 				$this->errors->add('form-validation', sprintf(__('Error parsing title: %s', 'wp_all_import_plugin'), $e->getMessage()));
@@ -947,10 +947,10 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					$this->data['content'] = "";				
 				} else {								
 					list($this->data['content']) = XmlImportParser::factory($post['is_keep_linebreaks'] ? $xml : preg_replace('%\r\n?|\n%', ' ', $xml), $xpath, $post['content'], $file)->parse(); unlink($file);				
-					if ( ! isset($this->data['content']) or '' == strval(trim(strip_tags($this->data['content'], '<img><input><textarea><iframe><object><embed>')))) {
+					if ( ! isset($this->data['content']) || '' == strval(trim(strip_tags($this->data['content'], '<img><input><textarea><iframe><object><embed>'))) || '' == wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['content']) : $this->data['content'])) {
 						$this->errors->add('xml-parsing', __('<strong>Warning</strong>: resulting post content is empty', 'wp_all_import_plugin'));
 					}
-					else $this->data['content'] = ($post['is_leave_html']) ? html_entity_decode($this->data['content']) : $this->data['content'];
+					else $this->data['content'] = wp_all_import_filter_html_kses(($post['is_leave_html']) ? html_entity_decode($this->data['content']) : $this->data['content']);
 				}
 			} catch (XmlImportException $e) {
 				$this->errors->add('form-validation', sprintf(__('Error parsing content: %s', 'wp_all_import_plugin'), $e->getMessage()));
@@ -2616,9 +2616,9 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		}
 
 		if ($ajax_processing) {
-			$logger = function($m) {echo "<div class='progress-msg'>[". date("H:i:s") ."] $m</div>\n";flush();};
+			$logger = function($m) {echo "<div class='progress-msg'>[". date("H:i:s") ."] ".wp_all_import_filter_html_kses($m)."</div>\n";flush();};
 		} else {
-            $logger = function($m) {echo "<div class='progress-msg'>$m</div>\n"; if ( "" != strip_tags(wp_all_import_strip_tags_content($m))) { PMXI_Plugin::$session->log .= "<p>".strip_tags(wp_all_import_strip_tags_content($m))."</p>"; flush(); }};
+            $logger = function($m) {echo "<div class='progress-msg'>".wp_all_import_filter_html_kses($m)."</div>\n"; if ( "" != strip_tags(wp_all_import_strip_tags_content(wp_all_import_filter_html_kses($m)))) { PMXI_Plugin::$session->log .= "<p>".strip_tags(wp_all_import_strip_tags_content(wp_all_import_filter_html_kses($m)))."</p>"; flush(); }};
 		}
 
 		$logger = apply_filters('wp_all_import_logger', $logger);

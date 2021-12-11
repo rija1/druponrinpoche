@@ -1,5 +1,5 @@
 <?php
-defined('EE_ADMIN') or die('No direct access allowed.');
+defined('EE_ADMIN_5120420526') or die('No direct access allowed.');
 
 wp_enqueue_style('eesender-bootstrap-grid');
 wp_enqueue_style('eesender-css');

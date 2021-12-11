@@ -50,14 +50,14 @@
 								<div style="padding: 15px 25px 65px;">
 									<div id="titlediv" style="margin-bottom:20px;">
 										<div id="titlewrap">
-											<input id="wpallimport-title" class="widefat" type="text" name="title" value="<?php echo esc_attr($post['title']) ?>" placeholder="<?php _e('Drag & drop any element on the right to set the title.', 'wp_all_import_plugin'); ?>"/>
+											<input id="wpallimport-title" class="widefat" type="text" name="title" value="<?php echo esc_attr(wp_all_import_filter_html_kses($post['title'])) ?>" placeholder="<?php _e('Drag & drop any element on the right to set the title.', 'wp_all_import_plugin'); ?>"/>
 										</div>
 									</div>
 									
 									<div id="poststuff" style="margin-top:-25px;">
 										<div id="<?php echo user_can_richedit() ? 'postdivrich' : 'postdiv'; ?>" class="postarea">
 
-											<?php wp_editor($post['content'], 'content', array(
+											<?php wp_editor(wp_all_import_filter_html_kses($post['content']), 'content', array(
 													//'teeny' => true,	
 													'editor_class' => 'wpallimport-plugin-editor',
 													'media_buttons' => false,							
@@ -109,7 +109,7 @@
 
 				<?php endif; ?>
 
-				<input type="hidden" name="custom_type" value="<?php echo $post['custom_type']; ?>"/>
+				<input type="hidden" name="custom_type" value="<?php echo esc_attr($post['custom_type']); ?>"/>
 				<input type="hidden" name="type" value="<?php echo ($post['custom_type'] == 'page') ? 'page' : 'post'; ?>"/>										
 					
 				<?php									
@@ -168,7 +168,7 @@
 
 										<div class="input" style="display:inline-block; margin-right: 20px;">
 											<input type="button" class="button-primary wp_all_import_save_functions" disabled="disabled" value="<?php _e("Save Functions", 'wp_all_import_plugin'); ?>"/>
-											<a href="#help" class="wpallimport-help" title="<?php printf(__("Add functions here for use during your import. You can access this file at %s", "wp_all_import_plugin"), preg_replace("%.*wp-content%", "wp-content", $functions));?>" style="top: 0;">?</a>
+											<a href="#help" class="wpallimport-help" title="<?php printf(__("Add functions here for use during your import. You can access this file at %s", "wp_all_import_plugin"), esc_attr(preg_replace("%.*wp-content%", "wp-content", $functions)));?>" style="top: 0;">?</a>
 											<div class="wp_all_import_functions_preloader"></div>
 										</div>						
 										<div class="input wp_all_import_saving_status" style="display:inline-block;">
@@ -203,7 +203,7 @@
 						<select name="load_template" id="load_template">
 							<option value=""><?php _e('Load Template...', 'wp_all_import_plugin') ?></option>
 							<?php foreach ($templates->getBy()->convertRecords() as $t): ?>
-								<option value="<?php echo $t->id ?>"><?php echo $t->name ?></option>
+								<option value="<?php echo esc_attr($t->id); ?>"><?php echo esc_html($t->name); ?></option>
 							<?php endforeach ?>
 						</select>
 					</div>
@@ -230,9 +230,9 @@
 						<input type="hidden" name="security" value="<?php echo wp_create_nonce( "wp_all_import_preview" ); ?>" />									
 
 						<?php if ($this->isWizard):?>
-							<a href="<?php echo add_query_arg('action', 'element', $this->baseUrl) ?>" class="back rad3" style="float:none;"><?php _e('Back to Step 2', 'wp_all_import_plugin') ?></a>
+							<a href="<?php echo esc_url(add_query_arg('action', 'element', $this->baseUrl)); ?>" class="back rad3" style="float:none;"><?php _e('Back to Step 2', 'wp_all_import_plugin') ?></a>
 						<?php else: ?>
-							<a href="<?php echo remove_query_arg('id', remove_query_arg('action', $this->baseUrl)); ?>" class="back rad3" style="float:none;"><?php _e('Back to Manage Imports', 'wp_all_import_plugin') ?></a>
+							<a href="<?php echo esc_url(remove_query_arg('id', remove_query_arg('action', $this->baseUrl))); ?>" class="back rad3" style="float:none;"><?php _e('Back to Manage Imports', 'wp_all_import_plugin') ?></a>
 						<?php endif; ?>					
 						<input type="submit" class="button button-primary button-hero wpallimport-large-button" value="<?php _e( ($this->isWizard) ? 'Continue to Step 4' : 'Update Template', 'wp_all_import_plugin') ?>" />
 					</div>

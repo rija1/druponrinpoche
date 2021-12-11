@@ -1,13 +1,13 @@
 <?php
 
-define('EE_ADMIN', true);
+define('EE_ADMIN_5120420526', true);
 
 /**
  * Description of eeadmin
  *
  * @author ElasticEmail
  */
-class eeadmin
+class eeadmin5120420526
 {
     /**
      * Holds the values to be used in the fields callbacks

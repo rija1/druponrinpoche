@@ -2,14 +2,15 @@
 
 class Meow_WPMC_Admin extends MeowCommon_Admin {
 
-  public function __construct( $allow_setup ) {
+  private $core = null;
+
+  public function __construct( $core ) {
+    $this->core = $core;
     parent::__construct( WPMC_PREFIX, WPMC_ENTRY, WPMC_DOMAIN, class_exists( 'MeowPro_WPMC_Core' ) );
-    if ( $allow_setup ) {
-      add_action( 'admin_menu', array( $this, 'app_menu' ) );
-    }
+    add_action( 'admin_menu', array( $this, 'app_menu' ) );
 
     // Load the scripts only if they are needed by the current screen
-    $page = isset( $_GET["page"] ) ? $_GET["page"] : null;
+    $page = isset( $_GET["page"] ) ? sanitize_text_field( $_GET["page"] ) : null;
     $is_wpmc_screen = in_array( $page, [ 'wpmc_dashboard', 'wpmc_settings' ] );
     $is_meowapps_dashboard = $page === 'meowapps-main-menu';
     if ( $is_meowapps_dashboard || $is_wpmc_screen ) {
@@ -51,12 +52,18 @@ class Meow_WPMC_Admin extends MeowCommon_Admin {
   }
 
   function app_menu() {
-    add_submenu_page( 'meowapps-main-menu', 'Cleaner', 'Cleaner', 'read', 'wpmc_settings', 
+    if ( !$this->core->can_access_settings() ) {
+      return;
+    }
+    add_submenu_page( 'meowapps-main-menu', 'Media Cleaner', 'Media Cleaner', 'read', 'wpmc_settings', 
       array( $this, 'admin_settings' )
     );
   }
 
   public function admin_settings() {
+    if ( !$this->core->can_access_settings() ) {
+      return;
+    }
     echo '<div id="wpmc-admin-settings"></div>';
   }
 
