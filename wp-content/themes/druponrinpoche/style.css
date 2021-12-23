@@ -861,25 +861,6 @@ nav ol, nav ul {
   height: 400px;
 }
 
-/**  section-support  **/
-.table-support {
-  line-height: 1.2;
-}
-
-.table-support p {
-  line-height: 1.2;
-}
-
-.table-support td {
-  padding: 9px 0;
-}
-
-.table-support .fa:before {
-  margin-right: 7px;
-}
-
-/**  section-services  **/
-/**  section-products  **/
 /**  section-blog  **/
 .blog-columns .inner-page-container {
   width: 66%;
@@ -1773,10 +1754,6 @@ body.home .breadcrumbs {
   padding: 20px;
 }
 
-.category .sidebar-container, .page-template .sidebar-container {
-  /*border-radius: 5px;*/
-}
-
 .sidebar-container h5 {
   margin-bottom: 15px;
 }
@@ -1888,10 +1865,6 @@ li.page_item_has_children > a {
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 6px solid #9b940d;
-}
-
-li.page_item_has_children a {
-  /*margin-left: 5px;*/
 }
 
 .expandContainer {
@@ -2992,6 +2965,32 @@ a.course_link {
   transition: all .3s ease;
 }
 
+.rinpoche-lamas .inner-page-container {
+  padding: 0;
+}
+
+.rinpoche-lamas .lamas-grid {
+  padding: 0 25px 20px 25px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  -webkit-column-gap: 17px;
+          column-gap: 17px;
+}
+
+.rinpoche-lamas .lamas-grid .lamas-grid-item {
+  color: #656250;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.rinpoche-lamas .lamas-grid .lamas-grid-item .lamas-grid-caption {
+  text-align: center;
+  float: left;
+  width: 100%;
+}
+
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
   .copyright-block .container {
@@ -3229,12 +3228,6 @@ a.course_link {
   }
   .page-template-about-pages .blog-columns .inner-page-container {
     width: 100%;
-  }
-  .wp-image-1187 {
-    padding-bottom: 20px;
-  }
-  .rinpoches_lamas figure {
-    padding: 0;
   }
   .rinpoches_lamas {
     -ms-grid-columns: (1fr)[2];

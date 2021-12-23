@@ -14,7 +14,7 @@
     <div class="section section-blog">
         <div class="container">
                 <div class="inner-page-container ">
-                    <div class="gutter">
+                    <!-- <div class="gutter"> -->
                         <article class="single-post">
                             <div class="article-text">
                                 <?php the_content(); ?>
@@ -25,7 +25,7 @@
                                 <?php comments_template(); ?>
                             </div> <!--  END comments  -->
                         </article>
-                    </div>
+                    <!-- </div> -->
             </div>
         </div> <!--  END container  -->
     </div> <!--  END section-blog  -->
