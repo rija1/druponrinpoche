@@ -33,7 +33,7 @@
                                     <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-pema-tsewang.webp"/>
                                     <span class="lamas-grid-caption">堪千贝玛才旺</span>
                                 </a>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/堪千曲恰' ) );?>">
+                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/khenpo-chokhyab' ) );?>">
                                     <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-chokhyab.webp"/>
                                     <span class="lamas-grid-caption">堪千曲恰</span>
                                 </a>
