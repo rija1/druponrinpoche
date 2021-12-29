@@ -2984,9 +2984,57 @@ a.course_link {
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
         grid-row-gap:15px;
         @media only screen and (max-width: 780px) {
+            .lamas-grid-img {
+                height: 170px;
+                object-position: 0 -4px;
+                width: 100%;
+                object-fit: cover; 
+            }
+            .lamas-grid-item:nth-child(1) .lamas-grid-img {
+                object-position: 0 -40px;
+            }
+            .lamas-grid-item:nth-child(2) .lamas-grid-img {
+                object-position: 0 -40px;
+            }
+            .lamas-grid-item:nth-child(3) .lamas-grid-img {
+                object-position: 0 -20px;
+            }
+            .lamas-grid-item:nth-child(4) .lamas-grid-img {
+                object-position: 0 -0px;
+            }
+            .lamas-grid-item:nth-child(5) .lamas-grid-img {
+                object-position: 0 -35px;
+            }
+            .lamas-grid-item:nth-child(6) .lamas-grid-img {
+                object-position: 0 -10px;
+            }
             grid-template-columns: 1fr 1fr 1fr;
         }
         @media only screen and (max-width: 500px) {
+            .lamas-grid-img {
+                height: 170px;
+                object-position: 0 -4px;
+                width: 100%;
+                object-fit: cover; 
+            }
+            .lamas-grid-item:nth-child(1) .lamas-grid-img {
+                object-position: 0 -40px;
+            }
+            .lamas-grid-item:nth-child(2) .lamas-grid-img {
+                object-position: 0 -40px;
+            }
+            .lamas-grid-item:nth-child(3) .lamas-grid-img {
+                object-position: 0 -20px;
+            }
+            .lamas-grid-item:nth-child(4) .lamas-grid-img {
+                object-position: 0 -0px;
+            }
+            .lamas-grid-item:nth-child(5) .lamas-grid-img {
+                object-position: 0 -35px;
+            }
+            .lamas-grid-item:nth-child(6) .lamas-grid-img {
+                object-position: 0 -10px;
+            }
             grid-template-columns: 1fr 1fr;
         }
         // grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));

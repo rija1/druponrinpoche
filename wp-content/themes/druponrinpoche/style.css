@@ -2588,12 +2588,76 @@ a.course_link {
     -ms-grid-columns: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
   }
+  .rinpoche-lamas .lamas-grid .lamas-grid-img {
+    height: 170px;
+    -o-object-position: 0 -4px;
+       object-position: 0 -4px;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(1) .lamas-grid-img {
+    -o-object-position: 0 -40px;
+       object-position: 0 -40px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(2) .lamas-grid-img {
+    -o-object-position: 0 -40px;
+       object-position: 0 -40px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(3) .lamas-grid-img {
+    -o-object-position: 0 -20px;
+       object-position: 0 -20px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(4) .lamas-grid-img {
+    -o-object-position: 0 -0px;
+       object-position: 0 -0px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(5) .lamas-grid-img {
+    -o-object-position: 0 -35px;
+       object-position: 0 -35px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(6) .lamas-grid-img {
+    -o-object-position: 0 -10px;
+       object-position: 0 -10px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
   .rinpoche-lamas .lamas-grid {
     -ms-grid-columns: 1fr 1fr;
         grid-template-columns: 1fr 1fr;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-img {
+    height: 170px;
+    -o-object-position: 0 -4px;
+       object-position: 0 -4px;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(1) .lamas-grid-img {
+    -o-object-position: 0 -40px;
+       object-position: 0 -40px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(2) .lamas-grid-img {
+    -o-object-position: 0 -40px;
+       object-position: 0 -40px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(3) .lamas-grid-img {
+    -o-object-position: 0 -20px;
+       object-position: 0 -20px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(4) .lamas-grid-img {
+    -o-object-position: 0 -0px;
+       object-position: 0 -0px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(5) .lamas-grid-img {
+    -o-object-position: 0 -35px;
+       object-position: 0 -35px;
+  }
+  .rinpoche-lamas .lamas-grid .lamas-grid-item:nth-child(6) .lamas-grid-img {
+    -o-object-position: 0 -10px;
+       object-position: 0 -10px;
   }
 }
 
