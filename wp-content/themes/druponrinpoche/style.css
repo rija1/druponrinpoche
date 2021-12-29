@@ -32,6 +32,14 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
   background: transparent;
 }
 
+ol {
+  list-style: inside none decimal;
+}
+
+ul {
+  list-style: inside none disc;
+}
+
 a {
   margin: 0;
   padding: 0;
@@ -160,6 +168,10 @@ img {
 /**  white  **/
 /**  gray  **/
 /**  h1-h6  **/
+.sidebar-container ol, .sidebar-container ul {
+  list-style: outside none;
+}
+
 /**  pagination  **/
 .pagination {
   text-align: center;
@@ -2615,16 +2627,41 @@ a.course_link {
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  -webkit-column-gap: 17px;
-          column-gap: 17px;
+  -webkit-column-gap: 45px;
+          column-gap: 45px;
 }
 
 .lineage-grid .lineage-grid-item {
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr;
   row-gap: 17px;
+  color: #656250;
+}
+
+.lineage-grid .lineage-grid-item .lineage-grid-img {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lineage-grid .lineage-grid-item .lineage-grid-title {
+  text-align: center;
+  font-size: 22px;
+}
+
+.lineage-grid .lineage-grid-item .lineage-grid-text {
+  text-align: center;
+}
+
+.lineage-grid .lineage-grid-item:hover .lineage-grid-img {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-box-shadow: 0 0 6px 3px rgba(70, 61, 61, 0.32);
+          box-shadow: 0 0 6px 3px rgba(70, 61, 61, 0.32);
+}
+
+.lineage-grid .lineage-grid-item:hover .lineage-grid-title {
+  color: #9b940d;
 }
 
 /**  mobile  **/
