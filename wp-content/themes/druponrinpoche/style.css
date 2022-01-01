@@ -397,6 +397,7 @@ h3, .mob-menu-icon {
 }
 
 .menu-top-mob-container {
+  display: none;
   font-weight: bold;
   float: left;
   margin-top: 22px;

@@ -468,50 +468,49 @@ h3, .mob-menu-icon {
 
 
 .menu-top-mob-container {
+   
+    display: none;
+    font-weight:bold;
+    float: left;
+    margin-top: 22px;
+    padding-left: 15px;
+    width:100%;
+    font-family: 'Raleway';
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
 
-    .mob-menu-icon:before {
-         font-family: 'FontAwesome';
-         margin-right: 7px;
-         content: "\f039";
+     .mob-menu-icon:before {
+        font-family: 'FontAwesome';
+        margin-right: 7px;
+        content: "\f039";
+    }
+
+    .menu-top-mob {
+        padding:25px 12px 10px 12px;
+        ul.sub-menu li.current_page_item > a {
+            color:$dkr-gold;
+        }
+        a {
+            text-align: left;
+            display: block;
+            padding-top: 4px;
+            padding-bottom:4px;
+        }
+        .sub-menu a, .children a {
+            padding-left: 20px;
+            font-size: 13px;
+        }
+        .sub-menu .sub-menu a, .children .children a {
+            padding-left: 40px;
+        }
+        .sub-menu .sub-menu .sub-menu a, .children .children .children a {
+            padding-left: 60px;
+        }
      }
-     font-weight:bold;
- 
-     // display: none;
-     float: left;
-     margin-top: 22px;
-     padding-left: 15px;
- 
-     width:100%;
- 
- 
-     .menu-top-mob {
-         // display: none;
- 
-         padding:25px 12px 10px 12px;
-         ul.sub-menu li.current_page_item > a {
-             color:$dkr-gold;
-         }
-         a {
-             text-align: left;
-             display: block;
-             padding-top: 4px;
-             padding-bottom:4px;
-         }
-         .sub-menu a, .children a {
-             padding-left: 20px;
-             font-size: 13px;
-         }
-         .sub-menu .sub-menu a, .children .children a {
-             padding-left: 40px;
-         }
-         .sub-menu .sub-menu .sub-menu a, .children .children .children a {
-             padding-left: 60px;
-         }
-     }
-     font-family: 'Raleway';
-     font-size: 14px;
-     line-height: 17px;
-     text-transform: uppercase;
+
+     
+     
  }
 
  // 480 Media
