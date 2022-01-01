@@ -62,6 +62,7 @@ $drConfig = getDrWebsiteConfig();
                     <div class="header_top_block">
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
+                            <!-- <span class="icon-drawing"></span> -->
                                 <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp" />
                                 <div class="logo_name">
                                     <span class="logo_dkr"><?php dkr_str('Drupon Khen Rinpoche'); ?></span>
@@ -89,12 +90,12 @@ $drConfig = getDrWebsiteConfig();
                         <?php } ?>
                     </nav>
                     <nav class="menu-top-mob-container">
-                        <a class="icon-menu" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
+                        <a class="mob-menu-icon" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
                             <?php wp_nav_menu(
                                 array('container'=> '',
                                       'theme_location' => 'dkr-menu',
-                                      'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>',
+                                      'items_wrap'  => '<ul id="menu-top-mob" class="menu-top-mob">%3$s</ul>',
                                       'walker' => new Walker_Nav_Menu_Dr(),
                                       'depth' => 3  ) );
                             ?>
