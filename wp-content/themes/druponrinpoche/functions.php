@@ -1164,6 +1164,7 @@ if (function_exists('pll_register_string')){
     pll_register_string('by','By','drupon-rinpoche');
     pll_register_string('selected-pictures','Selected Pictures','drupon-rinpoche');
     pll_register_string('lineage','Lineage','drupon-rinpoche');
+    pll_register_string('teaching-excerpts','Teaching Excerpts','drupon-rinpoche');
 } 
 
 });
