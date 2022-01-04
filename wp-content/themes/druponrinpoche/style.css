@@ -713,7 +713,7 @@ h5 {
   position: relative;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 700px) {
   .header .menu-bar {
     height: 115px;
   }
@@ -731,7 +731,7 @@ h5 {
   *zoom: 1;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 700px) {
   .menu-top-container {
     display: none;
   }
@@ -1642,7 +1642,7 @@ img.alignleft {
   padding-left: 22px;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 700px) {
   .menu-bar-logo-block {
     padding-top: 10px;
     padding-left: 11px;
@@ -1652,6 +1652,12 @@ img.alignleft {
 .menu-bar-logo-block img {
   float: left;
   width: 70px;
+}
+
+@media only screen and (max-width: 700px) {
+  .menu-bar-logo-block img {
+    width: 48px;
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -1672,9 +1678,38 @@ img.alignleft {
   font-family: 'Roboto Slab', serif;
 }
 
+@media only screen and (max-width: 700px) {
+  .menu-bar-logo-block span {
+    font-size: 18px;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .menu-bar-logo-block span {
     padding-left: 12px;
+  }
+}
+
+.menu-bar-logo-block span.logo_dkr {
+  color: #80784c;
+}
+
+@media only screen and (max-width: 480px) {
+  .menu-bar-logo-block span.logo_dkr {
+    font-size: 16px;
+  }
+}
+
+.menu-bar-logo-block span.logo_kl {
+  font-size: 21px;
+  color: #bb9b25;
+  padding-top: 5px;
+}
+
+@media only screen and (max-width: 480px) {
+  .menu-bar-logo-block span.logo_kl {
+    font-size: 16px;
+    padding-top: 0;
   }
 }
 
@@ -2006,29 +2041,6 @@ li.home_post {
 }
 
 /*HOME MINI CAROUSEL END*/
-span.logo_dkr {
-  color: #80784c;
-}
-
-@media only screen and (max-width: 480px) {
-  span.logo_dkr {
-    font-size: 16px;
-  }
-}
-
-span.logo_kl {
-  font-size: 21px;
-  color: #bb9b25;
-  padding-top: 5px;
-}
-
-@media only screen and (max-width: 480px) {
-  span.logo_kl {
-    font-size: 16px;
-    padding-top: 0;
-  }
-}
-
 .copyright-block {
   background: none;
   padding: 0;
@@ -3254,6 +3266,18 @@ a.expand_link:hover {
   font-weight: 500;
 }
 
+.pagination .nav-links .prev, .pagination .nav-links .next {
+  font-family: "FontAwesome";
+}
+
+.pagination .nav-links a.prev {
+  padding: 4px 10px 4px 9px;
+}
+
+.pagination .nav-links a.next {
+  padding: 4px 9px 4px 10px;
+}
+
 .category-news .pagination .nav-links {
   padding-top: 0;
 }
@@ -3272,6 +3296,15 @@ a.expand_link:hover {
 figure {
   display: table;
   margin: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+  figure.alignleft, img.alignleft, figure.alignright, img.alignright {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 figcaption {
@@ -3954,9 +3987,6 @@ table.tablepress-id-19 tbody .sp_year_en:before {
   .activity-pages .blog-columns {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
-  }
-  .header .menu-bar {
-    height: 120px;
   }
   .menu-top-container {
     width: auto;

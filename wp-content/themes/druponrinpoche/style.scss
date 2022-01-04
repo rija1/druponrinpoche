@@ -17,6 +17,7 @@ $dkr-ot-blue: #35405a;
 $dkr-ot-blue: #3e608c;
 $dkr-ot-blue: #495a6f;
 $dkr-ot-blue-hover:#647cab;
+$menuMobBreakpoint: 700px;
 
 
 /**  fonts  **/
@@ -577,7 +578,7 @@ h3, .mob-menu-icon {
     line-height: 17px;
     text-transform: uppercase;
 
-    @media only screen and (max-width: 700px) {
+    @media only screen and (max-width: $menuMobBreakpoint) {
         display:block;
     }
 
@@ -793,7 +794,7 @@ h5 {
         background: #f2efdf;
         background: linear-gradient(0deg, rgba(228,223,196,1) 0%, rgba(242,239,223,1) 100%);
         position: relative;
-        @media only screen and (max-width: 480px) {
+        @media only screen and (max-width: $menuMobBreakpoint) {
             height: 115px;
         }
 
@@ -804,7 +805,7 @@ h5 {
     border: 0 none;
     border-collapse: collapse;
     border-spacing: 0;
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: $menuMobBreakpoint) {
         display: none;
     }
     .menu-top {
@@ -1705,7 +1706,7 @@ img.alignleft {
     padding-top: 16px;
     padding-left: 22px;
 
-    @media only screen and (max-width: 480px) {
+    @media only screen and (max-width: $menuMobBreakpoint) {
         padding-top: 10px;
         padding-left: 11px;
     }
@@ -1713,6 +1714,9 @@ img.alignleft {
     img {
         float: left;
         width: 70px;
+        @media only screen and (max-width: $menuMobBreakpoint) {
+            width: 48px;
+        }
         @media only screen and (max-width: 480px) {
             float: left;
             width: 48px;
@@ -1728,10 +1732,31 @@ img.alignleft {
         line-height: 22px;
         font-size: 21px;
         font-family: 'Roboto Slab', serif;
+        @media only screen and (max-width: $menuMobBreakpoint) {
+            font-size: 18px;
+        }
         @media only screen and (max-width: 480px) {
             padding-left: 12px;
         }
     }
+
+    // TODO reconcile with rule above
+    span.logo_dkr {
+        color: $dkr-brown;
+        @media only screen and (max-width: 480px) {
+            font-size: 16px;
+        }
+    }
+    span.logo_kl {
+        font-size: 21px;
+        color: $dkr-gold;
+        padding-top: 5px;
+        @media only screen and (max-width: 480px) {
+            font-size: 16px;
+            padding-top: 0;
+        }
+    }
+
 }
 
 /*SCHEDULE START*/
@@ -2054,21 +2079,7 @@ li.home_post {
 
 /*HOME MINI CAROUSEL END*/
 
-span.logo_dkr {
-    color: $dkr-brown;
-    @media only screen and (max-width: 480px) {
-        font-size: 16px;
-    }
-}
-span.logo_kl {
-    font-size: 21px;
-    color: $dkr-gold;
-    padding-top: 5px;
-    @media only screen and (max-width: 480px) {
-        font-size: 16px;
-        padding-top: 0;
-    }
-}
+
 
 .copyright-block {
     background: none;
@@ -3332,6 +3343,15 @@ width: 345px;
             background: $dkr-brown;
             font-weight:500;
         }
+        .prev, .next {
+            font-family: "FontAwesome";
+        }
+        a.prev {
+            padding: 4px 10px 4px 9px;
+        }
+        a.next {
+            padding: 4px 9px 4px 10px;
+        }
     }
 }
 
@@ -3361,6 +3381,15 @@ figure {
     display: table;
     margin: 0px;
 }
+
+@media only screen and (max-width: 600px) {
+	figure.alignleft, img.alignleft, figure.alignright, img.alignright {
+	float:none;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+    }
+}   
 
 figcaption {
 //    display: table-caption;
@@ -4075,9 +4104,6 @@ table.tablepress-id-19 {
         grid-template-columns: 1fr;
     }
 
-    .header .menu-bar {
-        height: 120px;
-    }
     .menu-top-container {
         width: auto;
     }

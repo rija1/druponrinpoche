@@ -27,9 +27,9 @@
             <?php
             the_posts_pagination( array(
                 'mid_size'  => 2,
-                'show_all' => true,
-                'prev_text' => pll__('Previous Posts'),
-                'next_text' => pll__('Next posts'),
+                // 'show_all' => true,
+                'prev_text' => json_decode('"\uF053"'),
+                'next_text' => json_decode('"\uF054"'),
             ) );
             ?>
 <!--            --><?php //if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>
