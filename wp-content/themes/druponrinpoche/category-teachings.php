@@ -11,8 +11,10 @@ while ($childOfCat->category_parent != 0) {
 }
 
 $parentCat = get_category( get_queried_object()->category_parent );
-$grandparentCatId = $parentCat->category_parent;
-$parentCatName = $parentCat->name;
+
+$grandparentCatId = (!empty($parentCat->category_parent)) ? $parentCat->category_parent : 0 ;
+
+$parentCatName = (!empty($parentCat->name)) ? $parentCat->name : '' ;
 ?>
 <?php get_header(); ?>
 <div class="section section-blog teachings_category">
@@ -25,9 +27,10 @@ $parentCatName = $parentCat->name;
             </div>
         </div>
         <div class="sidebar-container left">
+        <div class="teachings-cat">Excerpts</div>
             <div class="teachings_cat_list">
             <ul>
-                <?php echo wp_list_categories_teachings(array('title_li'=>'','child_of'=>$childOfCat->term_id,'show_count'=>1)); ?>
+                <?php echo wp_list_categories_teachings(array('title_li'=>'','child_of'=>$childOfCat->term_id,'show_count'=>1,'show_option_all'=> 'All',)); ?>
             </ul>
             </div>
         </div>

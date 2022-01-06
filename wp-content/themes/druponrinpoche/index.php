@@ -1,13 +1,18 @@
 <?php
+
+
 /**
  * The main template file.
  *
  * @package Onsen
  */
 error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+@ini_set('display_errors', 'On');
 
-get_header();
+define( 'WP_DEBUG', true);
+
+
+
 ?>
 <!--<section class="section section-page-title" --><?php //if(get_theme_mod('dkr_blog_image')) { ?><!-- style="background-image: url('--><?php //echo esc_url(get_theme_mod('dkr_blog_image')); ?><!--')"  --><?php //} ?><!-->
 <!--	<div class="overlay">-->

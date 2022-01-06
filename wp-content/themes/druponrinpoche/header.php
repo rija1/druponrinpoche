@@ -72,6 +72,7 @@ $pllArgs = array(
                     <div class="header_top_block">
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
+                                <!-- <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/renboqie_logo_cropped.png" /> -->
                                 <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/renboqie_logo.png" />
                                 <div class="logo_name">根绒多吉仁波切</div>
                             </a>  
@@ -90,12 +91,12 @@ $pllArgs = array(
                         <?php } ?>
                     </nav>
                     <nav class="menu-top-mob-container">
-                        <a class="icon-menu" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
+                        <a class="mob-menu-icon" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
                             <?php wp_nav_menu(
                                 array('container'=> '',
                                       'theme_location' => 'dkr-menu',
-                                      'items_wrap'  => '<ul class="menu-top-mob">%3$s</ul>',
+                                      'items_wrap'  => '<ul id="menu-top-mob" class="menu-top-mob">%3$s</ul>',
                                       'walker' => new Walker_Nav_Menu_Dr(),
                                       'depth' => 3  ) );
                             ?>
@@ -111,3 +112,67 @@ $pllArgs = array(
                     bcn_display();
                 }?>
             </div>
+
+<script>
+    // jQuery(document).ready(function(){
+        
+        // jQuery(window).load(function() {
+            
+            // menu drop-down
+            jQuery('.menu-top li').hover(function(){
+                jQuery(this).children('a').addClass('hover');
+                jQuery(this).children('.sub-menu').stop().slideDown(200);
+            }, function(){
+                jQuery(this).children('a').removeClass('hover');
+                jQuery(this).children('.sub-menu').stop().slideUp(200);
+            });
+            jQuery('.menu-top li').hover(function(){
+                jQuery(this).children('a').addClass('hover');
+                jQuery(this).children('.children').stop().slideDown(200);
+            }, function(){
+                jQuery(this).children('a').removeClass('hover');
+                jQuery(this).children('.children').stop().slideUp(200);
+            });
+
+            jQuery('.mob-menu-icon').click(function(e){
+                e.preventDefault();
+                var isMobMenuHidden = jQuery('#menu-top-mob').is(":hidden");
+                if (isMobMenuHidden) {
+                jQuery('#menu-top-mob').slideDown();
+                } else {
+                jQuery('#menu-top-mob').slideUp();
+                }
+            });
+
+            jQuery('.menu-arrow').click(function(e){
+                e.preventDefault();
+                var isMobSubmenuHidden = jQuery(this).parent().parent().children('.sub-menu').is(":hidden");
+                if (isMobSubmenuHidden) {
+                    jQuery(this).parent().parent().children('.sub-menu').slideDown(200);
+                } else {
+                    jQuery(this).parent().parent().children('.sub-menu').slideUp();
+                }
+            });
+
+        // }); // Final load
+        
+    // }); // Final ready
+
+    // jQuery(document).ready(function(){
+
+        // menu drop-down
+        jQuery('a.expand_link').each(function(){
+            jQuery(this).click(function(e) {
+                var contentEl = jQuery(this).parent().find('p.expand_content');
+                if(contentEl.css('display') == 'none') {
+                    contentEl.css('display','block');
+                    jQuery(this).html('Less');
+                } else {
+                    contentEl.css('display','none');
+                    jQuery(this).html('More');
+                }
+            })
+        });
+
+    // }); // Final ready
+</script>
