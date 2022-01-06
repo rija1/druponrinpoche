@@ -67,10 +67,18 @@ img {
   }
 }
 
+.menu-bar-logo-block a {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 1fr;
+      grid-template-columns: auto 1fr;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+}
+
 .menu-bar-logo-block img {
   float: left;
   width: 115px;
-  padding-right: 24px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -84,12 +92,19 @@ img {
   font-family: "FangsongLogo";
   font-size: 32px;
   color: #656250;
+  text-align: left;
 }
 
 @media only screen and (max-width: 700px) {
   .menu-bar-logo-block .logo_name {
     font-size: 30px;
     padding-top: 19px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .menu-bar-logo-block .logo_name {
+    font-size: 25px;
   }
 }
 

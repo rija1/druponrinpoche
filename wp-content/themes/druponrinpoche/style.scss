@@ -222,11 +222,15 @@ img {
         padding-top: 13px;
         padding-left: 13px;
     }
+    a {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: 20px;
+    }
 
     img {
         float: left;
         width: 115px;
-        padding-right:24px;
         @media only screen and (max-width: $menuMobBreakpoint) {
             width: 80px;
         }
@@ -237,9 +241,13 @@ img {
         font-family: "FangsongLogo";
         font-size: 32px;
         color:$dkr-darkgrey;
+        text-align: left;
         @media only screen and (max-width: $menuMobBreakpoint) {
             font-size: 30px;
             padding-top: 19px;
+        }
+        @media only screen and (max-width: 360px) {
+            font-size: 25px
         }
     }
 }
