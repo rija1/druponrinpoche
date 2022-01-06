@@ -55,15 +55,28 @@ img {
 
 .menu-bar-logo-block {
   float: left;
-  width: 420px;
+  width: 100%;
   padding-top: 16px;
   padding-left: 24px;
+}
+
+@media only screen and (max-width: 700px) {
+  .menu-bar-logo-block {
+    padding-top: 13px;
+    padding-left: 13px;
+  }
 }
 
 .menu-bar-logo-block img {
   float: left;
   width: 115px;
   padding-right: 24px;
+}
+
+@media only screen and (max-width: 700px) {
+  .menu-bar-logo-block img {
+    width: 80px;
+  }
 }
 
 .menu-bar-logo-block .logo_name {
@@ -77,22 +90,6 @@ img {
   .menu-bar-logo-block .logo_name {
     font-size: 30px;
     padding-top: 19px;
-  }
-}
-
-@media only screen and (max-width: 700px) {
-  .menu-bar-logo-block {
-    padding-top: 13px;
-    padding-left: 13px;
-  }
-  .menu-bar-logo-block img {
-    width: 80px;
-  }
-  .menu-bar-logo-block span {
-    padding-top: 3px;
-    padding-left: 14px;
-    line-height: 21px;
-    font-size: 18px;
   }
 }
 
