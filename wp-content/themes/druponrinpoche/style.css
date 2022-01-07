@@ -2148,9 +2148,12 @@ p.teaching_info {
 
 /*Teachings category left menu*/
 .sidebar-container > .teachings-cat {
+  font-family: 'Roboto';
+  font-weight: 100;
   text-transform: uppercase;
   font-size: 18px;
   padding-bottom: 15px;
+  color: #80784c;
 }
 
 .sidebar-container .teachings_cat_list ul {

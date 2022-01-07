@@ -11,6 +11,18 @@
  * @see http://developer.wordpress.com/themes/content-width/Enqueue
  */
 
+function pa($a,$stop=0,$exp=0){
+    echo '<pre>';
+    if($exp){
+        var_dump($a);
+    } else {print_r($a);
+    }
+    echo '</pre>';
+    if($stop){
+        die();
+    }
+}
+
 require_once('includes/class-walker-category-dr.php');
 require_once('includes/class-walker-nav-menu-dr.php');
 
@@ -143,10 +155,10 @@ if( ! function_exists( 'dkr_enqueue_styles' ) ) {
         wp_enqueue_style( 'modal-css', get_template_directory_uri() . '/assets/css/jquery.modal.min.css', array());
 
         // main style
-        wp_enqueue_style( 'dkr-style', get_stylesheet_directory_uri() . '/style.css', array() );
+        // wp_enqueue_style( 'dkr-style', get_stylesheet_directory_uri() . '/style.css?version=1', array() );
 
         // main style
-//        wp_enqueue_style( 'dkr-resp', get_template_directory_uri() . '/assets/css/resp.css', array() );
+       wp_enqueue_style( 'dkr-resp', get_template_directory_uri() . '/assets/css/resp.css', array() );
 
     }
     add_action( 'wp_enqueue_scripts', 'dkr_enqueue_styles' );
@@ -170,7 +182,7 @@ if( ! function_exists( 'dkr_enqueue_scripts' ) ) {
         // mediaqueries
         wp_enqueue_script( 'mediaqueries', get_template_directory_uri() . '/assets/js/css3-mediaqueries.js' );
         wp_script_add_data( 'mediaqueries', 'conditional', 'lt IE 9' );
-
+        
         // main for script js
         wp_enqueue_script( 'dkr-main-js', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), null );
 
@@ -308,7 +320,7 @@ function my_theme_enqueue_styles() {
 
     $parent_style = 'dkr-style';
 
-    wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
+    // wp_enqueue_style( $parent_style, get_template_directory_uri() . '/style.css' );
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 
@@ -936,33 +948,17 @@ function wp_list_categories_teachings( $args = '' ) {
         if ( ! empty( $show_option_all ) ) {
 
             $posts_page = '';
+            $cat = get_queried_object();
 
-            // For taxonomies that belong only to custom post types, point to a valid archive.
-            $taxonomy_object = get_taxonomy( $r['taxonomy'] );
-            if ( ! in_array( 'post', $taxonomy_object->object_type ) && ! in_array( 'page', $taxonomy_object->object_type ) ) {
-                foreach ( $taxonomy_object->object_type as $object_type ) {
-                    $_object_type = get_post_type_object( $object_type );
-
-                    // Grab the first one.
-                    if ( ! empty( $_object_type->has_archive ) ) {
-                        $posts_page = get_post_type_archive_link( $object_type );
-                        break;
-                    }
-                }
+            while ($cat->category_parent != 0) {
+                $cat = get_category( $cat->category_parent );
             }
 
-            // Fallback for the 'All' link is the posts page.
-            if ( ! $posts_page ) {
-                if ( 'page' == get_option( 'show_on_front' ) && get_option( 'page_for_posts' ) ) {
-                    $posts_page = get_permalink( get_option( 'page_for_posts' ) );
-                } else {
-                    $posts_page = home_url( '/' );
-                }
-            }
+            $posts_page = get_category_link($cat);
 
             $posts_page = esc_url( $posts_page );
             if ( 'list' == $r['style'] ) {
-                $output .= "<li class='cat-item-all'><a href='$posts_page'>$show_option_all</a></li>";
+                $output .= "<li class='cat-item-all'><div class=\"teachings-cat\"><a href='$posts_page'>$show_option_all</a></div></li>";
             } else {
                 $output .= "<a href='$posts_page'>$show_option_all</a>";
             }
@@ -1089,50 +1085,17 @@ function getDrWebsiteConfig()
     $locale = get_locale();
     $drWebsiteConfig = array();
 
-    if($locale == 'en_US') {
-        $drWebsiteConfig['home_metaslider_id'] = 132;
-        $drWebsiteConfig['home_schedule_id'] = 8;
-        $drWebsiteConfig['news_feat_cat_ids'] = array(2,93);
-        $drWebsiteConfig['featured_cat_id'] = 93;
-        $drWebsiteConfig['schedule_page_id'] = 14553;
-        $drWebsiteConfig['aboutrinpoche_page_id'] = 1403;
-        $drWebsiteConfig['sekhar_page_id'] = 54;
-        $drWebsiteConfig['mts_page_id'] = 693;
-        $drWebsiteConfig['lineage_page_id'] = 1063;
-        $drWebsiteConfig['selected_pics_gallery_id'] = 1293;
-        $drWebsiteConfig['nb_latest_news_posts'] = 4;
-        $drWebsiteConfig['teaching_cat_ids'] = array(28,30);
-        $drWebsiteConfig['analytics_ua'] = 'UA-136620900-1';
-    } elseif($locale == 'zh_CN') {
-        $drWebsiteConfig['home_metaslider_id'] = 1516;
-        $drWebsiteConfig['home_schedule_id'] = 11;
-        $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
-        $drWebsiteConfig['featured_cat_id'] = 263;
-        $drWebsiteConfig['schedule_page_id'] = 14614;
-        $drWebsiteConfig['aboutrinpoche_page_id'] = 13699;
-        $drWebsiteConfig['sekhar_page_id'] = 12938;
-        $drWebsiteConfig['mts_page_id'] = 12521;
-        $drWebsiteConfig['lineage_page_id'] = 12910;
-        $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
-        $drWebsiteConfig['nb_latest_news_posts'] = 4;
-        $drWebsiteConfig['teaching_cat_ids'] = array(267,271,77,76);
-        $drWebsiteConfig['analytics_ua'] = 'UA-141700678-1';
-    } elseif($locale == 'bo') {
-
-        $drWebsiteConfig['home_metaslider_id'] = 14254;
-        $drWebsiteConfig['home_schedule_id'] = 14;
-        $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
-        $drWebsiteConfig['featured_cat_id'] = 263;
-        $drWebsiteConfig['schedule_page_id'] = 12987;
-        $drWebsiteConfig['aboutrinpoche_page_id'] = 13699;
-        $drWebsiteConfig['sekhar_page_id'] = 12938;
-        $drWebsiteConfig['mts_page_id'] = 12521;
-        $drWebsiteConfig['lineage_page_id'] = 12910;
-        $drWebsiteConfig['selected_pics_gallery_id'] = 13617;
-        $drWebsiteConfig['nb_latest_news_posts'] = 4;
-        $drWebsiteConfig['teaching_cat_ids'] = array(267,271,77,76);
-        $drWebsiteConfig['analytics_ua'] = 'UA-141700678-1';
-    }
+    $drWebsiteConfig['home_metaslider_id'] = 132;
+    $drWebsiteConfig['news_feat_cat_ids'] = array(2,93);
+    $drWebsiteConfig['featured_cat_id'] = 93;
+    $drWebsiteConfig['aboutrinpoche_page_id'] = 13610;
+    $drWebsiteConfig['lineage_page_id'] = 54;
+    $drWebsiteConfig['monastery_page_id'] = 693;
+    $drWebsiteConfig['lineage_page_id'] = 1063;
+    $drWebsiteConfig['selected_pics_gallery_id'] = 1293;
+    $drWebsiteConfig['nb_latest_news_posts'] = 4;
+    $drWebsiteConfig['teaching_cat_ids'] = array(28,30);
+    $drWebsiteConfig['analytics_ua'] = 'UA-136620900-1';
 
     return $drWebsiteConfig;
 
