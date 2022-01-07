@@ -155,10 +155,8 @@ if( ! function_exists( 'dkr_enqueue_styles' ) ) {
         wp_enqueue_style( 'modal-css', get_template_directory_uri() . '/assets/css/jquery.modal.min.css', array());
 
         // main style
+        wp_enqueue_style( 'dkr-style', get_stylesheet_directory_uri() . '/style.css', array() );
         // wp_enqueue_style( 'dkr-style', get_stylesheet_directory_uri() . '/style.css?version=1', array() );
-
-        // main style
-       wp_enqueue_style( 'dkr-resp', get_template_directory_uri() . '/assets/css/resp.css', array() );
 
     }
     add_action( 'wp_enqueue_scripts', 'dkr_enqueue_styles' );
