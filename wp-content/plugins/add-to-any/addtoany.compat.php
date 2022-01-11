@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Strips out disallowed HTML using wp_kses_post() while temporarily allowing some additional CSS in a style attribute.
+ * Strips out disallowed HTML using wp_kses_post() while temporarily allowing 
+ * some additional HTML attributes and CSS in a style attribute.
  */
 function addtoany_kses( $string ) {
 	/**
@@ -17,13 +18,23 @@ function addtoany_kses( $string ) {
 	add_filter( 'safecss_filter_attr_allow_css', 'addtoany_kses_allow_css_declarations', 10, 2 );
 
 	// Strip out any disallowed HTML.
-	$string = wp_kses_post( $string );
+	$string = wp_kses( $string, addtoany_expanded_allowed_html() );
 	
 	// Revert kses filters to originals.
-	remove_filter( 'safe_style_css', 'allow_css_properties' );
+	remove_filter( 'safe_style_css', 'addtoany_kses_allow_css_properties' );
 	remove_filter( 'safecss_filter_attr_allow_css', 'addtoany_kses_allow_css_declarations', 10, 2 );
 
 	return $string;
+}
+
+/**
+ * Returns `wp_kses_allowed_html( 'post' )` with additional allowed HTML.
+ */
+function addtoany_expanded_allowed_html() {
+	$allowed = wp_kses_allowed_html( 'post' );
+	// Add AMP attributes.
+	$allowed['a']['on'] = true;
+	return $allowed;
 }
 
 /**
@@ -70,24 +81,6 @@ function addtoany_excerpt_remove() {
 			remove_filter( 'the_excerpt', 'A2A_SHARE_SAVE_add_to_content', 98 );
 		}	
 	}
-}
-
-/**
- * Load AMP (Accelerated Mobile Pages) compatibility functions.
- */
-
-add_action( 'amp_post_template_css', 'addtoany_amp_additional_css_styles' );
-
-function addtoany_amp_additional_css_styles( $amp_template ) {
-	// CSS only.
-	?>
-	.addtoany_list a {
-		padding: 0 4px;
-	}
-	.addtoany_list a amp-img {
-		display: inline-block;
-	}
-	<?php
 }
 
 /**

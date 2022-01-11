@@ -3,7 +3,7 @@
  * Plugin Name: AddToAny Share Buttons
  * Plugin URI: https://www.addtoany.com/
  * Description: Share buttons for your pages including AddToAny's universal sharing button, Facebook, Twitter, LinkedIn, Pinterest, WhatsApp and many more.
- * Version: 1.8.2
+ * Version: 1.8.3
  * Author: AddToAny
  * Author URI: https://www.addtoany.com/
  * Text Domain: add-to-any
@@ -358,14 +358,15 @@ function ADDTOANY_SHARE_SAVE_ICONS( $args = array() ) {
 
 			// Use AMP's "print" action.
 			if ( $is_amp && 'print' === $code_name ) {
-				$amp_on_attr = 'on="tap:AMP.print()"';
-				$href_attr = '#';
+				$amp_on_attr = ' on="tap:AMP.print()"';
+				$href_attr = ' href="#print"';
+				$target_attr = '';
 			} else {
 				$amp_on_attr = '';
 			}
 
 			// Set dimension attributes if using custom icons and dimension is specified.
-			if ( isset( $custom_icons ) ) {
+			if ( isset( $custom_icons ) && ! $is_amp ) {
 				$width_attr = ! empty( $icons_width ) ? ' width="' . $icons_width . '"' : '';
 				$height_attr = ! empty( $icons_height ) ? ' height="' . $icons_height . '"' : '';
 			}
@@ -755,7 +756,7 @@ function ADDTOANY_SHARE_SAVE_FLOATING( $args = array() ) {
 		return $floating_html;
 	}
 	else {
-		// Output escaped HTML without stripping out positional styles as wp_kses* does.
+		// Output escaped HTML without stripping out AMP attributes and positional styles as wp_kses* does.
 		echo addtoany_kses( $floating_html );
 	}
 }
@@ -766,7 +767,7 @@ function A2A_SHARE_SAVE_footer_script() {
 	
 	$floating_html = ADDTOANY_SHARE_SAVE_FLOATING( array( 'output_later' => true ) );
 	
-	// Output escaped HTML without stripping out positional styles as wp_kses* does.
+	// Output escaped HTML without stripping out AMP attributes and positional styles as wp_kses* does.
 	echo addtoany_kses( $floating_html );
 }
 
@@ -922,10 +923,18 @@ function A2A_SHARE_SAVE_stylesheet() {
 	$options = $A2A_SHARE_SAVE_options;
 	
 	if ( ! is_admin() ) {
-		wp_enqueue_style( 'addtoany', plugins_url('/addtoany.min.css', __FILE__ ), false, '1.15' );
-		
 		// Prepare inline CSS.
 		$inline_css = '';
+		$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ? true : false;
+		$html_amp = $is_amp ? 'html[amp] ' : '';
+
+		// Load AMP stylesheet first so its declarations are overridable by the main stylesheet.
+		if ( $is_amp ) {
+			wp_enqueue_style( 'addtoany-amp', plugins_url('/addtoany.amp.css', __FILE__ ), false, '1.0' );
+		}
+
+		// Load main stylesheet last so its declarations can override the AMP stylesheet.
+		wp_enqueue_style( 'addtoany', plugins_url('/addtoany.min.css', __FILE__ ), false, '1.16' );
 		
 		$vertical_type = ( isset( $options['floating_vertical'] ) && 'none' != $options['floating_vertical'] ) ? $options['floating_vertical'] : false;
 		$horizontal_type = ( isset( $options['floating_horizontal'] ) && 'none' != $options['floating_horizontal'] ) ? $options['floating_horizontal'] : false;
@@ -943,7 +952,7 @@ function A2A_SHARE_SAVE_stylesheet() {
 			
 			// Set media query.
 			$inline_css .= '@media screen and (max-width:' . $vertical_max_width . 'px){' . "\n"
-				. '.a2a_floating_style.a2a_vertical_style{display:none;}' . "\n"
+				. $html_amp . '.a2a_floating_style.a2a_vertical_style{display:none;}' . "\n"
 				. '}';
 		}
 		
@@ -963,7 +972,7 @@ function A2A_SHARE_SAVE_stylesheet() {
 			
 			// Set media query.
 			$inline_css .= '@media screen and (min-width:' . $horizontal_min_width . 'px){' . "\n"
-				. '.a2a_floating_style.a2a_default_style{display:none;}' . "\n"
+				. $html_amp . '.a2a_floating_style.a2a_default_style{display:none;}' . "\n"
 				. '}';
 		}
 		
@@ -993,8 +1002,10 @@ function A2A_SHARE_SAVE_enqueue_script() {
 	// Hook to disable script output.
 	// Example: add_filter( 'addtoany_script_disabled', '__return_true' );
 	$script_disabled = apply_filters( 'addtoany_script_disabled', false );
+
+	$is_amp = function_exists( 'is_amp_endpoint' ) && is_amp_endpoint() ? true : false;
 	
-	if ( is_admin() || is_feed() || $script_disabled )
+	if ( is_admin() || is_feed() || $script_disabled || $is_amp )
 		return;
 
 	if ( is_singular() ) {
