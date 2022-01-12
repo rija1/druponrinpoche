@@ -67,7 +67,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
     </li>
     <li class="box3">
         <?php
-        $id=$drWebsiteConfig['monastery_page_id'];
+        $id=$drWebsiteConfig['lineage_page_id'];
         $post = get_post( $id );
         $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
         ?>
