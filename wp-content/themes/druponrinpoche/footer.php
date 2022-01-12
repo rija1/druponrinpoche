@@ -78,8 +78,7 @@ $locale = get_locale();
 						<div class="column-6-12 right">
 
 							<div class="gutter">
-                                </p><?php rbq_trsl('© 2019 Drupon Khen Rinpoche Karma Lhabu. All Rights Reserved.'); ?></p>
-<!--								<p>--><?php //do_action( 'dkr_display_credits' ); ?><!--</p>-->
+                                </p><?php echo rbq_trsl('Copyright © 2010-2022 根绒多吉仁波切 All rights reserved'); ?></p>
 							</div>
 						</div>
 					</div>
@@ -87,7 +86,7 @@ $locale = get_locale();
 			</div> <!--  END copyright-block  -->
 		</footer> <!--  END footer  -->
         </div> <!--  END container  -->
-	</div> <!--  END wrapper  -->
+	</div> <!--  END content  -->
 <?php
 wp_footer(); ?>
 </body>

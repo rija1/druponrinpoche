@@ -889,6 +889,16 @@ img {
   margin-right: auto;
 }
 
+@media only screen and (max-width: 600px) {
+  figure.alignleft, img.alignleft, figure.alignright, img.alignright {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
+}
+
 .tags {
   margin: 20px 0;
 }
@@ -1038,8 +1048,9 @@ blockquote {
 }
 
 .header .menu-bar {
-  background: #f2efdf;
   position: relative;
+  background: -webkit-gradient(linear, left top, left bottom, from(#020024), color-stop(0%, #fdf6dd), color-stop(50%, white));
+  background: linear-gradient(180deg, #020024 0%, #fdf6dd 0%, white 50%);
 }
 
 /**  header  **/
@@ -1413,7 +1424,6 @@ li.home_post {
 }
 
 .copyright-block .container {
-  background: #f2efdf;
   padding: 15px 0 10px 0;
   /*font-family: 'Roboto Slab', serif;*/
   color: #80784c;
@@ -2593,6 +2603,8 @@ a.course_link {
       grid-template-columns: 1fr;
   grid-row-gap: 30px;
   padding: 35px 170px 20px 170px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#020024), color-stop(0%, #e4e4e4), color-stop(9%, white));
+  background: linear-gradient(180deg, #020024 0%, #e4e4e4 0%, white 9%);
 }
 
 .home_quote_title {
