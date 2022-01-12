@@ -56,7 +56,7 @@ img {
 .menu-bar-logo-block {
   float: left;
   width: 100%;
-  padding-top: 16px;
+  padding-top: 10px;
   padding-left: 24px;
 }
 
@@ -78,7 +78,7 @@ img {
 
 .menu-bar-logo-block img {
   float: left;
-  width: 115px;
+  width: 145px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -92,6 +92,7 @@ img {
   font-family: "FangsongLogo";
   font-size: 32px;
   color: #656250;
+  color: #9f9331;
   text-align: left;
 }
 
@@ -293,7 +294,6 @@ img {
   border-collapse: collapse;
   border-spacing: 0;
   display: table-row;
-  font-family: 'Raleway';
   font-size: 14px;
   line-height: 17px;
   text-transform: uppercase;

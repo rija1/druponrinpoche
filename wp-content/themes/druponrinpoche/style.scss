@@ -37,6 +37,14 @@ $menuMobBreakpoint:700px;
     font-style: normal;
   }
 
+//   @font-face {
+//     font-family: 'MaShanZheng';
+//     src: 
+//     url('assets/fonts/MaShanZheng-Regular.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+//   }
+
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
     margin: 0;
     padding: 0;
@@ -216,7 +224,7 @@ img {
 
     float: left;
     width: 100%;
-    padding-top: 16px;
+    padding-top: 10px;
     padding-left: 24px;
     @media only screen and (max-width: $menuMobBreakpoint) {
         padding-top: 13px;
@@ -230,7 +238,7 @@ img {
 
     img {
         float: left;
-        width: 115px;
+        width: 145px;
         @media only screen and (max-width: $menuMobBreakpoint) {
             width: 80px;
         }
@@ -241,6 +249,7 @@ img {
         font-family: "FangsongLogo";
         font-size: 32px;
         color:$dkr-darkgrey;
+        color:#9f9331;
         text-align: left;
         @media only screen and (max-width: $menuMobBreakpoint) {
             font-size: 30px;
@@ -436,7 +445,7 @@ img {
         border-collapse: collapse;
         border-spacing: 0;
         display: table-row;
-        font-family: 'Raleway';
+        // font-family: 'MaShanZheng';
         font-size: 14px;
         line-height: 17px;
         text-transform: uppercase;
@@ -2767,6 +2776,7 @@ a.course_link {
 }
 
 .home_quote {
+    // font-family: 'MaShanZheng';
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 30px;
