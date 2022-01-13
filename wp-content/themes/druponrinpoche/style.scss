@@ -1320,8 +1320,9 @@ img.alignleft {
 
 .home_pages_grid {
     list-style: none;
-    padding: 30px 60px 5px 60px;
+    padding: 44px 60px 5px 60px;
     display: grid;
+    border-top:solid 1px #eee;
     grid-template-columns: 1fr 1fr 1fr;
     grid-row-gap: 20px;
     grid-column-gap: 60px;
@@ -2783,7 +2784,7 @@ a.course_link {
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 30px;
-    padding: 35px 170px 20px 170px;
+    padding: 35px 170px 37px 170px;
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(228,228,228,1) 0%, rgba(255,255,255,1) 9%);
 }
 .home_quote_title {
