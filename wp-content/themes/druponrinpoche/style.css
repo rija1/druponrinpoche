@@ -1148,10 +1148,6 @@ img.alignleft {
   grid-column-gap: 60px;
 }
 
-.home_pages_grid .inner {
-  background: #ffffff;
-}
-
 .home_pages_grid h5 {
   text-align: center;
   margin: 0;
@@ -1160,6 +1156,7 @@ img.alignleft {
 }
 
 .home_pages_grid li {
+  background: #ffffff;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   border: solid 1px #eaeaea;

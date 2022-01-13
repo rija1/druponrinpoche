@@ -1325,9 +1325,6 @@ img.alignleft {
     grid-template-columns: 1fr 1fr 1fr;
     grid-row-gap: 20px;
     grid-column-gap: 60px;
-    .inner {
-        background: #ffffff;
-    }
     h5 {
         text-align: center;
         margin: 0;
@@ -1335,6 +1332,7 @@ img.alignleft {
         padding: 10px 10px 10px 10px;
     }
     li {
+        background: #ffffff;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         border: solid 1px #eaeaea;
         p {
