@@ -8,7 +8,6 @@ License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Text Domain:  druponrinpoche
 */
-/**  fonts  **/
 @font-face {
   font-family: 'FontAwesome';
   src: url("assets/fonts/fontawesome-webfont.ttf");
@@ -256,7 +255,24 @@ img {
 }
 
 /**  menu-bar  **/
+.header {
+  position: relative;
+  margin: 0 auto;
+  z-index: 999;
+  padding-bottom: 0px;
+  *padding-bottom: 0;
+}
+
+.header:after {
+  bottom: 0;
+}
+
 .header .menu-bar {
+  position: relative;
+  background-color: #fffdf6;
+  background-image: url(https://www.transparenttextures.com/patterns/scribble-light.png);
+  background: -webkit-gradient(linear, left top, left bottom, from(#020024), color-stop(0%, #fdf6dd), color-stop(50%, white));
+  background: linear-gradient(180deg, #020024 0%, #fdf6dd 0%, white 50%);
   top: 100%;
   left: 0;
   right: 0;
@@ -1035,24 +1051,6 @@ blockquote {
   margin: 10px 0px 30px;
   padding: 20px 20px 5px;
   quotes: none;
-}
-
-.header {
-  position: relative;
-  margin: 0 auto;
-  z-index: 999;
-  padding-bottom: 0px;
-  *padding-bottom: 0;
-}
-
-.header:after {
-  bottom: 0;
-}
-
-.header .menu-bar {
-  position: relative;
-  background: -webkit-gradient(linear, left top, left bottom, from(#020024), color-stop(0%, #fdf6dd), color-stop(50%, white));
-  background: linear-gradient(180deg, #020024 0%, #fdf6dd 0%, white 50%);
 }
 
 /**  header  **/
@@ -2606,7 +2604,9 @@ a.course_link {
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   grid-row-gap: 30px;
-  padding: 35px 170px 37px 170px;
+  padding: 35px 17% 37px 170px;
+  background-color: #fffdf6;
+  background-image: url(https://www.transparenttextures.com/patterns/scribble-light.png);
   background: -webkit-gradient(linear, left top, left bottom, from(#020024), color-stop(0%, #e4e4e4), color-stop(9%, white));
   background: linear-gradient(180deg, #020024 0%, #e4e4e4 0%, white 9%);
 }
