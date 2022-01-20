@@ -17,28 +17,8 @@ $dkr-darkgrey: #656250;
 $grey : #9d9b9b;
 $menuMobBreakpoint:700px;
 
-$bg-text1-col: #fffdf6;
-// Paper 1
-$bg-text1-url: url(https://www.transparenttextures.com/patterns/scribble-light.png);
-// Dots
-// $bg-text1-url: url(https://www.transparenttextures.com/patterns/stardust.png);
-// $bg-text1-url: url(https://www.transparenttextures.com/patterns/wall-4-light.png);
-// Wave
-// $bg-text1-url: url(https://www.transparenttextures.com/patterns/white-wave.png);
-// $bg-text1-url: url(https://www.transparenttextures.com/patterns/xv.png);
-// Leafy
-// $bg-text1-url: url(https://www.transparenttextures.com/patterns/stardust.png);
 
-$logo-font:'FangsongLogo';
-
-// Other Chinese Fonts
-// $logo-font:'Long Cang', cursive;
-// $logo-font:'Ma Shan Zheng', cursive;
-// $logo-font: 'Noto Sans SC', sans-serif;
-// $logo-font:'Noto Serif SC', serif;
-// $logo-font: 'ZCOOL KuaiLe', cursive;
-// @import url('https://fonts.googleapis.com/css2?family=Long+Cang&family=Ma+Shan+Zheng&family=Noto+Sans+SC&family=Noto+Serif+SC:wght@500;700&family=ZCOOL+KuaiLe&display=swap');
-
+/**  fonts  **/
 
 @font-face {
     font-family: 'FontAwesome';
@@ -57,6 +37,13 @@ $logo-font:'FangsongLogo';
     font-style: normal;
   }
 
+//   @font-face {
+//     font-family: 'MaShanZheng';
+//     src: 
+//     url('assets/fonts/MaShanZheng-Regular.ttf') format('truetype');
+//     font-weight: normal;
+//     font-style: normal;
+//   }
 
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
     margin: 0;
@@ -77,17 +64,15 @@ ol, ul {
 //     -ms-text-size-adjust: 100%;
 // }
 
-body {
-//     background-color: #ffffff;
-// background-image: url(https://www.transparenttextures.com/patterns/white-wave.png);
-// //     word-wrap: break-word;
+// body {
+//     word-wrap: break-word;
 //     background: #fdfdfd;
 //     font-family: 'Roboto';
 //     font-weight: 100;
 //     font-size:15px;
 //     line-height: 1.3;
 //     /* Cover BG by http://gradient.quasi.ink */
-}
+// }
 
 // article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 //     display: block;
@@ -261,7 +246,7 @@ img {
 
     .logo_name {
         padding-top: 25px;
-        font-family: $logo-font;
+        font-family: "FangsongLogo";
         font-size: 32px;
         color:$dkr-darkgrey;
         color:#9f9331;
@@ -430,34 +415,15 @@ img {
 
 /**  menu-bar  **/
 
-.header {
-    &:after {
-        bottom: 0;
-    }
-    position: relative;
-    margin: 0 auto;
+.header .menu-bar {
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
     z-index: 999;
-    padding-bottom: 0px;
-    *padding-bottom: 0;
-
-    .menu-bar {
-        position: relative;
-        
-        background-color: $bg-text1-col;
-        background-image: $bg-text1-url;
-
-        background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(253,246,221,1) 0%, rgba(255,255,255,1) 50%);
-
-
-        top: 100%;
-        left: 0;
-        right: 0;
-        width: 100%;
-        z-index: 999;
-        height:142px;
-        @media only screen and (max-width: $menuMobBreakpoint) {
-            height: 127px;
-        }
+    height:142px;
+    @media only screen and (max-width: $menuMobBreakpoint) {
+        height: 127px;
     }
 }
  
@@ -1247,6 +1213,21 @@ blockquote {
     margin: 10px 0px 30px;
     padding: 20px 20px 5px;
     quotes: none;
+}
+
+.header {
+    &:after {
+        bottom: 0;
+    }
+    position: relative;
+    margin: 0 auto;
+    z-index: 999;
+    padding-bottom: 0px;
+    *padding-bottom: 0;
+    .menu-bar {
+        position: relative;
+        background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(253,246,221,1) 0%, rgba(255,255,255,1) 50%);
+    }
 }
 
 /**  header  **/
@@ -2803,11 +2784,8 @@ a.course_link {
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 30px;
-    padding: 35px 17% 37px 170px;
-    background-color: $bg-text1-col;
-    background-image: $bg-text1-url;
+    padding: 35px 170px 37px 170px;
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(228,228,228,1) 0%, rgba(255,255,255,1) 9%);
-
 }
 .home_quote_title {
     text-align: center;
