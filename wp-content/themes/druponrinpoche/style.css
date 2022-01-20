@@ -1637,7 +1637,6 @@ img.alignleft {
 
 .menu-bar-logo-block {
   float: left;
-  width: 355px;
   padding-top: 16px;
   padding-left: 22px;
 }
@@ -1660,11 +1659,14 @@ img.alignleft {
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .menu-bar-logo-block img {
-    float: left;
-    width: 48px;
-    margin-top: 7px;
+.menu-bar-logo-block .logo_name {
+  padding-top: 8px;
+  padding-left: 10px;
+}
+
+@media only screen and (max-width: 700px) {
+  .menu-bar-logo-block .logo_name {
+    padding-top: 0;
   }
 }
 
@@ -1680,13 +1682,8 @@ img.alignleft {
 
 @media only screen and (max-width: 700px) {
   .menu-bar-logo-block span {
-    font-size: 18px;
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .menu-bar-logo-block span {
-    padding-left: 12px;
+    font-size: 16px;
+    padding-left: 11px;
   }
 }
 
@@ -1694,23 +1691,25 @@ img.alignleft {
   color: #80784c;
 }
 
-@media only screen and (max-width: 480px) {
-  .menu-bar-logo-block span.logo_dkr {
-    font-size: 16px;
-  }
-}
-
 .menu-bar-logo-block span.logo_kl {
-  font-size: 21px;
   color: #bb9b25;
   padding-top: 5px;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 700px) {
   .menu-bar-logo-block span.logo_kl {
-    font-size: 16px;
     padding-top: 0;
+    font-size: 16px;
   }
+}
+
+/* HEADER NEW STYLE 1 */
+.menu-top-container {
+  width: 60%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto';
 }
 
 /*SCHEDULE START*/
@@ -2606,26 +2605,6 @@ h4:after, h4:before {
   display: none;
 }
 
-/* HEADER NEW STYLE 1 */
-.menu-top-container {
-  width: 60%;
-}
-
-.menu-bar-logo-block .logo_name {
-  padding-top: 8px;
-  padding-left: 10px;
-}
-
-@media only screen and (max-width: 480px) {
-  .menu-bar-logo-block .logo_name {
-    padding-top: 7px;
-  }
-}
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto';
-}
-
 /*LINEAGE*/
 .lineages {
   width: 100%;
@@ -3226,10 +3205,6 @@ a.expand_link:hover {
   height: 40px;
 }
 
-.menu-bar-logo-block {
-  width: 345px;
-}
-
 .schedule_carousel_wrap {
   width: 100%;
 }
@@ -3304,6 +3279,7 @@ figure {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    padding: 0;
   }
 }
 

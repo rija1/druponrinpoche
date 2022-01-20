@@ -1702,7 +1702,7 @@ img.alignleft {
 
 .menu-bar-logo-block {
     float: left;
-    width: 355px;
+    // width: 355px;
     padding-top: 16px;
     padding-left: 22px;
 
@@ -1717,10 +1717,13 @@ img.alignleft {
         @media only screen and (max-width: $menuMobBreakpoint) {
             width: 48px;
         }
-        @media only screen and (max-width: 480px) {
-            float: left;
-            width: 48px;
-            margin-top: 7px;
+    }
+
+    .logo_name {
+        padding-top: 8px;
+        padding-left: 10px;
+        @media only screen and (max-width: $menuMobBreakpoint) {
+            padding-top: 0;
         }
     }
 
@@ -1733,30 +1736,33 @@ img.alignleft {
         font-size: 21px;
         font-family: 'Roboto Slab', serif;
         @media only screen and (max-width: $menuMobBreakpoint) {
-            font-size: 18px;
+            font-size: 16px;
+            padding-left: 11px;
         }
-        @media only screen and (max-width: 480px) {
-            padding-left: 12px;
+        &.logo_dkr {
+            color: $dkr-brown;
         }
+        &.logo_kl {
+                color: $dkr-gold; 
+                padding-top: 5px;
+                @media only screen and (max-width: $menuMobBreakpoint) {
+                    padding-top: 0;
+                    font-size: 16px;
+                }
+            }   
     }
 
-    // TODO reconcile with rule above
-    span.logo_dkr {
-        color: $dkr-brown;
-        @media only screen and (max-width: 480px) {
-            font-size: 16px;
-        }
-    }
-    span.logo_kl {
-        font-size: 21px;
-        color: $dkr-gold;
-        padding-top: 5px;
-        @media only screen and (max-width: 480px) {
-            font-size: 16px;
-            padding-top: 0;
-        }
-    }
+}
 
+
+/* HEADER NEW STYLE 1 */
+
+.menu-top-container {
+    width: 60%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto';
 }
 
 /*SCHEDULE START*/
@@ -2636,24 +2642,6 @@ h4 {
     }
 }
 
-/* HEADER NEW STYLE 1 */
-
-.menu-top-container {
-    width: 60%;
-}
-
-.menu-bar-logo-block .logo_name {
-    padding-top: 8px;
-    padding-left: 10px;
-    @media only screen and (max-width: 480px) {
-        padding-top: 7px;
-    }
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto';
-}
-
 /*LINEAGE*/
 
 .lineages {
@@ -3313,7 +3301,7 @@ a.expand_link {
 //    width: 1050px;
 }
 .menu-bar-logo-block {
-width: 345px;
+// width: 345px;
 }
 .schedule_carousel_wrap {
     width: 100%;
@@ -3388,6 +3376,7 @@ figure {
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
+    padding:0;
     }
 }   
 
