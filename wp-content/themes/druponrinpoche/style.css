@@ -640,6 +640,10 @@ img {
   margin-right: auto;
 }
 
+.article-text {
+  color: #656250;
+}
+
 .meta {
   font-size: 13px;
 }
@@ -1184,64 +1188,6 @@ img.alignleft {
 .home_pages_grid li p {
   text-align: justify;
   color: #404040;
-}
-
-/*SCHEDULE START*/
-.tablepress .row-1 {
-  font-weight: bold;
-}
-
-table.tablepress {
-  border: solid 1px #eee;
-}
-
-.article-text .prev_schedules a {
-  float: left;
-  margin: 0 15px 15px 0;
-  background: #bc9c09;
-  padding: 10px;
-  color: #fff;
-}
-
-.article-text .prev_schedules a:hover {
-  color: #fff;
-  text-decoration: none;
-}
-
-/*SCHEDULE END*/
-/*HOME MINI CAROUSEL START*/
-.home_mini_carousel {
-  float: right;
-  width: 42%;
-  font-size: 12px;
-  color: #444;
-}
-
-.home_mini_carousel .tablepress .column-3 {
-  display: none;
-}
-
-body.home .tablepress thead th {
-  color: #80784c;
-  background: none;
-}
-
-body.home .tablepress tbody td {
-  color: #80784c;
-}
-
-body.home .dataTables_wrapper {
-  margin-top: 10px;
-}
-
-a.full_schedule_lnk {
-  display: block;
-  padding: 10px;
-  font-size: 12px;
-  width: 125px;
-  margin: 25px auto 15px auto;
-  color: #fff;
-  background: #9b940d;
 }
 
 /*Home*/
@@ -1915,7 +1861,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .article-text p {
-  line-height: 1.6;
+  line-height: 2;
 }
 
 .unclickable > a:hover {
