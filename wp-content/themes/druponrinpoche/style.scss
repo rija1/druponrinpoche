@@ -803,6 +803,7 @@ img {
 .article-text {
     color:$dkr-darkgrey;
     line-height: 2;
+    text-align: justify;
 }
 
 .meta {
@@ -1117,10 +1118,6 @@ img {
     margin: 20px 0;
 }
 
-img.alignleft {
-    margin: 5px 20px 5px 0;
-}
-
 .wp-caption.alignleft {
     margin: 5px 10px 5px 0;
 }
@@ -1268,9 +1265,8 @@ blockquote {
 }
 
 img.alignleft {
-    margin: 5px 40px 5px 0;
+    margin: 5px 30px 5px 0;
 }
-
 
 .metaslider {
     /*max-width: 1000px !important;*/
@@ -1794,50 +1790,7 @@ li.page_item_has_children > a {
     color: #fff;
 }
 
-.category-news .featured-grid {
-    padding: 5px 30px 5px 30px;
-    display: grid;
-    grid-row-gap: 20px;
-    grid-column-gap: 30px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-auto-flow: dense;
-    .article-blog:first-child {
-        grid-column: 1 / 3;
-        grid-row: 1 / 3;
-        .category-post-title {
-            font-size:22px;
-        }
-        .category-post-date {
-            font-size: 13px;
-        }
-        .article-text {
-            p {
-                font-size:14px;
-            }
-        }
-    }
-}
 
-.category-news .featured-grid h5 {
-    margin-bottom: 0;
-}
-
-.category-news .posts-grid {
-    margin-top: 15px;
-    padding: 0 30px 30px 30px;
-    display: grid;
-    grid-row-gap: 28px;
-    grid-column-gap: 28px;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    grid-auto-flow: dense;
-}
-
-.news_right_block {
-    grid-column: 3 / 4;
-    grid-row: 1 / 3;
-}
 
 .article-image img {
     margin-left: auto;
@@ -2029,14 +1982,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .unclickable > a:hover {
     cursor: default;
-}
-.contact_social  {
-    img.alignleft {
-    margin: 2px 10px 5px 0;
-    }
-    .container .single-post p {
-        text-align: left;
-    }
 }
 
 /*Quotes category page*/
@@ -2327,87 +2272,6 @@ p.teaching_info {
     font-weight: 100;
 }
 
-// new posts style
-
-.category-news .article-blog {
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid #dcdcdc;
-    padding-bottom: 0;
-    margin-bottom: 0px;
-    background: #ffffff;
-}
-
-
-.category-news .article-blog .article-text {
-    padding: 0 17px 10px 17px;
-}
-
-.category-news {
-    .article-blog {
-        height: 416px;
-        .article-text {
-            position:relative;
-        }
-    }
-    a.article-link {
-        display:block;
-//        &:hover span.read_more {
-//            -webkit-transition: all .4s ease;
-//            -moz-transition: all .4s ease;
-//            -ms-transition: all .4s ease;
-//            -o-transition: all .4s ease;
-//            transition: all .4s ease;
-//            background-color: $dkr-gold;
-//            color: #ffffff;
-//        }
-        &:hover .category-post-title {
-            -webkit-transition: all .1s ease;
-            -moz-transition: all .1s ease;
-            -ms-transition: all .1s ease;
-            -o-transition: all .1s ease;
-            transition: all .1s ease;
-            color: $dkr-gold;
-        }
-        span.read_more {
-            padding: 8px;
-            z-index: 9999;
-            text-align: center;
-            text-transform: uppercase;
-            color: #80784c;
-            font-family: 'Raleway';
-            font-size: 11px;
-            width: 82px;
-            margin:0 auto 0 auto;
-        }
-    }
-    .featured-grid {
-        .article-blog {
-            height: 590px;
-            .article-text:after {
-                top: 43px;
-                background: linear-gradient(to bottom, rgba(255, 255, 255, 0), white 50%);
-            }
-            .article-text p {
-                padding-bottom: 15px;
-            }
-        }
-        a.article-link {
-            span.read_more {
-                display: block;
-//                float: left;
-//                position: absolute;
-//                top: 118px;
-//                left: 246px;
-                width: 82px;
-                margin:0 auto 0 auto;
-                padding: 5px;
-                font-family: 'Raleway';
-                font-size: 12px;
-                text-transform: uppercase;
-            }
-        }
-    }
-}
 
 .teachings-category .article-blog:hover {
     border: solid 1px #eaeaea;
