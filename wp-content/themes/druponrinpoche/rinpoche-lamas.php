@@ -5,7 +5,7 @@
 <!--            <div class="container">-->
                 <div class="section-title">
                     <div class="gutter">
-                        <h1><?php the_title(); ?></h1>
+                        <h1 class="centered"><?php the_title(); ?></h1>
                         <?php //the_excerpt(); ?>
                     </div>
                 </div>

@@ -3005,6 +3005,10 @@ a.course_link {
   }
 }
 
+h1.centered {
+  text-align: center;
+}
+
 .rinpoche-lamas .inner-page-container {
   padding: 0;
 }
