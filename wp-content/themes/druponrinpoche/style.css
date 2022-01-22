@@ -1527,6 +1527,34 @@ li.page_item_has_children > a {
 }
 
 /*Lineage Pages*/
+.sidebar-container ul li.page-item-17460::marker {
+  content: "19A. ";
+}
+
+.sidebar-container ul li.page-item-17463::marker {
+  content: "20A. ";
+}
+
+.sidebar-container ul li.page-item-12940::marker {
+  content: "21A. ";
+}
+
+.sidebar-container ul li.page-item-12941::marker {
+  content: "19B. ";
+}
+
+.sidebar-container ul li.page-item-12942::marker {
+  content: "20B. ";
+}
+
+.sidebar-container ul li.page-item-12939::marker {
+  content: "21B. ";
+}
+
+.sidebar-container ul li.page-item-12943::marker {
+  content: "22B. ";
+}
+
 .page-template-lineage-pages .blog-columns .sidebar-container {
   width: 30%;
 }
