@@ -454,11 +454,11 @@ function wp_list_pages_dkr( $args = '' ) {
             }
         }
 
-//        pa($current_page,1,1);
-        if($current_page->post_parent ) {
-            $pages[] = $current_page->post_parent;
-//            pa(44,1);
-        }
+//         pa($current_page,1,1);
+//         if($current_page->post_parent ) {
+//             $pages[] = $current_page->post_parent;
+// //            pa(44,1);
+//         }
 
 
 
