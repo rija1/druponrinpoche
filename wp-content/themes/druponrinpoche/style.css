@@ -642,6 +642,7 @@ img {
 
 .article-text {
   color: #656250;
+  line-height: 2;
 }
 
 .meta {
@@ -1858,10 +1859,6 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   font-size: 13px;
   font-weight: 300;
-}
-
-.article-text p {
-  line-height: 2;
 }
 
 .unclickable > a:hover {
