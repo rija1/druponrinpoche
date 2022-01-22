@@ -17,7 +17,7 @@
                     <!-- <div class="gutter"> -->
                         <article class="single-post">
                             <div class=lamas-grid>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( '' ) );?>">
+                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/drupon-khen-rinpoche' ) );?>">
                                     <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/drupon-khen-rinpoche.webp"/>
                                     <span class="lamas-grid-caption">主奔堪仁波切</span>
                                 </a>
@@ -37,7 +37,7 @@
                                     <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-chokhyab.webp"/>
                                     <span class="lamas-grid-caption">堪千曲恰</span>
                                 </a>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( '' ) );?>">
+                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/khenpo-palga' ) );?>">
                                     <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-palga.webp"/>
                                     <span class="lamas-grid-caption">堪布巴尔噶</span>
                                 </a>
