@@ -10,7 +10,7 @@
  * Plugin Name:       Quick Featured Images
  * Plugin URI:        http://wordpress.org/plugins/quick-featured-images
  * Description:       Your time-saving Swiss Army Knife for featured images: Set, replace and delete them in bulk, in posts lists and set default images for future posts.
- * Version:           13.5.7
+ * Version:           13.6.0
  * Requires at least: 3.8
  * Requires PHP:      5.2
  * Author:            Kybernetik Services
@@ -27,6 +27,8 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 define( 'QFI_ROOT', plugin_dir_path( __FILE__ ) );
+define( 'QFI_ROOT_URL', plugin_dir_url( __FILE__ ) );
+const QFI_VERSION = '13.6.0';
 
 function qfi_autoloader( $class_name )
 {
@@ -71,14 +73,16 @@ add_action( 'plugins_loaded', array( 'Quick_Featured_Images_Defaults', 'get_inst
 if ( is_admin() ) {
 	/*
 	 * since 7.0: Make object instance of options page class
-	 *
 	 */
 	add_action( 'plugins_loaded', array( 'Quick_Featured_Images_Settings', 'get_instance' ) );
 
 	/*
 	 * since 7.0: Make object instance of column functions class
-	 *
 	 */
 	add_action( 'plugins_loaded', array( 'Quick_Featured_Images_Columns', 'get_instance' ) );
 
+    /*
+     * since 13.6.0: Make object instance of comparison functions class
+     */
+    add_action( 'plugins_loaded', array( 'Quick_Featured_Images_Comparison', 'get_instance' ) );
 }

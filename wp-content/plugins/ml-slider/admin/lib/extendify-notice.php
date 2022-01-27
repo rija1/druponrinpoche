@@ -5,7 +5,7 @@ $extendifysdk_ms_notices_nonce = wp_create_nonce($extendifysdk_ms_notices_key);
 
 add_action('admin_notices', function () use ($extendifysdk_ms_notices_key, $extendifysdk_ms_notices_nonce) {
     $current_page = get_current_screen();
-    if (!$current_page || !in_array($current_page->base, ['plugins'])) {
+    if (!$current_page || !in_array($current_page->base, array('plugins'))) {
         return;
     }
     ob_start(); ?>
@@ -60,9 +60,9 @@ add_action('admin_notices', function () use ($extendifysdk_ms_notices_key, $exte
 
 add_action('wp_ajax_handle_' . $extendifysdk_ms_notices_key, function () use ($extendifysdk_ms_notices_key) {
     if (!wp_verify_nonce($_REQUEST['_wpnonce'], $extendifysdk_ms_notices_key)) {
-        wp_send_json_error([
+        wp_send_json_error(array(
             'message' => esc_html__('The security check failed. Please refresh the page and try again.', 'ml-slider')
-        ], 401);
+        ), 401);
     }
     update_user_option(get_current_user_id(), $extendifysdk_ms_notices_key, time());
     wp_send_json_success();

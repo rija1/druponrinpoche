@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/donate?hosted_button_id=NSEQX73VHXKS8
 Tags: featured image,featured images,bulk set,automatic,thumbnails
 Requires at least: 3.8
 Requires PHP: 5.2
-Tested up to: 5.8
-Stable tag: 13.5.7
+Tested up to: 5.9
+Stable tag: 13.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,7 +26,10 @@ The plugin 'Quick Featured Images' helps you bulk managing featured images, sett
 3. It enables you to **define presets for automatic default featured images** for future posts as many as you need. You can set **accurate rules based on post properties**.
 4. It **removes database entries of featured images without existing image files** with a simple single click
 
-If you want to include **audios, videos and custom post types** and get more options then take a look the **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro).
+If you want to include **audios, videos and custom post types** and get more options, than take a look the **Pro version** [Quick Featured Images Pro](https://www.quickfeaturedimages.com/?utm_source=wordpress_org&utm_medium=plugin&utm_campaign=quick-featured-images&utm_content=go_pro).
+
+= Demo =
+You want to test Quick Featured Images before installing on your site? Try it out on your free dummy site and [click here](https://demo.tastewp.com/quick-featured-images).
 
 = What users said =
 * **&#8220;OMG, so good!&#8221;** in [Reviews at wordpress.org](https://wordpress.org/support/topic/omg-so-good-2/) by marverix on February 27, 2021
@@ -280,6 +283,11 @@ If you want to contribute a translation of the plugin in your language it would 
 7. The seventh and last screen: take an overview of your rules for future default featured images.
 
 == Changelog ==
+
+= 13.6.0 =
+* improved styles and starting using minify
+* added free vs. pro section
+* Tested successfully with WordPress 5.9
 
 = 13.5.7 =
 * improved and added text and help

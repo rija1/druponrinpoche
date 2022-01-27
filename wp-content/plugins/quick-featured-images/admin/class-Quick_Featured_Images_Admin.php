@@ -436,7 +436,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 		// request css only if this plugin was called
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
-			wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), $this->plugin_version );
+			wp_enqueue_style( $this->plugin_slug . '-plugin-styles', plugins_url( 'assets/css/admin.min.css', __FILE__ ), array(), $this->plugin_version );
 		}
 	}
 
@@ -506,7 +506,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 		/*
 		 * Add the top level menu page of this plugin
-		 *
 		 */
 		$this->plugin_screen_hook_suffix = add_menu_page(
 			$page_title,
@@ -518,7 +517,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 			11 // position after menu item 'Media'
 		);
 		
-		// Give first sub level menu link a different label than the top level menu link 
+		// Give first sublevel menu link a different label than the top level menu link
 		// by calling the add_submenu_page function the first time with the parent_slug and menu_slug as same values
 		add_submenu_page( 
 			$this->page_slug, // parent slug
