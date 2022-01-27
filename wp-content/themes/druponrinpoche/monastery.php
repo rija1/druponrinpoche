@@ -1,7 +1,6 @@
 <?php /* Template Name: Monastery */ ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
-<!-- <?php echo do_shortcode('[metaslider id="17497"]'); ?> -->
 <img class="monastery-cover" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/monastery/班觉寺_crop.webp" />
     <section class="section section-page-title">
 <!--            <div class="container">-->
