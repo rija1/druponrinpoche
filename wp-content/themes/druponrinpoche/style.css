@@ -1543,6 +1543,10 @@ img.monastery-cover {
   content: "20A. ";
 }
 
+.sidebar-container ul li.page-item-17501::marker {
+  content: "21A. ";
+}
+
 .sidebar-container ul li.page-item-12940::marker {
   content: "20B. ";
 }
@@ -1553,6 +1557,10 @@ img.monastery-cover {
 
 .sidebar-container ul li.page-item-12942::marker {
   content: "22B. ";
+}
+
+.sidebar-container ul li.page-item-12939::marker {
+  content: "19B. ";
 }
 
 .page-template-lineage-pages .blog-columns .sidebar-container {
