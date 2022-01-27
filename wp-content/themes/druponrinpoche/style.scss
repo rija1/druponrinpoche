@@ -1717,6 +1717,14 @@ li.page_item_has_children > a {
     }
 }
 
+/* Monastery Cover */
+img.monastery-cover {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    // object-position: 5px 10%;
+}
+
 /*Lineage Pages*/
 
 // Custom numbering for lineage lamas in menu
