@@ -1722,7 +1722,10 @@ img.monastery-cover {
     width: 100%;
     height: 300px;
     object-fit: cover;
-    // object-position: 5px 10%;
+    // object-position: 5px 10%; 
+    @media only screen and (max-width: $menuMobBreakpoint) {
+        height:200px;
+    }
 }
 
 /*Lineage Pages*/

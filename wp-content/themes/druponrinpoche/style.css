@@ -1534,6 +1534,12 @@ img.monastery-cover {
      object-fit: cover;
 }
 
+@media only screen and (max-width: 700px) {
+  img.monastery-cover {
+    height: 200px;
+  }
+}
+
 /*Lineage Pages*/
 .sidebar-container ul li.page-item-17460::marker {
   content: "19A. ";
