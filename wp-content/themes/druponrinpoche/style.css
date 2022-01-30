@@ -2422,7 +2422,7 @@ a.course_link {
   -ms-grid-columns: 1fr;
       grid-template-columns: 1fr;
   grid-row-gap: 30px;
-  padding: 35px 17% 37px 170px;
+  padding: 35px 17% 37px 17% px;
   background: -webkit-gradient(linear, left top, left bottom, from(#020024), color-stop(0%, #e4e4e4), color-stop(9%, white));
   background: linear-gradient(180deg, #020024 0%, #e4e4e4 0%, white 9%);
 }
