@@ -2639,7 +2639,7 @@ a.course_link {
     display: grid;
     grid-template-columns: 1fr;
     grid-row-gap: 30px;
-    padding: 35px 17% 37px 17%;
+    padding: 60px 17%;
     // background-color: $bg-text1-col;
     // background-image: $bg-text1-url;
     background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(228,228,228,1) 0%, rgba(255,255,255,1) 9%);
@@ -3178,6 +3178,16 @@ a.course_link {
 }  
 
 // RENBOQIE.COM ONLY
+
+// Home slide
+.slide-17130 {
+    @media only screen and (max-width: 480px) {
+        height: 233px;
+        object-fit: cover;
+        object-position: -229px -3px;
+    }
+}
+
 
 h1.centered {
     text-align: center;
