@@ -1139,13 +1139,14 @@ img.alignleft {
 .home_pages_grid {
   list-style: none;
   padding: 44px 60px 5px 60px;
+  padding: 5% 6% 2% 6%;
   display: -ms-grid;
   display: grid;
   border-top: solid 1px #eee;
   -ms-grid-columns: 1fr 1fr 1fr;
       grid-template-columns: 1fr 1fr 1fr;
   grid-row-gap: 20px;
-  grid-column-gap: 60px;
+  grid-column-gap: 7%;
 }
 
 .home_pages_grid h5 {
