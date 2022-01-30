@@ -3180,11 +3180,18 @@ a.course_link {
 // RENBOQIE.COM ONLY
 
 // Home slide
-.slide-17130 {
+.flexslider .slides .slide-17129 {
     @media only screen and (max-width: 480px) {
         height: 233px;
         object-fit: cover;
         object-position: -229px -3px;
+    }
+}
+.flexslider .slides .slide-17130 {
+    @media only screen and (max-width: 480px) {
+        height: 233px;
+        object-fit: cover;
+        object-position: -58px 3px;
     }
 }
 

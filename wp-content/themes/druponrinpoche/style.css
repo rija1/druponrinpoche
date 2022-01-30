@@ -2849,12 +2849,22 @@ a.course_link {
 }
 
 @media only screen and (max-width: 480px) {
-  .slide-17130 {
+  .flexslider .slides .slide-17129 {
     height: 233px;
     -o-object-fit: cover;
        object-fit: cover;
     -o-object-position: -229px -3px;
        object-position: -229px -3px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .flexslider .slides .slide-17130 {
+    height: 233px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    -o-object-position: -58px 3px;
+       object-position: -58px 3px;
   }
 }
 
