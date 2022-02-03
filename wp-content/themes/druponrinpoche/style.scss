@@ -1380,6 +1380,7 @@ img.alignleft {
         width: 100%;
         object-fit: cover;
         height: 34vw;
+        max-height: 300px;
         object-position: 0px -2px;
     }
     p {
