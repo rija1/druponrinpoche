@@ -136,11 +136,12 @@ $pllArgs = array(
 
             jQuery('.mob-menu-icon').click(function(e){
                 e.preventDefault();
-                var isMobMenuHidden = jQuery('#menu-top-mob').is(":hidden");
+                alert("ok");
+                var isMobMenuHidden = jQuery('.menu-top-mob').is(":hidden");
                 if (isMobMenuHidden) {
-                jQuery('#menu-top-mob').slideDown();
+                jQuery('.menu-top-mob').slideDown();
                 } else {
-                jQuery('#menu-top-mob').slideUp();
+                jQuery('.menu-top-mob').slideUp();
                 }
             });
 
