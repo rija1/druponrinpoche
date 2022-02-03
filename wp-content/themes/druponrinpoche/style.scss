@@ -1378,6 +1378,9 @@ img.alignleft {
 .home_pages_grid li {
     img {
         width: 100%;
+        object-fit: cover;
+        height: 34vw;
+        object-position: 0px -2px;
     }
     p {
 

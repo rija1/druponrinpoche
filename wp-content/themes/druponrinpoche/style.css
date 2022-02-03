@@ -1183,6 +1183,11 @@ img.alignleft {
 
 .home_pages_grid li img {
   width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 34vw;
+  -o-object-position: 0px -2px;
+     object-position: 0px -2px;
 }
 
 .home_pages_grid li p {
