@@ -18,7 +18,30 @@
                     <!-- <div class="gutter"> -->
                         <article class="single-post">
                             <div class="article-text">
-                                <?php the_content(); ?>
+                                <?php the_content(); 
+
+                                $abbots = array(
+                                    array('page_path'=>'monastery/历任住持/第七世噶玛巴确札嘉措',
+                                          'caption'=>'第七世噶玛巴确札嘉措'),
+                                    array('page_path'=>'历任住持/第八世广定大司徒巴丘吉炯涅',
+                                          'caption'=>'第八世广定大司徒巴丘吉炯涅'),
+                                    array('page_path'=>'monastery/历任住持/第十一世大司徒仁波切贝玛旺秋嘉波',
+                                          'caption'=>'第十一世大司徒仁波切贝玛旺秋嘉波'),
+                                    array('page_path'=>'monastery/历任住持/噶玛土登仁波切',
+                                          'caption'=>'噶玛土登仁波切'),
+                                    array('page_path'=>'monastery/历任住持/根绒多吉仁波切',
+                                          'caption'=>'根绒多吉仁波切'),
+                                )
+                                ?>
+                                <h2 class="cent_undline"><span>历任住持</span></h2>
+                                <div class="abbots-grid">
+                                <?php foreach ($abbots as $abbot): ?>
+                                    <a class="abbots-grid-item" href="<?php echo wp_get_attachment_url( get_page_by_path($abbot['page_path']));?>">
+                                    <?php echo get_the_post_thumbnail( get_page_by_path($abbot['page_path']), 'medium',array('class'=>'abbots-grid-img')); ?>
+                                    <span class="abbots-grid-caption"><?php echo $abbot['caption']; ?></span>
+                                </a>
+                                <?php endforeach; ?>
+                                </div>
                             </div>
                             <p><?php posts_nav_link(); ?></p>
                             <div class="padinate-page"><?php wp_link_pages(); ?></div>

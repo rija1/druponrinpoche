@@ -810,7 +810,7 @@ img {
 
 .container .single-post h1, .container .single-post h2, .container .single-post h3, .container .single-post h4, .container .single-post h5, .container .single-post h6 {
   color: #505050;
-  margin: 15px 0 !important;
+  margin: 15px 0;
   clear: both;
 }
 
@@ -1546,6 +1546,73 @@ img.monastery-cover {
   }
 }
 
+.abbots-grid {
+  padding-top: 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 15px;
+  -webkit-column-gap: 17px;
+          column-gap: 17px;
+}
+
+@media only screen and (max-width: 780px) {
+  .abbots-grid {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
+  .abbots-grid .abbots-grid-img {
+    height: 170px;
+    -o-object-position: 0 -4px;
+       object-position: 0 -4px;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .abbots-grid {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+  .abbots-grid .abbots-grid-img {
+    height: 170px;
+    -o-object-position: 0 -4px;
+       object-position: 0 -4px;
+    width: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+
+.abbots-grid a.abbots-grid-item {
+  padding: 7px;
+  border: solid 1px #eee;
+  color: #656250;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+.abbots-grid a.abbots-grid-item:hover {
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-box-shadow: 0 0 4px 1px rgba(70, 61, 61, 0.32);
+          box-shadow: 0 0 4px 1px rgba(70, 61, 61, 0.32);
+}
+
+.abbots-grid a.abbots-grid-item:hover .abbots-grid-caption {
+  color: #9b940d;
+}
+
+.abbots-grid a.abbots-grid-item .abbots-grid-caption {
+  font-weight: normal;
+  text-align: center;
+  float: left;
+  width: 100%;
+}
+
 /*Lineage Pages*/
 .sidebar-container ul li.page-item-17460::marker {
   content: "19A. ";
@@ -1715,7 +1782,7 @@ img.monastery-cover {
 }
 
 .container .single-post h2 {
-  margin: 15px 0 20px 0 !important;
+  margin: 15px 0 20px 0;
 }
 
 h1 {
@@ -1758,6 +1825,19 @@ h1 a {
 
 .container .single-post h2 {
   font-size: 22px;
+}
+
+.container .single-post h2.cent_undline {
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
+.container .single-post h2.cent_undline span {
+  margin-left: auto;
+  display: table;
+  margin: 0 auto;
+  border-bottom: solid 1px #9b940d;
+  padding-bottom: 10px;
 }
 
 h3 {
@@ -2108,11 +2188,11 @@ p.teaching_info {
 }
 
 .page-id-1581 .container .single-post h2 {
-  margin: 45px 0 35px 0 !important;
+  margin: 45px 0 35px 0;
 }
 
 .page-id-1581 .container .single-post h2:first-child {
-  margin: 15px 0 35px 0 !important;
+  margin: 15px 0 35px 0;
 }
 
 .see_also {

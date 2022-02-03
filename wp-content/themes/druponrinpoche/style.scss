@@ -1013,7 +1013,7 @@ img {
 .container .single-post {
     h1, h2, h3, h4, h5, h6 {
         color: #505050;
-        margin: 15px 0 !important;
+        margin: 15px 0;
         clear: both;
     }
     h1 {
@@ -1732,6 +1732,96 @@ img.monastery-cover {
     }
 }
 
+.abbots-grid {  
+    // padding:0 25px 20px 25px;
+    padding-top:30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-row-gap:15px;
+    @media only screen and (max-width: 780px) {
+        .abbots-grid-img {
+            height: 170px;
+            object-position: 0 -4px;
+            width: 100%;
+            object-fit: cover; 
+        }
+        // .lamas-grid-item:nth-child(1) .lamas-grid-img {
+        //     object-position: 0 -40px;
+        // }
+        // .lamas-grid-item:nth-child(2) .lamas-grid-img {
+        //     object-position: 0 -40px;
+        // }
+        // .lamas-grid-item:nth-child(3) .lamas-grid-img {
+        //     object-position: 0 -20px;
+        // }
+        // .lamas-grid-item:nth-child(4) .lamas-grid-img {
+        //     object-position: 0 -0px;
+        // }
+        // .lamas-grid-item:nth-child(5) .lamas-grid-img {
+        //     object-position: 0 -35px;
+        // }
+        // .lamas-grid-item:nth-child(6) .lamas-grid-img {
+        //     object-position: 0 -10px;
+        // }
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    @media only screen and (max-width: 500px) {
+        .abbots-grid-img {
+            height: 170px;
+            object-position: 0 -4px;
+            width: 100%;
+            object-fit: cover; 
+        }
+        // .lamas-grid-item:nth-child(1) .lamas-grid-img {
+        //     object-position: 0 -40px;
+        // }
+        // .lamas-grid-item:nth-child(2) .lamas-grid-img {
+        //     object-position: 0 -40px;
+        // }
+        // .lamas-grid-item:nth-child(3) .lamas-grid-img {
+        //     object-position: 0 -20px;
+        // }
+        // .lamas-grid-item:nth-child(4) .lamas-grid-img {
+        //     object-position: 0 -0px;
+        // }
+        // .lamas-grid-item:nth-child(5) .lamas-grid-img {
+        //     object-position: 0 -35px;
+        // }
+        // .lamas-grid-item:nth-child(6) .lamas-grid-img {
+        //     object-position: 0 -10px;
+        // }
+        grid-template-columns: 1fr 1fr;
+    }
+    // grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    column-gap: 17px;
+    a.abbots-grid-item {
+        // box-shadow: 0 0 6px 3px rgba(70, 61, 61, 0.32);
+        padding:7px;
+        border:solid 1px #eee;
+        // box-shadow: 0 0 6px 3px rgba(70, 61, 61, 0.32);
+        &:hover {
+            transition: all 0.2s ease-in-out;
+            // border:solid 1px $dkr-gold;
+                box-shadow: 0 0 4px 1px rgba(70, 61, 61, 0.32);
+            .abbots-grid-img {
+                // transition: all 0.2s ease-in-out;
+                // box-shadow: 0 0 6px 3px rgba(70, 61, 61, 0.32);
+            }  
+            .abbots-grid-caption {
+                color:$dkr-gold;
+            }
+        } 
+        color:$dkr-darkgrey;
+        grid-template-columns: 1fr;
+        .abbots-grid-caption {
+            font-weight: normal;
+            text-align: center;
+            float: left;
+            width: 100%;
+        }
+    }
+} 
+
 /*Lineage Pages*/
 
 // Custom numbering for lineage lamas in menu
@@ -1900,7 +1990,7 @@ img.monastery-cover {
 }
 
 .container .single-post h2 {
-    margin: 15px 0 20px 0 !important;
+    margin: 15px 0 20px 0;
 }
 
 h1 {
@@ -1944,6 +2034,20 @@ h1 a {
 
 .container .single-post h2 {
     font-size: 22px;
+}
+
+.container .single-post h2.cent_undline {
+    margin-top: 20px;
+    span {
+        // margin-right: auto;
+        margin-left:auto;
+        display: table;
+        margin: 0 auto;
+        // width: auto;
+        border-bottom: solid 1px $dkr-gold;
+        padding-bottom: 10px;
+    }
+    margin-bottom: 0;
 }
 
 h3 {
@@ -2321,9 +2425,9 @@ p.teaching_info {
 
 .page-id-1581 {
     .container .single-post h2 {
-        margin: 45px 0 35px 0 !important;
+        margin: 45px 0 35px 0 ;
         &:first-child {
-            margin: 15px 0 35px 0 !important;
+            margin: 15px 0 35px 0;
         }
     }
 }
