@@ -136,7 +136,6 @@ $pllArgs = array(
 
             jQuery('.mob-menu-icon').click(function(e){
                 e.preventDefault();
-                alert("ok");
                 var isMobMenuHidden = jQuery('.menu-top-mob').is(":hidden");
                 if (isMobMenuHidden) {
                 jQuery('.menu-top-mob').slideDown();
