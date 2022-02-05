@@ -1,15 +1,28 @@
-<?php /* Template Name: RinpocheLamas */ ?>
+<?php /* Template Name: RinpocheLamas */ 
+$lamas = array(
+            array('page_path'=>'about/rinpoches-lamas/drupon-khen-rinpoche',
+                  'caption'=>'主奔堪仁波切'),
+            array('page_path'=>'about/rinpoches-lamas/lama-senge',
+                  'caption'=>'喇嘛僧给'),
+            array('page_path'=>'about/rinpoches-lamas/jigme-phuntsok',
+                  'caption'=>'法王如意宝'),
+            array('page_path'=>'about/rinpoches-lamas/khenchen-pema-tsewang',
+                  'caption'=>'堪千贝玛才旺'),
+            array('page_path'=>'about/rinpoches-lamas/khenpo-chokhyab',
+                  'caption'=>'堪千曲恰'),
+            array('page_path'=>'about/rinpoches-lamas/khenpo-palga',
+                  'caption'=>'堪布巴尔噶'),
+);
+?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
     <section class="section section-page-title">
-<!--            <div class="container">-->
                 <div class="section-title">
                     <div class="gutter">
                         <h1 class="centered"><?php the_title(); ?></h1>
                         <?php //the_excerpt(); ?>
                     </div>
                 </div>
-<!--            </div>-->
     </section> <!--  END section-page-title  -->
     <div class="rinpoche-lamas section section-blog">
         <div class="container">
@@ -17,33 +30,15 @@
                     <!-- <div class="gutter"> -->
                         <article class="single-post">
                             <div class=lamas-grid>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/drupon-khen-rinpoche' ) );?>">
-                                    <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/drupon-khen-rinpoche.webp"/>
-                                    <span class="lamas-grid-caption">主奔堪仁波切</span>
+                                <?php foreach($lamas as $lama) : ?>
+                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( $lama['page_path'] ) );?>">
+                                    <?php echo get_the_post_thumbnail( get_page_by_path($lama['page_path']), 'medium',array('class'=>'lamas-grid-img')); ?>
+                                    <!-- <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/drupon-khen-rinpoche.webp"/> -->
+                                    <span class="lamas-grid-caption"><?php echo $lama['caption']; ?></span>
                                 </a>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/lama-senge' ) );?>">
-                                    <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/lama-senge.webp"/>
-                                    <span class="lamas-grid-caption">喇嘛僧给</span>
-                                </a>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/jigme-phuntsok' ) );?>">
-                                    <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-jigme-phuntsok-rinpoche.webp"/>
-                                    <span class="lamas-grid-caption">法王如意宝</span>
-                                </a>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/khenchen-pema-tsewang' ) );?>">
-                                    <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-pema-tsewang.webp"/>
-                                    <span class="lamas-grid-caption">堪千贝玛才旺</span>
-                                </a>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/khenpo-chokhyab' ) );?>">
-                                    <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-chokhyab.webp"/>
-                                    <span class="lamas-grid-caption">堪千曲恰</span>
-                                </a>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( 'about/rinpoches-lamas/khenpo-palga' ) );?>">
-                                    <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/khenpo-palga.webp"/>
-                                    <span class="lamas-grid-caption">堪布巴尔噶</span>
-                                </a>
+                                <?php endforeach; ?>    
                             </div>
                         </article>
-                    <!-- </div> -->
             </div>
         </div> <!--  END container  -->
     </div> <!--  END section-blog  -->
