@@ -36,8 +36,9 @@
                                 <h2 class="cent_undline"><span>历任住持</span></h2>
                                 <div class="abbots-grid">
                                 <?php foreach ($abbots as $abbot): ?>
-                                    <a class="abbots-grid-item" href="<?php echo wp_get_attachment_url( get_page_by_path($abbot['page_path']));?>">
-                                    <?php echo get_the_post_thumbnail( get_page_by_path($abbot['page_path']), 'medium',array('class'=>'abbots-grid-img')); ?>
+                                    <a class="abbots-grid-item" href="<?php echo get_permalink( get_page_by_path($abbot['page_path']));?>">
+                                    <?php
+                                    echo get_the_post_thumbnail( get_page_by_path($abbot['page_path']), 'medium',array('class'=>'abbots-grid-img')); ?>
                                     <span class="abbots-grid-caption"><?php echo $abbot['caption']; ?></span>
                                 </a>
                                 <?php endforeach; ?>
