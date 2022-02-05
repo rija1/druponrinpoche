@@ -1596,17 +1596,17 @@ img.monastery-cover {
       grid-template-columns: 1fr;
 }
 
+.abbots-grid a.abbots-grid-item .abbots-grid-img {
+  height: 226px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .abbots-grid a.abbots-grid-item:hover {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   -webkit-box-shadow: 0 0 4px 1px rgba(70, 61, 61, 0.32);
           box-shadow: 0 0 4px 1px rgba(70, 61, 61, 0.32);
-}
-
-.abbots-grid a.abbots-grid-item:hover .abbots-grid-img {
-  height: 226px;
-  -o-object-fit: cover;
-     object-fit: cover;
 }
 
 .abbots-grid a.abbots-grid-item:hover .abbots-grid-caption {
