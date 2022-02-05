@@ -1221,6 +1221,51 @@ img {
             margin: 25px 0 0 0 ;
         }
     }
+    h1 {
+        font-size:22px;
+    }
+    a.category-post-title {
+        display:block;
+        &:hover .article-blog {
+            .teaching_title {
+                color :$dkr-gold;
+            }
+        }
+    }
+    .article-blog {
+        .article-text {
+            text-align: left;
+        }
+        padding:20px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #eaeaea;
+        background: #fff;
+        margin-top: 25px;
+
+        a:hover {
+            text-decoration: none;
+        }
+        p {
+            padding-top: 10px;
+            font-weight: 300;
+        }
+        p.teaching_info {
+            padding-top: 20px;
+            padding-bottom:0px;
+        }
+        .teaching_title {
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+    }
+    .single-post {
+        .post-info {
+            .teaching_info {
+                font-style:italic;
+                font-size: 14px;
+            }
+        }
+    }
 }
 
 .pagination {
@@ -2148,58 +2193,6 @@ sup {
     }
 }
 
-
-
-.teachings_category {
-        a.category-post-title {
-            display:block;
-            &:hover .article-blog {
-//                -webkit-transition: all .1s ease;
-//                -moz-transition: all .1s ease;
-//                -ms-transition: all .1s ease;
-//                -o-transition: all .1s ease;
-//                transition: all .1s ease;
-//                box-shadow: -1px 2px 14px 3px rgba(0, 0, 0, 0.1);
-                .teaching_title {
-                    color :$dkr-gold;
-                }
-            }
-        }
-        .article-blog {
-            padding:20px;
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #eaeaea;
-            background: #fff;
-            margin-top: 25px;
-
-        a:hover {
-            text-decoration: none;
-        }
-        p {
-            padding-top: 10px;
-            font-weight: 300;
-        }
-        p.teaching_info {
-            padding-top: 20px;
-            padding-bottom:0px;
-        }
-        .teaching_title {
-            font-weight: 900;
-            text-transform: uppercase;
-        }
-    }
-
-
- .single-post {
-     .post-info {
-         .teaching_info {
-             font-style:italic;
-             font-size: 14px;
-         }
-     }
- }
-}
-
 .category-quotes .article-blog:last-of-type {
     border-bottom: none;
 }
@@ -2405,11 +2398,6 @@ p.teaching_info {
 
 }
 
-.teachings_category {
-    h1 {
-        font-size:22px;
-    }
-}
 
 
 

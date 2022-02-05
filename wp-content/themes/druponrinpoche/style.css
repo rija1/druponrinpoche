@@ -1024,6 +1024,55 @@ img.alignnone {
   margin: 25px 0 0 0;
 }
 
+.teachings_category h1 {
+  font-size: 22px;
+}
+
+.teachings_category a.category-post-title {
+  display: block;
+}
+
+.teachings_category a.category-post-title:hover .article-blog .teaching_title {
+  color: #9b940d;
+}
+
+.teachings_category .article-blog {
+  padding: 20px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eaeaea;
+  background: #fff;
+  margin-top: 25px;
+}
+
+.teachings_category .article-blog .article-text {
+  text-align: left;
+}
+
+.teachings_category .article-blog a:hover {
+  text-decoration: none;
+}
+
+.teachings_category .article-blog p {
+  padding-top: 10px;
+  font-weight: 300;
+}
+
+.teachings_category .article-blog p.teaching_info {
+  padding-top: 20px;
+  padding-bottom: 0px;
+}
+
+.teachings_category .article-blog .teaching_title {
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.teachings_category .single-post .post-info .teaching_info {
+  font-style: italic;
+  font-size: 14px;
+}
+
 .pagination {
   color: #ffffff;
   float: left;
@@ -1954,47 +2003,6 @@ sup {
   font-weight: 500;
 }
 
-.teachings_category a.category-post-title {
-  display: block;
-}
-
-.teachings_category a.category-post-title:hover .article-blog .teaching_title {
-  color: #9b940d;
-}
-
-.teachings_category .article-blog {
-  padding: 20px;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  border: 1px solid #eaeaea;
-  background: #fff;
-  margin-top: 25px;
-}
-
-.teachings_category .article-blog a:hover {
-  text-decoration: none;
-}
-
-.teachings_category .article-blog p {
-  padding-top: 10px;
-  font-weight: 300;
-}
-
-.teachings_category .article-blog p.teaching_info {
-  padding-top: 20px;
-  padding-bottom: 0px;
-}
-
-.teachings_category .article-blog .teaching_title {
-  font-weight: 900;
-  text-transform: uppercase;
-}
-
-.teachings_category .single-post .post-info .teaching_info {
-  font-style: italic;
-  font-size: 14px;
-}
-
 .category-quotes .article-blog:last-of-type {
   border-bottom: none;
 }
@@ -2178,10 +2186,6 @@ p.teaching_info {
 .sidebar-container .teachings_cat_list ul .teachings-cat a {
   color: #80784c;
   font-family: 'Roboto';
-}
-
-.teachings_category h1 {
-  font-size: 22px;
 }
 
 .teachings_cat_list > ul > li.current-cat > .teachings-cat > a {
