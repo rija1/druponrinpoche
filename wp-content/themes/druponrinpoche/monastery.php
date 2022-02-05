@@ -21,15 +21,15 @@
                                 <?php the_content(); 
 
                                 $abbots = array(
-                                    array('page_path'=>'monastery/历任住持/第七世噶玛巴确札嘉措',
+                                    array('page_path'=>'monastery/abbots/chodrak-gyamtso-7th-karmapa',
                                           'caption'=>'第七世噶玛巴确札嘉措'),
-                                    array('page_path'=>'历任住持/第八世广定大司徒巴丘吉炯涅',
+                                    array('page_path'=>'monastery/abbots/chokyi-jungne-8th-situpa',
                                           'caption'=>'第八世广定大司徒巴丘吉炯涅'),
-                                    array('page_path'=>'monastery/历任住持/第十一世大司徒仁波切贝玛旺秋嘉波',
+                                    array('page_path'=>'monastery/abbots/pema-wangchuk-gyalpo-11th-situpa',
                                           'caption'=>'第十一世大司徒仁波切贝玛旺秋嘉波'),
-                                    array('page_path'=>'monastery/历任住持/噶玛土登仁波切',
+                                    array('page_path'=>'monastery/abbots/karma-thupten-rinpoche',
                                           'caption'=>'噶玛土登仁波切'),
-                                    array('page_path'=>'monastery/历任住持/根绒多吉仁波切',
+                                    array('page_path'=>'monastery/abbots/kunzang-dorje',
                                           'caption'=>'根绒多吉仁波切'),
                                 )
                                 ?>
