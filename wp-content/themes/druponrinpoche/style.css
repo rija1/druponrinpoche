@@ -1603,6 +1603,12 @@ img.monastery-cover {
           box-shadow: 0 0 4px 1px rgba(70, 61, 61, 0.32);
 }
 
+.abbots-grid a.abbots-grid-item:hover .abbots-grid-img {
+  height: 226px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .abbots-grid a.abbots-grid-item:hover .abbots-grid-caption {
   color: #9b940d;
 }
