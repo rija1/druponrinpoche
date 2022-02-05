@@ -1805,6 +1805,8 @@ img.monastery-cover {
             // border:solid 1px $dkr-gold;
                 box-shadow: 0 0 4px 1px rgba(70, 61, 61, 0.32);
             .abbots-grid-img {
+                height: 226px;
+                object-fit: cover;
                 // transition: all 0.2s ease-in-out;
                 // box-shadow: 0 0 6px 3px rgba(70, 61, 61, 0.32);
             }  
