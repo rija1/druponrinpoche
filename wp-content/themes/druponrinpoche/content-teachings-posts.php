@@ -14,7 +14,7 @@
 
                     <div class="article-text">
                         <span class="teaching_title"><?php the_time( get_option( 'date_format' ) ); ?></span>
-                        <p><?php echo get_the_content();?></p>
+                        <p class="<?php echo (isPostTibetan()) ? 'tibetan' : '' ; ?>"><?php echo get_the_content();?></p>
                         <a href="<?php echo get_the_post_thumbnail_url(); ?>" class="swipebox">
                         <?php echo get_the_post_thumbnail( null, 'medium',array('class'=>'teaching-img')); ?>
                         </a>

@@ -1190,6 +1190,10 @@ function webp_is_displayable($result, $path) {
 }
 add_filter('file_is_displayable_image', 'webp_is_displayable', 10, 2);
 
+function isPostTibetan() {
+    return (get_post_meta(get_the_ID(), 'lang', TRUE)=='tibetan') ? true : false;
+}
+
 //
 //add_filter('pre_get_posts','filter_archive_dkr');
 //
