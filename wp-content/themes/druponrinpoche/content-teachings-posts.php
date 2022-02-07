@@ -14,12 +14,10 @@
 
                     <div class="article-text">
                         <span class="teaching_title"><?php the_time( get_option( 'date_format' ) ); ?></span>
-                        <!--								<p class="meta"><span class="meta-auth">--><?php //the_author(); ?><!--</span> <span class="meta-categ">--><?php //the_category(', '); ?><!--</span></p>-->
-                        <p class="teaching_info"><?php echo get_post_meta(get_the_ID(), 'teaching_info', true);?></p>
                         <p><?php echo get_the_content();?></p>
-                        <!-- <a href="http://druponrinpoche.org/wp-content/uploads/2019/02/No.32-Chökyi-Jungne-–-8th-Situpa.jpg" data-rel="lightbox-gallery-Rjpw1lYs" data-rl_title="" data-rl_caption="" title="" class="swipebox"><img loading="lazy" class="wp-image-2002 size-medium" src="https://www.druponrinpoche.org/wp-content/uploads/2019/02/No.32-Chökyi-Jungne-–-8th-Situpa-227x300.jpg" alt="" width="227" height="300" srcset="https://renboqie.druponrinpoche.org/wp-content/uploads/2019/02/No.32-Chökyi-Jungne-–-8th-Situpa-227x300.jpg 227w, https://renboqie.druponrinpoche.org/wp-content/uploads/2019/02/No.32-Chökyi-Jungne-–-8th-Situpa-768x1015.jpg 768w, https://renboqie.druponrinpoche.org/wp-content/uploads/2019/02/No.32-Chökyi-Jungne-–-8th-Situpa-775x1024.jpg 775w, https://renboqie.druponrinpoche.org/wp-content/uploads/2019/02/No.32-Chökyi-Jungne-–-8th-Situpa.jpg 868w" sizes="(max-width: 227px) 100vw, 227px"></a> -->
+                        <a href="<?php echo get_the_post_thumbnail_url(); ?>" class="swipebox">
                         <?php echo get_the_post_thumbnail( null, 'medium',array('class'=>'teaching-img')); ?>
-                        <!-- </a> -->
+                        </a>
                         <!--								<a class="button" href="--><?php //the_permalink() ?><!--">--><?php //_e( 'Learn More', 'dkr' ); ?><!--</a>-->
                     </div>
 

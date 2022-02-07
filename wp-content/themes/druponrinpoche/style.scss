@@ -1235,6 +1235,9 @@ img {
     .article-blog {
         .article-text {
             text-align: left;
+            img {
+                border-radius:10px;
+            }
         }
         padding:20px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -2366,7 +2369,7 @@ p.teaching_info {
 
     .teachings_cat_list  {
         ul {
-            font-size: 18px;
+            // font-size: 18px;
             background: none;
             
             padding:0;

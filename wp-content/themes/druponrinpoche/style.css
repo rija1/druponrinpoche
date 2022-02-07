@@ -1049,6 +1049,10 @@ img.alignnone {
   text-align: left;
 }
 
+.teachings_category .article-blog .article-text img {
+  border-radius: 10px;
+}
+
 .teachings_category .article-blog a:hover {
   text-decoration: none;
 }
@@ -2154,7 +2158,6 @@ p.teaching_info {
 }
 
 .sidebar-container .teachings_cat_list ul {
-  font-size: 18px;
   background: none;
   padding: 0;
 }
