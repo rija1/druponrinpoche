@@ -2048,32 +2048,39 @@ img.monastery-cover {
 }
 
 h1 {
-    font-family: 'Raleway';
+    // font-family: 'Raleway';
     font-size: 28px;
-    line-height: 1;
-    text-align: left;
-    position: relative;
-    padding-bottom: 15px;
-    margin-bottom: 40px;
-    border-bottom: solid 1px $dkr-brown;
-    background: none;
-    text-transform: none;
-    border-bottom: solid 1px $dkr-gold;
-    /*font-family: 'Roboto Slab', serif;*/
+    // line-height: 1;
+    // text-align: left;
+    // position: relative;
+    // padding-bottom: 15px;
+    margin-bottom: 30px;
+    // border-bottom: solid 1px $dkr-brown;
+    // background: none;
+    // text-transform: none;
+    // border-bottom: solid 1px $dkr-gold;
+    // /*font-family: 'Roboto Slab', serif;*/
     color: $dkr-gold;
-    &:before, &:after {
-        content: '';
-        display: block;
-        height: 0px;
-        width: 150px;
-        position: absolute;
-        bottom: 7px;
-        border: none;
-    }
+    // &:before, &:after {
+    //     content: '';
+    //     display: block;
+    //     height: 0px;
+    //     width: 150px;
+    //     position: absolute;
+    //     bottom: 7px;
+    //     border: none;
+    // }
 }
 
 .section-page-title h1 {
     text-transform: none;
+    span {
+        display: table;
+        margin: 0 auto;
+        border-bottom: solid 1px #9b940d;
+        padding-bottom: 10px;
+        line-height: 2;
+    }
 }
 
 .container .single-post {
@@ -2979,16 +2986,6 @@ a.course_link {
             }
 
         }
-    }
-
-
-    // Titles
-
-    h1 {
-        font-size: 23px;
-        margin-bottom: 0px;
-        border:none;
-        line-height:1.3;
     }
 
     // About Pages

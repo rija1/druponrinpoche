@@ -6,7 +6,7 @@
 <!--            <div class="container">-->
                 <div class="section-title">
                     <div class="gutter">
-                        <h1><?php the_title(); ?></h1>
+                        <h1><span><?php the_title(); ?></span></h1>
                         <?php //the_excerpt(); ?>
                     </div>
                 </div>
@@ -33,6 +33,7 @@
                                           'caption'=>'根绒多吉仁波切'),
                                 )
                                 ?>
+                                <!-- <h1><span>历任住持</span></h1> -->
                                 <h2 class="cent_undline"><span>历任住持</span></h2>
                                 <div class="abbots-grid">
                                 <?php foreach ($abbots as $abbot): ?>
