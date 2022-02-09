@@ -1243,6 +1243,9 @@ img {
             img {
                 border-radius:10px;
             }
+            p {
+                font-size: 17px;
+            }
         }
         padding:20px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
@@ -1262,7 +1265,7 @@ img {
             padding-bottom:0px;
         }
         .teaching_title {
-            font-weight: 900;
+            font-weight: normal;
             text-transform: uppercase;
         }
     }

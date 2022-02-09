@@ -1058,6 +1058,10 @@ img.alignnone {
   border-radius: 10px;
 }
 
+.teachings_category .article-blog .article-text p {
+  font-size: 17px;
+}
+
 .teachings_category .article-blog a:hover {
   text-decoration: none;
 }
@@ -1073,7 +1077,7 @@ img.alignnone {
 }
 
 .teachings_category .article-blog .teaching_title {
-  font-weight: 900;
+  font-weight: normal;
   text-transform: uppercase;
 }
 
