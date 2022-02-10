@@ -1025,6 +1025,14 @@ img.alignnone {
   left: 1px;
 }
 
+.teachings_category .blog-columns .inner-page-container {
+  width: 80%;
+}
+
+.teachings_category .blog-columns .sidebar-container {
+  width: 20%;
+}
+
 .teachings_category .pagination span.left, .teachings_category .pagination span.right {
   margin: 25px 0 0 0;
 }

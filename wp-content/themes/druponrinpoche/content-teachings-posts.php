@@ -13,10 +13,11 @@
                 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
                     <div class="article-text">
-                        <span class="teaching_title"><?php the_time( get_option( 'date_format' ) ); ?></span>
                         <p class="<?php echo (isPostTibetan()) ? 'tibetan' : '' ; ?>"><?php echo get_the_content();?></p>
+                        <span class="teaching_title"><?php the_time( get_option( 'date_format' ) ); ?></span>
                         <a href="<?php echo get_the_post_thumbnail_url(); ?>" class="swipebox">
-                        <?php echo get_the_post_thumbnail( null, array( 110, 250),array('class'=>'teaching-img')); ?>
+                            <img src="<?php echo get_the_post_thumbnail_url(); ?>" />
+                        <!-- <?php echo get_the_post_thumbnail( null, array( 110, 110,true),array('class'=>'teaching-img')); ?> -->
                         </a>
                         <!--								<a class="button" href="--><?php //the_permalink() ?><!--">--><?php //_e( 'Learn More', 'dkr' ); ?><!--</a>-->
                     </div>

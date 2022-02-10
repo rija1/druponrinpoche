@@ -27,10 +27,10 @@ $parentCatName = (!empty($parentCat->name)) ? $parentCat->name : '' ;
             </div>
         </div>
         <div class="sidebar-container left">
-        <div class="teachings-cat">Categories</div>
+        <!-- <div class="teachings-cat">Categories</div> -->
             <div class="teachings_cat_list">
             <ul>
-                <?php echo wp_list_categories_teachings(array('title_li'=>'','child_of'=>$childOfCat->term_id,'show_count'=>1,'show_option_all'=> 'All',)); ?>
+                <?php echo wp_list_categories_teachings(array('title_li'=>'','child_of'=>$childOfCat->term_id)); ?>
             </ul>
             </div>
         </div>
