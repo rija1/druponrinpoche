@@ -15,10 +15,12 @@
                     <div class="article-text">
                         <p class="<?php echo (isPostTibetan()) ? 'tibetan' : '' ; ?>"><?php echo get_the_content();?></p>
                         <span class="teaching_title"><?php the_time( get_option( 'date_format' ) ); ?></span>
+                        <?php if(get_the_post_thumbnail_url()): ?>
                         <a href="<?php echo get_the_post_thumbnail_url(); ?>" class="swipebox">
                             <img src="<?php echo get_the_post_thumbnail_url(); ?>" />
                         <!-- <?php echo get_the_post_thumbnail( null, array( 110, 110,true),array('class'=>'teaching-img')); ?> -->
                         </a>
+                        <?php endif; ?>
                         <!--								<a class="button" href="--><?php //the_permalink() ?><!--">--><?php //_e( 'Learn More', 'dkr' ); ?><!--</a>-->
                     </div>
 
