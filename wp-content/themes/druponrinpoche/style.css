@@ -1304,15 +1304,15 @@ img.alignleft {
 }
 
 .home_pages_grid .box1 {
-  -ms-grid-column: 3;
-  grid-column: 3;
+  -ms-grid-column: 1;
+  grid-column: 1;
   -ms-grid-row: 1;
   grid-row: 1;
 }
 
 .home_pages_grid .box3 {
-  -ms-grid-column: 1;
-  grid-column: 1;
+  -ms-grid-column: 3;
+  grid-column: 3;
   -ms-grid-row: 1;
   grid-row: 1;
 }
