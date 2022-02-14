@@ -1317,10 +1317,6 @@ img.alignleft {
   grid-row: 1;
 }
 
-.home_pages_grid .box4-mobile {
-  display: none;
-}
-
 /* HOME - home_news_carousel / CAROUSEL GRID */
 div {
   -webkit-box-sizing: border-box;
@@ -2673,13 +2669,6 @@ a.course_link {
     grid-column: 2;
     -ms-grid-row: 1;
     grid-row: 1;
-  }
-  .home_pages_grid .box4-mobile {
-    display: block;
-    -ms-grid-column: 2;
-    grid-column: 2;
-    -ms-grid-row: 2;
-    grid-row: 2;
   }
   .home_pages_grid li p {
     display: none;

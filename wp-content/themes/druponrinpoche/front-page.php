@@ -43,9 +43,8 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         <a href="<?php echo get_page_link($post)?>">
             <img  src="<?php echo $url;?>" />
             <div class="inner">
-                <h5><?php rbq_trsl('About Rinpoche'); ?></h5>
-                <p><?php rbq_trsl('From an early age Rinpoche underwent long and rigorous training under the direction of supremely accomplished masters of mahamudra and dzogchen.'); ?></p>
-            </div>
+                <h5><?php echo get_the_title($post); ?></h5>
+           </div>
         </a>
 
     </li>
@@ -60,7 +59,6 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
             <img  src="<?php echo $url;?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php rbq_trsl('Thrangu Sekhar Retreat Center is situated in the hills forming the eastern rim of the Kathmandu Valley, just below a cave used by the revered Tibetan yogi, Milarepa'); ?></p>
             </div>
         </a>
 
@@ -75,22 +73,6 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
          <img  src="<?php echo $image[0];?>" />
             <div class="inner">
                 <h5><?php echo get_the_title($post); ?></h5>
-                <p><?php rbq_trsl('The MTS was founded with the intention of making the classics of Tibetan Buddhism available to non Tibetan speaking practitioners, to aid their study and practice of Dharma.'); ?></p>
-            </div>
-        </a>
-
-    </li>
-
-    <li class="box4-mobile">
-        <?php
-        $id=$drWebsiteConfig['lineage_page_id'];
-        $post = get_post( $id );
-        $image = wp_get_attachment_image_src( get_post_thumbnail_id($id) , array(600,400));
-        ?>
-        <a href="<?php echo get_page_link($post)?>">
-            <img  src="<?php echo $image[0];?>" />
-            <div class="inner">
-                <h5><?php rbq_trsl('Lineage')?></h5>
             </div>
         </a>
 
