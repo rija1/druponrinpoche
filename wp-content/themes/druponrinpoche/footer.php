@@ -59,18 +59,15 @@ $locale = get_locale();
 
 							<div class="gutter">
                                 <div class="footer_social">
-                                    <a class="fb" href="http://www.facebook.com/drupon.rinpoche.7" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/fb_icon.png" /></a>
 
-                                    <?php if($locale == 'zh_CN') : ?>
-                                    <a class="weibo" href="https://www.weibo.com/u/3165475344" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/weibo_logo.png" /></a>
+                                    <a class="weibo" href="https://weibo.com/u/1809059790" target="_blank" rel="noopener"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/weibo_logo.png" /></a>
 
                                     <div id="wechat_qrcode" class="modal">
-                                        <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/wechat_qrcode.jpg" />
+                                        <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/wechat_qrcode.webp" />
                                     </div>
 
                                     <a class="wechat" href="#wechat_qrcode"><img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/wechat_icon.png" /></a>
 
-                                    <?php endif; ?>
                                 </div>
 								<p><?php echo  esc_html(get_theme_mod('dkr_copyrights')); ?></p>
 							</div>
