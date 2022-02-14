@@ -1274,10 +1274,6 @@ img.alignleft {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  height: 34vw;
-  max-height: 300px;
-  -o-object-position: 0px -2px;
-     object-position: 0px -2px;
 }
 
 .home_pages_grid li p {
