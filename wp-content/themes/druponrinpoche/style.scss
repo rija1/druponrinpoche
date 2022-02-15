@@ -1247,6 +1247,7 @@ img {
     }
     .article-blog {
         .article-text {
+            position: relative;
             text-align: left;
             display: grid;
             grid-template-columns: 1fr 110px;
@@ -1255,7 +1256,7 @@ img {
             row-gap: 8px;
             p {
                 font-size: 17px;
-                padding: 0px;
+                padding: 0 0 40px 0;
                 font-weight: 300;
             }
             a {
@@ -1277,6 +1278,8 @@ img {
                 color: #a2a2a2;
                 font-size: 12px;
                 text-transform: uppercase;
+                position: absolute;
+                bottom: 0;
             }
         }
         padding:20px;
