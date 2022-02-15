@@ -1815,7 +1815,7 @@ img.monastery-cover {
 }
 
 .footer {
-  padding: 45px 0 10px 0;
+  padding: 48px 10px 10px 10px;
   background: -webkit-gradient(linear, left bottom, left top, from(#020024), color-stop(0%, #fdf6dd), color-stop(62%, #fff));
   background: linear-gradient(0deg, #020024 0%, #fdf6dd 0%, #fff 62%);
 }
