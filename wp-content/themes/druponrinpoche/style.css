@@ -1205,6 +1205,7 @@ img.alignleft {
 /*POST*/
 .container .single-post p {
   text-align: justify;
+  text-indent: 28px;
 }
 
 .blog-columns {
