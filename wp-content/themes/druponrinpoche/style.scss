@@ -370,6 +370,7 @@ img {
 }
 
 .sidebar-container {
+    padding-top: 15px;
     ol, ul {
         list-style: outside none;
     }
@@ -1844,7 +1845,6 @@ li.page_item_has_children > a {
     .blog-columns {
         .sidebar-container {
             width: 31%;
-            padding-top: 10px;
         }
         .inner-page-container {
             width: 69%;

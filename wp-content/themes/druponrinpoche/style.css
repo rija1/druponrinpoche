@@ -196,6 +196,10 @@ img {
   float: right;
 }
 
+.sidebar-container {
+  padding-top: 15px;
+}
+
 .sidebar-container ol, .sidebar-container ul {
   list-style: outside none;
 }
@@ -1692,7 +1696,6 @@ li.page_item_has_children > a {
 
 .page-template-about-pages .blog-columns .sidebar-container {
   width: 31%;
-  padding-top: 10px;
 }
 
 .page-template-about-pages .blog-columns .inner-page-container {
