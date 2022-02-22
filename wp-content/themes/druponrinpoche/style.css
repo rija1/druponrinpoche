@@ -1110,7 +1110,7 @@ img.alignnone {
 
 .teachings_category .article-blog .article-text {
   position: relative;
-  text-align: justify;
+  text-align: left;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 110px;
@@ -1903,7 +1903,7 @@ img.monastery-cover {
 }
 
 .article-blog .article-text p {
-  text-align: left;
+  text-align: justify;
   font-size: 13px;
   padding-top: 15px;
   padding-bottom: 13px;
