@@ -15,7 +15,7 @@
                 <div class="inner-page-container right">
                     <div class="gutter">
                         <div class="section-title">
-                                <h1><?php the_title(); ?></h1>
+                            <h1><span><?php the_title(); ?></span></h1>
                         </div>
                         <article class="single-post">
                             <div class="article-text">

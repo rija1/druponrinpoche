@@ -19,8 +19,7 @@ $lamas = array(
     <section class="section section-page-title">
                 <div class="section-title">
                     <div class="gutter">
-                        <h1 class="centered"><?php the_title(); ?></h1>
-                        <?php //the_excerpt(); ?>
+                        <h1><span><?php the_title(); ?></span></h1>
                     </div>
                 </div>
     </section> <!--  END section-page-title  -->
