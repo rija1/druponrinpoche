@@ -1222,11 +1222,43 @@ img {
 
 .teachings_category {
     .blog-columns {
+        @media only screen and (max-width: 480px) {
+            display: grid;
+        }
         .inner-page-container {
             width: 80%;
+            @media only screen and (max-width: 480px) {
+                width: auto;
+                .gutter {
+                    margin:0px;
+                }
+                .article-blog .article-text {
+                    row-gap: 20px;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: auto auto 30px;
+                    p {
+                        grid-row: 1;
+                        grid-column: 1;
+                        padding: 0;
+                    }
+                    .teaching_title {
+                        grid-column: 1;
+                        grid-row: 3;
+                    }
+                    a {
+                        grid-column: 1;
+                        grid-row: 2;
+                        text-align: left;
+                    }
+                }
+            }
         }
         .sidebar-container {
             width: 20%;
+            @media only screen and (max-width: 480px) {
+                margin-top: 24px;
+                width: auto;
+            }
         }
     }
     .pagination {
@@ -2940,73 +2972,6 @@ a.course_link {
         font-size: 14px;
     }
 
-
-    // News and Carousel
-
-    .home_news_carousel {
-        list-style: none;
-        display: grid;
-        grid-template-columns: 1fr;
-        padding:10px 15px 30px 15px;
-        .home_mini_carousel {
-            width: auto;
-            grid-column: 1;
-            grid-row: 2;
-            float: none;
-            .schedule_carousel_wrap {
-                margin-bottom: 0;
-                width: 92.5vw;
-            }
-        }
-
-        .latestnews {
-            width: auto;
-            padding:0;
-            grid-column: 1;
-            grid-row: 1;
-            .latestnews_list {
-                padding-top:20px;
-                grid-column-gap: 15px;
-                grid-row-gap: 15px;
-                grid-template-columns:1fr 1fr;
-                a.recent_post_link {
-                    padding: 0px;
-                    .post-date {
-                        display: none;
-                    }
-                    li.home_post {
-                        height: auto;
-                        width: auto;
-                        .home_post_img {
-                            height: auto;
-                            float: 115px;
-                            padding-bottom: 4px;
-                            img {
-                                width:auto;
-                            }
-                        }
-                        .home_post_txt {
-                            padding:10px 8px 10px 8px;
-                            text-align: center;
-                            margin:0;
-                            p {
-                                display:none;
-                            }
-                            .read_more {
-                                display:none;
-                            }
-                            .recent_post_title {
-                                padding-top: 10px;
-                                font-size: 15px;
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
-    }
-
     // About Pages
 
     .page-template-about-pages {
@@ -3031,16 +2996,6 @@ a.course_link {
         }
     }
 
-    // Full Biography
-    .page-id-230 {
-    .single-post {
-        h3 {
-            font-size:19px;
-            color:$dkr-brown;
-        }
-    }
-    }
-
     // Lineage
     .page-template-lineage-pages {
         .blog-columns {
@@ -3055,39 +3010,6 @@ a.course_link {
             .inner-page-container {
                 width: 100%;
                 padding-top:15px;
-//                grid-column: 1;
-//                grid-row: 1;
-//                margin-bottom: 20px;
-            }
-            .right {
-                .gutter {
-                    margin:0;
-                }
-            }
-        }
-    }
-
-    // Teachings
-
-
-    .blog-columns .inner-page-container {
-        width: 100%;
-    }
-
-    .teachings_category {
-        .article-blog {
-            margin-top: 0;
-        }
-        .blog-columns {
-            .sidebar-container {
-                display: none;
-            }
-            .inner-page-container {
-                .posts-grid {
-                    display: grid;
-                    grid-template-columns: 1fr;
-                    grid-row-gap: 15px;
-                }
             }
             .right {
                 .gutter {

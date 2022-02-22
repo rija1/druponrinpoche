@@ -1025,12 +1025,62 @@ img.alignnone {
   left: 1px;
 }
 
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns {
+    display: -ms-grid;
+    display: grid;
+  }
+}
+
 .teachings_category .blog-columns .inner-page-container {
   width: 80%;
 }
 
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .inner-page-container {
+    width: auto;
+  }
+  .teachings_category .blog-columns .inner-page-container .gutter {
+    margin: 0px;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text {
+    row-gap: 20px;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: auto auto 30px;
+        grid-template-rows: auto auto 30px;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text p {
+    -ms-grid-row: 1;
+    grid-row: 1;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    padding: 0;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text .teaching_title {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 3;
+    grid-row: 3;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text a {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+}
+
 .teachings_category .blog-columns .sidebar-container {
   width: 20%;
+}
+
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .sidebar-container {
+    margin-top: 24px;
+    width: auto;
+  }
 }
 
 .teachings_category .pagination span.left, .teachings_category .pagination span.right {
@@ -2687,74 +2737,6 @@ a.course_link {
     text-decoration: underline;
     font-size: 14px;
   }
-  .home_news_carousel {
-    list-style: none;
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-    padding: 10px 15px 30px 15px;
-  }
-  .home_news_carousel .home_mini_carousel {
-    width: auto;
-    -ms-grid-column: 1;
-    grid-column: 1;
-    -ms-grid-row: 2;
-    grid-row: 2;
-    float: none;
-  }
-  .home_news_carousel .home_mini_carousel .schedule_carousel_wrap {
-    margin-bottom: 0;
-    width: 92.5vw;
-  }
-  .home_news_carousel .latestnews {
-    width: auto;
-    padding: 0;
-    -ms-grid-column: 1;
-    grid-column: 1;
-    -ms-grid-row: 1;
-    grid-row: 1;
-  }
-  .home_news_carousel .latestnews .latestnews_list {
-    padding-top: 20px;
-    grid-column-gap: 15px;
-    grid-row-gap: 15px;
-    -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link {
-    padding: 0px;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link .post-date {
-    display: none;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post {
-    height: auto;
-    width: auto;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img {
-    height: auto;
-    float: 115px;
-    padding-bottom: 4px;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img img {
-    width: auto;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt {
-    padding: 10px 8px 10px 8px;
-    text-align: center;
-    margin: 0;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt p {
-    display: none;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .read_more {
-    display: none;
-  }
-  .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt .recent_post_title {
-    padding-top: 10px;
-    font-size: 15px;
-  }
   .page-template-about-pages .blog-columns .right .gutter {
     margin: 0;
   }
@@ -2764,10 +2746,6 @@ a.course_link {
   .page-template-about-pages .blog-columns .inner-page-container {
     width: 100%;
   }
-  .page-id-230 .single-post h3 {
-    font-size: 19px;
-    color: #80784c;
-  }
   .page-template-lineage-pages .blog-columns .sidebar-container {
     display: none;
   }
@@ -2776,25 +2754,6 @@ a.course_link {
     padding-top: 15px;
   }
   .page-template-lineage-pages .blog-columns .right .gutter {
-    margin: 0;
-  }
-  .blog-columns .inner-page-container {
-    width: 100%;
-  }
-  .teachings_category .article-blog {
-    margin-top: 0;
-  }
-  .teachings_category .blog-columns .sidebar-container {
-    display: none;
-  }
-  .teachings_category .blog-columns .inner-page-container .posts-grid {
-    display: -ms-grid;
-    display: grid;
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-    grid-row-gap: 15px;
-  }
-  .teachings_category .blog-columns .right .gutter {
     margin: 0;
   }
   .container .single-post .contact_social img {
