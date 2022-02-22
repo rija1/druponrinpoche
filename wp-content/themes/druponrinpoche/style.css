@@ -1978,6 +1978,12 @@ h1 {
   line-height: 2;
 }
 
+.page-template-lineage-pages .section-title h1 span, .page-template-left-page-menu .section-title h1 span {
+  margin: 0;
+  width: 100%;
+  text-align: left;
+}
+
 .container .single-post h1, .container .single-post h2, .container .single-post h3, .container .single-post h4, .container .single-post h5, .container .single-post h6 {
   color: #9b940d;
 }
