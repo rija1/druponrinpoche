@@ -2947,7 +2947,7 @@ a.course_link {
 }
 
 .lineage-grid {
-  padding: 0 50px 20px;
+  padding: 20px 50px 20px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
