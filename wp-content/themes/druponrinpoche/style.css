@@ -976,11 +976,6 @@ img.alignnone {
   margin: 2px;
 }
 
-.tibetan {
-  font-size: 19px;
-  line-height: 31px;
-}
-
 .screen-reader-text {
   clip: rect(1px, 1px, 1px, 1px);
   position: absolute !important;
@@ -1027,178 +1022,6 @@ img.alignnone {
 .contentsup {
   top: -8px;
   left: 1px;
-}
-
-@media only screen and (max-width: 480px) {
-  .teachings_category .blog-columns {
-    display: -ms-grid;
-    display: grid;
-  }
-}
-
-.teachings_category .blog-columns .inner-page-container {
-  width: 80%;
-}
-
-@media only screen and (max-width: 480px) {
-  .teachings_category .blog-columns .inner-page-container {
-    width: auto;
-  }
-  .teachings_category .blog-columns .inner-page-container .gutter {
-    margin: 0px;
-  }
-  .teachings_category .blog-columns .inner-page-container .article-blog .article-text {
-    row-gap: 20px;
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-    -ms-grid-rows: auto auto 30px;
-        grid-template-rows: auto auto 30px;
-  }
-  .teachings_category .blog-columns .inner-page-container .article-blog .article-text .teaching_text {
-    -ms-grid-row: 1;
-    grid-row: 1;
-    -ms-grid-column: 1;
-    grid-column: 1;
-    padding: 0;
-  }
-  .teachings_category .blog-columns .inner-page-container .article-blog .article-text .teaching_title {
-    -ms-grid-column: 1;
-    grid-column: 1;
-    -ms-grid-row: 3;
-    grid-row: 3;
-  }
-  .teachings_category .blog-columns .inner-page-container .article-blog .article-text a {
-    -ms-grid-column: 1;
-    grid-column: 1;
-    -ms-grid-row: 2;
-    grid-row: 2;
-    text-align: left;
-  }
-}
-
-.teachings_category .blog-columns .sidebar-container {
-  width: 20%;
-}
-
-@media only screen and (max-width: 480px) {
-  .teachings_category .blog-columns .sidebar-container {
-    margin-top: 24px;
-    width: auto;
-  }
-}
-
-.teachings_category .pagination span.left, .teachings_category .pagination span.right {
-  margin: 25px 0 0 0;
-}
-
-.teachings_category h1 {
-  font-size: 22px;
-}
-
-.teachings_category a.category-post-title {
-  display: block;
-}
-
-.teachings_category a.category-post-title:hover .article-blog .teaching_title {
-  color: #9b940d;
-}
-
-.teachings_category .article-blog {
-  padding: 20px;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  border: 1px solid #eaeaea;
-  background: #fff;
-  margin-top: 25px;
-}
-
-.teachings_category .article-blog .article-text {
-  position: relative;
-  text-align: left;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 110px;
-      grid-template-columns: 1fr 110px;
-  -ms-grid-rows: auto 1fr;
-      grid-template-rows: auto 1fr;
-  -webkit-column-gap: 20px;
-          column-gap: 20px;
-  row-gap: 8px;
-}
-
-.teachings_category .article-blog .article-text .teaching_text {
-  font-size: 17px;
-  padding: 0 0 40px 0;
-  font-weight: 300;
-}
-
-.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container {
-  margin-top: 10px;
-}
-
-.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-  -webkit-column-gap: 8px;
-          column-gap: 8px;
-  row-gap: 8px;
-}
-
-.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery .rl-gallery-item {
-  width: 100px !important;
-  height: 100px !important;
-  margin: 0 !important;
-}
-
-.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery .rl-gallery-item img {
-  width: 100px;
-  height: 100px;
-}
-
-.teachings_category .article-blog .article-text .teaching_text p:empty {
-  padding: 0;
-}
-
-.teachings_category .article-blog .article-text a {
-  -ms-grid-column: 2;
-  grid-column: 2;
-  -ms-grid-row: 1;
-  -ms-grid-row-span: 2;
-  grid-row: 1/3;
-  text-align: right;
-  display: block;
-  height: 100px;
-}
-
-.teachings_category .article-blog .article-text a img {
-  width: 100px;
-  height: 100px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-
-.teachings_category .article-blog .article-text .teaching_title {
-  -ms-grid-column: 1;
-  grid-column: 1;
-  -ms-grid-row: 2;
-  grid-row: 2;
-  font-weight: normal;
-  color: #a2a2a2;
-  font-size: 12px;
-  text-transform: uppercase;
-  position: absolute;
-  bottom: 0;
-}
-
-.teachings_category .article-blog a:hover {
-  text-decoration: none;
-}
-
-.teachings_category .single-post .post-info .teaching_info {
-  font-style: italic;
-  font-size: 14px;
 }
 
 .pagination {
@@ -1406,132 +1229,6 @@ img.alignleft {
 div {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-}
-
-.home_news_carousel {
-  display: block;
-  padding: 20px 30px 30px 30px;
-}
-
-.home_news_carousel .latestnews_title h5, .home_news_carousel .schedule_title h5 {
-  text-align: left;
-  border-bottom: solid 1px #bc9c09;
-  padding: 15px 0 8px 0;
-  color: #bc9c09;
-}
-
-.home_news_carousel .latestnews_title h5 {
-  margin-bottom: 10px;
-}
-
-.home h5 {
-  padding: 15px;
-  text-align: center;
-}
-
-li.home_post {
-  width: 100%;
-  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  border: 1px solid #eaeaea;
-  background: #fff;
-  height: 120px;
-  -ms-grid-columns: 180px auto;
-      grid-template-columns: 180px auto;
-}
-
-li.home_post p {
-  text-align: justify;
-}
-
-.home_post_img {
-  float: left;
-  height: 120px;
-}
-
-.home_post_img img {
-  width: 180px;
-}
-
-.home_news_carousel .latestnews {
-  display: block;
-  width: 58%;
-  padding-right: 20px;
-}
-
-.home_news_carousel .latestnews .recent_post_link {
-  font-size: 13px;
-  width: 100%;
-  font-weight: 100;
-  font-size: 16px;
-  color: #404040;
-  padding-right: 10px;
-}
-
-.home_news_carousel .latestnews .recent_post_link:hover .recent_post_title {
-  -webkit-transition: all .1s ease;
-  transition: all .1s ease;
-  color: #9b940d;
-}
-
-.home_news_carousel .latestnews li.home_post .home_post_txt {
-  position: relative;
-  text-align: left;
-  margin-left: 180px;
-  padding: 10px 14px 10px 14px;
-}
-
-.home_news_carousel .latestnews li.home_post .home_post_txt .read_more {
-  position: absolute;
-  top: 85px;
-  right: 9px;
-  font-size: 11px;
-  padding: 5px 7px;
-  text-transform: uppercase;
-}
-
-.home_news_carousel .latestnews li.home_post .home_post_txt p {
-  padding-top: 15px;
-  font-size: 13px;
-  height: 70px;
-}
-
-.home_news_carousel li {
-  text-align: center;
-}
-
-.home_news_carousel li h5 {
-  padding: 10px 0;
-  margin: 0;
-  color: #9b940d;
-}
-
-li.home_post {
-  height: 130px;
-}
-
-.home_post_img img {
-  width: 195px;
-}
-
-.home_news_carousel .latestnews li.home_post .home_post_txt {
-  margin-left: 200px;
-  padding: 13px 16px;
-}
-
-.recent_post_title {
-  font-size: 17px;
-  color: #555555;
-}
-
-.home_news_carousel .latestnews li.home_post .home_post_txt .read_more {
-  top: 93px;
-  right: 16px;
-}
-
-.posts-grid .article-text, .featured-grid .article-text {
-  font-weight: 400;
-  font-family: 'Raleway';
 }
 
 .wide {
@@ -1954,6 +1651,187 @@ img.monastery-cover {
 .article-text a:hover, h2 a:hover, .top-bar a:hover, .copyright-block a:hover, .footer .copyright-block a:hover {
   color: #444444;
   text-decoration: underline;
+}
+
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns {
+    display: -ms-grid;
+    display: grid;
+  }
+}
+
+.teachings_category .blog-columns .inner-page-container {
+  width: 80%;
+}
+
+.teachings_category .blog-columns .inner-page-container .article-blog .article-text .tibetan p {
+  font-size: 20px;
+  line-height: 32px;
+}
+
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .inner-page-container {
+    width: auto;
+  }
+  .teachings_category .blog-columns .inner-page-container .gutter {
+    margin: 0px;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text {
+    row-gap: 20px;
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    -ms-grid-rows: auto auto 30px;
+        grid-template-rows: auto auto 30px;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text .teaching_text {
+    -ms-grid-row: 1;
+    grid-row: 1;
+    -ms-grid-column: 1;
+    grid-column: 1;
+    padding: 0;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text .teaching_title {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 3;
+    grid-row: 3;
+  }
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text a {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+    text-align: left;
+  }
+}
+
+.teachings_category .blog-columns .sidebar-container {
+  width: 20%;
+}
+
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .sidebar-container {
+    margin-top: 24px;
+    width: auto;
+  }
+}
+
+.teachings_category .pagination span.left, .teachings_category .pagination span.right {
+  margin: 25px 0 0 0;
+}
+
+.teachings_category h1 {
+  font-size: 22px;
+}
+
+.teachings_category a.category-post-title {
+  display: block;
+}
+
+.teachings_category a.category-post-title:hover .article-blog .teaching_title {
+  color: #9b940d;
+}
+
+.teachings_category .article-blog {
+  padding: 20px;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #eaeaea;
+  background: #fff;
+  margin-top: 25px;
+}
+
+.teachings_category .article-blog .article-text {
+  position: relative;
+  text-align: left;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 110px;
+      grid-template-columns: 1fr 110px;
+  -ms-grid-rows: auto 1fr;
+      grid-template-rows: auto 1fr;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  row-gap: 8px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text {
+  font-size: 17px;
+  padding: 0 0 40px 0;
+  font-weight: 300;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container {
+  margin-top: 10px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -webkit-column-gap: 8px;
+          column-gap: 8px;
+  row-gap: 8px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery .rl-gallery-item {
+  width: 100px !important;
+  height: 100px !important;
+  margin: 0 !important;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery .rl-gallery-item img {
+  width: 100px;
+  height: 100px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text p {
+  font-size: 17px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text p:empty {
+  padding: 0;
+}
+
+.teachings_category .article-blog .article-text a {
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 1;
+  -ms-grid-row-span: 2;
+  grid-row: 1/3;
+  text-align: right;
+  display: block;
+  height: 100px;
+}
+
+.teachings_category .article-blog .article-text a img {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.teachings_category .article-blog .article-text .teaching_title {
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-grid-row: 2;
+  grid-row: 2;
+  font-weight: normal;
+  color: #a2a2a2;
+  font-size: 12px;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: 0;
+}
+
+.teachings_category .article-blog a:hover {
+  text-decoration: none;
+}
+
+.teachings_category .single-post .post-info .teaching_info {
+  font-style: italic;
+  font-size: 14px;
 }
 
 .section-page-title {
@@ -2601,23 +2479,6 @@ a.course_link {
 
 .footer .footer_social a.weibo {
   margin-top: 2px;
-}
-
-.full-bio-tib-link {
-  position: absolute;
-  right: 32px;
-  top: 28px;
-}
-
-.full-bio-tib-link:after {
-  font-family: "FontAwesome";
-  content: '\f036';
-  padding-left: 10px;
-  padding-top: 2px;
-}
-
-.full-bio-tibetan {
-  font-size: 24px;
 }
 
 .home_quote {

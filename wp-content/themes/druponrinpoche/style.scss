@@ -1172,10 +1172,6 @@ img {
     margin: 2px;
 }
 
-.tibetan {
-    font-size: 19px;
-    line-height: 31px;
-}
 
 .screen-reader-text {
     clip: rect(1px, 1px, 1px, 1px);
@@ -1222,141 +1218,6 @@ img {
 .contentsup {
     top: -8px;
     left: 1px;
-}
-
-.teachings_category {
-
-    .blog-columns {
-        @media only screen and (max-width: 480px) {
-            display: grid;
-        }
-        .inner-page-container {
-            width: 80%;
-            @media only screen and (max-width: 480px) {
-                width: auto;
-                .gutter {
-                    margin:0px;
-                }
-                .article-blog .article-text {
-                    row-gap: 20px;
-                    grid-template-columns: 1fr;
-                    grid-template-rows: auto auto 30px;
-                    .teaching_text {
-                        grid-row: 1;
-                        grid-column: 1;
-                        padding: 0;
-                    }
-                    .teaching_title {
-                        grid-column: 1;
-                        grid-row: 3;
-                    }
-                    a {
-                        grid-column: 1;
-                        grid-row: 2;
-                        text-align: left;
-                    }
-                }
-            }
-        }
-        .sidebar-container {
-            width: 20%;
-            @media only screen and (max-width: 480px) {
-                margin-top: 24px;
-                width: auto;
-            }
-        }
-    }
-    .pagination {
-        span.left , span.right{
-            margin: 25px 0 0 0 ;
-        }
-    }
-    h1 {
-        font-size:22px;
-    }
-    a.category-post-title {
-        display:block;
-        &:hover .article-blog {
-            .teaching_title {
-                color :$dkr-gold;
-            }
-        }
-    }
-    .article-blog {
-        .article-text {
-            position: relative;
-            text-align: left;
-            display: grid;
-            grid-template-columns: 1fr 110px;
-            grid-template-rows: auto 1fr;
-            column-gap: 20px;
-            row-gap: 8px;
-            .teaching_text {
-                font-size: 17px;
-                padding: 0 0 40px 0;
-                font-weight: 300;
-                .rl-gallery-container {
-                    margin-top: 10px;
-                    .rl-basicgrid-gallery {
-                        display: grid;
-                        grid-template-columns:1fr 1fr 1fr 1fr; 
-                        column-gap: 8px;
-                        row-gap: 8px;
-                        .rl-gallery-item {
-                            width: 100px !important; 
-                            height: 100px !important;
-                            margin: 0 !important;
-                            img {
-                                width: 100px;
-                                height: 100px;  
-                            }
-                        }
-                    }
-                }
-                p:empty {
-                    padding: 0;
-                }
-            }
-            a {
-                grid-column: 2;
-                grid-row: 1/3;
-                text-align: right;
-                display: block;
-                height: 100px;
-                img {
-                    width:100px;
-                    height:100px;
-                    object-fit: cover;
-                }
-            }
-            .teaching_title {
-                grid-column: 1;
-                grid-row: 2;
-                font-weight: normal;
-                color: #a2a2a2;
-                font-size: 12px;
-                text-transform: uppercase;
-                position: absolute;
-                bottom: 0;
-            }
-        }
-        padding:20px;
-        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-        border: 1px solid #eaeaea;
-        background: #fff;
-        margin-top: 25px;
-        a:hover {
-            text-decoration: none;
-        }
-    }
-    .single-post {
-        .post-info {
-            .teaching_info {
-                font-style:italic;
-                font-size: 14px;
-            }
-        }
-    }
 }
 
 .pagination {
@@ -1558,126 +1419,6 @@ div{
     box-sizing:border-box;
 }
 
-.home_news_carousel {
-    display:block;
-    padding: 20px 30px 30px 30px;
-    .latestnews_title, .schedule_title {
-        h5 {
-            text-align: left;
-            border-bottom: solid 1px #bc9c09;
-            padding: 15px 0 8px 0;
-            color: #bc9c09;
-        }
-    }
-    .latestnews_title {
-        h5 {
-            margin-bottom:10px;
-        }
-    }
-}
-
-.home h5 {
-    padding: 15px;
-    text-align: center;
-}
-
-li.home_post {
-    width: 100%;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-    border: 1px solid #eaeaea;
-    background: #fff;
-    height: 120px;
-    grid-template-columns: 180px auto;
-    p {
-        text-align: justify;
-    }
-}
-
-.home_post_img {
-    float:left;
-    height:120px;
-    img {
-        width: 180px;
-    }
-}
-
-.home_news_carousel {
-    .latestnews {
-        display:block;
-        width: 58%;
-        padding-right: 20px;
-        .recent_post_link {
-            font-size: 13px;
-            width: 100%;
-            font-weight: 100;
-            font-size: 16px;
-            color: #404040;
-            padding-right: 10px;
-            &:hover .recent_post_title {
-                -webkit-transition: all .1s ease;
-                -moz-transition: all .1s ease;
-                -ms-transition: all .1s ease;
-                -o-transition: all .1s ease;
-                transition: all .1s ease;
-                color:$dkr-gold;
-            }
-        }
-        li.home_post {
-            .home_post_txt {
-                position: relative;
-                .read_more {
-                    position: absolute;
-                    top: 85px;
-                    right: 9px;
-                    font-size: 11px;
-                    padding: 5px 7px;
-                    text-transform: uppercase;
-                }
-                p {
-                    padding-top: 15px;
-                    font-size: 13px;
-                    height: 70px;
-                }
-                text-align: left;
-                margin-left: 180px;
-                padding: 10px 14px 10px 14px;
-            }
-        }
-    }
-    li {
-        text-align: center;
-        h5 {
-            padding: 10px 0;
-            margin: 0;
-            color: $dkr-gold;
-        }
-    }
-}
-
-// Home post new style
-li.home_post {
-    height: 130px;
-}
-.home_post_img img {
-    width: 195px;
-}
-.home_news_carousel .latestnews li.home_post .home_post_txt {
-    margin-left: 200px;
-    padding: 13px 16px;
-}
-.recent_post_title {
-    font-size: 17px;
-    color: #555555;
-}
-.home_news_carousel .latestnews li.home_post .home_post_txt .read_more {
-    top: 93px;
-    right: 16px;
-}
-.posts-grid .article-text, .featured-grid .article-text {
-    font-weight: 400;
-    font-family: 'Raleway';
-}
-// Home post new style - END
 
 .wide {
     grid-column: auto / span 2;
@@ -2119,6 +1860,153 @@ img.monastery-cover {
 .article-text a:hover, h2 a:hover, .top-bar a:hover, .copyright-block a:hover, .footer .copyright-block a:hover {
     color: #444444;
     text-decoration: underline;
+}
+
+
+.teachings_category {
+
+    .blog-columns {
+        @media only screen and (max-width: 480px) {
+            display: grid;
+        }
+        .inner-page-container {
+            width: 80%;
+            .article-blog .article-text {
+                .tibetan {
+                    p {
+                        font-size: 20px;
+                        line-height: 32px;
+                    } 
+                }
+            }
+            @media only screen and (max-width: 480px) {
+                width: auto;
+                .gutter {
+                    margin:0px;
+                }
+                .article-blog .article-text {
+                    row-gap: 20px;
+                    grid-template-columns: 1fr;
+                    grid-template-rows: auto auto 30px;
+                    .teaching_text {
+                        grid-row: 1;
+                        grid-column: 1;
+                        padding: 0;
+                    }
+                    .teaching_title {
+                        grid-column: 1;
+                        grid-row: 3;
+                    }
+                    a {
+                        grid-column: 1;
+                        grid-row: 2;
+                        text-align: left;
+                    }            
+                }
+            }
+        }
+        .sidebar-container {
+            width: 20%;
+            @media only screen and (max-width: 480px) {
+                margin-top: 24px;
+                width: auto;
+            }
+        }
+    }
+    .pagination {
+        span.left , span.right{
+            margin: 25px 0 0 0 ;
+        }
+    }
+    h1 {
+        font-size:22px;
+    }
+    a.category-post-title {
+        display:block;
+        &:hover .article-blog {
+            .teaching_title {
+                color :$dkr-gold;
+            }
+        }
+    }
+    .article-blog {
+        .article-text {
+            position: relative;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 110px;
+            grid-template-rows: auto 1fr;
+            column-gap: 20px;
+            row-gap: 8px;
+            .teaching_text {
+                font-size: 17px;
+                padding: 0 0 40px 0;
+                font-weight: 300;
+                .rl-gallery-container {
+                    margin-top: 10px;
+                    .rl-basicgrid-gallery {
+                        display: grid;
+                        grid-template-columns:1fr 1fr 1fr 1fr; 
+                        column-gap: 8px;
+                        row-gap: 8px;
+                        .rl-gallery-item {
+                            width: 100px !important; 
+                            height: 100px !important;
+                            margin: 0 !important;
+                            img {
+                                width: 100px;
+                                height: 100px;  
+                            }
+                        }
+                    }
+                }
+                p {
+                    font-size: 17px;
+                } 
+                p:empty {
+                    padding: 0;
+                }
+            }
+            a {
+                grid-column: 2;
+                grid-row: 1/3;
+                text-align: right;
+                display: block;
+                height: 100px;
+                img {
+                    width:100px;
+                    height:100px;
+                    object-fit: cover;
+                }
+            }
+            .teaching_title {
+                grid-column: 1;
+                grid-row: 2;
+                font-weight: normal;
+                color: #a2a2a2;
+                font-size: 12px;
+                text-transform: uppercase;
+                position: absolute;
+                bottom: 0;
+            }
+        }
+        padding:20px;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        border: 1px solid #eaeaea;
+        background: #fff;
+        margin-top: 25px;
+        a:hover {
+            text-decoration: none;
+        }
+    }
+    .single-post {
+        .post-info {
+            .teaching_info {
+                font-style:italic;
+                font-size: 14px;
+            }
+        }
+    }
 }
 
 .section-page-title {
@@ -2805,22 +2693,6 @@ a.course_link {
         }
 
     }
-}
-
-.full-bio-tib-link {
-    position: absolute;
-    right: 32px;
-    top: 28px;
-    &:after {
-        font-family:"FontAwesome";
-        content: '\f036';
-        padding-left: 10px;
-        padding-top:2px;
-    }
-}
-
-.full-bio-tibetan {
-        font-size:24px;
 }
 
 .home_quote {
