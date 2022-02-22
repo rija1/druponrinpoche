@@ -2958,12 +2958,16 @@ h1.centered {
   text-align: center;
 }
 
+.page-template-rinpoche-lamas .section-page-title {
+  padding: 60px 22px 36px;
+}
+
 .rinpoche-lamas .inner-page-container {
   padding: 0;
 }
 
 .rinpoche-lamas .lamas-grid {
-  padding: 0 25px 20px 25px;
+  padding: 0px 25px 150px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
