@@ -1110,7 +1110,7 @@ img.alignnone {
 
 .teachings_category .article-blog .article-text {
   position: relative;
-  text-align: left;
+  text-align: justify;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 110px;
