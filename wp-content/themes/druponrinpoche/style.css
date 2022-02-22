@@ -1966,11 +1966,11 @@ h1 {
   color: #9b940d;
 }
 
-.section-page-title h1 {
+.section-title h1 {
   text-transform: none;
 }
 
-.section-page-title h1 span {
+.section-title h1 span {
   display: table;
   margin: 0 auto;
   border-bottom: solid 1px #9b940d;
@@ -2952,10 +2952,6 @@ a.course_link {
     -o-object-position: -58px 3px;
        object-position: -58px 3px;
   }
-}
-
-h1.centered {
-  text-align: center;
 }
 
 .page-template-rinpoche-lamas .section-page-title {
