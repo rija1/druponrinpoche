@@ -10,7 +10,7 @@
                 <div class="inner-page-container right">
                     <div class="section-title">
                         <div class="gutter">
-                            <h1><?php the_title(); ?></h1>
+                            <h1><span><?php the_title(); ?></span></h1>
                             <?php //the_excerpt(); ?>
                         </div>
                     </div>
