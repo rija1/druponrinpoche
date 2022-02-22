@@ -1221,6 +1221,7 @@ img {
 }
 
 .teachings_category {
+
     .blog-columns {
         @media only screen and (max-width: 480px) {
             display: grid;
@@ -1236,7 +1237,7 @@ img {
                     row-gap: 20px;
                     grid-template-columns: 1fr;
                     grid-template-rows: auto auto 30px;
-                    p {
+                    .teaching_text {
                         grid-row: 1;
                         grid-column: 1;
                         padding: 0;
@@ -1286,10 +1287,31 @@ img {
             grid-template-rows: auto 1fr;
             column-gap: 20px;
             row-gap: 8px;
-            p {
+            .teaching_text {
                 font-size: 17px;
                 padding: 0 0 40px 0;
                 font-weight: 300;
+                .rl-gallery-container {
+                    margin-top: 10px;
+                    .rl-basicgrid-gallery {
+                        display: grid;
+                        grid-template-columns:1fr 1fr 1fr 1fr; 
+                        column-gap: 8px;
+                        row-gap: 8px;
+                        .rl-gallery-item {
+                            width: 100px !important; 
+                            height: 100px !important;
+                            margin: 0 !important;
+                            img {
+                                width: 100px;
+                                height: 100px;  
+                            }
+                        }
+                    }
+                }
+                p:empty {
+                    padding: 0;
+                }
             }
             a {
                 grid-column: 2;
@@ -2322,22 +2344,9 @@ p.teaching_info {
     }
 }
 
-.news_right_block {
-    #rl-gallery-container-1 .rl-basicgrid-gallery .rl-gallery-item {
-        width: 46%;
-        margin: 0px 7px 13px 5px;
-    }
-}
-
 
 .rl-gallery .rl-gallery-link .rl-gallery-caption {
     display:none;
-}
-
-/*Picture Gallery*/
-
-.picture-gallery .sidebar-container ul.children li {
-    list-style-type: none;
 }
 
 //Expander
@@ -3093,11 +3102,6 @@ a.course_link {
 
 
     // News
-
-    .single-post .rl-gallery-item {
-        width: calc(33.333333333333% - 15px); 
-        margin: 7.5px;
-    }
 
     .pagination  {
         span.left {

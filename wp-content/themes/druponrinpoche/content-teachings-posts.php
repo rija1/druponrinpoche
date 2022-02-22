@@ -13,7 +13,7 @@
                 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
                     <div class="article-text">
-                        <p class="<?php echo (isPostTibetan()) ? 'tibetan' : '' ; ?>"><?php echo get_the_content();?></p>
+                        <div class="teaching_text <?php echo (isPostTibetan()) ? ' tibetan' : '' ; ?>"><?php the_content(); ?></div>
                         <span class="teaching_title"><?php the_time( get_option( 'date_format' ) ); ?></span>
                         <?php if(get_the_post_thumbnail_url()): ?>
                         <a href="<?php echo get_the_post_thumbnail_url(); ?>" class="swipebox">

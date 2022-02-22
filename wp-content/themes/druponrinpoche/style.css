@@ -1050,7 +1050,7 @@ img.alignnone {
     -ms-grid-rows: auto auto 30px;
         grid-template-rows: auto auto 30px;
   }
-  .teachings_category .blog-columns .inner-page-container .article-blog .article-text p {
+  .teachings_category .blog-columns .inner-page-container .article-blog .article-text .teaching_text {
     -ms-grid-row: 1;
     grid-row: 1;
     -ms-grid-column: 1;
@@ -1122,10 +1122,39 @@ img.alignnone {
   row-gap: 8px;
 }
 
-.teachings_category .article-blog .article-text p {
+.teachings_category .article-blog .article-text .teaching_text {
   font-size: 17px;
   padding: 0 0 40px 0;
   font-weight: 300;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container {
+  margin-top: 10px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -webkit-column-gap: 8px;
+          column-gap: 8px;
+  row-gap: 8px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery .rl-gallery-item {
+  width: 100px !important;
+  height: 100px !important;
+  margin: 0 !important;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery .rl-gallery-item img {
+  width: 100px;
+  height: 100px;
+}
+
+.teachings_category .article-blog .article-text .teaching_text p:empty {
+  padding: 0;
 }
 
 .teachings_category .article-blog .article-text a {
@@ -2136,18 +2165,8 @@ p.teaching_info {
   color: #80784c;
 }
 
-.news_right_block #rl-gallery-container-1 .rl-basicgrid-gallery .rl-gallery-item {
-  width: 46%;
-  margin: 0px 7px 13px 5px;
-}
-
 .rl-gallery .rl-gallery-link .rl-gallery-caption {
   display: none;
-}
-
-/*Picture Gallery*/
-.picture-gallery .sidebar-container ul.children li {
-  list-style-type: none;
 }
 
 .closed .vertical {
@@ -2808,10 +2827,6 @@ a.course_link {
   }
   .container .single-post p > img {
     padding-bottom: 20px;
-  }
-  .single-post .rl-gallery-item {
-    width: calc(33.333333333333% - 15px);
-    margin: 7.5px;
   }
   .pagination span.left {
     margin-left: 15px;
