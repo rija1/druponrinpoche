@@ -2947,13 +2947,13 @@ a.course_link {
 }
 
 .lineage-grid {
-  padding: 0 25px 20px 25px;
+  padding: 0 50px 20px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr 1fr;
       grid-template-columns: 1fr 1fr;
-  -webkit-column-gap: 45px;
-          column-gap: 45px;
+  -webkit-column-gap: 90px;
+          column-gap: 90px;
 }
 
 .lineage-grid .lineage-grid-item {
@@ -2967,6 +2967,9 @@ a.course_link {
   text-align: center;
   margin-left: auto;
   margin-right: auto;
+  height: 431px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .lineage-grid .lineage-grid-item .lineage-grid-title {
