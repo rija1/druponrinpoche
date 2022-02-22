@@ -369,8 +369,11 @@ img {
     float: right;
 }
 
-.sidebar-container {
+.page-template-left-page-menu .sidebar-container {
     padding-top: 15px;
+}
+
+.sidebar-container {
     ol, ul {
         list-style: outside none;
     }
