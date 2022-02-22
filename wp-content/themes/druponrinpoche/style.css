@@ -1768,8 +1768,8 @@ img.monastery-cover {
 .teachings_category .article-blog .article-text .teaching_text .rl-gallery-container .rl-basicgrid-gallery {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   -webkit-column-gap: 8px;
           column-gap: 8px;
   row-gap: 8px;
