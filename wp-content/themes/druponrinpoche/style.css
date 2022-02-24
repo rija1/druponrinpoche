@@ -1870,6 +1870,12 @@ h1 {
   text-align: left;
 }
 
+.page-id-17353 span {
+  margin: 12px auto 48px auto;
+  width: auto;
+  text-align: center;
+}
+
 .container .single-post h1, .container .single-post h2, .container .single-post h3, .container .single-post h4, .container .single-post h5, .container .single-post h6 {
   color: #9b940d;
 }
@@ -2647,13 +2653,6 @@ a.course_link {
   }
   .home_pages_grid h5 {
     padding-top: 5px;
-  }
-  .page-id-1581 .container .single-post h2 {
-    margin: 0px 0 25px 0 !important;
-  }
-  a.course_link {
-    text-decoration: underline;
-    font-size: 14px;
   }
   .page-template-about-pages .blog-columns .right .gutter {
     margin: 0;
