@@ -2064,11 +2064,16 @@ h1 {
 }
 
 // Renboqie long life prayer
-.page-id-17353 .section-title h1 {
-    span {
-        margin: 12px auto 48px auto;
-        width: auto;
-        text-align: center;
+.page-id-17353 {
+    .section-title h1 {
+        span {
+            margin: 12px auto 48px auto;
+            width: auto;
+            text-align: center;
+        }
+    }
+    .article-text img {
+        box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
     }
 }
 
