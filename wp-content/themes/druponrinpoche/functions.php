@@ -1089,6 +1089,7 @@ function getDrWebsiteConfig()
     $drWebsiteConfig['aboutrinpoche_page_id'] = 13610;
     $drWebsiteConfig['monastery_page_id'] = 17430;
     $drWebsiteConfig['lineage_page_id'] = 13425;
+    $drWebsiteConfig['teachings_cat_id'] = 40;
     $drWebsiteConfig['selected_pics_gallery_id'] = 1293;
     $drWebsiteConfig['nb_latest_news_posts'] = 4;
     $drWebsiteConfig['teaching_cat_ids'] = array(28,30);

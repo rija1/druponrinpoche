@@ -83,7 +83,7 @@ $locale = get_locale();
 			</div> <!--  END copyright-block  -->
 		</footer> <!--  END footer  -->
         </div> <!--  END container  -->
-	</div> <!--  END content  -->
+	</div> <!-- CLOSE #content -->
 <?php
 wp_footer(); ?>
 </body>

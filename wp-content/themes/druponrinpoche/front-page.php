@@ -77,6 +77,19 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
         </a>
 
     </li>
+
+    <li class="box4-mobile">
+        <?php
+        $teachingCatId=$drWebsiteConfig['teachings_cat_id'];
+        ?>
+        <a href="<?php echo get_category_link($teachingCatId)?>">
+            <img src="<?php echo get_stylesheet_directory_uri().'/assets/images/teachings/home_teachings.webp'; ?>" />
+            <div class="inner">
+                <h5><?php echo rbq_trsl('教言开示')?></h5>
+            </div>
+        </a>
+
+    </li>
 </ul>
 
 <?php get_footer(); ?>

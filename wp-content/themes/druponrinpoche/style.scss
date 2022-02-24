@@ -639,7 +639,7 @@ img {
 
     .menu-top-mob {
         padding:25px 12px 10px 12px;
-        ul.sub-menu li.current_page_item > a {
+        li.current_page_item > a, ul.sub-menu li.current_page_item > a {
             color:$dkr-gold;
         }
         a {
@@ -1409,6 +1409,9 @@ img.alignleft {
     .box3 {
         grid-column: 3;
         grid-row: 1;
+    }
+    .box4-mobile {
+        display:none;
     }
 
 }
@@ -2838,14 +2841,34 @@ a.course_link {
         .box1 {
             grid-column: 1;
             grid-row: 2;
+            img {
+                object-position: 0 0px;
+            }
         }
         .box3 {
             grid-column: 2;
             grid-row: 1;
+            img {
+                object-position: 0 -21px;
+            }
         }
-
-        li p {
-            display: none;
+        .box4-mobile {
+            display:block;
+            grid-column: 2;
+            grid-row: 2;
+            img {
+                object-position: -92px 0px;
+            }
+        }
+        
+        li {
+            img {
+                height: 220px;
+                object-fit: cover;
+            }    
+            p {
+                display: none;
+            }
         }
 
         h5 {
