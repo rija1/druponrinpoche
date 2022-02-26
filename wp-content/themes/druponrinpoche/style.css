@@ -1050,6 +1050,15 @@ img.alignleft {
   grid-row: 1;
 }
 
+@media only screen and (max-width: 480px) {
+  .blog-columns .inner-page-container {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
+}
+
 .blog-columns .sidebar-container {
   min-width: 170px;
   max-width: 240px;
@@ -1058,6 +1067,15 @@ img.alignleft {
   grid-column: 1;
   -ms-grid-row: 1;
   grid-row: 1;
+}
+
+@media only screen and (max-width: 480px) {
+  .blog-columns .sidebar-container {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
 }
 
 /*POST*/
