@@ -1604,7 +1604,8 @@ img.monastery-cover {
 
 @media only screen and (max-width: 480px) {
   .teachings_category .blog-columns .inner-page-container .gutter {
-    margin-left: 20px;
+    margin-left: 15px;
+    margin-right: 15px;
   }
 }
 
