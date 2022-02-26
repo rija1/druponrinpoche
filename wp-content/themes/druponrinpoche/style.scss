@@ -1206,7 +1206,7 @@ img.alignleft {
 }
 
 .blog-columns {
-    padding: 20px;
+    padding: 20px 30px 20px 20px;
     display: grid;
     grid-template-columns: 200px 1fr;
     column-gap: 30px;
@@ -1743,7 +1743,9 @@ img.monastery-cover {
 
 
 .teachings_category {
-
+    .blog-columns {
+        padding: 20px 20px 20px 20px;
+    }
     .pagination {
         span.left , span.right{
             margin: 25px 0 0 0 ;
