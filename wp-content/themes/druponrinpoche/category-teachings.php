@@ -20,11 +20,9 @@ $parentCatName = (!empty($parentCat->name)) ? $parentCat->name : '' ;
 <div class="section section-blog teachings_category">
     <div class="blog-columns clearfix">
         <div class="inner-page-container right">
-            <div class="gutter">
-                <h1><?php echo ($grandparentCatId!=0) ? $parentCat->name.' > ' : '' ;?><?php echo get_queried_object()->name;?></h1>
-                <?php echo get_queried_object()->description;?>
-                <?php get_template_part( 'content', 'teachings-posts' ); ?>
-            </div>
+            <h1><?php echo ($grandparentCatId!=0) ? $parentCat->name.' > ' : '' ;?><?php echo get_queried_object()->name;?></h1>
+            <?php echo get_queried_object()->description;?>
+            <?php get_template_part( 'content', 'teachings-posts' ); ?>
         </div>
         <div class="sidebar-container left">
         <!-- <div class="teachings-cat">Categories</div> -->

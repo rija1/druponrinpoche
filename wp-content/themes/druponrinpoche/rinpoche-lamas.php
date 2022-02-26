@@ -18,26 +18,23 @@ $lamas = array(
 <?php while (have_posts()) : the_post(); ?>
     <section class="section section-page-title">
                 <div class="section-title">
-                    <div class="gutter">
-                        <h1><span><?php the_title(); ?></span></h1>
-                    </div>
+                    <h1><span><?php the_title(); ?></span></h1>
                 </div>
     </section> <!--  END section-page-title  -->
     <div class="rinpoche-lamas section section-blog">
         <div class="container">
-                <div class="inner-page-container ">
-                    <!-- <div class="gutter"> -->
-                        <article class="single-post">
-                            <div class=lamas-grid>
-                                <?php foreach($lamas as $lama) : ?>
-                                <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( $lama['page_path'] ) );?>">
-                                    <?php echo get_the_post_thumbnail( get_page_by_path($lama['page_path']), 'medium',array('class'=>'lamas-grid-img')); ?>
-                                    <!-- <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/drupon-khen-rinpoche.webp"/> -->
-                                    <span class="lamas-grid-caption"><?php echo $lama['caption']; ?></span>
-                                </a>
-                                <?php endforeach; ?>    
-                            </div>
-                        </article>
+            <div class="inner-page-container ">
+                <article class="single-post">
+                    <div class=lamas-grid>
+                        <?php foreach($lamas as $lama) : ?>
+                        <a class="lamas-grid-item" href="<?php echo get_permalink( get_page_by_path( $lama['page_path'] ) );?>">
+                            <?php echo get_the_post_thumbnail( get_page_by_path($lama['page_path']), 'medium',array('class'=>'lamas-grid-img')); ?>
+                            <!-- <img class="lamas-grid-img" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/lamas/drupon-khen-rinpoche.webp"/> -->
+                            <span class="lamas-grid-caption"><?php echo $lama['caption']; ?></span>
+                        </a>
+                        <?php endforeach; ?>    
+                    </div>
+                </article>
             </div>
         </div> <!--  END container  -->
     </div> <!--  END section-blog  -->

@@ -20,23 +20,19 @@
 		<div class="container">
 			<div class="blog-columns clearfix">
 				<div class="inner-page-container left">
-					<div class="gutter">
-						<article class="single-post">
-							<div class="article-text">
-								<?php the_content(); ?>
-							</div>
-							<p><?php posts_nav_link(); ?></p>
-							<div class="padinate-page"><?php wp_link_pages(); ?></div>
-							<div class="comments">
-								<?php comments_template(); ?>
-							</div> <!--  END comments  -->
-						</article>
-					</div>
+					<article class="single-post">
+						<div class="article-text">
+							<?php the_content(); ?>
+						</div>
+						<p><?php posts_nav_link(); ?></p>
+						<div class="padinate-page"><?php wp_link_pages(); ?></div>
+						<div class="comments">
+							<?php comments_template(); ?>
+						</div> <!--  END comments  -->
+					</article>
 				</div>
 				<div class="sidebar-container right">
-					<div class="gutter">
-						<?php  get_sidebar(); ?>
-					</div>
+					<?php  get_sidebar(); ?>
 				</div>
 			</div>
 		</div> <!--  END container  -->

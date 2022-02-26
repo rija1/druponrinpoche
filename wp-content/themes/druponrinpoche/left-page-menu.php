@@ -9,23 +9,19 @@
                 </div>
                 <div class="inner-page-container right">
                     <div class="section-title">
-                        <div class="gutter">
-                            <h1><span><?php the_title(); ?></span></h1>
-                            <?php //the_excerpt(); ?>
+                        <h1><span><?php the_title(); ?></span></h1>
+                        <?php //the_excerpt(); ?>
+                    </div>
+                    <article class="single-post">
+                        <div class="article-text">
+                            <?php the_content(); ?>
                         </div>
-                    </div>
-                    <div class="gutter">
-                        <article class="single-post">
-                            <div class="article-text">
-                                <?php the_content(); ?>
-                            </div>
-                            <p><?php posts_nav_link(); ?></p>
-                            <div class="padinate-page"><?php wp_link_pages(); ?></div>
-                            <div class="comments">
-                                <?php comments_template(); ?>
-                            </div> <!--  END comments  -->
-                        </article>
-                    </div>
+                        <p><?php posts_nav_link(); ?></p>
+                        <div class="padinate-page"><?php wp_link_pages(); ?></div>
+                        <div class="comments">
+                            <?php comments_template(); ?>
+                        </div> <!--  END comments  -->
+                    </article>
                 </div>
             </div>
         </div> <!--  END container  -->

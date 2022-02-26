@@ -50,13 +50,11 @@
 		<div class="container">
 			<div class="blog-columns clearfix">
 				<div class="inner-page-container fullwidth">
-					<div class="gutter">
-						<article class="single-post">
-							<div class="article-text">
-								<?php the_content(); ?>
-							</div>
-						</article>
-					</div>
+					<article class="single-post">
+						<div class="article-text">
+							<?php the_content(); ?>
+						</div>
+					</article>
 				</div>
 			</div>
 		</div> <!--  END container  -->
