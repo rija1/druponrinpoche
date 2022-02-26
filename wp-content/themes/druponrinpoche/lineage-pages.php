@@ -9,7 +9,6 @@
                     global $post;
                     $parPost = getTopLevelParent($post);
                     ?>
-                    <h5><?php rbq_trsl('Lineage'); ?></h5>
                     <?php echo wpb_list_child_pages(); ?>
                 </div>
                 <div class="inner-page-container right">
