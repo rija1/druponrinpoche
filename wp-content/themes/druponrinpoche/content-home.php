@@ -33,9 +33,7 @@
 		<div class="overlay">
 			<div class="welcome-overlay">
 				<div class="container">
-					<div class="gutter">
-						<p><?php the_title(); ?></p>
-					</div>
+					<p><?php the_title(); ?></p>
 				</div>
 			</div>
 		</div>

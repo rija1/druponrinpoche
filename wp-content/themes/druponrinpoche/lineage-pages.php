@@ -13,21 +13,19 @@
                     <?php echo wpb_list_child_pages(); ?>
                 </div>
                 <div class="inner-page-container right">
-                    <div class="gutter">
-                        <div class="section-title">
-                            <h1><span><?php the_title(); ?></span></h1>
-                        </div>
-                        <article class="single-post">
-                            <div class="article-text">
-                                <?php the_content(); ?>
-                            </div>
-                            <p><?php posts_nav_link(); ?></p>
-                            <div class="padinate-page"><?php wp_link_pages(); ?></div>
-                            <div class="comments">
-                                <?php comments_template(); ?>
-                            </div> <!--  END comments  -->
-                        </article>
+                    <div class="section-title">
+                        <h1><span><?php the_title(); ?></span></h1>
                     </div>
+                    <article class="single-post">
+                        <div class="article-text">
+                            <?php the_content(); ?>
+                        </div>
+                        <p><?php posts_nav_link(); ?></p>
+                        <div class="padinate-page"><?php wp_link_pages(); ?></div>
+                        <div class="comments">
+                            <?php comments_template(); ?>
+                        </div> <!--  END comments  -->
+                    </article>
                 </div>
             </div>
         </div> <!--  END container  -->
