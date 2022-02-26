@@ -1778,7 +1778,7 @@ img.monastery-cover {
             position: relative;
             text-align: left;
             display: grid;
-            grid-template-columns: 1fr 110px;
+            grid-template-columns: auto auto;
             grid-template-rows: auto 1fr;
             column-gap: 20px;
             row-gap: 8px;
