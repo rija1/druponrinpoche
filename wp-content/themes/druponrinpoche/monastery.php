@@ -10,7 +10,7 @@
     </section> <!--  END section-page-title  -->
     <div class="section section-blog">
         <div class="container">
-                <div class="inner-page-container ">
+                <div class="inner-page-container">
                     <article class="single-post">
                         <div class="article-text">
                             <?php the_content(); 

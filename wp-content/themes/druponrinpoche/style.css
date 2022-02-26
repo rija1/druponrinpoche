@@ -1028,6 +1028,10 @@ img.alignleft {
   width: auto;
 }
 
+.inner-page-container {
+  padding: 0px 30px 0px 30px;
+}
+
 .blog-columns {
   padding: 20px 30px 20px 20px;
   display: -ms-grid;
@@ -1039,6 +1043,7 @@ img.alignleft {
 }
 
 .blog-columns .inner-page-container {
+  padding: 0;
   -ms-grid-column: 2;
   grid-column: 2;
   -ms-grid-row: 1;
@@ -1046,6 +1051,8 @@ img.alignleft {
 }
 
 .blog-columns .sidebar-container {
+  min-width: 170px;
+  max-width: 240px;
   padding-top: 10px;
   -ms-grid-column: 1;
   grid-column: 1;
