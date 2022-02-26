@@ -1242,7 +1242,7 @@ li.page_item_has_children > a {
 
 .sidebar-container ul.children li {
   list-style-type: decimal;
-  padding: 3px 20px 3px 0;
+  padding: 3px 0px 3px 0;
 }
 
 .sidebar-container > div > ul > li, .sidebar-container > ul > li {
