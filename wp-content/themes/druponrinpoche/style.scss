@@ -1206,13 +1206,16 @@ img.alignleft {
 }
 
 .blog-columns {
+    padding: 20px;
     display: grid;
     grid-template-columns: 200px 1fr;
+    column-gap: 30px;
     .inner-page-container {
         grid-column: 2;
         grid-row: 1;
     }
     .sidebar-container {
+        padding-top: 10px;
         grid-column: 1;
         grid-row: 1;
     }

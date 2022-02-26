@@ -1029,10 +1029,13 @@ img.alignleft {
 }
 
 .blog-columns {
+  padding: 20px;
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 200px 1fr;
       grid-template-columns: 200px 1fr;
+  -webkit-column-gap: 30px;
+          column-gap: 30px;
 }
 
 .blog-columns .inner-page-container {
@@ -1043,6 +1046,7 @@ img.alignleft {
 }
 
 .blog-columns .sidebar-container {
+  padding-top: 10px;
   -ms-grid-column: 1;
   grid-column: 1;
   -ms-grid-row: 1;
