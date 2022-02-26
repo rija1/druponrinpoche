@@ -709,14 +709,14 @@ img {
 
 /**  section-blog  **/
 
-.blog-columns {
-    .inner-page-container {
-        width: 66%;
-    }
-    .sidebar-container {
-        width: 32%;
-    }
-}
+// .blog-columns {
+//     .inner-page-container {
+//         width: 66%;
+//     }
+//     .sidebar-container {
+//         width: 32%;
+//     }
+// }
 
 /**  articles  **/
 
@@ -1089,7 +1089,7 @@ img {
 }
 
 .section .blog-columns .fullwidth {
-    width: 100%;
+    // width: 100%;
 }
 
 .page-template-template-services .article-procedure {
@@ -1225,16 +1225,19 @@ img.alignleft {
 }
 
 .blog-columns {
+    display: grid;
+    grid-template-columns: 200px 1fr;
     .inner-page-container {
-        width: 70%;
-        padding: 0;
+        grid-column: 2;
+        grid-row: 1;
     }
     .sidebar-container {
-        width: 30%;
+        grid-column: 1;
+        grid-row: 1;
     }
-    .right .gutter {
-        margin-left: 30px;
-    }
+    // .right .gutter {
+    //     margin-left: 30px;
+    // }
 }
 
 /*POST*/
@@ -1245,7 +1248,7 @@ img.alignleft {
 }
 
 .blog-columns {
-    padding: 20px;
+    // padding: 20px;
 }
 
 /*header test 2*/
@@ -1506,13 +1509,13 @@ li.page_item_has_children > a {
         margin-left: 0px;
     }
     .blog-columns {
-        .sidebar-container {
-            width: 31%;
-            padding-top: 10px;
-        }
-        .inner-page-container {
-            width: 69%;
-        }
+        // .sidebar-container {
+        //     width: 31%;
+        //     padding-top: 10px;
+        // }
+        // .inner-page-container {
+        //     width: 69%;
+        // }
     }
 }
 
@@ -1645,12 +1648,12 @@ img.monastery-cover {
 }
 
 .page-template-lineage-pages .blog-columns {
-    .sidebar-container {
-        width: 30%;
-    }
-    .inner-page-container {
-        width: 70%;
-    }
+    // .sidebar-container {
+    //     width: 30%;
+    // }
+    // .inner-page-container {
+    //     width: 70%;
+    // }
 }
 
 .home_pages_grid a:hover h5 {
@@ -2755,25 +2758,25 @@ a.course_link {
     // About Pages
 
     .page-template-about-pages {
-        .blog-columns {
-//            list-style: none;
-//            display: grid;
-//            grid-template-columns: 1fr;
-            .right .gutter {
-                margin:0;
-            }
-            .sidebar-container {
-                display: none;
-//            width: 100%;
-//            grid-column: 1;
-//            grid-row: 2;
-            }
-            .inner-page-container {
-                width: 100%;
-                //                grid-column: 1;
-//                grid-row: 1;
-            }
-        }
+        // .blog-columns {
+        //    list-style: none;
+        //    display: grid;
+        //    grid-template-columns: 1fr;
+        //     .right .gutter {
+        //         margin:0;
+        //     }
+        //     .sidebar-container {
+        //         display: none;
+        //    width: 100%;
+        //    grid-column: 1;
+        //    grid-row: 2;
+        //     }
+        //     .inner-page-container {
+        //         width: 100%;
+        //                        grid-column: 1;
+        //        grid-row: 1;
+        //     }
+        // }
     }
 
     // Lineage
@@ -2781,21 +2784,21 @@ a.course_link {
         .blog-columns {
 //            display: grid;
 //            grid-template-columns: 1fr;
-            .sidebar-container {
-                display:none;
+            // .sidebar-container {
+            //     display:none;
 //                width: 100%;
 //                grid-column: 1;
 //                grid-row: 2;
-            }
-            .inner-page-container {
-                width: 100%;
-                padding-top:15px;
-            }
-            .right {
-                .gutter {
-                    margin:0;
-                }
-            }
+            // }
+            // .inner-page-container {
+            //     width: 100%;
+            //     padding-top:15px;
+            // }
+            // .right {
+            //     .gutter {
+            //         margin:0;
+            //     }
+            // }
         }
     }
 
@@ -2839,7 +2842,7 @@ a.course_link {
     }
 
     .blog-columns {
-        padding: 18px 0;
+        // padding: 18px 0;
     }
     figure.wp-caption.alignleft, figure.wp-caption.alignright {
             width: 100% !important;

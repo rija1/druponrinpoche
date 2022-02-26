@@ -553,14 +553,6 @@ img {
 }
 
 /**  section-blog  **/
-.blog-columns .inner-page-container {
-  width: 66%;
-}
-
-.blog-columns .sidebar-container {
-  width: 32%;
-}
-
 /**  articles  **/
 .article-text .button, .article-service .article-icon .fa {
   margin-left: auto;
@@ -913,10 +905,6 @@ img.alignnone {
   margin: 5px 0;
 }
 
-.section .blog-columns .fullwidth {
-  width: 100%;
-}
-
 .page-template-template-services .article-procedure {
   margin-bottom: 50px;
 }
@@ -1049,27 +1037,31 @@ img.alignleft {
   padding: 5px 40px 40px 40px;
 }
 
+.blog-columns {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 200px 1fr;
+      grid-template-columns: 200px 1fr;
+}
+
 .blog-columns .inner-page-container {
-  width: 70%;
-  padding: 0;
+  -ms-grid-column: 2;
+  grid-column: 2;
+  -ms-grid-row: 1;
+  grid-row: 1;
 }
 
 .blog-columns .sidebar-container {
-  width: 30%;
-}
-
-.blog-columns .right .gutter {
-  margin-left: 30px;
+  -ms-grid-column: 1;
+  grid-column: 1;
+  -ms-grid-row: 1;
+  grid-row: 1;
 }
 
 /*POST*/
 .container .single-post p {
   text-align: justify;
   text-indent: 28px;
-}
-
-.blog-columns {
-  padding: 20px;
 }
 
 /*header test 2*/
@@ -1333,15 +1325,6 @@ li.page_item_has_children > a {
   margin-left: 0px;
 }
 
-.page-template-about-pages .blog-columns .sidebar-container {
-  width: 31%;
-  padding-top: 10px;
-}
-
-.page-template-about-pages .blog-columns .inner-page-container {
-  width: 69%;
-}
-
 /* Monastery Cover */
 img.monastery-cover {
   width: 100%;
@@ -1456,14 +1439,6 @@ img.monastery-cover {
 
 .sidebar-container ul li.page-item-12939::marker {
   content: "19B. ";
-}
-
-.page-template-lineage-pages .blog-columns .sidebar-container {
-  width: 30%;
-}
-
-.page-template-lineage-pages .blog-columns .inner-page-container {
-  width: 70%;
 }
 
 .home_pages_grid a:hover h5 {
@@ -2508,25 +2483,6 @@ a.course_link {
   .home_pages_grid h5 {
     padding-top: 5px;
   }
-  .page-template-about-pages .blog-columns .right .gutter {
-    margin: 0;
-  }
-  .page-template-about-pages .blog-columns .sidebar-container {
-    display: none;
-  }
-  .page-template-about-pages .blog-columns .inner-page-container {
-    width: 100%;
-  }
-  .page-template-lineage-pages .blog-columns .sidebar-container {
-    display: none;
-  }
-  .page-template-lineage-pages .blog-columns .inner-page-container {
-    width: 100%;
-    padding-top: 15px;
-  }
-  .page-template-lineage-pages .blog-columns .right .gutter {
-    margin: 0;
-  }
   .container .single-post .contact_social img {
     margin: 0;
     padding: 3px 9px 0px 0;
@@ -2553,9 +2509,6 @@ a.course_link {
   }
   .inner-page-container {
     padding: 0px 18px 20px 18px;
-  }
-  .blog-columns {
-    padding: 18px 0;
   }
   figure.wp-caption.alignleft, figure.wp-caption.alignright {
     width: 100% !important;
