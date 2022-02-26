@@ -2442,8 +2442,8 @@ a.course_link {
     grid-row: 1;
   }
   .home_pages_grid .box3 img {
-    -o-object-position: 0 -21px;
-       object-position: 0 -21px;
+    -o-object-position: 0 0;
+       object-position: 0 0;
   }
   .home_pages_grid .box4-mobile {
     display: block;
