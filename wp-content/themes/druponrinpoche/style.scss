@@ -1208,7 +1208,6 @@ img.alignleft {
 .blog-columns {
     padding: 20px 30px 20px 20px;
     display: grid;
-    grid-template-columns: auto 1fr;
     column-gap: 30px;
     .inner-page-container {
         padding:0;
@@ -1805,6 +1804,7 @@ img.monastery-cover {
                 // }
                 p {
                     font-size: 17px;
+                    padding: 0;
                 } 
                 p:empty {
                     padding: 0;

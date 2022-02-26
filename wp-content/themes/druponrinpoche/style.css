@@ -1036,8 +1036,6 @@ img.alignleft {
   padding: 20px 30px 20px 20px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto 1fr;
-      grid-template-columns: auto 1fr;
   -webkit-column-gap: 30px;
           column-gap: 30px;
 }
@@ -1629,6 +1627,7 @@ img.monastery-cover {
 
 .teachings_category .article-blog .article-text .teaching_text p {
   font-size: 17px;
+  padding: 0;
 }
 
 .teachings_category .article-blog .article-text .teaching_text p:empty {
