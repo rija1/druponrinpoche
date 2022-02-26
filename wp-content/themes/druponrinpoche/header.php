@@ -64,7 +64,7 @@ $pllArgs = array(
     }(document, 'script', 'facebook-jssdk'));
 </script>
 
-		<div id="content" class="content">
+		<div id="content" class="content"> <!-- Open #content -->
 
         <div class="container">
             <header id="header" class="header">
@@ -106,11 +106,9 @@ $pllArgs = array(
                     </nav>
                 </div>
             </header>
+            
             <div class="breadcrumbs" typeof="BreadcrumbList" vocab="http://schema.org/">
-                <?php if(function_exists('bcn_display'))
-                {
-                    bcn_display();
-                }?>
+                <?php if(function_exists('bcn_display')){ bcn_display(); }?>
             </div>
 
 <script>

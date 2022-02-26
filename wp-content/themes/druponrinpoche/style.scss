@@ -278,19 +278,8 @@ img {
     }
 }
 
-.column-container {
-    &:before, &:after {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 0px;
-        overflow: hidden;
-        visibility: hidden;
-        text-indent: -99999px;
-    }
-}
 
-.clearfix:after, .column-container:after {
+.clearfix:after {
     clear: both;
 }
 
@@ -301,72 +290,6 @@ img {
 .gutter {
     margin-left: 10px;
     margin-right: 10px;
-}
-
-.column-container {
-    .column-1-12, .column-2-12, .column-1-5, .column-3-12, .column-4-12, .column-5-12, .column-6-12, .column-7-12, .column-8-12, .column-9-12, .column-10-12, .column-11-12, .column-12-12 {
-        float: left;
-    }
-}
-
-.column-1-12 {
-    width: 8.333333333333333%;
-}
-
-.column-2-12 {
-    width: 16.66666666666667%;
-}
-
-.column-1-5 {
-    width: 20%;
-}
-
-.column-3-12 {
-    width: 25%;
-}
-
-.column-4-12 {
-    width: 33.33333333333333%;
-}
-
-.column-5-12 {
-    width: 41.66666666666667%;
-}
-
-.column-6-12 {
-    width: 50%;
-}
-
-.column-7-12 {
-    width: 58.33333333333333%;
-}
-
-.column-8-12 {
-    width: 66.66666666666667%;
-}
-
-.column-9-12 {
-    width: 75%;
-}
-
-.column-10-12 {
-    width: 83.33333333333333%;
-}
-
-.column-11-12 {
-    width: 91.66666666666667%;
-}
-
-.column-12-12 {
-    width: 100%;
-}
-
-.left, .column-container .left {
-    float: left;
-}
-
-.right, .column-container .right {
-    float: right;
 }
 
 .page-template-left-page-menu .sidebar-container {
@@ -407,13 +330,9 @@ img {
     }
 }
 
-.header, .section, .footer {
+.header, .section {
     position: relative;
     *zoom: 1;
-}
-
-.section:before, .footer:before {
-    top: 0;
 }
 
 .section-page-title:before, .section-testimonials:before {
@@ -920,37 +839,44 @@ img {
     }
 }
 
-.footer {
-    font-family: 'Raleway';
-    clear: both;
-    max-width: 980px;
-    margin: 0 auto;
-}
+// Footer
 
-/**  footer-block  **/
-
-.footer-block {
-    padding-top: 60px;
-    padding-bottom: 20px;
-}
-
-/**  copyright-block  **/
-
-.copyright-block {
-    font-size: 13px;
-    line-height: 14px;
-    p {
-        font-size: 13px;
-        line-height: 14px;
-    }
-    padding-bottom: 20px;
-    padding-top: 20px;
-    .left {
-        text-align: left;
-    }
-    .right {
-        padding-top: 18px;
-        text-align: right;
+.footer_block {
+    color: $dkr-brown;
+    padding: 80px 27px 19px 19px;
+    // background: -webkit-gradient(linear, left bottom, left top, from(#020024), color-stop(0%, #fdf6dd), color-stop(62%, #fff));
+    background: linear-gradient(0deg, #020024 0%, #fdf6dd 0%, #fff 62%);
+    .footer{
+        display: grid;
+        grid-template-columns: auto 1fr;
+        .footer_social {
+            padding-right: 9px;
+            padding-top: 10px;
+            a {
+                display: block;
+                float: left;
+                padding-right: 10px;
+                @media only screen and (max-width: 480px) {
+                    padding-right: 7px;
+                }  
+            }
+            img {
+                width: 32px;
+            }
+            .weibo {
+                margin-top: 2px;
+            }
+            @media only screen and (max-width: 480px) {
+                padding-top: 16px;
+            }
+        }
+        .footer_copyright {
+            padding-top: 20px;
+            text-align: right;
+            @media only screen and (max-width: 480px) {
+                padding-top: 14px;
+            }
+        }
     }
 }
 
@@ -1429,17 +1355,7 @@ div{
 
 /*HOME MINI CAROUSEL END*/
 
-.copyright-block {
-    background: none;
-    padding: 0;
-    font-weight: 400;
-    .container {
-        // background: #f2efdf;
-        padding: 15px 0 10px 0;
-        /*font-family: 'Roboto Slab', serif;*/
-        color: $dkr-brown;
-    }
-}
+
 
 /*Breadcrumbs*/
 
@@ -1447,19 +1363,17 @@ div{
     border-top: 1px solid #d6d6d6;
     background: $dkr-lightgrey;
     padding: 10px;
-}
-
-body.home .breadcrumbs {
-    display: none;
-}
-
-.breadcrumbs {
+    clear:both;
     span {
         color: $dkr-brown;
     }
     a {
         color: #fff;
     }
+}
+
+body.home .breadcrumbs {
+    display: none;
 }
 
 /*left menu page template*/
@@ -1812,15 +1726,6 @@ img.monastery-cover {
     margin-bottom: 13px;
 }
 
-.footer {
-    padding: 48px 10px 10px 10px;
-    background: linear-gradient(0deg,#020024 0%,#fdf6dd 0%,#fff 62%);
-}
-
-.footer-block {
-    padding: 0;
-}
-
 .section-title {
     font-style: normal;
     p {
@@ -1860,7 +1765,7 @@ img.monastery-cover {
     }
 }
 
-.article-text a:hover, h2 a:hover, .top-bar a:hover, .copyright-block a:hover, .footer .copyright-block a:hover {
+.article-text a:hover, h2 a:hover, .top-bar a:hover, .copyright-block a:hover {
     color: #444444;
     text-decoration: underline;
 }
@@ -1881,32 +1786,7 @@ img.monastery-cover {
                         line-height: 32px;
                     } 
                 }
-            }
-            @media only screen and (max-width: 480px) {
-                width: auto;
-                .gutter {
-                    margin:0px;
-                }
-                .article-blog .article-text {
-                    row-gap: 20px;
-                    grid-template-columns: 1fr;
-                    grid-template-rows: auto auto 30px;
-                    .teaching_text {
-                        grid-row: 1;
-                        grid-column: 1;
-                        padding: 0;
-                    }
-                    .teaching_title {
-                        grid-column: 1;
-                        grid-row: 3;
-                    }
-                    a {
-                        grid-column: 1;
-                        grid-row: 2;
-                        text-align: left;
-                    }            
-                }
-            }
+            } 
         }
         .sidebar-container {
             width: 20%;
@@ -1945,24 +1825,24 @@ img.monastery-cover {
                 font-size: 17px;
                 padding: 0 0 40px 0;
                 font-weight: 300;
-                .rl-gallery-container {
-                    margin-top: 10px;
-                    .rl-basicgrid-gallery {
-                        display: grid;
-                        grid-template-columns:1fr 1fr 1fr 1fr 1fr; 
-                        column-gap: 8px;
-                        row-gap: 8px;
-                        .rl-gallery-item {
-                            width: 100px !important; 
-                            height: 100px !important;
-                            margin: 0 !important;
-                            img {
-                                width: 100px;
-                                height: 100px;  
-                            }
-                        }
-                    }
-                }
+                // .rl-gallery-container {
+                //     margin-top: 10px;
+                //     .rl-basicgrid-gallery {
+                //         display: grid;
+                //         grid-template-columns:1fr 1fr 1fr 1fr 1fr; 
+                //         column-gap: 8px;
+                //         row-gap: 8px;
+                //         .rl-gallery-item {
+                //             width: 100px !important; 
+                //             height: 100px !important;
+                //             margin: 0 !important;
+                //             img {
+                //                 width: 100px;
+                //                 height: 100px;  
+                //             }
+                //         }
+                //     }
+                // }
                 p {
                     font-size: 17px;
                 } 
@@ -2697,20 +2577,6 @@ a.course_link {
     width: auto;
 }
 
-.footer .footer_social {
-    a {
-        display: block;
-        float: left;
-        margin-right:7px;
-        img {
-            width: 32px;
-        }
-        &.weibo {
-            margin-top: 2px;
-        }
-
-    }
-}
 
 .home_quote {
     // font-family: 'MaShanZheng';
@@ -2759,18 +2625,6 @@ a.course_link {
 
 /**  mobile  **/
 @media only screen and (max-width: 480px) {
-
-    .copyright-block {
-        .container {
-            padding:15px 10px 10px 10px;
-        }
-        .left {
-            width: 23%;
-        }
-        .right {
-            width: 77%;
-        }
-    }
 
     #content > .container {
         box-shadow:none;
@@ -2825,10 +2679,7 @@ a.course_link {
 
     }
 
-    .breadcrumbs {
-//            float: left;
-            width: 100%;
-    }
+
 
     /* HOME - PAGES GRID */
 
