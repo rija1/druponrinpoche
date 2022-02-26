@@ -2973,6 +2973,9 @@ a.course_link {
         // grid-template-rows: 1fr 1fr 1fr;
         row-gap: 17px;
         color:$dkr-darkgrey;
+        @media only screen and (max-width: 480px) {
+            grid-template-rows: 280px 35px auto;
+        }
         .lineage-grid-img {
             text-align: center;
             margin-left: auto;

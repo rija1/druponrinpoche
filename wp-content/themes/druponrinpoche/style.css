@@ -2746,6 +2746,13 @@ a.course_link {
   color: #656250;
 }
 
+@media only screen and (max-width: 480px) {
+  .lineage-grid .lineage-grid-item {
+    -ms-grid-rows: 280px 35px auto;
+        grid-template-rows: 280px 35px auto;
+  }
+}
+
 .lineage-grid .lineage-grid-item .lineage-grid-img {
   text-align: center;
   margin-left: auto;
