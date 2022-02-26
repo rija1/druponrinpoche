@@ -2964,6 +2964,10 @@ a.course_link {
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 90px;
+        @media only screen and (max-width: 480px) {
+            padding: 0;
+            column-gap: 20px;
+        }
     .lineage-grid-item {
         display: grid;
         // grid-template-rows: 1fr 1fr 1fr;
@@ -2975,6 +2979,9 @@ a.course_link {
             margin-right: auto;
             height: 431px;
             object-fit: cover;
+            @media only screen and (max-width: 480px) {
+                height: 262px;
+            }
         }
         .lineage-grid-title {
             text-align: center;

@@ -2731,6 +2731,14 @@ a.course_link {
           column-gap: 90px;
 }
 
+@media only screen and (max-width: 480px) {
+  .lineage-grid {
+    padding: 0;
+    -webkit-column-gap: 20px;
+            column-gap: 20px;
+  }
+}
+
 .lineage-grid .lineage-grid-item {
   display: -ms-grid;
   display: grid;
@@ -2745,6 +2753,12 @@ a.course_link {
   height: 431px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+@media only screen and (max-width: 480px) {
+  .lineage-grid .lineage-grid-item .lineage-grid-img {
+    height: 262px;
+  }
 }
 
 .lineage-grid .lineage-grid-item .lineage-grid-title {
