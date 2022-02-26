@@ -844,8 +844,10 @@ img {
 .footer_block {
     color: $dkr-brown;
     padding: 80px 27px 19px 19px;
-    // background: -webkit-gradient(linear, left bottom, left top, from(#020024), color-stop(0%, #fdf6dd), color-stop(62%, #fff));
     background: linear-gradient(0deg, #020024 0%, #fdf6dd 0%, #fff 62%);
+    @media only screen and (max-width: 480px) {
+        padding: 25px 27px 19px 19px;
+    }  
     .footer{
         display: grid;
         grid-template-columns: auto 1fr;
@@ -2828,7 +2830,7 @@ a.course_link {
     }
 
     .blog-columns {
-        padding:18px;
+        padding: 18px 0;
     }
     figure.wp-caption.alignleft, figure.wp-caption.alignright {
             width: 100% !important;
@@ -2934,52 +2936,6 @@ a.course_link {
     }
     .home_pages_grid li p {
         display: none;
-    }
-    .home_post_txt p {
-        display: none;
-    }
-    .home_mini_carousel {
-        width: 66%;
-    }
-    .home_news_carousel .latestnews {
-        width: 34%;
-    }
-
-
-
-
-
-    .latestnews {
-        .latestnews_list {
-            grid-template-columns:1fr;
-            a.recent_post_link {
-                padding: 0px;
-                li.home_post {
-                    height: auto;
-                    width: auto;
-                    .home_post_img {
-                        height: auto;
-                        padding-bottom: 4px;
-                        img {
-                            width:auto;
-                        }
-                    }
-                    .home_post_txt {
-                        padding:10px 8px 10px 8px;
-                        text-align: center;
-                        margin:0;
-                        p {
-                            display:none;
-                        }
-                        .recent_post_title {
-                            padding-top: 10px;
-                            font-size: 15px; 
-                        }
-                    }
-                }
-            }
-        }
-
     }
   
 }  
