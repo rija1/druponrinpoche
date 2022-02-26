@@ -122,10 +122,6 @@ img {
   margin-right: 10px;
 }
 
-.page-template-left-page-menu .sidebar-container {
-  padding-top: 15px;
-}
-
 .sidebar-container ol, .sidebar-container ul {
   list-style: outside none;
 }
@@ -1587,10 +1583,6 @@ img.monastery-cover {
 .teachings_category .blog-columns .inner-page-container .article-blog .article-text .tibetan p {
   font-size: 20px;
   line-height: 32px;
-}
-
-.teachings_category .blog-columns .sidebar-container {
-  width: 20%;
 }
 
 @media only screen and (max-width: 480px) {

@@ -292,10 +292,6 @@ img {
     margin-right: 10px;
 }
 
-.page-template-left-page-menu .sidebar-container {
-    padding-top: 15px;
-}
-
 .sidebar-container {
     ol, ul {
         list-style: outside none;
@@ -1508,15 +1504,6 @@ li.page_item_has_children > a {
     li.page_item_has_children a {
         margin-left: 0px;
     }
-    .blog-columns {
-        // .sidebar-container {
-        //     width: 31%;
-        //     padding-top: 10px;
-        // }
-        // .inner-page-container {
-        //     width: 69%;
-        // }
-    }
 }
 
 /* Monastery Cover */
@@ -1645,15 +1632,6 @@ img.monastery-cover {
     ul li.page-item-12939::marker {
         content: "19B. ";
     }
-}
-
-.page-template-lineage-pages .blog-columns {
-    // .sidebar-container {
-    //     width: 30%;
-    // }
-    // .inner-page-container {
-    //     width: 70%;
-    // }
 }
 
 .home_pages_grid a:hover h5 {
@@ -1803,7 +1781,6 @@ img.monastery-cover {
             } 
         }
         .sidebar-container {
-            width: 20%;
             @media only screen and (max-width: 480px) {
                 margin-top: 24px;
                 width: auto;
@@ -2752,53 +2729,6 @@ a.course_link {
 
         h5 {
             padding-top: 5px;
-        }
-    }
-
-    // About Pages
-
-    .page-template-about-pages {
-        // .blog-columns {
-        //    list-style: none;
-        //    display: grid;
-        //    grid-template-columns: 1fr;
-        //     .right .gutter {
-        //         margin:0;
-        //     }
-        //     .sidebar-container {
-        //         display: none;
-        //    width: 100%;
-        //    grid-column: 1;
-        //    grid-row: 2;
-        //     }
-        //     .inner-page-container {
-        //         width: 100%;
-        //                        grid-column: 1;
-        //        grid-row: 1;
-        //     }
-        // }
-    }
-
-    // Lineage
-    .page-template-lineage-pages {
-        .blog-columns {
-//            display: grid;
-//            grid-template-columns: 1fr;
-            // .sidebar-container {
-            //     display:none;
-//                width: 100%;
-//                grid-column: 1;
-//                grid-row: 2;
-            // }
-            // .inner-page-container {
-            //     width: 100%;
-            //     padding-top:15px;
-            // }
-            // .right {
-            //     .gutter {
-            //         margin:0;
-            //     }
-            // }
         }
     }
 
