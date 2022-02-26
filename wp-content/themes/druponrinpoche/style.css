@@ -1596,6 +1596,18 @@ img.monastery-cover {
   width: 80%;
 }
 
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .inner-page-container {
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .inner-page-container .gutter {
+    margin-left: 20px;
+  }
+}
+
 .teachings_category .blog-columns .inner-page-container .article-blog .article-text .tibetan p {
   font-size: 20px;
   line-height: 32px;

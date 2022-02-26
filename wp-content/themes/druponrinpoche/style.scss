@@ -1781,6 +1781,14 @@ img.monastery-cover {
         }
         .inner-page-container {
             width: 80%;
+            @media only screen and (max-width: 480px) {
+                width: auto;
+            }
+            @media only screen and (max-width: 480px) {
+                .gutter {
+                    margin-left: 20px;
+                } 
+            }
             .article-blog .article-text {
                 .tibetan {
                     p {
