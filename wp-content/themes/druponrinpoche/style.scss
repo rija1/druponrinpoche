@@ -1208,7 +1208,7 @@ img.alignleft {
 .blog-columns {
     padding: 20px 30px 20px 20px;
     display: grid;
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: auto 1fr;
     column-gap: 30px;
     .inner-page-container {
         grid-column: 2;
@@ -1407,7 +1407,7 @@ li.page_item_has_children > a {
             padding-top: 12px;
         }
         ul {
-            padding: 0px 0px 15px 40px;
+            padding: 0px 20px 15px 40px;
         }
         &.children li {
             list-style-type: decimal;
