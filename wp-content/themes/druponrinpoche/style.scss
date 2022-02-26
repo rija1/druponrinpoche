@@ -1227,6 +1227,8 @@ img.alignleft {
         @media only screen and (max-width: 480px) {
             grid-column: 1;
             grid-row: 2; 
+            max-width:none;
+            margin-top:20px;
         }
     }
     // .right .gutter {
