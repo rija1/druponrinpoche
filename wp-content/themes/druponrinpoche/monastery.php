@@ -1,7 +1,7 @@
 <?php /* Template Name: Monastery */ ?>
 <?php get_header(); ?>
 <?php while (have_posts()) : the_post(); ?>
-<img class="monastery-cover" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/monastery/班觉寺_crop.webp" />
+<img class="monastery-cover" src="<?php echo get_stylesheet_directory_uri()?>/assets/images/monastery/班觉寺.jpeg" />
     <section class="section section-page-title">
         <div class="section-title">
             <h1><span><?php the_title(); ?></span></h1>
