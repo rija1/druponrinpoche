@@ -1384,7 +1384,7 @@ img.monastery-cover {
     -o-object-fit: cover;
        object-fit: cover;
   }
-  .abbots-grid .abbots-grid-item:nth-child(2) .abbots-grid-img {
+  .abbots-grid .abbots-grid-item:nth-child(3) .abbots-grid-img {
     -o-object-position: -13px 0px;
        object-position: -13px 0px;
   }
