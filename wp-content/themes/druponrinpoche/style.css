@@ -1384,6 +1384,10 @@ img.monastery-cover {
     -o-object-fit: cover;
        object-fit: cover;
   }
+  .abbots-grid .lamas-grid-item:nth-child(4) .lamas-grid-img {
+    -o-object-position: -20px 0px;
+       object-position: -20px 0px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
