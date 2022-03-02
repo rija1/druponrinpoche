@@ -2425,12 +2425,36 @@ a.course_link {
     -ms-grid-row: 1;
     grid-row: 1;
   }
+}
+
+@media only screen and (max-width: 480px) and (max-width: 480px) {
+  .home_pages_grid .box2 {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
+}
+
+@media only screen and (max-width: 480px) {
   .home_pages_grid .box1 {
     -ms-grid-column: 1;
     grid-column: 1;
     -ms-grid-row: 2;
     grid-row: 2;
   }
+}
+
+@media only screen and (max-width: 480px) and (max-width: 480px) {
+  .home_pages_grid .box1 {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+  }
+}
+
+@media only screen and (max-width: 480px) {
   .home_pages_grid .box1 img {
     -o-object-position: 0 0px;
        object-position: 0 0px;
