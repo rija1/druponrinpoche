@@ -1209,6 +1209,11 @@ img.alignleft {
     padding: 20px 30px 20px 20px;
     display: grid;
     column-gap: 30px;
+    grid-template-columns: auto 1fr;
+    @media only screen and (max-width: 480px) {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
     .inner-page-container {
         padding:0;
         grid-column: 2;

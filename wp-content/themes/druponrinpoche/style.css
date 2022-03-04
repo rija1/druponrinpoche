@@ -1038,6 +1038,16 @@ img.alignleft {
   display: grid;
   -webkit-column-gap: 30px;
           column-gap: 30px;
+  -ms-grid-columns: auto 1fr;
+      grid-template-columns: auto 1fr;
+}
+
+@media only screen and (max-width: 480px) {
+  .blog-columns {
+    -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+    padding: 20px;
+  }
 }
 
 .blog-columns .inner-page-container {
