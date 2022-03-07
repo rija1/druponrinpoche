@@ -1646,6 +1646,10 @@ img.monastery-cover {
   font-weight: 300;
 }
 
+.teachings_category .article-blog .article-text .teaching_text .rl-basicgrid-gallery:after {
+  min-width: initial;
+}
+
 .teachings_category .article-blog .article-text .teaching_text p {
   font-size: 17px;
   padding: 0;
