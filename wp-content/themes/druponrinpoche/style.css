@@ -1692,6 +1692,8 @@ img.monastery-cover {
 
 .teachings_category .article-blog .post {
   padding: 20px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .teachings_category .single-post .post-info .teaching_info {
