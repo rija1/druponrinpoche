@@ -1620,7 +1620,7 @@ img.monastery-cover {
 }
 
 .teachings_category .article-blog {
-  padding: 20px;
+  padding: 0px;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
           box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
   border: 1px solid #eaeaea;
@@ -1688,6 +1688,10 @@ img.monastery-cover {
 
 .teachings_category .article-blog a:hover {
   text-decoration: none;
+}
+
+.teachings_category .article-blog .post {
+  padding: 20px;
 }
 
 .teachings_category .single-post .post-info .teaching_info {

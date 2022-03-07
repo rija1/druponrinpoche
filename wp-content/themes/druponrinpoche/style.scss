@@ -1844,13 +1844,16 @@ img.monastery-cover {
                 bottom: 0;
             }
         }
-        padding:20px;
+        padding:0px;
         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
         border: 1px solid #eaeaea;
         background: #fff;
         margin-top: 25px;
         a:hover {
             text-decoration: none;
+        }
+        .post {
+            padding: 20px; 
         }
     }
     .single-post {
