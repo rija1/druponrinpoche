@@ -90,7 +90,7 @@ $pllArgs = array(
                         <?php } ?>
                     </nav>
                     <nav class="menu-top-mob-container">
-                        <a class="mob-menu-icon" href="#">菜单</a>
+                        <a class="mob-menu-icon" href="#"></a>
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
                             <?php wp_nav_menu(
                                 array('container'=> '',
