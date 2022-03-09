@@ -1621,7 +1621,7 @@ img.monastery-cover {
     width: fit-content;
     border-bottom: solid 2px #9e9517;
   }
-  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li:nth-child(1) .teachings-cat {
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li:nth-child(1) > .teachings-cat {
     display: none;
   }
   .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li:nth-child(1) ul.children {

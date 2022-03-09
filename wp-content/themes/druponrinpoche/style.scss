@@ -1781,7 +1781,7 @@ img.monastery-cover {
                         border-bottom: solid 2px #9e9517;
                     }
                     &> ul > li:nth-child(1) {
-                        .teachings-cat {
+                        &>.teachings-cat {
                             display: none;
                         }
                         ul.children {
