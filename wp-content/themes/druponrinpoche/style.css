@@ -1603,6 +1603,59 @@ img.monastery-cover {
   padding: 20px 20px 20px 20px;
 }
 
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .sidebar-container {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 1;
+    grid-row: 1;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul .teachings_cat_list ul .teachings-cat li.current-cat a {
+    padding-bottom: 13px;
+    display: block;
+    margin: 0 auto 0 auto;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    border-bottom: solid 2px #9e9517;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li:nth-child(1) .teachings-cat {
+    display: none;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li:nth-child(1) ul.children {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li:nth-child(1) ul.children li {
+    text-align: center;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul li {
+    border: none;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul li:last-of-type {
+    border: none;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li:nth-child(2) {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .teachings_category .blog-columns .inner-page-container {
+    -ms-grid-column: 1;
+    grid-column: 1;
+    -ms-grid-row: 2;
+    grid-row: 2;
+  }
+  .teachings_category .blog-columns .inner-page-container > h1 {
+    display: none;
+  }
+}
+
 .teachings_category .pagination span.left, .teachings_category .pagination span.right {
   margin: 25px 0 0 0;
 }

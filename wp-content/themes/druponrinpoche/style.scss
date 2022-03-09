@@ -1766,6 +1766,53 @@ img.monastery-cover {
 .teachings_category {
     .blog-columns {
         padding: 20px 20px 20px 20px;
+        .sidebar-container {
+            @media only screen and (max-width: 480px) {
+                grid-column: 1;
+                grid-row: 1;
+                margin-top: 0;
+                padding-top:0;
+                .teachings_cat_list {
+                    ul .teachings_cat_list ul .teachings-cat li.current-cat a {
+                        padding-bottom: 13px;
+                        display: block;
+                        margin: 0 auto 0 auto;
+                        width: fit-content;
+                        border-bottom: solid 2px #9e9517;
+                    }
+                    &> ul > li:nth-child(1) {
+                        .teachings-cat {
+                            display: none;
+                        }
+                        ul.children {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr;
+                            li {
+                                text-align: center;
+                            }
+                        }
+                    } 
+                    ul li {
+                        border:none;
+                    }
+                    ul li:last-of-type {
+                        border: none;
+                    }
+                }
+                .teachings_cat_list > ul > li:nth-child(2) {
+                    display: none;
+                }
+            }
+        }
+        .inner-page-container {
+            @media only screen and (max-width: 480px) {
+                grid-column: 1;
+                grid-row: 2;
+                &> h1 {
+                    display: none;
+                }
+            }
+        }
     }
     .pagination {
         span.left , span.right{
