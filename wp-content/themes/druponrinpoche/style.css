@@ -1612,6 +1612,9 @@ img.monastery-cover {
     margin-top: 0;
     padding-top: 0;
   }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li.current-cat {
+    background: none;
+  }
   .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul .teachings_cat_list ul .teachings-cat li.current-cat a {
     padding-bottom: 13px;
     display: block;
