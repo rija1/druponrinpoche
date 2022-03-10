@@ -83,7 +83,7 @@ img {
 
 @media only screen and (max-width: 700px) {
   .menu-bar-logo-block img {
-    width: 80px;
+    width: 88px;
   }
 }
 
@@ -98,8 +98,8 @@ img {
 
 @media only screen and (max-width: 700px) {
   .menu-bar-logo-block .logo_name {
-    font-size: 30px;
-    padding-top: 19px;
+    font-size: 27px;
+    padding-top: 20px;
   }
 }
 
@@ -204,7 +204,7 @@ img {
 
 @media only screen and (max-width: 700px) {
   .header .menu-bar {
-    height: 127px;
+    height: 100px;
   }
 }
 
@@ -365,7 +365,6 @@ img {
   display: none;
   font-weight: bold;
   float: left;
-  margin-top: 22px;
   padding-left: 15px;
   width: 100%;
   font-family: 'Raleway';
@@ -381,13 +380,16 @@ img {
 }
 
 .menu-top-mob-container .mob-menu-icon {
-  color: #656250;
+  position: absolute;
+  right: 10px;
+  bottom: 15px;
 }
 
 .menu-top-mob-container .mob-menu-icon:before {
   font-family: 'FontAwesome';
   margin-right: 7px;
-  color: #656250;
+  color: #80784c;
+  font-size: 17px;
   content: "\f039";
 }
 
@@ -1612,8 +1614,19 @@ img.monastery-cover {
     margin-top: 0;
     padding-top: 0;
   }
-  .teachings_category .blog-columns .sidebar-container .teachings_cat_list > ul > li.current-cat {
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list {
+    padding-bottom: 6px;
+    padding-top: 5px;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list .teachings-cat {
+    padding: 0;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul li.current-cat {
     background: none;
+  }
+  .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul li.current-cat > .teachings-cat > a {
+    padding-bottom: 6px;
+    border-bottom: solid 2px #9b940d;
   }
   .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul .teachings_cat_list ul .teachings-cat li.current-cat a {
     padding-bottom: 13px;
@@ -1638,6 +1651,7 @@ img.monastery-cover {
   }
   .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul li {
     border: none;
+    padding: 0;
   }
   .teachings_category .blog-columns .sidebar-container .teachings_cat_list ul li:last-of-type {
     border: none;

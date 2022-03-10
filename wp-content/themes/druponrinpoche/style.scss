@@ -257,7 +257,7 @@ img {
         float: left;
         width: 145px;
         @media only screen and (max-width: $menuMobBreakpoint) {
-            width: 80px;
+            width:88px;
         }
     }
 
@@ -269,8 +269,8 @@ img {
         color:#9f9331;
         text-align: left;
         @media only screen and (max-width: $menuMobBreakpoint) {
-            font-size: 30px;
-            padding-top: 19px;
+            font-size: 27px;
+            padding-top: 20px;
         }
         @media only screen and (max-width: 360px) {
             font-size: 25px
@@ -377,7 +377,7 @@ img {
         z-index: 999;
         height:142px;
         @media only screen and (max-width: $menuMobBreakpoint) {
-            height: 127px;
+            height: 100px;
         }
     }
 }
@@ -529,7 +529,6 @@ img {
     display: none;
     font-weight:bold;
     float: left;
-    margin-top: 22px;
     padding-left: 15px;
     width:100%;
     font-family: 'Raleway';
@@ -543,12 +542,16 @@ img {
 
     .mob-menu-icon
     {
-        color:$dkr-darkgrey;
+        position: absolute;
+        right: 10px;
+        bottom:15px;
         &:before {
             font-family: 'FontAwesome';
             margin-right: 7px;
-            color:$dkr-darkgrey;
+            color:$dkr-brown;
+            font-size:17px;
             content: "\f039";
+            
         }
     }
 
@@ -1773,16 +1776,28 @@ img.monastery-cover {
                 margin-top: 0;
                 padding-top:0;
                 .teachings_cat_list {
-                    &>ul > li.current-cat {
+                    padding-bottom: 6px;
+                    padding-top: 5px;
+                    .teachings-cat {
+                        padding: 0;
+                    }
+                    ul li.current-cat {
                         background: none;
+                        &> .teachings-cat > a {
+                            padding-bottom: 6px;
+                            border-bottom:solid 2px $dkr-gold;
+                        }
                     }
-                    ul .teachings_cat_list ul .teachings-cat li.current-cat a {
-                        padding-bottom: 13px;
-                        display: block;
-                        margin: 0 auto 0 auto;
-                        width: fit-content;
-                        border-bottom: solid 2px #9e9517;
-                    }
+                   
+                    ul .teachings_cat_list ul .teachings-cat li.current-cat {
+                        a {
+                            padding-bottom: 13px;
+                            display: block;
+                            margin: 0 auto 0 auto;
+                            width: fit-content;
+                            border-bottom: solid 2px #9e9517;
+                        }
+                    } 
                     &> ul > li:nth-child(1) {
                         &>.teachings-cat {
                             display: none;
@@ -1797,6 +1812,7 @@ img.monastery-cover {
                     } 
                     ul li {
                         border:none;
+                        padding: 0;
                     }
                     ul li:last-of-type {
                         border: none;
