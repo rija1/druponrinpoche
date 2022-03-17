@@ -4240,7 +4240,7 @@ table.tablepress-id-19 tbody .sp_year_en:before {
     padding-bottom: 4px;
   }
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img img {
-    max-height: 123px;
+    height: 125px;
     -o-object-fit: cover;
        object-fit: cover;
     width: 100%;
