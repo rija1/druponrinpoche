@@ -4238,12 +4238,15 @@ table.tablepress-id-19 tbody .sp_year_en:before {
     padding-bottom: 4px;
   }
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img img {
-    width: auto;
+    max-height: 123px;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt {
     padding: 10px 8px 10px 8px;
     text-align: center;
     margin: 0;
+    height: auto;
   }
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt p {
     display: none;
