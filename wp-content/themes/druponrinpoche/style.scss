@@ -4382,6 +4382,7 @@ table.tablepress-id-19 {
                         li.home_post {
                             height: auto;
                             width: auto;
+                            display: grid;
                             .home_post_img {
                                 height: auto;
                                 float: 115px;
@@ -4389,6 +4390,7 @@ table.tablepress-id-19 {
                                 img {
                                     max-height: 123px;
                                     object-fit: cover;
+                                    width: 100%; 
                                 }
                             }
                             .home_post_txt {

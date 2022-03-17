@@ -4231,6 +4231,8 @@ table.tablepress-id-19 tbody .sp_year_en:before {
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post {
     height: auto;
     width: auto;
+    display: -ms-grid;
+    display: grid;
   }
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_img {
     height: auto;
@@ -4241,6 +4243,7 @@ table.tablepress-id-19 tbody .sp_year_en:before {
     max-height: 123px;
     -o-object-fit: cover;
        object-fit: cover;
+    width: 100%;
   }
   .home .home_news_carousel .latestnews .latestnews_list a.recent_post_link li.home_post .home_post_txt {
     padding: 10px 8px 10px 8px;
