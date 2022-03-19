@@ -1729,7 +1729,7 @@ img.monastery-cover {
   padding: 0;
 }
 
-.teachings_category .article-blog .article-text a {
+.teachings_category .article-blog .article-text a.swipebox {
   -ms-grid-column: 2;
   grid-column: 2;
   -ms-grid-row: 1;
@@ -1740,7 +1740,7 @@ img.monastery-cover {
   height: 100px;
 }
 
-.teachings_category .article-blog .article-text a img {
+.teachings_category .article-blog .article-text a.swipebox img {
   width: 100px;
   height: 100px;
   -o-object-fit: cover;
