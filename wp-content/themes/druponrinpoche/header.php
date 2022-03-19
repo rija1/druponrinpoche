@@ -63,7 +63,11 @@ $drConfig = getDrWebsiteConfig();
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
                             <!-- <span class="icon-drawing"></span> -->
-                                <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp" />
+                            <picture>
+                                <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp" type="image/webp">
+                                <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.jpeg" type="image/jpeg">
+                                <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp">
+                            </picture>
                                 <div class="logo_name">
                                     <span class="logo_dkr"><?php dkr_str('Drupon Khen Rinpoche'); ?></span>
                                     <span class="logo_kl"><?php dkr_str('Karma Lhabu'); ?></span>
