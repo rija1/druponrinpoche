@@ -13,7 +13,10 @@
                 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
                     <div class="article-text">
-                        <div class="teaching_text <?php echo (isPostTibetan()) ? ' tibetan' : '' ; ?>"><?php the_content(); ?></div>
+                        <?php
+                        $readMore = get_post_meta(get_the_ID(), 'read_more', TRUE);
+                        ?>
+                        <div class="teaching_text <?php echo (!empty($readMore)) ? ' read-more' : '' ; echo (isPostTibetan()) ? ' tibetan' : '' ; ?>"><?php the_content(); ?></div>
                         <span class="teaching_title"><?php the_time( get_option( 'date_format' ) ); ?></span>
                         <?php if(get_the_post_thumbnail_url()): ?>
                         <a href="<?php echo get_the_post_thumbnail_url(null,array(600,800)); ?>" class="swipebox">
@@ -43,3 +46,51 @@
         <!--				</div>-->
     </div>
 </div> <!--  END section-blog  -->
+
+<script type="text/javascript">
+    (function (jQuery) {
+        jQuery.fn.readmore = function (settings) {
+    var defaults = {
+      abridged_height: '8em',
+      ellipses: '<div class="readm-continue">&#8230;</div>',
+      more_link: '<a class="readm-more">全文</a>',
+      inner_wrapper: '<div class="readm-inner" />',
+      inner_clzz: 'readm-inner',
+      more_clzz: 'readm-more',
+      ellipse_clzz: 'readm-continue'
+    };
+
+    var opts = jQuery.extend({}, defaults, settings);
+
+    this.each(function() {
+      var $this = jQuery(this);
+      $this
+        .wrapInner(opts.inner_wrapper)
+        .append(opts.ellipses)
+        .append(opts.more_link);
+      $this.find('.' + opts.inner_clzz)
+        .css('overflow', 'hidden')
+        .height(opts.abridged_height);
+      
+      $this.find('.' + opts.more_clzz).click(function() {
+        slideDown($this.find('.' + opts.inner_clzz));
+        $this.find('.' + opts.ellipse_clzz).hide();
+        $this.find('.' + opts.more_clzz).hide();
+      });
+    });
+      
+    function slideDown(elem) {
+      var old_height = elem.height();
+      elem.height('auto');
+      var new_height = elem.height();  
+      elem.height(old_height);
+      elem.animate({'height': new_height});
+    }
+    return this;
+  };
+})(jQuery);
+
+
+jQuery('.read-more').readmore({abridged_height: '8em'});
+
+</script>
