@@ -1376,14 +1376,14 @@ img.monastery-cover {
   padding-top: 30px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   grid-row-gap: 15px;
   -webkit-column-gap: 17px;
           column-gap: 17px;
 }
 
-@media only screen and (max-width: 780px) {
+@media only screen and (max-width: 850px) {
   .abbots-grid {
     -ms-grid-columns: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
