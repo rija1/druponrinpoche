@@ -91,6 +91,6 @@
 })(jQuery);
 
 
-jQuery('.read-more').readmore({abridged_height: '8em'});
+jQuery('.read-more').readmore({abridged_height: '4em'});
 
 </script>
