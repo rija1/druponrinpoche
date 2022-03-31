@@ -1715,10 +1715,11 @@ img.monastery-cover {
 .teachings_category .article-blog .article-text .teaching_text .readm-less, .teachings_category .article-blog .article-text .teaching_text .readm-more {
   font-size: 15px;
   display: block;
+  cursor: pointer;
 }
 
 .teachings_category .article-blog .article-text .teaching_text .readm-less {
-  padding-top: 15px;
+  margin-top: 15px;
 }
 
 .teachings_category .article-blog .article-text .teaching_text p {

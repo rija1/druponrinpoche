@@ -1860,9 +1860,10 @@ img.monastery-cover {
                 .readm-less, .readm-more {
                     font-size: 15px;
                     display: block;
+                    cursor: pointer;
                 }
                 .readm-less {
-                    padding-top: 15px;
+                    margin-top: 15px;
                 }
                 p {
                     font-size: 17px;
