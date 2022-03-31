@@ -172,14 +172,6 @@ img {
 /**  header  **/
 .header {
   position: relative;
-  z-index: 999;
-  padding-bottom: 28px;
-  *padding-bottom: 0;
-}
-
-/**  menu-bar  **/
-.header {
-  position: relative;
   margin: 0 auto;
   z-index: 999;
   padding-bottom: 0px;
@@ -1720,6 +1712,15 @@ img.monastery-cover {
   min-width: initial;
 }
 
+.teachings_category .article-blog .article-text .teaching_text .readm-less, .teachings_category .article-blog .article-text .teaching_text .readm-more {
+  font-size: 15px;
+  display: block;
+}
+
+.teachings_category .article-blog .article-text .teaching_text .readm-less {
+  padding-top: 15px;
+}
+
 .teachings_category .article-blog .article-text .teaching_text p {
   font-size: 17px;
   padding: 0;
@@ -2267,20 +2268,6 @@ ul.poly_switcher {
   background: #9b940d;
 }
 
-.container .single-post p.expand_content {
-  text-align: left;
-  display: none;
-}
-
-a.expand_link {
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-a.expand_link:hover {
-  text-decoration: none;
-}
-
 .sched_carousel_arrows {
   position: relative;
   padding: 10px 0 10px 0;
@@ -2651,51 +2638,6 @@ a.course_link {
     font-size: 12px;
     background-color: #9b940d;
     color: #ffffff;
-  }
-  .category-news .posts-grid {
-    padding: 0 15px 15px 15px;
-    -ms-grid-columns: 1fr 1fr;
-        grid-template-columns: 1fr 1fr;
-    grid-row-gap: 12px;
-    grid-column-gap: 12px;
-  }
-  .category-news .posts-grid .article-blog {
-    height: auto;
-  }
-  .category-news .posts-grid .article-blog .article-image {
-    margin-bottom: 0;
-  }
-  .category-news .posts-grid .article-blog .article-text {
-    padding: 8px 8px 10px 8px;
-  }
-  .category-news .posts-grid .article-blog .article-text .category-post-date {
-    display: none;
-  }
-  .category-news .posts-grid .article-blog .article-text p {
-    display: none;
-  }
-  .category-news .posts-grid .article-blog .article-text .read_more {
-    display: none;
-  }
-  .category-news .featured-grid {
-    padding: 5px 15px 5px 15px;
-    -ms-grid-columns: 1fr;
-        grid-template-columns: 1fr;
-  }
-  .category-news .featured-grid a.article-link span.read_more {
-    display: none;
-  }
-  .category-news .featured-grid .article-blog {
-    height: auto;
-  }
-  .category-news .featured-grid .article-blog:first-child {
-    -ms-grid-column: 1;
-    grid-column: 1 / 1;
-    -ms-grid-row: 1;
-    grid-row: 1 / 1;
-  }
-  .category-news .featured-grid .news_right_block {
-    display: none;
   }
 }
 

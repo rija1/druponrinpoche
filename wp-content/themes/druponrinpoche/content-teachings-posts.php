@@ -39,11 +39,6 @@
                 'next_text' => json_decode('"\uF054"'),
             ) );
             ?>
-<!--            --><?php //if(function_exists('wp_pagenavi')) { wp_pagenavi(); } else { ?>
-<!--                <span class="left button-gray">--><?php //next_posts_link(__('Previous Posts', 'dkr')) ?><!--</span>-->
-<!--                <span class="right button-gray">--><?php //previous_posts_link(__('Next posts', 'dkr')) ?><!--</span>-->
-<!--            --><?php //} ?>
-        <!--				</div>-->
     </div>
 </div> <!--  END section-blog  -->
 
@@ -54,9 +49,11 @@
       abridged_height: '8em',
       ellipses: '<div class="readm-continue">&#8230;</div>',
       more_link: '<a class="readm-more">全文</a>',
+      less_link: '<a class="readm-less">收起</a>',
       inner_wrapper: '<div class="readm-inner" />',
       inner_clzz: 'readm-inner',
       more_clzz: 'readm-more',
+      less_clzz: 'readm-less',
       ellipse_clzz: 'readm-continue'
     };
 
@@ -67,17 +64,37 @@
       $this
         .wrapInner(opts.inner_wrapper)
         .append(opts.ellipses)
-        .append(opts.more_link);
+        .append(opts.more_link)
+        .append(opts.less_link);
       $this.find('.' + opts.inner_clzz)
         .css('overflow', 'hidden')
         .height(opts.abridged_height);
+
+        $this.find('.' + opts.less_clzz).hide();
       
       $this.find('.' + opts.more_clzz).click(function() {
         slideDown($this.find('.' + opts.inner_clzz));
         $this.find('.' + opts.ellipse_clzz).hide();
         $this.find('.' + opts.more_clzz).hide();
+        $this.find('.' + opts.less_clzz).show();
       });
+
+      $this.find('.' + opts.less_clzz).click(function() {
+        slideUp($this.find('.' + opts.inner_clzz),opts.abridged_height);
+        $this.find('.' + opts.ellipse_clzz).show();
+        $this.find('.' + opts.more_clzz).show();
+        $this.find('.' + opts.less_clzz).hide();
+      });
+
     });
+
+    function slideUp(elem,abridged_height) {
+      var old_height = elem.height();
+      elem.height(abridged_height);
+      var new_height = elem.height();  
+      elem.height(old_height);
+      elem.animate({'height': new_height});
+    }
       
     function slideDown(elem) {
       var old_height = elem.height();
