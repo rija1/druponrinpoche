@@ -59,19 +59,19 @@ $drConfig = getDrWebsiteConfig();
         <div class="container">
             <header id="header" class="header">
                 <div class="menu-bar">
-                    <div class="header_top_block">
+                    <!-- <div class="header_top_block"> -->
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
-                            <!-- <span class="icon-drawing"></span> -->
-                            <picture>
-                                <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp" type="image/webp">
-                                <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.jpeg" type="image/jpeg">
-                                <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp">
-                            </picture>
-                                <div class="logo_name">
+                                <picture>
+                                <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.png" type="image/png">
+                                    <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp" type="image/webp">
+                                    <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.jpeg" type="image/jpeg">
+                                    <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp">
+                                </picture>
+                                    <!-- <div class="logo_name"> -->
                                     <span class="logo_dkr"><?php dkr_str('Drupon Khen Rinpoche'); ?></span>
                                     <span class="logo_kl"><?php dkr_str('Karma Lhabu'); ?></span>
-                                </div>
+                                <!-- </div> -->
                             </a>
                         </div>
 <!--                        <span class="dc_header">Tirthika Square</span>-->
@@ -85,7 +85,7 @@ $drConfig = getDrWebsiteConfig();
                             </ul>
                             <?php endif; ?>
                         </div>
-                    </div>
+                    <!-- </div> -->
                     <nav class="menu-top-container">
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
                             <?php wp_nav_menu( array('container'=> '', 'theme_location' => 'dkr-menu', 'items_wrap'  => '<ul class="menu-top">%3$s</ul>','depth' => 2  ) ); ?>
@@ -94,7 +94,7 @@ $drConfig = getDrWebsiteConfig();
                         <?php } ?>
                     </nav>
                     <nav class="menu-top-mob-container">
-                        <a class="mob-menu-icon" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
+                        <a class="mob-menu-icon" href="#"></a>
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
                             <?php wp_nav_menu(
                                 array('container'=> '',
