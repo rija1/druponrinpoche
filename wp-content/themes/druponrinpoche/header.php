@@ -59,7 +59,7 @@ $drConfig = getDrWebsiteConfig();
         <div class="container">
             <header id="header" class="header">
                 <div class="menu-bar">
-                    <!-- <div class="header_top_block"> -->
+                    <div class="header_top_block">
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
                                 <picture>
@@ -85,7 +85,7 @@ $drConfig = getDrWebsiteConfig();
                             </ul>
                             <?php endif; ?>
                         </div>
-                    <!-- </div> -->
+                    </div>
                     <nav class="menu-top-container">
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
                             <?php wp_nav_menu( array('container'=> '', 'theme_location' => 'dkr-menu', 'items_wrap'  => '<ul class="menu-top">%3$s</ul>','depth' => 2  ) ); ?>
