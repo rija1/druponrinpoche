@@ -28,7 +28,7 @@ $r = new WP_Query( apply_filters( 'widget_posts_args', array(
 但如果你有正确的内心态度，不论外在情况如何，都无法干扰你内在的宁静。
     </div>
     <div class="home_quote_button">
-    <a href="">阅读更多</a>
+    <a href="<?php echo get_category_link($drWebsiteConfig['teachings_cat_id']); ?>">阅读更多</a>
     </div>
 </div>
 
