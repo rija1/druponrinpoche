@@ -62,16 +62,12 @@ $drConfig = getDrWebsiteConfig();
                     <div class="header_top_block">
                         <div class="menu-bar-logo-block">
                             <a href="<?php echo esc_url(home_url('/')); ?>">
-                                <picture>
-                                <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.png" type="image/png">
-                                    <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp" type="image/webp">
-                                    <source srcset="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.jpeg" type="image/jpeg">
-                                    <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp">
-                                </picture>
-                                    <!-- <div class="logo_name"> -->
+                            <!-- <span class="icon-drawing"></span> -->
+                                <img src="<?php echo get_stylesheet_directory_uri()?>/assets/images/logo_dharma_wheel_gold.webp" />
+                                <div class="logo_name">
                                     <span class="logo_dkr"><?php dkr_str('Drupon Khen Rinpoche'); ?></span>
                                     <span class="logo_kl"><?php dkr_str('Karma Lhabu'); ?></span>
-                                <!-- </div> -->
+                                </div>
                             </a>
                         </div>
 <!--                        <span class="dc_header">Tirthika Square</span>-->
@@ -94,7 +90,7 @@ $drConfig = getDrWebsiteConfig();
                         <?php } ?>
                     </nav>
                     <nav class="menu-top-mob-container">
-                        <a class="mob-menu-icon" href="#"></a>
+                        <a class="mob-menu-icon" href="#"><?php _e( 'Menu', 'druponrinpoche' ); ?></a>
                         <?php if ( has_nav_menu( 'dkr-menu' ) ) { ?>
                             <?php wp_nav_menu(
                                 array('container'=> '',
