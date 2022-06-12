@@ -707,6 +707,9 @@ h5 {
     grid-column: 1;
     margin-left: auto;
   }
+  .header .menu-bar .header_top_right ul.poly_switcher li {
+    padding: 0px 5px 5px 5px;
+  }
 }
 
 .header .menu-bar .header_top_right ul.poly_switcher a {
