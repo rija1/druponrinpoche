@@ -432,8 +432,8 @@ h3, .mob-menu-icon {
 @media only screen and (max-width: 480px) {
   .header_top_right ul.poly_switcher {
     grid-gap: 2px;
-    -ms-grid-columns: 39px 41px;
-        grid-template-columns: 39px 41px;
+    -ms-grid-columns: auto auto;
+        grid-template-columns: auto auto;
     -ms-grid-row: 1;
     grid-row: 1;
     -ms-grid-column: 1;
