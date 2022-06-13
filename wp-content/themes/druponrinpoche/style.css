@@ -469,6 +469,7 @@ h3, .mob-menu-icon {
 
 @media only screen and (max-width: 480px) {
   .header_top_right ul.poly_switcher li {
+    padding: 0px 5px 5px 5px;
     border-radius: 3px;
     border: solid 1px #aaa382;
     overflow: hidden;
