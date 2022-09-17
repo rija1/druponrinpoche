@@ -86,7 +86,7 @@ class MailAdminTable extends \WP_List_Table
             'export' => '<a href="' . wp_nonce_url('?page=' . GeneralHelper::$adminPageSlug . '&action=export&id=' . $item['id'], 'bulk-logs') . '">' . __('Export', 'WpMailCatcher') . '</a>',
         ];
 
-        return sprintf('%1$s %2$s', $item['email_to'], $this->row_actions($actions));
+        return sprintf('%1$s %2$s', htmlspecialchars($item['email_to']), $this->row_actions($actions));
     }
 
     function column_status($item)
@@ -155,12 +155,14 @@ class MailAdminTable extends \WP_List_Table
         $this->_column_headers = [$columns, $hidden, $sortable];
         $this->process_bulk_action();
 
-        /** Can pass $_REQUEST because we whitelist and sanitize it at the model level */
+        $overrideParams = array_intersect_key($_REQUEST, Logs::$whitelistedParams);
+    
         $this->items = Logs::get(array_merge([
             'paged' => $this->get_pagenum(),
             'post_status' => isset($_GET['post_status']) ? $_GET['post_status'] : 'any',
             'posts_per_page' => $per_page,
-        ], $_REQUEST));
+            'column_blacklist' => ['message']
+        ], $overrideParams));
 
         $this->totalItems = Logs::getTotalAmount();
 

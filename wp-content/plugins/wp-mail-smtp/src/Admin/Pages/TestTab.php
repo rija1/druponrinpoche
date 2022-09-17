@@ -325,7 +325,7 @@ class TestTab extends PageAbstract {
 		 * Notify a user about the results.
 		 */
 		if ( $result ) {
-			$options = new Options();
+			$options = Options::init();
 			$mailer  = $options->get( 'mail', 'mailer' );
 			$email   = $options->get( 'mail', 'from_email' );
 			$domain  = '';
@@ -551,7 +551,7 @@ Co-Founder, WP Mail SMTP';
 	 */
 	protected function get_debug_messages( $phpmailer, $smtp_debug ) {
 
-		$options   = new Options();
+		$options   = Options::init();
 		$conflicts = new Conflicts();
 
 		$this->debug['mailer'] = $options->get( 'mail', 'mailer' );
@@ -644,7 +644,7 @@ Co-Founder, WP Mail SMTP';
 	 */
 	protected function get_debug_details() {
 
-		$options         = new Options();
+		$options         = Options::init();
 		$smtp_host       = $options->get( 'smtp', 'host' );
 		$smtp_port       = $options->get( 'smtp', 'port' );
 		$smtp_encryption = $options->get( 'smtp', 'encryption' );
@@ -748,6 +748,20 @@ Co-Founder, WP Mail SMTP';
 					esc_html__( 'Triple check your SMTP settings including host address, email, and password. If you have recently reset your password you will need to update the settings.', 'wp-mail-smtp' ),
 					esc_html__( 'Contact your SMTP host to confirm you are using the correct username and password.', 'wp-mail-smtp' ),
 					esc_html__( 'Verify with your SMTP host that your account has permissions to send emails using outside connections.', 'wp-mail-smtp' ),
+					sprintf(
+						wp_kses( /* translators: %s - URL to the wpmailsmtp.com doc page. */
+							__( 'Visit <a href="%s" target="_blank" rel="noopener noreferrer">our documentation</a> for additional tips on how to resolve this error.', 'wp-mail-smtp' ),
+							[
+								'a' => [
+									'href'   => [],
+									'target' => [],
+									'rel'    => [],
+								],
+							]
+						),
+						// phpcs:ignore WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound
+						esc_url( wp_mail_smtp()->get_utm_url( 'https://wpmailsmtp.com/docs/how-to-set-up-the-other-smtp-mailer-in-wp-mail-smtp/#auth-type', [ 'medium' => 'email-test', 'content' => 'Other SMTP auth debug - our documentation' ] ) )
+					),
 				],
 			],
 			// [smtp] - Sending bulk email, hitting rate limit.
@@ -886,12 +900,36 @@ Co-Founder, WP Mail SMTP';
 				],
 				'title'       => esc_html__( 'Mailgun failed.', 'wp-mail-smtp' ),
 				'description' => [
-					esc_html__( 'Typically this error occurs because there is an issue with your Mailgun settings, in many cases the API key.', 'wp-mail-smtp' ),
+					esc_html__( 'Typically this error occurs because there is an issue with your Mailgun settings, in many cases Private API Key, Domain Name, or Region is incorrect.', 'wp-mail-smtp' ),
 				],
 				'steps'       => [
-					esc_html__( 'Verify your API key is correct.', 'wp-mail-smtp' ),
-					esc_html__( 'Go to your Mailgun account and view your API key.', 'wp-mail-smtp' ),
-					esc_html__( 'Note that the API key includes the "key" prefix, so make sure that it is in the WP Mail SMTP Mailgun API setting.', 'wp-mail-smtp' ),
+					sprintf(
+						wp_kses( /* translators: %1$s - Mailgun API Key area URL. */
+							__( 'Go to your Mailgun account and verify that your <a href="%1$s" target="_blank" rel="noopener noreferrer">Private API Key</a> is correct.', 'wp-mail-smtp' ),
+							[
+								'a' => [
+									'href'   => [],
+									'rel'    => [],
+									'target' => [],
+								],
+							]
+						),
+						'https://app.mailgun.com/app/account/security/api_keys'
+					),
+					sprintf(
+						wp_kses( /* translators: %1$s - Mailgun domains area URL. */
+							__( 'Verify your <a href="%1$s" target="_blank" rel="noopener noreferrer">Domain Name</a> is correct.', 'wp-mail-smtp' ),
+							[
+								'a' => [
+									'href'   => [],
+									'rel'    => [],
+									'target' => [],
+								],
+							]
+						),
+						'https://app.mailgun.com/app/sending/domains'
+					),
+					esc_html__( 'Verify your domain Region is correct.', 'wp-mail-smtp' ),
 				],
 			],
 			// [mailgun] - Free accounts are for test purposes only.
@@ -917,7 +955,8 @@ Co-Founder, WP Mail SMTP';
 								],
 							]
 						),
-						'https://wpmailsmtp.com/docs/how-to-set-up-the-mailgun-mailer-in-wp-mail-smtp/'
+						// phpcs:ignore WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound
+						esc_url( wp_mail_smtp()->get_utm_url( 'https://wpmailsmtp.com/docs/how-to-set-up-the-mailgun-mailer-in-wp-mail-smtp/', [ 'medium' => 'email-test', 'content' => 'Mailgun with WP Mail SMTP' ] ) )
 					),
 					esc_html__( 'Complete the steps in section "2. Verify Your Domain".', 'wp-mail-smtp' ),
 				],
@@ -1108,7 +1147,8 @@ Co-Founder, WP Mail SMTP';
 								],
 							]
 						),
-						'https://wpmailsmtp.com/docs/how-to-set-up-the-gmail-mailer-in-wp-mail-smtp/'
+						// phpcs:ignore WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound
+						esc_url( wp_mail_smtp()->get_utm_url( 'https://wpmailsmtp.com/docs/how-to-set-up-the-gmail-mailer-in-wp-mail-smtp/', [ 'medium' => 'email-test', 'content' => 'Gmail tutorial' ] ) )
 					),
 				],
 			],
@@ -1367,7 +1407,8 @@ Co-Founder, WP Mail SMTP';
 								),
 							)
 						),
-						'https://wpmailsmtp.com/account/support/'
+						// phpcs:ignore WordPress.Arrays.ArrayDeclarationSpacing.AssociativeArrayFound
+						esc_url( wp_mail_smtp()->get_utm_url( 'https://wpmailsmtp.com/account/support/', [ 'medium' => 'email-test', 'content' => 'submit a support ticket' ] ) )
 					);
 					?>
 				</p>

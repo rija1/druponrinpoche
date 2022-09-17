@@ -51,6 +51,9 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 		var $filter_supported_fields = array();
 
 
+		var $sorting_supported_fields = array();
+
+
 		var $filter_types = array();
 
 
@@ -91,8 +94,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 		 * Member_Directory constructor.
 		 */
 		function __construct() {
-			add_filter( 'plugins_loaded', array( &$this, 'init_variables' ), 99999 );
-			add_filter( 'init', array( &$this, 'init_filter_types' ), 2 );
+			add_filter( 'init', array( &$this, 'init_variables' ) );
 
 			add_action( 'template_redirect', array( &$this, 'access_members' ), 555 );
 		}
@@ -302,8 +304,31 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 				'display_name'          => __( 'Display name', 'ultimate-member' ),
 				'last_first_name'       => __( 'Last & First name', 'ultimate-member' ),
 				'last_login'            => __( 'Last login', 'ultimate-member' ),
-
 			) );
+
+			$this->sorting_supported_fields = apply_filters( 'um_members_directory_custom_field_types_supported_sorting', array( 'number' ) );
+
+			if ( ! empty( UM()->builtin()->saved_fields ) ) {
+				foreach ( UM()->builtin()->saved_fields as $key => $data ) {
+					if ( $key == '_um_last_login' ) {
+						continue;
+					}
+
+					if ( isset( $data['type'] ) && in_array( $data['type'], $this->sorting_supported_fields ) ) {
+						if ( isset( $data['title'] ) && array_search( sprintf( __( '%s DESC', 'ultimate-member' ), $data['title'] ), $this->sort_fields ) !== false ) {
+							$data['title'] = $data['title'] . ' (' . $key . ')';
+						}
+
+						$title = isset( $data['title'] ) ? $data['title'] : ( isset( $data['label'] ) ? $data['label'] : '' );
+						if ( empty( $title ) ) {
+							continue;
+						}
+
+						$this->sort_fields[ $key . '_desc' ] = sprintf( __( '%s DESC', 'ultimate-member' ), $title );
+						$this->sort_fields[ $key . '_asc' ] = sprintf( __( '%s ASC', 'ultimate-member' ), $title );
+					}
+				}
+			}
 
 			asort( $this->sort_fields );
 
@@ -359,13 +384,7 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 			$this->filter_fields = apply_filters( 'um_members_directory_filter_fields', $this->filter_fields );
 
 			ksort( $this->filter_fields );
-		}
 
-
-		/**
-		 *
-		 */
-		function init_filter_types() {
 			$this->filter_types = apply_filters( 'um_members_directory_filter_types', array(
 				'country'               => 'select',
 				'gender'                => 'select',
@@ -611,6 +630,8 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 								$_POST['parent_option'] = explode( '||', filter_input( INPUT_GET, 'filter_' . $attrs['parent_dropdown_relationship'] . '_' . $unique_hash ) );
 							}
 						}
+
+						$attrs['custom_dropdown_options_source'] = wp_unslash( $attrs['custom_dropdown_options_source'] );
 
 						$ajax_source = apply_filters( "um_custom_dropdown_options_source__{$filter}", $attrs['custom_dropdown_options_source'], $attrs );
 						$custom_dropdown .= ' data-um-ajax-source="' . esc_attr( $ajax_source ) . '" ';
@@ -1260,6 +1281,25 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 				}
 			}
 
+			$numeric_sorting_keys = array();
+
+			if ( ! empty( UM()->builtin()->saved_fields ) ) {
+				foreach ( UM()->builtin()->saved_fields as $key => $data ) {
+					if ( $key == '_um_last_login' ) {
+						continue;
+					}
+
+					if ( isset( $data['type'] ) && 'number' === $data['type'] ) {
+						if ( array_key_exists( $key . '_desc', $this->sort_fields ) ) {
+							$numeric_sorting_keys[] = $key . '_desc';
+						}
+						if ( array_key_exists( $key . '_asc', $this->sort_fields ) ) {
+							$numeric_sorting_keys[] = $key . '_asc';
+						}
+					}
+				}
+			}
+
 			if ( 'username' == $sortby ) {
 
 				$this->query_args['orderby'] = 'user_login';
@@ -1328,6 +1368,41 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 				);
 
 				$this->query_args['orderby'] = array( 'last_name_c' => 'ASC', 'first_name_c' => 'ASC' );
+				unset( $this->query_args['order'] );
+
+			} elseif ( count( $numeric_sorting_keys ) && in_array( $sortby, $numeric_sorting_keys ) ) {
+
+				$order = 'DESC';
+				if ( strstr( $sortby, '_desc' ) ) {
+					$sortby = str_replace( '_desc', '', $sortby );
+					$order = 'DESC';
+				}
+
+				if ( strstr( $sortby, '_asc' ) ) {
+					$sortby = str_replace( '_asc', '', $sortby );
+					$order = 'ASC';
+				}
+
+				$this->query_args['meta_query'] = array_merge(
+					$this->query_args['meta_query'],
+					array(
+						array(
+							'relation'      => 'OR',
+							array(
+								'key'     => $sortby,
+								'compare' => 'EXISTS',
+								'type'    => 'NUMERIC',
+							),
+							$sortby . '_ns' => array(
+								'key'     => $sortby,
+								'compare' => 'NOT EXISTS',
+								'type'    => 'NUMERIC',
+							),
+						),
+					)
+				);
+
+				$this->query_args['orderby'] = array( $sortby . '_ns' => $order, 'user_registered' => 'DESC' );
 				unset( $this->query_args['order'] );
 
 			} elseif ( ( ! empty( $directory_data['sortby_custom'] ) && $sortby == $directory_data['sortby_custom'] ) || in_array( $sortby, $custom_sort ) ) {
@@ -2390,7 +2465,16 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 
 			global $wpdb;
 
+			if ( empty( $_POST['directory_id'] ) ) {
+				wp_send_json_error( __( 'Wrong member directory data', 'ultimate-member' ) );
+			}
+
 			$directory_id = $this->get_directory_by_hash( sanitize_key( $_POST['directory_id'] ) );
+
+			if ( empty( $directory_id ) ) {
+				wp_send_json_error( __( 'Wrong member directory data', 'ultimate-member' ) );
+			}
+
 			$directory_data = UM()->query()->post_data( $directory_id );
 
 			//predefined result for user without capabilities to see other members
@@ -2586,12 +2670,13 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 		 * @param string $element
 		 * @param string $trigger
 		 * @param array $items
+		 * @param string $parent
 		 */
-		function dropdown_menu( $element, $trigger, $items = array() ) {
+		function dropdown_menu( $element, $trigger, $items = array(), $parent = '' ) {
 			// !!!!Important: all links in the dropdown items must have "class" attribute
 			?>
 
-			<div class="um-new-dropdown" data-element="<?php echo $element; ?>" data-trigger="<?php echo $trigger; ?>">
+			<div class="um-new-dropdown" data-element="<?php echo $element; ?>" data-trigger="<?php echo $trigger; ?>" data-parent="<?php echo $parent; ?>">
 				<ul>
 					<?php foreach ( $items as $k => $v ) { ?>
 						<li><?php echo $v; ?></li>
@@ -2610,11 +2695,12 @@ if ( ! class_exists( 'um\core\Member_Directory' ) ) {
 		 * @param string $trigger
 		 * @param string $item
 		 * @param string $additional_attributes
+		 * @param string $parent
 		 */
-		function dropdown_menu_js( $element, $trigger, $item, $additional_attributes = '' ) {
+		function dropdown_menu_js( $element, $trigger, $item, $additional_attributes = '', $parent = '' ) {
 			?>
 
-			<div class="um-new-dropdown" data-element="<?php echo $element; ?>" data-trigger="<?php echo $trigger; ?>">
+			<div class="um-new-dropdown" data-element="<?php echo $element; ?>" data-trigger="<?php echo $trigger; ?>" data-parent="<?php echo $parent; ?>">
 				<ul>
 					<# _.each( <?php echo $item; ?>.dropdown_actions, function( action, key, list ) { #>
 						<li><a href="<# if ( typeof action.url != 'undefined' ) { #>{{{action.url}}}<# } else { #>javascript:void(0);<# }#>" class="{{{key}}}"<?php echo $additional_attributes ? " $additional_attributes" : '' ?>>{{{action.title}}}</a></li>

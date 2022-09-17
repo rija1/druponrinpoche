@@ -1,8 +1,8 @@
 === Import any XML or CSV File to WordPress ===
 Contributors: soflyy, wpallimport
 Requires at least: 4.1
-Tested up to: 5.8
-Stable tag: 3.6.5
+Tested up to: 6.0
+Stable tag: 3.6.8
 Tags: wordpress csv import, wordpress xml import, xml, csv, datafeed, import, migrate, import csv to wordpress, import xml to wordpress, advanced xml import, advanced csv import, bulk csv import, bulk xml import, bulk data import, xml to custom post type, csv to custom post type, woocommerce csv import, woocommerce xml import, csv import, import csv, xml import, import xml, csv importer
 
 WP All Import is an extremely powerful importer that makes it easy to import any XML or CSV file to WordPress.
@@ -72,6 +72,14 @@ Learn more about our add-ons at [http://www.wpallimport.com/add-ons](http://www.
 
 A [developer API](http://www.wpallimport.com/documentation/developers/action-reference/?utm_source=import-plugin-free&utm_medium=readme&utm_campaign=docs) (action hooks) is also available.
 
+= Related Plugins =
+[Export any WordPress data to XML/CSV](https://wordpress.org/plugins/wp-all-export/)
+[Import Products from any XML or CSV to WooCommerce](https://wordpress.org/plugins/woocommerce-xml-csv-product-import/)
+[Export Products to CSV/XML for WooCommerce](https://wordpress.org/plugins/product-export-for-woocommerce/)
+[Custom Product Tabs for WooCommerce WP All Import Add-on](https://wordpress.org/plugins/custom-product-tabs-wp-all-import-add-on/)
+[Export Orders to CSV/XML for WooCommerce](https://wordpress.org/plugins/order-export-for-woocommerce/)
+[Export WordPress Users to CSV/XML](https://wordpress.org/plugins/export-wp-users-xml-csv/)
+
 == Premium Support ==
 Support for the free version of WP All Import is handled through the WordPress.org community forums.
 
@@ -104,6 +112,24 @@ Does it work with special character encoding like Hebrew, Arabic, Chinese, etc?
 4. Manage imports.
 
 == Changelog ==
+
+= 3.6.8 =
+* security improvement
+
+= 3.6.7 =
+* security improvement
+* improvement: changed Manage Imports page button labels to be more precise
+* improvement: assign 'Uncategorized' term to posts imported without a category assigned
+* improvement: add support for taxonomies that return objects instead of IDs
+* improvement: remove commented code that could cause false positives for security scans
+* bug fix: jQuery error related to 'destroy' method
+* bug fix: rare issue that prevented content image URLs from being updated during import
+* bug fix: taxonomies section drag and drop doesn't save after rearranging fields
+* bug fix: conflict with Advanced Ads plugin
+* bug fix: 'Instead of deletion, set missing records to out of stock' still deleting products
+
+= 3.6.6 =
+* bug fix: jQuery nestedSortable compatibility with WordPress 5.9
 
 = 3.6.5 =
 * improvement: better sanitization and escaping of data in WP All Import interface

@@ -27,6 +27,8 @@ class Responsive_Lightbox_Tour {
 	/**
 	 * Initialize tour.
 	 *
+	 * @global string $pagenow
+	 *
 	 * @return void
 	 */
 	public function init_tour() {
@@ -54,6 +56,8 @@ class Responsive_Lightbox_Tour {
 
 	/**
 	 * Add temporary admin menu.
+	 *
+	 * @global string $pagenow
 	 *
 	 * @return void
 	 */
@@ -86,6 +90,8 @@ class Responsive_Lightbox_Tour {
 
 	/**
 	 * Load the introduction tour.
+	 *
+	 * @global string $pagenow
 	 *
 	 * @return void
 	 */
@@ -156,21 +162,12 @@ class Responsive_Lightbox_Tour {
 				);
 			// lightboxes
 			} elseif ( $_GET['page'] === 'responsive-lightbox-configuration' ) {
-				// get additional plugins based on tabs
-				$plugins = array_values( array_diff( array_keys( $rl->settings->tabs ), array( 'settings', 'configuration', 'gallery', 'builder', 'folders', 'remote_library', 'capabilities', 'licenses', 'addons' ) ) );
-
-				if ( ! empty( $plugins ) ) {
-					// get first plugin tab key
-					$plugin_key = $plugins[0];
-				} else
-					$plugin_key = 'gallery';
-
 				$pointer = array(
 					'content'	 => '<h3>' . __( 'Lightboxes Settings', 'responsive-lightbox' ) . '</h3>' .
 					'<p>' . __( 'Each lightbox has different look, possibilities and parameters. Here is a list of available lightbox effects along with their settings. After entering the tab you can see the settings of the currently selected lightbox, but you can also modify or restore the settings of the others.', 'responsive-lightbox' ) . '</p>',
 					'button2'	 => __( 'Next', 'responsive-lightbox' ),
 					'id'		 => '#wpbody-content .wrap .nav-tab-active',
-					'function'	 => 'window.location="' . admin_url( 'admin.php?page=responsive-lightbox-' . $plugin_key ) . '";'
+					'function'	 => 'window.location="' . admin_url( 'admin.php?page=responsive-lightbox-gallery' ) . '";'
 				);
 			// galleries
 			} elseif ( $_GET['page'] === 'responsive-lightbox-gallery' ) {
@@ -210,12 +207,21 @@ class Responsive_Lightbox_Tour {
 				);
 			// remote library
 			} elseif ( $_GET['page'] === 'responsive-lightbox-remote_library' ) {
+				// get additional plugins based on tabs
+				$plugins = array_values( array_diff( array_keys( $rl->settings->tabs ), array( 'settings', 'configuration', 'gallery', 'builder', 'folders', 'remote_library', 'capabilities', 'licenses', 'addons' ) ) );
+
+				if ( ! empty( $plugins ) ) {
+					// get first plugin tab key
+					$plugin_key = $plugins[0];
+				} else
+					$plugin_key = 'addons';
+
 				$pointer = array(
 					'content'	 => '<h3>' . __( 'Remote Library Settings', 'responsive-lightbox' ) . '</h3>' .
 					'<p>' . __( 'Are you looking for free royalty free public domain and CC0-Licensed images for your website? Or you need to access your images stored in photo-sharing apps? Remote Library allows you to use images from multiple sources like Unsplash, Pixabay, Flickr or Instagram directly in your WordPress Media Manager. Now you can create galleries, browse, insert and import images as never before.', 'responsive-lightbox' ) . '</p>',
 					'button2'	 => __( 'Next', 'responsive-lightbox' ),
 					'id'		 => '#wpbody-content .wrap .nav-tab-active',
-					'function'	 => 'window.location="' . admin_url( 'admin.php?page=responsive-lightbox-' . ( ! empty( $rl->settings->tabs['licenses'] ) ? 'licenses' : 'addons' ) ) . '";'
+					'function'	 => 'window.location="' . admin_url( 'admin.php?page=responsive-lightbox-' . $plugin_key ) . '";'
 				);
 
 			// licenses

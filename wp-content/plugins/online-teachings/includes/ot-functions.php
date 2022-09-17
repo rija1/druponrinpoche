@@ -1427,7 +1427,7 @@ function account_pre_update_profile_newsletter_subscription($changes, $user_id)
 
     // If one of the checkboxes is ticked user must be subscribed to our list
     if($newsletterSubs || $emailNotifSubs) {
-        subscribeNewMchimpUser($email);
+        //subscribeNewMchimpUser($email);
     }
 
     if ($userObject = userMchimpExists($email)) {
@@ -1501,38 +1501,38 @@ function isUserMchimpTag($email,$tag) {
 
 
 function getMchimpMarketingConnClient() {
-    require_once __DIR__ . '/lib/mailchimp-marketing-php/vendor/autoload.php';
+    // require_once __DIR__ . '/lib/mailchimp-marketing-php/vendor/autoload.php';
 
-    $client = new MailchimpMarketing\ApiClient();
-    $client->setConfig([
-        'apiKey' => MCHIMP_API_KEY,
-        'server' => MCHIMP_SVR_PREF,
-    ]);
+    // $client = new MailchimpMarketing\ApiClient();
+    // $client->setConfig([
+    //     'apiKey' => MCHIMP_API_KEY,
+    //     'server' => MCHIMP_SVR_PREF,
+    // ]);
 
-    return $client;
+    // return $client;
 }
 
 function userMchimpExists($email) {
 
-    $client = getMchimpMarketingConnClient();
+//     $client = getMchimpMarketingConnClient();
     
-try {
+// try {
     
-    $response = $client->lists->getListMember(MCHIMP_LIST_ID, md5(strtolower($email)));
+//     $response = $client->lists->getListMember(MCHIMP_LIST_ID, md5(strtolower($email)));
     
-} catch (GuzzleHttp\Exception\ClientException $e) {
-    // 404 error means user is not found
-      if($e->getCode()=='404') {
-          return false;
-      }
-}
+// } catch (GuzzleHttp\Exception\ClientException $e) {
+//     // 404 error means user is not found
+//       if($e->getCode()=='404') {
+//           return false;
+//       }
+// }
 
-// ID is found, user exists
-if(!empty($response->id)) {
-    return $response;
-}
+// // ID is found, user exists
+// if(!empty($response->id)) {
+//     return $response;
+// }
 
-return false;
+// return false;
 
 }
 

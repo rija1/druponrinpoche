@@ -17,15 +17,19 @@
     border: 0 solid #e5e7eb;
 }
 .extendify .button-focus {
-    @apply focus:ring-wp focus:ring-wp-theme-500 outline-none focus:shadow-none;
+    @apply outline-none focus:shadow-none focus:ring-wp focus:ring-wp-theme-500;
 }
 .extendify select.button-focus,
 .extendify input.button-focus {
-    @apply focus:border-transparent focus:outline-none focus:shadow-none;
+    @apply focus:outline-none focus:border-transparent focus:shadow-none;
+}
+
+div.extendify button.extendify-skip-to-sr-link:focus {
+    @apply fixed top-0 z-high bg-white p-4;
 }
 
 .button-extendify-main {
-    @apply bg-extendify-main button-focus cursor-pointer transition duration-200 p-1.5 px-3 text-white hover:text-white no-underline hover:bg-extendify-main-dark active:bg-gray-900 active:text-white focus:text-white whitespace-nowrap rounded text-base;
+    @apply button-focus cursor-pointer whitespace-nowrap rounded bg-extendify-main p-1.5 px-3 text-base text-white no-underline transition duration-200 hover:bg-extendify-main-dark hover:text-white focus:text-white active:bg-gray-900 active:text-white;
 }
 #extendify-search-input:focus ~ svg,
 #extendify-search-input:not(:placeholder-shown) ~ svg {
@@ -49,18 +53,6 @@
 .block-editor-block-preview__content
     .block-editor-block-list__layout.is-root-container
     > .ext {
-    @apply max-w-none;
-}
-
-/* Ensure our patterns display fullwidth on old themes + < 5.9 */
-.block-editor-block-list__layout.is-root-container
-    .ext.block-editor-block-list__block {
-    @apply max-w-full;
-}
-
-.block-editor-block-preview__content-iframe
-    .block-editor-block-list__layout.is-root-container
-    .ext.block-editor-block-list__block {
     @apply max-w-none;
 }
 
@@ -113,24 +105,8 @@
 }
 
 /* Style contentType/pageType control in sidebar */
-.components-panel__body.ext-type-control .components-panel__body-toggle {
-    @apply pl-0 pr-0;
-}
-
 .components-panel__body.ext-type-control .components-panel__body-title {
-    @apply m-0 border-b-0 px-5;
-}
-
-.components-panel__body.ext-type-control
-    .components-panel__body-title
-    .components-button {
-    @apply m-0 border-b-0 text-extendify-gray py-2 uppercase font-medium text-xss;
-}
-
-.components-panel__body.ext-type-control
-    .components-button
-    .components-panel__arrow {
-    @apply right-0 text-extendify-gray;
+    @apply my-0 -mx-4 border-b-0 px-5;
 }
 
 .extendify .animate-pulse {
@@ -150,9 +126,26 @@
 .is-template--inactive::before,
 .is-template--in-review::before {
     content: "";
-    @apply absolute w-full h-full top-0 left-0 bottom-0 right-0 z-40 border-solid border-8 border-extendify-secondary;
+    @apply absolute top-0 left-0 bottom-0 right-0 z-40 h-full w-full border-8 border-solid border-extendify-secondary;
 }
 
 .is-template--inactive::before {
     border-color: #fdeab6;
+}
+
+.extendify-tooltip-default:not(.is-without-arrow)[data-y-axis="bottom"]::after {
+    border-bottom-color: #1e1e1e;
+}
+.extendify-tooltip-default:not(.is-without-arrow)::before {
+    @apply border-transparent;
+}
+.extendify-tooltip-default:not(.is-without-arrow) .components-popover__content {
+    min-width: 250px;
+    @apply border-transparent bg-gray-900 p-4 text-white;
+}
+.extendify-bottom-arrow::after {
+    content: "";
+    bottom: -15px;
+    @apply absolute inline-block h-0 w-0 -translate-y-px transform border-8 border-transparent;
+    border-top-color: #1e1e1e !important;
 }

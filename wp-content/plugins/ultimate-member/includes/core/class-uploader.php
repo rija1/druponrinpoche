@@ -383,7 +383,7 @@ if ( ! class_exists( 'um\core\Uploader' ) ) {
 				  ?>
 				 */
 				$movefile = apply_filters( 'um_upload_image_result', $movefile, $user_id, $field_data );
-				
+
 				/**
 				 * Resize and compress images uploaded by the field "Image Upload" without crop.
 				 * Resize and compress images uploaded on Activity wall and Group Discussion wall.
@@ -1352,13 +1352,16 @@ if ( ! class_exists( 'um\core\Uploader' ) ) {
 			$_array = $new_files;
 			if ( ! empty( UM()->builtin()->custom_fields ) ) {
 				foreach ( UM()->builtin()->custom_fields as $_field ) {
-					if ( in_array( $_field['type'], array( 'file', 'image' ) ) && isset( $user_meta_keys[$_field['metakey']] ) && empty( $_array[$_field['metakey']] ) ) {
-						$_array[$_field['metakey']] = $user_meta_keys[$_field['metakey']];
+					if ( ! array_key_exists( 'type', $_field ) ) {
+						continue;
+					}
+					if ( in_array( $_field['type'], array( 'file', 'image' ), true ) && isset( $user_meta_keys[ $_field['metakey'] ] ) && empty( $_array[ $_field['metakey'] ] ) ) {
+						$_array[ $_field['metakey'] ] = $user_meta_keys[ $_field['metakey'] ];
 					}
 				}
 			}
 
-			$files = glob( UM()->uploader()->get_upload_base_dir() . $user_id . DIRECTORY_SEPARATOR . '*', GLOB_BRACE );
+			$files = glob( UM()->uploader()->get_upload_base_dir() . $user_id . DIRECTORY_SEPARATOR . '*' );
 			if ( ! empty( $files ) ) {
 				foreach ( $files as $file ) {
 					$str = basename( $file );

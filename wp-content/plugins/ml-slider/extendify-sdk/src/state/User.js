@@ -1,29 +1,33 @@
+import { sample } from 'lodash'
 import create from 'zustand'
 import { persist } from 'zustand/middleware'
-import { User } from '../api/User'
+import { User } from '@extendify/api/User'
 
 const storage = {
     getItem: async () => await User.getData(),
     setItem: async (_name, value) => await User.setData(value),
-    removeItem: () => {},
+    removeItem: async () => await User.deleteData(),
 }
 
 const isGlobalLibraryEnabled = () =>
     window.extendifyData.sitesettings === null ||
     window.extendifyData?.sitesettings?.state?.enabled
 
+// Keep track of active tests as some might be active
+// but never rendered.
+const activeTests = {
+    ['main-button-text2']: '0007',
+}
+
 export const useUserStore = create(
     persist(
         (set, get) => ({
+            _hasHydrated: false,
             firstLoadedOn: new Date().toISOString(),
             email: '',
             apiKey: '',
             uuid: '',
             sdkPartner: '',
-            registration: {
-                email: '',
-                optedOut: false,
-            },
             noticesDismissedAt: {},
             modalNoticesDismissedAt: {},
             imports: 0, // total imports over time
@@ -34,13 +38,11 @@ export const useUserStore = create(
             enabled: isGlobalLibraryEnabled(),
             canInstallPlugins: false,
             canActivatePlugins: false,
+            participatingTestsGroups: {},
             preferredOptions: {
                 taxonomies: {},
                 type: '',
                 search: '',
-            },
-            preferredOptionsHistory: {
-                siteType: [],
             },
             incrementImports: () => {
                 // If the user has freebie imports, use those first
@@ -65,6 +67,36 @@ export const useUserStore = create(
                     Number(get().allowedImports) + Number(get().freebieImports)
                 )
             },
+            testGroup(testKey, groupOptions) {
+                if (!Object.keys(activeTests).includes(testKey)) return
+                let groups = get().participatingTestsGroups
+                // If the test is already in the group, don't add it again
+                if (!groups[testKey]) {
+                    set({
+                        participatingTestsGroups: Object.assign({}, groups, {
+                            [testKey]: sample(groupOptions),
+                        }),
+                    })
+                }
+                groups = get().participatingTestsGroups
+                return groups[testKey]
+            },
+            activeTestGroups() {
+                return Object.entries(get().participatingTestsGroups)
+                    .filter(([key]) => Object.keys(activeTests).includes(key))
+                    .reduce((obj, [key, value]) => {
+                        obj[key] = value
+                        return obj
+                    }, {})
+            },
+            activeTestGroupsUtmValue() {
+                const active = Object.entries(get().activeTestGroups())
+                    .map(([key, value]) => {
+                        return `${activeTests[key]}=${value}`
+                    }, '')
+                    .join(':')
+                return encodeURIComponent(active)
+            },
             hasAvailableImports: () => {
                 return get().apiKey
                     ? true
@@ -76,7 +108,7 @@ export const useUserStore = create(
                     Number(get().totalAvailableImports()) -
                     Number(get().runningImports)
                 // If they have no allowed imports, this might be a first load
-                // where it's just fetching templates (and/or their max alllowed)
+                // where it's just fetching templates (and/or their max allowed)
                 if (!get().allowedImports) {
                     return null
                 }
@@ -84,20 +116,6 @@ export const useUserStore = create(
             },
             updatePreferredSiteType: (value) => {
                 get().updatePreferredOption('siteType', value)
-                if (!value?.slug || value.slug === 'unknown') return
-                const current = get().preferredOptionsHistory?.siteType ?? []
-
-                // If the site type isn't already included, prepend it
-                if (!current.find((t) => t.slug === value.slug)) {
-                    const siteType = [value, ...current]
-                    set({
-                        preferredOptionsHistory: Object.assign(
-                            {},
-                            get().preferredOptionsHistory,
-                            { siteType: siteType.slice(0, 3) },
-                        ),
-                    })
-                }
             },
             updatePreferredOption: (option, value) => {
                 // If the option doesn't exist, assume it's a taxonomy
@@ -136,6 +154,13 @@ export const useUserStore = create(
         {
             name: 'extendify-user',
             getStorage: () => storage,
+            onRehydrateStorage: () => () => {
+                useUserStore.setState({ _hasHydrated: true })
+            },
+            partialize: (state) => {
+                delete state._hasHydrated
+                return state
+            },
         },
     ),
 )

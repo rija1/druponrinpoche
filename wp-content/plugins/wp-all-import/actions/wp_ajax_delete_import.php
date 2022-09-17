@@ -53,13 +53,13 @@ function pmxi_wp_ajax_delete_import(){
 	}
 
 	if ( $params['is_delete_import'] and ! $params['is_delete_posts'] ) {
-		$response['redirect'] = add_query_arg('pmxi_nt', urlencode(__('Import deleted', 'wp_all_import_plugin')), $params['base_url']);
+		$response['redirect'] = esc_url_raw(add_query_arg('pmxi_nt', urlencode(__('Import deleted', 'wp_all_import_plugin')), $params['base_url']));
 	} elseif( ! $params['is_delete_import'] and $params['is_delete_posts']) {
-		$response['redirect'] = add_query_arg('pmxi_nt', urlencode(sprintf(__('All associated %s deleted.', 'wp_all_import_plugin'), $cpt_name)), $params['base_url']);
+		$response['redirect'] = esc_url_raw(add_query_arg('pmxi_nt', urlencode(sprintf(__('All associated %s deleted.', 'wp_all_import_plugin'), $cpt_name)), $params['base_url']));
 	} elseif( $params['is_delete_import'] and $params['is_delete_posts']) {
-		$response['redirect'] = add_query_arg('pmxi_nt', urlencode(sprintf(__('Import and all associated %s deleted.', 'wp_all_import_plugin'), $cpt_name)), $params['base_url']);
+		$response['redirect'] = esc_url_raw(add_query_arg('pmxi_nt', urlencode(sprintf(__('Import and all associated %s deleted.', 'wp_all_import_plugin'), $cpt_name)), $params['base_url']));
 	} else {
-		$response['redirect'] = add_query_arg('pmxi_nt', urlencode(__('Nothing to delete.', 'wp_all_import_plugin')), $params['base_url']);
+		$response['redirect'] = esc_url_raw(add_query_arg('pmxi_nt', urlencode(__('Nothing to delete.', 'wp_all_import_plugin')), $params['base_url']));
 		exit( json_encode( $response ));
 	}
 

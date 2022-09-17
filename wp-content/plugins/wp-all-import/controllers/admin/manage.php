@@ -96,9 +96,9 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 			}
 		}
 		if ( ! empty($import->options['custom_type']) && $import->options['custom_type'] == 'shop_order') {
-			wp_redirect(add_query_arg(array('id' => $import->id, 'action' => 'edit'), $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg(array('id' => $import->id, 'action' => 'edit'), $this->baseUrl))); die();
 		} else {
-			wp_redirect(add_query_arg(array('id' => $import->id, 'action' => 'options'), $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg(array('id' => $import->id, 'action' => 'options'), $this->baseUrl))); die();
 		}
 	}
 
@@ -124,7 +124,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
                     'deleted'  => 0
                 ))->save();
             }
-            wp_redirect(add_query_arg(array('id' => $import->id, 'action' => 'update'), $this->baseUrl)); die();
+            wp_redirect(esc_url_raw(add_query_arg(array('id' => $import->id, 'action' => 'update'), $this->baseUrl))); die();
         }
     }
 
@@ -297,7 +297,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 		$this->data['cron_job_key'] = PMXI_Plugin::getInstance()->getOption('cron_job_key');
 		$this->data['item'] = $item = new PMXI_Import_Record();
 		if ( ! $id or $item->getById($id)->isEmpty()) {
-			wp_redirect($this->baseUrl); die();
+			wp_redirect(esc_url_raw($this->baseUrl)); die();
 		}
 
 		$this->render();
@@ -319,7 +319,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 
 			$item = new PMXI_Import_Record();
 			if ( ! $id or $item->getById($id)->isEmpty()) {
-				wp_redirect($this->baseUrl); die();
+				wp_redirect(esc_url_raw($this->baseUrl)); die();
 			}
 			$item->set(array(
 				'triggered'   => 0,
@@ -329,7 +329,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 				'canceled_on' => date('Y-m-d H:i:s')
 			))->update();		
 
-			wp_redirect(add_query_arg('pmxi_nt', urlencode(__('Import canceled', 'wp_all_import_plugin')), $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode(__('Import canceled', 'wp_all_import_plugin')), $this->baseUrl))); die();
 		}
 	}
 	
@@ -346,7 +346,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 
 		$this->data['import'] = $item = new PMXI_Import_Record();
 		if ( ! $id or $item->getById($id)->isEmpty()) {
-			wp_redirect($this->baseUrl); die();
+			wp_redirect(esc_url_raw($this->baseUrl)); die();
 		}				
 
 		$this->data['isWizard'] = false;
@@ -546,7 +546,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 			}
 			else
 			{			
-				wp_redirect(add_query_arg(array('pmxi_nt' => urlencode(__('File does not exist.', 'wp_all_import_plugin'))), $this->baseUrl)); die();
+				wp_redirect(esc_url_raw(add_query_arg(array('pmxi_nt' => urlencode(__('File does not exist.', 'wp_all_import_plugin'))), $this->baseUrl))); die();
 			}
 		}
 	}
@@ -558,7 +558,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 		$id = $this->input->get('id');
 		$this->data['item'] = $item = new PMXI_Import_Record();
 		if ( ! $id or $item->getById($id)->isEmpty()) {
-			wp_redirect($this->baseUrl); die();
+			wp_redirect(esc_url_raw($this->baseUrl)); die();
 		}
 		
 		if ($this->input->post('is_confirmed')) {
@@ -570,7 +570,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 			$is_delete_posts = $this->input->post('is_delete_posts', false);
 
 			if ( ! $is_delete_import and ! $is_delete_posts ){
-				wp_redirect(add_query_arg('pmxi_nt', urlencode(__('Nothing to delete.', 'wp_all_import_plugin')), $this->baseUrl)); die();
+				wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode(__('Nothing to delete.', 'wp_all_import_plugin')), $this->baseUrl))); die();
 			}
 
 			do_action('pmxi_before_import_delete', $item, $is_delete_posts);			
@@ -592,7 +592,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 				$redirect_msg = __('Import and all associated posts deleted.', 'wp_all_import_plugin');
 			}			
 
-			wp_redirect(add_query_arg('pmxi_nt', urlencode($redirect_msg), $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode($redirect_msg), $this->baseUrl))); die();
 		}
 
 		$postList = new PMXI_Post_List();														
@@ -614,7 +614,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 		$this->data['ids'] = $ids = $this->input->post('items');
 		$this->data['items'] = $items = new PMXI_Import_List();
 		if (empty($action) or ! in_array($action, array('delete')) or empty($ids) or $items->getBy('id', $ids)->isEmpty()) {
-			wp_redirect($this->baseUrl); die();
+			wp_redirect(esc_url_raw($this->baseUrl)); die();
 		}
 		
 		if ($this->input->post('is_confirmed')) {
@@ -625,7 +625,7 @@ class PMXI_Admin_Manage extends PMXI_Controller_Admin {
 				$item->delete( ! $is_delete_posts, $is_deleted_images, $is_delete_attachments );
 			}
 			
-			wp_redirect(add_query_arg('pmxi_nt', urlencode(sprintf(__('%d %s deleted', 'wp_all_import_plugin'), $items->count(), _n('import', 'imports', $items->count(), 'wp_all_import_plugin'))), $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode(sprintf(__('%d %s deleted', 'wp_all_import_plugin'), $items->count(), _n('import', 'imports', $items->count(), 'wp_all_import_plugin'))), $this->baseUrl))); die();
 		}
 		
 		$this->render();

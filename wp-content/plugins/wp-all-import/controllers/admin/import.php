@@ -16,7 +16,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			$id = $this->input->get('id');
 			$this->data['import'] = $import = new PMXI_Import_Record();			
 			if ( ! $id or $import->getById($id)->isEmpty()) { // specified import is not found
-				wp_redirect(add_query_arg('page', 'pmxi-admin-manage', admin_url('admin.php'))); die();
+				wp_redirect(esc_url_raw(add_query_arg('page', 'pmxi-admin-manage', admin_url('admin.php')))); die();
 			}
 			$this->isWizard = false;
 			
@@ -70,7 +70,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		) {					
 			if ( ! PMXI_Plugin::is_ajax() ){
 				$this->errors->add('form-validation', __('WP All Import lost track of where you are.<br/><br/>Maybe you cleared your cookies or maybe it is just a temporary issue on your or your web host\'s end.', 'wp_all_import_plugin'));
-				wp_redirect_or_javascript($this->baseUrl); die();
+				wp_redirect_or_javascript(esc_url_raw($this->baseUrl)); die();
 			}
 		}
 
@@ -87,19 +87,19 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 
 		if ( ! PMXI_Plugin::$session->get('xpath', false) or empty($elements) or ! $elements->length) {
 			$this->errors->add('form-validation', __('There are no elements to import based on your XPath.<br/><br/>If you are in Step 2, you probably specified filtering options that don’t match any elements present in your file.<br/>If you are seeing this error elsewhere, it means that while the XPath expression for your initial import matched some elements in your file previously, there are now zero elements in the file that match this expression.<br/>You can edit the XPath for your import by going to the Manage Imports -> Import Settings page.', 'wp_all_import_plugin')); 
-			wp_redirect_or_javascript(add_query_arg('action', 'element', $this->baseUrl)); die();
+			wp_redirect_or_javascript(esc_url_raw(add_query_arg('action', 'element', $this->baseUrl))); die();
 		}
 
 		if ('template' == $action or 'preview' == $action or 'tag' == $action) return true;
 
 		// step #4: options
 		if ( empty( PMXI_Plugin::$session->options ) ) {
-			wp_redirect_or_javascript(add_query_arg('action', 'template', $this->baseUrl)); die();
+			wp_redirect_or_javascript(esc_url_raw(add_query_arg('action', 'template', $this->baseUrl))); die();
 		}
 		if ('options' == $action) return true;
 		
 		if ( empty( PMXI_Plugin::$session->options ) ) {
-			wp_redirect(add_query_arg('action', 'options', $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg('action', 'options', $this->baseUrl))); die();
 		}
 	}
 	
@@ -151,9 +151,9 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 		if ( $id ) { // update requested but corresponding import is not found
 			if ( $import->getById($id)->isEmpty() ) {
 				if ( ! empty($_GET['deligate']) and sanitize_key($_GET['deligate']) == 'wpallexport' ) {
-					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('The import associated with this export has been deleted.', 'wp_all_import_plugin')), 'updated' => urlencode(__('Please re-run your export by clicking Run Export on the All Export -> Manage Exports page. Then try your import again.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();
+					wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', array('error' => urlencode(__('The import associated with this export has been deleted.', 'wp_all_import_plugin')), 'updated' => urlencode(__('Please re-run your export by clicking Run Export on the All Export -> Manage Exports page. Then try your import again.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl)))); die();
 				} else {
-					wp_redirect(add_query_arg('pmxi_nt', array('error' => urlencode(__('This import has been deleted.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl))); die();
+					wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', array('error' => urlencode(__('This import has been deleted.', 'wp_all_import_plugin'))), remove_query_arg('id', $this->baseUrl)))); die();
 				}
 			} else {
 				$DefaultOptions['custom_type'] = $import->options['custom_type'];	
@@ -438,11 +438,11 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					$this->errors->add('upload-validation', __('Please confirm you are importing a valid feed.<br/> Often, feed providers distribute feeds with invalid data, improperly wrapped HTML, line breaks where they should not be, faulty character encodings, syntax errors in the XML, and other issues.<br/><br/>WP All Import has checks in place to automatically fix some of the most common problems, but we can’t catch every single one.<br/><br/>It is also possible that there is a bug in WP All Import, and the problem is not with the feed.<br/><br/>If you need assistance, please contact support – <a href="mailto:support@wpallimport.com">support@wpallimport.com</a> – with your XML/CSV file. We will identify the problem and release a bug fix if necessary.', 'wp_all_import_plugin')); 					
 					$this->data['upload_validation'] = true;
 				} elseif( $redirect_to_template ) {
-					wp_redirect(add_query_arg('action', 'template', $this->baseUrl)); die();
+					wp_redirect(esc_url_raw(add_query_arg('action', 'template', $this->baseUrl))); die();
 				} elseif( $post['auto_generate'] ) {
-					wp_redirect(add_query_arg('action', 'options', $this->baseUrl)); die();
+					wp_redirect(esc_url_raw(add_query_arg('action', 'options', $this->baseUrl))); die();
 				} else {
-					wp_redirect(add_query_arg('action', 'element', $this->baseUrl)); die();
+					wp_redirect(esc_url_raw(add_query_arg('action', 'element', $this->baseUrl))); die();
 				}
 			} else if ('url' == $this->input->post('type') and !empty($this->errors)) {
 				$this->errors->add('form-validation', __('WP All Import unable to detect file type.<br/><br/>WP All Import not able to determine what type of file you are importing. Make sure your file extension is correct for the file type you are importing.<br/> Please choose the correct file type from the dropdown below, or try adding &type=xml or &type=csv to the end of the URL, for example http://example.com/export-products.php?&type=xml', 'wp_all_import_plugin')); 				
@@ -487,7 +487,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 				}
 			}
 			if ( ! $this->errors->get_error_codes()) {
-				wp_redirect(apply_filters('pmxi_element_redirect' , add_query_arg('action', 'template', $this->baseUrl))); die();
+				wp_redirect(esc_url_raw(apply_filters('pmxi_element_redirect' , add_query_arg('action', 'template', $this->baseUrl)))); die();
 			}
 		} else {
 			if ( PMXI_Plugin::$session->xpath )  {
@@ -525,7 +525,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 	public function evaluate() {
 
 		if ( ! PMXI_Plugin::getInstance()->getAdminCurrentScreen()->is_ajax) { // call is only valid when send with ajax
-			wp_redirect(add_query_arg('action', 'element', $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg('action', 'element', $this->baseUrl))); die();
 		}						
 
 		// HTTP headers for no cache etc
@@ -674,7 +674,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 	 */
 	public function evaluate_variations() {
 		if ( ! PMXI_Plugin::getInstance()->getAdminCurrentScreen()->is_ajax) { // call is only valid when send with ajax
-			wp_redirect(add_query_arg('action', 'element', $this->baseUrl)); die();
+			wp_redirect(esc_url_raw(add_query_arg('action', 'element', $this->baseUrl))); die();
 		}		
 
 		$post = $this->input->post(array('xpath' => '', 'show_element' => 1, 'root_element' => (!empty(PMXI_Plugin::$session->source['root_element'])) ? PMXI_Plugin::$session->source['root_element'] : '', 'tagno' => 0, 'parent_tagno' => 1));
@@ -1612,7 +1612,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
                             PMXI_Plugin::$session->save_data();
                         }
 
-						wp_redirect(add_query_arg('action', 'options', $this->baseUrl)); die();
+						wp_redirect(esc_url_raw(add_query_arg('action', 'options', $this->baseUrl))); die();
 						
 					} else {
 						$this->data['import']->set(array( 'options' => $post, 'settings_update_on' => date('Y-m-d H:i:s')))->update();							
@@ -1624,7 +1624,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 						if ($this->warnings->get_error_codes())
 							$args['warnings'] = implode(',', $this->warnings->get_error_codes());
 							
-						wp_redirect(add_query_arg( $args + array_intersect_key($_GET, array_flip($this->baseUrlParamNames)) ,admin_url('admin.php'))); 
+						wp_redirect(esc_url_raw(add_query_arg( $args + array_intersect_key($_GET, array_flip($this->baseUrlParamNames)) ,admin_url('admin.php'))));
 						die();
 					} 
 				}				
@@ -2124,7 +2124,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					}
 
 					if ( ! $this->input->post('save_only')) { 						
-						wp_redirect(add_query_arg('action', 'confirm', $this->baseUrl)); die();
+						wp_redirect(esc_url_raw(add_query_arg('action', 'confirm', $this->baseUrl))); die();
 					} else {
 						$import = $this->data['update_previous'];
 						$is_update = ! $import->isEmpty();
@@ -2138,7 +2138,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 							)
 						)->save();
 
-						wp_redirect(add_query_arg(array('page' => 'pmxi-admin-manage', 'pmxi_nt' => urlencode($is_update ? __('Import updated', 'wp_all_import_plugin') : __('Import created', 'wp_all_import_plugin'))), admin_url('admin.php'))); die();
+						wp_redirect(esc_url_raw(add_query_arg(array('page' => 'pmxi-admin-manage', 'pmxi_nt' => urlencode($is_update ? __('Import updated', 'wp_all_import_plugin') : __('Import created', 'wp_all_import_plugin'))), admin_url('admin.php')))); die();
 					}
 
 				} else {
@@ -2234,7 +2234,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 					
 					if ( ! $this->warnings->get_error_codes()) {
 						$this->data['import']->set($source)->save();
-						wp_redirect(add_query_arg(array('page' => 'pmxi-admin-manage', 'pmxi_nt' => urlencode(__('Configuration updated', 'wp_all_import_plugin'))) + array_intersect_key($_GET, array_flip($this->baseUrlParamNames)), admin_url('admin.php'))); die();
+						wp_redirect(esc_url_raw(add_query_arg(array('page' => 'pmxi-admin-manage', 'pmxi_nt' => urlencode(__('Configuration updated', 'wp_all_import_plugin'))) + array_intersect_key($_GET, array_flip($this->baseUrlParamNames)), admin_url('admin.php')))); die();
 					} else {
 						$source['root_element'] = $upload_result['root_element'];
 						PMXI_Plugin::$session->set('source', $source);
@@ -2373,7 +2373,7 @@ class PMXI_Admin_Import extends PMXI_Controller_Admin {
 			}
 
 			if ( ! $this->errors->get_error_codes()) { // no validation errors found	
-				wp_redirect(add_query_arg('action', 'process', $this->baseUrl)); die();
+				wp_redirect(esc_url_raw(add_query_arg('action', 'process', $this->baseUrl))); die();
 			}
 
 		}		

@@ -8,14 +8,15 @@ class Meow_WPMC_Core {
 	public $is_pro = false;
 	public $engine = null;
 	public $catch_timeout = true; // This will halt the plugin before reaching the PHP timeout.
-	private $regex_file = '/[A-Za-z0-9-_,.\(\)\s]+[.]{1}(MIMETYPES)/';
 	public $types = "jpg|jpeg|jpe|gif|png|tiff|bmp|csv|svg|pdf|xls|xlsx|doc|docx|odt|wpd|rtf|tiff|mp3|mp4|mov|wav|lua";
 	public $current_method = 'media';
-	private $refcache = array();
 	public $servername = null; // meowapps.com (site URL without http/https)
 	public $site_url = null; // https://meowapps.com
 	public $upload_path = null; // /www/wp-content/uploads (path to uploads)
 	public $upload_url = null; // wp-content/uploads (uploads without domain)
+
+	private $regex_file = '/[A-Za-z0-9-_,.\(\)\s]+[.]{1}(MIMETYPES)/';
+	private $refcache = array();
 	private $check_content = null;
 	private $debug_logs = null;
 	private $multilingual = false;
@@ -24,6 +25,8 @@ class Meow_WPMC_Core {
 	public function __construct() {
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'delete_attachment', array( $this, 'delete_or_trash_attachment' ), 10, 1 );
+		add_action( 'trashed_post', array( $this, 'delete_or_trash_attachment' ), 10, 1 );
 	}
 
 	function plugins_loaded() {
@@ -139,6 +142,12 @@ class Meow_WPMC_Core {
 		}
 	}
 
+	function delete_or_trash_attachment( $post_id ) {
+		global $wpdb;
+		$table_name = $wpdb->prefix . "mclean_scan";
+		$wpdb->query( $wpdb->prepare( "DELETE FROM $table_name WHERE postId = %d", $post_id ) );
+	}
+
 	function timeout_check_additem() {
 		$this->items_checked++;
 		$this->time_elapsed = time() - $this->start_time;
@@ -191,6 +200,45 @@ class Meow_WPMC_Core {
 			$url = $vals['company_logo'];
 			if ( $this->is_url( $url ) )
 				return $this->clean_url( $url );
+		}
+	}
+
+	function get_shortcode_attributes( $shortcode_tag, $post ) {
+		if ( has_shortcode( $post->post_content, $shortcode_tag ) ) {
+			$output = array();
+			//get shortcode regex pattern wordpress function
+			$pattern = get_shortcode_regex( [ $shortcode_tag ] );
+			if (   preg_match_all( '/'. $pattern .'/s', $post->post_content, $matches ) )
+			{
+					$keys = array();
+					$output = array();
+					foreach( $matches[0] as $key => $value) {
+							// $matches[3] return the shortcode attribute as string
+							// replace space with '&' for parse_str() function
+							$get = str_replace(" ", "&" , trim( $matches[3][$key] ) );
+							$get = str_replace('"', '' , $get );
+							parse_str( $get, $sub_output );
+
+							//get all shortcode attribute keys
+							$keys = array_unique( array_merge(  $keys, array_keys( $sub_output )) );
+							$output[] = $sub_output;
+					}
+					if ( $keys && $output ) {
+							// Loop the output array and add the missing shortcode attribute key
+							foreach ($output as $key => $value) {
+									// Loop the shortcode attribute key
+									foreach ($keys as $attr_key) {
+											$output[$key][$attr_key] = isset( $output[$key] )  && isset( $output[$key] ) ? $output[$key][$attr_key] : NULL;
+									}
+									//sort the array key
+									ksort( $output[$key]);
+							}
+					}
+			}
+			return $output;
+		}
+		else {
+				return false;
 		}
 	}
 
@@ -259,7 +307,7 @@ class Meow_WPMC_Core {
 				$iframe_doc = new DOMDocument();
 				// Load the url's contents into the DOM
 				libxml_use_internal_errors( true ); // ignore html formatting problems
-				$rslt = $iframe_doc->loadHTMLFile( $iframe_src );
+				$rslt = @$iframe_doc->loadHTMLFile( $iframe_src );
 				libxml_clear_errors();
 				libxml_use_internal_errors( false );
 				if ( $rslt ) {
@@ -314,6 +362,14 @@ class Meow_WPMC_Core {
     	array_push( $results, $src );
 		}
 
+		// Sources: src
+		$audios = $dom->getElementsByTagName( 'source' );
+		foreach ( $audios as $audio ) {
+			//error_log($audio->getAttribute('src'));
+			$src = $this->clean_url( $audio->getAttribute('src') );
+    	array_push( $results, $src );
+		}
+
 		// Links, href
 		$urls = $dom->getElementsByTagName( 'a' );
 		foreach ( $urls as $url ) {
@@ -361,6 +417,9 @@ class Meow_WPMC_Core {
 	// Parse a meta, visit all the arrays, look for the attributes, fill $ids and $urls arrays
 	// If rawMode is enabled, it will not check if the value is an ID or an URL, it will just returns it in URLs
 	function get_from_meta( $meta, $lookFor, &$ids, &$urls, $rawMode = false ) {
+		if ( !is_array( $meta ) && !is_object( $meta) ) {
+			return;
+		}
 		foreach ( $meta as $key => $value ) {
 			if ( is_object( $value ) || is_array( $value ) )
 				$this->get_from_meta( $value, $lookFor, $ids, $urls, $rawMode );
@@ -573,7 +632,7 @@ class Meow_WPMC_Core {
 					error_log( "Media Cleaner: Could not recover $path." );
 				}
 			}
-			if ( !wp_untrash_post( $issue->postId ) ) {
+			if ( !wp_update_post( array( 'ID' => $issue->postId, 'post_type' => 'attachment' ) ) ) {
 				$this->log( "🚫 Failed to Untrash Post {$issue->postId} (but deleted it from Cleaner DB)." );
 				error_log( "Media Cleaner: Failed to Untrash Post {$issue->postId} (but deleted it from Cleaner DB)." );
 				return false;
@@ -666,13 +725,14 @@ class Meow_WPMC_Core {
 		$regex = "^(.*)(\\s\\(\\+.*)$";
 		$issue->path = preg_replace( '/' . $regex . '/i', '$1', $issue->path ); // remove " (+ 6 files)" from path
 
+		// Commented on 2022/03/15: This is probably not needed, and slows down deletion
 		// Make sure there isn't a media DB entry
-		if ( $issue->type == 0 ) {
-			$attachmentid = $this->find_media_id_from_file( $issue->path, true );
-			if ( $attachmentid ) {
-				$this->log( "🚫 Issue listed as filesystem but Media {$attachmentid} exists." );
-			}
-		}
+		// if ( $issue->type == 0 ) {
+		// 	$attachmentid = $this->find_media_id_from_file( $issue->path, true );
+		// 	if ( $attachmentid ) {
+		// 		$this->log( "🚫 Issue listed as filesystem but Media {$attachmentid} exists." );
+		// 	}
+		// }
 
 		if ( $issue->type == 0 ) {
 
@@ -696,7 +756,7 @@ class Meow_WPMC_Core {
 		}
 
 		if ( $issue->type == 1 ) {
-			if ( $issue->deleted == 0 && MEDIA_TRASH ) {
+			if ( $issue->deleted == 0 ) {
 				// Move Media to trash
 				// Let's copy the images to the trash so that it can be recovered.
 				$paths = $this->get_paths_from_attachment( $issue->postId );
@@ -706,15 +766,15 @@ class Meow_WPMC_Core {
 						error_log( "Media Cleaner: Could not trash $path." );
 					}
 				}
-				wp_delete_attachment( $issue->postId, false );
+				wp_update_post( array( 'ID' => $issue->postId, 'post_type' => 'wmpc-trash' ) );
 				$wpdb->query( $wpdb->prepare( "UPDATE $table_name SET deleted = 1, ignored = 0 WHERE id = %d", $id ) );
 				return true;
 			}
 			else {
 				// Trash Media definitely by recovering it (to be like a normal Media) and remove it through the
 				// standard WordPress workflow
-				if ( MEDIA_TRASH )
-					$this->recover( $id );
+				$this->recover( $id );
+				wp_update_post( array( 'ID' => $issue->postId, 'post_type' => 'attachment' ) );
 				wp_delete_attachment( $issue->postId, true );
 				$wpdb->query( $wpdb->prepare( "DELETE FROM $table_name WHERE id = %d", $id ) );
 				return true;

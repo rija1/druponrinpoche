@@ -12,49 +12,21 @@ export function useIsMounted() {
 
 export const useIsDevMode = () => {
     const [devMode, setDevMode] = useState(false)
-    const handle = () => {
-        setDevMode(window.location.search.indexOf('DEVMODE') > -1)
+    const check = () => {
+        return (
+            window.location.search.indexOf('DEVMODE') > -1 ||
+            window.location.search.indexOf('LOCALMODE') > -1
+        )
     }
     useEffect(() => {
-        setDevMode(window.location.search.indexOf('DEVMODE') > -1)
+        const handle = () => setDevMode(check())
+        handle()
         window.addEventListener('popstate', handle)
         return () => {
             window.removeEventListener('popstate', handle)
         }
     }, [])
     return devMode
-}
-
-export const useWhenIdle = (time) => {
-    const [userInteracted, setUserInteracted] = useState(true)
-    const [idle, setIdle] = useState(false)
-    const isMounted = useIsMounted()
-    const timerId = useRef()
-
-    useEffect(() => {
-        const handleMovement = () => setUserInteracted(true)
-        const passive = { passive: true }
-        window.addEventListener('keydown', handleMovement, passive)
-        window.addEventListener('mousemove', handleMovement, passive)
-        window.addEventListener('touchmove', handleMovement, passive)
-        return () => {
-            window.removeEventListener('keydown', handleMovement)
-            window.removeEventListener('mousemove', handleMovement)
-            window.removeEventListener('touchmove', handleMovement)
-        }
-    }, [])
-
-    useEffect(() => {
-        if (!userInteracted) return
-        setUserInteracted(false)
-        setIdle(false)
-        window.clearTimeout(timerId.current)
-        timerId.current = window.setTimeout(() => {
-            isMounted.current && setIdle(true)
-        }, time)
-    }, [userInteracted, time, isMounted])
-
-    return idle
 }
 
 /** Dev debugging tool to identify leaky renders: https://usehooks.com/useWhyDidYouUpdate/ */

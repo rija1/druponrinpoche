@@ -482,7 +482,7 @@ if ( ! class_exists( 'um\Config' ) ) {
 					                   '{user_profile_link}<br /><br />' .
 					                   'Here is the submitted registration form:<br /><br />' .
 					                   '{submitted_registration}',
-					'description'   => __('Whether to receive notification when a new user account is approved','ultimate-member'),
+					'description'   => __('Whether to receive notification when a new user account is created','ultimate-member'),
 					'recipient'   => 'admin',
 					'default_active' => true
 				),
@@ -555,6 +555,8 @@ if ( ! class_exists( 'um\Config' ) ) {
 				'reset_password_limit_number'           => 3,
 				'blocked_emails'                        => '',
 				'blocked_words'                         => 'admin' . "\r\n" . 'administrator' . "\r\n" . 'webmaster' . "\r\n" . 'support' . "\r\n" . 'staff',
+				'allowed_choice_callbacks'              => '',
+				'allow_url_redirect_confirm'            => 1,
 				'default_avatar'                        => '',
 				'default_cover'                         => '',
 				'disable_profile_photo_upload'          => 0,

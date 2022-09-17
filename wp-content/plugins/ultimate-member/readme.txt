@@ -6,8 +6,8 @@ Donate link:
 Tags: community, member, membership, user-profile, user-registration
 Requires PHP: 5.6
 Requires at least: 5.0
-Tested up to: 5.8
-Stable tag: 2.3.0
+Tested up to: 6.0
+Stable tag: 2.4.2
 License: GNU Version 2 or Any Later Version
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -133,6 +133,14 @@ Yes. Ultimate Member will work with any properly coded theme. However, some them
 
 The plugin works with popular caching plugins by automatically excluding Ultimate Member pages from being cached. This ensures other visitors to a page will not see the private information of another user. However, if you add features of Ultimate Member to other pages you have to exclude those pages from being cached through your cache plugin settings panel. 
 
+= Does Ultimate Member restrict access to wp-login.php when the plugin is active? =
+
+The plugin does not restrict access to the wp-login.php page when active, so that our plugin does not interfere with the existing functionality of a website or other plugins that may utilise the default login page. If you wish to restrict access to the wp-login.php page you can use a plugin such as [WPS Hide Login](https://wordpress.org/plugins/wps-hide-login/) or another plugin that removes the ability to login via wp-login.php.
+
+= Are Ultimate Member Login/Registration pages required? =
+
+No, you do not need to use our plugin’s login or registration pages and can use another plugin or the default WordPress methods for user registration and login.
+
 == Screenshots ==
 
 1. Screenshot 1
@@ -154,6 +162,89 @@ The plugin works with popular caching plugins by automatically excluding Ultimat
 
 * To learn more about version 2.1 please see this [docs](https://docs.ultimatemember.com/article/1512-upgrade-2-1-0)
 * UM2.1+ is a significant update to the Member Directories' code base from 2.0.x. Please make sure you take a full-site backup with restore point before updating the plugin
+
+= 2.4.2: July 14, 2022 =
+
+* Bugfixes:
+
+  - Fixed: Member Directory vulnerabilities
+  - Fixed: 3rd-party integration with profile tabs and ability to show edit profile form on the 3rd-party profile tab
+  - Fixed: PHP fatal error on unset
+  - Fixed: select2 style conflicts with 3rd-party plugins
+
+= 2.4.1: June 13, 2022 =
+
+* Enhancements:
+
+  - Added: Number-type Ultimate Member custom fields to the list of the sorting fields on the member directory
+
+* Bugfixes:
+
+  - Fixed: XSS issue related to the JS confirmation and links with JS code inside
+  - Fixed: PHP error when `um_options` option in wp_options table doesn't exist or has wrong format
+  - Fixed: select2 styles for RTL languages
+  - Fixed: Using slashes in the `Choices callback` setting for the dropdown/multi-select fields. It's for the using PHP namespaces
+  - Fixed: Deleting `um_member_directory_data` user meta when user is deleted
+  - Fixed: Using special chars inside the password and avoid using "\" symbol (WordPress native logic)
+  - Fixed: Conflict when `wp_get_current_user()` not exists
+  - Fixed: Changed hook for member directory variables initialization for getting ability to use Ultimate Member hooks for customizing these variables via theme
+  - Fixed: Remove a redundant WP_Users_Query when getting empty `account_status` users
+
+= 2.4.0: June 1, 2022 =
+
+* Enhancements:
+
+  - Added: "Allow external link redirect confirm" setting for the displaying JS.confirm alert before redirect to external link from User Profile links
+  - Added: "Allowed Choice Callbacks" setting for the security enhancements
+
+* Bugfixes:
+
+  - Fixed: PHP warning when nav menu is empty
+  - Fixed: Security issue related to the User Description field
+  - Fixed: Security issue related to the [um_loggedin] shortcode
+  - Fixed: Using $current_screen without checking for existence
+  - Fixed: `remove_unused_uploads()` function for some PHP installations
+
+= 2.3.2: April 21, 2022 =
+
+* Enhancements:
+
+  - Added: wp-admin notice with reminder about locking WordPress native registration for guests
+  - Added: Users dropdown field for Ultimate Member settings fields in wp-admin. It supports AJAX lazy loading
+  - Added: JS confirm when redirection from User Profile links to the 3rd-party URL
+
+* Bugfixes:
+
+  - Fixed: PHP warning when there aren't proper user while login
+  - Fixed: Removing UM custom capabilities from global $wp_roles when uninstall
+  - Fixed: Removing UM custom roles from user roles after uninstall
+  - Fixed: Issue with echo XSS on User Profile
+  - Fixed: Sanitizing for the checkbox, radio, multiselect fields for PHP8 installations
+
+* Deprecated:
+
+  - `um_whitelisted_wpadmin_access` hook and `wpadmin_allow_ips` option. They were unused and redundant since the 2.x version
+
+= 2.3.1: February 9, 2022 =
+
+* Enhancements:
+
+  - Added: wp-admin notice on the Settings page when settings have been changed (#963)
+  - Added: WP Blocks restriction settings for the blocks (templates/nav-menu) on the FSE pages
+  - Added: UM-specific query_var for UM additional Users_Query on users.php screen in wp-admin. `um_custom_user_query` = true
+  - Added: Ability for dropdown.js to use it inside parent wrapper (not only document.body)
+  - Changed: Using WP Cron schedules. Un-schedule events after plugin deactivation
+  - Removed: `um_check_extensions_licenses` and replaced it to `um_daily_scheduled_events` event
+
+* Bugfixes:
+
+  - Fixed: "Can user edit this field?" fields' option for the file/image upload field-types (#958)
+  - Fixed: Using uppercase symbols in the "Blocked Email Addresses" and "Blacklist Words" blacklists settings (#962)
+  - Fixed: PHP warning related to the Ultimate Member custom fields without type
+  - Fixed: Some typos in the labels (#975)
+  - Fixed: UX issue with wrong text on the admin notice about upgrade
+  - Fixed: UX issue with Blacklist Words and Blocked Email settings labels. Added a small description about per line separation (#962)
+  - Fixed: Sorting the Extensions settings sections
 
 = 2.3.0: December 20, 2021 =
 

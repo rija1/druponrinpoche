@@ -6,6 +6,7 @@ use WP_Error;
 use WpMailCatcher\GeneralHelper;
 use WpMailCatcher\Models\Cache;
 use WpMailCatcher\Models\Logs;
+use WpMailCatcher\Models\Settings;
 
 trait LogHelper
 {
@@ -33,7 +34,7 @@ trait LogHelper
             $args['to'] = [];
         }
 
-        do_action(GeneralHelper::$actionNameSpace . '_mail_success', Logs::getFirst(['id' => $this->id]));
+        do_action(GeneralHelper::$actionNameSpace . '_mail_success', Logs::getFirst(['post__in' => $this->id]));
 
         return $args;
     }
@@ -46,10 +47,15 @@ trait LogHelper
      */
     public function saveError($error)
     {
+        if ($this->id === null) {
+            return;
+        }
+
         global $wpdb;
 
         $wpdb->update(
-            $wpdb->prefix . GeneralHelper::$tableName, [
+            $wpdb->prefix . GeneralHelper::$tableName,
+            [
                 'status' => 0,
                 'error' => $error,
             ],
@@ -58,7 +64,30 @@ trait LogHelper
 
         Cache::flush();
 
-        do_action(GeneralHelper::$actionNameSpace . '_mail_failed', Logs::getFirst(['id' => $this->id]));
+        do_action(GeneralHelper::$actionNameSpace . '_mail_failed', Logs::getFirst(['post__in' => $this->id]));
+    }
+
+    public function saveIsHtml($contentType)
+    {
+        if ($this->id === null || Settings::get('db_version') < '2.0.0') {
+            // Because this is triggered from add_filter we need to return the unmodified content type
+            return $contentType;
+        }
+
+        global $wpdb;
+
+        $wpdb->update(
+            $wpdb->prefix . GeneralHelper::$tableName,
+            [
+                'is_html' => $contentType === 'text/html',
+            ],
+            ['id' => $this->id]
+        );
+
+        Cache::flush();
+
+        // Because this is triggered from add_filter we need to return the unmodified content type
+        return $contentType;
     }
 
     /**

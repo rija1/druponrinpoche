@@ -17,13 +17,13 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 	protected $fields;
 	protected $query;
 	protected $query_type = 'get';
-	protected $query_args = array();
-	protected $query_remote_args = array();
-	protected $response_data = array();
-	protected $response_data_args = array();
+	protected $query_args = [];
+	protected $query_remote_args = [];
+	protected $response_data = [];
+	protected $response_data_args = [];
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -47,9 +47,9 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 			'instance'		=> $provider,
 			'slug'			=> ! empty( $provider->slug ) ? sanitize_title( $provider->slug ) : '',
 			'name'			=> ! empty( $provider->name ) ? esc_html( $provider->name ) : '',
-			'defaults'		=> ! empty( $provider->defaults ) && is_array( $provider->defaults ) ? $provider->defaults : array(),
-			'fields'		=> ! empty( $provider->fields ) && is_array( $provider->fields ) ? $provider->fields : array(),
-			'response_args' => ! empty( $provider->response_data_args ) && is_array( $provider->response_data_args ) ? $provider->response_data_args : array()
+			'defaults'		=> ! empty( $provider->defaults ) && is_array( $provider->defaults ) ? $provider->defaults : [],
+			'fields'		=> ! empty( $provider->fields ) && is_array( $provider->fields ) ? $provider->fields : [],
+			'response_args'	=> ! empty( $provider->response_data_args ) && is_array( $provider->response_data_args ) ? $provider->response_data_args : []
 		);
 
 		// add provider default values
@@ -87,7 +87,7 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 	 * @param array $args Additional arguments
 	 * @return array
 	 */
-	public function get_images( $results, $terms, $provider, $args = array() ) {
+	public function get_images( $results, $terms, $provider, $args = [] ) {
 		if ( $provider === $this->slug ) {
 			// make sure search phrase exists
 			if ( ! array_key_exists( 'media_search', $args ) )
@@ -110,7 +110,7 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 	 * @param array $args Additional arguments
 	 * @return array
 	 */
-	public function get_results( $search_phrase, $args = array() ) {
+	public function get_results( $search_phrase, $args = [] ) {
 		// prepare data for remote query
 		$this->prepare_query( $search_phrase, $args );
 
@@ -170,7 +170,7 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 	 * @return array
 	 */
 	public function sanitize_results( $results ) {
-		return is_array( $results ) ? array_filter( array_map( array( $this, 'sanitize_result' ), $results ) ) : array();
+		return is_array( $results ) ? array_filter( array_map( array( $this, 'sanitize_result' ), $results ) ) : [];
 	}
 
 	/**
@@ -187,7 +187,7 @@ abstract class Responsive_Lightbox_Remote_Library_API {
 	 * @param string $link Image URL
 	 * @param string $user_name User name
 	 * @param string $user_link User URL
-	 * @return string 
+	 * @return string
 	 */
 	public function get_attribution( $name, $link = null, $user_name = null, $user_link = null ) {
 		if ( empty( $link ) )

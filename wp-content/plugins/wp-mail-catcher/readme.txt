@@ -2,9 +2,9 @@
 Contributors: Wardee
 Tags: mail logging, email log, email logger, logging, email logging, mail, crm
 Requires at least: 4.7
-Tested up to: 5.8
-Requires PHP: 5.6
-Stable tag: 1.5.4
+Tested up to: 6.1
+Requires PHP: 7.2
+Stable tag: 2.0.5
 License: GNU General Public License v3.0
 License URI: https://raw.githubusercontent.com/JWardee/wp-mail-catcher/master/LICENSE
 Donate link: https://paypal.me/jamesmward
@@ -78,6 +78,7 @@ Anything that doesn't unhook the native wp_mail function is supported, this incl
 = What plugins are currently not supported =
 
 * WP Mail Bank (unhooks wp_mail filters)
+* Post SMTP (overrides wp_mail function and doesn't implement the same actions/filters)
 
 If you'd like to see support for these plugins or any other plugins please leave a feature request in our [GitHub tracker](https://github.com/JWardee/wp-mail-catcher/issues)
 
@@ -92,6 +93,44 @@ Great! Please leave a note in our (GitHub tracker)
 4. Supports column customisation and pagination
 
 == Changelog ==
+
+= 2.0.5 =
+
+- Fix: Improved error handling when attempting to save a log without running the migration
+- New: Added ability to force rerun database migrations
+- Improvement: Database migrations will now happen automatically on plugin upgrade
+
+= 2.0.4 =
+
+- Fix: Resolved memory leak when saving a new log
+
+= 2.0.3 =
+
+- Fix: Auto deleting clearing all logs
+
+= 2.0.2 =
+
+- Improvement: Reduced memory usage when deleting expired logs
+- Fix: Emails sent with the to address formatted with angled brackets are now escaped
+- Possible fix: Aligned wp_mail handling to be much closer to older version as some people reported issues
+
+= 2.0.1 =
+
+- Fix: Bulk actions (delete, export, resend) now works
+
+= 2.0.0 =
+
+- Deprecation: Increased supported PHP version from 5.6 to 7.2
+- New: Added partial lazy loading to reduce database strain
+- New: Can now manually trigger removing of old logs
+- New: Added support for wp_mail_content_type filter
+- New: Implemented database upgrade system
+- Fix: Old logs not being automatically deleted
+- Fix: Pagination now works on search results or other filters
+- Fix: BuddyPress error exception
+- Fix: Re-implemented resending HTML emails
+- Fix: PHP notice appearing on settings page under certain circumstances
+- Fix: Scrolling not working correctly on mobile and tablets
 
 = 1.5.4 =
 

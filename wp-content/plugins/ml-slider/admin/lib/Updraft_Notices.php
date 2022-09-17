@@ -60,6 +60,8 @@ abstract class Updraft_Notices_1_0
             include_once(ABSPATH.'wp-admin/includes/plugin.php');
         }
         $plugins = get_plugins();
+        // Don't cache plugins this early
+        wp_cache_delete('plugins', 'plugins');
         $product_file = false;
         foreach ($plugins as $key => $value) {
             if ($value['TextDomain'] == $product) {
@@ -199,7 +201,8 @@ abstract class Updraft_Notices_1_0
                     return $notice_data;
                 }
             } else {
-                $dismiss_time = $this->notices_content[$notice_id]['dismiss_time'];
+                $dismiss_time = isset($this->notices_content[$notice_id]['dismiss_time'])
+                    ? $this->notices_content[$notice_id]['dismiss_time'] : false;
                 $dismiss = $this->check_notice_dismissed($dismiss_time);
 
                 if (!$dismiss) {

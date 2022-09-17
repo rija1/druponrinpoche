@@ -25,9 +25,12 @@ Vue.mixin({
 		this.siteId = window.metaslider_api.site_id
 		this.proUser = window.metaslider_api.proUser
 		this.hoplink = window.metaslider_api.hoplink
+		this.privacyLink = window.metaslider_api.privacy_link
 		this.themeEditorLink = window.metaslider_api.theme_editor_link
-		this.metasliderPage = window.metaslider_api.metaslider_page,
+		this.metasliderPage = window.metaslider_api.metaslider_page
 		this.production = process.env.NODE_ENV === 'production'
+		this.extendifyPluginActive = window.metaslider_api.extendify_plugin_active
+		this.deactivateExtendifyUrl = window.metaslider_api.deactivate_extendify_url
 
 		this.isIE11 = !!window.MSInputMethodContext && !!document.documentMode
 
@@ -65,10 +68,10 @@ Vue.mixin({
 				'window/global-js-error',
 					(message.length > 100 ? message.substring(0, 100) + '...' : message) +
 					(filename.length ? ` (${filename})` : ''),
-				true)
+				false)
 		}
 		Vue.config.errorHandler = function (error, vm, info) {
-			vm.notifyError(`vue/${info}-error`, error, true)
+			vm.notifyError(`vue/${info}-error`, error, false)
 		}
 	},
 	methods: {

@@ -5,12 +5,15 @@ if ( ! defined( 'ABSPATH' ) )
 /**
  * Responsive Lightbox Remote Library Unsplash class.
  *
+ * Library: https://unsplash.com
+ * API: https://unsplash.com/developers
+ *
  * @class Responsive_Lightbox_Remote_Library_Unsplash
  */
 class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Remote_Library_API {
 
 	/**
-	 * Constructor.
+	 * Class constructor.
 	 *
 	 * @return void
 	 */
@@ -22,18 +25,18 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 		$this->name = __( 'Unsplash', 'responsive-lightbox' );
 
 		// default values
-		$this->defaults = array(
+		$this->defaults = [
 			'active'	=> false,
 			'api_key'	=> ''
-		);
+		];
 
 		// setting fields
-		$this->fields = array(
+		$this->fields = [
 			'title'		=> $this->name,
 			'section'	=> 'responsive_lightbox_remote_library_providers',
 			'type'		=> 'custom',
-			'callback'	=> array( $this, 'render_field' )
-		);
+			'callback'	=> [ $this, 'render_field' ]
+		];
 
 		// add provider
 		parent::add_provider( $this );
@@ -57,7 +60,7 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 	 * Validate settings.
 	 *
 	 * @param array $input POST data
-	 * @return array Validated settings
+	 * @return array
 	 */
 	public function validate_settings( $input ) {
 		if ( ! isset( $_POST['responsive_lightbox_remote_library'] ) )
@@ -80,7 +83,7 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 	 * @param array $args Provider arguments
 	 * @return void
 	 */
-	public function prepare_query( $search_phrase, $args = array() ) {
+	public function prepare_query( $search_phrase, $args = [] ) {
 		// check page parameter
 		if ( isset( $args['preview_page'] ) )
 			$args['preview_page'] = (int) $args['preview_page'];
@@ -90,23 +93,28 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 		if ( $args['preview_page'] < 1 )
 			$args['preview_page'] = 1;
 
-		// check per page parameter
-		if ( isset( $args['preview_per_page'] ) )
-			$args['preview_per_page'] = (int) $args['preview_per_page'];
-		else
-			$args['preview_per_page'] = 20;
+		// check limit
+		if ( isset( $args['limit'] ) && ( $limit = (int) $args['limit'] ) > 0 )
+			$args['preview_per_page'] = $limit;
+		else {
+			// check per page parameter
+			if ( isset( $args['preview_per_page'] ) )
+				$args['preview_per_page'] = (int) $args['preview_per_page'];
+			else
+				$args['preview_per_page'] = 20;
 
-		if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 30 )
-			$args['preview_per_page'] = 20;
+			if ( $args['preview_per_page'] < 5 || $args['preview_per_page'] > 30 )
+				$args['preview_per_page'] = 20;
+		}
 
 		// set query arguments
 		$this->query_args = $args;
 
-		$query_args = array(
+		$query_args = [
 			'per_page'	=> $args['preview_per_page'],
 			'page'		=> $args['preview_page'],
 			'order_by'	=> 'latest'
-		);
+		];
 
 		if ( $search_phrase !== '' ) {
 			$query_args['query'] = urlencode( $search_phrase );
@@ -119,13 +127,13 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 		$this->query = add_query_arg( $query_args, $url );
 
 		// set query remote arguments
-		$this->query_remote_args = array(
+		$this->query_remote_args = [
 			'timeout'	=> 30,
-			'headers'	=> array(
+			'headers'	=> [
 				'Authorization'	=> 'Client-ID ' . $this->rl->options['remote_library']['unsplash']['api_key'],
 				'User-Agent'	=> __( 'Responsive Lightbox', 'responsive-lightbox' ) . ' ' . $this->rl->defaults['version']
-			)
-		);
+			]
+		];
 	}
 
 	/**
@@ -133,10 +141,10 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 	 *
 	 * @param mixed $response Remote response
 	 * @param array $args Query arguments
-	 * @return array Valid images or WP_Error
+	 * @return array|WP_Error
 	 */
-	public function get_query_results( $response, $args = array() ) {
-		$results = array();
+	public function get_query_results( $response, $args = [] ) {
+		$results = [];
 		$error = new WP_Error( 'rl_remote_library_unsplash_get_query_results', __( 'Parsing request error', 'responsive-lightbox' ) );
 
 		// retrieve body
@@ -150,12 +158,15 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 			if ( $response_json === null )
 				$results = $error;
 			else {
+				// set response data
+				$this->response_data = $response_json;
+
 				// search phrase query?
 				if ( $args['media_search'] !== '' ) {
 					// get results
-					$results = isset( $response_json['results'] ) && is_array( $response_json['results'] ) ? $response_json['results'] : array();
+					$results = isset( $response_json['results'] ) && is_array( $response_json['results'] ) ? $response_json['results'] : [];
 
-					// sanitize results
+					// sanitize images
 					$results = $this->sanitize_results( $results );
 				} else
 					$results = $this->sanitize_results( $response_json );
@@ -170,7 +181,7 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 	 * Sanitize single result.
 	 *
 	 * @param array $result Single result
-	 * @return mixed Array on success, otherwise false
+	 * @return array
 	 */
 	public function sanitize_result( $result ) {
 		// set dimensions
@@ -181,24 +192,26 @@ class Responsive_Lightbox_Remote_Library_Unsplash extends Responsive_Lightbox_Re
 		// calculate new height based on original ratio
 		$thumbnail_height = (int) floor( $thumbnail_width / ( $width / $height ) );
 
-		$imagedata = array(
-			'id'				=> 0,
-			'link'				=> '',
-			'source'			=> $result['links']['html'],
-			'title'				=> $result['id'],
-			'caption'			=> $this->get_attribution( 'Unsplash', $result['links']['html'], $result['user']['name'], $result['user']['links']['html'] ),
-			'description'		=> ! empty( $result['description'] ) ? $result['description'] : '',
-			'alt'				=> '',
-			'url'				=> $result['urls']['raw'],
-			'width'				=> $width,
-			'height'			=> $height,
-			'thumbnail_url'		=> $result['urls']['thumb'],
-			'thumbnail_width'	=> $thumbnail_width,
-			'thumbnail_height'	=> $thumbnail_height,
-			'media_provider'	=> 'unsplash',
-			'filename'			=> basename( $result['urls']['raw'] ),
-			'dimensions'		=> $width . ' x ' . $height
-		);
+		$imagedata = [
+			'id'					=> 0,
+			'link'					=> '',
+			'source'				=> $result['links']['html'],
+			'title'					=> $result['id'],
+			'caption'				=> $this->get_attribution( 'Unsplash', $result['links']['html'], $result['user']['name'], $result['user']['links']['html'] ),
+			'description'			=> ! empty( $result['description'] ) ? $result['description'] : '',
+			'alt'					=> '',
+			'url'					=> $result['urls']['raw'],
+			'width'					=> $width,
+			'height'				=> $height,
+			'orientation'			=> $height > $width ? 'portrait' : 'landscape',
+			'thumbnail_url'			=> $result['urls']['small'],
+			'thumbnail_width'		=> $thumbnail_width,
+			'thumbnail_height'		=> $thumbnail_height,
+			'thumbnail_orientation'	=> $thumbnail_height > $thumbnail_width ? 'portrait' : 'landscape',
+			'media_provider'		=> 'unsplash',
+			'filename'				=> basename( $result['urls']['raw'] ),
+			'dimensions'			=> $width . ' x ' . $height
+		];
 
 		// create thumbnail link
 		$imagedata['thumbnail_link'] = $this->rl->galleries->get_gallery_image_link( $imagedata, 'thumbnail' );

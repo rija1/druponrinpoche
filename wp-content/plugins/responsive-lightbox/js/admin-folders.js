@@ -1,15 +1,14 @@
 ( function( $ ) {
 
-	var rl_folder_id = 0,
-		rl_ps = null,
-		grid_frame = null,
-		active_mode = '',
-		move_node_failed = false,
-		disable_redirect = false,
-		attachments_browser = null,
-		last_priority = 2,
-		event_data = {},
-		allow_modal_media_tag_saving = false;
+	var rl_folder_id = 0;
+	var rl_ps = null;
+	var grid_frame = null;
+	var active_mode = '';
+	var move_node_failed = false;
+	var disable_redirect = false;
+	var attachments_browser = null;
+	var last_priority = 2;
+	var event_data = {};
 
 	function initFolders() {
 		var RLWPMediaViewMediaFramePost = wp.media.view.MediaFrame.Post;
@@ -135,52 +134,50 @@
 			}
 		} );
 
-		// extend AttachmentCompat 
-		var RLAttachmentCompat = {
-			save: wp.media.view.AttachmentCompat.prototype.save,
-			postSave: wp.media.view.AttachmentCompat.prototype.postSave
-		};
+		// extend AttachmentCompat
+		var RLAttachmentCompat = wp.media.view.AttachmentCompat;
 
-		$.extend( wp.media.view.AttachmentCompat.prototype, {
-			save: function( event ) {
-				if ( ! allow_modal_media_tag_saving ) {
-					// RLAttachmentCompat.save.apply( this, arguments );
-					// this.$el.closest( '.attachment-details' ).removeClass( 'save-ready' ).addClass( 'save-waiting' );
+		wp.media.view.AttachmentCompat = wp.media.view.AttachmentCompat.extend( {
+			initialize: function() {
+				// call original function
+				RLAttachmentCompat.prototype.initialize.call( this );
 
-					return;
-				}
+				var oldSaveCompat = this.model.saveCompat;
 
-				var select = $( '.rl-media-tag-select2' ),
-					selected = select.select2( 'data' ),
-					tags = [],
-					data = {};
+				// update saveCompat to save additional data
+				this.model.saveCompat = function( data, options ) {
+					var select = $( '.rl-media-tag-select2' );
+					var selected = select.select2( 'data' );
+					var tags = [];
 
-				for ( i = 0; i < selected.length; i++ ) {
-					tags.push( selected[i].id );
-				}
+					for ( i = 0; i < selected.length; i++ ) {
+						tags.push( selected[i].id );
+					}
 
-				if ( event )
-					event.preventDefault();
+					// update tags
+					data[select.attr( 'name' )] = tags.join( ',' );
 
-				// get serialized data
-				_.each( this.$el.serializeArray(), function( pair ) {
-					data[ pair.name ] = pair.value;
-				} );
-
-				// update rl media tag
-				data[select.attr( 'name' )] = tags.join( ',' );
-
-				this.controller.trigger( 'attachment:compat:waiting', ['waiting'] );
-				this.model.saveCompat( data ).always( _.bind( this.postSave, this ) );
-
-				// display spinner
-				this.$el.closest( '.attachment-details' ).removeClass( 'save-ready' ).addClass( 'save-waiting' );
+					// call original function
+					return oldSaveCompat.call( this, data, options );
+				};
 			},
-			postSave: function() {
-				RLAttachmentCompat.postSave.apply( this, arguments );
+			render: function() {
+				// call original function
+				RLAttachmentCompat.prototype.render.call( this );
 
-				// hide spinner
-				this.$el.closest( '.attachment-details' ).addClass( 'save-ready' ).removeClass( 'save-waiting' );
+				// remove select2-dropdown--below
+				$( '.select2-container--open' ).remove();
+
+				// refresh select2
+				setTimeout( initSelect2, 5 );
+			},
+			save: function( event ) {
+				// skip select2 textarea
+				if ( $( event.target ).hasClass( 'select2-search__field' ) )
+					return;
+
+				// call original function
+				RLAttachmentCompat.prototype.save.call( this, event );
 			}
 		} );
 	}
@@ -201,15 +198,6 @@
 		} else if ( typeof uploader !== 'undefined' ) {
 			uploader.bind( 'BeforeUpload', function( file ) {
 				uploader.settings.multipart_params.rl_folders_upload_files_term_id = rl_folder_id;
-			} );
-		}
-
-		// wp.media.view.Attachment exists?
-		if ( 'Attachment' in wp.media.view ) {
-			// handle attachments details
-			wp.media.view.Attachment.Details.prototype.on( 'ready', function( ) {
-				// initialize select2
-				setTimeout( initSelect2, 5 );
 			} );
 		}
 
@@ -756,15 +744,22 @@
 		if ( select.length === 0 || select.hasClass( 'select2-hidden-accessible' ) )
 			return;
 
+		// turn off scrolling events
+		$( 'div.attachment-info' ).off( 'scroll' );
+		$( 'div.media-sidebar' ).off( 'scroll' );
+
 		// init select2
 		select.select2( {
 			closeOnSelect: true,
+			scrollAfterSelect: false,
+			allowClear: false,
+			debug: false,
 			multiple: true,
 			width: '100%',
 			minimumInputLength: 2,
 			dropdownCssClass: 'rl-media-tag-select2-dropdown',
 			ajax: {
-				delay: 250,
+				delay: 200,
 				url: ajaxurl,
 				data: function( params ) {
 					return {
@@ -789,21 +784,6 @@
 					};
 				}
 			}
-		} );
-
-		// change select
-		select.on( 'change', function( e ) {
-			allow_modal_media_tag_saving = true;
-		} );
-
-		// select item
-		select.on( 'select2:select', function( e ) {
-			allow_modal_media_tag_saving = false;
-		} );
-
-		// unselect item
-		select.on( 'select2:unselect', function( e ) {
-			allow_modal_media_tag_saving = false;
 		} );
 	}
 
@@ -924,7 +904,7 @@
 												$( '#the-list' ).append( rlFoldersArgs.no_media_items );
 										} );
 									}
- 
+
 									// update old node number
 									update_node_number( old_node, response.data, false );
 								}

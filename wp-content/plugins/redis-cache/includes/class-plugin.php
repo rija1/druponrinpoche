@@ -281,7 +281,7 @@ class Plugin {
             return;
         }
 
-        wp_enqueue_style( 'redis-cache', WP_REDIS_DIR . '/assets/css/admin.css', null, WP_REDIS_VERSION );
+        wp_enqueue_style( 'redis-cache', WP_REDIS_PLUGIN_DIR . '/assets/css/admin.css', null, WP_REDIS_VERSION );
     }
 
     /**
@@ -593,6 +593,10 @@ class Plugin {
      * @return void
      */
     public function show_admin_notices() {
+        if ( defined( '\RedisCachePro\Version' ) || defined( '\ObjectCachePro\Version' ) ) {
+            return;
+        }
+
         if ( ! defined( 'WP_REDIS_DISABLE_BANNERS' ) || ! WP_REDIS_DISABLE_BANNERS ) {
             $this->pro_notice();
             $this->wc_pro_notice();
@@ -609,16 +613,20 @@ class Plugin {
         }
 
         if ( $this->object_cache_dropin_exists() ) {
-            $url = $this->action_link( 'update-dropin' );
-
             if ( $this->validate_object_cache_dropin() ) {
                 if ( $this->object_cache_dropin_outdated() ) {
-                    // translators: %s = Action link to update the drop-in.
-                    $message = sprintf( __( 'The Redis object cache drop-in is outdated. Please <a href="%s">update the drop-in</a>.', 'redis-cache' ), $url );
+                    $message = sprintf(
+                        // translators: %s = Action link to update the drop-in.
+                        __( 'The Redis object cache drop-in is outdated. Please <a href="%s">update the drop-in</a>.', 'redis-cache' ),
+                        $this->action_link( 'update-dropin' )
+                    );
                 }
             } else {
-                // translators: %s = Action link to update the drop-in.
-                $message = sprintf( __( 'A foreign object cache drop-in was found. To use Redis for object caching, please <a href="%s">enable the drop-in</a>.', 'redis-cache' ), $url );
+                $message = sprintf(
+                    // translators: %s = Link to settings page.
+                    __( 'A foreign object cache drop-in was found. To use Redis for object caching, please <a href="%s">enable the drop-in</a>.', 'redis-cache' ),
+                    esc_url( network_admin_url( $this->page ) )
+                );
             }
 
             if ( isset( $message ) ) {

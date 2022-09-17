@@ -1,23 +1,24 @@
+import { Button } from '@wordpress/components'
+import { useState, useEffect, useRef } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { Icon, closeSmall } from '@wordpress/icons'
-import { Button } from '@wordpress/components'
-import WelcomeNotice from './WelcomeNotice'
-import PromotionNotice from './PromotionNotice'
+import { General } from '@extendify/api/General'
+import { useGlobalStore } from '@extendify/state/GlobalState'
+import { useUserStore } from '@extendify/state/User'
 import FeedbackNotice from './FeedbackNotice'
-import { useUserStore } from '../../state/User'
-import { useGlobalStore } from '../../state/GlobalState'
-import { useState, useEffect, useRef } from '@wordpress/element'
 import { InstallStandaloneNotice } from './InstallStandaloneNotice'
-import { General } from '../../api/General'
+import PromotionNotice from './PromotionNotice'
+
+// import WelcomeNotice from './WelcomeNotice'
 
 const NoticesByPriority = {
-    welcome: WelcomeNotice,
+    // welcome: WelcomeNotice,
     promotion: PromotionNotice,
     feedback: FeedbackNotice,
     standalone: InstallStandaloneNotice,
 }
 
-export default function FooterNotice() {
+export default function FooterNotice({ className = '' }) {
     const [hasNotice, setHasNotice] = useState(null)
     const once = useRef(false)
     const promotionData = useGlobalStore(
@@ -43,6 +44,7 @@ export default function FooterNotice() {
                 return (
                     // When checking promotions, use the key sent from the server
                     // to check whether it's been dismissed
+                    !useUserStore.getState().apiKey?.length &&
                     promotionData?.key &&
                     !useUserStore.getState().noticesDismissedAt[
                         promotionData.key
@@ -86,16 +88,17 @@ export default function FooterNotice() {
         }
     }, [componentKey])
 
-    if (!hasNotice) {
+    if (!hasNotice || !Notice) {
         return null
     }
     return (
-        <div className="bg-extendify-secondary hidden lg:flex space-x-4 py-3 px-5 justify-center items-center relative max-w-screen-4xl mx-auto">
+        <div
+            className={`${className} relative mx-auto hidden max-w-screen-4xl items-center justify-center space-x-4 bg-extendify-secondary py-3 px-5 lg:flex`}>
             {/* Pass all data to all components and let them decide what they use */}
             <Notice promotionData={promotionData} />
             <div className="absolute right-1">
                 <Button
-                    className="opacity-50 hover:opacity-100 focus:opacity-100 text-extendify-black"
+                    className="text-extendify-black opacity-50 hover:opacity-100 focus:opacity-100"
                     icon={<Icon icon={closeSmall} />}
                     label={__('Dismiss this notice', 'extendify')}
                     onClick={dismiss}

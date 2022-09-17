@@ -3,7 +3,7 @@
 Plugin Name: WP All Import
 Plugin URI: http://www.wpallimport.com/wordpress-xml-csv-import/?utm_source=import-plugin-free&utm_medium=wp-plugins-page&utm_campaign=upgrade-to-pro
 Description: The most powerful solution for importing XML and CSV files to WordPress. Create Posts and Pages with content from any XML or CSV file. A paid upgrade to WP All Import Pro is available for support and additional features.
-Version: 3.6.5
+Version: 3.6.8
 Author: Soflyy
 */
 
@@ -25,7 +25,7 @@ define('WP_ALL_IMPORT_ROOT_URL', rtrim(plugin_dir_url(__FILE__), '/'));
  */
 define('WP_ALL_IMPORT_PREFIX', 'pmxi_');
 
-define('PMXI_VERSION', '3.6.5');
+define('PMXI_VERSION', '3.6.8');
 
 define('PMXI_EDITION', 'free');
 
@@ -1172,7 +1172,7 @@ final class PMXI_Plugin {
 				'search_existing_images' => 1,
 
 				'create_new_records' => 1,
-				'is_selective_hashing' => 1,
+				'is_selective_hashing' => 0,
 				'is_delete_missing' => 0,
 				'set_missing_to_draft' => 0,
 				'is_update_missing_cf' => 0,

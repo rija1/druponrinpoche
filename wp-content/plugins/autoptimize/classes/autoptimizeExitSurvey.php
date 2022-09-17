@@ -30,7 +30,7 @@ class autoptimizeExitSurvey
 
     function render_survey_model() {
         global $wp_version;
-        
+
         $data = array(
             "home" => home_url(),
             "dest" => 'aHR0cHM6Ly9taXNjLm9wdGltaXppbmdtYXR0ZXJzLmNvbS9hb19leGl0X3N1cnZleS9pbmRleC5waHA='
@@ -39,9 +39,10 @@ class autoptimizeExitSurvey
 
         <div class="ao-plugin-uninstall-feedback-popup ao-feedback" id="ao_uninstall_feedback_popup" data-modal="<?php echo base64_encode( json_encode( $data ) ) ?>">
             <div class="popup--header">
-                <h5><?php _e( 'Sorry to see you go, we would appreciate if you let us know why you\'re deactivating Autoptimize!', 'autoptimize' ); ?></h5>
+                <h5><?php _e( 'Sorry to see you go!', 'autoptimize' ); ?></h5>
             </div><!--/.popup--header-->
             <div class="popup--body">
+                <p><strong><?php _e( 'We would appreciate if you let us know why you\'re deactivating Autoptimize!', 'autoptimize' ); ?></strong></p>
                 <ul class="popup--form">
                     <li ao-option-id="5">
                         <input type="radio" name="ao-deactivate-option" id="ao_feedback5">
@@ -55,7 +56,7 @@ class autoptimizeExitSurvey
                         <label for="ao_feedback6" data-reason="broke site">
                             <?php _e( 'It broke my site.', 'autoptimize' ); ?>
                         </label>
-                        <p class="last-attempt"><?php _e( 'Almost all problems can be fixed with the right configuration, have a look at <a href="https://wordpress.org/plugins/autoptimize/#faq" target="_blank">the FAQ</a> or create a topic on <a href="https://wordpress.org/support/plugin/autoptimize/#new-topic-0" target="_blank">the support forum here</a>!', 'autoptimize' ); ?></p>
+                        <p class="last-attempt"><?php _e( 'Ouch, sorry about that! But almost all problems can be fixed with the right configuration, have a look at <a href="https://blog.futtta.be/2022/05/05/what-to-do-when-autoptimize-breaks-your-site/" target="_blank">this short troubleshooting howto</a> or create a topic on <a href="https://wordpress.org/support/plugin/autoptimize/#new-topic-0" target="_blank">the support forum here</a>!', 'autoptimize' ); ?></p>
                     <li ao-option-id="4">
                         <input type="radio" name="ao-deactivate-option" id="ao_feedback4">
                         <label for="ao_feedback4" data-reason="found better">
@@ -69,14 +70,16 @@ class autoptimizeExitSurvey
                     <li ao-option-id="999">
                         <input type="radio" name="ao-deactivate-option" id="ao_feedback999">
                         <label for="ao_feedback999" data-reason="other">
-                            <?php _e( 'Other (please specify below)', 'autoptimize' ); ?> </label>
+                            <?php _e( 'Other (please specify below)', 'autoptimize' ); ?>
+                        </label>
                         <textarea width="100%" rows="2" name="comments" placeholder="What can we do better?"></textarea></li>
                     <hr />
                     <li ao-option-id="998">
-                        <label for="ao_feedback998" data-reason="other detail">
-                            <?php _e( 'If you want to be contacted about or get help with Autoptimize, leave your email here (we never spam).', 'autoptimize' ); ?>
+                        <label for="ao_feedback_email_toggle" data-reason="other detail">
+                            <input type="checkbox" id="ao_feedback_email_toggle" name="ao_feedback_email_toggle" />
+                            <?php _e( 'I would like be contacted about my experience with Autoptimize.', 'autoptimize' ); ?>
                         </label>
-                        <input type="email" name="ao-deactivate-option" id="ao_feedback998" placeholder="mymail@domain.xyz">
+                        <input type="email" name="ao-deactivate-option" id="ao_feedback998" placeholder="mymail@domain.xyz" class="hidden">
                     </li>
                 </ul>
             </div><!--/.popup--body-->

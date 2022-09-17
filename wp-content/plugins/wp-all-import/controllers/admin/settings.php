@@ -70,7 +70,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 
 				$files = new PMXI_File_List(); $files->sweepHistory(); // adjust file history to new settings specified
 				
-				wp_redirect(add_query_arg('pmxi_nt', urlencode(__('Settings saved', 'wp_all_import_plugin')), $this->baseUrl)); die();
+				wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode(__('Settings saved', 'wp_all_import_plugin')), $this->baseUrl))); die();
 			}
 		}
 		/*else{			
@@ -129,7 +129,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 												unset($template_data['id']);
 												$template->clear()->set($template_data)->insert();
 											}
-											wp_redirect(add_query_arg('pmxi_nt', urlencode(sprintf(_n('%d template imported', '%d templates imported', count($templates_data), 'wp_all_import_plugin'), count($templates_data))), $this->baseUrl)); die();
+											wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode(sprintf(_n('%d template imported', '%d templates imported', count($templates_data), 'wp_all_import_plugin'), count($templates_data))), $this->baseUrl))); die();
 										}
 									}
 								}
@@ -155,7 +155,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 						foreach ($templates_ids as $template_id) {
 							$template->clear()->set('id', $template_id)->delete();
 						}
-						wp_redirect(add_query_arg('pmxi_nt', urlencode(sprintf(_n('%d template deleted', '%d templates deleted', count($templates_ids), 'wp_all_import_plugin'), count($templates_ids))), $this->baseUrl)); die();
+						wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode(sprintf(_n('%d template deleted', '%d templates deleted', count($templates_ids), 'wp_all_import_plugin'), count($templates_ids))), $this->baseUrl))); die();
 					}
 					if ($this->input->post('export_templates')){
 						$export_data = array();
@@ -207,7 +207,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 						);								
 						
 						// Call the custom API.
-						$response = wp_remote_get( add_query_arg( $api_params, $options['info_api_url'] ), array( 'timeout' => 15, 'sslverify' => false ) );						
+						$response = wp_remote_get( esc_url_raw(add_query_arg( $api_params, $options['info_api_url'] ), array( 'timeout' => 15, 'sslverify' => false ) ));
 
 						// make sure the response came back okay
 						if ( is_wp_error( $response ) )
@@ -253,7 +253,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 				);
 
 				// Call the custom API.
-				$response = wp_remote_get( add_query_arg( $api_params, $options['info_api_url'] ), array( 'timeout' => 15, 'sslverify' => false ) );
+				$response = wp_remote_get( esc_url_raw(add_query_arg( $api_params, $options['info_api_url'] ), array( 'timeout' => 15, 'sslverify' => false ) ));
 
 				if ( is_wp_error( $response ) )
 					return false;
@@ -364,7 +364,7 @@ class PMXI_Admin_Settings extends PMXI_Controller_Admin {
 			}
 		}
 
-		wp_redirect(add_query_arg('pmxi_nt', urlencode($msg), $this->baseUrl)); die();
+		wp_redirect(esc_url_raw(add_query_arg('pmxi_nt', urlencode($msg), $this->baseUrl))); die();
 	}
 
 	public function dismiss(){

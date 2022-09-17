@@ -27,6 +27,22 @@ $cronJobs = CronManager::getInstance()->getTasks();
             <?php endif; ?>
         <?php endif; ?>
 
+        <?php if (isset($_GET['trigger-auto-delete-success']) && $_GET['trigger-auto-delete-success'] == 1) : ?>
+            <div class="notice notice-success">
+                <p>
+                    <?php _e('The auto delete was successfully triggered', 'WpMailCatcher'); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['trigger-rerun-migration-success']) && $_GET['trigger-rerun-migration-success'] == 1) : ?>
+            <div class="notice notice-success">
+                <p>
+                    <?php _e('Database migrations were successfully rerun', 'WpMailCatcher'); ?>
+                </p>
+            </div>
+        <?php endif; ?>
+
         <h2 class="heading">WP Mail Catcher - <?php _e('settings', 'WpMailCatcher'); ?></h2>
 
         <form action="?page=<?php echo GeneralHelper::$adminPageSlug; ?>&action=update_settings" method="post">
@@ -101,10 +117,22 @@ $cronJobs = CronManager::getInstance()->getTasks();
                                 </label>
                                 <?php if (isset($cronJobs[0])) : ?>
                                     <p class="description">
-                                        <?php printf(__('Will next run in: %s.', 'WpMailCatcher'), $cronJobs[0]['nextRun']); ?>
+                                        <?php printf(__('Will next run in: %s. <a href="?page=' . GeneralHelper::$adminPageSlug . '&action=trigger-auto-delete">Trigger now</a>', 'WpMailCatcher'), $cronJobs[0]['nextRun']); ?>
                                     </p>
                                 <?php endif; ?>
                             </fieldset>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">
+                            <label for="blogname">
+                                <?php _e('Database version', 'WpMailCatcher'); ?>
+                            </label>
+                        </th>
+                        <td>
+                            <p class="description">
+                                <?php printf(__('%s. <a href="?page=' . GeneralHelper::$adminPageSlug . '&action=rerun-migrations">Rerun migrations</a>', 'WpMailCatcher'), $settings['db_version']); ?>
+                            </p>
                         </td>
                     </tr>
                 </tbody>
