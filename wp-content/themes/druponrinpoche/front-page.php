@@ -102,7 +102,7 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
     }
     $isSchedule = count($scheduleData);
     
-    //$isSchedule = false;
+    $isSchedule = false;
 ?>
 
 <?php if($isSchedule): ?>
