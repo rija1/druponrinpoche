@@ -1092,7 +1092,7 @@ function getDrWebsiteConfig()
 
     if($locale == 'en_US') {
         $drWebsiteConfig['home_metaslider_id'] = 132;
-        $drWebsiteConfig['home_schedule_id'] = 8;
+        $drWebsiteConfig['home_schedule_id'] = 32;
         $drWebsiteConfig['news_feat_cat_ids'] = array(2,93);
         $drWebsiteConfig['featured_cat_id'] = 93;
         $drWebsiteConfig['excerpts_cat_id'] = 28;
@@ -1107,7 +1107,7 @@ function getDrWebsiteConfig()
         $drWebsiteConfig['analytics_ua'] = 'UA-136620900-1';
     } elseif($locale == 'zh_CN') {
         $drWebsiteConfig['home_metaslider_id'] = 1516;
-        $drWebsiteConfig['home_schedule_id'] = 11;
+        $drWebsiteConfig['home_schedule_id'] = 34;
         $drWebsiteConfig['news_feat_cat_ids'] = array(20,263);
         $drWebsiteConfig['featured_cat_id'] = 263;
         $drWebsiteConfig['excerpts_cat_id'] = 76;

@@ -89,8 +89,10 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
 // Get Schedule Events
     $table = TablePress::$model_table->load( $drWebsiteConfig['home_schedule_id'], true, true );
     $scheduleData = $table['data'];
+    
     unset($scheduleData[0]);   
     foreach ($scheduleData as $k =>$scheduleDataLine) {
+        // Remove past events
         if(!empty($scheduleDataLine[4]) && (time() > strtotime($scheduleDataLine[4]))) {
             unset($scheduleData[$k]);
         }
@@ -99,7 +101,8 @@ $recentPosts = new WP_Query( apply_filters( 'widget_posts_args', array(
         }
     }
     $isSchedule = count($scheduleData);
-    $isSchedule = false;
+    
+    //$isSchedule = false;
 ?>
 
 <?php if($isSchedule): ?>
