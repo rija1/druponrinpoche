@@ -9,7 +9,7 @@
                         <h5>Curriculum</h5>
                         <ul>
                             <li class="page_item"><a href="#elementary_school" aria-current="page">Elementary School</a></li>
-                            <li class="page_item page_item_has_children"><a href="http://druponrinpoche.local/en/lineage/kagyu-lineage/">Sutra Curriculum</a>
+                            <li class="page_item page_item_has_children"><a href="#year1">Sutra Curriculum</a>
                                 <ul class="children">
                                     <li class="page_item"><a href="#year1"><span class="sp_menu_year">Year 1</span> - Shorter Texts</a></li>
                                     <li class="page_item"><a href="#year2"><span class="sp_menu_year">Year 2</span> - Discipline (Vinaya)</a></li>
@@ -23,7 +23,7 @@
                                     <li class="page_item"><a href="#year10"><span class="sp_menu_year">Year 10</span> - Perfection of Intelligence</a></li>
                                 </ul>
                             </li>
-                            <li class="page_item page_item_has_children"><a href="">Tantra Curriculum</a>
+                            <li class="page_item page_item_has_children"><a href="#year11">Tantra Curriculum</a>
                                 <ul class="children">
                                 <li class="page_item"><a href="#year11"><span class="sp_menu_year">Year 11</span> - Tantric Preliminaries / Mind Training / Kadam & Mahamudra</a></li>
                                     <li class="page_item"><a href="#year12"><span class="sp_menu_year">Year 12</span> - Masters - Explanatory Tantras</a></li>

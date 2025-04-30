@@ -9,7 +9,7 @@
                         <h5>學程</h5>
                         <ul>
                             <li class="page_item"><a href="#Elementary School" aria-current="page">預備課程</a></li>
-                            <li class="page_item page_item_has_children"><a href="http://druponrinpoche.local/en/lineage/kagyu-lineage/">顯乘教典</a>
+                            <li class="page_item page_item_has_children"><a href="#year1">顯乘教典</a>
                                 <ul class="children">
                                     <li class="page_item"><a href="#year1"><span class="sp_menu_year">第一年</span> - 小論典</a></li>
                                     <li class="page_item"><a href="#year2"><span class="sp_menu_year">第二年</span> - 律典</a></li>
@@ -23,7 +23,7 @@
                                     <li class="page_item"><a href="#year10"><span class="sp_menu_year">第十年</span> - 般若</a></li>
                                 </ul>
                             </li>
-                            <li class="page_item page_item_has_children"><a href="">密乘教典</a>
+                            <li class="page_item page_item_has_children"><a href="#year11">密乘教典</a>
                                 <ul class="children">
                                 <li class="page_item"><a href="#year11"><span class="sp_menu_year">第十一年</span> - 密續/續部修心、前行及修心、噶當教法、大手印</a></li>
                                     <li class="page_item"><a href="#year12"><span class="sp_menu_year">第十二年</span> - 碩士：密續論典</a></li>
