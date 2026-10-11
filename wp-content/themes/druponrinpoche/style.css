@@ -4498,6 +4498,9 @@ table.tablepress-id-19 tbody .sp_year_en:before {
 
 /** Vidéos des articles : pleine largeur de la colonne, centrées (demande Rija 2026-10-11) **/
 .wp-block-video {
+  display: block;
+  width: 100%;
+  max-width: 800px;
   text-align: center;
   margin: 20px auto;
 }
