@@ -58,9 +58,9 @@ if( ! function_exists( 'dkr_theme_setup' ) ) {
         add_theme_support('post-thumbnails');
         set_post_thumbnail_size( 150, 150, true);
 
-        add_image_size('dkr-photo-800-500', 800, 500, true);
-        add_image_size('dkr-photo-300-200', 300, 200, true);
-        add_image_size('dkr-photo-310-207', 310, 207, true);
+        add_image_size('dkr-photo-800-500', 800, 500, array('center', 'top'));
+        add_image_size('dkr-photo-300-200', 300, 200, array('center', 'top'));
+        add_image_size('dkr-photo-310-207', 310, 207, array('center', 'top'));
 
         // Menus
         register_nav_menu( 'dkr-menu', _x( 'Main Menu', 'backend', 'druponrinpoche' ) );
@@ -143,7 +143,7 @@ if( ! function_exists( 'dkr_enqueue_styles' ) ) {
         wp_enqueue_style( 'modal-css', get_template_directory_uri() . '/assets/css/jquery.modal.min.css', array());
 
         // main style
-        wp_enqueue_style( 'dkr-style', get_stylesheet_directory_uri() . '/style.css', array() );
+        wp_enqueue_style( 'dkr-style', get_stylesheet_directory_uri() . '/style.css', array(), filemtime( get_stylesheet_directory() . '/style.css' ) );
 
         // main style
 //        wp_enqueue_style( 'dkr-resp', get_template_directory_uri() . '/assets/css/resp.css', array() );

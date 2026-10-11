@@ -1706,7 +1706,7 @@ img.alignleft {
 
 /* HEADER NEW STYLE 1 */
 .menu-top-container {
-  width: 60%;
+  width: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3356,11 +3356,58 @@ a.course_link {
 }
 
 .footer .footer_social a img {
-  width: 25px;
+  height: 30px;
 }
 
 .footer .footer_social a.weibo {
   margin-top: 2px;
+}
+
+.footer .footer_social a.bsf {
+  background: #fff;
+  color: #99883e;
+  padding: 3px 5px 3px 5px;
+  height: 24px;
+  border-radius: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+
+.footer .footer_social a.bsf img {
+  width: auto;
+  height: 22px;
+}
+
+@media (max-width: 768px) {
+  .footer_social {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    gap: 10px;
+  }
+  .footer_social a.bsf {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  .footer_social a.fb,
+  .footer_social a:not(.fb):not(.bsf) {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
 }
 
 .full-bio-tib-link {
@@ -4447,5 +4494,20 @@ table.tablepress-id-19 tbody .sp_year_en:before {
   .online-teachings .zoomNumber .yourZoomNumber {
     font-weight: bold;
   }
+}
+
+/** Vidéos des articles : pleine largeur de la colonne, centrées (demande Rija 2026-10-11) **/
+.wp-block-video {
+  text-align: center;
+  margin: 20px auto;
+}
+.wp-block-video video {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  background: #000;
 }
 /*# sourceMappingURL=style.css.map */

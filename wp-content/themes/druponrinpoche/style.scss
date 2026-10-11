@@ -1759,7 +1759,7 @@ img.alignleft {
 /* HEADER NEW STYLE 1 */
 
 .menu-top-container {
-    width: 60%;
+     width: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -3461,12 +3461,44 @@ a.course_link {
         float: left;
         margin-right:8px; 
         img {
-            width: 25px;
+            height: 30px;
         }
         &.weibo {
             margin-top: 2px;
         }
+        &.bsf {
+            background: #fff;
+            color: #99883e;
+            padding: 3px 5px 3px 5px;
+            height: 24px;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            img {
+                width: auto;
+                height: 22px;
+            }
+        }
+    }
+}
 
+@media (max-width: 768px) {
+    .footer_social {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .footer_social a.bsf {
+        flex-basis: 100%;
+        order: 2;
+    }
+    
+    .footer_social a.fb,
+    .footer_social a:not(.fb):not(.bsf) {
+        order: 1;
     }
 }
 
@@ -4663,3 +4695,18 @@ table.tablepress-id-19 {
 
 }
 
+
+/** Vidéos des articles : pleine largeur de la colonne, centrées (demande Rija 2026-10-11) **/
+.wp-block-video {
+    text-align: center;
+    margin: 20px auto;
+    video {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: auto;
+        max-height: 80vh;
+        object-fit: contain;
+        background: #000;
+    }
+}
