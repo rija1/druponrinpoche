@@ -3043,9 +3043,10 @@ p.teaching_info {
         height: 416px;
         .article-text {
             position:relative;
-            padding: 0 17px 10px 17px;
-            height: 180px;
-            overflow:hidden; 
+            padding: 0 17px 0 17px;
+            height: 172px;
+            overflow:hidden;
+            border-bottom: 18px solid #fff; // marge basse visible : le débordement du texte ne recouvre pas la bordure (Rija 2026-10-12)
             // .article-text-gradient {
             //     position:absolute;
             //     bottom:0px;

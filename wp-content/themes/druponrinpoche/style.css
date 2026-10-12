@@ -2984,9 +2984,10 @@ p.teaching_info {
 
 .category-news .article-blog .article-text {
   position: relative;
-  padding: 0 17px 10px 17px;
-  height: 180px;
+  padding: 0 17px 0 17px;
+  height: 172px;
   overflow: hidden;
+  border-bottom: 18px solid #fff;
 }
 
 .category-news a.article-link {
